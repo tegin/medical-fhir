@@ -5,8 +5,8 @@
 from odoo import fields, models
 
 
-class StockMoveLine(models.Model):
-    _inherit = 'stock.move.line'
+class StockMove(models.Model):
+    _inherit = 'stock.picking'
 
     medication_administration_id = fields.Many2one(
         comodel_name='medical.medication.administration',
