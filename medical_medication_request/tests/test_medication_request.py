@@ -11,15 +11,17 @@ class TestMedicationRequest(TransactionCase):
         super(TestMedicationRequest, self).setUp()
         self.patient = self.browse_ref('medical_administration.patient_01')
         stock_location = self.browse_ref('stock.warehouse0').lot_stock_id
+        picking_type = self.env['stock.picking.type'].search([], limit=1)
         self.location = self.env['res.partner'].create({
             'name': 'Test',
             'is_location': True,
-            'stock_location_id': stock_location.id
+            'stock_location_id': stock_location.id,
+            'stock_picking_type_id': picking_type.id,
         })
         self.medication = self.env['product.product'].create({
             'name': 'Medication',
             'is_medication': True,
-            'type': 'consu'
+            'type': 'consu',
         })
 
     def test_flow(self):
@@ -47,7 +49,7 @@ class TestMedicationRequest(TransactionCase):
         event.location_id = self.location
         event.in_progress2completed()
         self.assertEqual(event.state, 'completed')
-        self.assertTrue(event.move_id)
+        self.assertTrue(event.picking_ids)
         self.assertTrue(event.occurrence_date)
         res = event.action_view_stock_moves()
         self.assertTrue(res['domain'])
