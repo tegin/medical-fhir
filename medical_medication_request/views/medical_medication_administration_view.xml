@@ -36,10 +36,10 @@
                 <button string="Stock moves" type="object"
                         name="action_view_stock_moves"
                          class="oe_stat_button"  icon="fa-arrows-v"
-                        attrs="{'invisible': [('move_id','=',False)]}"/>
+                        attrs="{'invisible': [('picking_ids','=',False)]}"/>
             </xpath>
             <field name="service_id" position="after">
-                <field name="move_id" invisible="1"/>
+                <field name="picking_ids" invisible="1"/>
                 <field name="product_id"/>
                 <label for="qty"/>
                 <div class="o_row">
