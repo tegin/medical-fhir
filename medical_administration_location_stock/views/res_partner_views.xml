@@ -22,6 +22,7 @@
                     <group name="stock_location_group">
                         <group>
                             <field name="stock_location_id"/>
+                            <field name="stock_picking_type_id"/>
                         </group>
                     </group>
                 </page>
