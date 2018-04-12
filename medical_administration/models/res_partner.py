@@ -26,13 +26,14 @@ class Partner(models.Model):
 
     @api.model
     def create(self, vals):
+        vals_upd = vals.copy()
         for medical, check, identifier, definition in \
                 self._get_medical_identifiers():
-            if vals.get(check) and not vals.get(identifier):
-                vals[identifier] = definition(vals)
-        if not vals.get('image'):
-            vals['image'] = self._get_partner_default_image(vals)
-        return super(Partner, self).create(vals)
+            if vals_upd.get(check) and not vals_upd.get(identifier):
+                vals_upd[identifier] = definition(vals_upd)
+        if not vals_upd.get('image'):
+            vals_upd['image'] = self._get_partner_default_image(vals_upd)
+        return super(Partner, self).create(vals_upd)
 
     @api.model
     def _get_partner_default_image(self, vals):
