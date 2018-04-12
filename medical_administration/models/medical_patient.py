@@ -65,9 +65,10 @@ class MedicalPatient(models.Model):
 
     @api.model
     def create(self, vals):
-        if not vals.get('image'):
-            vals['image'] = self._get_default_medical_image(vals)
-        return super(MedicalPatient, self).create(vals)
+        vals_upd = vals.copy()
+        if not vals_upd.get('image'):
+            vals_upd['image'] = self._get_default_medical_image(vals_upd)
+        return super(MedicalPatient, self).create(vals_upd)
 
     @api.model
     def _get_default_medical_image(self, vals):
