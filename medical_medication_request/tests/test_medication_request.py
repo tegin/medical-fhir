@@ -32,7 +32,7 @@ class TestMedicationRequest(TransactionCase):
             'qty': 1
         })
         request.onchange_product_id()
-        request = request.create(request._cache)
+        request = request.create(request._convert_to_write(request._cache))
         request.draft2active()
         self.assertEqual(request.state, 'active')
         res = request.action_view_medication_administration()
@@ -64,7 +64,7 @@ class TestMedicationRequest(TransactionCase):
         })
         self.medication.type = 'product'
         event.onchange_product_id()
-        event = event.create(event._cache)
+        event = event.create(event._convert_to_write(event._cache))
         event.preparation2in_progress()
         self.assertEqual(event.state, 'in-progress')
         event.location_id = self.location
