@@ -12,6 +12,7 @@
     'license': 'LGPL-3',
     'depends': [
         'medical_workflow',
+        'medical_clinical',
         'medical_medication',
         'medical_administration_location_stock',
     ],
