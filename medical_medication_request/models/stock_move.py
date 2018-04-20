@@ -11,4 +11,5 @@ class StockMove(models.Model):
     medication_administration_id = fields.Many2one(
         comodel_name='medical.medication.administration',
         string='Medication administration event',
+        ondelete='restrict', index=True,
     )
