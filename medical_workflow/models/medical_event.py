@@ -26,14 +26,17 @@ class MedicalEvent(models.AbstractModel):
     )
     plan_definition_id = fields.Many2one(
         comodel_name='workflow.plan.definition',
+        ondelete='restrict', index=True,
     )   # FHIR Field: definition
 
     activity_definition_id = fields.Many2one(
         comodel_name='workflow.activity.definition',
+        ondelete='restrict', index=True,
     )   # FHIR Field: definition
 
     plan_definition_action_id = fields.Many2one(
         comodel_name='workflow.plan.definition.action',
+        ondelete='restrict', index=True,
     )   # FHIR Field: definition
     state = fields.Selection(
         _STATES,
@@ -47,13 +50,14 @@ class MedicalEvent(models.AbstractModel):
     service_id = fields.Many2one(
         string='Service',
         comodel_name='product.product',
+        ondelete='restrict', index=True,
         domain="[('type', '=', 'service')]",
     )  # FHIR Field: code
     patient_id = fields.Many2one(
         string='Patient',
         comodel_name='medical.patient',
         required=True,
-        index=True,
+        ondelete='restrict', index=True,
         help='Patient Name',
     )  # FHIR field: subject
     occurrence_date = fields.Datetime(
@@ -63,6 +67,7 @@ class MedicalEvent(models.AbstractModel):
     performer_id = fields.Many2one(
         string='Performer',
         comodel_name='res.partner',
+        ondelete='restrict', index=True,
         domain=[('is_practitioner', '=', True)],
         help='Who is to perform the procedure',
     )  # FHIR Field : performer/actor

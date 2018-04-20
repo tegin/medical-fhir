@@ -14,6 +14,7 @@ class MedicalProcedure(models.Model):
     procedure_request_id = fields.Many2one(
         comodel_name='medical.procedure.request',
         string='Procedure request',
+        ondelete='restrict', index=True,
         readonly=True,
     )   # FHIR Field: BasedOn
     performed_initial_date = fields.Datetime(
@@ -25,6 +26,7 @@ class MedicalProcedure(models.Model):
     location_id = fields.Many2one(
         comodel_name='res.partner',
         domain=[('is_location', '=', True)],
+        ondelete='restrict', index=True,
         string='Location',
     )   # FHIR Field: location
 

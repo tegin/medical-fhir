@@ -53,24 +53,27 @@ class MedicalRequest(models.AbstractModel):
         string='Patient',
         comodel_name='medical.patient',
         required=True,
-        index=True,
+        ondelete='restrict', index=True,
         help='Patient Name',
     )   # FHIR field: subject
     performer_id = fields.Many2one(
         string='Performer',
         comodel_name='res.partner',
         domain=[('is_practitioner', '=', True)],
+        ondelete='restrict', index=True,
         help='Who is to perform the procedure',
     )   # FHIR Field : performer
     service_id = fields.Many2one(
         string='Service',
         comodel_name='product.product',
+        ondelete='restrict', index=True,
         domain="[('type', '=', 'service')]",
     )   # FHIR Field: code
     order_by_id = fields.Many2one(
         string="Ordered by",
         comodel_name='res.partner',
         help="Person who has initiated the order.",
+        ondelete='restrict', index=True,
     )   # FHIR Field: requester/agent
     order_date = fields.Datetime(
         string="Order date",
@@ -81,12 +84,15 @@ class MedicalRequest(models.AbstractModel):
     )   # FHIR Field: note
     plan_definition_id = fields.Many2one(
         comodel_name='workflow.plan.definition',
+        ondelete='restrict', index=True,
     )   # FHIR Field: definition
     activity_definition_id = fields.Many2one(
         comodel_name='workflow.activity.definition',
+        ondelete='restrict', index=True,
     )   # FHIR Field: definition
     plan_definition_action_id = fields.Many2one(
         comodel_name='workflow.plan.definition.action',
+        ondelete='restrict', index=True,
     )   # FHIR Field: definition
     is_editable = fields.Boolean(
         compute='_compute_is_editable',
