@@ -18,13 +18,14 @@ class MedicalCoverage(models.Model):
         string='Patient',
         comodel_name='medical.patient',
         required=True,
-        index=True,
+        ondelete='restrict', index=True,
         help='Patient name',
     )  # FHIR Field: beneficiary
     coverage_template_id = fields.Many2one(
         string='Coverage Template',
         comodel_name='medical.coverage.template',
         required=True,
+        ondelete='restrict', index=True,
         help='Coverage Template',
     )
     state = fields.Selection(
@@ -40,9 +41,6 @@ class MedicalCoverage(models.Model):
     )  # FHIR Field: status
     is_editable = fields.Boolean(
         compute='_compute_is_editable',
-    )
-    patient_id = fields.Many2one(
-        comodel_name='medical.patient',
     )
     subscriber_id = fields.Char(
         string='Subscriber Id',

@@ -11,6 +11,7 @@ class MedicalRequest(models.AbstractModel):
     careplan_id = fields.Many2one(
         string="Parent Careplan",
         comodel_name="medical.careplan",
+        ondelete='restrict', index=True,
     )   # FHIR Field: BasedOn
     careplan_ids = fields.One2many(
         string="Associated Care Plans",
