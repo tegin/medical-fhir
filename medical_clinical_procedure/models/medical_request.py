@@ -11,6 +11,7 @@ class MedicalRequest(models.AbstractModel):
     procedure_request_id = fields.Many2one(
         string="Parent Procedure Request",
         comodel_name="medical.procedure.request",
+        ondelete='restrict', index=True,
     )   # FHIR Field: BasedOn
     procedure_request_ids = fields.One2many(
         string="Associated Procedure Requests",
