@@ -11,6 +11,7 @@ class MedicalRequest(models.AbstractModel):
 
     encounter_id = fields.Many2one(
         comodel_name='medical.encounter',
+        ondelete='restrict', index=True,
     )
 
     @api.constrains('patient_id', 'encounter_id')
