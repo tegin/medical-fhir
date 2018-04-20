@@ -18,7 +18,7 @@ class MedicalCoverageTemplate(models.Model):
         comodel_name='res.partner',
         domain=[('is_payor', '=', True)],
         required=True,
-        index=True,
+        ondelete='restrict', index=True,
         help='Payer name',
     )
     coverage_ids = fields.One2many(
