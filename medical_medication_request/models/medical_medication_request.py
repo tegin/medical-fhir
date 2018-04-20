@@ -25,11 +25,13 @@ class MedicalMedicationRequest(models.Model):
         comodel_name='product.product',
         domain=[('is_medication', '=', True)],
         required=True,
+        ondelete='restrict', index=True,
     )
     product_uom_id = fields.Many2one(
         'product.uom',
         'Unit of Measure',
         required=True,
+        ondelete='restrict', index=True,
     )
     qty = fields.Float(
         'Quantity',
