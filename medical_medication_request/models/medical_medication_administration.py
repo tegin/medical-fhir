@@ -16,9 +16,11 @@ class MedicalMedicationAdministration(models.Model):
 
     medication_request_id = fields.Many2one(
         comodel_name='medical.medication.request',
+        ondelete='restrict', index=True,
     )
     location_id = fields.Many2one(
         comodel_name='res.partner',
+        ondelete='restrict', index=True,
         domain=[
             ('is_location', '=', True),
             ('stock_picking_type_id', '!=', False),
@@ -27,24 +29,29 @@ class MedicalMedicationAdministration(models.Model):
     stock_location_id = fields.Many2one(
         comodel_name='stock.location',
         related='location_id.stock_location_id',
+        ondelete='restrict', index=True,
     )
     stock_picking_type_id = fields.Many2one(
         comodel_name='stock.picking.type',
         related='location_id.stock_picking_type_id',
+        ondelete='restrict', index=True,
     )
     patient_location_id = fields.Many2one(
         comodel_name='stock.location',
         default=_default_patient_location,
+        ondelete='restrict', index=True,
     )
     product_id = fields.Many2one(
         'product.product',
         'Product',
+        ondelete='restrict', index=True,
         required=True,
         states={'done': [('readonly', True)]},
     )
     product_uom_id = fields.Many2one(
         'product.uom',
         'Unit of Measure',
+        ondelete='restrict', index=True,
         required=True,
         states={'done': [('readonly', True)]},
     )
@@ -56,12 +63,14 @@ class MedicalMedicationAdministration(models.Model):
     lot_id = fields.Many2one(
         'stock.production.lot',
         'Lot',
+        ondelete='restrict', index=True,
         states={'done': [('readonly', True)]},
         domain="[('product_id', '=', product_id)]",
     )
     package_id = fields.Many2one(
         'stock.quant.package',
         'Package',
+        ondelete='restrict', index=True,
         states={'done': [('readonly', True)]},
     )
     qty = fields.Float(
