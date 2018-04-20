@@ -25,6 +25,7 @@ class PlanDefinition(models.Model):
     type_id = fields.Many2one(
         string='Workflow type',
         comodel_name='workflow.type',
+        ondelete='restrict', index=True,
         required=True,
     )   # FHIR field: type
     state = fields.Selection(
