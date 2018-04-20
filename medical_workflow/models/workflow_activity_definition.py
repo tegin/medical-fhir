@@ -25,6 +25,7 @@ class ActivityDefinition(models.Model):
     type_id = fields.Many2one(
         string='Workflow Type',
         comodel_name='workflow.type',
+        ondelete='restrict', index=True,
         help="Type of worklow this activity definition can be used in",
     )
     model_id = fields.Many2one(
@@ -45,6 +46,7 @@ class ActivityDefinition(models.Model):
         comodel_name='product.product',
         help='Product that represents this resource',
         required=False,
+        ondelete='restrict', index=True,
     )   # FHIR field: code
     quantity = fields.Integer(
         string='Quantity',

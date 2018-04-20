@@ -57,11 +57,13 @@ class PlanDefinitionAction(models.Model):
     execute_plan_definition_id = fields.Many2one(
         string='Plan definition',
         comodel_name='workflow.plan.definition',
+        ondelete='restrict', index=True,
         help='This plan will be executed instead of an activity',
     )
     activity_definition_id = fields.Many2one(
         string='Activity definition',
         comodel_name='workflow.activity.definition',
+        ondelete='restrict', index=True,
     )   # FHIR field: definition (Activity Definition)
     parent_left = fields.Integer(
         'Left Parent',
