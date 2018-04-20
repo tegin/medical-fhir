@@ -11,6 +11,7 @@ class MedicalRequest(models.AbstractModel):
     request_group_id = fields.Many2one(
         string="Parent Request group",
         comodel_name="medical.request.group",
+        ondelete='restrict', index=True,
     )   # FHIR Field: BasedOn
 
     request_group_ids = fields.One2many(
