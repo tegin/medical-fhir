@@ -18,7 +18,7 @@ class MedicalEncounter(models.Model):
         string='Patient',
         comodel_name='medical.patient',
         required=True,
-        index=True,
+        ondelete='restrict', index=True,
         help='Patient name',
     )  # FHIR Field: subject
     priority_id = fields.Selection(
@@ -32,7 +32,7 @@ class MedicalEncounter(models.Model):
         string="Location",
         comodel_name='res.partner',
         domain=[('is_location', '=', True)],
-        index=True,
+        ondelete='restrict', index=True,
     )  # FHIR Field: location
     state = fields.Selection(
         string="Encounter Status",
