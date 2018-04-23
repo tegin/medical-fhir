@@ -45,6 +45,7 @@ class MedicalEvent(models.AbstractModel):
             'completed': [('readonly', True)]
         },
         required=True,
+        track_visibility=True,
         default='preparation',
     )  # FHIR field: status
     service_id = fields.Many2one(
@@ -57,6 +58,7 @@ class MedicalEvent(models.AbstractModel):
         string='Patient',
         comodel_name='medical.patient',
         required=True,
+        track_visibility=True,
         ondelete='restrict', index=True,
         help='Patient Name',
     )  # FHIR field: subject
@@ -68,6 +70,7 @@ class MedicalEvent(models.AbstractModel):
         string='Performer',
         comodel_name='res.partner',
         ondelete='restrict', index=True,
+        track_visibility=True,
         domain=[('is_practitioner', '=', True)],
         help='Who is to perform the procedure',
     )  # FHIR Field : performer/actor
