@@ -21,6 +21,7 @@
         "views/medical_menu.xml",
     ],
     "demo": [
+        'demo/medical_demo.xml',
     ],
     "installable": True,
     "application": False,
