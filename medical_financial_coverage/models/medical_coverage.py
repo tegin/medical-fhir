@@ -19,6 +19,7 @@ class MedicalCoverage(models.Model):
         comodel_name='medical.patient',
         required=True,
         ondelete='restrict', index=True,
+        track_visibility=True,
         help='Patient name',
     )  # FHIR Field: beneficiary
     coverage_template_id = fields.Many2one(
@@ -37,6 +38,7 @@ class MedicalCoverage(models.Model):
             ("cancelled", "Cancelled"),
             ("entered-in-error", "Entered In Error")],
         default="draft",
+        track_visibility=True,
         help="Current state of the coverage.",
     )  # FHIR Field: status
     is_editable = fields.Boolean(
