@@ -19,6 +19,7 @@ class MedicalCoverageTemplate(models.Model):
         domain=[('is_payor', '=', True)],
         required=True,
         ondelete='restrict', index=True,
+        track_visibility=True,
         help='Payer name',
     )
     coverage_ids = fields.One2many(
@@ -35,6 +36,7 @@ class MedicalCoverageTemplate(models.Model):
             ("cancelled", "Cancelled"),
             ("entered-in-error", "Entered In Error")],
         default="draft",
+        track_visibility=True,
         help="Current state of the coverage.",
     )
     is_editable = fields.Boolean(
