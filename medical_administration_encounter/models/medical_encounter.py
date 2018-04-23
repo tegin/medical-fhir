@@ -18,6 +18,7 @@ class MedicalEncounter(models.Model):
         string='Patient',
         comodel_name='medical.patient',
         required=True,
+        track_visibility=True,
         ondelete='restrict', index=True,
         help='Patient name',
     )  # FHIR Field: subject
@@ -32,11 +33,13 @@ class MedicalEncounter(models.Model):
         string="Location",
         comodel_name='res.partner',
         domain=[('is_location', '=', True)],
+        track_visibility=True,
         ondelete='restrict', index=True,
     )  # FHIR Field: location
     state = fields.Selection(
         string="Encounter Status",
         required="True",
+        track_visibility=True,
         selection=[
             ("planned", "Planned"),
             ("arrived", "Arrived"),

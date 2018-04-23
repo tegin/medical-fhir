@@ -32,6 +32,7 @@ class MedicalRequest(models.AbstractModel):
             'completed': [('readonly', True)]
         },
         required=True,
+        track_visibility=True,
         default='draft',
     )   # FHIR field: status
     intent = fields.Selection(
@@ -53,6 +54,7 @@ class MedicalRequest(models.AbstractModel):
         string='Patient',
         comodel_name='medical.patient',
         required=True,
+        track_visibility=True,
         ondelete='restrict', index=True,
         help='Patient Name',
     )   # FHIR field: subject
@@ -61,17 +63,20 @@ class MedicalRequest(models.AbstractModel):
         comodel_name='res.partner',
         domain=[('is_practitioner', '=', True)],
         ondelete='restrict', index=True,
+        track_visibility=True,
         help='Who is to perform the procedure',
     )   # FHIR Field : performer
     service_id = fields.Many2one(
         string='Service',
         comodel_name='product.product',
+        track_visibility=True,
         ondelete='restrict', index=True,
         domain="[('type', '=', 'service')]",
     )   # FHIR Field: code
     order_by_id = fields.Many2one(
         string="Ordered by",
         comodel_name='res.partner',
+        track_visibility=True,
         help="Person who has initiated the order.",
         ondelete='restrict', index=True,
     )   # FHIR Field: requester/agent
