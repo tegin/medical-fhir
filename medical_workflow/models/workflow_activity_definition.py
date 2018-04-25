@@ -28,10 +28,15 @@ class ActivityDefinition(models.Model):
         ondelete='restrict', index=True,
         help="Type of worklow this activity definition can be used in",
     )
+    model_ids = fields.Many2many(
+        comodel_name='ir.model',
+        related='type_id.model_ids'
+    )
     model_id = fields.Many2one(
         string='Model',
         comodel_name='ir.model',
         required=True,
+        domain="[('id', 'in', model_ids)]"
     )   # FHIR field: kind
     state = fields.Selection(
         [('draft', 'Draft'),
