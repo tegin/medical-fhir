@@ -34,9 +34,13 @@ class MedicalAddPlanDefinition(models.TransientModel):
         }
 
     @api.multi
-    def run(self):
+    def _run(self):
         self.ensure_one()
         vals = self._get_values()
-        res = self.plan_definition_id.execute_plan_definition(vals)
+        return self.plan_definition_id.execute_plan_definition(vals)
+
+    @api.multi
+    def run(self):
+        res = self._run()
         if not res:
             raise Warning(_('No requests were created'))
