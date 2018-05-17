@@ -73,20 +73,22 @@ class PlanDefinition(models.Model):
 
     @api.multi
     def execute_plan_definition(self, vals, parent=False):
+        """It will return the parent or the main activity.
+        The action result could be of different models.
+        """
         self.ensure_one()
-        result = False
         res = False
         if (
             self.env.user._has_group('medical_workflow.'
                                      'group_main_activity_plan_definition') and
             self.activity_definition_id
         ):
-            result = True
             res = self.activity_definition_id.execute_activity(
                 vals, parent, plan=self)
         if not res:
             res = parent
+        result = res
         for action in self.direct_action_ids:
             act = action.execute_action(vals, res)
-            result = act or result
+            result = result or act
         return result
