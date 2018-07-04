@@ -28,6 +28,3 @@ class TestMedicalLocation(TransactionCase):
         vals['center_id'] = center.id
         location = self.env['res.partner'].create(vals)
         self.assertTrue(location.is_location)
-        vals['is_location'] = False
-        with self.assertRaises(ValidationError):
-            self.env['res.partner'].create(vals)

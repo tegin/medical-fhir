@@ -32,10 +32,6 @@ class ResPartner(models.Model):
             raise ValidationError(_(
                 'Center must be fullfilled on locations'
             ))
-        if not self.is_location and self.center_id:
-            raise ValidationError(_(
-                'Center childs must be locations'
-            ))
 
     @api.model
     def _get_medical_identifiers(self):
