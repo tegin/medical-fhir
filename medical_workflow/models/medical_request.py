@@ -146,23 +146,47 @@ class MedicalRequest(models.AbstractModel):
             else:
                 rec.is_editable = True
 
+    def draft2active_values(self):
+        return {'state': 'active'}
+
+    @api.multi
     def draft2active(self):
-        self.write({'state': 'active'})
+        self.write(self.draft2active_values())
 
+    def active2suspended_values(self):
+        return {'state': 'suspended'}
+
+    @api.multi
     def active2suspended(self):
-        self.write({'state': 'suspended'})
+        self.write(self.active2suspended_values())
 
+    def active2completed_values(self):
+        return {'state': 'completed'}
+
+    @api.multi
     def active2completed(self):
-        self.write({'state': 'completed'})
+        self.write(self.active2completed_values())
 
+    def active2error_values(self):
+        return {'state': 'entered-in-error'}
+
+    @api.multi
     def active2error(self):
-        self.write({'state': 'entered-in-error'})
+        self.write(self.active2error_values())
 
+    def reactive_values(self):
+        return {'state': 'active'}
+
+    @api.multi
     def reactive(self):
-        self.write({'state': 'active'})
+        self.write(self.reactive_values())
 
+    def cancel_values(self):
+        return {'state': 'cancelled'}
+
+    @api.multi
     def cancel(self):
-        self.write({'state': 'cancelled'})
+        self.write(self.cancel_values())
 
     @api.multi
     def generate_event(self):

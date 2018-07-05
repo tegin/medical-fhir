@@ -80,26 +80,58 @@ class MedicalEncounter(models.Model):
             else:
                 rec.is_editable = True
 
+    def planned2arrived_values(self):
+        return {'state': 'arrived'}
+
+    @api.multi
     def planned2arrived(self):
-        self.write({'state': 'arrived'})
+        self.write(self.planned2arrived_values())
 
+    def planned2cancelled_values(self):
+        return {'state': 'cancelled'}
+
+    @api.multi
     def planned2cancelled(self):
-        self.write({'state': 'cancelled'})
+        self.write(self.planned2cancelled_values())
 
+    def arrived2inprogress_values(self):
+        return {'state': 'in-progress'}
+
+    @api.multi
     def arrived2inprogress(self):
-        self.write({'state': 'in-progress'})
+        self.write(self.arrived2inprogress_values())
 
+    def arrived2cancelled_values(self):
+        return {'state': 'cancelled'}
+
+    @api.multi
     def arrived2cancelled(self):
-        self.write({'state': 'cancelled'})
+        self.write(self.arrived2cancelled_values())
 
+    def inprogress2onleave_values(self):
+        return {'state': 'onleave'}
+
+    @api.multi
     def inprogress2onleave(self):
-        self.write({'state': 'onleave'})
+        self.write(self.inprogress2onleave_values())
 
+    def inprogress2cancelled_values(self):
+        return {'state': 'cancelled'}
+
+    @api.multi
     def inprogress2cancelled(self):
-        self.write({'state': 'cancelled'})
+        self.write(self.inprogress2cancelled_values())
 
+    def onleave2finished_values(self):
+        return {'state': 'finished'}
+
+    @api.multi
     def onleave2finished(self):
-        self.write({'state': 'finished'})
+        self.write(self.onleave2finished_values())
 
+    def onleave2cancelled_values(self):
+        return {'state': 'cancelled'}
+
+    @api.multi
     def onleave2cancelled(self):
-        self.write({'state': 'cancelled'})
+        self.write(self.onleave2cancelled_values())
