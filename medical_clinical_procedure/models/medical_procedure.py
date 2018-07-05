@@ -41,18 +41,12 @@ class MedicalProcedure(models.Model):
         return self.env['ir.sequence'].next_by_code(
             'medical.procedure') or '/'
 
-    @api.multi
-    def preparation2in_progress(self):
-        res = super(MedicalProcedure, self).preparation2in_progress()
-        for record in self:
-            if not record.performed_initial_date:
-                record.performed_initial_date = fields.Datetime.now()
+    def preparation2in_progress_values(self):
+        res = super().preparation2in_progress_values()
+        res['performed_initial_date'] = fields.Datetime.now()
         return res
 
-    @api.multi
-    def in_progress2completed(self):
-        res = super(MedicalProcedure, self).in_progress2completed()
-        for record in self:
-            if not record.performed_end_date:
-                record.performed_end_date = fields.Datetime.now()
+    def in_progress2completed_values(self):
+        res = super().in_progress2completed_values()
+        res['performed_end_date'] = fields.Datetime.now()
         return res
