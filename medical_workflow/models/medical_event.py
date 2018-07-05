@@ -99,22 +99,37 @@ class MedicalEvent(models.AbstractModel):
             result.append((record.id, name))
         return result
 
+    def preparation2in_progress_values(self):
+        return {'state': 'in-progress'}
+
     @api.multi
     def preparation2in_progress(self):
-        self.write({'state': 'in-progress'})
+        self.write(self.preparation2in_progress_values())
+
+    def suspended2in_progress_values(self):
+        return {'state': 'in-progress'}
 
     @api.multi
     def suspended2in_progress(self):
-        self.write({'state': 'in-progress'})
+        self.write(self.suspended2in_progress_values())
+
+    def in_progress2completed_values(self):
+        return {'state': 'completed'}
 
     @api.multi
     def in_progress2completed(self):
-        self.write({'state': 'completed'})
+        self.write(self.in_progress2completed_values())
+
+    def in_progress2aborted_values(self):
+        return {'state': 'aborted'}
 
     @api.multi
     def in_progress2aborted(self):
-        self.write({'state': 'aborted'})
+        self.write(self.in_progress2aborted_values())
+
+    def in_progress2suspended_values(self):
+        return {'state': 'suspended'}
 
     @api.multi
     def in_progress2suspended(self):
-        self.write({'state': 'suspended'})
+        self.write(self.in_progress2suspended_values())

@@ -25,15 +25,15 @@ class MedicalCarePlan(models.Model):
     def _get_internal_identifier(self, vals):
         return self.env['ir.sequence'].next_by_code('medical.careplan') or '/'
 
-    def draft2active(self):
-        for record in self:
-            record.start_date = fields.Datetime.now()
-        return super(MedicalCarePlan, self).draft2active()
+    def draft2active_values(self):
+        res = super().draft2active_values()
+        res['start_date'] = fields.Datetime.now()
+        return res
 
-    def active2completed(self):
-        for record in self:
-            record.end_date = fields.Datetime.now()
-        return super(MedicalCarePlan, self).active2completed()
+    def active2completed_values(self):
+        res = super().active2completed_values()
+        res['end_date'] = fields.Datetime.now()
+        return res
 
     def _get_parent_field_name(self):
         return 'careplan_id'
