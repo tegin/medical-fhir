@@ -5,7 +5,7 @@
 {
     'name': 'Medical Workflow',
     'summary': 'Medical workflow base',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'author': 'Creu Blanca, Eficent, Odoo Community Association (OCA)',
     'category': 'Medical',
     'website': 'https://github.com/OCA/vertical-medical',

@@ -7,7 +7,6 @@
 -->
 
 <odoo>
-
     <data noupdate="1">
         <record id="machine_time_product" model="product.product">
             <field name="name">Time on machine service</field>
