@@ -9,6 +9,7 @@ class MedicalEvent(models.AbstractModel):
     _name = 'medical.event'
     _description = 'Medical event'
     _inherit = ['medical.abstract', 'mail.thread', 'mail.activity.mixin']
+    _order = 'create_date DESC'
 
     _STATES = [
         ('preparation', 'Preparation'),
