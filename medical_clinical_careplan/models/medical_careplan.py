@@ -12,6 +12,9 @@ class MedicalCarePlan(models.Model):
     _description = 'Medical Care Plan'
     _inherit = 'medical.request'
 
+    internal_identifier = fields.Char(
+        string="Careplan"
+    )
     start_date = fields.Datetime(
         string='start date',
     )   # FHIR Field: Period
