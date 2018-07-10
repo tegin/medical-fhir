@@ -11,6 +11,7 @@ class MedicalRequest(models.AbstractModel):
     _name = 'medical.request'
     _description = 'Medical request'
     _inherit = ['medical.abstract', 'mail.thread', 'mail.activity.mixin']
+    _order = 'create_date DESC'
 
     _STATES = [
         ('draft', 'Draft'),
