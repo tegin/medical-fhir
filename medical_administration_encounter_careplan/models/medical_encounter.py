@@ -12,6 +12,14 @@ class MedicalEncounter(models.Model):
         comodel_name='medical.careplan',
         inverse_name='encounter_id',
     )
+    careplan_count = fields.Integer(
+        compute='_compute_careplan_count'
+    )
+
+    @api.depends('careplan_ids')
+    def _compute_careplan_count(self):
+        for record in self:
+            record.careplan_count = len(record.careplan_ids)
 
     @api.multi
     def action_view_careplans(self):
