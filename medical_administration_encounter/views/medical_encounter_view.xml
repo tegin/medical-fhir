@@ -12,7 +12,7 @@
         <field name="name">medical.encounter.view.tree</field>
         <field name="model">medical.encounter</field>
         <field name="arch" type="xml">
-            <tree string="Medical Encounters">
+            <tree string="Encounters">
                 <field name="internal_identifier"/>
                 <field name="patient_id"/>
                 <field name="location_id"/>
@@ -26,7 +26,7 @@
         <field name="name">medical.encounter.view.form</field>
         <field name="model">medical.encounter</field>
         <field name="arch" type="xml">
-            <form string="Medical Encounter">
+            <form string="Encounter">
                 <header>
                     <button string="Arrived" type="object"
                             name="planned2arrived" class="oe_highlight"
@@ -58,6 +58,7 @@
                     <div name="button_box" class="oe_button_box">
                     </div>
                     <h1>
+                        <label for="internal_identifier"/>
                         <field name="internal_identifier"/>
                         <field name="is_editable" invisible="1"/>
                     </h1>
@@ -89,7 +90,7 @@
         <field name="name">medical.encounter.search</field>
         <field name="model">medical.encounter</field>
         <field name="arch" type="xml">
-            <search string="Medical Encounter">
+            <search string="Encounter">
                 <field name="internal_identifier"/>
                 <separator/>
                 <field name="patient_id"/>
