@@ -51,6 +51,11 @@ class MedicalProcedureRequest(models.Model):
         return super(MedicalProcedureRequest, self).unlink()
 
     @api.multi
+    def active2completed(self):
+        self.filtered(lambda r: not r.procedure_ids).generate_event()
+        return super().active2completed()
+
+    @api.multi
     def action_view_procedure(self):
         self.ensure_one()
         action = self.env.ref(
