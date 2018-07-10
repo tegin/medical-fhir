@@ -12,6 +12,9 @@ class MedicalMedicationRequest(models.Model):
     _description = 'Medical Medication request'
     _inherit = 'medical.request'
 
+    internal_identifier = fields.Char(
+        string="Medication request"
+    )
     category = fields.Selection(
         [
             ('inpatient', 'Inpatient'),
