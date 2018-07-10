@@ -14,6 +14,9 @@ class MedicalMedicationAdministration(models.Model):
     def _default_patient_location(self):
         return self.env.ref('medical_medication_request.location_patient')
 
+    internal_identifier = fields.Char(
+        string="Medication administration"
+    )
     medication_request_id = fields.Many2one(
         comodel_name='medical.medication.request',
         ondelete='restrict', index=True,
