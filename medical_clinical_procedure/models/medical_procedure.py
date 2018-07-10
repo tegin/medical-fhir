@@ -11,6 +11,9 @@ class MedicalProcedure(models.Model):
     _description = 'Medical Procedure'
     _inherit = 'medical.event'
 
+    internal_identifier = fields.Char(
+        string="Procedure"
+    )
     procedure_request_id = fields.Many2one(
         comodel_name='medical.procedure.request',
         string='Procedure request',
