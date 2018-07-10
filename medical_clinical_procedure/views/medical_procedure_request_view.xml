@@ -34,10 +34,14 @@
                 <attribute name="string">Request Group</attribute>
             </form>
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button string="Procedures" type="object"
+                <button type="object"
                         name="action_view_procedure"
                          class="oe_stat_button"  icon="fa-stethoscope"
-                        attrs="{'invisible': [('state','=','draft')]}"/>
+                        attrs="{'invisible': [('state','=','draft')]}">
+                    <field name="procedure_count" widget="statinfo"
+                               string="Procedures"/>
+                    <field name='procedure_ids' invisible="1"/>
+                </button>
             </xpath>
         </field>
     </record>

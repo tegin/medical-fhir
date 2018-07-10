@@ -13,6 +13,9 @@ class MedicalProcedureRequest(models.Model):
     _inherit = 'medical.request'
     _order = 'sequence, id'
 
+    internal_identifier = fields.Char(
+        string="Procedure request"
+    )
     sequence = fields.Integer(
         required=True,
         default=1,
