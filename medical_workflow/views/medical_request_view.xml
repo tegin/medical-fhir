@@ -83,8 +83,11 @@
                                    attrs="{'readonly':[('is_editable', '=', False)]}"/>
                         </group>
                     </group>
-                    <group name="inheritance"/>
-                    <notebook/>
+                    <notebook>
+                        <page name="Inheritance" string="Inheritance" groups="base.group_no_one">
+                            <group name="inheritance"/>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>

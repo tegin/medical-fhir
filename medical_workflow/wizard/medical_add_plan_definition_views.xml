@@ -13,8 +13,10 @@
         <field name="model">medical.add.plan.definition</field>
         <field name="arch" type="xml">
             <form string="Activity Definition">
-                <field name="patient_id" invisible="1"/>
-                <field name="plan_definition_id"/>
+                <group>
+                    <field name="patient_id" invisible="1"/>
+                    <field name="plan_definition_id"/>
+                </group>
                 <footer>
                     <button type="object" name="run" string="Create"
                             class="oe_highlight"/>
