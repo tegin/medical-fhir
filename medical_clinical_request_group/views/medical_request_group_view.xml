@@ -32,6 +32,37 @@
         </field>
     </record>
 
+    <record id="medical_request_group_view_search" model="ir.ui.view">
+        <field name="name">medical.request.group.view.search</field>
+        <field name="model">medical.request.group</field>
+        <field name="arch" type="xml">
+            <search string="Request Groups">
+                <field name="internal_identifier"/>
+                <field name="patient_id"/>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="priority"/>
+                <field name="order_by_id"/>
+                <newline/>
+                <filter domain="[('state', '=', 'draft')]" help="Draft"/>
+                <filter domain="[('state', '=', 'active')]" help="Active"/>
+                <filter domain="[('state', '=', 'completed')]" help="Completed"/>
+                <filter domain="[('state', '=', 'suspended')]" help="Suspended"/>
+                <filter domain="[('state', '=', 'entered-in-error')]" help="Error"/>
+                <filter domain="[('state', '=', 'cancelled')]" help="Cancelled"/>
+                <newline/>
+                <group expand="0" name="groupby" string="Group By...">
+                    <filter string="Patient"
+                            domain="[]"
+                            context="{'group_by':'patient_id'}"/>
+                    <filter string="Priority"
+                            domain="[]"
+                            context="{'group_by':'priority'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window"
             id="medical_request_group_window_action">
         <field name="name">Request Group</field>
