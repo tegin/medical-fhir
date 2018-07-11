@@ -58,6 +58,14 @@
                 <field name="name" />
                 <field name="state"/>
                 <newline />
+                <filter domain="[('state', '=', 'preparation')]" help="Preparation"/>
+                <filter domain="[('state', '=', 'in-progress')]" help="In progress"/>
+                <filter domain="[('state', '=', 'completed')]" help="Completed"/>
+                <filter domain="[('state', '=', 'suspended')]" help="Suspended"/>
+                <filter domain="[('state', '=', 'entered-in-error')]" help="Error"/>
+                <filter domain="[('state', '=', 'aborted')]" help="Aborted"/>
+                <filter domain="[('state', '=', 'unknown')]" help="Unknown"/>
+                <newline/>
                 <group expand="0" name="groupby" string="Group By...">
                     <filter string="Patient"
                             domain="[]"
