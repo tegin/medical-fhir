@@ -42,7 +42,7 @@ class TestMedicalRequest(TransactionCase):
         })
         procedure._compute_request_group_ids()
         self.assertEqual(procedure.request_group_count, 2)
-        self.assertEqual(
+        self.assertListEqual(
             procedure.request_group_ids.ids,
             [procedure2.id, procedure3.id]
         )
