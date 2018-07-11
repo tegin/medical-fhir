@@ -56,7 +56,7 @@ class TestMedicalRequest(TransactionCase):
         })
         medication_request._compute_medication_request_ids()
         self.assertEqual(medication_request.medication_request_count, 2)
-        self.assertEqual(medication_request.medication_request_ids.ids,
+        self.assertListEqual(medication_request.medication_request_ids.ids,
                          [medication_request2.id, medication_request3.id])
         medication_request.with_context(
             inverse_id='active_id', model_name='medical.medication.request'
