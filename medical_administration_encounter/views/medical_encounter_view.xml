@@ -98,7 +98,12 @@
                 <field name="priority_id"/>
                 <field name="location_id"/>
                 <separator/>
-                <field name="state"/>
+                <filter domain="[('state', '=', 'planned')]" help="Planned"/>
+                <filter domain="[('state', '=', 'arrived')]" help="Arrived"/>
+                <filter domain="[('state', '=', 'in-progress')]" help="In progress"/>
+                <filter domain="[('state', '=', 'onleave')]" help="On leave"/>
+                <filter domain="[('state', '=', 'finished')]" help="Finished"/>
+                <filter domain="[('state', '=', 'cancelled')]" help="Cancelled"/>
             </search>
         </field>
     </record>
