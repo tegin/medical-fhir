@@ -13,6 +13,9 @@ class MedicalProcedureRequest(models.Model):
     _inherit = 'medical.request'
     _order = 'sequence, id'
 
+    internal_identifier = fields.Char(
+        string="Procedure request"
+    )
     sequence = fields.Integer(
         required=True,
         default=1,
@@ -49,6 +52,11 @@ class MedicalProcedureRequest(models.Model):
             raise exceptions.Warning(
                 _('You cannot delete a record that refers to a Procedure!'))
         return super(MedicalProcedureRequest, self).unlink()
+
+    @api.multi
+    def active2completed(self):
+        self.filtered(lambda r: not r.procedure_ids).generate_event()
+        return super().active2completed()
 
     @api.multi
     def action_view_procedure(self):

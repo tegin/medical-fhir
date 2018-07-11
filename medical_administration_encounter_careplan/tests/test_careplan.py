@@ -21,12 +21,14 @@ class TestEncounter(TransactionCase):
         encounter = self.env['medical.encounter'].create({
             'patient_id': self.patient.id
         })
+        self.assertEqual(encounter.careplan_count, 0)
         res = encounter.action_view_careplans()
         self.assertFalse(res.get('res_id'))
         careplan = self.env['medical.careplan'].create({
             'patient_id': self.patient.id,
             'encounter_id': encounter.id
         })
+        self.assertEqual(encounter.careplan_count, 1)
         with self.assertRaises(ValidationError):
             careplan.patient_id = self.patient_2
         res = encounter.action_view_careplans()
@@ -35,6 +37,7 @@ class TestEncounter(TransactionCase):
             'patient_id': self.patient.id,
             'encounter_id': encounter.id
         })
+        self.assertEqual(encounter.careplan_count, 2)
         res = encounter.action_view_careplans()
         self.assertFalse(res.get('res_id'))
         self.env['medical.careplan.add.plan.definition'].create({

@@ -43,8 +43,8 @@ class TestMedicalRequest(TransactionCase):
         procedure._compute_request_group_ids()
         self.assertEqual(procedure.request_group_count, 2)
         self.assertEqual(
-            procedure.request_group_ids.ids,
-            [procedure2.id, procedure3.id]
+            procedure.request_group_ids.ids.sort(),
+            [procedure2.id, procedure3.id].sort()
         )
         procedure.with_context(
             inverse_id='active_id', model_name='medical.request.group'

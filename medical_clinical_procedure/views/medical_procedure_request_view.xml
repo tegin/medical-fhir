@@ -34,10 +34,14 @@
                 <attribute name="string">Request Group</attribute>
             </form>
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button string="Procedures" type="object"
+                <button type="object"
                         name="action_view_procedure"
                          class="oe_stat_button"  icon="fa-stethoscope"
-                        attrs="{'invisible': [('state','=','draft')]}"/>
+                        attrs="{'invisible': [('state','=','draft')]}">
+                    <field name="procedure_count" widget="statinfo"
+                               string="Procedures"/>
+                    <field name='procedure_ids' invisible="1"/>
+                </button>
             </xpath>
         </field>
     </record>
@@ -57,6 +61,13 @@
                 <field name="intent"/>
                 <field name="occurrence"/>
                 <field name="procedure_ids"/>
+                <newline/>
+                <filter domain="[('state', '=', 'draft')]" help="Draft"/>
+                <filter domain="[('state', '=', 'active')]" help="Active"/>
+                <filter domain="[('state', '=', 'completed')]" help="Completed"/>
+                <filter domain="[('state', '=', 'suspended')]" help="Suspended"/>
+                <filter domain="[('state', '=', 'entered-in-error')]" help="Error"/>
+                <filter domain="[('state', '=', 'cancelled')]" help="Cancelled"/>
                 <newline/>
                 <group expand="0" name="groupby" string="Group By...">
                     <filter string="Patient"

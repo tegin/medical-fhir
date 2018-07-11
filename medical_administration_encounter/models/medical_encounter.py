@@ -10,9 +10,13 @@ class MedicalEncounter(models.Model):
     _name = 'medical.encounter'
     _description = 'Medical Encounter'
     _inherit = ['medical.abstract', 'mail.thread', 'mail.activity.mixin']
+    _order = 'create_date DESC'
 
     name = fields.Char(
         string='Name',
+    )
+    internal_identifier = fields.Char(
+        string="Encounter"
     )
     patient_id = fields.Many2one(
         string='Patient',

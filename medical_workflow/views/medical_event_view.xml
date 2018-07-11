@@ -50,6 +50,7 @@
                 <sheet>
                     <div name="button_box" class="oe_button_box"/>
                     <h2>
+                        <label for="internal_identifier"/>
                         <field name="internal_identifier" readonly="1"/>
                     </h2>
                     <group name="details" cols="4">
@@ -62,19 +63,22 @@
                         </group>
                     </group>
                     <group name="sale">
-                        <group>
+                        <group name="sale_01">
                             <field name="service_id"
                                    attrs="{'readonly':[('is_editable', '=', False)]}"/>
                             <field name="performer_id"
                                    attrs="{'readonly':[('is_editable', '=', False)]}"/>
                         </group>
-                        <group>
+                        <group name="sale_02">
                             <field name="occurrence_date"
                                    attrs="{'readonly':[('is_editable', '=', False)]}"/>
                         </group>
                     </group>
-                    <group name="inheritance"/>
-                    <notebook/>
+                    <notebook>
+                        <page name="Inheritance" string="Inheritance" groups="base.group_no_one">
+                            <group name="inheritance"/>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>

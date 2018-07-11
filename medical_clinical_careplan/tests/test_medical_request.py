@@ -40,8 +40,9 @@ class TestMedicalRequest(TransactionCase):
         })
         careplan._compute_careplan_ids()
         self.assertEqual(careplan.careplan_count, 2)
-        self.assertEqual(careplan.careplan_ids.ids, [careplan2.id,
-                                                     careplan3.id])
+        self.assertEqual(
+            careplan.careplan_ids.ids.sort(),
+            [careplan2.id, careplan3.id].sort())
         careplan.with_context(
             inverse_id='active_id', model_name='medical.careplan')\
             .action_view_request()
