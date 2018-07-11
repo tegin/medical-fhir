@@ -62,9 +62,6 @@
                     <filter string="Patient"
                             domain="[]"
                             context="{'group_by':'patient_id'}"/>
-                    <filter string="Care Plan ID"
-                            domain="[]"
-                            context="{'group_by':'name'}"/>
                 </group>
             </search>
         </field>
