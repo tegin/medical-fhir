@@ -1,0 +1,77 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* cb_medical_administration_center
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-13 09:49+0000\n"
+"PO-Revision-Date: 2018-07-13 11:51+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: cb_medical_administration_center
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_medical_patient_center_id
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_partner_center_id
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_users_center_id
+msgid "Center"
+msgstr "Centro"
+
+#. module: cb_medical_administration_center
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_medical_patient_center_identifier
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_partner_center_identifier
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_users_center_identifier
+msgid "Center Identifier"
+msgstr "Identificador de Centro"
+
+#. module: cb_medical_administration_center
+#: code:addons/cb_medical_administration_center/models/res_partner.py:32
+#, python-format
+msgid "Center must be fullfilled on locations"
+msgstr "El centro debe definirse en las ubicaciones médicas"
+
+#. module: cb_medical_administration_center
+#: model:ir.ui.menu,name:cb_medical_administration_center.medical_center_menu
+msgid "Centers"
+msgstr "Centros"
+
+#. module: cb_medical_administration_center
+#: model:ir.model,name:cb_medical_administration_center.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: cb_medical_administration_center
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_medical_patient_is_center
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_partner_is_center
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_users_is_center
+msgid "Is Center"
+msgstr "Es centro"
+
+#. module: cb_medical_administration_center
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_medical_patient_location_ids
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_partner_location_ids
+#: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_users_location_ids
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: cb_medical_administration_center
+#: model:ir.ui.view,arch_db:cb_medical_administration_center.res_partner_view_form
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#. module: cb_medical_administration_center
+#: model:ir.actions.act_window,name:cb_medical_administration_center.medical_center_action
+msgid "Medical Centers"
+msgstr "Centros Médicos"
+
+#. module: cb_medical_administration_center
+#: model:ir.actions.act_window,name:cb_medical_administration_center.medical_center_location_action
+msgid "Medical Locations"
+msgstr "Localizaciones Médicas"
