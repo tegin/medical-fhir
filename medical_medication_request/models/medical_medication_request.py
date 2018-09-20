@@ -45,9 +45,21 @@ class MedicalMedicationRequest(models.Model):
         comodel_name='medical.medication.administration',
         inverse_name='medication_request_id',
     )
+    medication_administration_count = fields.Integer(
+        compute="_compute_medication_administration_ids",
+        string='# of Medication Requests',
+        copy=False,
+        default=0,
+    )
     medication_request_ids = fields.One2many(
         inverse_name="medication_request_id",
     )  # FHIR Field: BasedOn
+
+    @api.multi
+    def _compute_medication_administration_ids(self):
+        for rec in self:
+            rec.medication_request_count = len(
+                rec.medication_administration_ids)
 
     @api.onchange('product_id')
     def onchange_product_id(self):

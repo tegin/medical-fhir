@@ -29,7 +29,7 @@
                     type="object"
                     name="action_view_medical_conditions"
                     class="oe_stat_button"
-                    icon="fa-stethoscope">
+                    icon="fa-heartbeat">
                     <field name="medical_condition_count" widget="statinfo"
                            string="Conditions"/>
                     <field name="medical_condition_ids" invisible="1"/>
