@@ -46,17 +46,15 @@ class MedicalMedicationRequest(models.Model):
         inverse_name='medication_request_id',
     )
     medication_administration_count = fields.Integer(
-        compute="_compute_medication_administration_ids",
+        compute="_compute_medication_administration_count",
         string='# of Medication Requests',
         copy=False,
         default=0,
     )
-    medication_request_ids = fields.One2many(
-        inverse_name="medication_request_id",
-    )  # FHIR Field: BasedOn
 
     @api.multi
-    def _compute_medication_administration_ids(self):
+    @api.depends('medication_administration_ids')
+    def _compute_medication_administration_count(self):
         for rec in self:
             rec.medication_request_count = len(
                 rec.medication_administration_ids)
