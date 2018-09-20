@@ -12,6 +12,7 @@
     'license': 'LGPL-3',
     'depends': [
         'mail',
+        'base_fontawesome',
     ],
     'data': [
         'security/medical_security.xml',
