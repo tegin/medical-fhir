@@ -56,7 +56,7 @@ class MedicalMedicationRequest(models.Model):
     @api.depends('medication_administration_ids')
     def _compute_medication_administration_count(self):
         for rec in self:
-            rec.medication_request_count = len(
+            rec.medication_administration_count = len(
                 rec.medication_administration_ids)
 
     @api.onchange('product_id')
