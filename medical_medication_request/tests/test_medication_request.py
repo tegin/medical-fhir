@@ -39,6 +39,7 @@ class TestMedicationRequest(TransactionCase):
         self.assertFalse(res['res_id'])
         self.assertEqual(request.medication_administration_count, 0)
         event = request.generate_event()
+        request.refresh()
         self.assertGreater(request.medication_administration_count, 0)
         event.preparation2in_progress()
         self.assertEqual(event.state, 'in-progress')
