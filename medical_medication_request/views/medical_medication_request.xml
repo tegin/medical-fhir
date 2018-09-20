@@ -32,10 +32,14 @@
                 <attribute name="string">Medication request</attribute>
             </form>
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button string="Administrations" type="object"
+                <button type="object"
                         name="action_view_medication_administration"
-                         class="oe_stat_button"  icon="fa-flask"
-                        attrs="{'invisible': [('state','=','draft')]}"/>
+                        class="oe_stat_button" icon="fa-pills"
+                        attrs="{'invisible': [('state','=','draft')]}">
+                    <field name="medication_administration_count" widget="statinfo"
+                           string="Administrations"/>
+                    <field name='medication_administration_ids' invisible="1"/>
+                </button>
             </xpath>
             <field name="service_id" position="after">
                 <field name="product_id"/>
@@ -67,10 +71,14 @@
                 <newline/>
                 <filter domain="[('state', '=', 'draft')]" help="Draft"/>
                 <filter domain="[('state', '=', 'active')]" help="Active"/>
-                <filter domain="[('state', '=', 'completed')]" help="Completed"/>
-                <filter domain="[('state', '=', 'suspended')]" help="Suspended"/>
-                <filter domain="[('state', '=', 'entered-in-error')]" help="Error"/>
-                <filter domain="[('state', '=', 'cancelled')]" help="Cancelled"/>
+                <filter domain="[('state', '=', 'completed')]"
+                        help="Completed"/>
+                <filter domain="[('state', '=', 'suspended')]"
+                        help="Suspended"/>
+                <filter domain="[('state', '=', 'entered-in-error')]"
+                        help="Error"/>
+                <filter domain="[('state', '=', 'cancelled')]"
+                        help="Cancelled"/>
                 <newline/>
                 <group expand="0" name="groupby" string="Group By...">
                     <filter string="Patient"
