@@ -25,6 +25,15 @@ class ResPartner(models.Model):
         'res.partner',
         inverse_name='center_id',
     )
+    location_count = fields.Integer(
+        compute='_compute_location_count'
+    )
+
+    @api.multi
+    @api.depends('location_ids')
+    def _compute_location_count(self):
+        for record in self:
+            record.location_count = len(record.location_ids)
 
     @api.constrains('is_location', 'center_id')
     def check_location_center(self):

@@ -46,11 +46,14 @@
             <div name="button_box" position="inside">
                 <button
                         type="action" name="%(medical_center_location_action)d"
-                        string="Locations"
-                        class="oe_stat_button" icon="fa-sitemap"
+                        class="oe_stat_button" icon="fa-h-square"
                         groups="medical_administration_location.group_medical_location_display"
                         attrs="{'invisible': [('is_center', '=', False)]}"
-                />
+                >
+                    <field name="location_count" widget="statinfo"
+                           string="Locations"/>
+                    <field name='location_ids' invisible="1"/>
+                </button>
             </div>
         </field>
     </record>
