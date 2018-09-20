@@ -18,7 +18,7 @@
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button type="object"
                         name="action_view_request"
-                        class="oe_stat_button"  icon="fa-eyedropper"
+                        class="oe_stat_button"  icon="fa-prescription-bottle"
                         attrs="{'readonly':[('is_editable', '=', False)]}"
                         context="{'model_name': 'medical.medication.request'}">
                     <field name="medication_request_count" widget="statinfo"
