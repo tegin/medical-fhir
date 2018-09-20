@@ -33,11 +33,19 @@ class MedicalAddPlanDefinition(models.TransientModel):
             'name': self.plan_definition_id.name,
         }
 
+    def _get_context(self):
+        return {
+            'origin_model': self.patient_id._name,
+            'origin_id': self.patient_id.id,
+        }
+
     @api.multi
     def _run(self):
         self.ensure_one()
         vals = self._get_values()
-        return self.plan_definition_id.execute_plan_definition(vals)
+        return self.plan_definition_id.with_context(
+            self._get_context()
+        ).execute_plan_definition(vals)
 
     @api.multi
     def run(self):
