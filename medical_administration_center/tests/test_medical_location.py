@@ -26,5 +26,7 @@ class TestMedicalLocation(TransactionCase):
         self.assertTrue(center.is_center)
         self.assertTrue(center.center_identifier)
         vals['center_id'] = center.id
+        self.assertEqual(center.location_count, 0)
         location = self.env['res.partner'].create(vals)
         self.assertTrue(location.is_location)
+        self.assertEqual(center.location_count, 1)
