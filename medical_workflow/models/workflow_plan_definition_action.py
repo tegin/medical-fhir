@@ -4,6 +4,7 @@
 
 from odoo import api, exceptions, fields, models, _
 from odoo.exceptions import ValidationError
+from .base_result import combine_result
 
 
 class PlanDefinitionAction(models.Model):
@@ -147,11 +148,13 @@ class PlanDefinitionAction(models.Model):
     def execute_action(self, vals, parent=False):
         self.ensure_one()
         if self.execute_plan_definition_id:
-            return self.execute_plan_definition_id.execute_plan_definition(
+            return self.execute_plan_definition_id._execute_plan_definition(
                 vals, parent)
         res = self.activity_definition_id.execute_activity(
             vals, parent, self.plan_definition_id, self
         )
+        result = {res._name: res.ids}
         for action in self.child_ids:
-            action.execute_action(vals, parent=res)
-        return True
+            child_res, child_result = action.execute_action(vals, parent=res)
+            result = combine_result(result, child_result)
+        return res, result

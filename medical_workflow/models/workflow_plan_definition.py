@@ -4,6 +4,7 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
+from .base_result import combine_result
 
 
 class PlanDefinition(models.Model):
@@ -76,8 +77,13 @@ class PlanDefinition(models.Model):
         """It will return the parent or the main activity.
         The action result could be of different models.
         """
+        result, childs = self._execute_plan_definition(vals, parent)
+        return result
+
+    def _execute_plan_definition(self, vals, parent=False):
         self.ensure_one()
         res = False
+        result = {}
         if (
             self.env.user._has_group('medical_workflow.'
                                      'group_main_activity_plan_definition') and
@@ -85,10 +91,13 @@ class PlanDefinition(models.Model):
         ):
             res = self.activity_definition_id.execute_activity(
                 vals, parent, plan=self)
+            result[res._name] = res.ids
         if not res:
             res = parent
-        result = res
+        final_result = res
         for action in self.direct_action_ids:
-            act = action.execute_action(vals, res)
-            result = result or act
-        return result
+            child_res, child_result = action.execute_action(vals, res)
+            result = combine_result(result, child_result)
+            if not final_result:
+                final_result = True
+        return final_result, result
