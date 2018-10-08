@@ -106,12 +106,14 @@ class ActivityDefinition(models.Model):
             values.update(self._get_medical_values(vals, parent, plan, action))
         return values
 
+    def generate_record(self, values):
+        return self.env[self.model_id.model].create(values)
+
     @api.multi
     def execute_activity(self, vals, parent=False, plan=False, action=False):
         self.ensure_one()
         values = self._get_activity_values(vals, parent, plan, action)
-        model_obj = self.env[self.model_id.model]
-        ids = []
+        res = self.env[self.model_id.model]
         for i in range(0, self.quantity):
-            ids.append(model_obj.create(values).id)
-        return model_obj.browse(ids)
+            res |= self.generate_record(values)
+        return res
