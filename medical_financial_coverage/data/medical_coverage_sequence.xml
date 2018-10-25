@@ -15,4 +15,11 @@
         <field name="padding">8</field>
     </record>
 
+    <record id="seq_medical_coverage_template" model="ir.sequence">
+        <field name="name">Medical Coverage Template</field>
+        <field name="code">medical.coverage.template</field>
+        <field name="prefix">CVT</field>
+        <field name="padding">8</field>
+    </record>
+
 </odoo>
