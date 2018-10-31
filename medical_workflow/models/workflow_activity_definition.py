@@ -44,6 +44,7 @@ class ActivityDefinition(models.Model):
          ('retired', 'Retired'),
          ('unknown', 'Unknown')],
         required=True,
+        readonly=True,
         default='draft',
     )   # FHIR field: status
     service_id = fields.Many2one(
@@ -126,3 +127,24 @@ class ActivityDefinition(models.Model):
         for i in range(0, self.quantity):
             res |= self.generate_record(values)
         return res
+
+    def _activate_vals(self):
+        return {'state': 'active'}
+
+    @api.multi
+    def activate(self):
+        self.write(self._activate_vals())
+
+    def _reactivate_vals(self):
+        return {'state': 'active'}
+
+    @api.multi
+    def reactivate(self):
+        self.write(self._reactivate_vals())
+
+    def _retire_vals(self):
+        return {'state': 'retired'}
+
+    @api.multi
+    def retire(self):
+        self.write(self._retire_vals())
