@@ -64,6 +64,15 @@ class ActivityDefinition(models.Model):
         inverse_name='activity_definition_id',
         readonly=True,
     )
+    active = fields.Boolean(
+        compute='_compute_active',
+        store=True
+    )
+
+    @api.depends('state')
+    def _compute_active(self):
+        for record in self:
+            record.active = bool(record.state == 'active')
 
     @api.constrains('type_id')
     def _check_type_id(self):

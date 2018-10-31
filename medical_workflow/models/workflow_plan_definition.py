@@ -37,6 +37,10 @@ class PlanDefinition(models.Model):
         required=True,
         default='draft',
     )   # FHIR field: status
+    active = fields.Boolean(
+        compute='_compute_active',
+        store=True
+    )
     direct_action_ids = fields.One2many(
         string='Parent actions',
         comodel_name='workflow.plan.definition.action',
@@ -53,6 +57,11 @@ class PlanDefinition(models.Model):
         inverse_name='plan_definition_id',
         readonly=True,
     )
+
+    @api.depends('state')
+    def _compute_active(self):
+        for record in self:
+            record.active = bool(record.state == 'active')
 
     @api.model
     def _get_internal_identifier(self, vals):
