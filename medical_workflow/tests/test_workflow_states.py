@@ -41,4 +41,3 @@ class TestWorkflowStates(TransactionCase):
         self.assertFalse(activity.active)
         activity.reactivate()
         self.assertTrue(activity.active)
-
