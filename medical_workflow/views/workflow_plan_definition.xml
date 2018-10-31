@@ -29,6 +29,15 @@
         <field name="arch" type="xml">
             <form string="Plan definition">
                 <header>
+                    <button name="activate" string="Activate" type="object"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"
+                            />
+                    <button name="retire" string="Activate" type="object"
+                            attrs="{'invisible': [('state', '!=', 'active')]}"
+                            />
+                    <button name="reactivate" string="Activate" type="object"
+                            attrs="{'invisible': [('state', '!=', 'retired')]}"
+                            />
                     <field name="state"
                            widget="statusbar"
                            clickable="True"/>
