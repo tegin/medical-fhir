@@ -35,6 +35,7 @@ class PlanDefinition(models.Model):
          ('retired', 'Retired'),
          ('unknown', 'Unknown')],
         required=True,
+        readonly=True,
         default='draft',
     )   # FHIR field: status
     active = fields.Boolean(
@@ -110,3 +111,24 @@ class PlanDefinition(models.Model):
             if not final_result:
                 final_result = True
         return final_result, result
+
+    def _activate_vals(self):
+        return {'state': 'active'}
+
+    @api.multi
+    def activate(self):
+        self.write(self._activate_vals())
+
+    def _reactivate_vals(self):
+        return {'state': 'active'}
+
+    @api.multi
+    def reactivate(self):
+        self.write(self._reactivate_vals())
+
+    def _retire_vals(self):
+        return {'state': 'retired'}
+
+    @api.multi
+    def retire(self):
+        self.write(self._retire_vals())
