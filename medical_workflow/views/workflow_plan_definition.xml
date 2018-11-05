@@ -30,17 +30,16 @@
             <form string="Plan definition">
                 <header>
                     <button name="activate" string="Activate" type="object"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"
+                            states="draft"
                             />
-                    <button name="retire" string="Activate" type="object"
-                            attrs="{'invisible': [('state', '!=', 'active')]}"
+                    <button name="retire" string="Retire" type="object"
+                            states="active"
                             />
-                    <button name="reactivate" string="Activate" type="object"
-                            attrs="{'invisible': [('state', '!=', 'retired')]}"
+                    <button name="reactivate" string="Reactivate" type="object"
+                            states="retired"
                             />
                     <field name="state"
-                           widget="statusbar"
-                           clickable="True"/>
+                           widget="statusbar"/>
                 </header>
                 <sheet>
                     <h2>
