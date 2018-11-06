@@ -11,6 +11,7 @@ class ActivityDefinition(models.Model):
     # (https://www.hl7.org/fhir/activitydefinition.html)
     _name = 'workflow.activity.definition'
     _description = 'Activity Definition'
+    _order = 'name'
     _inherit = ['mail.thread', 'mail.activity.mixin', 'medical.abstract']
 
     name = fields.Char(
