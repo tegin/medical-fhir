@@ -8,6 +8,7 @@ from odoo import fields, models
 class WorkflowType(models.Model):
     # FHIR entity: Workflow (https://www.hl7.org/fhir/workflow.html)
     _name = 'workflow.type'
+    _order = 'name'
     _description = 'Plan Definition Type'
 
     name = fields.Char(
