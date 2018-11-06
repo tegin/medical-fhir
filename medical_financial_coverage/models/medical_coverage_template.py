@@ -8,6 +8,7 @@ from odoo import api, fields, models
 class MedicalCoverageTemplate(models.Model):
     _name = 'medical.coverage.template'
     _description = 'Medical Coverage Template'
+    _order = 'payor_id,name'
     _inherit = ['medical.abstract', 'mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(
