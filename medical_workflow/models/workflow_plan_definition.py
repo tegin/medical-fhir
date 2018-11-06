@@ -12,6 +12,7 @@ class PlanDefinition(models.Model):
     # (https://www.hl7.org/fhir/plandefinition.html)
     _name = 'workflow.plan.definition'
     _description = 'Plan Definition'
+    _order = 'name'
     _inherit = ['mail.thread', 'mail.activity.mixin', 'medical.abstract']
 
     name = fields.Char(
