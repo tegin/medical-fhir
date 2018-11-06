@@ -14,7 +14,8 @@ class MedicalAbstract(models.AbstractModel):
         name='Identifier',
         help='Internal identifier used to identify this record',
         readonly=True,
-        default='/'
+        default='/',
+        copy=False,
     )  # FHIR Field: identifier
 
     @api.model
