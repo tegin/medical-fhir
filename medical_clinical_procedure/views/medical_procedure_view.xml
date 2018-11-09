@@ -17,6 +17,9 @@
             <xpath expr="//tree" position="attributes">
                 <attribute name="string">Procedures</attribute>
             </xpath>
+            <field name="service_id" position="after">
+                <field name="performer_id"/>
+            </field>
         </field>
 
     </record>
