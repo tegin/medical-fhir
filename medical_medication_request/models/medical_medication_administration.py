@@ -126,9 +126,13 @@ class MedicalMedicationAdministration(models.Model):
             self.package_id,
             strict=True
         ).mapped('quantity'))
-        if self.product_id.type == 'consu' or float_compare(
+        if (
+            self.product_id.type == 'consu' or
+            self.stock_location_id.should_bypass_reservation() or
+            float_compare(
                 available_qty, self.qty, precision_digits=precision
-        ) >= 0:
+            ) >= 0
+        ):
             self.generate_move()
             return super(
                 MedicalMedicationAdministration, self).in_progress2completed()
