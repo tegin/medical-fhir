@@ -1,0 +1,289 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-07 10:24+0000\n"
+"PO-Revision-Date: 2018-11-12 11:05+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.2\n"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "<i class=\"fa fa-book\" aria-hidden=\"true\"/> Terminologies"
+msgstr "<i class=\"fa fa-book\" aria-hidden=\"true\"/> Terminologies"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "<i class=\"fa fa-flask\" aria-hidden=\"true\"/> Medication"
+msgstr "<i class=\"fa fa-flask\" aria-hidden=\"true\"/> Medication"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "<i class=\"fa fa-heartbeat\" aria-hidden=\"true\"/> Diagnostics"
+msgstr "<i class=\"fa fa-heartbeat\" aria-hidden=\"true\"/> Diagnostics"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "<i class=\"fa fa-sitemap\" aria-hidden=\"true\"/> Workflow"
+msgstr "<i class=\"fa fa-sitemap\" aria-hidden=\"true\"/> Workflow"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "<i class=\"fa fa-stethoscope\" aria-hidden=\"true\"/> Clinical"
+msgstr "<i class=\"fa fa-stethoscope\" aria-hidden=\"true\"/> Clinical"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "<i class=\"fa fa-usd\" aria-hidden=\"true\"/> Financial"
+msgstr "<i class=\"fa fa-usd\" aria-hidden=\"true\"/> Financial"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "<i class=\"fa fa-user-md\" aria-hidden=\"true\"/> Administration"
+msgstr "<i class=\"fa fa-user-md\" aria-hidden=\"true\"/> Administration"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Activates Administration capabilities"
+msgstr "Activa las capacidades de administración"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Activates Clinical capabilities"
+msgstr "Activa las capacidades clínicas"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Activates Diagnostics capabilities"
+msgstr "Activa las capacidades de diagnóstico"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Activates Financial capabilities"
+msgstr "Activa las capacidades financieras"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Activates Medication capabilities"
+msgstr "Activa las capacidades de medicación"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Activates Terminologies capabilities"
+msgstr "Activa las capacidades de terminología"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Activates Workflow capabilities"
+msgstr "Activa las capacidades de flujo de trabajo"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_administration
+#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_administration
+#: model:ir.ui.menu,name:medical_base.medical_root_administration
+#: model:ir.ui.menu,name:medical_base.medical_root_diagnostics
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Administration"
+msgstr "Administración"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_administration_menu
+msgid "Administration menu"
+msgstr "Menú de administración"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_clinical
+#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_clinical
+#: model:ir.ui.menu,name:medical_base.medical_root_clinical
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Clinical"
+msgstr "Clínico"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_clinical_menu
+msgid "Clinical menu"
+msgstr "Menú clínico"
+
+#. module: medical_base
+#: model:ir.ui.menu,name:medical_base.medical_root_configuration
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_configuration_menu
+msgid "Configuration menu"
+msgstr "Menú de configuración"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_diagnostics
+#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_diagnostics
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Diagnostics"
+msgstr "Diagnósticos"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_diagnostics_menu
+msgid "Diagnostics menu"
+msgstr "Menú de diagnóstico"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_abstract_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_financial
+#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_financial
+#: model:ir.ui.menu,name:medical_base.medical_root_financial
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Financial"
+msgstr "Financiero"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_financial_menu
+msgid "Financial menu"
+msgstr "Menú financiero"
+
+#. module: medical_base
+#: code:addons/medical_base/models/medical_abstract.py:31
+#, python-format
+msgid "Function is not defined"
+msgstr "La función no está definida"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_abstract_id
+msgid "ID"
+msgstr "ID"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_abstract_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_coverage_agreement_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_coverage_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_coverage_template_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_document_type_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_event_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_flag_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_request_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_sale_preinvoice_group_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_workflow_activity_definition_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_workflow_activity_type_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_workflow_plan_definition_internal_identifier
+msgid "Internal Identifier"
+msgstr "Identificador interno"
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_abstract_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_coverage_agreement_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_coverage_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_coverage_template_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_document_type_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_event_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_flag_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_patient_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_request_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_sale_preinvoice_group_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_workflow_activity_definition_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_workflow_activity_type_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_workflow_plan_definition_internal_identifier
+msgid "Internal identifier used to identify this record"
+msgstr "Identificador interno utilizado para identificar este registro"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_abstract___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: medical_base
+#: model:ir.module.category,name:medical_base.ir_module_category_medical
+#: model:ir.ui.menu,name:medical_base.medical_root
+msgid "Medical"
+msgstr "Sanidad"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_medication
+#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_medication
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Medication"
+msgstr "Medicación"
+
+#. module: medical_base
+#: model:ir.ui.menu,name:medical_base.medical_root_medications
+msgid "Medications"
+msgstr "Medicamentos"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_medications_menu
+msgid "Medications menu"
+msgstr "Menú de medicamentos"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_root_menu
+msgid "Root menu"
+msgstr "Menú raíz"
+
+#. module: medical_base
+#: model:ir.actions.act_window,name:medical_base.action_medical_config
+#: model:ir.ui.menu,name:medical_base.menu_medical_config
+msgid "Settings"
+msgstr "Ajustes"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_configurator
+msgid "System Administrator"
+msgstr "Administrador de sistema"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_terminology
+#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_terminology
+#: model:ir.ui.menu,name:medical_base.medical_root_terminologies
+msgid "Terminologies"
+msgstr "Terminologías"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_terminologies_menu
+msgid "Terminologies menu"
+msgstr "Terminologia menu"
+
+#. module: medical_base
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Terminology"
+msgstr "Terminología"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_workflow
+#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_workflow
+#: model:ir.ui.menu,name:medical_base.medical_root_workflow
+#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+msgid "Workflow"
+msgstr "Workflow"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_workflow_menu
+msgid "Workflow menu"
+msgstr "Workflow menu"
+
+#. module: medical_base
+#: model:ir.model,name:medical_base.model_medical_abstract
+msgid "medical.abstract"
+msgstr "medical.abstract"
+
+#. module: medical_base
+#: model:ir.model,name:medical_base.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"

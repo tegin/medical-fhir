@@ -1,0 +1,285 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_financial_coverage
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-07 10:25+0000\n"
+"PO-Revision-Date: 2018-11-12 13:32+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.2\n"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_coverage_count
+msgid "# of Coverages"
+msgstr "#de polizas"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_coverage_template_count
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_partner_coverage_template_count
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_users_coverage_template_count
+msgid "# of Templates"
+msgstr "# de plantillas"
+
+#. module: medical_financial_coverage
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_template_view_form
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_view_form
+msgid "Activate"
+msgstr "Activar"
+
+#. module: medical_financial_coverage
+#: selection:medical.coverage,state:0
+#: selection:medical.coverage.template,state:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: medical_financial_coverage
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_template_view_form
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: medical_financial_coverage
+#: selection:medical.coverage,state:0
+#: selection:medical.coverage.template,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: medical_financial_coverage
+#: model:ir.model,name:medical_financial_coverage.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_coverage_ids
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_coverage_ids
+#: model:ir.ui.menu,name:medical_financial_coverage.menu_medical_coverage_root
+msgid "Coverage"
+msgstr "Póliza"
+
+#. module: medical_financial_coverage
+#: model:res.groups,name:medical_financial_coverage.group_medical_coverage_display
+msgid "Coverage Display"
+msgstr "Visualizador de poliza"
+
+#. module: medical_financial_coverage
+#: model:res.groups,name:medical_financial_coverage.group_medical_coverage_manager
+msgid "Coverage Manager"
+msgstr "Gestor de poliza"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_state
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_state
+msgid "Coverage Status"
+msgstr "Estado de poliza"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_coverage_template_id
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_coverage_template_ids
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_partner_coverage_template_ids
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_users_coverage_template_ids
+#: model:ir.model.fields,help:medical_financial_coverage.field_medical_coverage_coverage_template_id
+#: model:ir.ui.menu,name:medical_financial_coverage.menu_medical_coverage_template_root
+msgid "Coverage Template"
+msgstr "Cobertura"
+
+#. module: medical_financial_coverage
+#: model:ir.ui.view,arch_db:medical_financial_coverage.res_partner_view_form
+msgid "Coverage Templates"
+msgstr "Coberturas"
+
+#. module: medical_financial_coverage
+#: model:res.groups,name:medical_financial_coverage.group_medical_coverage_template_display
+msgid "Coverage template Display"
+msgstr "Visualizador modelo de poliza"
+
+#. module: medical_financial_coverage
+#: model:res.groups,name:medical_financial_coverage.group_medical_coverage_template_manager
+msgid "Coverage template Manager"
+msgstr "Gestor modelo de poliza"
+
+#. module: medical_financial_coverage
+#: model:ir.actions.act_window,name:medical_financial_coverage.medical_coverage_action
+#: model:ir.actions.act_window,name:medical_financial_coverage.medical_coverage_template_action
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_patient_view_form
+msgid "Coverages"
+msgstr "Polizas"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_create_uid
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_create_date
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,help:medical_financial_coverage.field_medical_coverage_state
+#: model:ir.model.fields,help:medical_financial_coverage.field_medical_coverage_template_state
+msgid "Current state of the coverage."
+msgstr "Estado actual de la poliza."
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_display_name
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: medical_financial_coverage
+#: selection:medical.coverage,state:0
+#: selection:medical.coverage.template,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_edit_payor
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_partner_edit_payor
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_users_edit_payor
+msgid "Edit Payor"
+msgstr "Editar mutua"
+
+#. module: medical_financial_coverage
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_template_view_form
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_view_form
+#: selection:medical.coverage,state:0
+#: selection:medical.coverage.template,state:0
+msgid "Entered In Error"
+msgstr "Entró en error"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_id
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_id
+msgid "ID"
+msgstr "ID"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_is_editable
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_is_editable
+msgid "Is Editable"
+msgstr "Es Editable"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_is_payor
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_partner_is_payor
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_users_is_payor
+msgid "Is Payor"
+msgstr "Es mutua"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage___last_update
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_write_uid
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_write_date
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: medical_financial_coverage
+#: model:ir.model,name:medical_financial_coverage.model_medical_coverage
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_view_form
+msgid "Medical Coverage"
+msgstr "Póliza"
+
+#. module: medical_financial_coverage
+#: model:ir.model,name:medical_financial_coverage.model_medical_coverage_template
+#: model:ir.ui.view,arch_db:medical_financial_coverage.view_medical_coverage_template_search
+msgid "Medical Coverage Template"
+msgstr "Cobertura"
+
+#. module: medical_financial_coverage
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_template_view_form
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_template_view_tree
+msgid "Medical Coverage Templates"
+msgstr "Plantilla de poliza"
+
+#. module: medical_financial_coverage
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_view_tree
+#: model:ir.ui.view,arch_db:medical_financial_coverage.view_medical_coverage_search
+msgid "Medical Coverages"
+msgstr "Polizas"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_name
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_patient_id
+msgid "Patient"
+msgstr "Paciente"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,help:medical_financial_coverage.field_medical_coverage_patient_id
+msgid "Patient name"
+msgstr "Nombre del paciente"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,help:medical_financial_coverage.field_medical_coverage_template_payor_id
+msgid "Payer name"
+msgstr "Nombre de la mutua"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_payor_id
+msgid "Payor"
+msgstr "Mutua"
+
+#. module: medical_financial_coverage
+#: model:res.groups,name:medical_financial_coverage.group_medical_payor_display
+msgid "Payor Display"
+msgstr "Visualizador de mutua"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_payor_identifier
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_partner_payor_identifier
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_res_users_payor_identifier
+msgid "Payor Identifier"
+msgstr "Identificador de mutua"
+
+#. module: medical_financial_coverage
+#: model:res.groups,name:medical_financial_coverage.group_medical_payor_manager
+msgid "Payor Manager"
+msgstr "Gestor de mutua"
+
+#. module: medical_financial_coverage
+#: model:ir.actions.act_window,name:medical_financial_coverage.medical_payor_action
+#: model:ir.ui.menu,name:medical_financial_coverage.menu_medical_payor_root
+msgid "Payors"
+msgstr "Mutuas"
+
+#. module: medical_financial_coverage
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_template_view_form
+#: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_view_form
+msgid "Send to draft"
+msgstr "Enviar a borrador"
+
+#. module: medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_subscriber_id
+msgid "Subscriber Id"
+msgstr "Identificación de suscriptor"
+
+#. module: medical_financial_coverage
+#: model:ir.model,name:medical_financial_coverage.model_medical_patient
+msgid "medical.patient"
+msgstr "medical.patient"
