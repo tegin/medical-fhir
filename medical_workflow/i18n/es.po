@@ -1,0 +1,1002 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_workflow
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-07 10:26+0000\n"
+"PO-Revision-Date: 2018-11-09 13:28+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.2\n"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
+msgid "Abort"
+msgstr "Abortar"
+
+#. module: medical_workflow
+#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.medication.administration,state:0
+#: selection:medical.procedure,state:0
+msgid "Aborted"
+msgstr "Abortado"
+
+#. module: medical_workflow
+#: model:ir.actions.act_window,name:medical_workflow.workflow_plan_definition_action
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_action_form
+msgid "Action"
+msgstr "Acción"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_name
+msgid "Action name"
+msgstr "Acción nombre"
+
+#. module: medical_workflow
+#: model:ir.ui.menu,name:medical_workflow.workflow_plan_definition_actions_menu
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_form
+msgid "Actions"
+msgstr "Acciones"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_form
+msgid "Actions group list"
+msgstr "Lista del grupo de acciones"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_form
+msgid "Actions list"
+msgstr "Lista de acciones"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/workflow_plan_definition_action.py:132
+#, python-format
+msgid "Actions with Plans cannot have child actions"
+msgstr "Las acciones con planes no pueden tener acciones infantiles"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
+#: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_activity_definition_form
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_form
+msgid "Activate"
+msgstr "Activar"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_active
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_active
+#: selection:medical.careplan,state:0
+#: selection:medical.laboratory.request,state:0
+#: selection:medical.medication.request,state:0
+#: selection:medical.procedure.request,state:0
+#: selection:medical.request,state:0 selection:medical.request.group,state:0
+#: selection:workflow.activity.definition,state:0
+#: selection:workflow.plan.definition,state:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: medical_workflow
+#: model:ir.actions.act_window,name:medical_workflow.workflow_activity_definition_action
+#: model:ir.model,name:medical_workflow.model_workflow_activity_definition
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_activity_definition_id
+#: model:ir.ui.view,arch_db:medical_workflow.medical_add_plan_definition_form
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_activity_definition_form
+msgid "Activity Definition"
+msgstr "Actividad"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_activity_definition_id
+msgid "Activity definition"
+msgstr "Definición de actividad"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/workflow_plan_definition_action.py:143
+#, python-format
+msgid "Activity definition or plan definition must be defined on each action"
+msgstr "La definición de actividad o la definición de plan deben definirse en cada acción"
+
+#. module: medical_workflow
+#: model:ir.ui.menu,name:medical_workflow.workflow_activity_definitions_menu
+msgid "Activity definitions"
+msgstr "Definiciones de actividad"
+
+#. module: medical_workflow
+#: model:ir.actions.act_window,name:medical_workflow.action_medical_add_plan_definition_form
+#: model:ir.ui.view,arch_db:medical_workflow.medical_patient_form
+msgid "Add Plan definition"
+msgstr "Añadir definición de plan"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_patient_add_plan_definition
+msgid "Add Plan definition on patient"
+msgstr "Añadir definición del plan en el paciente"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_connector_config_settings_group_patient_add_plan_definition
+#: model:ir.model.fields,field_description:medical_workflow.field_res_config_settings_group_patient_add_plan_definition
+msgid "Add Plan definition on patients"
+msgstr "Agregar definición de plan en pacientes"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.res_config_settings_view_form
+msgid ""
+"Add a main activity definition on plan definition\n"
+"                            that will be its main parent"
+msgstr ""
+"Agregar una definición de actividad principal en la definición del plan\n"
+"                             ese será su principal padre"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_ids
+msgid "All actions"
+msgstr "Todas las acciones"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_connector_config_settings_group_main_activity_plan_definition
+#: model:ir.model.fields,field_description:medical_workflow.field_res_config_settings_group_main_activity_plan_definition
+msgid "Allows to add a main activity definition on a plan definition"
+msgstr "Permite agregar una definición de actividad principal en una definición de plan"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.res_config_settings_view_form
+msgid "Allows to add plan definitions on patients"
+msgstr "Permite añadir definiciones de planes a pacientes"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_add_plan_definition_form
+#: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: medical_workflow
+#: selection:medical.careplan,state:0
+#: selection:medical.laboratory.request,state:0
+#: selection:medical.medication.request,state:0
+#: selection:medical.procedure.request,state:0
+#: selection:medical.request,state:0 selection:medical.request.group,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_child_ids
+msgid "Child Actions"
+msgstr "Acciones hijas"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_action_form
+msgid "Child actions"
+msgstr "Acciones infantiles"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
+#: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
+msgid "Complete"
+msgstr "Completar"
+
+#. module: medical_workflow
+#: selection:medical.careplan,state:0 selection:medical.event,state:0
+#: selection:medical.laboratory.event,state:0
+#: selection:medical.laboratory.request,state:0
+#: selection:medical.medication.administration,state:0
+#: selection:medical.medication.request,state:0
+#: selection:medical.procedure,state:0
+#: selection:medical.procedure.request,state:0
+#: selection:medical.request,state:0 selection:medical.request.group,state:0
+msgid "Completed"
+msgstr "Terminado"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_add_plan_definition_form
+msgid "Create"
+msgstr "Crear"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_create_uid
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_create_uid
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_create_uid
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_create_uid
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_create_date
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_create_date
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_create_date
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_create_date
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_description
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_description
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_display_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_display_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_display_name
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_display_name
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_display_name
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_display_name
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: medical_workflow
+#: selection:medical.careplan,state:0
+#: selection:medical.laboratory.request,state:0
+#: selection:medical.medication.request,state:0
+#: selection:medical.procedure.request,state:0
+#: selection:medical.request,state:0 selection:medical.request.group,state:0
+#: selection:workflow.activity.definition,state:0
+#: selection:workflow.plan.definition,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: medical_workflow
+#: selection:medical.careplan,state:0
+#: selection:medical.laboratory.request,state:0
+#: selection:medical.medication.request,state:0
+#: selection:medical.procedure.request,state:0
+#: selection:medical.request,state:0 selection:medical.request.group,state:0
+msgid "Entered in Error"
+msgstr "Entró en error"
+
+#. module: medical_workflow
+#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.medication.administration,state:0
+#: selection:medical.procedure,state:0
+msgid "Entered in error"
+msgstr "Ingresado en error"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/workflow_plan_definition_action.py:122
+#, python-format
+msgid "Error! You are attempting to create a recursive category."
+msgstr "Error! Estás intentando crear una categoría recursiva."
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/workflow_plan_definition.py:77
+#, python-format
+msgid "Error! You are attempting to create a recursive definition"
+msgstr "Error! Estás intentando crear una definición recursiva"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
+msgid "Event"
+msgstr "Evento"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/medical_request.py:218
+#, python-format
+msgid "Field name is not defined"
+msgstr "El nombre del campo no está definido"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_complete_name
+msgid "Full Action Name"
+msgstr "Nombre completo de la acción"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/medical_request.py:195
+#, python-format
+msgid "Function is not defined"
+msgstr "La función no está definida"
+
+#. module: medical_workflow
+#: selection:medical.careplan,priority:0
+#: selection:medical.document.reference,priority:0
+#: selection:medical.laboratory.request,priority:0
+#: selection:medical.medication.request,priority:0
+#: selection:medical.procedure.request,priority:0
+#: selection:medical.request,priority:0
+#: selection:medical.request.group,priority:0
+msgid "High"
+msgstr "Alto"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_workflow_activity_definition_quantity
+msgid "How much to realize"
+msgstr "Cuanto a realizar"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_workflow_activity_definition_name
+#: model:ir.model.fields,help:medical_workflow.field_workflow_plan_definition_name
+#: model:ir.model.fields,help:medical_workflow.field_workflow_type_name
+msgid "Human-friendly name for the Plan Definition"
+msgstr "Human-friendly name for the Plan Definition"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_id
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_id
+msgid "ID"
+msgstr "ID"
+
+#. module: medical_workflow
+#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.medication.administration,state:0
+#: selection:medical.procedure,state:0
+msgid "In progress"
+msgstr "En progreso"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
+#: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
+msgid "Inheritance"
+msgstr "Herencia"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_intent
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_intent
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_intent
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_intent
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_intent
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_intent
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_intent
+msgid "Intent"
+msgstr "Intención"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_is_editable
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_is_editable
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_is_editable
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_is_editable
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_is_editable
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_is_editable
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_is_editable
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_is_editable
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_is_editable
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_is_editable
+msgid "Is Editable"
+msgstr "Es Editable"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition___last_update
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event___last_update
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request___last_update
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition___last_update
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition___last_update
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action___last_update
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_write_uid
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_write_uid
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_write_uid
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_write_uid
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_write_date
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_write_date
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_write_date
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_write_date
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_parent_left
+msgid "Left Parent"
+msgstr "Padre izquierdo"
+
+#. module: medical_workflow
+#: selection:medical.careplan,priority:0
+#: selection:medical.document.reference,priority:0
+#: selection:medical.laboratory.request,priority:0
+#: selection:medical.medication.request,priority:0
+#: selection:medical.procedure.request,priority:0
+#: selection:medical.request,priority:0
+#: selection:medical.request.group,priority:0
+msgid "Low"
+msgstr "Bajo"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.res_config_settings_view_form
+msgid "Main activity on plan definition"
+msgstr "Actividad principal en la definición del plan"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_main_activity_plan_definition
+msgid "Manage a possible parent activity on plan definition"
+msgstr "Administrar una posible actividad de los padres en la definición del plan"
+
+#. module: medical_workflow
+#: model:ir.model,name:medical_workflow.model_workflow_plan_definition_action
+msgid "Medical Plan Definition Action"
+msgstr "Acción"
+
+#. module: medical_workflow
+#: model:ir.model,name:medical_workflow.model_medical_event
+msgid "Medical event"
+msgstr "Evento Médico"
+
+#. module: medical_workflow
+#: model:ir.model,name:medical_workflow.model_medical_request
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_is_medical_request
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_is_medical_request
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_is_medical_request
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_is_medical_request
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_is_medical_request
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_is_medical_request
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_is_medical_request
+msgid "Medical request"
+msgstr "Peticion"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_model_id
+msgid "Model to be created"
+msgstr "Modelo a crear"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_model_ids
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_model_ids
+msgid "Models"
+msgstr "Modelos"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_name
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_name
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_name
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_name
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_careplan_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_document_reference_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_event_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_event_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_request_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_medication_administration_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_medication_request_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_request_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_group_name
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/medical_request.py:227
+#, python-format
+msgid "No model provided."
+msgstr "No hay modelo proporcionado."
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/wizard/medical_add_plan_definition.py:55
+#, python-format
+msgid "No requests were created"
+msgstr "No se crearon peticiones"
+
+#. module: medical_workflow
+#: selection:medical.careplan,priority:0
+#: selection:medical.document.reference,priority:0
+#: selection:medical.laboratory.request,priority:0
+#: selection:medical.medication.request,priority:0
+#: selection:medical.procedure.request,priority:0
+#: selection:medical.request,priority:0
+#: selection:medical.request.group,priority:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_observations
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_observations
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_observations
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_observations
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_observations
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_observations
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_observations
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_occurrence_date
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_occurrence_date
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_occurrence_date
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_occurrence_date
+msgid "Occurrence date"
+msgstr "Fecha de ocurrencia"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_medical_event_occurrence_date
+#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_event_occurrence_date
+#: model:ir.model.fields,help:medical_workflow.field_medical_medication_administration_occurrence_date
+#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_occurrence_date
+msgid "Occurrence of the order."
+msgstr "Ocurrencia de la orden."
+
+#. module: medical_workflow
+#: selection:medical.careplan,intent:0
+#: selection:medical.document.reference,intent:0
+#: selection:medical.laboratory.request,intent:0
+#: selection:medical.medication.request,intent:0
+#: selection:medical.procedure.request,intent:0
+#: selection:medical.request,intent:0 selection:medical.request.group,intent:0
+msgid "Option"
+msgstr "Opción"
+
+#. module: medical_workflow
+#: selection:medical.careplan,intent:0
+#: selection:medical.document.reference,intent:0
+#: selection:medical.laboratory.request,intent:0
+#: selection:medical.medication.request,intent:0
+#: selection:medical.procedure.request,intent:0
+#: selection:medical.request,intent:0 selection:medical.request.group,intent:0
+msgid "Order"
+msgstr "Orden"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_order_date
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_order_date
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_order_date
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_order_date
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_order_date
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_order_date
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_order_date
+msgid "Order date"
+msgstr "Fecha de orden"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_order_by_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_order_by_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_order_by_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_order_by_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_order_by_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_order_by_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_order_by_id
+msgid "Ordered by"
+msgstr "Ordenado por"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_parent_id
+msgid "Parent Action"
+msgstr "Acción de los padres"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_direct_action_ids
+msgid "Parent actions"
+msgstr "Acciones de los padres"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_patient_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_patient_id
+msgid "Patient"
+msgstr "Paciente"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_medical_careplan_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_document_reference_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_event_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_event_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_request_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_medication_administration_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_medication_request_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_request_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_group_patient_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_patient_id
+msgid "Patient Name"
+msgstr "Nombre del paciente"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/workflow_activity_definition.py:103
+#, python-format
+msgid "Patient is not defined"
+msgstr "Paciente no esta definido"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_performer_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_performer_id
+msgid "Performer"
+msgstr "Ejecutante"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_medical_careplan_order_by_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_document_reference_order_by_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_request_order_by_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_medication_request_order_by_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_request_order_by_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_group_order_by_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_order_by_id
+msgid "Person who has initiated the order."
+msgstr "Persona que ha iniciado el pedido."
+
+#. module: medical_workflow
+#: selection:medical.careplan,intent:0
+#: selection:medical.document.reference,intent:0
+#: selection:medical.laboratory.request,intent:0
+#: selection:medical.medication.request,intent:0
+#: selection:medical.procedure.request,intent:0
+#: selection:medical.request,intent:0 selection:medical.request.group,intent:0
+msgid "Plan"
+msgstr "Plan"
+
+#. module: medical_workflow
+#: model:ir.model,name:medical_workflow.model_workflow_plan_definition
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_plan_definition_id
+msgid "Plan Definition"
+msgstr "Desglose"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_plan_definition_action_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_plan_definition_action_id
+msgid "Plan Definition Action"
+msgstr "Definición del plan de acción"
+
+#. module: medical_workflow
+#: model:ir.model,name:medical_workflow.model_workflow_type
+msgid "Plan Definition Type"
+msgstr "Tipo de definición del plan"
+
+#. module: medical_workflow
+#: model:ir.actions.act_window,name:medical_workflow.workflow_plan_definition
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_execute_plan_definition_id
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_plan_definition_id
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_form
+msgid "Plan definition"
+msgstr "Plan"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.res_config_settings_view_form
+msgid "Plan definition on patients"
+msgstr "Plan definición de pacientes"
+
+#. module: medical_workflow
+#: model:ir.ui.menu,name:medical_workflow.workflow_plan_definitions_menu
+msgid "Plan definitions"
+msgstr "Plan definicions"
+
+#. module: medical_workflow
+#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.medication.administration,state:0
+#: selection:medical.procedure,state:0
+msgid "Preparation"
+msgstr "Preparación"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_priority
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_priority
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_priority
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_priority
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_priority
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_priority
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_priority
+msgid "Priority"
+msgstr "Prioridad"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_workflow_activity_definition_service_id
+msgid "Product that represents this resource"
+msgstr "Product that represents this resource"
+
+#. module: medical_workflow
+#: selection:medical.careplan,intent:0
+#: selection:medical.document.reference,intent:0
+#: selection:medical.laboratory.request,intent:0
+#: selection:medical.medication.request,intent:0
+#: selection:medical.procedure.request,intent:0
+#: selection:medical.request,intent:0 selection:medical.request.group,intent:0
+msgid "Proposal"
+msgstr "Propuesta"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
+#: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
+msgid "Reactivate"
+msgstr "Reactivar"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/medical_request.py:205
+#, python-format
+msgid "Recursion loop found"
+msgstr "Bucle de recursión encontrado"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
+msgid "Request"
+msgstr "Peticion"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_service_id
+msgid "Resource Product"
+msgstr "Producto de Recursos"
+
+#. module: medical_workflow
+#: selection:workflow.activity.definition,state:0
+#: selection:workflow.plan.definition,state:0
+msgid "Retired"
+msgstr "Retirado"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_parent_right
+msgid "Right Parent"
+msgstr "Padre derecho"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_direct_plan_definition_id
+msgid "Root plan definition"
+msgstr "Definición del plan de raíz"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_service_id
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_service_id
+msgid "Service"
+msgstr "Servicio"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
+msgid "Set error"
+msgstr "Error de configuración"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_medical_careplan_order_date
+#: model:ir.model.fields,help:medical_workflow.field_medical_document_reference_order_date
+#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_request_order_date
+#: model:ir.model.fields,help:medical_workflow.field_medical_medication_request_order_date
+#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_request_order_date
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_group_order_date
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_order_date
+msgid "Start of the order."
+msgstr "Inicio de la orden."
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_state
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_event_state
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_event_state
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_state
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_state
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_state
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_state
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_state
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_state
+#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_state
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_state
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_state
+msgid "State"
+msgstr "Estado"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_action_ids
+msgid "Subsequent actions"
+msgstr "Acciones posteriores"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_workflow_activity_definition_description
+#: model:ir.model.fields,help:medical_workflow.field_workflow_plan_definition_description
+#: model:ir.model.fields,help:medical_workflow.field_workflow_type_description
+msgid "Summary of nature of plan"
+msgstr "Resumen de la naturaleza del plan"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
+#: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
+msgid "Suspend"
+msgstr "Suspender"
+
+#. module: medical_workflow
+#: selection:medical.careplan,state:0 selection:medical.event,state:0
+#: selection:medical.laboratory.event,state:0
+#: selection:medical.laboratory.request,state:0
+#: selection:medical.medication.administration,state:0
+#: selection:medical.medication.request,state:0
+#: selection:medical.procedure,state:0
+#: selection:medical.procedure.request,state:0
+#: selection:medical.request,state:0 selection:medical.request.group,state:0
+msgid "Suspended"
+msgstr "Suspendido"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_workflow_plan_definition_action_execute_plan_definition_id
+msgid "This plan will be executed instead of an activity"
+msgstr "Este plan será ejecutado en lugar de una actividad"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/medical_request.py:208
+#, python-format
+msgid "Too many recursion"
+msgstr "Demasiada recursion"
+
+#. module: medical_workflow
+#: code:addons/medical_workflow/models/workflow_activity_definition.py:84
+#, python-format
+msgid "Type cannot be modified if the record has relations"
+msgstr "El tipo no puede ser modificado si el registro tiene relaciones"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_workflow_activity_definition_type_id
+msgid "Type of worklow this activity definition can be used in"
+msgstr "Tipo de flujo de trabajo esta definición de actividad se puede utilizar en"
+
+#. module: medical_workflow
+#: model:ir.actions.act_window,name:medical_workflow.workflow_type_action
+msgid "Types"
+msgstr "Los tipos"
+
+#. module: medical_workflow
+#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.medication.administration,state:0
+#: selection:medical.procedure,state:0
+#: selection:workflow.activity.definition,state:0
+#: selection:workflow.plan.definition,state:0
+msgid "Unknown"
+msgstr "Desconocido"
+
+#. module: medical_workflow
+#: model:ir.model.fields,help:medical_workflow.field_medical_careplan_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_document_reference_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_event_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_event_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_request_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_medication_administration_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_medication_request_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_request_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_group_performer_id
+#: model:ir.model.fields,help:medical_workflow.field_medical_request_performer_id
+msgid "Who is to perform the procedure"
+msgstr "Quién debe realizar el procedimiento"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_workflow_activity_definition_display
+msgid "Workflow Activity Definition Display"
+msgstr "Definición de la actividad del flujo de trabajo"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_workflow_activity_definition_manager
+msgid "Workflow Activity Definition Manager"
+msgstr "Administrador de definición de actividad de trabajo"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_workflow_plan_definition_action_display
+msgid "Workflow Plan Definition Action Display"
+msgstr "Definición del plan de trabajo Acción Pantalla"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_workflow_plan_definition_action_manager
+msgid "Workflow Plan Definition Action Manager"
+msgstr "Definición del plan de trabajo Action Manager"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_workflow_plan_definition_display
+msgid "Workflow Plan Definition Display"
+msgstr "Visualización de la definición del plan de trabajo"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_workflow_plan_definition_manager
+msgid "Workflow Plan Definition Manager"
+msgstr "Administrador de definición del plan de trabajo"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_type_id
+msgid "Workflow Type"
+msgstr "Tipo"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_workflow_type_display
+msgid "Workflow Type Display"
+msgstr "Tipo de trabajo"
+
+#. module: medical_workflow
+#: model:res.groups,name:medical_workflow.group_workflow_type_manager
+msgid "Workflow Type Manager"
+msgstr "Administrador de trabajo"
+
+#. module: medical_workflow
+#: model:ir.ui.menu,name:medical_workflow.workflow_type
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_type_form
+msgid "Workflow Types"
+msgstr "Tipos"
+
+#. module: medical_workflow
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_type_id
+#: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_type_id
+msgid "Workflow type"
+msgstr "Tipo"
+
+#. module: medical_workflow
+#: model:ir.model,name:medical_workflow.model_medical_add_plan_definition
+msgid "medical.add.plan.definition"
+msgstr "medical.add.plan.definition"
+
+#. module: medical_workflow
+#: model:ir.model,name:medical_workflow.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
