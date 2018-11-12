@@ -35,11 +35,11 @@
                             <field name="parent_id"/>
                         </group>
                         <group>
-                            <field name="plan_definition_id"/>
-                            <field name="direct_plan_definition_id"/>
-                            <field name="activity_definition_id"/>
+                            <field name="plan_definition_id" options="{'no_create': True}"/>
+                            <field name="direct_plan_definition_id" options="{'no_create': True}"/>
+                            <field name="activity_definition_id" options="{'no_create': True}"/>
                             <field name="type_id" invisible="1"/>
-                            <field name="execute_plan_definition_id" domain="[('type_id', '=', type_id)]"/>
+                            <field name="execute_plan_definition_id" domain="[('type_id', '=', type_id)]" options="{'no_create': True}"/>
                         </group>
                     </group>
                     <group>
