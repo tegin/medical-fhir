@@ -18,6 +18,7 @@
                 <div>
                 <field name="specialty_ids"
                        widget="many2many_tags"
+                       options="{'no_create': True}"
                        attrs="{'invisible': [('is_practitioner','=',False)],'readonly':[('edit_practitioner', '=', False)]}"
                        groups="medical_administration_practitioner.group_medical_practitioner_display"/>
                 </div>
