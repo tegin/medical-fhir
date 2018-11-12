@@ -10,7 +10,7 @@
 
     <menuitem id="menu_medical_coverage_root"
               name="Coverage"
-              sequence="10"
+              sequence="40"
               parent="medical_base.medical_root_financial"
               action="medical_coverage_action"/>
 
@@ -22,7 +22,7 @@
 
     <menuitem id="menu_medical_payor_root"
               name="Payors"
-              sequence="40"
+              sequence="10"
               parent="medical_base.medical_root_financial"
               action="medical_payor_action"/>
 
