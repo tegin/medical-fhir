@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_medication
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-07 10:25+0000\n"
+"PO-Revision-Date: 2018-11-12 10:22+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.2\n"
+
+#. module: medical_medication
+#: model:ir.model.fields,field_description:medical_medication.field_product_product_atc_code_id
+#: model:ir.model.fields,field_description:medical_medication.field_product_template_atc_code_id
+msgid "ATC code"
+msgstr "Código ATC"
+
+#. module: medical_medication
+#: model:ir.model.fields,help:medical_medication.field_product_product_atc_code_id
+#: model:ir.model.fields,help:medical_medication.field_product_template_atc_code_id
+msgid "ATC medication classification"
+msgstr "Clasificación de medicamentos ATC"
+
+#. module: medical_medication
+#: model:ir.ui.view,arch_db:medical_medication.res_config_settings_view_form
+msgid "Allows to use Medication administrations &amp; requests"
+msgstr "Permite utilizar administraciones de medicamentos y amp;medicamentos"
+
+#. module: medical_medication
+#: model:product.product,name:medical_medication.product_medication_01
+#: model:product.template,name:medical_medication.product_medication_01_product_template
+msgid "Aumen Tini"
+msgstr "Aumen Tini"
+
+#. module: medical_medication
+#: model:ir.model.fields,field_description:medical_medication.field_product_product_form_id
+#: model:ir.model.fields,field_description:medical_medication.field_product_template_form_id
+msgid "Form code"
+msgstr "Código de formulario"
+
+#. module: medical_medication
+#: model:ir.model.fields,field_description:medical_medication.field_product_product_is_medication
+#: model:ir.model.fields,field_description:medical_medication.field_product_template_is_medication
+msgid "Is Medication"
+msgstr "Es medicación"
+
+#. module: medical_medication
+#: model:ir.model.fields,field_description:medical_medication.field_medical_sct_concept_is_medication_code
+msgid "Is Medication Code"
+msgstr "Es el código de medicación"
+
+#. module: medical_medication
+#: model:ir.model.fields,field_description:medical_medication.field_medical_sct_concept_is_medication_form
+msgid "Is Medication Form"
+msgstr "Es forma de medicación"
+
+#. module: medical_medication
+#: model:ir.ui.view,arch_db:medical_medication.product_template_form_view
+msgid "Medication"
+msgstr "Medicación"
+
+#. module: medical_medication
+#: model:res.groups,name:medical_medication.group_medical_medication_display
+msgid "Medication Display"
+msgstr "Visualizador de la medicación"
+
+#. module: medical_medication
+#: model:res.groups,name:medical_medication.group_medical_medication_manager
+msgid "Medication Manager"
+msgstr "Gestor de medicación"
+
+#. module: medical_medication
+#: model:ir.ui.view,arch_db:medical_medication.res_config_settings_view_form
+msgid "Medication administration & Medication requests"
+msgstr "Administración de medicamentos &peticiones de medicamentos"
+
+#. module: medical_medication
+#: code:addons/medical_medication/models/product.py:40
+#, python-format
+msgid "Medication must be a stockable product"
+msgstr "La medicación debe ser un producto almacenable"
+
+#. module: medical_medication
+#: model:ir.model.fields,field_description:medical_medication.field_connector_config_settings_module_medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication.field_res_config_settings_module_medical_medication_request
+msgid "Medication request"
+msgstr "Peticion de medicación"
+
+#. module: medical_medication
+#: model:ir.actions.act_window,name:medical_medication.medical_medication_action
+#: model:ir.ui.menu,name:medical_medication.medical_medication
+msgid "Medications"
+msgstr "Medicamentos"
+
+#. module: medical_medication
+#: model:ir.model.fields,field_description:medical_medication.field_product_product_over_the_counter
+#: model:ir.model.fields,field_description:medical_medication.field_product_template_over_the_counter
+msgid "Over The Counter"
+msgstr "En el mostrador"
+
+#. module: medical_medication
+#: model:ir.model,name:medical_medication.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: medical_medication
+#: model:ir.model.fields,help:medical_medication.field_product_product_form_id
+#: model:ir.model.fields,help:medical_medication.field_product_template_form_id
+msgid "SNOMED CT Form Codes"
+msgstr "SNOMED CT Códigos de formulario"
+
+#. module: medical_medication
+#: model:ir.model.fields,help:medical_medication.field_product_product_sct_code_id
+#: model:ir.model.fields,help:medical_medication.field_product_template_sct_code_id
+msgid "SNOMED CT Medication Codes"
+msgstr "SNOMED CT Códigos de medicamentos"
+
+#. module: medical_medication
+#: model:ir.model.fields,field_description:medical_medication.field_product_product_sct_code_id
+#: model:ir.model.fields,field_description:medical_medication.field_product_template_sct_code_id
+msgid "SNOMED CT code"
+msgstr "Código SNOMED CT"
+
+#. module: medical_medication
+#: model:ir.model.fields,help:medical_medication.field_product_product_over_the_counter
+#: model:ir.model.fields,help:medical_medication.field_product_template_over_the_counter
+msgid "True if medication does not require a prescription"
+msgstr "Cierto si la medicación no requiere receta médica"
+
+#. module: medical_medication
+#: model:ir.model,name:medical_medication.model_medical_sct_concept
+msgid "medical.sct.concept"
+msgstr "medical.sct.concept"
+
+#. module: medical_medication
+#: model:ir.model,name:medical_medication.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
