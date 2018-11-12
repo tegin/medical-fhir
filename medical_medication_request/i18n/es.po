@@ -1,0 +1,377 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_medication_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-07 10:25+0000\n"
+"PO-Revision-Date: 2018-11-09 13:40+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.2\n"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_careplan_medication_request_count
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_document_reference_medication_request_count
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_laboratory_request_medication_request_count
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_medication_administration_count
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_medication_request_count
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_procedure_request_medication_request_count
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_request_group_medication_request_count
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_request_medication_request_count
+msgid "# of Medication Requests"
+msgstr "# of procedimiento de medicamentos"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+msgid "Aborted"
+msgstr "Abortado"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Active"
+msgstr "Activo"
+
+#. module: medical_medication_request
+#: model:ir.model,name:medical_medication_request.model_workflow_activity_definition
+msgid "Activity Definition"
+msgstr "Actividad"
+
+#. module: medical_medication_request
+#: model:ir.actions.act_window,name:medical_medication_request.medical_medication_administration_action
+#: model:ir.ui.menu,name:medical_medication_request.medical_medication_administration
+msgid "Administration"
+msgstr "Administración"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_form
+msgid "Administrations"
+msgstr "Administraciones"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Care Plan ID"
+msgstr "Proceso ID"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_category
+msgid "Category"
+msgstr "Categoría"
+
+#. module: medical_medication_request
+#: selection:medical.medication.request,category:0
+msgid "Community"
+msgstr "Comunidad"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Completed"
+msgstr "Terminado"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_create_uid
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_create_date
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_display_name
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Error"
+msgstr "Error"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_id
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_id
+msgid "ID"
+msgstr "ID"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+msgid "In progress"
+msgstr "En progreso"
+
+#. module: medical_medication_request
+#: selection:medical.medication.request,category:0
+msgid "Inpatient"
+msgstr "Paciente interno"
+
+#. module: medical_medication_request
+#: code:addons/medical_medication_request/models/medical_medication_administration.py:135
+#, python-format
+msgid "Insufficient quantity"
+msgstr "Cantidad insuficiente"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,help:medical_medication_request.field_medical_medication_administration_internal_identifier
+#: model:ir.model.fields,help:medical_medication_request.field_medical_medication_request_internal_identifier
+msgid "Internal identifier used to identify this record"
+msgstr "Identificador interno utilizado para identificar este registro"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration___last_update
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_write_uid
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_write_date
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_location_id
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: medical_medication_request
+#: code:addons/medical_medication_request/models/medical_medication_administration.py:141
+#, python-format
+msgid "Location must be defined in order to complete"
+msgstr "La ubicación debe ser definida para completar"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_lot_id
+msgid "Lot"
+msgstr "Lote"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Medical Care Plan"
+msgstr "Proceso"
+
+#. module: medical_medication_request
+#: model:ir.model,name:medical_medication_request.model_medical_medication_request
+msgid "Medical Medication request"
+msgstr "Peticion de medicación"
+
+#. module: medical_medication_request
+#: model:ir.model,name:medical_medication_request.model_medical_request
+msgid "Medical request"
+msgstr "Peticion"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_medication_administration_ids
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+msgid "Medication Administration"
+msgstr "Administración de medicamentos"
+
+#. module: medical_medication_request
+#: model:res.groups,name:medical_medication_request.group_medical_medication_administration_display
+msgid "Medication Administration Display"
+msgstr "Visualización de la administración de medicamentos"
+
+#. module: medical_medication_request
+#: model:res.groups,name:medical_medication_request.group_medical_medication_administration_manager
+msgid "Medication Administration Manager"
+msgstr "Gestor de Administración de Medicamentos"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_medication_request_id
+msgid "Medication Request"
+msgstr "Petición de medicación"
+
+#. module: medical_medication_request
+#: model:res.groups,name:medical_medication_request.group_medical_medication_request_display
+msgid "Medication Request Display"
+msgstr "Visualización de solicitud de medicación"
+
+#. module: medical_medication_request
+#: model:res.groups,name:medical_medication_request.group_medical_medication_request_manager
+msgid "Medication Request Manager"
+msgstr "Gerente de Solicitud de Medicamentos"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_request_form
+msgid "Medication Requests"
+msgstr "Solicitudes de medicación"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_internal_identifier
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_form
+msgid "Medication administration"
+msgstr "Administración de medicamentos"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_stock_picking_medication_administration_id
+msgid "Medication administration event"
+msgstr "Evento de administracion de medicamentos"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_tree
+msgid "Medication administrations"
+msgstr "Administraciones de medicación"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_internal_identifier
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_form
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_tree
+msgid "Medication request"
+msgstr "Peticion de medicación"
+
+#. module: medical_medication_request
+#: model:ir.actions.act_window,name:medical_medication_request.medical_medication_request_action
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_careplan_medication_request_ids
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_document_reference_medication_request_ids
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_laboratory_request_medication_request_ids
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_medication_request_ids
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_procedure_request_medication_request_ids
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_request_group_medication_request_ids
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_request_medication_request_ids
+msgid "Medication requests"
+msgstr "Petición de medicaciones"
+
+#. module: medical_medication_request
+#: selection:medical.medication.request,category:0
+msgid "Outpatient"
+msgstr "Paciente externo"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_package_id
+msgid "Package"
+msgstr "Paquete"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_careplan_medication_request_id
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_document_reference_medication_request_id
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_laboratory_request_medication_request_id
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_medication_request_id
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_procedure_request_medication_request_id
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_request_group_medication_request_id
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_request_medication_request_id
+msgid "Parent medication request"
+msgstr "Petición de medicación de los padres"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Patient"
+msgstr "Paciente"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_patient_location_id
+msgid "Patient Location"
+msgstr "Ubicación del paciente"
+
+#. module: medical_medication_request
+#: model:stock.location,name:medical_medication_request.location_patient
+msgid "Patient location"
+msgstr "Ubicación del paciente"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_picking_ids
+msgid "Picking"
+msgstr "Albarán"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+msgid "Preparation"
+msgstr "Preparación"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_product_id
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_qty
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: medical_medication_request
+#: model:ir.ui.menu,name:medical_medication_request.medical_medication_request
+msgid "Requests"
+msgstr "Peticiones"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_stock_location_id
+msgid "Stock Location"
+msgstr "Ubicación de Stock"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_stock_picking_type_id
+msgid "Stock Picking Type"
+msgstr "Tipo de stock albaran"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_form
+msgid "Stock moves"
+msgstr "Movimientos de stock"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
+msgid "Suspended"
+msgstr "Suspendido"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_tracking
+msgid "Tracking"
+msgstr "Seguimiento"
+
+#. module: medical_medication_request
+#: model:ir.model,name:medical_medication_request.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: medical_medication_request
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_product_uom_id
+#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_product_uom_id
+msgid "Unit of Measure"
+msgstr "Unidad de medida"
+
+#. module: medical_medication_request
+#: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
+msgid "Unknown"
+msgstr "Desconocido"
+
+#. module: medical_medication_request
+#: model:ir.model,name:medical_medication_request.model_medical_medication_administration
+msgid "medical.medication.administration"
+msgstr "medical.medication.administration"
