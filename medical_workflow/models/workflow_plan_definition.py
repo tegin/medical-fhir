@@ -58,6 +58,7 @@ class PlanDefinition(models.Model):
         comodel_name='workflow.plan.definition.action',
         inverse_name='plan_definition_id',
         readonly=True,
+        copy=True,
     )
 
     @api.depends('state')
