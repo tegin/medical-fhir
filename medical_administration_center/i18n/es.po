@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* cb_medical_administration_center
+# 	* cb_medical_administration_center
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 10:17+0000\n"
-"PO-Revision-Date: 2018-11-07 10:17+0000\n"
+"POT-Creation-Date: 2018-11-07 10:23+0000\n"
+"PO-Revision-Date: 2018-11-07 16:08+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.2\n"
 
 #. module: cb_medical_administration_center
 #: model:ir.model.fields,field_description:cb_medical_administration_center.field_medical_patient_center_id
@@ -64,7 +66,7 @@ msgstr "Ubicación"
 #: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_partner_location_count
 #: model:ir.model.fields,field_description:cb_medical_administration_center.field_res_users_location_count
 msgid "Location Count"
-msgstr "Location Count"
+msgstr "Recuento de Ubicación"
 
 #. module: cb_medical_administration_center
 #: model:ir.ui.view,arch_db:cb_medical_administration_center.res_partner_view_form
@@ -79,5 +81,4 @@ msgstr "Centros Médicos"
 #. module: cb_medical_administration_center
 #: model:ir.actions.act_window,name:cb_medical_administration_center.medical_center_location_action
 msgid "Medical Locations"
-msgstr "Localizaciones Médicas"
-
+msgstr "Localizaciones"
