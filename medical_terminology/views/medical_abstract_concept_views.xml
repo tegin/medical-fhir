@@ -27,7 +27,7 @@
         <field name="inherit_id" ref="medical_abstract_concept_tree"/>
         <field name="arch" type="xml">
             <field name="definition" position="after">
-                <field name="parent_id"/>
+                <field name="parent_id" options="{'no_create': True}"/>
             </field>
         </field>
     </record>
@@ -61,6 +61,7 @@
         <field name="arch" type="xml">
             <field name="definition" position="after">
                 <field name="parent_id"
+                       options="{'no_create': True}"
                        attrs="{'readonly': [('editable', '=', False)]}"/>
             </field>
             <notebook position="inside">
