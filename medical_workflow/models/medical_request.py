@@ -98,7 +98,6 @@ class MedicalRequest(models.AbstractModel):
     )   # FHIR Field: definition
     plan_definition_action_id = fields.Many2one(
         comodel_name='workflow.plan.definition.action',
-        ondelete='restrict', index=True,
     )   # FHIR Field: definition
     is_editable = fields.Boolean(
         compute='_compute_is_editable',
