@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-07 10:25+0000\n"
-"PO-Revision-Date: 2018-11-12 13:32+0100\n"
+"PO-Revision-Date: 2018-11-13 18:22+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "Language: es\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_coverage_count
@@ -68,18 +68,18 @@ msgstr "Póliza"
 #. module: medical_financial_coverage
 #: model:res.groups,name:medical_financial_coverage.group_medical_coverage_display
 msgid "Coverage Display"
-msgstr "Visualizador de poliza"
+msgstr "Visualización de póliza"
 
 #. module: medical_financial_coverage
 #: model:res.groups,name:medical_financial_coverage.group_medical_coverage_manager
 msgid "Coverage Manager"
-msgstr "Gestor de poliza"
+msgstr "Gestor de póliza"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_state
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_state
 msgid "Coverage Status"
-msgstr "Estado de poliza"
+msgstr "Estado de póliza"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_coverage_template_id
@@ -99,19 +99,19 @@ msgstr "Coberturas"
 #. module: medical_financial_coverage
 #: model:res.groups,name:medical_financial_coverage.group_medical_coverage_template_display
 msgid "Coverage template Display"
-msgstr "Visualizador modelo de poliza"
+msgstr "Visualizador Coberturas"
 
 #. module: medical_financial_coverage
 #: model:res.groups,name:medical_financial_coverage.group_medical_coverage_template_manager
 msgid "Coverage template Manager"
-msgstr "Gestor modelo de poliza"
+msgstr "Gestor coberturas"
 
 #. module: medical_financial_coverage
 #: model:ir.actions.act_window,name:medical_financial_coverage.medical_coverage_action
 #: model:ir.actions.act_window,name:medical_financial_coverage.medical_coverage_template_action
 #: model:ir.ui.view,arch_db:medical_financial_coverage.medical_patient_view_form
 msgid "Coverages"
-msgstr "Polizas"
+msgstr "Pólizas"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_create_uid
@@ -129,7 +129,7 @@ msgstr "Creado en"
 #: model:ir.model.fields,help:medical_financial_coverage.field_medical_coverage_state
 #: model:ir.model.fields,help:medical_financial_coverage.field_medical_coverage_template_state
 msgid "Current state of the coverage."
-msgstr "Estado actual de la poliza."
+msgstr "Estado actual de la póliza."
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_display_name
@@ -211,7 +211,7 @@ msgstr "Cobertura"
 #: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_template_view_form
 #: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_template_view_tree
 msgid "Medical Coverage Templates"
-msgstr "Plantilla de poliza"
+msgstr "Coberturas"
 
 #. module: medical_financial_coverage
 #: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_view_tree
@@ -277,7 +277,7 @@ msgstr "Enviar a borrador"
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_subscriber_id
 msgid "Subscriber Id"
-msgstr "Identificación de suscriptor"
+msgstr "Número de asegurado"
 
 #. module: medical_financial_coverage
 #: model:ir.model,name:medical_financial_coverage.model_medical_patient
