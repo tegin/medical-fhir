@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-07 10:26+0000\n"
-"PO-Revision-Date: 2018-11-09 13:28+0100\n"
+"PO-Revision-Date: 2018-11-13 17:53+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "Language: es\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
@@ -38,7 +38,7 @@ msgstr "Acción"
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_name
 msgid "Action name"
-msgstr "Acción nombre"
+msgstr "Nombre de la acción"
 
 #. module: medical_workflow
 #: model:ir.ui.menu,name:medical_workflow.workflow_plan_definition_actions_menu
@@ -106,35 +106,35 @@ msgstr "Actividad"
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_activity_definition_id
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_activity_definition_id
 msgid "Activity definition"
-msgstr "Definición de actividad"
+msgstr "Actividad"
 
 #. module: medical_workflow
 #: code:addons/medical_workflow/models/workflow_plan_definition_action.py:143
 #, python-format
 msgid "Activity definition or plan definition must be defined on each action"
-msgstr "La definición de actividad o la definición de plan deben definirse en cada acción"
+msgstr "La actividad o el plan deben definirse en cada acción"
 
 #. module: medical_workflow
 #: model:ir.ui.menu,name:medical_workflow.workflow_activity_definitions_menu
 msgid "Activity definitions"
-msgstr "Definiciones de actividad"
+msgstr "Actividades"
 
 #. module: medical_workflow
 #: model:ir.actions.act_window,name:medical_workflow.action_medical_add_plan_definition_form
 #: model:ir.ui.view,arch_db:medical_workflow.medical_patient_form
 msgid "Add Plan definition"
-msgstr "Añadir definición de plan"
+msgstr "Añadir plan"
 
 #. module: medical_workflow
 #: model:res.groups,name:medical_workflow.group_patient_add_plan_definition
 msgid "Add Plan definition on patient"
-msgstr "Añadir definición del plan en el paciente"
+msgstr "Añadir plan en el paciente"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_connector_config_settings_group_patient_add_plan_definition
 #: model:ir.model.fields,field_description:medical_workflow.field_res_config_settings_group_patient_add_plan_definition
 msgid "Add Plan definition on patients"
-msgstr "Agregar definición de plan en pacientes"
+msgstr "Agregar plan en pacientes"
 
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.res_config_settings_view_form
@@ -143,7 +143,7 @@ msgid ""
 "                            that will be its main parent"
 msgstr ""
 "Agregar una definición de actividad principal en la definición del plan\n"
-"                             ese será su principal padre"
+"                             ese será su padre principal"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_ids
@@ -179,12 +179,12 @@ msgstr "Cancelado"
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_child_ids
 msgid "Child Actions"
-msgstr "Acciones hijas"
+msgstr "Hijos"
 
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_action_form
 msgid "Child actions"
-msgstr "Acciones infantiles"
+msgstr "Hijos"
 
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
@@ -202,7 +202,7 @@ msgstr "Completar"
 #: selection:medical.procedure.request,state:0
 #: selection:medical.request,state:0 selection:medical.request.group,state:0
 msgid "Completed"
-msgstr "Terminado"
+msgstr "Finalizado"
 
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.medical_add_plan_definition_form
@@ -540,7 +540,7 @@ msgstr "Observaciones"
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_administration_occurrence_date
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_occurrence_date
 msgid "Occurrence date"
-msgstr "Fecha de ocurrencia"
+msgstr "Fecha de realización"
 
 #. module: medical_workflow
 #: model:ir.model.fields,help:medical_workflow.field_medical_event_occurrence_date
@@ -548,7 +548,7 @@ msgstr "Fecha de ocurrencia"
 #: model:ir.model.fields,help:medical_workflow.field_medical_medication_administration_occurrence_date
 #: model:ir.model.fields,help:medical_workflow.field_medical_procedure_occurrence_date
 msgid "Occurrence of the order."
-msgstr "Ocurrencia de la orden."
+msgstr "Realización de la petición."
 
 #. module: medical_workflow
 #: selection:medical.careplan,intent:0
@@ -579,7 +579,7 @@ msgstr "Orden"
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_order_date
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_request_order_date
 msgid "Order date"
-msgstr "Fecha de orden"
+msgstr "Fecha de petición"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_order_by_id
@@ -595,12 +595,12 @@ msgstr "Ordenado por"
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_parent_id
 msgid "Parent Action"
-msgstr "Acción de los padres"
+msgstr "Padre"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_direct_action_ids
 msgid "Parent actions"
-msgstr "Acciones de los padres"
+msgstr "Padres"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_patient_id
@@ -637,7 +637,7 @@ msgstr "Nombre del paciente"
 #: code:addons/medical_workflow/models/workflow_activity_definition.py:103
 #, python-format
 msgid "Patient is not defined"
-msgstr "Paciente no esta definido"
+msgstr "Paciente no definido"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_performer_id
@@ -652,7 +652,7 @@ msgstr "Paciente no esta definido"
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_performer_id
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_request_performer_id
 msgid "Performer"
-msgstr "Ejecutante"
+msgstr "Realizador"
 
 #. module: medical_workflow
 #: model:ir.model.fields,help:medical_workflow.field_medical_careplan_order_by_id
@@ -663,7 +663,7 @@ msgstr "Ejecutante"
 #: model:ir.model.fields,help:medical_workflow.field_medical_request_group_order_by_id
 #: model:ir.model.fields,help:medical_workflow.field_medical_request_order_by_id
 msgid "Person who has initiated the order."
-msgstr "Persona que ha iniciado el pedido."
+msgstr "Persona que ha iniciado la petición."
 
 #. module: medical_workflow
 #: selection:medical.careplan,intent:0
@@ -690,7 +690,7 @@ msgstr "Plan"
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_plan_definition_id
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_request_plan_definition_id
 msgid "Plan Definition"
-msgstr "Desglose"
+msgstr "Plan"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_plan_definition_action_id
@@ -705,12 +705,12 @@ msgstr "Desglose"
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_plan_definition_action_id
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_request_plan_definition_action_id
 msgid "Plan Definition Action"
-msgstr "Definición del plan de acción"
+msgstr "Acción"
 
 #. module: medical_workflow
 #: model:ir.model,name:medical_workflow.model_workflow_type
 msgid "Plan Definition Type"
-msgstr "Tipo de definición del plan"
+msgstr "Tipo"
 
 #. module: medical_workflow
 #: model:ir.actions.act_window,name:medical_workflow.workflow_plan_definition
@@ -723,12 +723,12 @@ msgstr "Plan"
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.res_config_settings_view_form
 msgid "Plan definition on patients"
-msgstr "Plan definición de pacientes"
+msgstr "Plan en pacientes"
 
 #. module: medical_workflow
 #: model:ir.ui.menu,name:medical_workflow.workflow_plan_definitions_menu
 msgid "Plan definitions"
-msgstr "Plan definicions"
+msgstr "Planes"
 
 #. module: medical_workflow
 #: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
@@ -751,7 +751,7 @@ msgstr "Prioridad"
 #. module: medical_workflow
 #: model:ir.model.fields,help:medical_workflow.field_workflow_activity_definition_service_id
 msgid "Product that represents this resource"
-msgstr "Product that represents this resource"
+msgstr "Producto que representa esta acción"
 
 #. module: medical_workflow
 #: selection:medical.careplan,intent:0
@@ -778,17 +778,17 @@ msgstr "Reactivar"
 #: code:addons/medical_workflow/models/medical_request.py:205
 #, python-format
 msgid "Recursion loop found"
-msgstr "Bucle de recursión encontrado"
+msgstr "Recursividad encontrada"
 
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
 msgid "Request"
-msgstr "Peticion"
+msgstr "Petición"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_service_id
 msgid "Resource Product"
-msgstr "Producto de Recursos"
+msgstr "Producto"
 
 #. module: medical_workflow
 #: selection:workflow.activity.definition,state:0
@@ -804,7 +804,7 @@ msgstr "Padre derecho"
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_direct_plan_definition_id
 msgid "Root plan definition"
-msgstr "Definición del plan de raíz"
+msgstr "Plan padre"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_service_id
@@ -892,7 +892,7 @@ msgstr "Este plan será ejecutado en lugar de una actividad"
 #: code:addons/medical_workflow/models/medical_request.py:208
 #, python-format
 msgid "Too many recursion"
-msgstr "Demasiada recursion"
+msgstr "Demasiada recursividad"
 
 #. module: medical_workflow
 #: code:addons/medical_workflow/models/workflow_activity_definition.py:84
@@ -903,12 +903,12 @@ msgstr "El tipo no puede ser modificado si el registro tiene relaciones"
 #. module: medical_workflow
 #: model:ir.model.fields,help:medical_workflow.field_workflow_activity_definition_type_id
 msgid "Type of worklow this activity definition can be used in"
-msgstr "Tipo de flujo de trabajo esta definición de actividad se puede utilizar en"
+msgstr "Esta actividad se puede utilizar en"
 
 #. module: medical_workflow
 #: model:ir.actions.act_window,name:medical_workflow.workflow_type_action
 msgid "Types"
-msgstr "Los tipos"
+msgstr "Tipos"
 
 #. module: medical_workflow
 #: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
@@ -937,32 +937,32 @@ msgstr "Quién debe realizar el procedimiento"
 #. module: medical_workflow
 #: model:res.groups,name:medical_workflow.group_workflow_activity_definition_display
 msgid "Workflow Activity Definition Display"
-msgstr "Definición de la actividad del flujo de trabajo"
+msgstr "Visualización de actividades"
 
 #. module: medical_workflow
 #: model:res.groups,name:medical_workflow.group_workflow_activity_definition_manager
 msgid "Workflow Activity Definition Manager"
-msgstr "Administrador de definición de actividad de trabajo"
+msgstr "Administración de actividades"
 
 #. module: medical_workflow
 #: model:res.groups,name:medical_workflow.group_workflow_plan_definition_action_display
 msgid "Workflow Plan Definition Action Display"
-msgstr "Definición del plan de trabajo Acción Pantalla"
+msgstr "Visualización de acciones"
 
 #. module: medical_workflow
 #: model:res.groups,name:medical_workflow.group_workflow_plan_definition_action_manager
 msgid "Workflow Plan Definition Action Manager"
-msgstr "Definición del plan de trabajo Action Manager"
+msgstr "Administrador de acciones"
 
 #. module: medical_workflow
 #: model:res.groups,name:medical_workflow.group_workflow_plan_definition_display
 msgid "Workflow Plan Definition Display"
-msgstr "Visualización de la definición del plan de trabajo"
+msgstr "Visualización de planes"
 
 #. module: medical_workflow
 #: model:res.groups,name:medical_workflow.group_workflow_plan_definition_manager
 msgid "Workflow Plan Definition Manager"
-msgstr "Administrador de definición del plan de trabajo"
+msgstr "Administrador de planes"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_type_id
@@ -972,12 +972,12 @@ msgstr "Tipo"
 #. module: medical_workflow
 #: model:res.groups,name:medical_workflow.group_workflow_type_display
 msgid "Workflow Type Display"
-msgstr "Tipo de trabajo"
+msgstr "Mostrar tipos"
 
 #. module: medical_workflow
 #: model:res.groups,name:medical_workflow.group_workflow_type_manager
 msgid "Workflow Type Manager"
-msgstr "Administrador de trabajo"
+msgstr "Administrar tipos"
 
 #. module: medical_workflow
 #: model:ir.ui.menu,name:medical_workflow.workflow_type
