@@ -18,7 +18,6 @@ class TestMedicalRequest(TransactionCase):
         })
 
     def test_constrains(self):
-        # care plans
         request = self.env['medical.request.group'].create({
             'patient_id': self.patient.id
         })
@@ -29,7 +28,6 @@ class TestMedicalRequest(TransactionCase):
             })
 
     def test_views(self):
-        # procedure
         procedure = self.env['medical.request.group'].create({
             'patient_id': self.patient.id
         })
