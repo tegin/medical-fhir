@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_clinical_procedure
+#	* medical_clinical_procedure
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 10:24+0000\n"
-"PO-Revision-Date: 2018-11-12 11:28+0100\n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.2\n"
 
 #. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_careplan_procedure_request_count
@@ -142,7 +140,7 @@ msgstr "From Procedure Request Make Procedure"
 #: model:ir.ui.view,arch_db:medical_clinical_procedure.medical_procedure_request_view_search
 #: model:ir.ui.view,arch_db:medical_clinical_procedure.medical_procedure_view_search
 msgid "Group By..."
-msgstr "Agrupar por..."
+msgstr "Agrupar Por..."
 
 #. module: medical_clinical_procedure
 #: model:ir.ui.view,arch_db:medical_clinical_procedure.medical_procedure_request_view_tree
@@ -167,36 +165,30 @@ msgid "Initial date"
 msgstr "Fecha inicial"
 
 #. module: medical_clinical_procedure
-#: model:ir.model.fields,help:medical_clinical_procedure.field_medical_procedure_internal_identifier
-#: model:ir.model.fields,help:medical_clinical_procedure.field_medical_procedure_request_internal_identifier
-msgid "Internal identifier used to identify this record"
-msgstr "Identificador interno utilizado para identificar este registro"
-
-#. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure___last_update
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_request___last_update
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_procedure_request_make_procedure___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_request_write_uid
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_write_uid
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_procedure_request_make_procedure_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_request_write_date
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_write_date
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_procedure_request_make_procedure_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_location_id
 msgid "Location"
-msgstr "Ubicación"
+msgstr "Localización"
 
 #. module: medical_clinical_procedure
 #: model:ir.model,name:medical_clinical_procedure.model_medical_procedure
@@ -210,20 +202,14 @@ msgid "Medical Procedure Request"
 msgstr "Petición de procedimiento"
 
 #. module: medical_clinical_procedure
-#: model:product.product,name:medical_clinical_procedure.medical_report_product
-#: model:product.template,name:medical_clinical_procedure.medical_report_product_product_template
-msgid "Medical report"
-msgstr "Informe médico"
-
-#. module: medical_clinical_procedure
 #: model:ir.model,name:medical_clinical_procedure.model_medical_request
 msgid "Medical request"
-msgstr "Petición"
+msgstr "Medical request"
 
 #. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_request_occurrence
 msgid "Occurrence date"
-msgstr "Fecha de ocurrencia"
+msgstr "Fecha de realización"
 
 #. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_careplan_procedure_request_id
@@ -260,7 +246,6 @@ msgstr "Prioridad"
 
 #. module: medical_clinical_procedure
 #: code:addons/medical_clinical_procedure/wizard/medical_procedure_request_make_procedure.py:24
-#: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_internal_identifier
 #: model:ir.ui.view,arch_db:medical_clinical_procedure.medical_procedure_view_form
 #, python-format
 msgid "Procedure"
@@ -300,7 +285,6 @@ msgstr "Petición Procedimientos"
 
 #. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_procedure_request_id
-#: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_request_internal_identifier
 msgid "Procedure request"
 msgstr "Petición Procedimiento"
 
@@ -313,15 +297,9 @@ msgid "Procedures"
 msgstr "Procedimientos"
 
 #. module: medical_clinical_procedure
-#: model:product.product,name:medical_clinical_procedure.quality_check_product
-#: model:product.template,name:medical_clinical_procedure.quality_check_product_product_template
-msgid "Quality check"
-msgstr "Control de calidad"
-
-#. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_request_procedure_ids
 msgid "Related Procedure"
-msgstr "Procedimiento relacionado"
+msgstr "Procedimiento"
 
 #. module: medical_clinical_procedure
 #: model:ir.ui.view,arch_db:medical_clinical_procedure.medical_procedure_request_view_form
@@ -346,12 +324,6 @@ msgid "This Procedure Request already has a Procedure."
 msgstr "Esta petición de Procedimiento ya tiene un Procedimiento."
 
 #. module: medical_clinical_procedure
-#: model:product.product,name:medical_clinical_procedure.machine_time_product
-#: model:product.template,name:medical_clinical_procedure.machine_time_product_product_template
-msgid "Time on machine service"
-msgstr "Tiempo en servicio de maquina"
-
-#. module: medical_clinical_procedure
 #: model:ir.ui.view,arch_db:medical_clinical_procedure.medical_procedure_view_search
 msgid "Unknown"
 msgstr "Desconocido"
@@ -372,3 +344,4 @@ msgstr "No puede crear más de un procedimiento para cada petición de procedimi
 #, python-format
 msgid "You cannot delete a record that refers to a Procedure!"
 msgstr "¡No puede borrar un registro que se refiere a un procedimiento!"
+
