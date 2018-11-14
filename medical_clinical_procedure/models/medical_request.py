@@ -44,3 +44,8 @@ class MedicalRequest(models.AbstractModel):
     def _check_hierarchy_procedure_request(self):
         for record in self:
             record._check_hierarchy_children({})
+
+    def _get_parents(self):
+        res = super()._get_parents()
+        res.append(self.procedure_request_id)
+        return res
