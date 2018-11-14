@@ -41,6 +41,11 @@ class MedicalRequest(models.AbstractModel):
         res.append('medical.medication.request')
         return res
 
+    def _get_parents(self):
+        res = super()._get_parents()
+        res.append(self.medication_request_id)
+        return res
+
     @api.constrains('medication_request_id')
     def _check_hierarchy_medication_request(self):
         for record in self:
