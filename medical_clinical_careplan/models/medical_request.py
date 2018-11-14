@@ -44,3 +44,8 @@ class MedicalRequest(models.AbstractModel):
     def _check_hierarchy_careplan(self):
         for record in self:
             record._check_hierarchy_children({})
+
+    def _get_parents(self):
+        res = super()._get_parents()
+        res.append(self.careplan_id)
+        return res
