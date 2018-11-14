@@ -2,7 +2,8 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class MedicalMedicationRequest(models.Model):
@@ -114,3 +115,12 @@ class MedicalMedicationRequest(models.Model):
             'view': 'medical_medication_request.'
                     'medical_medication_request_action',
             'view_form': 'medical.medication.request.view.form', }
+
+    @api.constrains('patient_id')
+    def _check_patient_medication(self):
+
+        if not self.env.context.get('no_check_patient', False):
+            if self.medication_administration_ids.filtered(
+                lambda r: r.patient_id != self.patient_id
+            ):
+                raise ValidationError(_('Patient inconsistency'))
