@@ -197,6 +197,9 @@ class MedicalRequest(models.AbstractModel):
     def _get_request_models(self):
         return []
 
+    def _get_parents(self):
+        return []
+
     def _check_hierarchy_children(self, vals, counter=1):
         if self._name not in vals:
             vals[self._name] = []
@@ -243,10 +246,13 @@ class MedicalRequest(models.AbstractModel):
         if not self.env.context.get('no_check_patient', False):
             models = self._get_request_models()
             fieldname = self._get_parent_field_name()
-            for model in models:
-                for r in self:
+            for r in self:
+                for model in models:
                     if self.env[model].search([
                         (fieldname, '=', r.id),
                         ('patient_id', '=', r.id),
                     ], limit=1):
+                        raise ValidationError(_('Patient must be consistent'))
+                for parent in r._get_parents():
+                    if parent and parent.patient_id != r.patient_id:
                         raise ValidationError(_('Patient must be consistent'))
