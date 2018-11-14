@@ -168,3 +168,9 @@ class MedicalMedicationAdministration(models.Model):
             action['views'] = [(False, 'form')]
             action['res_id'] = self.picking_ids.id
         return action
+
+    @api.constrains('medication_request_id', 'patient_id')
+    def _check_patient_medication(self):
+        if not self.env.context.get('no_check_patient', False):
+            if self.patient_id != self.medication_request_id.patient_id:
+                raise ValidationError(_('Patient inconsistency'))
