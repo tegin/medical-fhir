@@ -20,3 +20,8 @@ class MedicalRequest(models.AbstractModel):
             if self.encounter_id.patient_id != self.patient_id:
                 raise ValidationError(_(
                     'Inconsistency between patient and encounter'))
+
+    def _get_parents(self):
+        res = super()._get_parents()
+        res.append(self.encounter_id)
+        return res
