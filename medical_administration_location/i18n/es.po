@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_administration_location
+#	* medical_administration_location
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 10:23+0000\n"
-"PO-Revision-Date: 2018-11-12 09:39+0100\n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.2\n"
 
 #. module: medical_administration_location
 #: model:ir.model,name:medical_administration_location.model_res_partner
@@ -94,9 +92,10 @@ msgstr "Ubicación de Stock"
 #. module: medical_administration_location
 #: model:ir.model,name:medical_administration_location.model_medical_patient
 msgid "medical.patient"
-msgstr "medical.patient"
+msgstr "medical.pacientes"
 
 #. module: medical_administration_location
 #: model:ir.model,name:medical_administration_location.model_res_config_settings
 msgid "res.config.settings"
 msgstr "res.config.settings"
+

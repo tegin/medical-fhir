@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_workflow
+#	* medical_workflow
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 10:26+0000\n"
-"PO-Revision-Date: 2018-11-13 17:53+0100\n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.0.6\n"
 
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
@@ -23,7 +21,8 @@ msgid "Abort"
 msgstr "Abortar"
 
 #. module: medical_workflow
-#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.event,state:0
+#: selection:medical.laboratory.event,state:0
 #: selection:medical.medication.administration,state:0
 #: selection:medical.procedure,state:0
 msgid "Aborted"
@@ -77,7 +76,8 @@ msgstr "Activar"
 #: selection:medical.laboratory.request,state:0
 #: selection:medical.medication.request,state:0
 #: selection:medical.procedure.request,state:0
-#: selection:medical.request,state:0 selection:medical.request.group,state:0
+#: selection:medical.request,state:0
+#: selection:medical.request.group,state:0
 #: selection:workflow.activity.definition,state:0
 #: selection:workflow.plan.definition,state:0
 msgid "Active"
@@ -138,11 +138,9 @@ msgstr "Agregar plan en pacientes"
 
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.res_config_settings_view_form
-msgid ""
-"Add a main activity definition on plan definition\n"
+msgid "Add a main activity definition on plan definition\n"
 "                            that will be its main parent"
-msgstr ""
-"Agregar una definición de actividad principal en la definición del plan\n"
+msgstr "Agregar una definición de actividad principal en la definición del plan\n"
 "                             ese será su padre principal"
 
 #. module: medical_workflow
@@ -172,14 +170,15 @@ msgstr "Cancelar"
 #: selection:medical.laboratory.request,state:0
 #: selection:medical.medication.request,state:0
 #: selection:medical.procedure.request,state:0
-#: selection:medical.request,state:0 selection:medical.request.group,state:0
+#: selection:medical.request,state:0
+#: selection:medical.request.group,state:0
 msgid "Cancelled"
 msgstr "Cancelado"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_child_ids
 msgid "Child Actions"
-msgstr "Hijos"
+msgstr "Acciones hijas"
 
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_action_form
@@ -193,14 +192,16 @@ msgid "Complete"
 msgstr "Completar"
 
 #. module: medical_workflow
-#: selection:medical.careplan,state:0 selection:medical.event,state:0
+#: selection:medical.careplan,state:0
+#: selection:medical.event,state:0
 #: selection:medical.laboratory.event,state:0
 #: selection:medical.laboratory.request,state:0
 #: selection:medical.medication.administration,state:0
 #: selection:medical.medication.request,state:0
 #: selection:medical.procedure,state:0
 #: selection:medical.procedure.request,state:0
-#: selection:medical.request,state:0 selection:medical.request.group,state:0
+#: selection:medical.request,state:0
+#: selection:medical.request.group,state:0
 msgid "Completed"
 msgstr "Finalizado"
 
@@ -250,7 +251,8 @@ msgstr "Nombre mostrado"
 #: selection:medical.laboratory.request,state:0
 #: selection:medical.medication.request,state:0
 #: selection:medical.procedure.request,state:0
-#: selection:medical.request,state:0 selection:medical.request.group,state:0
+#: selection:medical.request,state:0
+#: selection:medical.request.group,state:0
 #: selection:workflow.activity.definition,state:0
 #: selection:workflow.plan.definition,state:0
 msgid "Draft"
@@ -261,12 +263,14 @@ msgstr "Borrador"
 #: selection:medical.laboratory.request,state:0
 #: selection:medical.medication.request,state:0
 #: selection:medical.procedure.request,state:0
-#: selection:medical.request,state:0 selection:medical.request.group,state:0
+#: selection:medical.request,state:0
+#: selection:medical.request.group,state:0
 msgid "Entered in Error"
 msgstr "Entró en error"
 
 #. module: medical_workflow
-#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.event,state:0
+#: selection:medical.laboratory.event,state:0
 #: selection:medical.medication.administration,state:0
 #: selection:medical.procedure,state:0
 msgid "Entered in error"
@@ -279,7 +283,7 @@ msgid "Error! You are attempting to create a recursive category."
 msgstr "Error! Estás intentando crear una categoría recursiva."
 
 #. module: medical_workflow
-#: code:addons/medical_workflow/models/workflow_plan_definition.py:77
+#: code:addons/medical_workflow/models/workflow_plan_definition.py:78
 #, python-format
 msgid "Error! You are attempting to create a recursive definition"
 msgstr "Error! Estás intentando crear una definición recursiva"
@@ -290,7 +294,7 @@ msgid "Event"
 msgstr "Evento"
 
 #. module: medical_workflow
-#: code:addons/medical_workflow/models/medical_request.py:218
+#: code:addons/medical_workflow/models/medical_request.py:217
 #, python-format
 msgid "Field name is not defined"
 msgstr "El nombre del campo no está definido"
@@ -301,7 +305,7 @@ msgid "Full Action Name"
 msgstr "Nombre completo de la acción"
 
 #. module: medical_workflow
-#: code:addons/medical_workflow/models/medical_request.py:195
+#: code:addons/medical_workflow/models/medical_request.py:194
 #, python-format
 msgid "Function is not defined"
 msgstr "La función no está definida"
@@ -341,7 +345,8 @@ msgid "ID"
 msgstr "ID"
 
 #. module: medical_workflow
-#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.event,state:0
+#: selection:medical.laboratory.event,state:0
 #: selection:medical.medication.administration,state:0
 #: selection:medical.procedure,state:0
 msgid "In progress"
@@ -387,7 +392,7 @@ msgstr "Es Editable"
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action___last_update
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_type___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_write_uid
@@ -396,7 +401,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_write_uid
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_add_plan_definition_write_date
@@ -405,7 +410,7 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_write_date
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_type_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_parent_left
@@ -441,7 +446,7 @@ msgstr "Acción"
 #. module: medical_workflow
 #: model:ir.model,name:medical_workflow.model_medical_event
 msgid "Medical event"
-msgstr "Evento Médico"
+msgstr "Evento"
 
 #. module: medical_workflow
 #: model:ir.model,name:medical_workflow.model_medical_request
@@ -501,7 +506,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: medical_workflow
-#: code:addons/medical_workflow/models/medical_request.py:227
+#: code:addons/medical_workflow/models/medical_request.py:226
 #, python-format
 msgid "No model provided."
 msgstr "No hay modelo proporcionado."
@@ -556,7 +561,8 @@ msgstr "Realización de la petición."
 #: selection:medical.laboratory.request,intent:0
 #: selection:medical.medication.request,intent:0
 #: selection:medical.procedure.request,intent:0
-#: selection:medical.request,intent:0 selection:medical.request.group,intent:0
+#: selection:medical.request,intent:0
+#: selection:medical.request.group,intent:0
 msgid "Option"
 msgstr "Opción"
 
@@ -566,7 +572,8 @@ msgstr "Opción"
 #: selection:medical.laboratory.request,intent:0
 #: selection:medical.medication.request,intent:0
 #: selection:medical.procedure.request,intent:0
-#: selection:medical.request,intent:0 selection:medical.request.group,intent:0
+#: selection:medical.request,intent:0
+#: selection:medical.request.group,intent:0
 msgid "Order"
 msgstr "Orden"
 
@@ -582,15 +589,9 @@ msgid "Order date"
 msgstr "Fecha de petición"
 
 #. module: medical_workflow
-#: model:ir.model.fields,field_description:medical_workflow.field_medical_careplan_order_by_id
-#: model:ir.model.fields,field_description:medical_workflow.field_medical_document_reference_order_by_id
-#: model:ir.model.fields,field_description:medical_workflow.field_medical_laboratory_request_order_by_id
-#: model:ir.model.fields,field_description:medical_workflow.field_medical_medication_request_order_by_id
-#: model:ir.model.fields,field_description:medical_workflow.field_medical_procedure_request_order_by_id
-#: model:ir.model.fields,field_description:medical_workflow.field_medical_request_group_order_by_id
 #: model:ir.model.fields,field_description:medical_workflow.field_medical_request_order_by_id
 msgid "Ordered by"
-msgstr "Ordenado por"
+msgstr "Ordered by"
 
 #. module: medical_workflow
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_plan_definition_action_parent_id
@@ -655,15 +656,9 @@ msgid "Performer"
 msgstr "Realizador"
 
 #. module: medical_workflow
-#: model:ir.model.fields,help:medical_workflow.field_medical_careplan_order_by_id
-#: model:ir.model.fields,help:medical_workflow.field_medical_document_reference_order_by_id
-#: model:ir.model.fields,help:medical_workflow.field_medical_laboratory_request_order_by_id
-#: model:ir.model.fields,help:medical_workflow.field_medical_medication_request_order_by_id
-#: model:ir.model.fields,help:medical_workflow.field_medical_procedure_request_order_by_id
-#: model:ir.model.fields,help:medical_workflow.field_medical_request_group_order_by_id
 #: model:ir.model.fields,help:medical_workflow.field_medical_request_order_by_id
 msgid "Person who has initiated the order."
-msgstr "Persona que ha iniciado la petición."
+msgstr "Person who has initiated the order."
 
 #. module: medical_workflow
 #: selection:medical.careplan,intent:0
@@ -671,7 +666,8 @@ msgstr "Persona que ha iniciado la petición."
 #: selection:medical.laboratory.request,intent:0
 #: selection:medical.medication.request,intent:0
 #: selection:medical.procedure.request,intent:0
-#: selection:medical.request,intent:0 selection:medical.request.group,intent:0
+#: selection:medical.request,intent:0
+#: selection:medical.request.group,intent:0
 msgid "Plan"
 msgstr "Plan"
 
@@ -731,7 +727,8 @@ msgid "Plan definitions"
 msgstr "Planes"
 
 #. module: medical_workflow
-#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.event,state:0
+#: selection:medical.laboratory.event,state:0
 #: selection:medical.medication.administration,state:0
 #: selection:medical.procedure,state:0
 msgid "Preparation"
@@ -759,7 +756,8 @@ msgstr "Producto que representa esta acción"
 #: selection:medical.laboratory.request,intent:0
 #: selection:medical.medication.request,intent:0
 #: selection:medical.procedure.request,intent:0
-#: selection:medical.request,intent:0 selection:medical.request.group,intent:0
+#: selection:medical.request,intent:0
+#: selection:medical.request.group,intent:0
 msgid "Proposal"
 msgstr "Propuesta"
 
@@ -771,11 +769,13 @@ msgstr "Cantidad"
 #. module: medical_workflow
 #: model:ir.ui.view,arch_db:medical_workflow.medical_event_form
 #: model:ir.ui.view,arch_db:medical_workflow.medical_request_form
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_activity_definition_form
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_form
 msgid "Reactivate"
 msgstr "Reactivar"
 
 #. module: medical_workflow
-#: code:addons/medical_workflow/models/medical_request.py:205
+#: code:addons/medical_workflow/models/medical_request.py:204
 #, python-format
 msgid "Recursion loop found"
 msgstr "Recursividad encontrada"
@@ -789,6 +789,12 @@ msgstr "Petición"
 #: model:ir.model.fields,field_description:medical_workflow.field_workflow_activity_definition_service_id
 msgid "Resource Product"
 msgstr "Producto"
+
+#. module: medical_workflow
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_activity_definition_form
+#: model:ir.ui.view,arch_db:medical_workflow.workflow_plan_definition_form
+msgid "Retire"
+msgstr "Retire"
 
 #. module: medical_workflow
 #: selection:workflow.activity.definition,state:0
@@ -872,14 +878,16 @@ msgid "Suspend"
 msgstr "Suspender"
 
 #. module: medical_workflow
-#: selection:medical.careplan,state:0 selection:medical.event,state:0
+#: selection:medical.careplan,state:0
+#: selection:medical.event,state:0
 #: selection:medical.laboratory.event,state:0
 #: selection:medical.laboratory.request,state:0
 #: selection:medical.medication.administration,state:0
 #: selection:medical.medication.request,state:0
 #: selection:medical.procedure,state:0
 #: selection:medical.procedure.request,state:0
-#: selection:medical.request,state:0 selection:medical.request.group,state:0
+#: selection:medical.request,state:0
+#: selection:medical.request.group,state:0
 msgid "Suspended"
 msgstr "Suspendido"
 
@@ -889,7 +897,7 @@ msgid "This plan will be executed instead of an activity"
 msgstr "Este plan será ejecutado en lugar de una actividad"
 
 #. module: medical_workflow
-#: code:addons/medical_workflow/models/medical_request.py:208
+#: code:addons/medical_workflow/models/medical_request.py:207
 #, python-format
 msgid "Too many recursion"
 msgstr "Demasiada recursividad"
@@ -911,7 +919,8 @@ msgid "Types"
 msgstr "Tipos"
 
 #. module: medical_workflow
-#: selection:medical.event,state:0 selection:medical.laboratory.event,state:0
+#: selection:medical.event,state:0
+#: selection:medical.laboratory.event,state:0
 #: selection:medical.medication.administration,state:0
 #: selection:medical.procedure,state:0
 #: selection:workflow.activity.definition,state:0
@@ -1000,3 +1009,4 @@ msgstr "medical.add.plan.definition"
 #: model:ir.model,name:medical_workflow.model_res_config_settings
 msgid "res.config.settings"
 msgstr "res.config.settings"
+

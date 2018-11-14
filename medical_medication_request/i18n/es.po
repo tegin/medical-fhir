@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_medication_request
+#	* medical_medication_request
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 10:25+0000\n"
-"PO-Revision-Date: 2018-11-09 13:40+0100\n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.2\n"
 
 #. module: medical_medication_request
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_careplan_medication_request_count
@@ -114,7 +112,7 @@ msgstr "Error"
 #: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
 #: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_search
 msgid "Group By..."
-msgstr "Agrupar por..."
+msgstr "Agrupar Por..."
 
 #. module: medical_medication_request
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_id
@@ -133,43 +131,37 @@ msgid "Inpatient"
 msgstr "Paciente interno"
 
 #. module: medical_medication_request
-#: code:addons/medical_medication_request/models/medical_medication_administration.py:135
+#: code:addons/medical_medication_request/models/medical_medication_administration.py:139
 #, python-format
 msgid "Insufficient quantity"
 msgstr "Cantidad insuficiente"
 
 #. module: medical_medication_request
-#: model:ir.model.fields,help:medical_medication_request.field_medical_medication_administration_internal_identifier
-#: model:ir.model.fields,help:medical_medication_request.field_medical_medication_request_internal_identifier
-msgid "Internal identifier used to identify this record"
-msgstr "Identificador interno utilizado para identificar este registro"
-
-#. module: medical_medication_request
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration___last_update
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: medical_medication_request
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_write_uid
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: medical_medication_request
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_write_date
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: medical_medication_request
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_location_id
 #: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_search
 msgid "Location"
-msgstr "Ubicación"
+msgstr "Localización"
 
 #. module: medical_medication_request
-#: code:addons/medical_medication_request/models/medical_medication_administration.py:141
+#: code:addons/medical_medication_request/models/medical_medication_administration.py:145
 #, python-format
 msgid "Location must be defined in order to complete"
 msgstr "La ubicación debe ser definida para completar"
@@ -187,12 +179,12 @@ msgstr "Proceso"
 #. module: medical_medication_request
 #: model:ir.model,name:medical_medication_request.model_medical_medication_request
 msgid "Medical Medication request"
-msgstr "Peticion de medicación"
+msgstr "Petición de medicación"
 
 #. module: medical_medication_request
 #: model:ir.model,name:medical_medication_request.model_medical_request
 msgid "Medical request"
-msgstr "Peticion"
+msgstr "Medical request"
 
 #. module: medical_medication_request
 #: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_medication_administration_ids
@@ -231,7 +223,6 @@ msgid "Medication Requests"
 msgstr "Solicitudes de medicación"
 
 #. module: medical_medication_request
-#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_administration_internal_identifier
 #: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_form
 msgid "Medication administration"
 msgstr "Administración de medicamentos"
@@ -247,7 +238,6 @@ msgid "Medication administrations"
 msgstr "Administraciones de medicación"
 
 #. module: medical_medication_request
-#: model:ir.model.fields,field_description:medical_medication_request.field_medical_medication_request_internal_identifier
 #: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_form
 #: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_request_view_tree
 msgid "Medication request"
@@ -375,3 +365,4 @@ msgstr "Desconocido"
 #: model:ir.model,name:medical_medication_request.model_medical_medication_administration
 msgid "medical.medication.administration"
 msgstr "medical.medication.administration"
+

@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_base
+#	* medical_base
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 10:24+0000\n"
-"PO-Revision-Date: 2018-11-12 11:05+0100\n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.2\n"
 
 #. module: medical_base
 #: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
@@ -102,6 +100,11 @@ msgid "Administration menu"
 msgstr "Menú de administración"
 
 #. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_careplan_internal_identifier
+msgid "Careplan"
+msgstr "Proceso"
+
+#. module: medical_base
 #: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_clinical
 #: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_clinical
 #: model:ir.ui.menu,name:medical_base.medical_root_clinical
@@ -142,6 +145,16 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_document_reference_internal_identifier
+msgid "Document reference"
+msgstr "Document reference"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_encounter_internal_identifier
+msgid "Encounter"
+msgstr "Afiliación"
+
+#. module: medical_base
 #: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_financial
 #: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_financial
 #: model:ir.ui.menu,name:medical_base.medical_root_financial
@@ -177,24 +190,32 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:medical_base.field_medical_request_internal_identifier
 #: model:ir.model.fields,field_description:medical_base.field_sale_preinvoice_group_internal_identifier
 #: model:ir.model.fields,field_description:medical_base.field_workflow_activity_definition_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_workflow_activity_type_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_workflow_activity_type_internal_identifier_10091
 #: model:ir.model.fields,field_description:medical_base.field_workflow_plan_definition_internal_identifier
 msgid "Internal Identifier"
 msgstr "Identificador interno"
 
 #. module: medical_base
 #: model:ir.model.fields,help:medical_base.field_medical_abstract_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_careplan_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_medical_coverage_agreement_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_medical_coverage_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_medical_coverage_template_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_document_reference_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_medical_document_type_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_encounter_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_medical_event_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_medical_flag_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_medication_administration_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_medication_request_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_medical_patient_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_procedure_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_procedure_request_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_request_group_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_medical_request_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_sale_preinvoice_group_internal_identifier
 #: model:ir.model.fields,help:medical_base.field_workflow_activity_definition_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_workflow_activity_type_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_workflow_activity_type_internal_identifier_10091
 #: model:ir.model.fields,help:medical_base.field_workflow_plan_definition_internal_identifier
 msgid "Internal identifier used to identify this record"
 msgstr "Identificador interno utilizado para identificar este registro"
@@ -202,7 +223,7 @@ msgstr "Identificador interno utilizado para identificar este registro"
 #. module: medical_base
 #: model:ir.model.fields,field_description:medical_base.field_medical_abstract___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: medical_base
 #: model:ir.module.category,name:medical_base.ir_module_category_medical
@@ -218,6 +239,16 @@ msgid "Medication"
 msgstr "Medicación"
 
 #. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_medication_administration_internal_identifier
+msgid "Medication administration"
+msgstr "Medication administration"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_medication_request_internal_identifier
+msgid "Medication request"
+msgstr "Peticion de medicación"
+
+#. module: medical_base
 #: model:ir.ui.menu,name:medical_base.medical_root_medications
 msgid "Medications"
 msgstr "Medicamentos"
@@ -226,6 +257,21 @@ msgstr "Medicamentos"
 #: model:res.groups,name:medical_base.group_medical_medications_menu
 msgid "Medications menu"
 msgstr "Menú de medicamentos"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_procedure_internal_identifier
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_procedure_request_internal_identifier
+msgid "Procedure request"
+msgstr "Petición Procedimiento"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_request_group_internal_identifier
+msgid "Request group"
+msgstr "Request group"
 
 #. module: medical_base
 #: model:res.groups,name:medical_base.group_medical_root_menu
@@ -287,3 +333,4 @@ msgstr "medical.abstract"
 #: model:ir.model,name:medical_base.model_res_config_settings
 msgid "res.config.settings"
 msgstr "res.config.settings"
+
