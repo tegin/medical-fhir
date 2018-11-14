@@ -2,7 +2,8 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class MedicalEncounter(models.Model):
@@ -38,3 +39,12 @@ class MedicalEncounter(models.Model):
             result['views'] = [(False, 'form')]
             result['res_id'] = self.careplan_ids.id
         return result
+
+    @api.constrains('patient_id')
+    def _check_patient(self):
+        if not self.env.context.get('no_check_patient', False):
+            for rec in self:
+                if rec.careplan_ids.filtered(
+                    lambda r: r.patient_id != rec.patient_id
+                ):
+                    raise ValidationError(_('Patient must be consistent'))
