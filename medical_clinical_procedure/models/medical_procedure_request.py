@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, exceptions, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class MedicalProcedureRequest(models.Model):
@@ -121,3 +122,11 @@ class MedicalProcedureRequest(models.Model):
             'view':
                 'medical_clinical_procedure.medical_procedure_request_action',
             'view_form': 'medical.procedure.request.view.form', }
+
+    @api.constrains('patient_id')
+    def _check_patient_procedure(self):
+        if not self.env.context.get('no_check_patient', False):
+            if self.procedure_request_id.filtered(
+                lambda r: r.patient_id != self.patient_id
+            ):
+                raise ValidationError(_('Patient inconsistency'))
