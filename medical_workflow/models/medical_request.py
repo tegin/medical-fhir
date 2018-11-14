@@ -237,3 +237,16 @@ class MedicalRequest(models.AbstractModel):
             result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = requests.id
         return result
+
+    @api.constrains('patient_id')
+    def _check_patient(self):
+        if not self.env.context.get('no_check_patient', False):
+            models = self._get_request_models()
+            fieldname = self._get_parent_field_name()
+            for model in models:
+                for r in self:
+                    if self.env[model].search([
+                        (fieldname, '=', r.id),
+                        ('patient_id', '=', r.id),
+                    ], limit=1):
+                        raise ValidationError(_('Patient must be consistent'))
