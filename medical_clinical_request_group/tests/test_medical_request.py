@@ -3,6 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo.tests.common import TransactionCase
+from odoo.exceptions import ValidationError
 
 
 class TestMedicalRequest(TransactionCase):
@@ -12,6 +13,20 @@ class TestMedicalRequest(TransactionCase):
         self.patient = self.env['medical.patient'].create({
             'name': 'Test Patient'
         })
+        self.patient2 = self.env['medical.patient'].create({
+            'name': 'Test Patient2'
+        })
+
+    def test_constrains(self):
+        # care plans
+        request = self.env['medical.request.group'].create({
+            'patient_id': self.patient.id
+        })
+        with self.assertRaises(ValidationError):
+            self.env['medical.request.group'].create({
+                'patient_id': self.patient2.id,
+                'request_group_id': request.id,
+            })
 
     def test_views(self):
         # procedure
