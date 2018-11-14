@@ -1,26 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_financial_coverage
+#	* medical_financial_coverage
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 10:25+0000\n"
-"PO-Revision-Date: 2018-11-13 18:22+0100\n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.0.6\n"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_coverage_count
 msgid "# of Coverages"
-msgstr "#de polizas"
+msgstr "# de Coberturas"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_coverage_template_count
@@ -63,23 +61,23 @@ msgstr "Contacto"
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_patient_coverage_ids
 #: model:ir.ui.menu,name:medical_financial_coverage.menu_medical_coverage_root
 msgid "Coverage"
-msgstr "Póliza"
+msgstr "Cobertura"
 
 #. module: medical_financial_coverage
 #: model:res.groups,name:medical_financial_coverage.group_medical_coverage_display
 msgid "Coverage Display"
-msgstr "Visualización de póliza"
+msgstr "Visualizar coberturas"
 
 #. module: medical_financial_coverage
 #: model:res.groups,name:medical_financial_coverage.group_medical_coverage_manager
 msgid "Coverage Manager"
-msgstr "Gestor de póliza"
+msgstr "Gestionar Coberturas"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_state
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_state
 msgid "Coverage Status"
-msgstr "Estado de póliza"
+msgstr "Estado de cobertura"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_coverage_template_id
@@ -111,7 +109,7 @@ msgstr "Gestor coberturas"
 #: model:ir.actions.act_window,name:medical_financial_coverage.medical_coverage_template_action
 #: model:ir.ui.view,arch_db:medical_financial_coverage.medical_patient_view_form
 msgid "Coverages"
-msgstr "Pólizas"
+msgstr "Coberturas"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_create_uid
@@ -129,7 +127,7 @@ msgstr "Creado en"
 #: model:ir.model.fields,help:medical_financial_coverage.field_medical_coverage_state
 #: model:ir.model.fields,help:medical_financial_coverage.field_medical_coverage_template_state
 msgid "Current state of the coverage."
-msgstr "Estado actual de la póliza."
+msgstr "Estado actual de la Cobertura."
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_display_name
@@ -181,25 +179,25 @@ msgstr "Es mutua"
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage___last_update
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_write_uid
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_template_write_date
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: medical_financial_coverage
 #: model:ir.model,name:medical_financial_coverage.model_medical_coverage
 #: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_view_form
 msgid "Medical Coverage"
-msgstr "Póliza"
+msgstr "Cobertura"
 
 #. module: medical_financial_coverage
 #: model:ir.model,name:medical_financial_coverage.model_medical_coverage_template
@@ -217,7 +215,7 @@ msgstr "Coberturas"
 #: model:ir.ui.view,arch_db:medical_financial_coverage.medical_coverage_view_tree
 #: model:ir.ui.view,arch_db:medical_financial_coverage.view_medical_coverage_search
 msgid "Medical Coverages"
-msgstr "Polizas"
+msgstr "Coberturas"
 
 #. module: medical_financial_coverage
 #: model:ir.model.fields,field_description:medical_financial_coverage.field_medical_coverage_name
@@ -282,4 +280,5 @@ msgstr "Número de asegurado"
 #. module: medical_financial_coverage
 #: model:ir.model,name:medical_financial_coverage.model_medical_patient
 msgid "medical.patient"
-msgstr "medical.patient"
+msgstr "medical.pacientes"
+
