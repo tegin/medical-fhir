@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_administration_practitioner
+#	* medical_administration_practitioner
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 10:23+0000\n"
-"PO-Revision-Date: 2018-11-12 10:48+0100\n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.2\n"
 
 #. module: medical_administration_practitioner
 #: model:ir.model.fields,field_description:medical_administration_practitioner.field_medical_role_active
@@ -91,17 +89,17 @@ msgstr "Es profesional"
 #. module: medical_administration_practitioner
 #: model:ir.model.fields,field_description:medical_administration_practitioner.field_medical_role___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: medical_administration_practitioner
 #: model:ir.model.fields,field_description:medical_administration_practitioner.field_medical_role_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: medical_administration_practitioner
 #: model:ir.model.fields,field_description:medical_administration_practitioner.field_medical_role_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: medical_administration_practitioner
 #: model:ir.model.fields,field_description:medical_administration_practitioner.field_medical_role_name
@@ -128,7 +126,7 @@ msgstr "Gestor profesional"
 #. module: medical_administration_practitioner
 #: model:ir.model,name:medical_administration_practitioner.model_medical_role
 msgid "Practitioner Roles"
-msgstr "Rols Practicante"
+msgstr "Roles del Profesional"
 
 #. module: medical_administration_practitioner
 #: model:ir.model.fields,field_description:medical_administration_practitioner.field_connector_config_settings_module_medical_administration_practitioner_specialty
@@ -171,3 +169,4 @@ msgstr "Roles"
 #: model:ir.model,name:medical_administration_practitioner.model_res_config_settings
 msgid "res.config.settings"
 msgstr "res.config.settings"
+
