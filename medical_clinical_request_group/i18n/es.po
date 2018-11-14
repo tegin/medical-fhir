@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* medical_clinical_request_group
+#	* medical_clinical_request_group
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 10:24+0000\n"
-"PO-Revision-Date: 2018-11-12 13:35+0100\n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.2\n"
 
 #. module: medical_clinical_request_group
 #: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_careplan_request_group_count
@@ -42,12 +40,6 @@ msgstr "Actividad"
 #: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
 msgid "Cancelled"
 msgstr "Cancelada"
-
-#. module: medical_clinical_request_group
-#: model:product.product,name:medical_clinical_request_group.check_up_product
-#: model:product.template,name:medical_clinical_request_group.check_up_product_product_template
-msgid "Check Up service"
-msgstr "Servicio de check up"
 
 #. module: medical_clinical_request_group
 #: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
@@ -82,7 +74,7 @@ msgstr "Error"
 #. module: medical_clinical_request_group
 #: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
 msgid "Group By..."
-msgstr "Agrupar por..."
+msgstr "Agrupar Por..."
 
 #. module: medical_clinical_request_group
 #: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_id
@@ -90,29 +82,24 @@ msgid "ID"
 msgstr "ID"
 
 #. module: medical_clinical_request_group
-#: model:ir.model.fields,help:medical_clinical_request_group.field_medical_request_group_internal_identifier
-msgid "Internal identifier used to identify this record"
-msgstr "Identificador interno utilizado para identificar este registro"
-
-#. module: medical_clinical_request_group
 #: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: medical_clinical_request_group
 #: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: medical_clinical_request_group
 #: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: medical_clinical_request_group
 #: model:ir.model,name:medical_clinical_request_group.model_medical_request
 msgid "Medical request"
-msgstr "Petición"
+msgstr "Medical request"
 
 #. module: medical_clinical_request_group
 #: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_careplan_request_group_id
@@ -166,11 +153,6 @@ msgid "Request Groups"
 msgstr "Actos medicos"
 
 #. module: medical_clinical_request_group
-#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_internal_identifier
-msgid "Request group"
-msgstr "Acto medico"
-
-#. module: medical_clinical_request_group
 #: model:ir.ui.menu,name:medical_clinical_request_group.medical_request_groups
 msgid "Request groups"
 msgstr "Actos Médicos"
@@ -184,3 +166,4 @@ msgstr "Actos medicos"
 #: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
 msgid "Suspended"
 msgstr "Suspendido"
+
