@@ -21,6 +21,7 @@
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'data/stock_location.xml',
+        'data/medical_workflow.xml',
         'views/medical_request_views.xml',
         'views/medical_medication_administration_view.xml',
         'views/medical_medication_request.xml',
