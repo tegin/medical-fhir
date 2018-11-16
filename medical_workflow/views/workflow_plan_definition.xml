@@ -64,7 +64,7 @@
                     <notebook>
                         <page string="Actions group list" name='actions'>
                             <field name="direct_action_ids"
-                                   context="{'default_type_id':type_id, 'default_direct_plan_definition_id': active_id,'default_plan_definition_id': active_id}">
+                                   context="{'default_type_id':type_id}">
                                 <tree string="Actions">
                                     <field name="complete_name"/>
                                     <field name="activity_definition_id"/>
