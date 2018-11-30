@@ -17,7 +17,7 @@ class TestEncounter(TransactionCase):
         })
         self.plan = self.browse_ref('medical_workflow.mr_knee')
 
-    def test_create_careplan(self):
+    def test_create_careplan_constrains(self):
         encounter = self.env['medical.encounter'].create({
             'patient_id': self.patient.id
         })
@@ -31,6 +31,19 @@ class TestEncounter(TransactionCase):
         self.assertEqual(encounter.careplan_count, 1)
         with self.assertRaises(ValidationError):
             careplan.patient_id = self.patient_2
+
+    def test_create_careplan(self):
+        encounter = self.env['medical.encounter'].create({
+            'patient_id': self.patient.id
+        })
+        self.assertEqual(encounter.careplan_count, 0)
+        res = encounter.action_view_careplans()
+        self.assertFalse(res.get('res_id'))
+        careplan = self.env['medical.careplan'].create({
+            'patient_id': self.patient.id,
+            'encounter_id': encounter.id
+        })
+        self.assertEqual(encounter.careplan_count, 1)
         res = encounter.action_view_careplans()
         self.assertTrue(res.get('res_id'))
         self.env['medical.careplan'].create({
@@ -41,7 +54,6 @@ class TestEncounter(TransactionCase):
         res = encounter.action_view_careplans()
         self.assertFalse(res.get('res_id'))
         self.env['medical.careplan.add.plan.definition'].create({
-            'patient_id': self.patient.id,
             'careplan_id': careplan.id,
             'plan_definition_id': self.plan.id
         }).run()
