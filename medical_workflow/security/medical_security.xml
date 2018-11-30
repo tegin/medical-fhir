@@ -47,13 +47,13 @@
     <record id="group_workflow_plan_definition_action_display" model="res.groups">
         <field name="name">Workflow Plan Definition Action Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_display')), (4, ref('group_workflow_activity_definition_display')), (4, ref('group_workflow_type_display'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_activity_definition_display')), (4, ref('group_workflow_type_display'))]"/>
     </record>
 
     <record id="group_workflow_plan_definition_action_manager" model="res.groups">
         <field name="name">Workflow Plan Definition Action Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_action_display')), (4, ref('group_workflow_plan_definition_manager'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_action_display'))]"/>
     </record>
 
     <record id="medical_workflow.group_workflow_plan_definition_display" model="res.groups">
