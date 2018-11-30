@@ -33,8 +33,8 @@ class TestMedicalRequest(TransactionCase):
         careplan._compute_careplan_ids()
         self.assertEqual(careplan.careplan_count, 0)
         careplan.with_context(
-            inverse_id='active_id', model_name='medical.careplan')\
-            .action_view_request()
+            inverse_id='active_id', model_name='medical.careplan',
+        ).action_view_request()
         # 1 care plan
         careplan2 = self.env['medical.careplan'].create({
             'patient_id': self.patient.id,
@@ -44,8 +44,8 @@ class TestMedicalRequest(TransactionCase):
         self.assertEqual(careplan.careplan_ids.ids, [careplan2.id])
         self.assertEqual(careplan.careplan_count, 1)
         careplan.with_context(
-            inverse_id='active_id', model_name='medical.careplan')\
-            .action_view_request()
+            inverse_id='active_id', model_name='medical.careplan',
+        ).action_view_request()
         # 2 care plans
         careplan3 = self.env['medical.careplan'].create({
             'patient_id': self.patient.id,
