@@ -16,9 +16,8 @@ class MedicalCareplanAddPlanDefinition(models.TransientModel):
         ]
 
     patient_id = fields.Many2one(
-        comodel_name='medical.patient',
-        string='Patient',
         related='careplan_id.patient_id',
+        readonly=True,
     )
 
     careplan_id = fields.Many2one(
