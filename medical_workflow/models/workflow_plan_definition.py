@@ -58,7 +58,7 @@ class PlanDefinition(models.Model):
         comodel_name='workflow.plan.definition.action',
         inverse_name='plan_definition_id',
         readonly=True,
-        copy=True,
+        copy=False,
     )
 
     @api.depends('state')
@@ -134,3 +134,12 @@ class PlanDefinition(models.Model):
     @api.multi
     def retire(self):
         self.write(self._retire_vals())
+
+    @api.multi
+    def copy_data(self, default=None):
+        if default is None:
+            default = {}
+        if 'direct_action_ids' not in default:
+            default['direct_action_ids'] = [
+                (0, 0, line.copy_data()[0]) for line in self.direct_action_ids]
+        return super().copy_data(default)
