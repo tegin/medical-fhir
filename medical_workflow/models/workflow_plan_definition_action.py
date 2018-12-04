@@ -158,3 +158,12 @@ class PlanDefinitionAction(models.Model):
             child_res, child_result = action.execute_action(vals, parent=res)
             result = combine_result(result, child_result)
         return res, result
+
+    @api.multi
+    def copy_data(self, default=None):
+        if default is None:
+            default = {}
+        if 'direct_action_ids' not in default:
+            default['child_ids'] = [
+                (0, 0, line.copy_data()[0]) for line in self.child_ids]
+        return super().copy_data(default)
