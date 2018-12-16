@@ -12,6 +12,7 @@ class MedicalMedicationAdministration(models.Model):
     _inherit = 'medical.event'
 
     def _default_patient_location(self):
+        # return self.env.ref('stock.stock_location_customers')
         return self.env.ref('medical_medication_request.location_patient')
 
     internal_identifier = fields.Char(
@@ -33,6 +34,7 @@ class MedicalMedicationAdministration(models.Model):
         comodel_name='stock.location',
         related='location_id.stock_location_id',
         ondelete='restrict', index=True,
+        store=True,
     )
     stock_picking_type_id = fields.Many2one(
         comodel_name='stock.picking.type',
@@ -82,8 +84,8 @@ class MedicalMedicationAdministration(models.Model):
         required=True,
         states={'done': [('readonly', True)]},
     )
-    picking_ids = fields.One2many(
-        'stock.picking',
+    move_ids = fields.One2many(
+        'stock.move',
         inverse_name='medication_administration_id'
     )
 
@@ -96,77 +98,76 @@ class MedicalMedicationAdministration(models.Model):
         return self.env['ir.sequence'].next_by_code(
             'medical.medication.administration') or '/'
 
-    def _prepare_picking_values(self):
+    def _get_procurement_group(self):
+        return self.env['procurement.group'].create({
+            'name': self.internal_identifier,
+            'move_type': 'direct',
+            'partner_id': self.patient_id.partner_id.id,
+        })
+
+    def _get_origin(self):
+        return self.internal_identifier
+
+    def _get_qty_procurement(self):
         self.ensure_one()
-        return {
-            'origin': self.internal_identifier,
-            'location_id': self.stock_location_id.id,
-            'location_dest_id': self.patient_location_id.id,
-            'medication_administration_id': self.id,
-            'picking_type_id': self.stock_picking_type_id.id,
-            'name': self.stock_picking_type_id.sequence_id.next_by_id(),
-            'move_lines': [(0, 0, {
-                'picking_type_id': self.stock_picking_type_id.id,
-                'name': self.product_id.name,
-                'product_id': self.product_id.id,
-                'product_uom': self.product_uom_id.id,
-                'product_uom_qty': self.qty,
-            })]
-        }
+        qty = 0.0
+        for move in self.move_ids.filtered(lambda r: r.state != 'cancel'):
+            if move.picking_code == 'outgoing':
+                qty += move.product_uom._compute_quantity(
+                    move.product_uom_qty, self.product_id.uom_id,
+                    rounding_method='HALF-UP')
+            elif move.picking_code == 'incoming':
+                qty -= move.product_uom._compute_quantity(
+                    move.product_uom_qty, self.product_id.uom_id,
+                    rounding_method='HALF-UP')
+        return qty
 
     @api.multi
     def in_progress2completed(self):
-        self.ensure_one()
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
-        available_qty = sum(self.env['stock.quant']._gather(
-            self.product_id,
-            self.stock_location_id,
-            self.lot_id,
-            self.package_id,
-            strict=True
-        ).mapped('quantity'))
-        if (
-            self.product_id.type == 'consu' or
-            self.stock_location_id.should_bypass_reservation() or
-            float_compare(
-                available_qty, self.qty, precision_digits=precision
-            ) >= 0
-        ):
-            self.generate_move()
-            return super(
-                MedicalMedicationAdministration, self).in_progress2completed()
-        raise ValidationError(_('Insufficient quantity'))
-
-    @api.multi
-    def generate_move(self):
         for event in self:
-            if not self.location_id:
-                raise ValidationError(_(
-                    'Location must be defined in order to complete'))
-            event.picking_ids = self.env['stock.picking'].create(
-                event._prepare_picking_values()
-            )
-            event.picking_ids.action_confirm()
-            event.picking_ids.action_assign()
-            for move in event.picking_ids.move_lines:
-                if move.move_line_ids:
-                    for move_line in move.move_line_ids:
-                        move_line.qty_done = move_line.product_uom_qty
-                else:
-                    move.quantity_done = move.product_uom_qty
-            event.picking_ids.action_done()
-            event.write({
-                'occurrence_date': fields.Datetime.now()
-            })
+            qty = event._get_qty_procurement()
+            if float_compare(
+                qty, event.qty, precision_digits=precision
+            ) >= 0:
+                continue
+            if not event.stock_location_id:
+                raise ValidationError(_('That is not an stock location'))
+            group = event._get_procurement_group()
+            values = event._prepare_procurement_values(group)
+            self.env['procurement.group'].run(
+                event.product_id, event.qty, event.product_id.uom_id,
+                event.patient_location_id, event.internal_identifier,
+                event._get_origin(), values)
+            event._post_move_create()
+        return super().in_progress2completed()
+
+    def _post_move_create(self):
+        self.move_ids._action_assign()
+
+    def in_progress2completed_values(self):
+        res = super().in_progress2completed_values()
+        res['occurrence_date'] = fields.Datetime.now()
+        return res
+
+    def _prepare_procurement_values(self, group):
+        wh = self.stock_location_id.get_warehouse()
+        return {
+            'group_id': group,
+            'medication_administration_id': self.id,
+            'warehouse_id': wh,
+            'partner_dest_id': group.partner_id,
+            'route_ids': self.env['stock.location.route']
+        }
 
     def action_view_stock_moves(self):
         self.ensure_one()
-        action = self.env.ref('stock.do_view_pickings').read([])[0]
+        action = self.env.ref('stock.stock_move_action').read([])[0]
         action['domain'] = [('medication_administration_id', '=', self.id)]
-        if len(self.picking_ids) == 1:
+        if len(self.move_ids) == 1:
             action['views'] = [(False, 'form')]
-            action['res_id'] = self.picking_ids.id
+            action['res_id'] = self.move_ids.id
         return action
 
     @api.constrains('medication_request_id', 'patient_id')

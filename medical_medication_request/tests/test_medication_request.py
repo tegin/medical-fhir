@@ -52,24 +52,9 @@ class TestMedicationRequest(TransactionCase):
         event.location_id = self.location
         event.in_progress2completed()
         self.assertEqual(event.state, 'completed')
-        self.assertTrue(event.picking_ids)
+        self.assertTrue(event.move_ids)
         self.assertTrue(event.occurrence_date)
         res = event.action_view_stock_moves()
         self.assertTrue(res['domain'])
         res = request.action_view_medication_administration()
         self.assertEqual(res['res_id'], event.id)
-
-    def test_medication_administration(self):
-        event = self.env['medical.medication.administration'].new({
-            'patient_id': self.patient.id,
-            'product_id': self.medication.id,
-            'qty': 1
-        })
-        self.medication.type = 'product'
-        event.onchange_product_id()
-        event = event.create(event._convert_to_write(event._cache))
-        event.preparation2in_progress()
-        self.assertEqual(event.state, 'in-progress')
-        event.location_id = self.location
-        with self.assertRaises(ValidationError):
-            event.in_progress2completed()
