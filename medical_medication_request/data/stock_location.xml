@@ -10,7 +10,7 @@
 
     <record id="location_patient" model="stock.location">
         <field name="name">Patient location</field>
-        <field name="location_id" ref="stock.stock_location_locations_partner"/>
+        <field name="location_id" ref="stock.stock_location_customers"/>
         <field name="usage">customer</field>
         <field name="company_id" eval="False"/>
     </record>
