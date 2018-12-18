@@ -42,7 +42,7 @@
                 </div>
             </xpath>
             <field name="company_type" position="attributes">
-                <attribute name="attrs">{'invisible': True}</attribute>
+                <attribute name="attrs">{'invisible': [('is_practitioner','=',True)]}</attribute>
             </field>
         </field>
     </record>
