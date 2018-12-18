@@ -42,6 +42,7 @@
                            widget="statusbar"/>
                 </header>
                 <sheet>
+                    <div name="button_box" class="oe_button_box"/>
                     <h2>
                         <field name="internal_identifier" readonly="1"/>
                     </h2>
