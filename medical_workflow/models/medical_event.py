@@ -37,7 +37,7 @@ class MedicalEvent(models.AbstractModel):
 
     plan_definition_action_id = fields.Many2one(
         comodel_name='workflow.plan.definition.action',
-        ondelete='restrict', index=True,
+        index=True,
     )   # FHIR Field: definition
     state = fields.Selection(
         _STATES,
