@@ -52,7 +52,7 @@
                                invisible="context.get('invisible_type',False)"
                                options="{'no_create': True}"
                         />
-                        <field name="model_id" options="{'no_create': True}"/>
+                        <field name="model_id" options="{'no_create': True, 'no_open': True}"/>
                         <field name="model_ids" invisible="1"/>
                         <field name="service_id" options="{'no_create': True}"/>
                         <field name="quantity"/>
