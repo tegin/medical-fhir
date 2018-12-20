@@ -76,6 +76,7 @@
                     <group name="location_id">
                         <field name="location_id" attrs="{'readonly': [('is_editable', '=', False)]}"/>
                     </group>
+                    <notebook/>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
