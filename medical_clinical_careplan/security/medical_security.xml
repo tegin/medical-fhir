@@ -16,13 +16,19 @@
     <record id="group_medical_careplan_display" model="res.groups">
         <field name="name">Careplan Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('medical_clinical.group_medical_view_requests'))]"/>
+        <field name="implied_ids" eval="[(4, ref('medical_administration.group_medical_patient_display'))]"/>
+    </record>
+
+    <record id="group_medical_careplan_list" model="res.groups">
+        <field name="name">Careplan List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('medical_clinical.group_medical_view_requests')), ref('group_medical_careplan_display'))]"/>
     </record>
 
     <record id="group_medical_careplan_manager" model="res.groups">
         <field name="name">Careplan Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_medical_careplan_display'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_careplan_list'))]"/>
     </record>
 
     <record id="medical_clinical.group_medical_view_requests" model="res.groups">
