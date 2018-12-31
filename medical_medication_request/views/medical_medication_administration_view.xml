@@ -104,6 +104,7 @@
     <menuitem id="medical_medication_administration"
               name="Administration"
               parent="medical_base.medical_root_medications"
+              groups="medical_medication_request.group_medical_medication_administration_list"
               sequence="10"
               action="medical_medication_administration_action"/>
 
