@@ -11,7 +11,12 @@
     <record id="group_medical_atc_concept_display" model="res.groups">
         <field name="name">Medical ATC Concept Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_terminologies_menu'))]"/>
+    </record>
+
+    <record id="group_medical_atc_concept_list" model="res.groups">
+        <field name="name">Medical ATC Concept List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_atc_concept_display')), (4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_terminologies_menu'))]"/>
     </record>
 
     <!-- Generic groups -->
