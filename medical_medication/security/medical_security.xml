@@ -11,13 +11,19 @@
     <record id="group_medical_medication_display" model="res.groups">
         <field name="name">Medication Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_medications_menu')), (4, ref('stock.group_stock_user'))]"/>
+        <field name="implied_ids" eval="[(4, ref('stock.group_stock_user'))]"/>
+    </record>
+
+    <record id="group_medical_medication_list" model="res.groups">
+        <field name="name">Medication List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_medication_display')),(4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_medications_menu')), (4, ref('stock.group_stock_user'))]"/>
     </record>
 
     <record id="group_medical_medication_manager" model="res.groups">
         <field name="name">Medication Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_medical_medication_display')), (4, ref('stock.group_stock_manager'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_medication_list')), (4, ref('stock.group_stock_manager'))]"/>
     </record>
 
     <!-- Generic groups -->
