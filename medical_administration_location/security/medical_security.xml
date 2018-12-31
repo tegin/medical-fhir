@@ -14,10 +14,16 @@
         <field name="implied_ids" eval="[(4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_administration_menu')), (4, ref('medical_administration.group_res_partner_display'))]"/>
     </record>
 
+    <record id="group_medical_location_list" model="res.groups">
+        <field name="name">Location List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_location_display'))]"/>
+    </record>
+
     <record id="group_medical_location_manager" model="res.groups">
         <field name="name">Location Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_medical_location_display')), (4, ref('medical_administration.group_res_partner_manager'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_encounter_list')), (4, ref('medical_administration.group_res_partner_manager'))]"/>
     </record>
 
     <record id="medical_administration.group_medical_patient_display" model="res.groups">
