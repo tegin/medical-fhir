@@ -12,7 +12,9 @@
               name="Centers"
               sequence="30"
               parent="medical_base.medical_root_administration"
+              groups="medical_administration_location.group_medical_location_list"
               action="medical_center_action"/>
+
     <record id="medical_administration_location.medical_location_menu" model="ir.ui.menu">
         <field name="active" eval="False"/>
     </record>
