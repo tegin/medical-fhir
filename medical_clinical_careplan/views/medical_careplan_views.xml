@@ -80,6 +80,7 @@
             id="medical_clinical_careplan"
             name="Care plans"
             parent="medical_clinical.medical_clinical_request"
+            groups="medical_clinical_careplan.group_medical_careplan_list"
             action="medical_careplan_action"
             sequence="0"/>
 
