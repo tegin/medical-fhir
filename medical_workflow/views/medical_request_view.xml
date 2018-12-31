@@ -106,7 +106,7 @@
         <field name="inherit_id" ref="medical_request_form"/>
         <field name="groups_id" eval="[(4, ref('medical_administration.group_medical_patient_list'))]"/>
         <field name="arch" type="xml">
-            <field name="patient_id">
+            <field name="patient_id" position="attributes">
                 <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
             </field>
         </field>
@@ -118,7 +118,7 @@
         <field name="inherit_id" ref="medical_request_form"/>
         <field name="groups_id" eval="[(4, ref('medical_administration_practitioner.group_medical_practitioner_list'))]"/>
         <field name="arch" type="xml">
-            <field name="patient_id">
+            <field name="performer_id" position="attributes">
                 <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
             </field>
         </field>
