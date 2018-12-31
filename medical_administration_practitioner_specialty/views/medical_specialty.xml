@@ -57,6 +57,7 @@
     <menuitem id="medical_specialty_menu"
               name="Specialties"
               parent="medical_base.medical_root_configuration"
+              groups="medical_administration_practitioner_specialty.group_medical_specialty_list"
               action="medical_specialty_action"
               sequence="60"/>
 
