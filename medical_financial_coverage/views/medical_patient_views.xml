@@ -18,6 +18,7 @@
                     type="object"
                     name="action_view_coverage"
                     class="oe_stat_button"
+                    groups="medical_financial_coverage.group_medical_coverage_template_list"
                     icon="fa-plus-square">
                     <field name="coverage_count" widget="statinfo"
                            string="Coverages"/>
