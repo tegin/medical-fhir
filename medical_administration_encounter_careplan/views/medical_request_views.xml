@@ -29,7 +29,7 @@
         <field name="inherit_id" ref="medical_request_form"/>
         <field name="groups_id" eval="[(4, ref('medical_administration_encounter.group_medical_encounter_list'))]"/>
         <field name="arch" type="xml">
-            <field name="encounter_id">
+            <field name="encounter_id" position="attributes">
                 <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
             </field>
         </field>
