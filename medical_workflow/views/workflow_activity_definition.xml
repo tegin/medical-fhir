@@ -99,6 +99,7 @@
             id="workflow_activity_definitions_menu"
             name="Activity definitions"
             parent="medical_base.medical_root_workflow"
+            groups="medical_workflow.group_workflow_activity_definition_list"
             action="workflow_activity_definition_action"
             sequence="30"/>
 
