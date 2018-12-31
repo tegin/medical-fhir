@@ -34,10 +34,10 @@
                 <attribute name="string">Procedure</attribute>
             </xpath>
             <group name="inheritance" position="inside">
-                <field name="procedure_request_id"/>
+                <field name="procedure_request_id" options="{'no_create': True, 'no_open': True}"/>
             </group>
             <field name="performer_id" position="after">
-                <field name="location_id"/>
+                <field name="location_id" options="{'no_create': True, 'no_open': True}"/>
             </field>
             <field name="occurrence_date" position="after">
                 <field name="performed_initial_date" attrs="{'readonly': [('is_editable','=', False)]}"/>
@@ -45,6 +45,30 @@
             </field>
             <field name="occurrence_date" position="attributes">
                 <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="medical_request_form_procedure_request" model="ir.ui.view">
+        <field name="name">medical.procedure.view.form</field>
+        <field name="model">medical.procedure</field>
+        <field name="inherit_id" ref="medical_procedure_view_form"/>
+        <field name="groups_id" eval="[(4, ref('group_medical_procedure_request_list'))]"/>
+        <field name="arch" type="xml">
+            <field name="procedure_request_id" position="attributes">
+                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="medical_request_form_location" model="ir.ui.view">
+        <field name="name">medical.procedure.view.form</field>
+        <field name="model">medical.procedure</field>
+        <field name="inherit_id" ref="medical_procedure_view_form"/>
+        <field name="groups_id" eval="[(4, ref('medical_administration_location.group_medical_location_list'))]"/>
+        <field name="arch" type="xml">
+            <field name="procedure_request_id" position="attributes">
+                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
             </field>
         </field>
     </record>
@@ -94,6 +118,7 @@
               name="Procedures"
               parent="medical_clinical.medical_clinical_event"
               sequence="10"
+              groups="medical_clinical_procedure.group_medical_procedure_list"
               action="medical_procedure_action" />
 
 </odoo>
