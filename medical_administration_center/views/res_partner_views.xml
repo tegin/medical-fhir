@@ -15,29 +15,34 @@
         <field name="res_model">res.partner</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
-        <field name="domain">[('is_location', '=', True), ('center_id', '=', active_id)]</field>
+        <field name="domain">[('is_location', '=', True), ('center_id', '=',
+            active_id)]
+        </field>
         <field name="context">{'default_company_type':'company',
-            'default_is_company':True, 'default_is_location': True, 'default_is_medical': True,
+            'default_is_company':True, 'default_is_location': True,
+            'default_is_medical': True,
             'default_center_id': active_id,
-            }</field>
+            }
+        </field>
     </record>
 
     <record id="res_partner_view_form" model="ir.ui.view">
         <field name="name">res.partner.view.form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="medical_administration_location.res_partner_view_form"/>
+        <field name="inherit_id"
+               ref="medical_administration_location.res_partner_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//h1" position="before">
                 <h1>
                     <field name="is_center" invisible="1"/>
                     <field name="center_identifier"
                            attrs="{'invisible': [('is_center','=',False)]}"
-                           groups="medical_administration_location.group_medical_location_display"
+                           groups="medical_administration_location.group_medical_location_list"
                     />
                     <h1>
                         <field name="center_id"
                                attrs="{'invisible': [('is_location','=',False)], 'required': [('is_location', '=', True)], 'readonly': [('edit_location', '!=', True)]}"
-                               groups="medical_administration_location.group_medical_location_display"
+                               groups="medical_administration_location.group_medical_location_list"
                                readonly="1"
                         />
                     </h1>
@@ -65,7 +70,10 @@
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="domain">[('is_center', '=', True)]</field>
-        <field name="context">{'default_company_type':'company', 'default_is_company':True, 'default_is_center': True, 'default_is_medical': True}</field>
+        <field name="context">{'default_company_type':'company',
+            'default_is_company':True, 'default_is_center': True,
+            'default_is_medical': True}
+        </field>
     </record>
 
 </odoo>
