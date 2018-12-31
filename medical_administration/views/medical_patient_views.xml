@@ -227,6 +227,7 @@
     <menuitem id="medical_patient"
               name="Patients"
               parent="medical_base.medical_root_administration"
+              groups="medical_administration.group_medical_patient_list"
               sequence="10"
               action="medical_patient_window_action"/>
 
