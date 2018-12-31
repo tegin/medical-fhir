@@ -70,6 +70,7 @@
             id="medical_clinical_finding"
             name="Clinical finding codes"
             parent="medical_base.medical_root_terminologies"
+            groups="medical_clinical_condition.group_medical_clinical_finding_list"
             action="medical_clinical_finding_action"
             sequence="1"/>
 
