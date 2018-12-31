@@ -99,6 +99,18 @@
         </field>
     </record>
 
+    <record id="medical_encounter_view_form_location" model="ir.ui.view">
+        <field name="name">medical.encounter.view.form</field>
+        <field name="model">medical.encounter</field>
+        <field name="inherit_id" ref="medical_encounter_view_form"/>
+        <field name="groups_id" eval="[(4, ref('medical_administration_location.group_medical_location_list'))]"/>
+        <field name="arch" type="xml">
+            <field name="location_id">
+                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
+            </field>
+        </field>
+    </record>
+
     <record id="view_medical_encounter_search" model="ir.ui.view">
         <field name="name">medical.encounter.search</field>
         <field name="model">medical.encounter</field>
