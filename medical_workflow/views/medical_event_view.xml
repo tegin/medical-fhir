@@ -89,4 +89,28 @@
         </field>
     </record>
 
+    <record id="medical_event_form_patient" model="ir.ui.view">
+        <field name="name">medical.event.view.form</field>
+        <field name="model">medical.event</field>
+        <field name="inherit_id" ref="medical_event_form"/>
+        <field name="groups_id" eval="[(4, ref('medical_administration.group_medical_patient_list'))]"/>
+        <field name="arch" type="xml">
+            <field name="patient_id">
+                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="medical_event_form_performer" model="ir.ui.view">
+        <field name="name">medical.event.view.form</field>
+        <field name="model">medical.event</field>
+        <field name="inherit_id" ref="medical_event_form"/>
+        <field name="groups_id" eval="[(4, ref('medical_administration_practitioner.group_medical_practitioner_list'))]"/>
+        <field name="arch" type="xml">
+            <field name="patient_id">
+                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
+            </field>
+        </field>
+    </record>
+
 </odoo>
