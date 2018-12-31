@@ -35,7 +35,7 @@
     <record id="group_medical_medication_administration_list" model="res.groups">
         <field name="name">Medication Administration List</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_medical_medication_administration_display')),(4, ref('group_medical_medication_request_list')), (4, ref('medical_clinical.group_medical_view_requests')), (4, ref('medical_administration_location.group_medical_location_list'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_medication_administration_display')),(4, ref('group_medical_medication_request_list')), (4, ref('medical_clinical.group_medical_view_requests'))]"/>
     </record>
 
     <record id="group_medical_medication_administration_manager" model="res.groups">
