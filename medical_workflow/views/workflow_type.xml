@@ -53,6 +53,7 @@
             id="workflow_type"
             name="Workflow Types"
             parent="medical_base.medical_root_workflow"
+            groups="medical_workflow.group_workflow_type_list"
             sequence="99"
             action="workflow_type_action" />
 
