@@ -11,25 +11,35 @@
     <record id="group_workflow_type_display" model="res.groups">
         <field name="name">Workflow Type Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_workflow_menu'))]"/>
+    </record>
+
+    <record id="group_workflow_type_list" model="res.groups">
+        <field name="name">Workflow Type List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_type_display')),(4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_workflow_menu'))]"/>
     </record>
 
     <record id="group_workflow_type_manager" model="res.groups">
         <field name="name">Workflow Type Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_workflow_type_display'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_type_list'))]"/>
     </record>
 
     <record id="group_workflow_activity_definition_display" model="res.groups">
         <field name="name">Workflow Activity Definition Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_workflow_menu'))]"/>
+    </record>
+
+    <record id="group_workflow_activity_definition_list" model="res.groups">
+        <field name="name">Workflow Activity Definition List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_activity_definition_display')), (4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_workflow_menu'))]"/>
     </record>
 
     <record id="group_workflow_activity_definition_manager" model="res.groups">
         <field name="name">Workflow Activity Definition Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_workflow_activity_definition_display')), (4, ref('group_workflow_type_display'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_activity_definition_list')), (4, ref('group_workflow_type_manager'))]"/>
     </record>
 
     <record id="group_workflow_plan_definition_display" model="res.groups">
@@ -38,22 +48,34 @@
         <field name="implied_ids" eval="[(4, ref('group_workflow_type_display'))]"/>
     </record>
 
+    <record id="group_workflow_plan_definition_list" model="res.groups">
+        <field name="name">Workflow Plan Definition List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_display'))]"/>
+    </record>
+
     <record id="group_workflow_plan_definition_manager" model="res.groups">
         <field name="name">Workflow Plan Definition Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_display'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_list'))]"/>
     </record>
 
     <record id="group_workflow_plan_definition_action_display" model="res.groups">
         <field name="name">Workflow Plan Definition Action Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_workflow_activity_definition_display')), (4, ref('group_workflow_type_display'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_display')),(4, ref('group_workflow_activity_definition_display')), (4, ref('group_workflow_type_display'))]"/>
+    </record>
+
+    <record id="group_workflow_plan_definition_action_list" model="res.groups">
+        <field name="name">Workflow Plan Definition Action List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_action_display'))]"/>
     </record>
 
     <record id="group_workflow_plan_definition_action_manager" model="res.groups">
         <field name="name">Workflow Plan Definition Action Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_action_display'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_workflow_plan_definition_action_list'))]"/>
     </record>
 
     <record id="medical_workflow.group_workflow_plan_definition_display" model="res.groups">

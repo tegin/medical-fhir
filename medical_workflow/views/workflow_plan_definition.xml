@@ -108,6 +108,7 @@
             id="workflow_plan_definitions_menu"
             name="Plan definitions"
             parent="medical_base.medical_root_workflow"
+            groups="medical_workflow.group_workflow_plan_definition_list"
             action="workflow_plan_definition"
             sequence="10"/>
 
