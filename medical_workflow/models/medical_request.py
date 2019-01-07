@@ -24,10 +24,12 @@ class MedicalRequest(models.AbstractModel):
     name = fields.Char(
         string='Name',
         help='Name',
+        copy=False,
     )
     state = fields.Selection(
         _STATES,
         readonly=False,
+        copy=False,
         states={
             'cancelled': [('readonly', True)],
             'completed': [('readonly', True)]
