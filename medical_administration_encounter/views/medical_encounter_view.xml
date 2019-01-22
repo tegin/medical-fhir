@@ -139,6 +139,7 @@
         <field name="res_model">medical.encounter</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_medical_encounter_search"/>
         <field name="context">{}</field>
     </record>
 
