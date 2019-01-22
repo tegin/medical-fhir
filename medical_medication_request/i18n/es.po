@@ -220,7 +220,7 @@ msgstr "Gerente de Solicitud de Medicamentos"
 #. module: medical_medication_request
 #: model:ir.ui.view,arch_db:medical_medication_request.medical_request_form
 msgid "Medication Requests"
-msgstr "Solicitudes de medicación"
+msgstr "P. Medicación"
 
 #. module: medical_medication_request
 #: model:ir.ui.view,arch_db:medical_medication_request.medical_medication_administration_view_form
