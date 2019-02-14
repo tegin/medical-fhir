@@ -23,7 +23,8 @@ class MedicalPatient(models.Model):
 
     @api.depends('coverage_ids')
     def _compute_coverage_count(self):
-        self.coverage_count = len(self.coverage_ids)
+        for record in self:
+            record.coverage_count = len(record.coverage_ids)
 
     @api.multi
     def action_view_coverage(self):
