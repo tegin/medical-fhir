@@ -16,8 +16,10 @@ class MedicalRequest(models.AbstractModel):
 
     @api.constrains('patient_id', 'encounter_id')
     def _check_patient_encounter(self):
-        if self.encounter_id:
-            if self.encounter_id.patient_id != self.patient_id:
+        if self.env.context.get('no_check_patient', False):
+            return
+        for record in self.filtered(lambda r: r.encounter_id):
+            if record.encounter_id.patient_id != record.patient_id:
                 raise ValidationError(_(
                     'Inconsistency between patient and encounter'))
 
