@@ -252,7 +252,7 @@ class MedicalRequest(models.AbstractModel):
                 for model in models:
                     if self.env[model].search([
                         (fieldname, '=', r.id),
-                        ('patient_id', '=', r.id),
+                        ('patient_id', '!=', r.patient_id.id),
                     ], limit=1):
                         raise ValidationError(_('Patient must be consistent'))
                 for parent in r._get_parents():
