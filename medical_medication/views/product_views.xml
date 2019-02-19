@@ -48,6 +48,7 @@
     <menuitem id="medical_medication"
               name="Medications"
               parent="medical_base.medical_root_medications"
+              groups="medical_medication.group_medical_medication_list"
               sequence="10"
               action="medical_medication_action"/>
 

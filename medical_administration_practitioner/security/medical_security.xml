@@ -13,21 +13,34 @@
         <field name="category_id" ref="base.module_category_hidden"/>
     </record>
 
+    <record id="group_medical_role_list" model="res.groups">
+        <field name="name">Role List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_role_display'))]"/>
+    </record>
+
     <record id="group_medical_role_manager" model="res.groups">
         <field name="name">Role Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_role_list'))]"/>
     </record>
 
     <record id="group_medical_practitioner_display" model="res.groups">
         <field name="name">Practitioner Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_administration_menu')), (4, ref('medical_administration.group_res_partner_display')), (4, ref('group_medical_role_display'))]"/>
+        <field name="implied_ids" eval="[(4, ref('medical_administration.group_res_partner_display')), (4, ref('group_medical_role_display'))]"/>
+    </record>
+
+    <record id="group_medical_practitioner_list" model="res.groups">
+        <field name="name">Practitioner List</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('medical_base.group_medical_root_menu')), (4, ref('medical_base.group_medical_administration_menu')), (4, ref('group_medical_practitioner_display')), (4, ref('medical_administration.group_res_partner_list')), (4, ref('group_medical_role_list'))]"/>
     </record>
 
     <record id="group_medical_practitioner_manager" model="res.groups">
         <field name="name">Practitioner Manager</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_medical_practitioner_display')), (4, ref('medical_administration.group_res_partner_manager')), (4, ref('group_medical_role_manager')), (4, ref('medical_base.group_medical_configuration_menu'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_practitioner_list')), (4, ref('medical_administration.group_res_partner_manager')), (4, ref('group_medical_role_manager')), (4, ref('medical_base.group_medical_configuration_menu'))]"/>
     </record>
 
     <!-- Generic groups -->

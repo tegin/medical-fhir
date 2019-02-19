@@ -281,7 +281,7 @@ msgstr "Gerente de petición de Procedimiento"
 #: model:ir.ui.menu,name:medical_clinical_procedure.medical_procedure_request
 #: model:ir.ui.view,arch_db:medical_clinical_procedure.medical_request_form
 msgid "Procedure Requests"
-msgstr "Petición Procedimientos"
+msgstr "Pet. Proced."
 
 #. module: medical_clinical_procedure
 #: model:ir.model.fields,field_description:medical_clinical_procedure.field_medical_procedure_procedure_request_id

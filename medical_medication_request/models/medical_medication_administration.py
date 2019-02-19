@@ -140,7 +140,8 @@ class MedicalMedicationAdministration(models.Model):
                 event.product_id, event.qty, event.product_id.uom_id,
                 event.patient_location_id, event.internal_identifier,
                 event._get_origin(), values)
-            event._post_move_create()
+            if not self.env.context.get('no_post_move', False):
+                event._post_move_create()
         return super().in_progress2completed()
 
     def _post_move_create(self):

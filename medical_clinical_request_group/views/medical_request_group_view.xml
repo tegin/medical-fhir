@@ -76,6 +76,7 @@
     <menuitem id="medical_request_groups"
               name="Request groups"
               parent="medical_clinical.medical_clinical_request"
+              groups="medical_clinical_request_group.group_medical_request_group_list"
               sequence="10"
               action="medical_request_group_window_action" />
 

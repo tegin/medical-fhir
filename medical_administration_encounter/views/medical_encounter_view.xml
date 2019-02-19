@@ -68,13 +68,13 @@
                     <group>
                         <group name="patient">
                             <field name="patient_id"
-                                   attrs="{'readonly': [('is_editable', '=', False)]}"/>
+                                   attrs="{'readonly': [('is_editable', '=', False)]}" options="{'no_open': True, 'no_create': True}"/>
                             <field name="priority_id"
                                    attrs="{'readonly': [('is_editable', '=', False)]}"/>
                         </group>
                     </group>
                     <group name="location_id">
-                        <field name="location_id" attrs="{'readonly': [('is_editable', '=', False)]}"/>
+                        <field name="location_id" attrs="{'readonly': [('is_editable', '=', False)]}" options="{'no_open': True, 'no_create': True}"/>
                     </group>
                     <notebook/>
                 </sheet>
@@ -84,6 +84,30 @@
                     <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
+        </field>
+    </record>
+
+    <record id="medical_encounter_view_form_patient" model="ir.ui.view">
+        <field name="name">medical.encounter.view.form</field>
+        <field name="model">medical.encounter</field>
+        <field name="inherit_id" ref="medical_encounter_view_form"/>
+        <field name="groups_id" eval="[(4, ref('medical_administration.group_medical_patient_list'))]"/>
+        <field name="arch" type="xml">
+            <field name="patient_id">
+                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="medical_encounter_view_form_location" model="ir.ui.view">
+        <field name="name">medical.encounter.view.form</field>
+        <field name="model">medical.encounter</field>
+        <field name="inherit_id" ref="medical_encounter_view_form"/>
+        <field name="groups_id" eval="[(4, ref('medical_administration_location.group_medical_location_list'))]"/>
+        <field name="arch" type="xml">
+            <field name="location_id">
+                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
+            </field>
         </field>
     </record>
 
@@ -115,6 +139,7 @@
         <field name="res_model">medical.encounter</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_medical_encounter_search"/>
         <field name="context">{}</field>
     </record>
 

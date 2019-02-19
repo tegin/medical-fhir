@@ -65,6 +65,7 @@
     <menuitem id="medical_medication_atc_concept"
               name="Medication ATC Concepts"
               parent="medical_base.medical_root_terminologies"
+              groups="medical_terminology_atc.group_medical_atc_concept_list"
               sequence="20"
               action="medical_medication_atc_concept_window_action"/>
 

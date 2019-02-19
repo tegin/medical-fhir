@@ -12,18 +12,21 @@
               name="Coverage"
               sequence="40"
               parent="medical_base.medical_root_financial"
+              groups="medical_financial_coverage.group_medical_coverage_list"
               action="medical_coverage_action"/>
 
     <menuitem id="menu_medical_coverage_template_root"
               name="Coverage Template"
               sequence="20"
               parent="medical_base.medical_root_financial"
+              groups="medical_financial_coverage.group_medical_coverage_template_list"
               action="medical_coverage_template_action"/>
 
     <menuitem id="menu_medical_payor_root"
               name="Payors"
               sequence="10"
               parent="medical_base.medical_root_financial"
+              groups="medical_financial_coverage.group_medical_payor_list"
               action="medical_payor_action"/>
 
 </odoo>

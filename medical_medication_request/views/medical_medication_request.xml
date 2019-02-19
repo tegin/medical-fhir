@@ -35,6 +35,7 @@
                 <button type="object"
                         name="action_view_medication_administration"
                         class="oe_stat_button" icon="fa-pills"
+                        groups="medical_medication_request.group_medical_medication_administration_list"
                         attrs="{'invisible': [('state','=','draft')]}">
                     <field name="medication_administration_count" widget="statinfo"
                            string="Administrations"/>
@@ -106,6 +107,7 @@
             id="medical_medication_request"
             name="Requests"
             parent="medical_base.medical_root_medications"
+            groups="medical_medication_request.group_medical_medication_request_list"
             action="medical_medication_request_action"
             sequence="0"/>
 
