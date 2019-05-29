@@ -63,21 +63,24 @@
                 <field name="occurrence"/>
                 <field name="procedure_ids"/>
                 <newline/>
-                <filter domain="[('state', '=', 'draft')]" help="Draft"/>
-                <filter domain="[('state', '=', 'active')]" help="Active"/>
-                <filter domain="[('state', '=', 'completed')]" help="Completed"/>
-                <filter domain="[('state', '=', 'suspended')]" help="Suspended"/>
-                <filter domain="[('state', '=', 'entered-in-error')]" help="Error"/>
-                <filter domain="[('state', '=', 'cancelled')]" help="Cancelled"/>
+                <filter name="draft" domain="[('state', '=', 'draft')]" help="Draft"/>
+                <filter name="active" domain="[('state', '=', 'active')]" help="Active"/>
+                <filter name="completed" domain="[('state', '=', 'completed')]" help="Completed"/>
+                <filter name="suspended" domain="[('state', '=', 'suspended')]" help="Suspended"/>
+                <filter name="error" domain="[('state', '=', 'entered-in-error')]" help="Error"/>
+                <filter name="cancelled" domain="[('state', '=', 'cancelled')]" help="Cancelled"/>
                 <newline/>
                 <group expand="0" name="groupby" string="Group By...">
                     <filter string="Patient"
                             domain="[]"
+                            name="group_by_patient"
                             context="{'group_by':'patient_id'}"/>
                     <filter string="Performer"
                             domain="[]"
+                            name="group_by_performer"
                             context="{'group_by':'performer_id'}"/>
                     <filter string="Priority"
+                            name="group_by_priority"
                             domain="[]"
                             context="{'group_by':'priority'}"/>
                 </group>
