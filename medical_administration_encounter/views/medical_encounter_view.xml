@@ -123,12 +123,12 @@
                 <field name="priority_id"/>
                 <field name="location_id"/>
                 <separator/>
-                <filter domain="[('state', '=', 'planned')]" help="Planned"/>
-                <filter domain="[('state', '=', 'arrived')]" help="Arrived"/>
-                <filter domain="[('state', '=', 'in-progress')]" help="In progress"/>
-                <filter domain="[('state', '=', 'onleave')]" help="On leave"/>
-                <filter domain="[('state', '=', 'finished')]" help="Finished"/>
-                <filter domain="[('state', '=', 'cancelled')]" help="Cancelled"/>
+                <filter name="planned" domain="[('state', '=', 'planned')]" string="Planned"/>
+                <filter name="arrived" domain="[('state', '=', 'arrived')]" string="Arrived"/>
+                <filter name="in-progress" domain="[('state', '=', 'in-progress')]" string="In progress"/>
+                <filter name="onleave" domain="[('state', '=', 'onleave')]" string="On leave"/>
+                <filter name="finished" domain="[('state', '=', 'finished')]" string="Finished"/>
+                <filter name="cancelled" domain="[('state', '=', 'cancelled')]" string="Cancelled"/>
             </search>
         </field>
     </record>
