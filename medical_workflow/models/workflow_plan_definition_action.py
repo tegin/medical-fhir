@@ -74,6 +74,7 @@ class PlanDefinitionAction(models.Model):
         'Right Parent',
         index=True,
     )
+    parent_path = fields.Char(index=True)
 
     @api.depends('name', 'parent_id')
     def _compute_complete_name(self):
