@@ -5,7 +5,7 @@
 {
     'name': 'Medical Medication',
     'summary': 'Medical medication base',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'author': 'Creu Blanca, Eficent, Odoo Community Association (OCA)',
     'category': 'Medical',
     'website': 'https://github.com/OCA/vertical-medical',
