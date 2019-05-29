@@ -1,0 +1,1 @@
+server-tools https://github.com/etobella/server-tools 12.0-fontawesome
