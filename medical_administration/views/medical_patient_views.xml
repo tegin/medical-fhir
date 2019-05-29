@@ -182,15 +182,15 @@
                             <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
                             <div class="o_kanban_image">
                                 <t t-if="record.image_small.raw_value">
-                                    <img t-att-src="kanban_image('medical.patient', 'image_small', record.id.raw_value)"/>
+                                    <img alt="Image" t-att-src="kanban_image('medical.patient', 'image_small', record.id.raw_value)"/>
                                 </t>
                                 <t t-if="!record.image_small.raw_value">
                                     <t t-if="record.is_company.raw_value === true">
-                                        <img name="kanban_image_default_company"
+                                        <img alt="company_image" name="kanban_image_default_company"
                                              t-attf-src='{{ _s }}/base/static/src/img/company_image.png'/>
                                     </t>
                                     <t t-if="record.is_company.raw_value === false">
-                                        <img name="kanban_image_default_person"
+                                        <img alt="default_image" name="kanban_image_default_person"
                                              t-attf-src='{{ _s }}/base/static/src/img/avatar.png'/>
                                     </t>
                                 </t>
