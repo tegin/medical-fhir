@@ -51,18 +51,12 @@
                 <field name="state"/>
                 <field name="intent"/>
                 <newline/>
-                <filter domain="[('state', '=', 'draft')]" help="Draft"/>
-                <filter domain="[('state', '=', 'active')]" help="Active"/>
-                <filter domain="[('state', '=', 'completed')]" help="Completed"/>
-                <filter domain="[('state', '=', 'suspended')]" help="Suspended"/>
-                <filter domain="[('state', '=', 'entered-in-error')]" help="Error"/>
-                <filter domain="[('state', '=', 'cancelled')]" help="Cancelled"/>
-                <newline/>
-                <group expand="0" name="groupby" string="Group By...">
-                    <filter string="Patient"
-                            domain="[]"
-                            context="{'group_by':'patient_id'}"/>
-                </group>
+                <filter name="draft" domain="[('state', '=', 'draft')]" string="Draft"/>
+                <filter name="active" domain="[('state', '=', 'active')]" string="Active"/>
+                <filter name="completed" domain="[('state', '=', 'completed')]" string="Completed"/>
+                <filter name="suspended" domain="[('state', '=', 'suspended')]" string="Suspended"/>
+                <filter name="error" domain="[('state', '=', 'entered-in-error')]" string="Error"/>
+                <filter name="cancelled" domain="[('state', '=', 'cancelled')]" string="Cancelled"/>
             </search>
         </field>
     </record>
