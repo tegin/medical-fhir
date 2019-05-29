@@ -30,3 +30,4 @@ class MedicalAbstractConceptUniparent(models.AbstractModel):
         'Right Parent',
         index=True,
     )
+    parent_path = fields.Char(index=True)
