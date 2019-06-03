@@ -13,6 +13,7 @@
     'depends': [
         'mail',
         'base_fontawesome',
+        'uom',
     ],
     'data': [
         'security/medical_security.xml',
