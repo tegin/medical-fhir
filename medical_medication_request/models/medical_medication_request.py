@@ -32,7 +32,7 @@ class MedicalMedicationRequest(models.Model):
         ondelete='restrict', index=True,
     )
     product_uom_id = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         'Unit of Measure',
         required=True,
         ondelete='restrict', index=True,
@@ -48,7 +48,7 @@ class MedicalMedicationRequest(models.Model):
     )
     medication_administration_count = fields.Integer(
         compute="_compute_medication_administration_count",
-        string='# of Medication Requests',
+        string='# of Medication Administration Requests',
         copy=False,
         default=0,
     )
