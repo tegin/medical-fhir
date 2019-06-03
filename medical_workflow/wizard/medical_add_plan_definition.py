@@ -8,6 +8,7 @@ from odoo.exceptions import Warning
 
 class MedicalAddPlanDefinition(models.TransientModel):
     _name = 'medical.add.plan.definition'
+    _description = 'Add plan definition'
 
     def _domain_plan_definition(self):
         return [

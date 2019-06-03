@@ -9,6 +9,7 @@ from odoo.exceptions import UserError
 class MedicalAbstract(models.AbstractModel):
     # FHIR Entity: default entity, as all models have internal_identifiers
     _name = 'medical.abstract'
+    _description = 'Default FHIR entity'
 
     internal_identifier = fields.Char(
         name='Identifier',

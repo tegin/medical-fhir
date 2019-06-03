@@ -10,6 +10,7 @@ class MedicalAbstractConcept(models.AbstractModel):
     # FHIR Entity: Medical Code system concept
     # (https://www.hl7.org/fhir/codesystem.html)
     _name = 'medical.abstract.concept'
+    _description = 'Medical abstract concept'
 
     code = fields.Char(
         required=True,
