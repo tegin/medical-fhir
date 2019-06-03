@@ -56,7 +56,7 @@ class PlanDefinitionAction(models.Model):
         store=True
     )
     execute_plan_definition_id = fields.Many2one(
-        string='Plan definition',
+        string='Plan definition to execute',
         comodel_name='workflow.plan.definition',
         ondelete='restrict', index=True,
         help='This plan will be executed instead of an activity',
