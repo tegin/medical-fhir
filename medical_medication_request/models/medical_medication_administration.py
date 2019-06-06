@@ -54,7 +54,7 @@ class MedicalMedicationAdministration(models.Model):
         states={'done': [('readonly', True)]},
     )
     product_uom_id = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         'Unit of Measure',
         ondelete='restrict', index=True,
         required=True,

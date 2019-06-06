@@ -47,7 +47,7 @@
                 <label for="qty"/>
                 <div class="o_row">
                     <field name="qty"/>
-                    <field name="product_uom_id" groups="product.group_uom"/>
+                    <field name="product_uom_id" groups="uom.group_uom"/>
                 </div>
             </field>
             <field name="service_id" position="attributes">
