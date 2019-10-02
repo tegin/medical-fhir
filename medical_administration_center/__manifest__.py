@@ -9,18 +9,14 @@
     "website": "https://github.com/OCA/vertical-medical",
     "author": "Creu Blanca, Eficent",
     "license": "LGPL-3",
-    "depends": [
-        'medical_administration_location',
-    ],
+    "depends": ["medical_administration_location"],
     "data": [
         "security/medical_security.xml",
         "data/ir_sequence_data.xml",
         "views/res_partner_views.xml",
         "views/medical_menu.xml",
     ],
-    "demo": [
-        'demo/medical_demo.xml',
-    ],
+    "demo": ["demo/medical_demo.xml"],
     "installable": True,
     "application": False,
 }
