@@ -31,13 +31,12 @@
     <record id="group_medical_coverage_template_display" model="res.groups">
         <field name="name">Coverage template Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_medical_payor_display'))]"/>
     </record>
 
     <record id="group_medical_coverage_template_list" model="res.groups">
         <field name="name">Coverage template List</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_medical_payor_list'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_coverage_template_display'))]"/>
     </record>
 
     <record id="group_medical_coverage_template_manager" model="res.groups">
@@ -49,7 +48,7 @@
     <record id="group_medical_coverage_display" model="res.groups">
         <field name="name">Coverage Display</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('group_medical_coverage_template_display')), (4, ref('medical_administration.group_medical_patient_display'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_medical_coverage_template_display'))]"/>
     </record>
 
     <record id="group_medical_coverage_list" model="res.groups">
