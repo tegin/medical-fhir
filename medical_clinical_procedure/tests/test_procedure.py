@@ -6,21 +6,20 @@ from odoo.tests import TransactionCase
 
 
 class TestProcedure(TransactionCase):
-
     def setUp(self):
         res = super(TestProcedure, self).setUp()
-        self.patient = self.browse_ref('medical_administration.patient_01')
-        self.plan = self.browse_ref('medical_workflow.mr_knee')
+        self.patient = self.browse_ref("medical_administration.patient_01")
+        self.plan = self.browse_ref("medical_workflow.mr_knee")
         return res
 
     def open_procedure(self):
-        procedure = self.env['medical.procedure'].create({
-            'patient_id': self.patient.id,
-        })
-        self.assertEqual(procedure.state, 'preparation')
+        procedure = self.env["medical.procedure"].create(
+            {"patient_id": self.patient.id}
+        )
+        self.assertEqual(procedure.state, "preparation")
         procedure.preparation2in_progress()
         self.assertTrue(procedure.is_editable)
-        self.assertEqual(procedure.state, 'in-progress')
+        self.assertEqual(procedure.state, "in-progress")
         self.assertTrue(procedure.performed_initial_date)
         self.assertTrue(procedure.is_editable)
         return procedure
@@ -28,18 +27,18 @@ class TestProcedure(TransactionCase):
     def test_procedure_completed_flow(self):
         procedure = self.open_procedure()
         procedure.in_progress2suspended()
-        self.assertEqual(procedure.state, 'suspended')
+        self.assertEqual(procedure.state, "suspended")
         self.assertFalse(procedure.is_editable)
         procedure.suspended2in_progress()
-        self.assertEqual(procedure.state, 'in-progress')
+        self.assertEqual(procedure.state, "in-progress")
         self.assertTrue(procedure.is_editable)
         procedure.in_progress2completed()
-        self.assertEqual(procedure.state, 'completed')
+        self.assertEqual(procedure.state, "completed")
         self.assertFalse(procedure.is_editable)
         self.assertTrue(procedure.performed_end_date)
 
     def test_procedure_aborted_flow(self):
         procedure = self.open_procedure()
         procedure.in_progress2aborted()
-        self.assertEqual(procedure.state, 'aborted')
+        self.assertEqual(procedure.state, "aborted")
         self.assertFalse(procedure.is_editable)

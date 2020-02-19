@@ -72,7 +72,7 @@
             </field>
         </field>
     </record>
-    
+
     <record id="medical_procedure_view_search" model="ir.ui.view">
         <field name="name">medical.procedure.view.search</field>
         <field name="model">medical.procedure</field>
@@ -124,4 +124,3 @@
               action="medical_procedure_action" />
 
 </odoo>
-
