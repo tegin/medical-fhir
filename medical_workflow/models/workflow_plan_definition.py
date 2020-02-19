@@ -10,73 +10,75 @@ from .base_result import combine_result
 class PlanDefinition(models.Model):
     # FHIR Entity: Plan Definition
     # (https://www.hl7.org/fhir/plandefinition.html)
-    _name = 'workflow.plan.definition'
-    _description = 'Plan Definition'
-    _order = 'name'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'medical.abstract']
+    _name = "workflow.plan.definition"
+    _description = "Plan Definition"
+    _order = "name"
+    _inherit = ["mail.thread", "mail.activity.mixin", "medical.abstract"]
 
     name = fields.Char(
-        string='Name',
-        help='Human-friendly name for the Plan Definition',
+        string="Name",
+        help="Human-friendly name for the Plan Definition",
         required=True,
-    )   # FHIR field: name
+    )  # FHIR field: name
     description = fields.Text(
-        string='Description',
-        help='Summary of nature of plan',
-    )   # FHIR field: description
+        string="Description", help="Summary of nature of plan"
+    )  # FHIR field: description
     type_id = fields.Many2one(
-        string='Workflow type',
-        comodel_name='workflow.type',
-        ondelete='restrict', index=True,
+        string="Workflow type",
+        comodel_name="workflow.type",
+        ondelete="restrict",
+        index=True,
         required=True,
-    )   # FHIR field: type
+    )  # FHIR field: type
     state = fields.Selection(
-        [('draft', 'Draft'),
-         ('active', 'Active'),
-         ('retired', 'Retired'),
-         ('unknown', 'Unknown')],
+        [
+            ("draft", "Draft"),
+            ("active", "Active"),
+            ("retired", "Retired"),
+            ("unknown", "Unknown"),
+        ],
         required=True,
         readonly=True,
-        default='draft',
-    )   # FHIR field: status
-    active = fields.Boolean(
-        compute='_compute_active',
-        store=True
-    )
+        default="draft",
+    )  # FHIR field: status
+    active = fields.Boolean(compute="_compute_active", store=True)
     direct_action_ids = fields.One2many(
-        string='Parent actions',
-        comodel_name='workflow.plan.definition.action',
-        inverse_name='direct_plan_definition_id',
-    )   # FHIR field: action
+        string="Parent actions",
+        comodel_name="workflow.plan.definition.action",
+        inverse_name="direct_plan_definition_id",
+    )  # FHIR field: action
     activity_definition_id = fields.Many2one(
-        string='Activity definition',
-        comodel_name='workflow.activity.definition',
-        description='Main action',
-    )   # FHIR field: action (if a parent action is created)
+        string="Activity definition",
+        comodel_name="workflow.activity.definition",
+        description="Main action",
+    )  # FHIR field: action (if a parent action is created)
     action_ids = fields.One2many(
-        string='All actions',
-        comodel_name='workflow.plan.definition.action',
-        inverse_name='plan_definition_id',
+        string="All actions",
+        comodel_name="workflow.plan.definition.action",
+        inverse_name="plan_definition_id",
         readonly=True,
         copy=False,
     )
 
-    @api.depends('state')
+    @api.depends("state")
     def _compute_active(self):
         for record in self:
-            record.active = bool(record.state == 'active')
+            record.active = bool(record.state == "active")
 
     @api.model
     def _get_internal_identifier(self, vals):
-        return self.env['ir.sequence'].next_by_code(
-            'workflow.plan.definition') or '/'
+        return (
+            self.env["ir.sequence"].next_by_code("workflow.plan.definition")
+            or "/"
+        )
 
     @api.multi
     def _check_plan_recursion(self, plan_ids):
         self.ensure_one()
         if self.id in plan_ids:
-            raise UserError(_(
-                'Error! You are attempting to create a recursive definition'))
+            raise UserError(
+                _("Error! You are attempting to create a recursive definition")
+            )
         plan_ids.append(self.id)
         for action in self.action_ids:
             if action.execute_plan_definition_id:
@@ -97,12 +99,14 @@ class PlanDefinition(models.Model):
         res = False
         result = {}
         if (
-            self.env.user._has_group('medical_workflow.'
-                                     'group_main_activity_plan_definition') and
-            self.activity_definition_id
+            self.env.user._has_group(
+                "medical_workflow." "group_main_activity_plan_definition"
+            )
+            and self.activity_definition_id
         ):
             res = self.activity_definition_id.execute_activity(
-                vals, parent, plan=self)
+                vals, parent, plan=self
+            )
             result[res._name] = res.ids
         if not res:
             res = parent
@@ -115,21 +119,21 @@ class PlanDefinition(models.Model):
         return final_result, result
 
     def _activate_vals(self):
-        return {'state': 'active'}
+        return {"state": "active"}
 
     @api.multi
     def activate(self):
         self.write(self._activate_vals())
 
     def _reactivate_vals(self):
-        return {'state': 'active'}
+        return {"state": "active"}
 
     @api.multi
     def reactivate(self):
         self.write(self._reactivate_vals())
 
     def _retire_vals(self):
-        return {'state': 'retired'}
+        return {"state": "retired"}
 
     @api.multi
     def retire(self):
@@ -139,7 +143,8 @@ class PlanDefinition(models.Model):
     def copy_data(self, default=None):
         if default is None:
             default = {}
-        if 'direct_action_ids' not in default:
-            default['direct_action_ids'] = [
-                (0, 0, line.copy_data()[0]) for line in self.direct_action_ids]
+        if "direct_action_ids" not in default:
+            default["direct_action_ids"] = [
+                (0, 0, line.copy_data()[0]) for line in self.direct_action_ids
+            ]
         return super().copy_data(default)
