@@ -6,4 +6,3 @@
 from . import res_partner
 from . import medical_specialty
 from . import medical_sct_concept
-

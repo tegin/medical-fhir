@@ -11,5 +11,5 @@
     <record id="medical_base.medical_root_medications" model="ir.ui.menu">
         <field name="active" eval="True"/>
     </record>
-    
+
 </odoo>

@@ -6,32 +6,26 @@ from odoo import api, fields, models
 
 
 class MedicalSCTConcept(models.Model):
-    _inherit = 'medical.sct.concept'
+    _inherit = "medical.sct.concept"
 
     is_medication_form = fields.Boolean(
-        store=True,
-        index=True,
-        compute='_compute_is_medication_form',
+        store=True, index=True, compute="_compute_is_medication_form"
     )
 
     is_medication_code = fields.Boolean(
-        store=True,
-        index=True,
-        compute='_compute_is_medication_code',
+        store=True, index=True, compute="_compute_is_medication_code"
     )
 
-    @api.depends('parent_ids')
+    @api.depends("parent_ids")
     def _compute_is_medication_form(self):
         for record in self:
             record.is_medication_form = record.check_property(
-                'is_medication_form',
-                ['421967003']
+                "is_medication_form", ["421967003"]
             )
 
-    @api.depends('parent_ids')
+    @api.depends("parent_ids")
     def _compute_is_medication_code(self):
         for record in self:
             record.is_medication_code = record.check_property(
-                'is_medication_code',
-                ['373873005', '106181007', '410942007']
+                "is_medication_code", ["373873005", "106181007", "410942007"]
             )

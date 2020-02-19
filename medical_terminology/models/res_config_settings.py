@@ -6,7 +6,7 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
-    module_medical_terminology_atc = fields.Boolean('ATC terminology')
-    module_medical_terminology_sct = fields.Boolean('SCT terminology')
+    module_medical_terminology_atc = fields.Boolean("ATC terminology")
+    module_medical_terminology_sct = fields.Boolean("SCT terminology")

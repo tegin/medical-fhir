@@ -6,7 +6,8 @@ from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+    _inherit = "res.config.settings"
 
     module_medical_administration_practitioner_specialty = fields.Boolean(
-        'Practitioner Specialty')
+        "Practitioner Specialty"
+    )

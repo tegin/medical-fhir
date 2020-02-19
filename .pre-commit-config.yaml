@@ -1,0 +1,26 @@
+exclude: "^(setup/)|.pot$|.po$"
+repos:
+- repo: local
+  hooks:
+  - id: black
+    name: black
+    language: system
+    entry: black
+    types: [python]
+  - id: flake8
+    name: flake8 except __init__.py
+    language: system
+    args: [--exclude=__init__.py]
+    entry: flake8
+    types: [python]
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v1.4.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: debug-statements
+  - id: flake8
+    name: flake8 only __init__.py
+    args: [--ignore=E501 F401]  # ignore imported unused in __init__.py
+    files: __init__.py
+    language_version: python3
