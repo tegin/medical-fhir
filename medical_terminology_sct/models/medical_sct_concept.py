@@ -16,22 +16,16 @@ class MedicalSCTConcept(models.Model):
         - name: SNOMED_CT
         - publisher: IHTSDO
     """
-    _name = 'medical.sct.concept'
-    _inherit = 'medical.abstract.concept.multiparent'
+
+    _name = "medical.sct.concept"
+    _inherit = "medical.abstract.concept.multiparent"
 
     parent_ids = fields.Many2many(
-        comodel_name='medical.sct.concept',
-        relation='medical_sct_concept_is_a',
+        comodel_name="medical.sct.concept", relation="medical_sct_concept_is_a"
     )
-    child_ids = fields.Many2many(
-        comodel_name='medical.sct.concept',
-    )
-    full_parent_ids = fields.Many2many(
-        comodel_name='medical.sct.concept',
-    )
-    full_child_ids = fields.Many2many(
-        comodel_name='medical.sct.concept',
-    )
+    child_ids = fields.Many2many(comodel_name="medical.sct.concept")
+    full_parent_ids = fields.Many2many(comodel_name="medical.sct.concept")
+    full_child_ids = fields.Many2many(comodel_name="medical.sct.concept")
 
     def check_property(self, name, codes):
         for parent in self.parent_ids:
