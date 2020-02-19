@@ -16,26 +16,17 @@ class MedicalATCConcept(models.Model):
         - name: ATC/DDD
         - publisher: WHO
     """
-    _name = 'medical.atc.concept'
-    _inherit = 'medical.abstract.concept.uniparent'
+
+    _name = "medical.atc.concept"
+    _inherit = "medical.abstract.concept.uniparent"
     _parent_order = False
 
-    code = fields.Char(
-        compute='_compute_code',
-        store=True,
-        required=False,
-    )
-    level_code = fields.Char(
-        required=True,
-    )
-    parent_id = fields.Many2one(
-        comodel_name='medical.atc.concept',
-    )
-    child_ids = fields.One2many(
-        comodel_name='medical.atc.concept',
-    )
+    code = fields.Char(compute="_compute_code", store=True, required=False)
+    level_code = fields.Char(required=True)
+    parent_id = fields.Many2one(comodel_name="medical.atc.concept")
+    child_ids = fields.One2many(comodel_name="medical.atc.concept")
 
-    @api.depends('level_code', 'parent_id')
+    @api.depends("level_code", "parent_id")
     def _compute_code(self):
         for record in self:
             record.code = record.level_code
