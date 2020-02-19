@@ -9,11 +9,9 @@
     "category": "Medical",
     "website": "https://github.com/OCA/vertical-medical",
     "author": "LasLabs, Creu Blanca, Eficent,"
-              "Odoo Community Association (OCA)",
+    "Odoo Community Association (OCA)",
     "license": "LGPL-3",
-    "depends": [
-        'medical_administration',
-    ],
+    "depends": ["medical_administration"],
     "data": [
         "security/medical_security.xml",
         "data/ir_sequence_data.xml",
@@ -22,9 +20,7 @@
         "views/medical_patient.xml",
         "views/medical_menu.xml",
     ],
-    "demo": [
-        "demo/res_partner_demo.xml",
-    ],
+    "demo": ["demo/res_partner_demo.xml"],
     "installable": True,
     "application": False,
 }

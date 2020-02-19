@@ -6,39 +6,39 @@ from odoo import fields, models
 
 
 class MedicalCareplanAddPlanDefinition(models.TransientModel):
-    _name = 'medical.careplan.add.plan.definition'
-    _inherit = 'medical.add.plan.definition'
+    _name = "medical.careplan.add.plan.definition"
+    _inherit = "medical.add.plan.definition"
 
     def _domain_plan_definition(self):
         return [
-            ('type_id', '=', self.env.ref(
-                'medical_workflow.medical_workflow').id)
+            (
+                "type_id",
+                "=",
+                self.env.ref("medical_workflow.medical_workflow").id,
+            )
         ]
 
     patient_id = fields.Many2one(
-        related='careplan_id.patient_id',
-        readonly=True,
+        related="careplan_id.patient_id", readonly=True
     )
 
     careplan_id = fields.Many2one(
-        comodel_name='medical.careplan',
-        string='Care plan',
-        required=True,
+        comodel_name="medical.careplan", string="Care plan", required=True
     )
 
     plan_definition_id = fields.Many2one(
-        comodel_name='workflow.plan.definition',
+        comodel_name="workflow.plan.definition",
         domain=_domain_plan_definition,
         required=True,
     )
 
     def _get_context(self):
         return {
-            'origin_model': self.careplan_id._name,
-            'origin_id': self.careplan_id.id,
+            "origin_model": self.careplan_id._name,
+            "origin_id": self.careplan_id.id,
         }
 
     def _get_values(self):
         values = super(MedicalCareplanAddPlanDefinition, self)._get_values()
-        values['careplan_id'] = self.careplan_id.id
+        values["careplan_id"] = self.careplan_id.id
         return values
