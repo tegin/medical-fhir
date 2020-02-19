@@ -6,18 +6,15 @@ from odoo import api, fields, models
 
 
 class MedicalSCTConcept(models.Model):
-    _inherit = 'medical.sct.concept'
+    _inherit = "medical.sct.concept"
 
     is_clinical_finding = fields.Boolean(
-        store=True,
-        index=True,
-        compute='_compute_is_clinical_finding',
+        store=True, index=True, compute="_compute_is_clinical_finding"
     )
 
-    @api.depends('parent_ids')
+    @api.depends("parent_ids")
     def _compute_is_clinical_finding(self):
         for record in self:
             record.is_clinical_finding = record.check_property(
-                'is_clinical_finding',
-                ['404684003']
+                "is_clinical_finding", ["404684003"]
             )
