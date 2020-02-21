@@ -188,11 +188,11 @@
                                 <t t-if="!record.image_small.raw_value">
                                     <t t-if="record.is_company.raw_value === true">
                                         <img alt="company_image" name="kanban_image_default_company"
-                                             t-attf-src='{{ _s }}/base/static/src/img/company_image.png'/>
+                                             t-attf-src='{{ _s }}/base/static/img/company_image.png'/>
                                     </t>
                                     <t t-if="record.is_company.raw_value === false">
                                         <img alt="default_image" name="kanban_image_default_person"
-                                             t-attf-src='{{ _s }}/base/static/src/img/avatar.png'/>
+                                             t-attf-src='{{ _s }}/base/static/img/avatar.png'/>
                                     </t>
                                 </t>
                             </div>
