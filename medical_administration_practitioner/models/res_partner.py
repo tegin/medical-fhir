@@ -28,7 +28,7 @@ class ResPartner(models.Model):
         compute="_compute_edit_practitioner",
     )
     practitioner_role_ids = fields.Many2many(
-        string="Roles", comodel_name="medical.role"
+        string="Practitioner Roles", comodel_name="medical.role"
     )  # FHIR Field: PractitionerRole/role
     practitioner_type = fields.Selection(
         string="Entity Type",
