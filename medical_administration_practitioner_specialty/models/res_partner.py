@@ -11,4 +11,7 @@ class ResPartner(models.Model):
     # (https://www.hl7.org/fhir/practitionerrole.html)
     _inherit = "res.partner"
 
-    specialty_ids = fields.Many2many("medical.specialty", string="Specialty")
+    specialty_ids = fields.Many2many(
+        "medical.specialty",
+        string="Specialties"
+    )
