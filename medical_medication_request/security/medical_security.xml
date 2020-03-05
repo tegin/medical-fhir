@@ -44,11 +44,6 @@
         <field name="implied_ids" eval="[(4, ref('group_medical_medication_administration_list'))]"/>
     </record>
 
-    <record id="medical_clinical.group_medical_view_requests" model="res.groups">
-        <field name="implied_ids"
-               eval="[(4, ref('group_medical_medication_request_display')), (4, ref('medical_administration_practitioner.group_medical_practitioner_display'))]"/>
-    </record>
-
     <!-- Generic groups -->
 
     <record id="medical_base.group_medical_user" model="res.groups">
