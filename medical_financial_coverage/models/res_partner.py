@@ -37,9 +37,10 @@ class ResPartner(models.Model):
         default=0,
     )
 
+    @api.depends()
     def _compute_edit_payor(self):
         for record in self:
-            record.edit_practitioner = self._default_edit_payor()
+            record.edit_payor = self._default_edit_payor()
 
     @api.model
     def _get_medical_identifiers(self):
