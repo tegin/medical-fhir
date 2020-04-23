@@ -11,15 +11,7 @@ class ResPartner(models.Model):
     # FHIR Entity: Practitioner (https://www.hl7.org/fhir/practitioner.html)
     _inherit = "res.partner"
 
-    @api.model
-    def _default_edit_practitioner(self):
-        return self.env.user.has_group(
-            "medical_administration_practitioner."
-            "group_medical_practitioner_manager"
-        )
-
     is_practitioner = fields.Boolean(default=False)
-    edit_practitioner = fields.Boolean(compute="_compute_edit_practitioner",)
     practitioner_role_ids = fields.Many2many(
         string="Practitioner Roles", comodel_name="medical.role"
     )  # FHIR Field: PractitionerRole/role
@@ -34,11 +26,6 @@ class ResPartner(models.Model):
     practitioner_identifier = fields.Char(
         readonly=True
     )  # FHIR Field: identifier
-
-    @api.depends()
-    def _compute_edit_practitioner(self):
-        for record in self:
-            record.edit_practitioner = self._default_edit_practitioner()
 
     @api.model
     def _get_medical_identifiers(self):
