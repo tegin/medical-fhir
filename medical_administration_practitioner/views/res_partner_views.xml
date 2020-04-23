@@ -13,14 +13,13 @@
         <field name="name">res.partner.view.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="groups_id" eval="[(4, ref('medical_administration_practitioner.group_medical_practitioner_display'))]"/>
         <field name="arch" type="xml">
             <xpath expr="//h1" position="before">
                 <h1>
                     <field name="is_practitioner" invisible="1"/>
-                    <field name="edit_practitioner" invisible="1"/>
                     <field name="practitioner_identifier"
                            attrs="{'invisible': [('is_practitioner','=',False)]}"
-                           groups="medical_administration_practitioner.group_medical_practitioner_display"
                     />
                 </h1>
             </xpath>
@@ -29,21 +28,36 @@
                 <field name="practitioner_type"
                        widget="radio"
                        options="{'horizontal': true}"
-                       attrs="{'invisible': [('is_practitioner','=',False)],'readonly':[('edit_practitioner', '=', False)]}"
-                       groups="medical_administration_practitioner.group_medical_practitioner_display"/>
+                       readonly="1"
+                       attrs="{'invisible': [('is_practitioner','=',False)]}"/>
                 </div>
                 <div>
                 <field name="practitioner_role_ids"
                        widget="many2many_tags"
                        options="{'no_create': True}"
-                       attrs="{'invisible': [('is_practitioner','=',False)],'readonly':[('edit_practitioner', '=', False)]}"
-                       groups="medical_administration_practitioner.group_medical_practitioner_display"
+                       readonly="1"
+                       attrs="{'invisible': [('is_practitioner','=',False)]}"
                 />
                 </div>
             </xpath>
             <field name="company_type" position="attributes">
                 <attribute name="attrs">{'invisible': [('is_practitioner','=',True)]}</attribute>
             </field>
+        </field>
+    </record>
+
+    <record id="res_partner_practitioner_edit_view_form" model="ir.ui.view">
+        <field name="name">res.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="res_partner_view_form"/>
+        <field name="groups_id" eval="[(4, ref('medical_administration_practitioner.group_medical_practitioner_manager'))]"/>
+        <field name="arch" type="xml">
+                <field name="practitioner_role_ids" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <field name="practitioner_type" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
         </field>
     </record>
 

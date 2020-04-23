@@ -50,12 +50,6 @@ msgstr "Descripción"
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
-#. module: medical_administration_practitioner
-#: model:ir.model.fields,field_description:medical_administration_practitioner.field_medical_patient_edit_practitioner
-#: model:ir.model.fields,field_description:medical_administration_practitioner.field_res_partner_edit_practitioner
-#: model:ir.model.fields,field_description:medical_administration_practitioner.field_res_users_edit_practitioner
-msgid "Edit Practitioner"
-msgstr "Editar profesional"
 
 #. module: medical_administration_practitioner
 #: model:ir.model.fields,field_description:medical_administration_practitioner.field_medical_patient_practitioner_type
