@@ -12,17 +12,32 @@
     <record id="res_partner_view_form" model="ir.ui.view">
         <field name="name">res.partner.view.form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="medical_administration_practitioner.res_partner_view_form"/>
+        <field name="inherit_id"
+               ref="medical_administration_practitioner.res_partner_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('oe_title')]" position="inside">
                 <div>
                 <field name="specialty_ids"
                        widget="many2many_tags"
                        options="{'no_create': True}"
-                       attrs="{'invisible': [('is_practitioner','=',False)],'readonly':[('edit_practitioner', '=', False)]}"
-                       groups="medical_administration_practitioner.group_medical_practitioner_display"/>
+                       readonly="1"
+                       attrs="{'invisible': [('is_practitioner','=',False)]]}"
+                />
                 </div>
             </xpath>
+        </field>
+    </record>
+
+    <record id="res_partner_view_manage_form" model="ir.ui.view">
+        <field name="name">res.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="res_partner_view_form"/>
+        <field name="groups_id"
+               eval="[(4, ref('medical_administration_practitioner.group_medical_practitioner_manager'))]"/>
+        <field name="arch" type="xml">
+                <field name="specialty_ids" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
         </field>
     </record>
 
