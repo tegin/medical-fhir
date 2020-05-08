@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    Copyright 2017 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+
+<odoo>
+    <record model="ir.ui.view" id="workflow_activity_definition_form">
+        <field name="name">workflow.activity.definition.form</field>
+        <field name="model">workflow.activity.definition</field>
+        <field name="priority" eval="16"/>
+        <field name="inherit_id" ref="medical_clinical_procedure.workflow_activity_definition_form"/>
+        <field name="arch" type="xml">
+            <field name="procedure_request_result" position="after">
+                <field name="questionnaire_id" attrs="{'invisible': ['|', ('model_id', '!=', %(medical_clinical_procedure.model_medical_procedure_request)s), ('procedure_request_result', '!=', 'medical.questionnaire.response')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>
