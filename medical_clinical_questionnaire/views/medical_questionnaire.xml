@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="medical_questionnaire_form_view">
+        <field name="name">medical.questionnaire.form (in medical_clinical_questionnaire)</field>
+        <field name="model">medical.questionnaire</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" readonly="0"/>
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"/>
+                    <h2>
+                        <label for="internal_identifier"/>
+                        <field name="internal_identifier"/>
+                    </h2>
+                    <h2>
+                        <field name="name"/>
+                    </h2>
+                    <group>
+                        <field name="title"/>
+                    </group>
+                    <notebook>
+                        <page name="items" string="Items">
+                            <field name="item_ids"/>
+                        </page>
+                        <page name="description" string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page name="check_code" string="Check code on confirm">
+                            <field name="check_code" widget="ace" options="{'mode': 'python'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter"></div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_questionnaire_search_view">
+        <field name="name">medical.questionnaire.search (in medical_clinical_questionnaire)</field>
+        <field name="model">medical.questionnaire</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="internal_identifier"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_questionnaire_tree_view">
+        <field name="name">medical.questionnaire.tree (in medical_clinical_questionnaire)</field>
+        <field name="model">medical.questionnaire</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="internal_identifier"/>
+                <field name="name"/>
+                <field name="title"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_questionnaire_item_form_view">
+        <field name="name">medical.questionnaire.item.form (in medical_clinical_questionnaire)</field>
+        <field name="model">medical.questionnaire.item</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="required"/>
+                        <field name="question_type"/>
+                        <field name="selection_options" attrs="{'invisible': [('question_type', 'not in', ['selection', 'open-selection'])]}"/>
+                    </group>
+                    <group groups="base.group_no_one">
+                        <group>
+                            <field name="technical_name"/>
+                            <field name="options"/>
+                            <field name="default_code"/>
+                            <field name="destination_field"/>
+                        </group>
+                        <group>
+                            <field name="readonly"/>
+                            <field name="readonly_condition"/>
+                            <field name="is_invisible"/>
+                            <field name="invisible_condition"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_questionnaire_item_config_form_view">
+        <field name="name">medical.questionnaire.item.form (in medical_clinical_questionnaire)</field>
+        <field name="model">medical.questionnaire.item</field>
+        <field name="priority">99</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="medical_questionnaire_item_form_view"/>
+        <field name="arch" type="xml">
+            <sheet position="after">
+                <footer>
+                    <button name="write"
+                            string="Save" type="object"
+                            class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"
+                            class="oe_link"/>
+                </footer>
+            </sheet>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_questionnaire_item_tree_view">
+        <field name="name">medical.questionnaire.item.tree (in medical_clinical_questionnaire)</field>
+        <field name="model">medical.questionnaire.item</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="question_type"/>
+                <field name="selection_options" attrs="{'invisible': [('question_type', '!=', 'selection')]}"/>
+                <field name="required"/>
+                <field name="readonly"/>
+                <field name="is_invisible"/>
+                <button name="config_item" type="object" icon="fa-cogs" groups="base.group_no_one"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="medical_questionnaire_act_window">
+        <field name="name">Questionnaire</field> <!-- TODO -->
+        <field name="res_model">medical.questionnaire</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="medical_questionnaire_menu">
+        <field name="name">Questionnaire</field>
+        <field name="parent_id" ref="medical_base.medical_root_configuration"/>
+        <field name="action" ref="medical_questionnaire_act_window"/>
+        <field name="sequence" eval="16"/>
+    </record>
+
+</odoo>

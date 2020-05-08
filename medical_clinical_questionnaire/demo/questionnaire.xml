@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="medical.questionnaire" id="demo_questionnaire">
+        <field name="name">Demo questionnaire</field>
+    </record>
+
+    <record model="medical.questionnaire.item" id="medical_questionnaire_boolean">
+        <field name="questionnaire_id" ref="demo_questionnaire"/>
+        <field name="name">Boolean</field>
+        <field name="technical_name">bool</field>
+        <field name="question_type">boolean</field>
+    </record>
+
+    <record model="medical.questionnaire.item" id="medical_questionnaire_decimal">
+        <field name="questionnaire_id" ref="demo_questionnaire"/>
+        <field name="name">Decimal</field>
+        <field name="technical_name">dec</field>
+        <field name="question_type">float</field>
+    </record>
+
+    <record model="medical.questionnaire.item" id="medical_questionnaire_integer">
+        <field name="questionnaire_id" ref="demo_questionnaire"/>
+        <field name="name">Integer</field>
+        <field name="technical_name">int</field>
+        <field name="question_type">integer</field>
+    </record>
+
+    <record model="medical.questionnaire.item" id="medical_questionnaire_date">
+        <field name="questionnaire_id" ref="demo_questionnaire"/>
+        <field name="name">Date</field>
+        <field name="technical_name">dt</field>
+        <field name="question_type">date</field>
+    </record>
+
+    <record model="medical.questionnaire.item" id="medical_questionnaire_string">
+        <field name="questionnaire_id" ref="demo_questionnaire"/>
+        <field name="name">String</field>
+        <field name="technical_name">str</field>
+        <field name="question_type">string</field>
+    </record>
+
+    <record model="medical.questionnaire.item" id="medical_questionnaire_text">
+        <field name="questionnaire_id" ref="demo_questionnaire"/>
+        <field name="name">Text</field>
+        <field name="technical_name">txt</field>
+        <field name="question_type">text</field>
+    </record>
+
+    <record model="medical.questionnaire.item" id="medical_questionnaire_selection">
+        <field name="questionnaire_id" ref="demo_questionnaire"/>
+        <field name="name">Selection</field>
+        <field name="technical_name">select</field>
+        <field name="question_type">selection</field>
+    </record>
+</odoo>
