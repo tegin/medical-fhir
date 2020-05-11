@@ -10,27 +10,9 @@ class ResPartner(models.Model):
     # FHIR Entity: Location (https://www.hl7.org/fhir/location.html)
     _inherit = "res.partner"
 
-    @api.model
-    def _default_edit_location(self):
-        return (
-            self.env["res.users"]
-            .browse(self.env.uid)
-            .has_group(
-                "medical_administration_location."
-                "group_medical_location_manager"
-            )
-        )
-
     is_location = fields.Boolean(default=False)
-    edit_location = fields.Boolean(
-        default="_default_edit_location", compute="_compute_edit_location"
-    )
     location_identifier = fields.Char(readonly=True)  # FHIR Field: identifier
     description = fields.Text(string="Description")  # FHIR field: description
-
-    def _compute_edit_location(self):
-        for record in self:
-            record.edit_location = self._default_edit_location()
 
     @api.model
     def _get_medical_identifiers(self):
