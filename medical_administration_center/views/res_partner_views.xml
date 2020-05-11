@@ -40,7 +40,7 @@
                     />
                     <h1>
                         <field name="center_id"
-                               attrs="{'invisible': [('is_location','=',False)], 'required': [('is_location', '=', True)], 'readonly': [('edit_location', '!=', True)]}"
+                               attrs="{'invisible': [('is_location','=',False)], 'required': [('is_location', '=', True)]}"
                                groups="medical_administration_location.group_medical_location_list"
                                readonly="1"
                         />
@@ -59,6 +59,18 @@
                     <field name='location_ids' invisible="1"/>
                 </button>
             </div>
+        </field>
+    </record>
+
+    <record id="res_partner_view_edit_form" model="ir.ui.view">
+        <field name="name">res.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="cb_medical_administration_center.res_partner_view_form"/>
+        <field name="groups_id" eval="[(4, ref('medical_administration_location.group_medical_location_manager'))]"/>
+        <field name="arch" type="xml">
+           <field name="center_id" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </field>
         </field>
     </record>
 
