@@ -10,20 +10,7 @@ class ResPartner(models.Model):
     # (https://www.hl7.org/fhir/coverage-definitions.html#Coverage.payor)
     _inherit = "res.partner"
 
-    @api.model
-    def _default_edit_payor(self):
-        return (
-            self.env["res.users"]
-            .browse(self.env.uid)
-            .has_group(
-                "medical_financial_coverage." "group_medical_payor_manager"
-            )
-        )
-
     is_payor = fields.Boolean(default=False)
-    edit_payor = fields.Boolean(
-        default=_default_edit_payor, compute="_compute_edit_payor"
-    )
     payor_identifier = fields.Char(readonly=True)  # FHIR Field: identifier
     coverage_template_ids = fields.One2many(
         string="Coverage Template",
@@ -36,11 +23,6 @@ class ResPartner(models.Model):
         copy=False,
         default=0,
     )
-
-    @api.depends()
-    def _compute_edit_payor(self):
-        for record in self:
-            record.edit_payor = self._default_edit_payor()
 
     @api.model
     def _get_medical_identifiers(self):
