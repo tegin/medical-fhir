@@ -34,18 +34,24 @@ class MedicalProcedure(models.Model):
         string="Location",
     )  # FHIR Field: location
 
+    @api.model
+    def _generate_from_request(self, request):
+        return request.generate_event()
+
     @api.constrains("procedure_request_id")
     def _check_procedure(self):
-        if len(self.procedure_request_id.procedure_ids) > 1:
-            raise ValidationError(
-                _(
-                    "You cannot create more than one Procedure "
-                    "for each Procedure Request."
+        for rec in self:
+            # TODO: We need to remove this when timing is defined...
+            if len(rec.procedure_request_id.procedure_ids) > 1:
+                raise ValidationError(
+                    _(
+                        "You cannot create more than one Procedure "
+                        "for each Procedure Request."
+                    )
                 )
-            )
-        if not self.env.context.get("no_check_patient", False):
-            if self.patient_id != self.procedure_request_id.patient_id:
-                raise ValidationError(_("Patient inconsistency"))
+            if not self.env.context.get("no_check_patient", False):
+                if rec.patient_id != rec.procedure_request_id.patient_id:
+                    raise ValidationError(_("Patient inconsistency"))
 
     def _get_internal_identifier(self, vals):
         return self.env["ir.sequence"].next_by_code("medical.procedure") or "/"
