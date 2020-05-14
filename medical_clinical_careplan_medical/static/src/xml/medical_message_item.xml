@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+    <t t-name="medical_message.thread">
+        <div class="o_medical_message_thread">
+        </div>
+    </t>
+
+    <t t-name="medical_message.item">
+        <div class="o_medical_message_item">
+            <div class="o_medical_message_sidebar">
+                <img
+                    alt=""
+                    t-att-src="avatar_source"
+                    data-oe-model="res.partner"
+                    t-attf-class="o_thread_medical_message_avatar rounded-circle"/>
+            </div>
+            <div class="o_medical_message_core">
+                <div class="o_medical_message_info">
+                    <span class="text-muted">
+                        <strong t-esc="partner_name"/>
+                        -
+                        <small t-esc="date_ago" t-att-title="data.data.message_date.format(dateFormat)"/>
+                    </span>
+                </div>
+                <div class="o_medical_message_content">
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
