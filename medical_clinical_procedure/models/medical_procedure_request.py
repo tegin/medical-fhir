@@ -36,6 +36,18 @@ class MedicalProcedureRequest(models.Model):
         string="# of Procedures",
         copy=False,
     )
+    procedure_request_result = fields.Selection(
+        related="activity_definition_id.procedure_request_result",
+    )
+
+    def _should_generate_events(self):
+        if (
+            self.activity_definition_id.procedure_request_result
+            == "medical.procedure"
+            or not self.activity_definition_id.procedure_request_result
+        ):
+            return not self.procedure_ids
+        return True
 
     @api.depends("procedure_ids")
     def _compute_procedure_count(self):
@@ -52,7 +64,7 @@ class MedicalProcedureRequest(models.Model):
 
     @api.multi
     def active2completed(self):
-        self.filtered(lambda r: not r.procedure_ids).generate_event()
+        self.filtered(lambda r: r._should_generate_events()).generate_events()
         return super().active2completed()
 
     @api.multi
@@ -105,7 +117,16 @@ class MedicalProcedureRequest(models.Model):
         }
 
     @api.multi
+    def generate_events(self):
+        for req in self:
+            self.env[
+                req.activity_definition_id.procedure_request_result
+                or "medical.procedure"
+            ]._generate_from_request(req)
+
     def generate_event(self):
+        # TODO: We should need to change generate_event for _generate_event
+        #  and generate_events from generate_event....
         proc_obj = self.env["medical.procedure"]
         procedure_ids = []
         for request in self:

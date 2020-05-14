@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo.tests import TransactionCase
-from odoo.exceptions import UserError, Warning
+from odoo.exceptions import Warning
 
 
 class TestProcedureRequest(TransactionCase):
@@ -25,25 +25,19 @@ class TestProcedureRequest(TransactionCase):
             [("patient_id", "=", self.patient.id)]
         )
         self.assertGreater(len(procedure_requests), 0)
-        self.env["procedure.request.make.procedure"].with_context(
-            active_ids=procedure_requests.ids
-        ).create({}).make_procedure()
+        procedure_requests.generate_events()
         procedures = self.env["medical.procedure"].search(
             [("procedure_request_id", "in", procedure_requests.ids)]
         )
         self.assertEqual(len(procedure_requests), len(procedures))
-        with self.assertRaises(UserError):
-            self.env["procedure.request.make.procedure"].with_context(
-                active_ids=procedure_requests.ids
-            ).create({}).make_procedure()
         for request in procedure_requests:
             self.assertEqual(request.procedure_count, 1)
-            with self.assertRaises(Warning):
-                request.unlink()
             action = request.action_view_procedure()
             self.assertEqual(
                 action["context"]["default_procedure_request_id"], request.id
             )
+            with self.assertRaises(Warning):
+                request.unlink()
 
     def test_procedure_request_workflow(self):
         request = self.env["medical.procedure.request"].create(
