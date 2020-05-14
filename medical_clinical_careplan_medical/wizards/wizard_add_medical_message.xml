@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="wizard_add_medical_message_form_view">
+        <field name="name">wizard.add.medical.message.form (in medical_careplan_medical)</field>
+        <field name="model">wizard.add.medical.message</field>
+        <field name="arch" type="xml">
+            <form string="Wizard Add Medical Message">
+                <group>
+                    <field name="message_text"/>
+                </group>
+                <footer>
+                    <button name="add_message"
+                            string="Add Message"
+                            class="btn-primary"
+                            type="object"/>
+                    <button string="Cancel"
+                            class="btn-default"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="wizard_add_medical_message_act_window">
+        <field name="name">Wizard Add Medical Message</field>
+        <field name="res_model">wizard.add.medical.message</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

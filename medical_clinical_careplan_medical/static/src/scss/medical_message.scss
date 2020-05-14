@@ -1,0 +1,23 @@
+.o_medical_message_item {
+    background-color: rgba(gray('300'), 0.5);
+    border-bottom: 1px solid gray('400');
+
+    display: flex;
+    padding: 4px $o-horizontal-padding;
+    margin-bottom: 0px;
+
+    o_medical_message_core {
+        float: left
+    }
+
+    .o_medical_message_sidebar {
+        flex: 0 0 $o-mail-thread-avatar-size;
+        margin-top: 2px;
+        margin-right: 10px;
+        text-align: center;
+        .o_thread_medical_message_avatar {
+            max-width: $o-mail-thread-avatar-size;
+        }
+    }
+
+}

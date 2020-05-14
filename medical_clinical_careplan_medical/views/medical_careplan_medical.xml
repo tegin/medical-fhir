@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="medical_careplan_view_tree" model="ir.ui.view">
+        <field name="name">medical.careplan.medical.view.tree</field>
+        <field name="model">medical.careplan.medical</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="medical_workflow.medical_request_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Medical Careplans</attribute>
+                <attribute name="decoration-muted">state in ('cancelled')</attribute>
+                <attribute name="decoration-success">state in ('completed')</attribute>
+            </xpath>
+            <xpath expr="//tree" position="inside">
+                <field name="state" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="medical_procedure_request_view_form" model="ir.ui.view">
+        <field name="name">medical.careplan.medical.view.form</field>
+        <field name="model">medical.careplan.medical</field>
+        <field name="inherit_id" ref="medical_request_form"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form position="attributes">
+                <attribute name="string">Medical Careplan</attribute>
+            </form>
+            <button name="draft2active" position="before">
+                <button name="%(medical_clinical_careplan_medical.action_medical_careplan_add_plan_definition_form)d"
+                        type="action" string="Add Plan definition" attrs="{'invisible': [('state', 'in', ['cancelled'])]}"
+                        groups="medical_clinical_careplan.group_medical_careplan_add_plan_definition"
+                        class="oe_highlight"/>
+            </button>
+            <div name="button_box" position="inside">
+                <button name="action_add_message" type="object"
+                        class="oe_stat_button" icon="fa-bars" string="Add Message"/>
+            </div>
+            <xpath expr="//notebook/page[1]" position="before">
+                <page string="Medical Messages">
+                    <field name="medical_message_ids" mode="medical_message"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_careplan_medical_search_view">
+        <field name="name">medical.careplan.medical.search (in medical_careplan_medical)</field>
+        <field name="model">medical.careplan.medical</field>
+        <field name="arch" type="xml">
+            <search string="Medical Care Plan">
+                <field name="internal_identifier"/>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="state"/>
+                <field name="intent"/>
+                <newline/>
+                <filter name="draft" domain="[('state', '=', 'draft')]" string="Draft"/>
+                <filter name="active" domain="[('state', '=', 'active')]" string="Active"/>
+                <filter name="completed" domain="[('state', '=', 'completed')]" string="Completed"/>
+                <filter name="suspended" domain="[('state', '=', 'suspended')]" string="Suspended"/>
+                <filter name="error" domain="[('state', '=', 'entered-in-error')]" string="Error"/>
+                <filter name="cancelled" domain="[('state', '=', 'cancelled')]" string="Cancelled"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="medical_careplan_medical_act_window">
+        <field name="name">Medical Careplans</field>
+        <field name="res_model">medical.careplan.medical</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="medical_careplans_menu"
+        name="Medical Careplans"
+        parent="medical_clinical.medical_clinical_request"
+        groups="medical_clinical_careplan.group_medical_careplan_list"
+        action="medical_careplan_medical_act_window"
+        sequence="0"/>
+</odoo>
