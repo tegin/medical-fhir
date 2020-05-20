@@ -10,7 +10,7 @@
         <field name="arch" type="xml">
             <form string="Wizard Add Medical Message">
                 <group>
-                    <field name="message_text"/>
+                    <field name="message_text" required="1"/>
                 </group>
                 <footer>
                     <button name="add_message"

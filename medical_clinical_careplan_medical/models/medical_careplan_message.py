@@ -15,9 +15,11 @@ class MedicalCareplanMessage(models.Model):
     )
 
     message_text = fields.Html(required=True)
-    message_date = fields.Datetime(required=True)
+    message_date = fields.Datetime(required=True, default=fields.Datetime.now)
 
-    user_creator = fields.Many2one("res.users", required=True)
+    user_creator = fields.Many2one(
+        "res.users", required=True, default=lambda r: r.env.uid
+    )
     partner_creator = fields.Many2one(
         "res.partner", related="create_uid.partner_id", store=True
     )
