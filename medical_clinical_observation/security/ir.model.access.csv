@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_medical_observation,access_medical_observation,model_medical_observation,base.group_user,1,1,1,1
+access_medical_observation_uom,access_medical_observation_uom,model_medical_observation_uom,base.group_user,1,1,1,1
+access_medical_observation_code,access_medical_observation_code,model_medical_observation_code,base.group_user,1,1,1,1
