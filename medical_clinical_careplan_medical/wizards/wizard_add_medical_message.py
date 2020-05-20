@@ -1,27 +1,26 @@
 # Copyright 2020 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError
+from odoo import fields, models
 
 
 class WizardAddMedicalMessage(models.TransientModel):
 
     _name = "wizard.add.medical.message"
 
-    message_text = fields.Html(required=True)
+    message_text = fields.Html()
+    careplan_medical_id = fields.Many2one(
+        "medical.careplan.medical", required=True
+    )
 
-    @api.multi
+    def _get_careplan_message_kwargs(self):
+        return {
+            "message_text": self.message_text,
+        }
+
     def add_message(self):
-        medical_careplan_id = self.env.context.get("active_id", False)
-        if not medical_careplan_id:
-            raise ValidationError(_("Medical Careplan not found"))
-        self.env["medical.careplan.message"].create(
-            {
-                "user_creator": self.env.uid,
-                "message_date": fields.Datetime.now(),
-                "message_text": self.message_text,
-                "medical_careplan_id": medical_careplan_id,
-            }
+        self.ensure_one()
+        self.careplan_medical_id._post_medical_message(
+            **self._get_careplan_message_kwargs()
         )
         return {"type": "ir.actions.act_window_close"}
