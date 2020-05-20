@@ -38,10 +38,11 @@
                         name="action_view_procedure"
                         groups="medical_clinical_procedure.group_medical_procedure_list"
                         class="oe_stat_button"  icon="fa-stethoscope"
-                        attrs="{'invisible': [('state','=','draft')]}">
+                        attrs="{'invisible': ['|', ('state','=','draft'), '&amp;',('procedure_request_result', '!=',  False), ('procedure_request_result', '!=', 'medical.procedure')]}">
                     <field name="procedure_count" widget="statinfo"
                                string="Procedures"/>
                     <field name='procedure_ids' invisible="1"/>
+                    <field name="procedure_request_result" invisible="1"/>
                 </button>
             </xpath>
         </field>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend"
+              name="Backend Assets (used in backend interface)"
+              inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript"
+                    src="/medical_clinical_questionnaire/static/src/js/questionnaire_renderer.js"/>
+            <script type="text/javascript"
+                    src="/medical_clinical_questionnaire/static/src/js/questionnaire_view.js"/>
+            <script type="text/javascript"
+                    src="/medical_clinical_questionnaire/static/src/js/questionnaire_item.js"/>
+            <link rel="stylesheet" type="text/scss"
+                  href="/medical_clinical_questionnaire/static/src/scss/questionnaire_item.scss"/>
+        </xpath>
+    </template>
+</odoo>
