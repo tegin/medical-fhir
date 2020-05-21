@@ -11,6 +11,7 @@
         <field name="arch" type="xml">
             <field name="message_date" position="after">
                 <field name="procedure_message"/>
+                <field name="questionnaire_message"/>
             </field>
         </field>
     </record>

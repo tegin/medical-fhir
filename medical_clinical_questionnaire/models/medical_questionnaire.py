@@ -22,7 +22,7 @@ class MedicalQuestionnaire(models.Model):
     )
     description = fields.Text()
     item_ids = fields.One2many(
-        "medical.questionnaire.item", inverse_name="questionnaire_id",
+        "medical.questionnaire.item", inverse_name="questionnaire_id"
     )
     check_code = fields.Char()
 
@@ -36,6 +36,7 @@ class MedicalQuestionnaire(models.Model):
 class MedicalQuestionnaireItem(models.Model):
     # FHIR Entity: Questionnaire (http://hl7.org/fhir/questionnaire.html)
     _name = "medical.questionnaire.item"
+    # TODO Debería ser item abstract tambien?
     _description = "Medical Questionnaire Item"
     _order = "sequence asc, id asc"
 
@@ -51,7 +52,7 @@ class MedicalQuestionnaireItem(models.Model):
             ("selection", "Choice"),
         ]
 
-    sequence = fields.Integer(required=True, default=20,)
+    sequence = fields.Integer(required=True, default=20)
     questionnaire_id = fields.Many2one("medical.questionnaire", required=True)
     name = fields.Char(required=True)
     technical_name = fields.Char()
@@ -72,6 +73,9 @@ class MedicalQuestionnaireItem(models.Model):
         """
     )
 
+    is_medical_observation = fields.Boolean()
+    medical_observation_code = fields.Many2one("medical.observation.code")
+
     @api.constrains("questionnaire_id", "technical_name")
     def _check_technical_name(self):
         for record in self:
@@ -87,27 +91,27 @@ class MedicalQuestionnaireItem(models.Model):
                     % record.technical_name
                 )
 
-    def _generate_default_result(self, response):
+    def _generate_default_result(self, procedure):
         if self.default_code:
-            return safe_eval(self.default_code, {"object": response})
+            return safe_eval(self.default_code, {"object": procedure})
         return False
 
-    def _generate_question_vals(self, response):
+    def _generate_question_vals(self, procedure):
         return {
-            "questionnaire_response_id": response.id,
             "name": self.name,
             "required": self.required,
             "question_type": self.question_type,
             "options": self.options,
             "selection_options": self.selection_options,
-            "result": self._generate_default_result(response),
+            "result": self._generate_default_result(procedure),
             "questionnaire_item_id": self.id,
+            "procedure_request_id": procedure.id,
         }
 
     def _generate_question(self, response):
-        return self.env["medical.questionnaire.response.item"].create(
-            self._generate_question_vals(response)
-        )
+        vals = self._generate_question_vals(response.procedure_request_id)
+        vals.update({"questionnaire_response_id": response.id})
+        return self.env["medical.questionnaire.response.item"].create(vals)
 
     def config_item(self):
         return {

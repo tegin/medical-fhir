@@ -1,3 +1,4 @@
+from . import medical_questionnaire_item_abstract
 from . import ir_ui_view
 from . import ir_actions_act_window_view
 from . import medical_questionnaire

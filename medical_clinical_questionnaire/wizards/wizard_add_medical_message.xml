@@ -17,10 +17,38 @@
                         <field name="done"/>
                     </tree>
                 </field>
+                <field name="questionnaire_item_ids" attrs="{'invisible': [('questionnaire_item_ids', '=', False)]}">
+                    <tree editable="bottom" create="0" delete="0">
+                        <field name="procedure_request_id" invisible="1"/>
+                        <field name="name"/>
+                        <field name="done"/>
+                    </tree>
+                </field>
+                <field name="questionnaire_item_response_ids" readonly="0" mode="questionnaire"/>
             </field>
         </field>
     </record>
-
+    <record model="ir.ui.view" id="wizard_add_medical_message_questionnaire_item_questionnaire_view">
+        <field name="name">wizard.add.medical.message.questionnaire.item.tree (in medical_clinical_questionnaire)</field>
+        <field name="model">wizard.add.medical.message.questionnaire.item</field>
+        <field name="arch" type="xml">
+            <questionnaire>
+                <field name="display_name"/>
+                <field name="name"/>
+                <field name="required"/>
+                <field name="question_type"/>
+                <field name="result"/>
+                <field name="selection_options"/>
+                <field name="options"/>
+                <field name="readonly"/>
+                <field name="readonly_condition"/>
+                <field name="technical_name"/>
+                <field name="is_invisible"/>
+                <field name="invisible_condition"/>
+                <field name="questionnaire_id"/>
+            </questionnaire>
+        </field>
+    </record>
 
 
 </odoo>
