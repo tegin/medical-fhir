@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="medical_request_form">
+        <field name="name">medical.request.form</field>
+        <field name="model">medical.request</field>
+        <field name="inherit_id"
+               ref="medical_workflow.medical_request_form"/>
+        <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button type="object"
+                        name="action_change_timing"
+                        class="oe_stat_button"  icon="fa-stopwatch"
+                        string="Change timing"
+                />
+            </xpath>
+            <field name="order_date" position="after">
+                <field name="next_expected_date"/>
+                <field name="timing_id" options="{'no_open': True, 'no_create': True}"/>
+            </field>
+            <field name="performer_id" position="after">
+                <field name="location_id" options="{'no_open': True, 'no_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+
+
+</odoo>

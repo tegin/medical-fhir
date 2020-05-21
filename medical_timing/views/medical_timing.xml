@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="medical_timing_form_view">
+        <field name="name">medical.timing.form (in medical_timing)</field>
+        <field name="model">medical.timing</field>
+        <field name="arch" type="xml">
+            <form>
+                <header/>
+                <sheet>
+                    <div name="button_box" class="oe_button_box"/>
+                    <h2>
+                        <label for="name"/>
+                        <field name="name"/>
+                    </h2>
+                    <group>
+                        <group>
+                            <field name="active"/>
+                            <field name="timing_code"
+                                   attrs="{'invisible': [('timing_code', '=', False)]}"/>
+                        </group>
+                        <group attrs="{'invisible': [('timing_code', '!=', False)]}">
+                            <field name="timing_period"/>
+                            <field name="timing_period_unit"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter"/>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_timing_search_view">
+        <field name="name">medical.timing.search (in medical_timing)</field>
+        <field name="model">medical.timing</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="timing_code"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_timing_tree_view">
+        <field name="name">medical.timing.tree (in medical_timing)</field>
+        <field name="model">medical.timing</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="timing_code"/>
+                <field name="timing_period"/>
+                <field name="timing_period_unit"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="medical_timing_act_window">
+        <field name="name">Timing</field>
+        <field name="res_model">medical.timing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="medical_timing_menu">
+        <field name="name">Timing</field>
+        <field name="parent_id" ref="medical_base.medical_root_configuration"/>
+        <field name="action" ref="medical_timing_act_window"/>
+        <field name="sequence" eval="16"/>
+    </record>
+
+</odoo>

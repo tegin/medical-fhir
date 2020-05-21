@@ -4,6 +4,8 @@
         <t t-jquery=".o_medical_message_content" t-operation="after">
             <div class="o_medical_message_procedures">
             </div>
+            <div class="o_medical_message_questionnaires">
+            </div>
         </t>
     </t>
 </template>

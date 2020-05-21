@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="medical_timing_qd" model="medical.timing">
+        <field name="name">Once a day</field>
+        <field name="timing_code">QD</field>
+    </record>
+    <record id="medical_timing_am" model="medical.timing">
+        <field name="name">Once a day on morning</field>
+        <field name="timing_code">AM</field>
+    </record>
+    <record id="medical_timing_pm" model="medical.timing">
+        <field name="name">Once a day on afternoon</field>
+        <field name="timing_code">PM</field>
+    </record>
+    <record id="medical_timing_bid" model="medical.timing">
+        <field name="name">Twice a day</field>
+        <field name="timing_code">BID</field>
+    </record>
+    <record id="medical_timing_tid" model="medical.timing">
+        <field name="name">Three times a day</field>
+        <field name="timing_code">TID</field>
+    </record>
+    <record id="medical_timing_qid" model="medical.timing">
+        <field name="name">Four times a day</field>
+        <field name="timing_code">QID</field>
+    </record>
+</odoo>
