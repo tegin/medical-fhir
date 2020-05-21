@@ -13,7 +13,9 @@ class MedicalCareplanMessage(models.Model):
     medical_careplan_id = fields.Many2one(
         "medical.careplan.medical", required=True
     )
-
+    location_id = fields.Many2one(
+        "res.partner", domain=[("is_location", "=", True)]
+    )
     message_text = fields.Html(required=True)
     message_date = fields.Datetime(required=True, default=fields.Datetime.now)
 

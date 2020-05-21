@@ -13,7 +13,9 @@ class MedicalCareplanMedical(models.Model):
     internal_identifier = fields.Char(string="Careplan")
     start_date = fields.Datetime(string="start date")  # FHIR Field: Period
     end_date = fields.Datetime(string="End date")  # FHIR Field: Period
-
+    location_id = fields.Many2one(
+        "res.partner", domain=[("is_location", "=", True)]
+    )
     medical_message_ids = fields.One2many(
         "medical.careplan.message", inverse_name="medical_careplan_id"
     )
@@ -70,6 +72,9 @@ class MedicalCareplanMedical(models.Model):
             "message_text": message_text,
             "user_creator": kwargs.get("user_creator", self.env.uid),
             "message_date": kwargs.get("message_date", fields.Datetime.now()),
+            "location_id": kwargs.get(
+                "location_id", self.location_id.id or False
+            ),
         }
 
     def _post_medical_message(self, message_text, **kwargs):

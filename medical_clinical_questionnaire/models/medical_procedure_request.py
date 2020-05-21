@@ -44,3 +44,9 @@ class MedicalProcedureRequest(models.Model):
             result["views"] = [(False, "form")]
             result["res_id"] = self.questionnaire_response_ids.id
         return result
+
+    def _post_action_message(self, message):
+        # TODO: Change expected date?
+        return self.with_context(
+            default_medical_careplan_message_id=message.id
+        ).generate_events()
