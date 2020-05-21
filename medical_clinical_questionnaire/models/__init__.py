@@ -4,3 +4,6 @@ from . import medical_questionnaire
 from . import medical_questionnaire_response
 from . import medical_procedure_request
 from . import workflow_activity_definition
+from . import medical_careplan_medical
+from . import medical_procedure
+from . import medical_careplan_message

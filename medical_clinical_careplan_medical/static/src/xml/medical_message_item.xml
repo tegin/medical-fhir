@@ -18,12 +18,13 @@
                 <div class="o_medical_message_info">
                     <span class="text-muted">
                         <strong t-esc="partner_name"/>
+                        on
+                        <string t-esc="location"/>
                         -
                         <small t-esc="date_ago" t-att-title="data.data.message_date.format(dateFormat)"/>
                     </span>
                 </div>
-                <div class="o_medical_message_content">
-                </div>
+                <div class="o_medical_message_content"/>
             </div>
         </div>
     </t>
