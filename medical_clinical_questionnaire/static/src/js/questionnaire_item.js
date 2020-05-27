@@ -11,14 +11,28 @@ odoo.define('medical_clinical_questionnaire.QuestionnaireItemWidget', function (
             }
             return this._super.apply(this, arguments);
         },
+        _createQuestionnaireItem : function (data) {
+            return {
+                questionnaire_id: data.questionnaire_id.res_id,
+                questionnaire_item_id: data.questionnaire_item_id.res_id,
+                procedure_request_id: data.procedure_request_id.res_id,
+            };
+        },
         _saveQuestionnaire: function () {
             var self = this;
             _.each(this.renderer.recordWidgets, function (widget, _key) {
+                if (widget.res_id === undefined) {
+                    self._setValue({
+                        operation: 'CREATE',
+                        id: widget.dataPointID,
+                        data: self._createQuestionnaireItem(widget.recordData),
+                    }, {notifyChange: false});
+                }
                 self._setValue({
                     operation: 'UPDATE',
                     id: widget.dataPointID,
                     data: {result: widget.value},
-                }, {notifyChange: false})
+                }, {notifyChange: false});
             });
         },
         commitChanges: function () {

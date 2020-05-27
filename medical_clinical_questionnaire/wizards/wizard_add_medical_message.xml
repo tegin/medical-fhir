@@ -46,6 +46,9 @@
                 <field name="is_invisible"/>
                 <field name="invisible_condition"/>
                 <field name="questionnaire_id"/>
+                <field name="questionnaire_item_id"/>
+                <field name="wizard_id"/>
+                <field name="procedure_request_id"/>
             </questionnaire>
         </field>
     </record>

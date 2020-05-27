@@ -53,4 +53,19 @@
         </field>
     </record>
 
+    <record model="ir.actions.act_window" id="medical_observation_act_window">
+        <field name="name">Medical Observation</field>
+        <field name="res_model">medical.observation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="medical_observation_menu">
+        <field name="name">Medical Observations</field>
+        <field name="parent_id" ref="medical_clinical_observation.medical_observation_menu_root"/>
+        <field name="action" ref="medical_observation_act_window"/>
+        <field name="sequence" eval="3"/>
+    </record>
+
 </odoo>

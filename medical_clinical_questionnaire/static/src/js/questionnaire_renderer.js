@@ -125,7 +125,7 @@ odoo.define('medical.QuestionnaireRenderer', function (require) {
                         self, data.data.field_name, data, _.extend({
                             mode: mode,
                         }, options));
-                    self.recordWidgets[data.res_id] = widget;
+                    self.recordWidgets[data.id] = widget;
                     var node = element.find(".result_data");
                     widget.appendTo(node);
                 }
