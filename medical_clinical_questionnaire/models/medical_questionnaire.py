@@ -74,7 +74,7 @@ class MedicalQuestionnaireItem(models.Model):
     )
 
     is_medical_observation = fields.Boolean()
-    medical_observation_code = fields.Many2one("medical.observation.code")
+    medical_observation_code_id = fields.Many2one("medical.observation.code")
 
     @api.constrains("questionnaire_id", "technical_name")
     def _check_technical_name(self):

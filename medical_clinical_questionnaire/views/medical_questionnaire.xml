@@ -91,7 +91,8 @@
                         </group>
                         <group>
                             <field name="is_medical_observation"/>
-                            <field name="medical_observation_code" attrs="{'required': [('is_medical_observation', '=', True)]}"/>
+                            <field name="medical_observation_code_id"
+                                   attrs="{'required': [('is_medical_observation', '=', True)], 'invisible': [('is_medical_observation', '=', False)]}"/>
                         </group>
                     </group>
                 </sheet>

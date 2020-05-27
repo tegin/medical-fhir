@@ -8,18 +8,16 @@ class MedicalQuestionnaireItemAbstract(models.AbstractModel):
     _name = "medical.questionnaire.item.abstract"
     _description = "Questionnaire Response item"
 
-    name = fields.Char(required=True, readonly=True)
-    required = fields.Boolean(default=True, readonly=True)
+    name = fields.Char(related="questionnaire_item_id.name")
+    required = fields.Boolean(related="questionnaire_item_id.required")
     question_type = fields.Selection(
-        selection=lambda r: r.env[
-            "medical.questionnaire.item"
-        ]._get_questionnaire_item_type(),
-        required=True,
-        readonly=True,
+        related="questionnaire_item_id.question_type"
     )
     result = fields.Text()
-    selection_options = fields.Char()
-    options = fields.Char()
+    selection_options = fields.Char(
+        related="questionnaire_item_id.selection_options"
+    )
+    options = fields.Char(related="questionnaire_item_id.options")
     questionnaire_item_id = fields.Many2one(
         "medical.questionnaire.item", readonly=False
     )
@@ -41,8 +39,13 @@ class MedicalQuestionnaireItemAbstract(models.AbstractModel):
 
     procedure_request_id = fields.Many2one("medical.procedure.request")
 
-    is_medical_observation = fields.Boolean()
-    medical_observation_code = fields.Many2one("medical.observation.code")
+    is_medical_observation = fields.Boolean(
+        related="questionnaire_item_id.is_medical_observation"
+    )
+    medical_observation_code_id = fields.Many2one(
+        "medical.observation.code",
+        related="questionnaire_item_id.medical_observation_code_id",
+    )
 
     def read(self, fields=None, load="_classic_read"):
         result = super().read(fields=fields, load=load)

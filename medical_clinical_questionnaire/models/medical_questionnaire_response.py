@@ -36,6 +36,8 @@ class MedicalQuestionnaireResponse(models.Model):
         inverse_name="questionnaire_response_id",
     )
 
+    response_date = fields.Datetime()
+
     def _generate_serializer(self):
         res = super()._generate_serializer()
         res.update(

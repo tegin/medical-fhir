@@ -10,7 +10,9 @@ class MedicalObservation(models.Model):
     _name = "medical.observation"
     _description = "Medical Observation"
 
-    encounter_id = fields.Many2one("medical.encounter", required=True)
+    # TODO: Link con encounter o careplan?
+    encounter_id = fields.Many2one("medical.encounter", required=False)
+    observation_date = fields.Datetime()
 
     observation_code_id = fields.Many2one(
         "medical.observation.code", required=True
@@ -44,20 +46,22 @@ class MedicalObservation(models.Model):
         return values
 
     @api.model
-    def create(self, vals_list):
-        for vals in vals_list:
-            if "observation_value" not in vals:
-                raise ValidationError(
-                    _("observation_value must be present in vals_list")
-                )
-            observation_value = vals.pop("observation_value")
-            field_type = (
-                self.env["medical.observation.code"]
-                .browse(vals["observation_code_id"])
-                .field_type
+    def create(self, vals):
+        import logging
+
+        logging.info(vals)
+        if "observation_value" not in vals:
+            raise ValidationError(
+                _("observation_value must be present in vals_list")
             )
-            value_dict = self.create_observation_value(
-                observation_value, field_type
-            )
-            vals.update(value_dict)
-        return super().create(vals_list)
+        observation_value = vals.pop("observation_value")
+        field_type = (
+            self.env["medical.observation.code"]
+            .browse(vals["observation_code_id"])
+            .field_type
+        )
+        value_dict = self.create_observation_value(
+            observation_value, field_type
+        )
+        vals.update(value_dict)
+        return super().create(vals)
