@@ -56,12 +56,6 @@
         <field name="context">{}</field>
     </record>
 
-    <record model="ir.ui.menu" id="medical_observation_menu_root">
-        <field name="name">Medical Observation</field>
-        <field name="parent_id" ref="medical_base.medical_root_configuration"/>
-        <field name="sequence" eval="16"/>
-    </record>
-
     <record model="ir.ui.menu" id="medical_observation_code_menu">
         <field name="name">Medical Observation Code</field>
         <field name="parent_id" ref="medical_clinical_observation.medical_observation_menu_root"/>

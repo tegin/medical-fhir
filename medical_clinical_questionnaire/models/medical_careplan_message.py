@@ -28,7 +28,8 @@ class MedicalCareplanMessage(models.Model):
                 record.procedure_message = False
             else:
                 record.procedure_message = IrQweb.render(
-                    "medical_clinical_questionnaire.medical_procedure_messages_template",
+                    "medical_clinical_questionnaire."
+                    "medical_procedure_messages_template",
                     {"o": record},
                 )
 
@@ -40,6 +41,7 @@ class MedicalCareplanMessage(models.Model):
                 record.questionnaire_message = False
             else:
                 record.questionnaire_message = IrQweb.render(
-                    "medical_clinical_questionnaire.medical_questionnaire_messages_template",
+                    "medical_clinical_questionnaire."
+                    "medical_questionnaire_messages_template",
                     {"o": record},
                 )

@@ -1,11 +1,11 @@
 # Copyright 2020 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class WizardAddMedicalMessage(models.TransientModel):
-
     _inherit = "wizard.add.medical.message"
 
     procedure_item_ids = fields.One2many(
@@ -21,24 +21,6 @@ class WizardAddMedicalMessage(models.TransientModel):
         inverse_name="wizard_id",
     )
 
-    @api.onchange("questionnaire_item_ids")
-    def onchange_done(self):
-        items = []
-        for rec in self.questionnaire_item_ids:
-            if not rec.done:
-                continue
-            items += [
-                (
-                    0,
-                    0,
-                    self.careplan_medical_id._action_add_message_element_questionnaire_item_vals(
-                        rec.procedure_request_id, question
-                    ),
-                )
-                for question in rec.procedure_request_id.questionnaire_id.item_ids
-            ]
-        self.questionnaire_item_response_ids = items
-
     def _get_careplan_message_kwargs(self):
         result = super()._get_careplan_message_kwargs()
         result["procedure_request_ids"] = (
@@ -53,7 +35,9 @@ class WizardAddMedicalMessage(models.TransientModel):
 
     def process_questionnaire_items(self):
         responses = self.env["medical.questionnaire.response"]
-        for pr in self.questionnaire_item_ids.mapped("procedure_request_id"):
+        for pr in self.questionnaire_item_ids.filtered(
+            lambda r: r.state == "done"
+        ).mapped("procedure_request_id"):
             vals = []
             for item in self.questionnaire_item_response_ids:
                 if item.procedure_request_id.id == pr.id:
@@ -74,6 +58,32 @@ class WizardAddMedicalMessage(models.TransientModel):
             )
         return responses
 
+    def state_exit_start(self):
+        if self.questionnaire_item_ids.filtered(lambda r: not r.state):
+            raise ValidationError(_("All items must have a state set"))
+        items = []
+        cp = self.careplan_medical_id
+        for rec in self.questionnaire_item_ids:
+            if rec.state != "done":
+                items += [(2, item.id) for item in rec.item_ids]
+            elif rec.state == "done" and not rec.item_ids:
+                items += [
+                    (
+                        0,
+                        0,
+                        cp._action_add_message_element_questionnaire_item_vals(
+                            rec.procedure_request_id, question, rec.id
+                        ),
+                    )
+                    for question in rec.procedure_request_id.questionnaire_id.item_ids
+                ]
+        self.write(
+            {"state": "final", "questionnaire_item_response_ids": items}
+        )
+
+    def state_previous_final(self):
+        self.write({"state": "start"})
+
     def add_message(self):
         res = super().add_message()
         return res
@@ -88,7 +98,10 @@ class WizardAddMedicalMessageProcedure(models.TransientModel):
         "medical.procedure.request", required=True, readonly=True
     )
     name = fields.Char(compute="_compute_name")
-    done = fields.Boolean()
+    state = fields.Selection(
+        [("done", "Done"), ("postponed", "Posponed"), ("aborted", "Aborted")],
+        default=False,
+    )
 
     @api.depends("procedure_request_id")
     def _compute_name(self):
@@ -104,7 +117,7 @@ class WizardAddMedicalMessageQuestionnaireItem(models.TransientModel):
     _inherit = "medical.questionnaire.item.abstract"
     _description = "Questionnaire in medical message"
 
-    wizard_id = fields.Many2one("wizard.add.medical.message",)
+    wizard_id = fields.Many2one("wizard.add.medical.message")
     wizard_questionnaire_id = fields.Many2one(
         "wizard.add.medical.message.questionnaire"
     )
@@ -119,7 +132,10 @@ class WizardAddMedicalMessageQuestionnaire(models.TransientModel):
         "medical.procedure.request", required=True, readonly=True
     )
     name = fields.Char(compute="_compute_name")
-    done = fields.Boolean()
+    state = fields.Selection(
+        [("done", "Done"), ("postponed", "Posponed"), ("aborted", "Aborted")],
+        default=False,
+    )
     item_ids = fields.One2many(
         "wizard.add.medical.message.questionnaire.item",
         inverse_name="wizard_questionnaire_id",

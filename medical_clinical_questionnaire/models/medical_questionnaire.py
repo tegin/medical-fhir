@@ -96,8 +96,9 @@ class MedicalQuestionnaireItem(models.Model):
             return safe_eval(self.default_code, {"object": procedure})
         return False
 
-    def _generate_question_vals(self, procedure):
+    def _generate_question_vals(self, procedure, wizard_id=False):
         return {
+            "wizard_questionnaire_id": wizard_id,
             "name": self.name,
             "required": self.required,
             "question_type": self.question_type,

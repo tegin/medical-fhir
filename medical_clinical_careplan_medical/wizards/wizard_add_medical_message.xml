@@ -7,21 +7,18 @@
     <record model="ir.ui.view" id="wizard_add_medical_message_form_view">
         <field name="name">wizard.add.medical.message.form (in medical_careplan_medical)</field>
         <field name="model">wizard.add.medical.message</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="multi_step_wizard.multi_step_wizard_form"/>
         <field name="arch" type="xml">
-            <form string="Wizard Add Medical Message">
-                <group>
-                    <field name="message_text" required="1"/>
-                </group>
-                <footer>
-                    <button name="add_message"
-                            string="Add Message"
-                            class="btn-primary"
-                            type="object"/>
-                    <button string="Cancel"
-                            class="btn-default"
-                            special="cancel"/>
-                </footer>
-            </form>
+            <xpath expr="//footer" position="before">
+                <field name="message_text" required="1"/>
+            </xpath>
+            <button name="open_previous" position="after">
+                <button name="add_message" attrs="{'invisible': [('state', '!=', 'final')]}"
+                        string="Add Message"
+                        class="btn-primary"
+                        type="object"/>
+            </button>
         </field>
     </record>
 

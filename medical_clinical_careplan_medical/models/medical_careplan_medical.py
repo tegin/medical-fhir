@@ -2,6 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DATETIME_FORMAT
+
+import pandas as pd
+import numpy as np
+from pytz import timezone, UTC
 
 
 class MedicalCareplanMedical(models.Model):
@@ -19,6 +24,44 @@ class MedicalCareplanMedical(models.Model):
     medical_message_ids = fields.One2many(
         "medical.careplan.message", inverse_name="medical_careplan_id"
     )
+
+    constants_table = fields.Html(
+        string="Constants Table",
+        store=False,
+        compute="_compute_constants_table",
+    )
+
+    def _compute_constants_table(self):
+        tz = timezone(self.env.user.tz or "UTC")
+        for rec in self:
+            df = pd.DataFrame({"Date": []})
+            df = df.set_index("Date")
+            observations = self.env["medical.observation"].search(
+                [("medical_careplan_medical_id", "=", rec.id)]
+            )
+            for observation in observations:
+                obs_date = (
+                    observation.observation_date.replace(tzinfo=UTC)
+                    .astimezone(tz)
+                    .strftime(DATETIME_FORMAT)
+                )
+                if observation.observation_code_id.name not in df.columns:
+                    df[observation.observation_code_id.name] = np.nan
+                if obs_date not in df.index:
+                    row = [np.nan] * len(df.columns)
+                    df.loc[obs_date] = row
+                df.loc[
+                    obs_date, observation.observation_code_id.name
+                ] = observation.get_value()
+            df.reset_index(level=0, inplace=True)
+            html = (
+                df.to_html(index=False)
+                .replace("td", "td align='center'")
+                .replace(
+                    '<tr style="text-align: right;">', '<tr align="center">'
+                )
+            )
+            rec.constants_table = html if observations else False
 
     def _get_internal_identifier(self, vals):
         return (
@@ -51,9 +94,7 @@ class MedicalCareplanMedical(models.Model):
         )
 
     def _action_add_message_element_vals(self):
-        return {
-            "careplan_medical_id": self.id,
-        }
+        return {"careplan_medical_id": self.id}
 
     @api.multi
     def action_add_message(self):

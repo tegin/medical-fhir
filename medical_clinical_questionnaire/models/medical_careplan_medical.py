@@ -15,15 +15,15 @@ class MedicalCareplanMedical(models.Model):
         return {"procedure_request_id": request.id}
 
     def _action_add_message_element_questionnaire_item_vals(
-        self, request, question
+        self, request, question, wizard_id=False
     ):
-        return question._generate_question_vals(request)
+        return question._generate_question_vals(request, wizard_id)
 
     def _action_add_message_element_vals(self):
         result = super()._action_add_message_element_vals()
         procedure_items = []
         questionnaire_items = []
-        response_items = []
+        # TODO: Filter procedure requests based on timing and done
         for pr in self.procedure_request_ids:
             # TODO: Check if we need to add this
             pr_type = pr.procedure_request_result
@@ -41,16 +41,6 @@ class MedicalCareplanMedical(models.Model):
                         ),
                     )
                 )
-                response_items += [
-                    (
-                        0,
-                        0,
-                        self._action_add_message_element_questionnaire_item_vals(
-                            pr, question
-                        ),
-                    )
-                    for question in pr.questionnaire_id.item_ids
-                ]
         result["procedure_item_ids"] = procedure_items
         result["questionnaire_item_ids"] = questionnaire_items
         # result["questionnaire_item_response_ids"] = response_items
@@ -74,13 +64,22 @@ class MedicalCareplanMedical(models.Model):
             )
             for item in questionnaire_ids.mapped("item_ids"):
                 if item.is_medical_observation:
+                    response = item.questionnaire_response_id
+                    code = item.medical_observation_code_id
                     self.env["medical.observation"].create(
                         {
-                            "observation_code_id": item.medical_observation_code_id.id,
-                            "observation_uom_id": item.medical_observation_code_id.default_observation_uom.id,
+                            "observation_code_id": code.id,
+                            "observation_uom_id": (
+                                code.default_observation_uom.id
+                            ),
                             "observation_value": item.result,
-                            "observation_date": item.questionnaire_response_id.create_date,
-                            "encounter_id": item.questionnaire_response_id.medical_careplan_id.encounter_id.id,
+                            "observation_date": response.create_date,
+                            "encounter_id": (
+                                response.medical_careplan_id.encounter_id.id
+                            ),
+                            "medical_careplan_medical_id": (
+                                response.medical_careplan_id.id
+                            ),
                         }
                     )
         return message
