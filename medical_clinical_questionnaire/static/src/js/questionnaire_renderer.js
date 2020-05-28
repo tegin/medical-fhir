@@ -90,7 +90,7 @@ odoo.define('medical.QuestionnaireRenderer', function (require) {
                     {
                         widget: self,
                         data: data,
-                    },
+                    }
                 ));
                 var Widget = field_registry.get(data.data.field_type);
                 if (Widget !== undefined) {

@@ -5,8 +5,9 @@ from odoo import fields, models
 
 
 class WizardAddMedicalMessage(models.TransientModel):
-
     _name = "wizard.add.medical.message"
+    _inherit = ["multi.step.wizard.mixin"]
+    _description = "wizard.add.medical.message"
 
     message_text = fields.Html()
     careplan_medical_id = fields.Many2one(
@@ -14,9 +15,7 @@ class WizardAddMedicalMessage(models.TransientModel):
     )
 
     def _get_careplan_message_kwargs(self):
-        return {
-            "message_text": self.message_text,
-        }
+        return {"message_text": self.message_text}
 
     def add_message(self):
         self.ensure_one()

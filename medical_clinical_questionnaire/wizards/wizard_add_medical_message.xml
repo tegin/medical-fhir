@@ -10,21 +10,25 @@
         <field name="inherit_id" ref="medical_clinical_careplan_medical.wizard_add_medical_message_form_view"/>
         <field name="arch" type="xml">
             <field name="message_text" position="before">
-                <field name="procedure_item_ids" attrs="{'invisible': [('procedure_item_ids', '=', False)]}">
+                <field name="procedure_item_ids" attrs="{'invisible': ['|', ('state', '!=', 'start'), ('procedure_item_ids', '=', False)]}">
                     <tree editable="bottom" create="0" delete="0">
                         <field name="procedure_request_id" invisible="1"/>
                         <field name="name"/>
                         <field name="done"/>
                     </tree>
                 </field>
-                <field name="questionnaire_item_ids" attrs="{'invisible': [('questionnaire_item_ids', '=', False)]}">
+                <field name="questionnaire_item_ids" attrs="{'invisible': ['|', ('state', '!=', 'start'), ('questionnaire_item_ids', '=', False)]}">
                     <tree editable="bottom" create="0" delete="0">
                         <field name="procedure_request_id" invisible="1"/>
                         <field name="name"/>
-                        <field name="done"/>
+                        <field name="state"/>
                     </tree>
                 </field>
-                <field name="questionnaire_item_response_ids" readonly="0" mode="questionnaire"/>
+                <field name="questionnaire_item_response_ids" readonly="0" mode="questionnaire"
+                       attrs="{'invisible': ['|', ('state', '!=', 'final'), ('questionnaire_item_response_ids', '=', [])]}"/>
+            </field>
+            <field name="message_text" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', '!=', 'final')]}</attribute>
             </field>
         </field>
     </record>
