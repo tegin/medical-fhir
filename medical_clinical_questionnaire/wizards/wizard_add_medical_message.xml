@@ -14,7 +14,7 @@
                     <tree editable="bottom" create="0" delete="0">
                         <field name="procedure_request_id" invisible="1"/>
                         <field name="name"/>
-                        <field name="done"/>
+                        <field name="state"/>
                     </tree>
                 </field>
                 <field name="questionnaire_item_ids" attrs="{'invisible': ['|', ('state', '!=', 'start'), ('questionnaire_item_ids', '=', False)]}">

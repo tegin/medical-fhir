@@ -1,7 +1,8 @@
 # Copyright 2020 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import fields, models
+from datetime import timedelta
 
 
 class MedicalCareplanMedical(models.Model):
@@ -27,11 +28,15 @@ class MedicalCareplanMedical(models.Model):
         for pr in self.procedure_request_ids:
             # TODO: Check if we need to add this
             pr_type = pr.procedure_request_result
-            if not pr_type or pr_type in "medical.procedure":
+            time_ok = not pr.next_expected_date or (
+                pr.next_expected_date
+                < fields.Datetime.now() + timedelta(hours=1)
+            )
+            if not pr_type or pr_type in "medical.procedure" and time_ok:
                 procedure_items.append(
                     (0, 0, self._action_add_message_element_procedure_vals(pr))
                 )
-            if pr_type == "medical.questionnaire.response":
+            if pr_type == "medical.questionnaire.response" and time_ok:
                 questionnaire_items.append(
                     (
                         0,
