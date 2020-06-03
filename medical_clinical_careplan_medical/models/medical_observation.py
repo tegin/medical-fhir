@@ -9,3 +9,5 @@ class MedicalObservation(models.Model):
     _inherit = "medical.observation"
 
     medical_message_id = fields.Many2one("medical.careplan.message")
+
+    medical_careplan_medical_id = fields.Many2one("medical.careplan.medical")

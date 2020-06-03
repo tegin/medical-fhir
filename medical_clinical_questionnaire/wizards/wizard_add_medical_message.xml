@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="wizard_add_medical_message_form_view">
+        <field name="name">wizard.add.medical.message.form (in medical_clinical_questionnaire)</field>
+        <field name="model">wizard.add.medical.message</field>
+        <field name="inherit_id" ref="medical_clinical_careplan_medical.wizard_add_medical_message_form_view"/>
+        <field name="arch" type="xml">
+            <field name="message_text" position="before">
+                <field name="procedure_item_ids" attrs="{'invisible': ['|', ('state', '!=', 'start'), ('procedure_item_ids', '=', False)]}">
+                    <tree editable="bottom" create="0" delete="0">
+                        <field name="procedure_request_id" invisible="1"/>
+                        <field name="name"/>
+                        <field name="state"/>
+                    </tree>
+                </field>
+                <field name="questionnaire_item_ids" attrs="{'invisible': ['|', ('state', '!=', 'start'), ('questionnaire_item_ids', '=', False)]}">
+                    <tree editable="bottom" create="0" delete="0">
+                        <field name="procedure_request_id" invisible="1"/>
+                        <field name="name"/>
+                        <field name="state"/>
+                    </tree>
+                </field>
+                <field name="questionnaire_item_response_ids" readonly="0" mode="questionnaire"
+                       attrs="{'invisible': ['|', ('state', '!=', 'final'), ('questionnaire_item_response_ids', '=', [])]}"/>
+            </field>
+            <field name="message_text" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', '!=', 'final')]}</attribute>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="wizard_add_medical_message_questionnaire_item_questionnaire_view">
+        <field name="name">wizard.add.medical.message.questionnaire.item.tree (in medical_clinical_questionnaire)</field>
+        <field name="model">wizard.add.medical.message.questionnaire.item</field>
+        <field name="arch" type="xml">
+            <questionnaire>
+                <field name="display_name"/>
+                <field name="name"/>
+                <field name="required"/>
+                <field name="question_type"/>
+                <field name="result"/>
+                <field name="selection_options"/>
+                <field name="options"/>
+                <field name="readonly"/>
+                <field name="readonly_condition"/>
+                <field name="technical_name"/>
+                <field name="is_invisible"/>
+                <field name="invisible_condition"/>
+                <field name="questionnaire_id"/>
+                <field name="questionnaire_item_id"/>
+                <field name="wizard_id"/>
+                <field name="procedure_request_id"/>
+            </questionnaire>
+        </field>
+    </record>
+
+
+</odoo>

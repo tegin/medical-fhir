@@ -76,7 +76,7 @@ odoo.define('medical.QuestionnaireRenderer', function (require) {
                     data.data[field_name] = value;
                 }
                 if (data.data.technical_name) {
-                    var response = data.data.questionnaire_response_id.res_id;
+                    var response = data.data.questionnaire_id.res_id;
                     if (fieldInfo[response] === undefined) {
                         fieldInfo[response] = {};
                     }
@@ -90,12 +90,12 @@ odoo.define('medical.QuestionnaireRenderer', function (require) {
                     {
                         widget: self,
                         data: data,
-                    },
+                    }
                 ));
                 var Widget = field_registry.get(data.data.field_type);
                 if (Widget !== undefined) {
 
-                    var response = data.data.questionnaire_response_id.res_id;
+                    var response = data.data.questionnaire_id.res_id;
                     if (data.data.invisible_condition) {
                         if (py.eval(
                             data.data.invisible_condition, fieldInfo[response]
@@ -125,7 +125,7 @@ odoo.define('medical.QuestionnaireRenderer', function (require) {
                         self, data.data.field_name, data, _.extend({
                             mode: mode,
                         }, options));
-                    self.recordWidgets[data.res_id] = widget;
+                    self.recordWidgets[data.id] = widget;
                     var node = element.find(".result_data");
                     widget.appendTo(node);
                 }

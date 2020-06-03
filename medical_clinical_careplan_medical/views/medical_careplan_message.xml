@@ -39,6 +39,7 @@
                 <field name="user_creator"/>
                 <field name="partner_creator"/>
                 <field name="message_text"/>
+                <field name="location_id"/>
             </medical_message>
         </field>
     </record>

@@ -13,6 +13,36 @@
                     src="/medical_clinical_questionnaire/static/src/js/questionnaire_item.js"/>
             <link rel="stylesheet" type="text/scss"
                   href="/medical_clinical_questionnaire/static/src/scss/questionnaire_item.scss"/>
+            <script type="text/javascript" src="/medical_clinical_questionnaire/static/src/js/medical_message_renderer.js"/>
         </xpath>
     </template>
+    <template id="medical_procedure_messages_template">
+        <div>
+            <div><strong>Procedures:</strong></div>
+            <ul>
+                <li t-foreach="o.procedure_ids" t-as="procedure">
+                    <span t-esc="procedure.display_name"/>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="medical_questionnaire_messages_template">
+        <div>
+            <div><strong>Questionnaires:</strong></div>
+            <ul>
+                <li t-foreach="o.questionnaire_response_ids" t-as="response">
+                    <span t-esc="response.display_name"/>
+                    <ul>
+                        <t t-foreach="response.item_ids" t-as="item">
+                            <li t-if="item.result">
+                                <div><strong><span t-esc="item.name"/>: </strong><span t-esc="item.result"/></div>
+                            </li>
+                        </t>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </template>
+
 </odoo>

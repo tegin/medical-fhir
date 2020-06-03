@@ -89,6 +89,11 @@
                             <field name="is_invisible"/>
                             <field name="invisible_condition"/>
                         </group>
+                        <group>
+                            <field name="is_medical_observation"/>
+                            <field name="medical_observation_code_id"
+                                   attrs="{'required': [('is_medical_observation', '=', True)], 'invisible': [('is_medical_observation', '=', False)]}"/>
+                        </group>
                     </group>
                 </sheet>
             </form>

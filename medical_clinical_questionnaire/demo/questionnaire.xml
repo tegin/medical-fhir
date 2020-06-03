@@ -32,11 +32,11 @@
         <field name="question_type">date</field>
     </record>
 
-    <record model="medical.questionnaire.item" id="medical_questionnaire_string">
+    <record model="medical.questionnaire.item" id="medical_questionnaire_char">
         <field name="questionnaire_id" ref="demo_questionnaire"/>
-        <field name="name">String</field>
-        <field name="technical_name">str</field>
-        <field name="question_type">string</field>
+        <field name="name">Char</field>
+        <field name="technical_name">char</field>
+        <field name="question_type">char</field>
     </record>
 
     <record model="medical.questionnaire.item" id="medical_questionnaire_text">

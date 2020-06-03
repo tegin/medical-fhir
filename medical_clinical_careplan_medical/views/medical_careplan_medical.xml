@@ -42,9 +42,13 @@
             </div>
             <xpath expr="//notebook/page[1]" position="before">
                 <page string="Medical Messages">
-                    <field name="medical_message_ids" mode="medical_message"/>
+                    <field name="medical_message_ids" mode="medical_message" context="{'medical_message': True}"/>
                 </page>
             </xpath>
+            <field name="patient_id" position="after">
+                <field name="location_id" options="{'no_create': True, 'no_open': True}"/>
+                    <field name="constants_table" nolabel="1"/>
+            </field>
         </field>
     </record>
 

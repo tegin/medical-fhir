@@ -42,7 +42,10 @@ class MedicalProcedure(models.Model):
     def _check_procedure(self):
         for rec in self:
             # TODO: We need to remove this when timing is defined...
-            if len(rec.procedure_request_id.procedure_ids) > 1:
+            if (
+                len(rec.procedure_request_id.procedure_ids) > 1
+                and not rec.procedure_request_id.timing_id
+            ):
                 raise ValidationError(
                     _(
                         "You cannot create more than one Procedure "

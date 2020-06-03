@@ -13,6 +13,7 @@
     "depends": [
         "medical_workflow",
         "medical_clinical",
+        "medical_timing",
         "medical_administration_location",
     ],
     "data": [

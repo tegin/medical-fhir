@@ -124,6 +124,7 @@
                 <field name="is_invisible"/>
                 <field name="invisible_condition"/>
                 <field name="questionnaire_response_id"/>
+                <field name="questionnaire_id"/>
             </questionnaire>
         </field>
     </record>
