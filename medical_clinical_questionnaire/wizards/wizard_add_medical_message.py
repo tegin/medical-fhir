@@ -24,7 +24,7 @@ class WizardAddMedicalMessage(models.TransientModel):
     def _get_careplan_message_kwargs(self):
         result = super()._get_careplan_message_kwargs()
         result["procedure_request_ids"] = (
-            self.procedure_item_ids.filtered(lambda r: r.done)
+            self.procedure_item_ids.filtered(lambda r: r.state == "done")
             .mapped("procedure_request_id")
             .ids
         )

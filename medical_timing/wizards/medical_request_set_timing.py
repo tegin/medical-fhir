@@ -36,7 +36,7 @@ class MedicalRequestSetTiming(models.TransientModel):
     def _configure_timing_vals(self):
         return {
             "next_expected_date": self.next_expected_date,
-            "timing_id": self.timing_id,
+            "timing_id": self.timing_id.id,
             "timing_start_date": self.start_date,
         }
 
