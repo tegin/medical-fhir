@@ -6,6 +6,7 @@ odoo.define('medical.CareplanMessageRenderer', function (require) {
     var core = require('web.core');
     var time = require('web.time');
     var _t = core._t;
+    var qweb = core.qweb;
 
     var CareplanMessageRenderer = BasicRenderer.extend({
 
