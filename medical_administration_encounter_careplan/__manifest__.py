@@ -13,6 +13,7 @@
     "depends": [
         "medical_administration_encounter",
         "medical_clinical_careplan",
+        "medical_clinical_procedure",
     ],
     "data": [
         "security/medical_security.xml",
