@@ -10,11 +10,15 @@
         <field name="inherit_id"
                ref="medical_workflow.medical_request_form"/>
         <field name="arch" type="xml">
-                <xpath expr="//div[@name='button_box']" position="inside">
-                    <button type="object"
-                        name="action_change_timing"
-                        class="oe_stat_button"  icon="fa-stopwatch"
-                        string="Change timing"
+            <button name="draft2active" position="after">
+                <button name="generate_new_event" type="object" string="New event"
+                        attrs="{'invisible': ['|', ('state','not in', ['draft', 'active'])]}"/>
+            </button>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button type="object"
+                    name="action_change_timing"
+                    class="oe_stat_button"  icon="fa-stopwatch"
+                    string="Change timing"
                 />
             </xpath>
             <field name="order_date" position="after">
