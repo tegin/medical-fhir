@@ -129,7 +129,7 @@ class MedicalTiming(models.Model):
             return getattr(self, "_next_date_%s" % self.timing_code)(
                 current_date=getattr(
                     self, "_closest_next_date_%s" % self.timing_code
-                )(current_date=current_date, location=location),
+                )(current_date, location),
                 location=location,
             )
         return current_date + timedelta(

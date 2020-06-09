@@ -21,8 +21,21 @@ class MedicalRequest(models.AbstractModel):
         domain=[("is_location", "=", True)],
     )
 
+    def generate_new_event(self):
+        self.ensure_one()
+        if self.state == "draft":
+            self.draft2active()
+        request = self.generate_event()
+        if self.timing_id:
+            self.next_expected_date = self._next_date()
+        else:
+            self.active2completed()
+        return request
+
     def _next_date(self):
-        return self.timing_id._next_date(self.next_expected_date)
+        return self.timing_id._next_date(
+            self.next_expected_date, self.location_id
+        )
 
     def action_change_timing(self):
         self.ensure_one()
