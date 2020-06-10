@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="workflow_activity_definition_form_view">
+        <field name="name">workflow.activity.definition.form (in medical_workflow_successor)</field>
+        <field name="model">workflow.activity.definition</field>
+        <field name="inherit_id" ref="medical_workflow.workflow_activity_definition_form"/>
+        <field name="arch" type="xml">
+            <notebook position="attributes">
+                <attribute name="invisible">0</attribute>
+            </notebook>
+            <notebook position="inside">
+                <page name="successor" string="Successor">
+                    <field name="successor_ids"/>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+
+
+</odoo>
