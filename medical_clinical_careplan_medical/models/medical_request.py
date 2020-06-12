@@ -26,6 +26,16 @@ class MedicalRequest(models.AbstractModel):
         default=0,
     )
 
+    show_medical_careplan = fields.Boolean(
+        compute="_compute_show_medical_careplan"
+    )
+
+    def _compute_show_medical_careplan(self):
+        for record in self:
+            record.show_medical_careplan = record._name in [
+                "medical.careplan.medical"
+            ]
+
     @api.multi
     def _compute_medical_careplan_ids(self):
         inverse_field_name = self._get_parent_field_name()

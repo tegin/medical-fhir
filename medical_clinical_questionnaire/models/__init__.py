@@ -8,3 +8,4 @@ from . import workflow_activity_definition
 from . import medical_careplan_medical
 from . import medical_procedure
 from . import medical_careplan_message
+from . import medical_careplan_medical_wizard_state

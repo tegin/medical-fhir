@@ -20,7 +20,7 @@ odoo.define('medical_clinical_questionnaire.QuestionnaireItemWidget', function (
         },
         _saveQuestionnaire: function () {
             var self = this;
-            _.each(this.renderer.recordWidgets, function (widget, _key) {
+            _.each(this.renderer.recordWidgets, function (widget) {
                 if (widget.res_id === undefined) {
                     self._setValue({
                         operation: 'CREATE',

@@ -13,9 +13,11 @@
         "medical_clinical_procedure",
         "medical_certify",
         "medical_timing",
+        "medical_workflow_successor",
         "medical_clinical_careplan_medical",
     ],
     "data": [
+        "data/medical_careplan_medical_wizard_state_data.xml",
         "views/medical_careplan_message.xml",
         "wizards/wizard_add_medical_message.xml",
         "security/ir.model.access.csv",

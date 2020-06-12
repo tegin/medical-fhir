@@ -28,18 +28,6 @@ class TestMedicalRequest(TransactionCase):
                 }
             )
 
-    def test_constrains_procedure(self):
-        request = self.env["medical.procedure.request"].create(
-            {"patient_id": self.patient.id}
-        )
-        with self.assertRaises(ValidationError):
-            self.env["medical.procedure"].create(
-                {
-                    "patient_id": self.patient2.id,
-                    "procedure_request_id": request.id,
-                }
-            )
-
     def test_views(self):
         # procedure
         procedure = self.env["medical.procedure.request"].create(

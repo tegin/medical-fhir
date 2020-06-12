@@ -16,6 +16,7 @@
             <script type="text/javascript" src="/medical_clinical_questionnaire/static/src/js/medical_message_renderer.js"/>
         </xpath>
     </template>
+
     <template id="medical_procedure_messages_template">
         <div>
             <div><strong>Procedures:</strong></div>
