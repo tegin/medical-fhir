@@ -47,9 +47,6 @@ class MedicalObservation(models.Model):
 
     @api.model
     def create(self, vals):
-        import logging
-
-        logging.info(vals)
         if "observation_value" not in vals:
             raise ValidationError(
                 _("observation_value must be present in vals_list")
