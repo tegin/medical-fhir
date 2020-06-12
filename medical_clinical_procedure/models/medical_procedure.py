@@ -2,8 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class MedicalProcedure(models.Model):
@@ -37,24 +36,6 @@ class MedicalProcedure(models.Model):
     @api.model
     def _generate_from_request(self, request):
         return request.generate_event()
-
-    @api.constrains("procedure_request_id")
-    def _check_procedure(self):
-        for rec in self:
-            # TODO: We need to remove this when timing is defined...
-            if (
-                len(rec.procedure_request_id.procedure_ids) > 1
-                and not rec.procedure_request_id.timing_id
-            ):
-                raise ValidationError(
-                    _(
-                        "You cannot create more than one Procedure "
-                        "for each Procedure Request."
-                    )
-                )
-            if not self.env.context.get("no_check_patient", False):
-                if rec.patient_id != rec.procedure_request_id.patient_id:
-                    raise ValidationError(_("Patient inconsistency"))
 
     def _get_internal_identifier(self, vals):
         return self.env["ir.sequence"].next_by_code("medical.procedure") or "/"

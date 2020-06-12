@@ -10,10 +10,28 @@ class MedicalCareplanMedical(models.Model):
     _inherit = "medical.careplan.medical"
 
     def _action_add_message_element_procedure_vals(self, request):
-        return {"procedure_request_id": request.id}
+        domain = []
+        if not request.timing_id:
+            domain = [("only_timing", "=", False)]
+        possible_states = self.env[
+            "medical.careplan.medical.wizard.state"
+        ].search(domain)
+        return {
+            "procedure_request_id": request.id,
+            "possible_states": [(6, 0, possible_states.ids)],
+        }
 
     def _action_add_message_element_questionnaire_vals(self, request):
-        return {"procedure_request_id": request.id}
+        domain = []
+        if not request.timing_id:
+            domain = [("only_timing", "=", False)]
+        possible_states = self.env[
+            "medical.careplan.medical.wizard.state"
+        ].search(domain)
+        return {
+            "procedure_request_id": request.id,
+            "possible_states": [(6, 0, possible_states.ids)],
+        }
 
     def _action_add_message_element_questionnaire_item_vals(
         self, request, question, wizard_id=False
@@ -32,11 +50,19 @@ class MedicalCareplanMedical(models.Model):
                 pr.next_expected_date
                 < fields.Datetime.now() + timedelta(hours=1)
             )
-            if not pr_type or pr_type in "medical.procedure" and time_ok:
+            if (
+                time_ok
+                and pr.state in ("draft", "active")
+                and (not pr_type or pr_type in "medical.procedure")
+            ):
                 procedure_items.append(
                     (0, 0, self._action_add_message_element_procedure_vals(pr))
                 )
-            if pr_type == "medical.questionnaire.response" and time_ok:
+            if (
+                time_ok
+                and (pr_type == "medical.questionnaire.response")
+                and pr.state in ("draft", "active")
+            ):
                 questionnaire_items.append(
                     (
                         0,
@@ -48,6 +74,8 @@ class MedicalCareplanMedical(models.Model):
                 )
         result["procedure_item_ids"] = procedure_items
         result["questionnaire_item_ids"] = questionnaire_items
+        if not (procedure_items or questionnaire_items):
+            result["state"] = "final"
         # result["questionnaire_item_response_ids"] = response_items
         return result
 

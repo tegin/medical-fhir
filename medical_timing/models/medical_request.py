@@ -21,6 +21,8 @@ class MedicalRequest(models.AbstractModel):
         domain=[("is_location", "=", True)],
     )
 
+    can_generate_next = fields.Boolean(default=True)
+
     def generate_new_event(self):
         self.ensure_one()
         if self.state == "draft":

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    Copyright 2017 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+
+<odoo>
+
+    <record id="wizard_state_postponed" model="medical.careplan.medical.wizard.state">
+        <field name="name">Postponed</field>
+    </record>
+
+    <record id="wizard_state_done" model="medical.careplan.medical.wizard.state">
+        <field name="name">Done</field>
+        <field name="done" eval="True"/>
+    </record>
+
+    <record id="wizard_state_generate_next" model="medical.careplan.medical.wizard.state">
+        <field name="name">Generate Next</field>
+        <field name="only_timing" eval="True"/>
+    </record>
+
+</odoo>
