@@ -34,13 +34,8 @@ class MedicalCareplanMedicalAddPlanDefinition(models.TransientModel):
         required=True,
     )
 
-    def _get_context(self):
-        return {
-            "origin_model": self.medical_careplan_id._name,
-            "origin_id": self.medical_careplan_id.id,
-        }
-
     def _get_values(self):
         values = super()._get_values()
         values["medical_careplan_id"] = self.medical_careplan_id.id
+        values["location_id"] = self.medical_careplan_id.location_id.id
         return values

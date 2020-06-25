@@ -45,14 +45,17 @@
                     <field name="medical_message_ids" mode="medical_message" context="{'medical_message': True}"/>
                 </page>
             </xpath>
-            <field name="patient_id" position="after">
-                <field name="location_id" options="{'no_create': True, 'no_open': True}"/>
-            </field>
             <xpath expr="//notebook" position="inside">
                 <page string="Constants Table" attrs="{'invisible': [('constants_table', '=', False)]}">
                     <center><field name="constants_table" nolabel="1"/></center>
                 </page>
             </xpath>
+            <button name="generate_new_event" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <button name="action_change_timing" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
         </field>
     </record>
 
