@@ -2,7 +2,6 @@ odoo.define('medical_questionnaire.CareplanMessageRenderer', function (require) 
     "use strict";
 
     var Renderer = require('medical.CareplanMessageRenderer');
-    var core = require('web.core');
 
     Renderer.include({
         _generateMessageElement: function (data) {

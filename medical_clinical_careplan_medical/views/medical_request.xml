@@ -12,11 +12,12 @@
         <field name="priority" eval="16"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="show_medical_careplan" invisible="1"/>
                 <button type="object"
                         name="action_view_request"
                         class="oe_stat_button"  icon="fa-heartbeat"
+                        attrs="{'invisible': [('show_medical_careplan', '=', False)]}"
                         groups="medical_clinical_careplan.group_medical_careplan_list"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
                         context="{'model_name': 'medical.careplan.medical'}">
                 <field name="medical_careplan_count" widget="statinfo"
                            string="Medical Care Plans"/>

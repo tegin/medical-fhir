@@ -41,13 +41,13 @@ odoo.define('medical.QuestionnaireRenderer', function (require) {
             var $body = $table.find('tbody');
             this.$el.empty();
             $table.appendTo(this.$el);
-            var fieldInfo = {}
+            var fieldInfo = {};
             _.each(this.state.data, function (data) {
                 var field_name = "result_" + data.res_id;
-                data.data['field_name'] = field_name;
+                data.data.field_name = field_name;
                 var field_type = self._itemType2Object(
                     data.data.question_type);
-                data.data['field_type'] = field_type;
+                data.data.field_type = field_type;
                 if (
                     data.data[field_name] === undefined &&
                     field_type !== undefined

@@ -28,6 +28,7 @@ odoo.define('medical.CareplanMessageRenderer', function (require) {
             this._super(parent, state, params);
         },
         _generateMessageElement: function (data) {
+            var loc_data = data.data.location_id.data
             var $element = $(qweb.render(
                 'medical_message.item',
                 {
@@ -36,7 +37,7 @@ odoo.define('medical.CareplanMessageRenderer', function (require) {
                     avatar_source: this._getAvatarSource(
                         data.data.partner_creator.res_id
                     ),
-                    location: data.data.location_id.data ? data.data.location_id.data.display_name : _t("Unknown"),
+                    location: loc_data ? loc_data.display_name : _t("Unknown"),
                     partner_name: data.data.partner_creator.data.display_name,
                     date_ago: this._getDateAgo(data.data.message_date),
                     date_format: time.getLangDatetimeFormat(),
