@@ -60,6 +60,12 @@
             <button name="action_change_timing" position="attributes">
                 <attribute name="invisible">1</attribute>
             </button>
+            <field name="next_expected_date" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="timing_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
         </field>
     </record>
 
