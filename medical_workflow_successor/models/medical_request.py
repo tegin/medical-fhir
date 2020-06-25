@@ -11,6 +11,7 @@ class MedicalRequest(models.AbstractModel):
         for record in self:
             if not record.activity_definition_id:
                 continue
+
             for successor in record.activity_definition_id.successor_ids:
                 if successor._check_successor(record):
                     successor.successor_id.execute_activity(
@@ -19,7 +20,12 @@ class MedicalRequest(models.AbstractModel):
         return super().active2completed()
 
     def _get_successor_vals(self, successor):
-        return {
+        vals = {
             "patient_id": self.patient_id.id,
             "name": successor.successor_id.name,
         }
+        for model in self._get_request_models():
+            field_name = self.env[model]._get_parent_field_name()
+        if getattr(self, field_name):
+            vals[field_name] = getattr(self, field_name).id
+        return vals

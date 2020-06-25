@@ -13,6 +13,7 @@
         "medical_clinical_procedure",
         "medical_certify",
         "medical_timing",
+        "medical_workflow_successor",
         "medical_clinical_careplan_medical",
     ],
     "data": [
