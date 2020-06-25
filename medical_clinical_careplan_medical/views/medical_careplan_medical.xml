@@ -50,7 +50,6 @@
                     <center><field name="constants_table" nolabel="1"/></center>
                 </page>
             </xpath>
-
             <button name="generate_new_event" position="attributes">
                 <attribute name="invisible">1</attribute>
             </button>
