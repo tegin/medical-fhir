@@ -32,6 +32,7 @@ class MedicalRequest(models.AbstractModel):
         },
         required=True,
         track_visibility=True,
+        index=True,
         default="draft",
     )  # FHIR field: status
     intent = fields.Selection(
