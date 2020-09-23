@@ -43,6 +43,7 @@ class MedicalEvent(models.AbstractModel):
         states={"completed": [("readonly", True)]},
         required=True,
         track_visibility=True,
+        index=True,
         default="preparation",
     )  # FHIR field: status
     service_id = fields.Many2one(
