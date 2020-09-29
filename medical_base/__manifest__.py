@@ -5,12 +5,12 @@
 {
     "name": "Medical Base",
     "summary": "Medical Base",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "author": "Creu Blanca, Eficent, Odoo Community Association (OCA)",
     "category": "Medical",
     "website": "https://github.com/OCA/vertical-medical",
     "license": "LGPL-3",
-    "depends": ["mail", "base_fontawesome", "uom"],
+    "depends": ["mail", "uom"],
     "data": [
         "security/medical_security.xml",
         "views/medical_menu.xml",

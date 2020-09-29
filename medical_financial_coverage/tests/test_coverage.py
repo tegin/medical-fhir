@@ -72,7 +72,7 @@ class TestMedicalCoverage(TransactionCase):
             "name": "test coverage template",
             "payor_id": self.payor_1.id,
         }
-        coverage_template = self.coverage_template_model.sudo(
+        coverage_template = self.coverage_template_model.with_user(
             self.medical_user
         ).create(coverage_template_vals)
         self.assertNotEquals(coverage_template, False)
@@ -82,7 +82,7 @@ class TestMedicalCoverage(TransactionCase):
             "subscriber_id": "abc123",
             "coverage_template_id": coverage_template.id,
         }
-        coverage = self.coverage_model.sudo(self.medical_user).create(
+        coverage = self.coverage_model.with_user(self.medical_user).create(
             coverage_vals
         )
         self.assertEquals(coverage.subscriber_id, "abc123")

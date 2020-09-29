@@ -4,6 +4,7 @@
 
 import base64
 import threading
+
 from odoo import api, fields, models, tools
 from odoo.modules import get_module_resource
 
@@ -11,6 +12,7 @@ from odoo.modules import get_module_resource
 class MedicalPatient(models.Model):
     # FHIR Entity: Patient (http://hl7.org/fhir/patient.html)
     _name = "medical.patient"
+    _description = "Patient"
     _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
     _inherits = {"res.partner": "partner_id"}
 
@@ -61,8 +63,8 @@ class MedicalPatient(models.Model):
     @api.model
     def create(self, vals):
         vals_upd = vals.copy()
-        if not vals_upd.get("image"):
-            vals_upd["image"] = self._get_default_medical_image(vals_upd)
+        if not vals_upd.get("image_1920"):
+            vals_upd["image_1920"] = self._get_default_medical_image(vals_upd)
         return super(MedicalPatient, self).create(vals_upd)
 
     @api.model
@@ -78,7 +80,6 @@ class MedicalPatient(models.Model):
             image = f.read()
         return tools.image_resize_image_big(base64.b64encode(image))
 
-    @api.multi
     def open_parent(self):
         """ Utility method used to add an "Open Parent" button in partner
         views """

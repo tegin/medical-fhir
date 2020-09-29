@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
@@ -10,6 +10,7 @@ from odoo.tools import float_compare
 class MedicalMedicationAdministration(models.Model):
     _name = "medical.medication.administration"
     _inherit = "medical.event"
+    _description = "Administration of medication"
 
     def _default_patient_location(self):
         # return self.env.ref('stock.stock_location_customers')
@@ -137,7 +138,6 @@ class MedicalMedicationAdministration(models.Model):
                 )
         return qty
 
-    @api.multi
     def in_progress2completed(self):
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
@@ -151,17 +151,25 @@ class MedicalMedicationAdministration(models.Model):
             group = event._get_procurement_group()
             values = event._prepare_procurement_values(group)
             self.env["procurement.group"].run(
-                event.product_id,
-                event.qty,
-                event.product_id.uom_id,
-                event.patient_location_id,
-                event.internal_identifier,
-                event._get_origin(),
-                values,
+                [
+                    self.env["procurement.group"].Procurement(
+                        event.product_id,
+                        event.qty,
+                        event.product_id.uom_id,
+                        event.patient_location_id,
+                        event.internal_identifier,
+                        event._get_origin(),
+                        event._get_company(),
+                        values,
+                    )
+                ]
             )
             if not self.env.context.get("no_post_move", False):
                 event._post_move_create()
         return super().in_progress2completed()
+
+    def _get_company(self):
+        return self.env.company
 
     def _post_move_create(self):
         self.move_ids._action_assign()

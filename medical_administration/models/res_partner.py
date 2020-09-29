@@ -4,6 +4,7 @@
 
 import base64
 import threading
+
 from odoo import api, fields, models, tools
 
 
@@ -26,24 +27,22 @@ class Partner(models.Model):
     def create(self, vals):
         vals_upd = vals.copy()
         for (
-            medical,
+            _medical,
             check,
             identifier,
             definition,
         ) in self._get_medical_identifiers():
             if vals_upd.get(check) and not vals_upd.get(identifier):
                 vals_upd[identifier] = definition(vals_upd)
-        if not vals_upd.get("image"):
-            vals_upd["image"] = self._get_partner_default_image(vals_upd)
+        if not vals_upd.get("image_1920"):
+            vals_upd["image_1920"] = self._get_partner_default_image(vals_upd)
         return super(Partner, self).create(vals_upd)
 
     @api.model
     def _get_partner_default_image(self, vals):
         if self._get_default_image_path(vals):
             return self._get_default_medical_image(vals)
-        return super(Partner, self)._get_default_image(
-            vals.get("type"), vals.get("is_company"), vals.get("parent_id")
-        )
+        return False
 
     @api.model
     def _get_default_image_path(self, vals):

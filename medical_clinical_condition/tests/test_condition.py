@@ -18,10 +18,14 @@ class TestCondition(TransactionCase):
 
     def test_pregnant(self):
         self.assertFalse(self.patient.is_pregnant)
-        self.patient.toggle_is_pregnant()
+        self.assertEqual(0, self.patient.medical_condition_count)
+        self.patient.is_pregnant = True
+        self.patient.refresh()
         self.assertTrue(self.patient.is_pregnant)
-        self.patient.toggle_is_pregnant()
-        self.patient._compute_is_pregnant()
+        self.assertEqual(1, self.patient.medical_condition_count)
+        self.patient.is_pregnant = False
+        self.patient.refresh()
+        self.assertEqual(0, self.patient.medical_condition_count)
         self.assertFalse(self.patient.is_pregnant)
 
     def test_conditions(self):
@@ -33,7 +37,7 @@ class TestCondition(TransactionCase):
             }
         )
         self.assertEqual(self.patient.medical_condition_count, 1)
-        self.patient.toggle_is_pregnant()
+        self.patient.is_pregnant = True
         self.assertEqual(self.patient.medical_condition_count, 2)
         res = self.patient.action_view_medical_conditions()
         self.assertEqual(res["context"]["default_patient_id"], self.patient.id)

@@ -2,8 +2,9 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, exceptions, fields, models, _
+from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import ValidationError
+
 from .base_result import combine_result
 
 
@@ -76,10 +77,9 @@ class PlanDefinitionAction(models.Model):
             current = rec
             while current.parent_id:
                 current = current.parent_id
-                name = "%s/%s" % (current.name, name)
+                name = "{}/{}".format(current.name, name)
             rec.complete_name = name
 
-    @api.multi
     @api.depends("parent_id", "direct_plan_definition_id")
     def _compute_plan_definition_id(self):
         for rec in self:
@@ -111,7 +111,6 @@ class PlanDefinitionAction(models.Model):
         self.name = self.execute_plan_definition_id.name
         self.activity_definition_id = False
 
-    @api.multi
     @api.constrains("parent_id")
     def _check_recursion_parent_id(self):
         if not self._check_recursion():
@@ -119,7 +118,6 @@ class PlanDefinitionAction(models.Model):
                 _("Error! You are attempting to create a recursive category.")
             )
 
-    @api.multi
     @api.constrains("execute_plan_definition_id", "child_ids")
     def _check_execute_plan_definition_id(self):
         for record in self:
@@ -131,7 +129,6 @@ class PlanDefinitionAction(models.Model):
                         _("Actions with Plans cannot have child actions")
                     )
 
-    @api.multi
     @api.constrains("execute_plan_definition_id", "activity_definition_id")
     def _check_execute_plan_activity_definition(self):
         for record in self:
@@ -146,7 +143,6 @@ class PlanDefinitionAction(models.Model):
                     )
                 )
 
-    @api.multi
     def execute_action(self, vals, parent=False):
         self.ensure_one()
         if self.execute_plan_definition_id:
@@ -162,7 +158,6 @@ class PlanDefinitionAction(models.Model):
             result = combine_result(result, child_result)
         return res, result
 
-    @api.multi
     def copy_data(self, default=None):
         if default is None:
             default = {}

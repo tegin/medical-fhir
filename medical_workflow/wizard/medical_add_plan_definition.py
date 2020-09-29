@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import Warning
 
 
@@ -41,7 +41,6 @@ class MedicalAddPlanDefinition(models.TransientModel):
             "origin_id": self.patient_id.id,
         }
 
-    @api.multi
     def _run(self):
         self.ensure_one()
         vals = self._get_values()
@@ -51,7 +50,6 @@ class MedicalAddPlanDefinition(models.TransientModel):
             ctx
         ).execute_plan_definition(vals)
 
-    @api.multi
     def run(self):
         res = self._run()
         if not res:

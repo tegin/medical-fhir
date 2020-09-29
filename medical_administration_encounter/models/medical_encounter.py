@@ -57,18 +57,16 @@ class MedicalEncounter(models.Model):
     def _get_internal_identifier(self, vals):
         return self.env["ir.sequence"].next_by_code("medical.encounter") or "/"
 
-    @api.multi
     @api.depends("name", "internal_identifier")
     def name_get(self):
         result = []
         for record in self:
             name = "[%s]" % record.internal_identifier
             if record.name:
-                name = "%s %s" % (name, record.name)
+                name = "{} {}".format(name, record.name)
             result.append((record.id, name))
         return result
 
-    @api.multi
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:
@@ -85,55 +83,47 @@ class MedicalEncounter(models.Model):
     def planned2arrived_values(self):
         return {"state": "arrived"}
 
-    @api.multi
     def planned2arrived(self):
         self.write(self.planned2arrived_values())
 
     def planned2cancelled_values(self):
         return {"state": "cancelled"}
 
-    @api.multi
     def planned2cancelled(self):
         self.write(self.planned2cancelled_values())
 
     def arrived2inprogress_values(self):
         return {"state": "in-progress"}
 
-    @api.multi
     def arrived2inprogress(self):
         self.write(self.arrived2inprogress_values())
 
     def arrived2cancelled_values(self):
         return {"state": "cancelled"}
 
-    @api.multi
     def arrived2cancelled(self):
         self.write(self.arrived2cancelled_values())
 
     def inprogress2onleave_values(self):
         return {"state": "onleave"}
 
-    @api.multi
     def inprogress2onleave(self):
         self.write(self.inprogress2onleave_values())
 
     def inprogress2cancelled_values(self):
         return {"state": "cancelled"}
 
-    @api.multi
     def inprogress2cancelled(self):
         self.write(self.inprogress2cancelled_values())
 
     def onleave2finished_values(self):
         return {"state": "finished"}
 
-    @api.multi
     def onleave2finished(self):
         self.write(self.onleave2finished_values())
 
     def onleave2cancelled_values(self):
         return {"state": "cancelled"}
 
-    @api.multi
     def onleave2cancelled(self):
         self.write(self.onleave2cancelled_values())

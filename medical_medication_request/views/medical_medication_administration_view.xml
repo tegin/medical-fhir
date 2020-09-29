@@ -1,137 +1,182 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
     Copyright 2017 Eficent Business and IT Consulting Services, S.L.
     Copyright 2017 Creu Blanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
-
 <odoo>
-
-    <record id="medical_medication_administration_view_tree"
-            model="ir.ui.view">
+    <record id="medical_medication_administration_view_tree" model="ir.ui.view">
         <field name="name">medical.medication.administration.view.tree</field>
         <field name="model">medical.medication.administration</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="medical_workflow.medical_event_tree"/>
+        <field name="inherit_id" ref="medical_workflow.medical_event_tree" />
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="string">Medication administrations</attribute>
             </xpath>
         </field>
-
     </record>
-
-    <record id="medical_medication_administration_view_form"
-            model="ir.ui.view">
+    <record id="medical_medication_administration_view_form" model="ir.ui.view">
         <field name="name">medical.medication.administration.view.form</field>
         <field name="model">medical.medication.administration</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="medical_workflow.medical_event_form"/>
+        <field name="inherit_id" ref="medical_workflow.medical_event_form" />
         <field name="arch" type="xml">
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Medication administration</attribute>
             </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button string="Stock moves" type="object"
-                        name="action_view_stock_moves"
-                         class="oe_stat_button"  icon="fa-arrows-v"
-                        attrs="{'invisible': [('move_ids','=',False)]}"/>
+                <button
+                    string="Stock moves"
+                    type="object"
+                    name="action_view_stock_moves"
+                    class="oe_stat_button"
+                    icon="fa-arrows-v"
+                    attrs="{'invisible': [('move_ids','=',False)]}"
+                />
             </xpath>
             <field name="service_id" position="after">
-                <field name="move_ids" invisible="1"/>
-                <field name="product_id"/>
-                <label for="qty"/>
+                <field name="move_ids" invisible="1" />
+                <field name="product_id" />
+                <label for="qty" />
                 <div class="o_row">
-                    <field name="qty"/>
-                    <field name="product_uom_id" groups="uom.group_uom"/>
+                    <field name="qty" />
+                    <field name="product_uom_id" groups="uom.group_uom" />
                 </div>
             </field>
             <field name="service_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
             <group name="inheritance" position="inside">
-                <field name="medication_request_id" options="{'no_create': True, 'no_open': True}"/>
+                <field
+                    name="medication_request_id"
+                    options="{'no_create': True, 'no_open': True}"
+                />
             </group>
             <field name="performer_id" position="after">
-                <field name="location_id" options="{'no_create': True, 'no_open': True}"/>
+                <field
+                    name="location_id"
+                    options="{'no_create': True, 'no_open': True}"
+                />
             </field>
         </field>
     </record>
-
-    <record id="medical_medication_administration_view_form_medication_request" model="ir.ui.view">
+    <record
+        id="medical_medication_administration_view_form_medication_request"
+        model="ir.ui.view"
+    >
         <field name="name">medical.medication.administration.view.form</field>
         <field name="model">medical.medication.administration</field>
-        <field name="inherit_id" ref="medical_medication_administration_view_form"/>
-        <field name="groups_id" eval="[(4, ref('group_medical_medication_administration_list'))]"/>
+        <field name="inherit_id" ref="medical_medication_administration_view_form" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('group_medical_medication_administration_list'))]"
+        />
         <field name="arch" type="xml">
             <field name="medication_request_id" position="attributes">
-                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
+                <attribute
+                    name="options"
+                >{'no_open': False, 'no_create': True}</attribute>
             </field>
         </field>
     </record>
-
-    <record id="medical_medication_administration_view_form_form_location" model="ir.ui.view">
+    <record
+        id="medical_medication_administration_view_form_form_location"
+        model="ir.ui.view"
+    >
         <field name="name">medical.medication.administration.view.form</field>
         <field name="model">medical.medication.administration</field>
-        <field name="inherit_id" ref="medical_medication_administration_view_form"/>
-        <field name="groups_id" eval="[(4, ref('medical_administration_location.group_medical_location_list'))]"/>
+        <field name="inherit_id" ref="medical_medication_administration_view_form" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('medical_administration_location.group_medical_location_list'))]"
+        />
         <field name="arch" type="xml">
             <field name="location_id" position="attributes">
-                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
+                <attribute
+                    name="options"
+                >{'no_open': False, 'no_create': True}</attribute>
             </field>
         </field>
     </record>
-
     <record id="medical_medication_administration_view_search" model="ir.ui.view">
         <field name="name">medical.medication.administration.view.search</field>
         <field name="model">medical.medication.administration</field>
         <field name="arch" type="xml">
             <search string="Medication Administration">
-                <field name="internal_identifier"/>
-                <field name="patient_id"/>
-                <field name="location_id"/>
-                <field name="medication_request_id"/>
+                <field name="internal_identifier" />
+                <field name="patient_id" />
+                <field name="location_id" />
+                <field name="medication_request_id" />
                 <field name="name" />
-                <field name="state"/>
+                <field name="state" />
                 <newline />
-                <filter name="preparation" domain="[('state', '=', 'preparation')]" help="Preparation"/>
-                <filter name="in-progress" domain="[('state', '=', 'in-progress')]" help="In progress"/>
-                <filter name="completed" domain="[('state', '=', 'completed')]" help="Completed"/>
-                <filter name="suspended" domain="[('state', '=', 'suspended')]" help="Suspended"/>
-                <filter name="error" domain="[('state', '=', 'entered-in-error')]" help="Error"/>
-                <filter name="aborted" domain="[('state', '=', 'aborted')]" help="Aborted"/>
-                <filter name="unknown" domain="[('state', '=', 'unknown')]" help="Unknown"/>
-                <newline/>
+                <filter
+                    name="preparation"
+                    domain="[('state', '=', 'preparation')]"
+                    help="Preparation"
+                />
+                <filter
+                    name="in-progress"
+                    domain="[('state', '=', 'in-progress')]"
+                    help="In progress"
+                />
+                <filter
+                    name="completed"
+                    domain="[('state', '=', 'completed')]"
+                    help="Completed"
+                />
+                <filter
+                    name="suspended"
+                    domain="[('state', '=', 'suspended')]"
+                    help="Suspended"
+                />
+                <filter
+                    name="error"
+                    domain="[('state', '=', 'entered-in-error')]"
+                    help="Error"
+                />
+                <filter
+                    name="aborted"
+                    domain="[('state', '=', 'aborted')]"
+                    help="Aborted"
+                />
+                <filter
+                    name="unknown"
+                    domain="[('state', '=', 'unknown')]"
+                    help="Unknown"
+                />
+                <newline />
                 <group expand="0" name="groupby" string="Group By...">
-                    <filter string="Patient"
-                            name="group_by_patient"
-                            domain="[]"
-                            context="{'group_by':'patient_id'}" />
-                    <filter string="Location"
-                            name="group_by_location"
-                            domain="[]"
-                            context="{'group_by':'location_id'}" />
+                    <filter
+                        string="Patient"
+                        name="group_by_patient"
+                        domain="[]"
+                        context="{'group_by':'patient_id'}"
+                    />
+                    <filter
+                        string="Location"
+                        name="group_by_location"
+                        domain="[]"
+                        context="{'group_by':'location_id'}"
+                    />
                 </group>
             </search>
         </field>
     </record>
-
-    <record model="ir.actions.act_window"
-            id="medical_medication_administration_action">
+    <record model="ir.actions.act_window" id="medical_medication_administration_action">
         <field name="name">Administration</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.medication.administration</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
     </record>
-
-    <menuitem id="medical_medication_administration"
-              name="Administration"
-              parent="medical_base.medical_root_medications"
-              groups="medical_medication_request.group_medical_medication_administration_list"
-              sequence="10"
-              action="medical_medication_administration_action"/>
-
+    <menuitem
+        id="medical_medication_administration"
+        name="Administration"
+        parent="medical_base.medical_root_medications"
+        groups="medical_medication_request.group_medical_medication_administration_list"
+        sequence="10"
+        action="medical_medication_administration_action"
+    />
 </odoo>

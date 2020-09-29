@@ -19,7 +19,9 @@ class MedicalPatient(models.Model):
         copy=False,
         default=0,
     )
-    is_pregnant = fields.Boolean(compute="_compute_is_pregnant")
+    is_pregnant = fields.Boolean(
+        compute="_compute_is_pregnant", inverse="_inverse_is_pregnant"
+    )
 
     @api.depends("medical_condition_ids")
     def _compute_medical_condition_count(self):
@@ -39,8 +41,7 @@ class MedicalPatient(models.Model):
                 )
             )
 
-    @api.multi
-    def toggle_is_pregnant(self):
+    def _inverse_is_pregnant(self):
         pregnant_id = self.env.ref(
             "medical_clinical_condition.finding_pregnant"
         ).id
@@ -58,7 +59,6 @@ class MedicalPatient(models.Model):
                     }
                 )
 
-    @api.multi
     def action_view_medical_conditions(self):
         self.ensure_one()
         action = self.env.ref(

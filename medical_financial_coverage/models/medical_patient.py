@@ -26,7 +26,6 @@ class MedicalPatient(models.Model):
         for record in self:
             record.coverage_count = len(record.coverage_ids)
 
-    @api.multi
     def action_view_coverage(self):
         action = self.env.ref(
             "medical_financial_coverage.medical_coverage_action"

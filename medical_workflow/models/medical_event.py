@@ -76,7 +76,6 @@ class MedicalEvent(models.AbstractModel):
     )  # FHIR Field : performer/actor
     is_editable = fields.Boolean(compute="_compute_is_editable")
 
-    @api.multi
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:
@@ -91,48 +90,42 @@ class MedicalEvent(models.AbstractModel):
             else:
                 rec.is_editable = True
 
-    @api.multi
     @api.depends("name", "internal_identifier")
     def name_get(self):
         result = []
         for record in self:
             name = "[%s]" % record.internal_identifier
             if record.name:
-                name = "%s %s" % (name, record.name)
+                name = "{} {}".format(name, record.name)
             result.append((record.id, name))
         return result
 
     def preparation2in_progress_values(self):
         return {"state": "in-progress"}
 
-    @api.multi
     def preparation2in_progress(self):
         self.write(self.preparation2in_progress_values())
 
     def suspended2in_progress_values(self):
         return {"state": "in-progress"}
 
-    @api.multi
     def suspended2in_progress(self):
         self.write(self.suspended2in_progress_values())
 
     def in_progress2completed_values(self):
         return {"state": "completed"}
 
-    @api.multi
     def in_progress2completed(self):
         self.write(self.in_progress2completed_values())
 
     def in_progress2aborted_values(self):
         return {"state": "aborted"}
 
-    @api.multi
     def in_progress2aborted(self):
         self.write(self.in_progress2aborted_values())
 
     def in_progress2suspended_values(self):
         return {"state": "suspended"}
 
-    @api.multi
     def in_progress2suspended(self):
         self.write(self.in_progress2suspended_values())

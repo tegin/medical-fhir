@@ -18,6 +18,7 @@ class MedicalATCConcept(models.Model):
     """
 
     _name = "medical.atc.concept"
+    _description = "ATC Concept"
     _inherit = "medical.abstract.concept.uniparent"
     _parent_order = False
 

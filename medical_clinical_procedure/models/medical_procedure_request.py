@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, exceptions, fields, models, _
+from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -42,7 +42,6 @@ class MedicalProcedureRequest(models.Model):
         for record in self:
             record.procedure_count = len(record.procedure_ids)
 
-    @api.multi
     def unlink(self):
         if self.mapped("procedure_ids"):
             raise exceptions.Warning(
@@ -50,12 +49,10 @@ class MedicalProcedureRequest(models.Model):
             )
         return super(MedicalProcedureRequest, self).unlink()
 
-    @api.multi
     def active2completed(self):
         self.filtered(lambda r: not r.procedure_ids).generate_event()
         return super().active2completed()
 
-    @api.multi
     def action_view_procedure(self):
         self.ensure_one()
         action = self.env.ref(
@@ -104,7 +101,6 @@ class MedicalProcedureRequest(models.Model):
             "performer_id": self.performer_id and self.performer_id.id,
         }
 
-    @api.multi
     def generate_event(self):
         proc_obj = self.env["medical.procedure"]
         procedure_ids = []

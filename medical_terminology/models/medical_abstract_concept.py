@@ -17,14 +17,13 @@ class MedicalAbstractConcept(models.AbstractModel):
     definition = fields.Char()  # FHIR Field: definition
     editable = fields.Boolean(default=True)
 
-    @api.multi
     @api.depends("name", "code")
     def name_get(self):
         result = []
         for record in self:
             name = "[%s]" % record.code
             if record.name:
-                name = "%s %s" % (name, record.name)
+                name = "{} {}".format(name, record.name)
             result.append((record.id, name))
         return result
 

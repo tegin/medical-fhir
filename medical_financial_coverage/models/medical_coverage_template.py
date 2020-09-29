@@ -49,18 +49,16 @@ class MedicalCoverageTemplate(models.Model):
             or "/"
         )
 
-    @api.multi
     @api.depends("name", "internal_identifier")
     def name_get(self):
         result = []
         for record in self:
             name = "[%s]" % record.internal_identifier
             if record.name:
-                name = "%s %s" % (name, record.name)
+                name = "{} {}".format(name, record.name)
             result.append((record.id, name))
         return result
 
-    @api.multi
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:

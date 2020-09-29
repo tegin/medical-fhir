@@ -37,7 +37,6 @@ class ResPartner(models.Model):
         )
         return res
 
-    @api.multi
     def _compute_coverage_template_count(self):
         for rec in self:
             rec.coverage_template_count = len(rec.coverage_template_ids)
@@ -46,7 +45,6 @@ class ResPartner(models.Model):
     def _get_payor_identifier(self, vals):
         return self.env["ir.sequence"].next_by_code("medical.payor") or "/"
 
-    @api.multi
     def action_view_coverage_template(self):
         action = self.env.ref(
             "medical_financial_coverage.medical_coverage_template_action"

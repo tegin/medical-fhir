@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -49,7 +49,6 @@ class MedicalMedicationRequest(models.Model):
         default=0,
     )
 
-    @api.multi
     @api.depends("medication_administration_ids")
     def _compute_medication_administration_count(self):
         for rec in self:
@@ -78,14 +77,12 @@ class MedicalMedicationRequest(models.Model):
             "name": self.name,
         }
 
-    @api.multi
     def generate_event(self):
         self.ensure_one()
         return self.env["medical.medication.administration"].create(
             self._get_event_values()
         )
 
-    @api.multi
     def action_view_medication_administration(self):
         self.ensure_one()
         action = self.env.ref(
