@@ -2,8 +2,9 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, exceptions, fields, models, _
+from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import ValidationError
+
 from .base_result import combine_result
 
 
@@ -76,7 +77,7 @@ class PlanDefinitionAction(models.Model):
             current = rec
             while current.parent_id:
                 current = current.parent_id
-                name = "%s/%s" % (current.name, name)
+                name = "{}/{}".format(current.name, name)
             rec.complete_name = name
 
     @api.multi
