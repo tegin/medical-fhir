@@ -98,7 +98,7 @@ class MedicalEvent(models.AbstractModel):
         for record in self:
             name = "[%s]" % record.internal_identifier
             if record.name:
-                name = "%s %s" % (name, record.name)
+                name = "{} {}".format(name, record.name)
             result.append((record.id, name))
         return result
 

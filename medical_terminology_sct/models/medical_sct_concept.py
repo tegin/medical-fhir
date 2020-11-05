@@ -29,7 +29,5 @@ class MedicalSCTConcept(models.Model):
 
     def check_property(self, name, codes):
         for parent in self.parent_ids:
-            if parent[name]:
-                return True
-            if parent.code in codes:
+            if parent[name] or parent.code in codes:
                 return True
