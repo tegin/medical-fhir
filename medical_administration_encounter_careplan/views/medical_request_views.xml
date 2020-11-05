@@ -1,38 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
     Copyright 2017 Eficent Business and IT Consulting Services, S.L.
     Copyright 2017 Creu Blanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
-
 <odoo>
-
     <record model="ir.ui.view" id="medical_request_form">
         <field name="name">medical.request.form</field>
         <field name="model">medical.request</field>
-        <field name="inherit_id"
-               ref="medical_workflow.medical_request_form"/>
-        <field name="priority" eval="16"/>
+        <field name="inherit_id" ref="medical_workflow.medical_request_form" />
+        <field name="priority" eval="16" />
         <field name="arch" type="xml">
             <group name="inheritance" position="inside">
-                <field name="encounter_id" readonly="1"
-                       options="{'no_open': True, 'no_create': True}"
-                       attrs="{'invisible': [('encounter_id', '=', False)]}"/>
+                <field
+                    name="encounter_id"
+                    readonly="1"
+                    options="{'no_open': True, 'no_create': True}"
+                    attrs="{'invisible': [('encounter_id', '=', False)]}"
+                />
             </group>
         </field>
     </record>
-
     <record model="ir.ui.view" id="medical_request_form_encounter">
         <field name="name">medical.request.form</field>
         <field name="model">medical.request</field>
-        <field name="inherit_id" ref="medical_request_form"/>
-        <field name="groups_id" eval="[(4, ref('medical_administration_encounter.group_medical_encounter_list'))]"/>
+        <field name="inherit_id" ref="medical_request_form" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('medical_administration_encounter.group_medical_encounter_list'))]"
+        />
         <field name="arch" type="xml">
             <field name="encounter_id" position="attributes">
-                <attribute name="options">{'no_open': False, 'no_create': True}</attribute>
+                <attribute
+                    name="options"
+                >{'no_open': False, 'no_create': True}</attribute>
             </field>
         </field>
     </record>
-
 </odoo>
