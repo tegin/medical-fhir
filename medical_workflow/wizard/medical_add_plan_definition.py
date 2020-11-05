@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import Warning
+from odoo.exceptions import Warning as Warn
 
 
 class MedicalAddPlanDefinition(models.TransientModel):
@@ -55,4 +55,4 @@ class MedicalAddPlanDefinition(models.TransientModel):
     def run(self):
         res = self._run()
         if not res:
-            raise Warning(_("No requests were created"))
+            raise Warn(_("No requests were created"))

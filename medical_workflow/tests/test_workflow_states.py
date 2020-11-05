@@ -18,7 +18,7 @@ class TestWorkflowStates(TransactionCase):
         self.assertTrue(plan_1.active)
 
     def test_activity_definition(self):
-        type = self.env["workflow.type"].create(
+        w_type = self.env["workflow.type"].create(
             {
                 "name": "TEST",
                 "model_id": self.browse_ref(
@@ -37,8 +37,8 @@ class TestWorkflowStates(TransactionCase):
         activity = self.env["workflow.activity.definition"].create(
             {
                 "name": "Activity",
-                "type_id": type.id,
-                "model_id": type.model_id.id,
+                "type_id": w_type.id,
+                "model_id": w_type.model_id.id,
             }
         )
         self.assertFalse(activity.active)

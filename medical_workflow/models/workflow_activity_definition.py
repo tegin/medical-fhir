@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, exceptions, fields, models, _
+from odoo import _, api, exceptions, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -130,7 +130,7 @@ class ActivityDefinition(models.Model):
         self.ensure_one()
         values = self._get_activity_values(vals, parent, plan, action)
         res = self.env[self.model_id.model]
-        for i in range(0, self.quantity):
+        for _i in range(0, self.quantity):
             res |= self.generate_record(values)
         return res
 
