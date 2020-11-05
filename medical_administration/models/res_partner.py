@@ -4,6 +4,7 @@
 
 import base64
 import threading
+
 from odoo import api, fields, models, tools
 
 
@@ -26,7 +27,7 @@ class Partner(models.Model):
     def create(self, vals):
         vals_upd = vals.copy()
         for (
-            medical,
+            _medical,
             check,
             identifier,
             definition,

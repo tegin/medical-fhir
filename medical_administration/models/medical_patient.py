@@ -4,6 +4,7 @@
 
 import base64
 import threading
+
 from odoo import api, fields, models, tools
 from odoo.modules import get_module_resource
 
