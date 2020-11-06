@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
     Copyright 2017 Eficent Business and IT Consulting Services, S.L.
     Copyright 2017 Creu Blanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
-
 <odoo>
-
     <record id="medical_patient_view_form" model="ir.ui.view">
         <field name="name">medical.patient.form</field>
         <field name="model">medical.patient</field>
@@ -19,13 +16,12 @@
                     name="action_view_coverage"
                     class="oe_stat_button"
                     groups="medical_financial_coverage.group_medical_coverage_template_list"
-                    icon="fa-plus-square">
-                    <field name="coverage_count" widget="statinfo"
-                           string="Coverages"/>
-                    <field name='coverage_ids' invisible="1"/>
+                    icon="fa-plus-square"
+                >
+                    <field name="coverage_count" widget="statinfo" string="Coverages" />
+                    <field name='coverage_ids' invisible="1" />
                 </button>
             </div>
         </field>
     </record>
-
 </odoo>

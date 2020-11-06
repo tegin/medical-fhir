@@ -1,0 +1,55 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: test Odoo
+
+on:
+    push:
+        branches: ["11.0", "12.0", "13.0"]
+    pull_request:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                ODOO_REPO: ["odoo/odoo", "OCA/OCB"]
+        env:
+            TESTS: "1"
+            ODOO_REPO: ${{matrix.ODOO_REPO}}
+            VERSION: "12.0"
+            MAKEPOT: "1"
+            LINT_CHECK: "0"
+            DB_USERNAME: "odoo"
+            DB_PASSWORD: "odoo"
+            DB_HOST: "localhost"
+            DB_PORT: 5432
+        steps:
+            - uses: actions/checkout@v2
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                  python-version: 3.7
+            - name: Configure Postgres
+              uses: harmon758/postgresql-action@v1
+              with:
+                  postgresql version: "9.6"
+                  postgresql user: ${DB_USERNAME}
+                  postgresql password: ${DB_PASSWORD}
+            - name: Configuration
+              run: |
+                  pip install wheel
+                  sudo apt install libldap2-dev nodejs libxml2-dev libxslt1-dev libevent-dev libsasl2-dev expect cups libcups2-dev libxmlsec1-dev
+            - name: Downloading Maintainer quality tools
+              run: |
+                  git clone --depth=1 https://github.com/tegin/maintainer-quality-tools.git -b master-github ${HOME}/maintainer-quality-tools
+            - name: Defining environment
+              run: echo "TRAVIS_BUILD_DIR=${GITHUB_WORKSPACE}" >> $GITHUB_ENV
+            - name: Defining Path
+              run: echo "${HOME}/maintainer-quality-tools/travis" >> $GITHUB_PATH
+            - name: Install nightly
+              run: travis_install_nightly
+            - name: Running test
+              run: travis_run_tests
+            - name: After success
+              run: travis_after_tests_success
