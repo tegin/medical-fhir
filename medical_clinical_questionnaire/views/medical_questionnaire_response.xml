@@ -1,84 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 Creu Blanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
-
     <record model="ir.ui.view" id="medical_questionnaire_response_form_view">
-        <field name="name">medical.questionnaire.response.form (in medical_clinical_questionnaire)</field>
+        <field
+            name="name"
+        >medical.questionnaire.response.form (in medical_clinical_questionnaire)</field>
         <field name="model">medical.questionnaire.response</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="medical_workflow.medical_event_form"/>
+        <field name="inherit_id" ref="medical_workflow.medical_event_form" />
         <field name="arch" type="xml">
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Questionnaire</attribute>
             </xpath>
             <button name="in_progress2completed" position="after">
-                <button name="back_to_draft"
-                        type="object" string="Back to draft"
-                        attrs="{'invisible': [('state', '!=', 'in-progress')]}"/>
+                <button
+                    name="back_to_draft"
+                    type="object"
+                    string="Back to draft"
+                    attrs="{'invisible': [('state', '!=', 'in-progress')]}"
+                />
             </button>
             <xpath expr="//div[@name='button_box']" position="inside">
-                <field name="digital_signature" invisible="1"/>
-                <button name="show_signature" type="object" string="Signature"
-                        icon="fa-signature"
-                        attrs="{'invisible': [('digital_signature', '=', False)]}"
-                        />
-                <button name="fill_questionnaire" type="object"
-                        string="Fill" icon="fa-file-invoice"
-                        attrs="{'invisible': [('state', '!=', 'in-progress')]}"/>
+                <field name="digital_signature" invisible="1" />
+                <button
+                    name="show_signature"
+                    type="object"
+                    string="Signature"
+                    icon="fa-signature"
+                    attrs="{'invisible': [('digital_signature', '=', False)]}"
+                />
+                <button
+                    name="fill_questionnaire"
+                    type="object"
+                    string="Fill"
+                    icon="fa-file-invoice"
+                    attrs="{'invisible': [('state', '!=', 'in-progress')]}"
+                />
             </xpath>
             <field name="service_id" position="before">
-                <field name="questionnaire_id"
-                       attrs="{'readonly': [('state', '!=', 'preparation')]}"/>
+                <field
+                    name="questionnaire_id"
+                    attrs="{'readonly': [('state', '!=', 'preparation')]}"
+                />
             </field>
             <xpath expr="//notebook/page" position="before">
-                <page name="items" string="Items"
-                      attrs="{'invisible': [('state', '=', 'preparation')]}">
-                    <field name="item_ids" readonly="1"/>
+                <page
+                    name="items"
+                    string="Items"
+                    attrs="{'invisible': [('state', '=', 'preparation')]}"
+                >
+                    <field name="item_ids" readonly="1" />
                 </page>
             </xpath>
         </field>
     </record>
-
     <record model="ir.ui.view" id="medical_questionnaire_response_fill_form_view">
-        <field name="name">medical.questionnaire.response.form (in medical_clinical_questionnaire)</field>
+        <field
+            name="name"
+        >medical.questionnaire.response.form (in medical_clinical_questionnaire)</field>
         <field name="model">medical.questionnaire.response</field>
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <!--<field name="item_ids" widget="medical_questionnaire"/>-->
-                    <field name="item_ids" readonly="0" mode="questionnaire"/>
+                    <field name="item_ids" readonly="0" mode="questionnaire" />
                 </sheet>
                 <footer>
-
-                    <button name="in_progress2completed" type="object"
-                            string="Complete" class="oe_highlight"/>
-                    <button name="write"
-                            string="Save" type="object"
-                            class="oe_highlight"/>
-                    <button special="cancel" string="Cancel"
-                            class="oe_link"/>
+                    <button
+                        name="in_progress2completed"
+                        type="object"
+                        string="Complete"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="write"
+                        string="Save"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" class="oe_link" />
                 </footer>
             </form>
         </field>
     </record>
-
     <record model="ir.ui.view" id="medical_questionnaire_response_search_view">
-        <field name="name">medical.questionnaire.response.search (in medical_clinical_questionnaire)</field>
+        <field
+            name="name"
+        >medical.questionnaire.response.search (in medical_clinical_questionnaire)</field>
         <field name="model">medical.questionnaire.response</field>
         <field name="arch" type="xml">
             <search>
-                <field name="patient_id"/>
+                <field name="patient_id" />
             </search>
         </field>
     </record>
-
     <record model="ir.ui.view" id="medical_questionnaire_response_tree_view">
-        <field name="name">medical.questionnaire.response.tree (in medical_clinical_questionnaire)</field>
+        <field
+            name="name"
+        >medical.questionnaire.response.tree (in medical_clinical_questionnaire)</field>
         <field name="model">medical.questionnaire.response</field>
-        <field name="inherit_id" ref="medical_workflow.medical_event_tree"/>
+        <field name="inherit_id" ref="medical_workflow.medical_event_tree" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
@@ -86,73 +109,77 @@
             </xpath>
         </field>
     </record>
-
-
-
     <record model="ir.ui.view" id="medical_questionnaire_response_item_form_view">
-        <field name="name">medical.questionnaire.response.item.form (in medical_clinical_questionnaire)</field>
+        <field
+            name="name"
+        >medical.questionnaire.response.item.form (in medical_clinical_questionnaire)</field>
         <field name="model">medical.questionnaire.response.item</field>
         <field name="arch" type="xml">
             <form delete="0" create="0">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="required"/>
-                        <field name="question_type"/>
-                        <field name="result"/>
+                        <field name="name" />
+                        <field name="required" />
+                        <field name="question_type" />
+                        <field name="result" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
-    <record model="ir.ui.view" id="medical_questionnaire_response_item_questionnaire_view">
-        <field name="name">medical.questionnaire.response.item.tree (in medical_clinical_questionnaire)</field>
+    <record
+        model="ir.ui.view"
+        id="medical_questionnaire_response_item_questionnaire_view"
+    >
+        <field
+            name="name"
+        >medical.questionnaire.response.item.tree (in medical_clinical_questionnaire)</field>
         <field name="model">medical.questionnaire.response.item</field>
         <field name="arch" type="xml">
             <questionnaire>
-                <field name="display_name"/>
-                <field name="name"/>
-                <field name="required"/>
-                <field name="question_type"/>
-                <field name="result"/>
-                <field name="selection_options"/>
-                <field name="options"/>
-                <field name="readonly"/>
-                <field name="readonly_condition"/>
-                <field name="technical_name"/>
-                <field name="is_invisible"/>
-                <field name="invisible_condition"/>
-                <field name="questionnaire_response_id"/>
-                <field name="questionnaire_id"/>
+                <field name="display_name" />
+                <field name="name" />
+                <field name="required" />
+                <field name="question_type" />
+                <field name="result" />
+                <field name="selection_options" />
+                <field name="options" />
+                <field name="readonly" />
+                <field name="readonly_condition" />
+                <field name="technical_name" />
+                <field name="is_invisible" />
+                <field name="invisible_condition" />
+                <field name="questionnaire_response_id" />
+                <field name="questionnaire_id" />
             </questionnaire>
         </field>
     </record>
-
     <record model="ir.ui.view" id="medical_questionnaire_response_item_tree_view">
-        <field name="name">medical.questionnaire.response.item.tree (in medical_clinical_questionnaire)</field>
+        <field
+            name="name"
+        >medical.questionnaire.response.item.tree (in medical_clinical_questionnaire)</field>
         <field name="model">medical.questionnaire.response.item</field>
         <field name="arch" type="xml">
             <tree delete="0" create="0" editable="bottom">
-                <field name="name"/>
-                <field name="result"/>
+                <field name="name" />
+                <field name="result" />
             </tree>
         </field>
     </record>
-
-    <record model="ir.actions.act_window" id="medical_questionnaire_response_act_window">
+    <record
+        model="ir.actions.act_window"
+        id="medical_questionnaire_response_act_window"
+    >
         <field name="name">Questionnaire Response</field>
         <field name="res_model">medical.questionnaire.response</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
-
     <record model="ir.ui.menu" id="medical_questionnaire_response_menu">
         <field name="name">Questionnaire Response</field>
-        <field name="parent_id" ref="medical_clinical.medical_clinical_event"/>
-        <field name="action" ref="medical_questionnaire_response_act_window"/>
-        <field name="sequence" eval="16"/>
+        <field name="parent_id" ref="medical_clinical.medical_clinical_event" />
+        <field name="action" ref="medical_questionnaire_response_act_window" />
+        <field name="sequence" eval="16" />
     </record>
-
 </odoo>

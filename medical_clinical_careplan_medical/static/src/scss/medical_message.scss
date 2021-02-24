@@ -1,13 +1,13 @@
 .o_medical_message_item {
-    background-color: rgba(gray('300'), 0.5);
-    border-bottom: 1px solid gray('400');
+    background-color: rgba(gray("300"), 0.5);
+    border-bottom: 1px solid gray("400");
 
     display: flex;
     padding: 4px $o-horizontal-padding;
     margin-bottom: 0px;
 
     o_medical_message_core {
-        float: left
+        float: left;
     }
 
     .o_medical_message_sidebar {
@@ -19,5 +19,4 @@
             max-width: $o-mail-thread-avatar-size;
         }
     }
-
 }

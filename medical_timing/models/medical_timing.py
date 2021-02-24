@@ -1,9 +1,10 @@
 # Copyright 2020 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from pytz import timezone, UTC
-from odoo import fields, models
 from datetime import timedelta
+
+from odoo import fields, models
+from pytz import UTC, timezone
 
 
 class MedicalTiming(models.Model):

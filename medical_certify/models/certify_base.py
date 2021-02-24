@@ -1,9 +1,10 @@
 # Copyright 2020 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import base64
-from odoo import api, fields, models
-from hashlib import sha512 as hash_func
 import json
+from hashlib import sha512 as hash_func
+
+from odoo import api, fields, models
 
 
 class CertifyBase(models.AbstractModel):

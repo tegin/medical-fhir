@@ -42,7 +42,7 @@
                         string="Procedures"
                     />
                     <field name='procedure_ids' invisible="1" />
-                    <field name="procedure_request_result" invisible="1"/>
+                    <field name="procedure_request_result" invisible="1" />
                 </button>
             </xpath>
         </field>

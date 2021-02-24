@@ -9,13 +9,12 @@
             </table>
         </div>
     </t>
-
     <t t-name="medical_clinical_questionnaire.item">
         <tr>
             <td class="o_td_label">
-                <label class="o_form_label" t-esc="data.data['name']"/>
+                <label class="o_form_label" t-esc="data.data['name']" />
             </td>
-            <td style="width: 100%" class="result_data"/>
+            <td style="width: 100%" class="result_data" />
         </tr>
     </t>
 </template>

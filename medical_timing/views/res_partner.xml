@@ -1,44 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 Creu Blanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
-
     <record model="ir.ui.view" id="res_partner_form_view">
         <field name="name">res.partner.form (in medical_timing)</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="medical_administration_location.res_partner_view_edit_form"/>
+        <field
+            name="inherit_id"
+            ref="medical_administration_location.res_partner_view_edit_form"
+        />
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page name="location_timing" string="Timing" attrs="{'invisible': [('is_location', '=', False)]}">
+                <page
+                    name="location_timing"
+                    string="Timing"
+                    attrs="{'invisible': [('is_location', '=', False)]}"
+                >
                     <group>
                         <group string="Once a Day">
-                            <field name="tz"/>
-                            <field name="timing_qd" string="Timing" widget="float_time"/>
-                            <field name="timing_am" string="Morning" widget="float_time"/>
-                            <field name="timing_pm" string="Afternoon" widget="float_time"/>
+                            <field name="tz" />
+                            <field
+                                name="timing_qd"
+                                string="Timing"
+                                widget="float_time"
+                            />
+                            <field
+                                name="timing_am"
+                                string="Morning"
+                                widget="float_time"
+                            />
+                            <field
+                                name="timing_pm"
+                                string="Afternoon"
+                                widget="float_time"
+                            />
                         </group>
                         <group string="Twice a Day">
-                            <field name="timing_bid_1" string="First Timing" widget="float_time"/>
-                            <field name="timing_bid_2" string="Second Timing" widget="float_time"/>
+                            <field
+                                name="timing_bid_1"
+                                string="First Timing"
+                                widget="float_time"
+                            />
+                            <field
+                                name="timing_bid_2"
+                                string="Second Timing"
+                                widget="float_time"
+                            />
                         </group>
                         <group string="Three times a Day">
-                            <field name="timing_tid_1" string="First Timing" widget="float_time"/>
-                            <field name="timing_tid_2" string="Second Timing" widget="float_time"/>
-                            <field name="timing_tid_3" string="Third Timing" widget="float_time"/>
+                            <field
+                                name="timing_tid_1"
+                                string="First Timing"
+                                widget="float_time"
+                            />
+                            <field
+                                name="timing_tid_2"
+                                string="Second Timing"
+                                widget="float_time"
+                            />
+                            <field
+                                name="timing_tid_3"
+                                string="Third Timing"
+                                widget="float_time"
+                            />
                         </group>
                         <group string="Four times a Day">
-                            <field name="timing_qid_1" string="First Timing" widget="float_time"/>
-                            <field name="timing_qid_2" string="Second Timing" widget="float_time"/>
-                            <field name="timing_qid_3" string="Third Timing" widget="float_time"/>
-                            <field name="timing_qid_4" string="Fourth Timing" widget="float_time"/>
+                            <field
+                                name="timing_qid_1"
+                                string="First Timing"
+                                widget="float_time"
+                            />
+                            <field
+                                name="timing_qid_2"
+                                string="Second Timing"
+                                widget="float_time"
+                            />
+                            <field
+                                name="timing_qid_3"
+                                string="Third Timing"
+                                widget="float_time"
+                            />
+                            <field
+                                name="timing_qid_4"
+                                string="Fourth Timing"
+                                widget="float_time"
+                            />
                         </group>
                     </group>
                 </page>
             </notebook>
         </field>
     </record>
-
-
-
 </odoo>

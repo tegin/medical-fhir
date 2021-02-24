@@ -7,13 +7,13 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="signature_qr" widget="image"/>
-                        <field name="signature_date"/>
-                        <field name="signature_altered"/>
-                        <field name="cypher_id" options="{'no_open': True}"/>
+                        <field name="signature_qr" widget="image" />
+                        <field name="signature_date" />
+                        <field name="signature_altered" />
+                        <field name="cypher_id" options="{'no_open': True}" />
                     </group>
                     <footer>
-                        <button string="Close" class="btn-secondary" special="cancel"/>
+                        <button string="Close" class="btn-secondary" special="cancel" />
                     </footer>
                 </sheet>
             </form>

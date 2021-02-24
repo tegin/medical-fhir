@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 Creu Blanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
-
     <record model="ir.ui.view" id="medical_request_set_timing_form_view">
         <field name="name">medical.request.set.timing.form (in medical_timing)</field>
         <field name="model">medical.request.set.timing</field>
@@ -11,24 +9,26 @@
             <form string="Medical Request Set Timing">
                 <!-- TODO -->
                 <group>
-                    <field name="timing_id" options="{'no_open': True, 'no_create': True}"/>
-                    <field name="start_date"/>
-                    <field name="location_id" options="{'no_open': True}"/>
-                    <field name="next_expected_date"/>
+                    <field
+                        name="timing_id"
+                        options="{'no_open': True, 'no_create': True}"
+                    />
+                    <field name="start_date" />
+                    <field name="location_id" options="{'no_open': True}" />
+                    <field name="next_expected_date" />
                 </group>
                 <footer>
-                    <button name="configure_timing"
-                            string="Configure"
-                            class="btn-primary"
-                            type="object"/>
-                    <button string="Cancel"
-                            class="btn-default"
-                            special="cancel"/>
+                    <button
+                        name="configure_timing"
+                        string="Configure"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
             </form>
         </field>
     </record>
-
     <record model="ir.actions.act_window" id="medical_request_set_timing_act_window">
         <field name="name">Set Timing</field>
         <field name="res_model">medical.request.set.timing</field>
@@ -36,6 +36,4 @@
         <field name="context">{}</field>
         <field name="target">new</field>
     </record>
-
-
 </odoo>

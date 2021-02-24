@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 Creu Blanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
-
     <record model="ir.ui.view" id="medical_careplan_message_medical_message_view">
-        <field name="name">medical.careplan.message.medical_message (in medical_careplan_medical)</field>
+        <field
+            name="name"
+        >medical.careplan.message.medical_message (in medical_careplan_medical)</field>
         <field name="model">medical.careplan.message</field>
-        <field name="inherit_id" ref="medical_clinical_careplan_medical.medical_careplan_message_medical_message_view"/>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_careplan_medical.medical_careplan_message_medical_message_view"
+        />
         <field name="arch" type="xml">
             <field name="message_date" position="after">
-                <field name="procedure_message"/>
-                <field name="questionnaire_message"/>
+                <field name="procedure_message" />
+                <field name="questionnaire_message" />
             </field>
         </field>
     </record>
-
-
-
 </odoo>

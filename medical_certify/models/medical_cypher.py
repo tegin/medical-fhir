@@ -1,10 +1,11 @@
 # Copyright 2020 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
+from datetime import datetime
+
 from odoo import fields, models
 from odoo.tools.config import config
-from datetime import datetime
-import logging
 
 _logger = logging.getLogger(__name__)
 try:

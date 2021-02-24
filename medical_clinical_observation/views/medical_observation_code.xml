@@ -1,53 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 Creu Blanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
-
     <record model="ir.ui.view" id="medical_observation_code_form_view">
-        <field name="name">medical.observation.code.form (in cb_medical_constants)</field>
+        <field
+            name="name"
+        >medical.observation.code.form (in cb_medical_constants)</field>
         <field name="model">medical.observation.code</field>
         <field name="arch" type="xml">
             <form>
-                <header/>
+                <header />
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="field_type"/>
+                            <field name="name" />
+                            <field name="field_type" />
                         </group>
                         <group>
-                            <field name="possible_observation_uom_ids" widget="many2many_tags"/>
-                            <field name="default_observation_uom"/>
+                            <field
+                                name="possible_observation_uom_ids"
+                                widget="many2many_tags"
+                            />
+                            <field name="default_observation_uom" />
                         </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
     <record model="ir.ui.view" id="medical_observation_code_search_view">
-        <field name="name">medical.observation.code.search (in cb_medical_constants)</field>
+        <field
+            name="name"
+        >medical.observation.code.search (in cb_medical_constants)</field>
         <field name="model">medical.observation.code</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/>
-                <field name="field_type"/>
+                <field name="name" />
+                <field name="field_type" />
             </search>
         </field>
     </record>
-
     <record model="ir.ui.view" id="medical_observation_code_tree_view">
-        <field name="name">medical.observation.code.tree (in cb_medical_constants)</field>
+        <field
+            name="name"
+        >medical.observation.code.tree (in cb_medical_constants)</field>
         <field name="model">medical.observation.code</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <field name="field_type"/>
+                <field name="name" />
+                <field name="field_type" />
             </tree>
         </field>
     </record>
-
     <record model="ir.actions.act_window" id="medical_observation_code_act_window">
         <field name="name">Medical Observation Code</field>
         <field name="res_model">medical.observation.code</field>
@@ -55,12 +59,13 @@
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
-
     <record model="ir.ui.menu" id="medical_observation_code_menu">
         <field name="name">Medical Observation Code</field>
-        <field name="parent_id" ref="medical_clinical_observation.medical_observation_menu_root"/>
-        <field name="action" ref="medical_observation_code_act_window"/>
-        <field name="sequence" eval="10"/>
+        <field
+            name="parent_id"
+            ref="medical_clinical_observation.medical_observation_menu_root"
+        />
+        <field name="action" ref="medical_observation_code_act_window" />
+        <field name="sequence" eval="10" />
     </record>
-
 </odoo>

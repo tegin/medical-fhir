@@ -1,12 +1,11 @@
 # Copyright 2020 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import numpy as np
+import pandas as pd
 from odoo import api, fields, models
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DATETIME_FORMAT
-
-import pandas as pd
-import numpy as np
-from pytz import timezone, UTC
+from pytz import UTC, timezone
 
 
 class MedicalCareplanMedical(models.Model):
