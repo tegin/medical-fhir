@@ -10,7 +10,7 @@ class MedicalQuestionnaireResponse(models.Model):
 
     _name = "medical.questionnaire.response"
     _description = "Medical Questionnaire Response"  # TODO
-    _inherit = ["medical.event", "certify.base"]
+    _inherit = ["medical.event", "digest.base"]
 
     medical_careplan_message_id = fields.Many2one(
         "medical.careplan.message", readonly=True
@@ -35,7 +35,6 @@ class MedicalQuestionnaireResponse(models.Model):
         "medical.questionnaire.response.item",
         inverse_name="questionnaire_response_id",
     )
-
     response_date = fields.Datetime()
 
     def _generate_serializer(self):

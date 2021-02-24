@@ -22,13 +22,13 @@
                 />
             </button>
             <xpath expr="//div[@name='button_box']" position="inside">
-                <field name="digital_signature" invisible="1" />
+                <field name="signature_date" invisible="1" />
                 <button
                     name="show_signature"
                     type="object"
                     string="Signature"
                     icon="fa-signature"
-                    attrs="{'invisible': [('digital_signature', '=', False)]}"
+                    attrs="{'invisible': [('signature_date', '=', False)]}"
                 />
                 <button
                     name="fill_questionnaire"

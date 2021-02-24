@@ -1,3 +1,4 @@
+/* global py */
 odoo.define("medical.QuestionnaireRenderer", function(require) {
     "use strict";
 
