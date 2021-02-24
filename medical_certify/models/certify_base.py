@@ -7,56 +7,32 @@ from hashlib import sha512 as hash_func
 from odoo import api, fields, models
 
 
-class CertifyBase(models.AbstractModel):
-    _name = "certify.base"
-    _description = "Certify Base"
+class DigestBase(models.AbstractModel):
+    _name = "digest.base"
+    _description = "Digest Base"
+    _SIGNATURE_FIELD = "digest"
 
     digest = fields.Char(
         "Digest", readonly=True, help="Original Document Digest", copy=False
     )
     digest_altered = fields.Boolean(compute="_compute_digest")
-    signature_altered = fields.Boolean(compute="_compute_digest")
-    serializer_current = fields.Text("Current Doc", compute="_compute_digest")
     digest_current = fields.Char("Current Hash", compute="_compute_digest")
-    digital_signature = fields.Text(
-        "Digital Signature", readonly=True, copy=False
-    )
+    serializer_current = fields.Text("Current Doc", compute="_compute_digest")
     signature_date = fields.Datetime(readonly=True, copy=False)
     signature_qr = fields.Binary(
         string="Signature detail", compute="_compute_signature_qr"
     )
-    cypher_id = fields.Many2one(
-        "medical.cypher",
-        readonly=True,
-        copy=False,
-        required=True,
-        default=lambda r: r._get_cypher().id,
-    )
 
-    @api.depends("digital_signature")
+    @api.depends(lambda r: [r._SIGNATURE_FIELD])
     def _compute_signature_qr(self):
         report = self.env["ir.actions.report"]
         for rec in self:
-            rec.signature_qr = base64.b64encode(
-                report.qr_generate(
-                    rec.digital_signature.encode(), error_correction=3
+            if rec[rec._SIGNATURE_FIELD]:
+                rec.signature_qr = base64.b64encode(
+                    report.qr_generate(
+                        rec[rec._SIGNATURE_FIELD].encode(), error_correction=3
+                    )
                 )
-            )
-
-    @api.depends()
-    def _compute_digest(self):
-        for rec in self:
-            serializer, digest = rec._generate_digest_data()
-            rec.serializer_current = serializer
-            rec.digest_current = digest
-            rec.digest_altered = rec.digest and rec.digest != digest
-            altered = False
-            if rec.digital_signature:
-                altered = (
-                    rec.digest_altered
-                    or not rec.cypher_id._verify_signature(rec)
-                )
-            rec.signature_altered = altered
 
     def _generate_digest_data(self):
         serializer = json.dumps(self._generate_serializer(), sort_keys=True)
@@ -70,21 +46,16 @@ class CertifyBase(models.AbstractModel):
     def _generate_hash(self, serializer):
         return hash_func(serializer.encode()).hexdigest()
 
-    def _get_cypher(self):
-        return self.env.ref("medical_certify.fernet_certify")
+    @api.depends()
+    def _compute_digest(self):
+        for rec in self:
+            rec._compute_digest_one()
 
-    def _generate_signature(self):
-        cypher = self.cypher_id or self._get_cypher()
-        vals = cypher._sign_value(self)
-        if not self.cypher_id:
-            vals["cypher_id"] = self.cypher_id.id
-        return vals
-
-    def _sign_document(self):
-        self.ensure_one()
-        if self.signature_date or self.digest or self.digital_signature:
-            return
-        self.write(self._generate_signature())
+    def _compute_digest_one(self):
+        serializer, digest = self._generate_digest_data()
+        self.serializer_current = serializer
+        self.digest_current = digest
+        self.digest_altered = self.digest and self.digest != digest
 
     def show_signature(self):
         self.ensure_one()
@@ -97,10 +68,67 @@ class CertifyBase(models.AbstractModel):
             "target": "new",
             "view_mode": "form",
             "context": ctx,
-            "views": [
-                (
-                    self.env.ref("medical_certify.certify_base_form_view").id,
-                    "form",
-                )
-            ],
+            "views": [(self._show_signature_view().id, "form",)],
         }
+
+    def _show_signature_view(self):
+        return self.env.ref("medical_certify.certify_base_form_view")
+
+    def _generate_signature(self):
+        digest = self.digest_current
+        return {"digest": digest, "signature_date": fields.Datetime.now()}
+
+    def _sign_document(self):
+        self.ensure_one()
+        if self._check_signed():
+            return
+        self.write(self._generate_signature())
+
+    def _check_signed(self):
+        return self.signature_date or self.digest
+
+
+class CertifyBase(models.AbstractModel):
+    _name = "certify.base"
+    _inherit = "digest.base"
+    _description = "Certify Base"
+    _SIGNATURE_FIELD = "digital_signature"
+
+    signature_altered = fields.Boolean(compute="_compute_digest")
+    digital_signature = fields.Text(
+        "Digital Signature", readonly=True, copy=False
+    )
+    cypher_id = fields.Many2one(
+        "medical.cypher",
+        readonly=True,
+        copy=False,
+        required=True,
+        default=lambda r: r._get_cypher().id,
+    )
+
+    def _compute_digest_one(self):
+        super(CertifyBase, self)._compute_digest_one()
+        altered = False
+        if self.digital_signature:
+            altered = (
+                self.digest_altered
+                or not self.cypher_id._verify_signature(self)
+            )
+        self.signature_altered = altered
+
+    def _get_cypher(self):
+        return self.env.ref("medical_certify.fernet_certify")
+
+    def _show_signature_view(self):
+        return self.env.ref("medical_certify.certify_base_sign_form_view")
+
+    def _check_signed(self):
+        return super()._check_signed() or self.digital_signature
+
+    def _generate_signature(self):
+        vals = super(CertifyBase, self)._generate_signature()
+        cypher = self.cypher_id or self._get_cypher()
+        vals.update(cypher._sign_value(self))
+        if not self.cypher_id:
+            vals["cypher_id"] = self.cypher_id.id
+        return vals

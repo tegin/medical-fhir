@@ -9,14 +9,28 @@
                     <group>
                         <field name="signature_qr" widget="image" />
                         <field name="signature_date" />
-                        <field name="signature_altered" />
-                        <field name="cypher_id" options="{'no_open': True}" />
+                        <field name="digest_altered" />
                     </group>
                     <footer>
                         <button string="Close" class="btn-secondary" special="cancel" />
                     </footer>
                 </sheet>
             </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="certify_base_sign_form_view">
+        <field name="name">certify.base.form (in medical_certify)</field>
+        <field name="model">certify.base</field>
+        <field name="inherit_id" ref="certify_base_form_view" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="signature_date" position="after">
+                <field name="signature_altered" />
+                <field name="cypher_id" options="{'no_open': True}" />
+            </field>
+            <field name="digest_altered" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
         </field>
     </record>
 </odoo>
