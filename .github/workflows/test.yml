@@ -39,6 +39,7 @@ jobs:
             - name: Configuration
               run: |
                   pip install wheel
+                  sudo apt update
                   sudo apt install libldap2-dev nodejs libxml2-dev libxslt1-dev libevent-dev libsasl2-dev expect cups libcups2-dev libxmlsec1-dev
             - name: Downloading Maintainer quality tools
               run: |
