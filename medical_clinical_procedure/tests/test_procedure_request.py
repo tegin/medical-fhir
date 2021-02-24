@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.exceptions import Warning
+from odoo.exceptions import Warning as Warn
 from odoo.tests import TransactionCase
 
 
@@ -36,7 +36,7 @@ class TestProcedureRequest(TransactionCase):
             self.assertEqual(
                 action["context"]["default_procedure_request_id"], request.id
             )
-            with self.assertRaises(Warning):
+            with self.assertRaises(Warn):
                 request.unlink()
 
     def test_procedure_request_workflow(self):
