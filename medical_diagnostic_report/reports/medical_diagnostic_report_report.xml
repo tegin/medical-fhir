@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="medical_diagnostic_report" model="ir.actions.report">
+        <field name="name">Diagnostic Report </field>
+        <field name="model">medical.diagnostic.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >medical_diagnostic_report.medical_diagnostic_report_template</field>
+        <field
+            name="report_file"
+        >medical_diagnostic_report.medical_diagnostic_report_template</field>
+        <field name="binding_model_id" ref="model_medical_diagnostic_report" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
