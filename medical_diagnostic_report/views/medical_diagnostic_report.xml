@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_diagnostic_report_form_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.form (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="medical_workflow.medical_event_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="registered2final_action"
+                    string="Issue report"
+                    type="object"
+                    states="registered"
+                />
+                <button
+                    name="final2cancelled_action"
+                    string="Cancel report"
+                    type="object"
+                    states="registered,final"
+                />
+            </header>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="show_signature"
+                    class="oe_stat_button"
+                    icon="fa-signature"
+                    string="Signature"
+                    attrs="{'invisible': [('signature_date', '=', False)]}"
+                >
+                    <field name="signature_date" invisible="1" />
+                </button>
+            </xpath>
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Diagnostic Report</attribute>
+            </xpath>
+            <field name="patient_id" position="attributes">
+                <attribute name="attrs">{}</attribute>
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="patient_id" position="before">
+                <field
+                    name="patient_name"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                />
+                <field
+                    name="encounter_id"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                />
+                <field name="vat" attrs="{'readonly':[('is_editable', '=', False)]}" />
+                <field
+                    name="patient_age"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                />
+                <field
+                    name="patient_origin"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                />
+            </field>
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">registered,final</attribute>
+            </field>
+            <field name="occurrence_date" position="after">
+                <field name="issued_date" />
+                <field name="issued_user_id" states="final,cancelled" />
+                <field name="cancel_date" states="cancelled" />
+                <field name="cancel_user_id" states="cancelled" />
+                <field name="item_blocked" invisible="1" />
+                <field name="with_observation" invisible="1" />
+                <field name="with_conclusion" invisible="1" />
+                <field name="with_composition" invisible="1" />
+            </field>
+            <xpath expr="//notebook/page[1]" position="before">
+                <page name="medical_department" string="Medical Department">
+                    <field
+                        name="medical_department"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    />
+                </page>
+                <page
+                    name="observation"
+                    string="Observations"
+                    attrs="{'invisible':[('with_observation', '=', False)]}"
+                >
+                    <field
+                        name="observation_ids"
+                        widget="section_and_note_one2many"
+                        context="{'hide_delete_create': item_blocked}"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    >
+                        <tree editable="bottom">
+                            <control>
+                                <create
+                                    string="Add a section"
+                                    context="{'default_display_type': 'line_section'}"
+                                />
+                                <create
+                                    string="Add a subsection"
+                                    context="{'default_display_type': 'line_subsection'}"
+                                />
+                                <create
+                                    string="Add a note"
+                                    context="{'default_display_type': 'line_note'}"
+                                />
+                                <create
+                                    string="Add a String"
+                                    context="{'default_value_type': 'str'}"
+                                />
+                                <create
+                                    string="Add a Float"
+                                    context="{'default_value_type': 'float'}"
+                                />
+                                <create
+                                    string="Add a Integer"
+                                    context="{'default_value_type': 'int'}"
+                                />
+                                <create
+                                    string="Add a Boolean"
+                                    context="{'default_value_type': 'bool'}"
+                                />
+                            </control>
+                            <field name="display_type" invisible="1" />
+                            <field
+                                name="name"
+                                widget="section_and_note_text"
+                                attrs="{'readonly': [('blocked', '=', True)]}"
+                            />
+                            <field name="value" invisible="1" />
+                            <group string="Value" name="value">
+                                <field
+                                    name="value_bool"
+                                    attrs="{'invisible': [('value_type', '!=', 'bool')]}"
+                                />
+                                <field
+                                    name="value_str"
+                                    attrs="{'invisible': [('value_type', '!=', 'str')]}"
+                                />
+                                <field
+                                    name="value_selection"
+                                    widget="dynamic_selection_diagnostic_report"
+                                    context="{'options': selection_options}"
+                                    attrs="{'invisible': [('value_type', '!=', 'selection')]}"
+                                />
+                                <field
+                                    name="value_int"
+                                    attrs="{'invisible': [('value_type', '!=', 'int')]}"
+                                />
+                                <field
+                                    name="value_float"
+                                    attrs="{'invisible': [('value_type', '!=', 'float')]}"
+                                />
+                            </group>
+                            <field
+                                name="uom_id"
+                                attrs="{'readonly': [('blocked', '=', True)]}"
+                            />
+                            <field name="uom_symbol" invisible="1" />
+                            <field name="reference_format" invisible="1" />
+                            <field name="reference_range_high" invisible="1" />
+                            <field name="reference_range_low" invisible="1" />
+                            <field name="value_type" invisible="1" />
+                            <field name="selection_options" invisible="1" />
+                            <field name="reference_range_limit" />
+                            <field name="interpretation" />
+                            <field name="blocked" invisible="1" />
+                        </tree>
+                    </field>
+                </page>
+                <page
+                    name="composition"
+                    string="Composition"
+                    attrs="{'invisible':[('with_composition', '=', False)]}"
+                >
+                    <field
+                        name="composition"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    />
+                </page>
+                <page
+                    name="conclusion"
+                    string="Conclusion"
+                    attrs="{'invisible':[('with_conclusion', '=', False)]}"
+                >
+                    <field
+                        name="conclusion"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_search_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.search (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="internal_identifier" />
+                <separator />
+                <filter
+                    name="filter_not_cancelled"
+                    string="Not cancelled"
+                    domain="[('state', '!=', 'cancelled')]"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_tree_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.tree (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="medical_workflow.medical_event_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Diagnostic Report</attribute>
+            </xpath>
+            <tree>
+                <field name="issued_date" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="medical_diagnostic_report_act_window">
+        <field name="name">Medical Diagnostic Report</field>
+        <!-- TODO -->
+        <field name="res_model">medical.diagnostic.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.ui.menu" id="medical_diagnostic_report_menu">
+        <field name="name">Medical Diagnostic Report</field>
+        <field name="parent_id" ref="medical_clinical.medical_clinical_event" />
+        <field name="action" ref="medical_diagnostic_report_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>
