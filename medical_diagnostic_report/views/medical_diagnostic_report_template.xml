@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_report_template_form_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.template.form (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="item_blocked" />
+                        <field name="with_observation" />
+                        <field name="with_composition" />
+                        <field name="with_conclusion" />
+                    </group>
+                    <notebook>
+                        <page name="medical_department" string="Medical Department">
+                            <field name="medical_department" />
+                        </page>
+                        <page
+                            name="item"
+                            string="Observations"
+                            attrs="{'invisible':[('with_observation', '=', False)]}"
+                        >
+                            <field name="item_ids" widget="section_and_note_one2many">
+                                <tree
+                                    editable="bottom"
+                                    decoration-danger="blocked==True or parent.item_blocked == True"
+                                >
+                                    <control>
+                                        <create string="Add a line" />
+                                        <create
+                                            string="Add a section"
+                                            context="{'default_display_type': 'line_section'}"
+                                        />
+                                        <create
+                                            string="Add a subsection"
+                                            context="{'default_display_type': 'line_subsection'}"
+                                        />
+                                        <create
+                                            string="Add a note"
+                                            context="{'default_display_type': 'line_note'}"
+                                        />
+                                        <create
+                                            string="Add a blocked line"
+                                            context="{'default_blocked': True}"
+                                        />
+                                        <create
+                                            string="Add a blocked section"
+                                            context="{'default_display_type': 'line_section', 'default_blocked': True}"
+                                        />
+                                        <create
+                                            string="Add a blocked subsection"
+                                            context="{'default_display_type': 'line_subsection', 'default_blocked': True}"
+                                        />
+                                        <create
+                                            string="Add a blocked note"
+                                            context="{'default_display_type': 'line_note', 'default_blocked': True}"
+                                        />
+                                    </control>
+                                    <field name="sequence" widget="handle" />
+                                    <field name="display_type" invisible="1" />
+                                    <field name="name" widget="section_and_note_text" />
+                                    <field
+                                        name="value_type"
+                                        attrs="{'required': [('display_type', '=', False)]}"
+                                    />
+                                    <field
+                                        name="selection_options"
+                                        attrs="{'required': [('value_type', '=', 'selection')], 'readonly': [('value_type', '!=', 'selection')]}"
+                                    />
+                                    <field name="uom_id" />
+                                    <field name="uom_symbol" invisible="1" />
+                                    <field name="reference_range_low" />
+                                    <field name="reference_range_high" />
+                                    <field name="reference_range_limit" />
+                                    <field name="blocked" invisible="1" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page
+                            name="composition"
+                            string="Composition"
+                            attrs="{'invisible': [('with_composition','=',False)]}"
+                        >
+                            <field name="composition" />
+                        </page>
+                        <page
+                            name="conclusions"
+                            string="Conclusions"
+                            attrs="{'invisible': [('with_conclusion','=',False)]}"
+                        >
+                            <field name="conclusion" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_template_tree_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.template.tree (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="medical_report_template_act_window" model="ir.actions.act_window">
+        <field name="name">Diagnostic Report Template</field>
+        <field name="res_model">medical.diagnostic.report.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="medical_configuration_template"
+        name="Templates"
+        parent="medical_base.medical_root_configuration"
+        sequence="10"
+    />
+    <record model="ir.ui.menu" id="medical_report_template_menu">
+        <field name="name">Diagnostic Report Templates</field>
+        <field name="parent_id" ref="medical_configuration_template" />
+        <field name="action" ref="medical_report_template_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>

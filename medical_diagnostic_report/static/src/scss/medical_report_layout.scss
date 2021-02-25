@@ -1,0 +1,136 @@
+.o_diagnostic_report_layout_footer,
+.o_diagnostic_report_layout_header,
+.o_diagnostic_report_layout {
+    font-family: "Lato", "Noto";
+    color: gray("700");
+    font-size: 16px;
+}
+.o_diagnostic_report_layout_header {
+    .o_diagnostic_report_layout_header_row {
+        align-items: end;
+    }
+    .o_patient_header {
+        padding-top: 11px;
+        .o_contact_information {
+            font-size: 12px;
+        }
+    }
+    border-bottom: 1px solid gray("600");
+    img {
+        max-height: 100px;
+    }
+}
+.o_watermark {
+    position: absolute;
+    opacity: 0.3;
+    font-size: 10em;
+    text-align: center;
+    width: 100%;
+    z-index: 1000;
+    transform: rotate(315deg);
+    -webkit-transform: rotate(315deg);
+}
+.o_medical_department {
+    border-top: 1px solid gray("600");
+    border-bottom: 1px solid gray("600");
+}
+.o_conclusion {
+    page-break-inside: avoid;
+}
+.o_signature {
+    page-break-inside: avoid;
+}
+.o_code {
+    font-size: 10px;
+}
+.o_diagnostic_report_layout_footer {
+    margin-top: 200px;
+    font-size: 12px;
+    white-space: nowrap;
+    padding-top: 10px;
+    border-top: 1px solid gray("600");
+    ul {
+        margin: 4px 0;
+    }
+}
+.o_patient_information {
+    padding-bottom: 16px;
+}
+.o_diagnostic_report_layout {
+    .oe_red {
+        color: #9c1b31;
+    }
+    h1 {
+        padding-top: 20px;
+        margin-bottom: 0px;
+    }
+    table {
+        td,
+        th {
+            border-top: none;
+            padding-top: 0.6em;
+            padding-bottom: 1px;
+            padding-left: 0.4em;
+            padding-right: 0.4em;
+        }
+        thead {
+            tr th {
+                text-transform: uppercase;
+            }
+        }
+        tbody {
+            color: gray("700");
+            tr {
+                &.o_line_section td {
+                    padding-top: 2px;
+                    font-size: 1.2rem;
+                }
+                &.o_line_note td {
+                    padding-left: 75px;
+                    padding-top: 1px;
+                    padding-bottom: 7px;
+                    font-size: 0.7rem;
+                }
+                &.o_line_subsection td {
+                    background-color: #fff;
+                    padding-top: 20px;
+                    border-bottom: 1px solid gray("700");
+                }
+                &.o_line_section td {
+                    background-color: #fff;
+                    text-align: right;
+                    border-bottom: 2px solid gray("700");
+                }
+            }
+        }
+    }
+    .page > table:not(.o_main_table) tr td:last-child {
+        background-color: gray("200");
+    }
+    .row:not(#total) > div > table tr:not(:first-child):not(:last-child) td:last-child {
+        background-color: gray("200");
+    }
+    .row > div > table,
+    div#total table {
+        tr {
+            &:first-child,
+            &.o_subtotal {
+                border-bottom: 1px solid gray("700");
+            }
+            &.o_subtotal {
+                td:first-child {
+                    border-right: none;
+                }
+            }
+            &:last-child td,
+            &.o_total td {
+                background-color: gray("700");
+                color: #fff;
+
+                &:first-child {
+                    border-right: none;
+                }
+            }
+        }
+    }
+}
