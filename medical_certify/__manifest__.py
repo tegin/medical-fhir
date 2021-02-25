@@ -10,9 +10,5 @@
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": ["report_qr"],
-    "data": [
-        "security/ir.model.access.csv",
-        "data/medical_cypher.xml",
-        "views/certify_base.xml",
-    ],
+    "data": ["views/certify_base.xml"],
 }
