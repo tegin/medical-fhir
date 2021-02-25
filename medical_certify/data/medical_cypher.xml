@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
-    <record id="fernet_certify" model="medical.cypher">
-        <field name="name">Fernet Base</field>
-        <field name="cypher_type">fernet</field>
-        <field name="fernet_config_key">medical_integration_key</field>
-    </record>
-</odoo>
