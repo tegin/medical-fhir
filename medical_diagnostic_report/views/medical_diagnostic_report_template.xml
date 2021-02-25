@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_report_template_form_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.template.form (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <notebook>
+                        <page name="item" string="Observations">
+                            <field name="item_ids" widget="section_and_note_one2many">
+                                <tree editable="bottom">
+                                    <control>
+                                        <create string="Add a line" />
+                                        <create
+                                            string="Add a section"
+                                            context="{'default_display_type': 'line_section'}"
+                                        />
+                                        <create
+                                            string="Add a note"
+                                            context="{'default_display_type': 'line_note'}"
+                                        />
+                                    </control>
+                                    <field name="sequence" widget="handle" />
+                                    <field name="display_type" invisible="1" />
+                                    <field name="name" widget="section_and_note_text" />
+                                    <field name="uom_id" />
+                                    <field name="uom_symbol" invisible="1" />
+                                    <field name="reference_format" invisible="1" />
+                                    <field name="reference_range_low" />
+                                    <field name="reference_range_high" />
+                                    <field name="reference_range_limit" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="conclusions" string="Conclusions">
+                            <field name="conclusion" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_template_tree_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.template.tree (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="medical_report_template_act_window" model="ir.actions.act_window">
+        <field name="name">Diagnostic Report Template</field>
+        <field name="res_model">medical.diagnostic.report.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.ui.menu" id="medical_report_template_menu">
+        <field name="name">Diagnostic Report Templates</field>
+        <field name="parent_id" ref="medical_clinical.medical_clinical_event" />
+        <!--TODO:Move-->
+        <field name="action" ref="medical_report_template_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>

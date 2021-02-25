@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="medical_diagnostic_report.medical_diagnostic_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1>Medical Diagnostic Report</h1>
+                        <div id="informations" class="row mt32 mb32">
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.internal_identifier"
+                                name="internal_identifier"
+                            >
+                                <strong>Internal Identifier:</strong>
+                                <p class="m-0" t-field="doc.internal_identifier" />
+                            </div>
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.name"
+                                name="test_name"
+                            >
+                                <strong>Test Name:</strong>
+                                <p class="m-0" t-field="doc.name" />
+                            </div>
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.patient_id"
+                                name="patient_id"
+                            >
+                                <strong>Patient:</strong>
+                                <p class="m-0" t-field="doc.patient_id" />
+                            </div>
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.service_id"
+                                name="service_id"
+                            >
+                                <strong>Service:</strong>
+                                <p class="m-0" t-field="doc.service_id" />
+                            </div>
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.performer_id"
+                                name="performer_id"
+                            >
+                                <strong>Performer:</strong>
+                                <p class="m-0" t-field="doc.performer_id" />
+                            </div>
+                        </div>
+                        <div id="informations" class="row mt32 mb32">
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.occurrence_date"
+                                name="occurrence_date"
+                            >
+                                <strong>Occurrence Date:</strong>
+                                <p class="m-0" t-field="doc.occurrence_date" />
+                            </div>
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.issued_date"
+                                name="issued_date"
+                            >
+                                <strong>Issued Date:</strong>
+                                <p class="m-0" t-field="doc.issued_date" />
+                            </div>
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.issued_user_id"
+                                name="issued_user"
+                            >
+                                <strong>Issued by User:</strong>
+                                <p class="m-0" t-field="doc.issued_user_id" />
+                            </div>
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.cancel_date"
+                                name="cancel_date"
+                            >
+                                <strong>Cancel Date:</strong>
+                                <p class="m-0" t-field="doc.cancel_date" />
+                            </div>
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.cancel_user_id"
+                                name="cancel_user"
+                            >
+                                <strong>Cancelled by User:</strong>
+                                <p class="m-0" t-field="doc.cancel_user_id" />
+                            </div>
+                        </div>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                    <th>Unit of measure</th>
+                                    <th>Reference Range</th>
+                                    <th>Interpretation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.observation_ids" t-as="obs">
+                                    <tr
+                                        t-att-class="'bg-200 font-weight-bold o_line_section' if obs.display_type == 'line_section' else 'font-italic o_line_note' if obs.display_type == 'line_note' else ''"
+                                    >
+                                        <t t-if="not obs.display_type">
+                                            <td>
+                                                <t t-esc="obs.name" />
+                                            </td>
+                                            <td>
+                                                <t t-esc="obs.value" />
+                                            </td>
+                                            <td>
+                                                <t t-esc="obs.uom_id.name" />
+                                            </td>
+                                            <td>
+                                                <t t-esc="obs.reference_range_limit" />
+                                            </td>
+                                            <td>
+                                                <t t-esc="obs.interpretation" />
+                                            </td>
+                                        </t>
+                                        <t t-if="obs.display_type == 'line_section'">
+                                            <td colspan="99">
+                                                <span t-field="obs.name" />
+                                            </td>
+                                        </t>
+                                        <t t-if="obs.display_type == 'line_note'">
+                                            <td colspan="99">
+                                                <span t-field="obs.name" />
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div id="informations" class="row mt32 mb32">
+                            <div
+                                class="col-auto mw-100 mb-2"
+                                t-if="doc.conclusion"
+                                name="conclusion"
+                            >
+                                <strong>Conclusions:</strong>
+                                <p class="m-0" t-field="doc.conclusion" />
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

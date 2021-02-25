@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_diagnostic_report_form_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.form (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="medical_workflow.medical_event_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="registered2final_action"
+                    string="Issue report"
+                    type="object"
+                    states="registered"
+                />
+                <button
+                    name="final2cancelled_action"
+                    string="Cancel report"
+                    type="object"
+                    states="registered,final"
+                />
+            </header>
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Diagnostic Report</attribute>
+            </xpath>
+            <field name="patient_id" position="attributes">
+                <attribute name="attrs">{}</attribute>
+            </field>
+            <field name="patient_id" position="before">
+                <field
+                    name="encounter_id"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                />
+            </field>
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">registered,final</attribute>
+            </field>
+            <field name="occurrence_date" position="after">
+                <field name="issued_date" />
+                <field name="issued_user_id" states="final,cancelled" />
+                <field name="cancel_date" states="cancelled" />
+                <field name="cancel_user_id" states="cancelled" />
+            </field>
+            <xpath expr="//notebook/page[1]" position="before">
+                <page name="observation" string="Observations">
+                    <field
+                        name="observation_ids"
+                        widget="section_and_note_one2many"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    >
+                        <tree editable="bottom">
+                            <control>
+                                <create string="Add a line" />
+                                <create
+                                    string="Add a section"
+                                    context="{'default_display_type': 'line_section'}"
+                                />
+                                <create
+                                    string="Add a note"
+                                    context="{'default_display_type': 'line_note'}"
+                                />
+                            </control>
+                            <field name="display_type" invisible="1" />
+                            <field name="name" widget="section_and_note_text" />
+                            <field name="value" />
+                            <field
+                                name="uom_id"
+                                attrs="{'required': [('display_type', '=', False)]}"
+                            />
+                            <field name="uom_symbol" invisible="1" />
+                            <field name="reference_format" invisible="1" />
+                            <field name="reference_range_high" invisible="1" />
+                            <field name="reference_range_low" invisible="1" />
+                            <field name="reference_range_limit" />
+                            <field name="interpretation" />
+                        </tree>
+                    </field>
+                </page>
+                <page name="conclusion" string="Conclusion">
+                    <field
+                        name="conclusion"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_search_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.search (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="internal_identifier" />
+                <separator />
+                <filter
+                    name="filter_not_cancelled"
+                    string="Not cancelled"
+                    domain="[('state', '!=', 'cancelled')]"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_tree_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.tree (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="medical_workflow.medical_event_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Diagnostic Report</attribute>
+            </xpath>
+            <tree>
+                <field name="issued_date" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="medical_diagnostic_report_act_window">
+        <field name="name">Medical Diagnostic Report</field>
+        <!-- TODO -->
+        <field name="res_model">medical.diagnostic.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.ui.menu" id="medical_diagnostic_report_menu">
+        <field name="name">Medical Diagnostic Report</field>
+        <field name="parent_id" ref="medical_clinical.medical_clinical_event" />
+        <field name="action" ref="medical_diagnostic_report_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>
