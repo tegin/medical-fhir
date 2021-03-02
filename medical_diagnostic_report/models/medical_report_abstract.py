@@ -32,6 +32,13 @@ class MedicalReportItemAbstract(models.AbstractModel):
     reference_range_limit = fields.Char(
         string="Reference Range", compute="_compute_reference_range"
     )
+    selection_options = fields.Char()
+    value_type = fields.Selection([
+        ("str", "String"),
+        ("float", "Float"),
+        ("bool", "Boolean"),
+        ("int", "Integer")
+    ])
     # FHIR Field: referenceRange
 
     display_type = fields.Selection(

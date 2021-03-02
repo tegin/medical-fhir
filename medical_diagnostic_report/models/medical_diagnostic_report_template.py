@@ -49,4 +49,6 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
             "reference_range_high": self.reference_range_high,
             "reference_range_low": self.reference_range_low,
             "display_type": self.display_type,
+            "selection_options": self.selection_options,
+            "value_type": self.value_type,
         }

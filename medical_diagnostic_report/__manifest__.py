@@ -16,6 +16,7 @@
         "account",
     ],
     "data": [
+        "templates/assets.xml",
         "security/medical_security.xml",
         "security/ir.model.access.csv",
         "wizards/medical_encounter_create_diagnostic_report.xml",

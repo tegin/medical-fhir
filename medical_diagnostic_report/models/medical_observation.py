@@ -10,7 +10,11 @@ class MedicalObservation(models.Model):
     diagnostic_report_id = fields.Many2one(
         comodel_name="medical.diagnostic.report"
     )
-    value = fields.Float(string="Value")
+    value = fields.Char(string="Value")
+    value_float = fields.Float()
+    value_str = fields.Char()
+    value_int = fields.Integer()
+    value_bool = fields.Boolean()
     # FHIR Field: value
 
     interpretation = fields.Char(

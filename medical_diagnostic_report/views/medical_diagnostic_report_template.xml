@@ -29,9 +29,10 @@
                                             context="{'default_display_type': 'line_note'}"
                                         />
                                     </control>
-                                    <field name="sequence" widget="handle" />
                                     <field name="display_type" invisible="1" />
                                     <field name="name" widget="section_and_note_text" />
+                                    <field name="value_type"/>
+                                    <field name="selection_options"/>
                                     <field name="uom_id" />
                                     <field name="uom_symbol" invisible="1" />
                                     <field name="reference_format" invisible="1" />

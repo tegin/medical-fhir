@@ -54,7 +54,6 @@
                     >
                         <tree editable="bottom">
                             <control>
-                                <create string="Add a line" />
                                 <create
                                     string="Add a section"
                                     context="{'default_display_type': 'line_section'}"
@@ -63,18 +62,51 @@
                                     string="Add a note"
                                     context="{'default_display_type': 'line_note'}"
                                 />
+                                <create
+                                    string="Add a String"
+                                    context="{'default_value_type': 'str'}"
+                                />
+                                <create
+                                    string="Add a Float"
+                                    context="{'default_value_type': 'float'}"
+                                />
+                                <create
+                                    string="Add a Integer"
+                                    context="{'default_value_type': 'int'}"
+                                />
+                                <create
+                                    string="Add a Boolean"
+                                    context="{'default_value_type': 'bool'}"
+                                />
                             </control>
                             <field name="display_type" invisible="1" />
                             <field name="name" widget="section_and_note_text" />
-                            <field name="value" />
-                            <field
-                                name="uom_id"
-                                attrs="{'required': [('display_type', '=', False)]}"
-                            />
+                            <field name="value" invisible="1" />
+                            <group string="Value" name="value">
+                                <field
+                                    name="value_bool"
+                                    attrs="{'invisible': [('value_type', '!=', 'bool')]}"
+                                />
+                                <field
+                                    name="value_str"
+                                    attrs="{'invisible': [('value_type', '!=', 'str')]}"
+                                />
+                                <field
+                                    name="value_int"
+                                    attrs="{'invisible': [('value_type', '!=', 'int')]}"
+                                />
+                                <field
+                                    name="value_float"
+                                    attrs="{'invisible': [('value_type', '!=', 'float')]}"
+                                />
+                            </group>
+                            <field name="uom_id" />
                             <field name="uom_symbol" invisible="1" />
                             <field name="reference_format" invisible="1" />
                             <field name="reference_range_high" invisible="1" />
                             <field name="reference_range_low" invisible="1" />
+                            <field name="value_type" invisible="1" />
+                            <field name="selection_options" invisible="1" />
                             <field name="reference_range_limit" />
                             <field name="interpretation" />
                         </tree>
