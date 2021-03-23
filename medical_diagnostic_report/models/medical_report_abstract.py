@@ -37,6 +37,7 @@ class MedicalReportItemAbstract(models.AbstractModel):
 
     name = fields.Text(string="Name", required=True)
 
+    sequence = fields.Integer(default=20)
     uom_id = fields.Many2one(
         "medical.observation.uom", string="Unit of measure"
     )

@@ -19,6 +19,7 @@
         "web_widget_digitized_signature",
     ],
     "data": [
+        "wizards/medical_diagnostic_report_expand.xml",
         "templates/assets.xml",
         "security/medical_security.xml",
         "security/ir.model.access.csv",
