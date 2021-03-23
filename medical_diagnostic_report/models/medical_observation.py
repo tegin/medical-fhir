@@ -9,6 +9,7 @@ class MedicalObservation(models.Model):
     _name = "medical.observation"
     _inherit = "medical.report.item.abstract"
     _description = "Medical observation"
+    _order = "sequence"
 
     diagnostic_report_id = fields.Many2one(
         comodel_name="medical.diagnostic.report"
