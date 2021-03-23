@@ -23,6 +23,7 @@ class MedicalDiagnosticReportTemplate(models.Model):
 
     def _generate_report_vals(self, encounter):
         return {
+            "template_ids": [(4, self.id)],
             "encounter_id": encounter.id,
             "patient_name": encounter.patient_id.name,
             "vat": encounter.patient_id.vat,
@@ -69,7 +70,6 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
     _order = "sequence"
 
     template_id = fields.Many2one("medical.diagnostic.report.template")
-    sequence = fields.Integer(default=20)
     name = fields.Char(translate=True)
     selection_options = fields.Char(translate=True)
 
@@ -83,4 +83,5 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
             "selection_options": self.selection_options,
             "value_type": self.value_type,
             "blocked": self.blocked or self.template_id.item_blocked,
+            "sequence": self.sequence,
         }

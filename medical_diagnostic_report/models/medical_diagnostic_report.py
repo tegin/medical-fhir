@@ -68,6 +68,10 @@ class MedicalDiagnosticReport(models.Model):
     observation_ids = fields.One2many(
         "medical.observation", inverse_name="diagnostic_report_id", copy=True
     )
+    template_ids = fields.Many2many(
+        "medical.diagnostic.report.template",
+        relation="medical_diagnostic_report_templates_rel",
+    )
 
     @api.model
     def _get_lang(self):

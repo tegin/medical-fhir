@@ -35,6 +35,13 @@
                 >
                     <field name="signature_date" invisible="1" />
                 </button>
+                <button
+                    name="%(medical_diagnostic_report.medical_diagnostic_report_expand_act_window)s"
+                    type="action"
+                    icon="fa-plus"
+                    string="Expand"
+                    states="registered"
+                />
             </xpath>
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Diagnostic Report</attribute>
@@ -124,6 +131,11 @@
                                     context="{'default_value_type': 'bool'}"
                                 />
                             </control>
+                            <field
+                                name="sequence"
+                                widget="handle"
+                                attrs="{'readonly': [('blocked', '=', True)]}"
+                            />
                             <field name="display_type" invisible="1" />
                             <field
                                 name="name"
