@@ -19,8 +19,8 @@ class TestMedicalDiagnosticReport(TransactionCase):
         self.encounter_1 = self.env["medical.encounter"].create(
             {"name": "Encounter 1", "patient_id": self.patient_1.id}
         )
-        uom = self.env["medical.observation.uom"].create(
-            {"name": "Unity of measure 1"}
+        uom = self.env.ref(
+            "medical_diagnostic_report.uom_ten_thousand_micro_liter"
         )
         items = [
             {"name": "Section 1", "display_type": "line_section"},
@@ -51,7 +51,6 @@ class TestMedicalDiagnosticReport(TransactionCase):
                 "with_conclusion": True,
                 "conclusion": "Everything is ok",
                 "with_composition": False,
-                "medical_department": "Department 1",
                 "item_ids": [(0, 0, item) for item in items],
             }
         )
@@ -150,9 +149,6 @@ class TestMedicalDiagnosticReport(TransactionCase):
             self.template_1.with_composition, report.with_composition
         )
         self.assertEqual(self.template_1.composition, report.composition)
-        self.assertEqual(
-            self.template_1.medical_department, report.medical_department
-        )
         self.assertEqual(self.template_1.item_blocked, report.item_blocked)
         self.assertEqual(
             len(self.template_1.item_ids), len(report.observation_ids)

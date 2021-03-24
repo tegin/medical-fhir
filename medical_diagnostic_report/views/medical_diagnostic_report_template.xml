@@ -13,15 +13,12 @@
                 <sheet>
                     <group>
                         <field name="name" />
-                        <field name="item_blocked" />
                         <field name="with_observation" />
+                        <field name="item_blocked" />
                         <field name="with_composition" />
                         <field name="with_conclusion" />
                     </group>
                     <notebook>
-                        <page name="medical_department" string="Medical Department">
-                            <field name="medical_department" />
-                        </page>
                         <page
                             name="item"
                             string="Observations"
@@ -65,20 +62,42 @@
                                     </control>
                                     <field name="sequence" widget="handle" />
                                     <field name="display_type" invisible="1" />
-                                    <field name="name" widget="section_and_note_text" />
+                                    <field name="concept_id" />
+                                    <field
+                                        name="name"
+                                        widget="section_and_note_text"
+                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        force_save="1"
+                                    />
                                     <field
                                         name="value_type"
-                                        attrs="{'required': [('display_type', '=', False)]}"
+                                        attrs="{'required': [('display_type', '=', False)],'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        force_save="1"
                                     />
                                     <field
                                         name="selection_options"
                                         attrs="{'required': [('value_type', '=', 'selection')], 'readonly': [('value_type', '!=', 'selection')]}"
                                     />
-                                    <field name="uom_id" />
-                                    <field name="uom_symbol" invisible="1" />
-                                    <field name="reference_range_low" />
-                                    <field name="reference_range_high" />
-                                    <field name="reference_range_limit" />
+                                    <field
+                                        name="uom_id"
+                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        force_save="1"
+                                    />
+                                    <field
+                                        name="reference_range_low"
+                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        force_save="1"
+                                    />
+                                    <field
+                                        name="reference_range_high"
+                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        force_save="1"
+                                    />
+                                    <field
+                                        name="reference_range_limit"
+                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        force_save="1"
+                                    />
                                     <field name="blocked" invisible="1" />
                                 </tree>
                             </field>
@@ -119,14 +138,14 @@
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
-        id="medical_configuration_template"
-        name="Templates"
+        id="medical_report_configuration"
+        name="Report Configuration"
         parent="medical_base.medical_root_configuration"
         sequence="10"
     />
     <record model="ir.ui.menu" id="medical_report_template_menu">
         <field name="name">Diagnostic Report Templates</field>
-        <field name="parent_id" ref="medical_configuration_template" />
+        <field name="parent_id" ref="medical_report_configuration" />
         <field name="action" ref="medical_report_template_act_window" />
         <field name="sequence" eval="16" />
     </record>
