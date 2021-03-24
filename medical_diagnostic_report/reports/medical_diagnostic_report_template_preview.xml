@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="medical_diagnostic_report_template_preview"
+        inherit_id="medical_diagnostic_report.medical_diagnostic_report_template"
+        primary="True"
+    >
+        <xpath expr="//t[@t-set='lang']" position="attributes">
+            <attribute name="t-value">o.context.get('lang')</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='medical_diagnostic_report.diagnostic_report_layout']"
+            position="attributes"
+        >
+            <attribute
+                name="t-call"
+            >medical_diagnostic_report.diagnostic_report_layout_preview</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='medical_diagnostic_report.medical_diagnostic_report_template_single']"
+            position="attributes"
+        >
+            <attribute
+                name="t-call"
+            >medical_diagnostic_report.medical_diagnostic_report_template_single_preview</attribute>
+        </xpath>
+    </template>
+    <template
+        id="diagnostic_report_layout_preview"
+        inherit_id="medical_diagnostic_report.diagnostic_report_base_layout"
+        primary="True"
+    >
+        <xpath expr="//div[@name='patient_id']" position="inside">
+            <span>Template Patient Name</span>
+        </xpath>
+        <xpath expr="//div[@name='internal_identifier']" position="inside">
+            <span>MDR000000(0)</span>
+        </xpath>
+        <xpath expr="//div[@name='footer_internal_identifier']" position="inside">
+                <span>MDR000000</span><span t-esc="o.env.user.id" />-<span
+                t-esc="int(datetime.datetime.now().timestamp())"
+            />
+        </xpath>
+    </template>
+    <template
+        id="medical_diagnostic_report_template_single_preview"
+        inherit_id="medical_diagnostic_report.medical_diagnostic_report_base"
+        primary="True"
+    >
+        <xpath expr="//t[@t-set='observations']" position="attributes">
+            <attribute name="t-value">doc.item_ids</attribute>
+        </xpath>
+        <xpath expr="//t[@name='observation_value']" position="inside">
+            <td />
+        </xpath>
+        <xpath expr="//small[@name='uom_value']" position="inside">
+            <t t-esc="obs.uom_id.name" />
+        </xpath>
+        <xpath expr="//small[@name='uom_range_value']" position="inside">
+            <t t-esc="obs.uom_id.name" />
+        </xpath>
+        <xpath expr="//span[@name='patient_age_value']" position="inside">100</xpath>
+        <xpath expr="//span[@name='vat_value']" position="inside">00000000A</xpath>
+        <xpath
+            expr="//span[@name='occurrence_date_value']"
+            position="inside"
+        >01/01/01 00:00:00</xpath>
+        <xpath expr="//span[@name='patient_origin_value']" position="inside">DKV</xpath>
+        <xpath expr="//div[@id='informations']" position="after">
+            <div class="o_watermark watermark">
+                <p>Template</p>
+            </div>
+        </xpath>
+    </template>
+</odoo>

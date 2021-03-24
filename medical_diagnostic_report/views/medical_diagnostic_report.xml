@@ -83,12 +83,6 @@
                 <field name="with_composition" invisible="1" />
             </field>
             <xpath expr="//notebook/page[1]" position="before">
-                <page name="medical_department" string="Medical Department">
-                    <field
-                        name="medical_department"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
-                </page>
                 <page
                     name="observation"
                     string="Observations"
@@ -137,10 +131,11 @@
                                 attrs="{'readonly': [('blocked', '=', True)]}"
                             />
                             <field name="display_type" invisible="1" />
+                            <field name="concept_id" invisible="1" />
                             <field
                                 name="name"
                                 widget="section_and_note_text"
-                                attrs="{'readonly': [('blocked', '=', True)]}"
+                                attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
                             />
                             <field name="value" invisible="1" />
                             <group string="Value" name="value">
@@ -169,9 +164,8 @@
                             </group>
                             <field
                                 name="uom_id"
-                                attrs="{'readonly': [('blocked', '=', True)]}"
+                                attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
                             />
-                            <field name="uom_symbol" invisible="1" />
                             <field name="reference_format" invisible="1" />
                             <field name="reference_range_high" invisible="1" />
                             <field name="reference_range_low" invisible="1" />

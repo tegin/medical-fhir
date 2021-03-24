@@ -14,7 +14,7 @@ class MedicalObservation(models.Model):
     diagnostic_report_id = fields.Many2one(
         comodel_name="medical.diagnostic.report"
     )
-    value = fields.Char(string="Value", store=False)
+    value = fields.Char(store=False)
     value_float = fields.Float()
     value_str = fields.Char()
     value_selection = fields.Char()
@@ -25,7 +25,6 @@ class MedicalObservation(models.Model):
     reference_format = fields.Char(readonly=True)
     interpretation = fields.Selection(
         [("low", "Low"), ("normal", "Normal"), ("high", "High")],
-        string="Interpretation",
         compute="_compute_interpretation",
     )
     # FHIR Field: interpretation

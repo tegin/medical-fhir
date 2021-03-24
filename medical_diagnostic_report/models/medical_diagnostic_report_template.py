@@ -17,8 +17,7 @@ class MedicalDiagnosticReportTemplate(models.Model):
         string="Observations",
     )
     name = fields.Char(translate=True)
-    medical_department = fields.Html(translate=True)
-    composition = fields.Html(translate=True)
+    composition = fields.Html(translate=True, sanitize=False)
     conclusion = fields.Text(translate=True)
 
     def _generate_report_vals(self, encounter):
@@ -28,7 +27,6 @@ class MedicalDiagnosticReportTemplate(models.Model):
             "patient_name": encounter.patient_id.name,
             "vat": encounter.patient_id.vat,
             "patient_age": self._compute_age(encounter.patient_id),
-            "medical_department": self.medical_department,
             "conclusion": self.conclusion,
             "composition": self.composition,
             "name": self.name,
@@ -76,7 +74,8 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
     def _generate_report_observation_vals(self, encounter):
         return {
             "uom_id": self.uom_id.id,
-            "name": self.name,
+            "concept_id": self.concept_id.id,
+            "name": self.concept_id.name if self.concept_id else self.name,
             "reference_range_high": self.reference_range_high,
             "reference_range_low": self.reference_range_low,
             "display_type": self.display_type,
@@ -85,3 +84,11 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
             "blocked": self.blocked or self.template_id.item_blocked,
             "sequence": self.sequence,
         }
+
+    _sql_constraints = [
+        (
+            "concept_id_uniq",
+            "UNIQUE (concept_id, template_id)",
+            "Observation concept must be unique.",
+        )
+    ]
