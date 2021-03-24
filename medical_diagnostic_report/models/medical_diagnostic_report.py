@@ -11,7 +11,7 @@ class MedicalDiagnosticReport(models.Model):
     _description = "Diagnostic Report"
     _rec_name = "internal_identifier"
 
-    name = fields.Char(string="Report name")
+    name = fields.Char(string="Report Name")
     state = fields.Selection(
         [
             ("registered", "Registered"),
@@ -21,7 +21,6 @@ class MedicalDiagnosticReport(models.Model):
         default="registered",
         copy=False,
     )
-    medical_department = fields.Html(readonly=True)
     lang = fields.Selection(
         string="Language", selection="_get_lang", readonly=True
     )
@@ -41,15 +40,12 @@ class MedicalDiagnosticReport(models.Model):
 
     vat = fields.Char(string="VAT", readonly=True)
 
-    patient_age = fields.Integer(string="Patient Age", readonly=True)
+    patient_age = fields.Integer(readonly=True)
 
-    patient_origin = fields.Char(string="Patient Origin", readonly=True,)
+    patient_origin = fields.Char(readonly=True,)
 
     issued_date = fields.Datetime(
-        string="Issued Date",
-        help="Date of report's publication",
-        readonly=True,
-        copy=False,
+        help="Date of report's publication", readonly=True, copy=False,
     )
     issued_user_id = fields.Many2one(
         "res.users", string="Issued by User", readonly=True, copy=False
@@ -128,7 +124,6 @@ class MedicalDiagnosticReport(models.Model):
                 "patient_name": self.patient_name,
                 "encounter_id": self.encounter_id.id,
                 "vat": self.vat,
-                "medical_department": self.medical_department,
                 "patient_age": self.patient_age,
                 "patient_origin": self.patient_origin,
                 "issued_date": self.issued_date.isoformat(),

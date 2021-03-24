@@ -4,12 +4,18 @@
 from odoo import fields, models
 
 
-class MedicalObservationUom(models.Model):
+class UomCategory(models.Model):
+    _inherit = "uom.category"
+    measure_type = fields.Char(required=True)
 
-    _name = "medical.observation.uom"
-    _description = "Medical Observation Unity of Measure"
 
-    name = fields.Char(string="Unit of measure")
-    symbol = fields.Char(string="Symbol")
+class UomUom(models.Model):
+    _inherit = "uom.uom"
 
-    reference_format = fields.Char(default="%.2f - %.2f")
+    measure_type = fields.Char(
+        string="Type of measurement category",
+        related="category_id.measure_type",
+        store=True,
+        readonly=True,
+    )
+    reference_format = fields.Char(default="%.2f")

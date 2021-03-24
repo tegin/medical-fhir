@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError
 class MedicalDiagnosticReportExpand(models.TransientModel):
 
     _name = "medical.diagnostic.report.expand"
+    _description = "This model allows to add templates to a report"
 
     diagnostic_report_id = fields.Many2one(
         "medical.diagnostic.report", required=True
@@ -18,6 +19,7 @@ class MedicalDiagnosticReportExpand(models.TransientModel):
     template_ids = fields.Many2many(
         "medical.diagnostic.report.template",
         related="diagnostic_report_id.template_ids",
+        string="Current report templates",
     )
 
     def merge(self):
@@ -31,10 +33,11 @@ class MedicalDiagnosticReportExpand(models.TransientModel):
         vals = self.template_id.with_context(
             lang=self.diagnostic_report_id.lang
         )._generate_report_vals(self.diagnostic_report_id.encounter_id)
-        max_seq = (
-            max(self.diagnostic_report_id.observation_ids.mapped("sequence"))
-            or 0
-        )
+        new_vals = self._merge_new_vals(vals)
+        if new_vals:
+            self.diagnostic_report_id.write(new_vals)
+
+    def _merge_new_vals(self, vals):
         new_vals = {"template_ids": vals["template_ids"]}
         if (
             vals["with_conclusion"]
@@ -56,12 +59,16 @@ class MedicalDiagnosticReportExpand(models.TransientModel):
                     "composition": vals["composition"],
                 }
             )
-        if (
-            vals["medical_department"]
-            and not self.diagnostic_report_id.medical_department
-        ):
-            new_vals.update({"medical_department": vals["medical_department"]})
+
         if vals["with_observation"]:
+            max_seq = (
+                max(
+                    self.diagnostic_report_id.observation_ids.mapped(
+                        "sequence"
+                    )
+                )
+                or 0
+            )
             for _a, _b, observation in vals["observation_ids"]:
                 observation["sequence"] += max_seq + 1
             new_vals.update(
@@ -70,5 +77,4 @@ class MedicalDiagnosticReportExpand(models.TransientModel):
                     "observation_ids": vals["observation_ids"],
                 }
             )
-        if new_vals:
-            self.diagnostic_report_id.write(new_vals)
+        return new_vals
