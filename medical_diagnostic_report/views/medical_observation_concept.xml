@@ -14,9 +14,22 @@
                     <group>
                         <field name="name" />
                         <field name="value_type" />
-                        <field name="uom_id" />
-                        <field name="reference_range_low" />
-                        <field name="reference_range_high" />
+                        <field
+                            name="selection_options"
+                            attrs="{'required': [('value_type', '=', 'selection')], 'readonly': [('value_type', '!=', 'selection')]}"
+                        />
+                        <field
+                            name="uom_id"
+                            attrs="{'readonly': ['|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
+                        />
+                        <field
+                            name="reference_range_low"
+                            attrs="{'readonly': ['|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
+                        />
+                        <field
+                            name="reference_range_high"
+                            attrs="{'readonly': [ '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
+                        />
                     </group>
                 </sheet>
             </form>
