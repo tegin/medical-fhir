@@ -16,7 +16,7 @@ class MedicalDiagnosticReportTemplate(models.Model):
         copy=True,
         string="Observations",
     )
-    name = fields.Char(translate=True)
+    name = fields.Char(translate=True, required=True)
     composition = fields.Html(translate=True, sanitize=False)
     conclusion = fields.Text(translate=True)
 
