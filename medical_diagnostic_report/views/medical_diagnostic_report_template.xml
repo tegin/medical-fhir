@@ -80,22 +80,22 @@
                                     />
                                     <field
                                         name="uom_id"
-                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
                                         force_save="1"
                                     />
                                     <field
                                         name="reference_range_low"
-                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
                                         force_save="1"
                                     />
                                     <field
                                         name="reference_range_high"
-                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
                                         force_save="1"
                                     />
                                     <field
                                         name="reference_range_limit"
-                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
                                         force_save="1"
                                     />
                                     <field name="blocked" invisible="1" />
