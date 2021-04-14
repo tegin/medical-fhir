@@ -33,7 +33,7 @@ class MedicalReportItemAbstract(models.AbstractModel):
     sequence = fields.Integer(default=20)
 
     concept_id = fields.Many2one(comodel_name="medical.observation.concept")
-    name = fields.Char()
+    name = fields.Char(required=True)
     uom_id = fields.Many2one("uom.uom", string="Unit of measure")
 
     reference_range_low = fields.Float()
@@ -70,6 +70,7 @@ class MedicalReportItemAbstract(models.AbstractModel):
         if self.concept_id:
             self.name = self.concept_id.name
             self.value_type = self.concept_id.value_type
+            self.selection_options = self.concept_id.selection_options
             self.uom_id = self.concept_id.uom_id
             self.reference_range_low = self.concept_id.reference_range_low
             self.reference_range_high = self.concept_id.reference_range_high

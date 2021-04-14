@@ -164,7 +164,7 @@
                             </group>
                             <field
                                 name="uom_id"
-                                attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
                             />
                             <field name="reference_format" invisible="1" />
                             <field name="reference_range_high" invisible="1" />

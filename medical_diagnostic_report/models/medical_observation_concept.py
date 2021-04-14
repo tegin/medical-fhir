@@ -23,6 +23,7 @@ class MedicalObservationConcept(models.Model):
         ],
         translate=False,
     )
+    selection_options = fields.Char()
     uom_id = fields.Many2one(
         "uom.uom", string="Unit of measure", translate=False
     )
