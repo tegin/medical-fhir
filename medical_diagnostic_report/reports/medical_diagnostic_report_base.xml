@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <template id="medical_diagnostic_report.medical_diagnostic_report_template_base">
+        <t t-call="web.html_container">
+            <t
+                t-set="docs"
+                t-value="docs.browse(docs.env.context.get('active_ids'))"
+                t-if="not docs"
+            />
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-set="lang"
+                    t-value="docs.env.context.get('force_lang') or docs.env.context.get('lang')"
+                />
+                <t t-set="doc" t-value="o.with_context(lang=lang)" t-if="lang" />
+                <t t-if="not company">
+                    <t t-set="company" t-value="res_company" />
+                </t>
+                <t t-set="partner" t-value="company.partner_id" />
+                <t
+                    t-call="medical_diagnostic_report.diagnostic_report_base_layout"
+                    t-lang="lang"
+                >
+                    <t
+                        t-call="medical_diagnostic_report.medical_diagnostic_report_base"
+                        t-lang="lang"
+                    />
+                </t>
+            </t>
+        </t>
+    </template>
     <template id="diagnostic_report_base_layout">
         <div class="header" t-att-style="report_header_style">
-            <div class="o_diagnostic_report_layout_header_row">
+            <div class="o_diagnostic_report_layout_header">
                 <div class="row">
                     <div class="col-6 text-left">
                         <img
