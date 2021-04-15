@@ -72,6 +72,9 @@
             <field name="state" position="attributes">
                 <attribute name="statusbar_visible">registered,final</attribute>
             </field>
+            <xpath expr="//group[@name='sale_01']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
             <field name="occurrence_date" position="after">
                 <field name="issued_date" />
                 <field name="issued_user_id" states="final,cancelled" />
@@ -226,6 +229,9 @@
         <field name="inherit_id" ref="medical_workflow.medical_event_tree" />
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
+                <attribute name="create">false</attribute>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
                 <attribute name="string">Diagnostic Report</attribute>
             </xpath>
             <tree>
@@ -235,11 +241,8 @@
     </record>
     <record model="ir.actions.act_window" id="medical_diagnostic_report_act_window">
         <field name="name">Medical Diagnostic Report</field>
-        <!-- TODO -->
         <field name="res_model">medical.diagnostic.report</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[]</field>
-        <field name="context">{}</field>
     </record>
     <record model="ir.ui.menu" id="medical_diagnostic_report_menu">
         <field name="name">Medical Diagnostic Report</field>

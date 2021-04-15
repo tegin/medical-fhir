@@ -65,25 +65,28 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
     _name = "medical.diagnostic.report.template.item"
     _inherit = ["medical.report.item.abstract"]
     _description = "Diagnostic Report Item template"
-    _order = "sequence"
+    _order = "sequence, id"
 
     template_id = fields.Many2one("medical.diagnostic.report.template")
     name = fields.Char(translate=True)
     selection_options = fields.Char(translate=True)
-
-    def _generate_report_observation_vals(self, encounter):
-        return {
-            "uom_id": self.uom_id.id,
-            "concept_id": self.concept_id.id,
-            "name": self.concept_id.name if self.concept_id else self.name,
-            "reference_range_high": self.reference_range_high,
-            "reference_range_low": self.reference_range_low,
-            "display_type": self.display_type,
-            "selection_options": self.selection_options,
-            "value_type": self.value_type,
-            "blocked": self.blocked or self.template_id.item_blocked,
-            "sequence": self.sequence,
-        }
+    reference_range_low_view = fields.Float(
+        compute="_compute_from_concept", inverse="_inverse_reference_range_low"
+    )
+    reference_range_high_view = fields.Float(
+        compute="_compute_from_concept",
+        inverse="_inverse_reference_range_high",
+    )
+    view_uom_id = fields.Many2one(
+        "uom.uom", compute="_compute_from_concept", inverse="_inverse_uom_id"
+    )
+    value_type_view = fields.Selection(
+        selection=lambda r: r.env["medical.report.item.abstract"]
+        ._fields["value_type"]
+        .selection,
+        compute="_compute_from_concept",
+        inverse="_inverse_value_type",
+    )
 
     _sql_constraints = [
         (
@@ -92,3 +95,64 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
             "Observation concept must be unique.",
         )
     ]
+
+    @api.depends(
+        "concept_id",
+        "concept_id.reference_range_high",
+        "concept_id.reference_range_low",
+        "concept_id.value_type",
+        "concept_id.uom_id",
+        "reference_range_high",
+        "reference_range_low",
+        "value_type",
+        "uom_id",
+    )
+    def _compute_from_concept(self):
+        for record in self:
+            concept = record.concept_id or record
+            record.reference_range_high_view = concept.reference_range_high
+            record.reference_range_low_view = concept.reference_range_low
+            record.view_uom_id = concept.uom_id
+            record.value_type_view = concept.value_type
+
+    def _inverse_reference_range_low(self):
+        for record in self:
+            if not record.concept_id:
+                record.reference_range_low = record.reference_range_low_view
+
+    def _inverse_value_type(self):
+        for record in self:
+            if not record.concept_id:
+                record.value_type = record.value_type_view
+
+    def _inverse_reference_range_high(self):
+        for record in self:
+            if not record.concept_id:
+                record.reference_range_high = record.reference_range_high_view
+
+    def _inverse_uom_id(self):
+        for record in self:
+            if not record.concept_id:
+                record.uom_id = record.view_uom_id
+
+    def _generate_report_observation_vals(self, encounter):
+        concept = self.concept_id or self
+        return {
+            "uom_id": concept.uom_id.id,
+            "concept_id": self.concept_id.id,
+            "name": concept.name,
+            "reference_range_high": concept.reference_range_high,
+            "reference_range_low": concept.reference_range_low,
+            "display_type": self.display_type,
+            "selection_options": concept.selection_options,
+            "value_type": concept.value_type,
+            "blocked": self.blocked or self.template_id.item_blocked,
+            "sequence": self.sequence,
+        }
+
+    @api.model
+    def _get_reference_range_fields(self):
+        return ["reference_range_low_view", "reference_range_high_view"]
+
+    def _get_reference_range_values(self):
+        return self.reference_range_low_view, self.reference_range_high_view

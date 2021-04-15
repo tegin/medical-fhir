@@ -2,14 +2,11 @@
 <odoo>
     <template
         id="medical_diagnostic_report_template_preview"
-        inherit_id="medical_diagnostic_report.medical_diagnostic_report_template"
+        inherit_id="medical_diagnostic_report.medical_diagnostic_report_template_base"
         primary="True"
     >
-        <xpath expr="//t[@t-set='lang']" position="attributes">
-            <attribute name="t-value">o.context.get('lang')</attribute>
-        </xpath>
         <xpath
-            expr="//t[@t-call='medical_diagnostic_report.diagnostic_report_layout']"
+            expr="//t[@t-call='medical_diagnostic_report.diagnostic_report_base_layout']"
             position="attributes"
         >
             <attribute
@@ -17,7 +14,7 @@
             >medical_diagnostic_report.diagnostic_report_layout_preview</attribute>
         </xpath>
         <xpath
-            expr="//t[@t-call='medical_diagnostic_report.medical_diagnostic_report_template_single']"
+            expr="//t[@t-call='medical_diagnostic_report.medical_diagnostic_report_base']"
             position="attributes"
         >
             <attribute
