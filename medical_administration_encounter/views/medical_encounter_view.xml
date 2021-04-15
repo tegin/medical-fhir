@@ -116,7 +116,9 @@
                             options="{'no_open': True, 'no_create': True}"
                         />
                     </group>
-                    <notebook />
+                    <notebook>
+                        <page name="first" invisible="1" />
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers" />
