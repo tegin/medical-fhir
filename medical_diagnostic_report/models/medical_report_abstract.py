@@ -82,28 +82,24 @@ class MedicalReportItemAbstract(models.AbstractModel):
     def _get_lang(self):
         return self.env.context.get("lang") or "en_US"
 
-    @api.depends(
-        "reference_range_low", "reference_range_high",
-    )
+    @api.model
+    def _get_reference_range_fields(self):
+        return ["reference_range_low", "reference_range_high"]
+
+    def _get_reference_range_values(self):
+        return self.reference_range_low, self.reference_range_high
+
+    @api.depends(_get_reference_range_fields)
     def _compute_reference_range(self):
         for rec in self:
             range_limit = ""
             reference_format = rec._get_reference_format()
             lang_code = rec._get_lang()
             lang = self.env["res.lang"]._lang_get(lang_code)
-            if reference_format and (
-                rec.reference_range_high or rec.reference_range_low
-            ):
+            low, high = rec._get_reference_range_values()
+            if reference_format and (high or low):
                 range_limit = "{} - {}".format(
-                    lang.format(
-                        reference_format,
-                        rec.reference_range_low or 0,
-                        grouping=True,
-                    ),
-                    lang.format(
-                        reference_format,
-                        rec.reference_range_high or 0,
-                        grouping=True,
-                    ),
+                    lang.format(reference_format, low or 0, grouping=True,),
+                    lang.format(reference_format, high or 0, grouping=True,),
                 )
             rec.reference_range_limit = range_limit

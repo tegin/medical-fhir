@@ -5,30 +5,19 @@ from odoo import fields, models
 
 
 class MedicalObservationConcept(models.Model):
-
     _name = "medical.observation.concept"
     _description = "Medical Observation Concept"
 
     name = fields.Char(required=True, translate=True)
-    template_item_id = fields.Many2one(
-        comodel_name="medical.report.item.abstract"
-    )
     value_type = fields.Selection(
-        [
-            ("str", "String"),
-            ("float", "Float"),
-            ("bool", "Boolean"),
-            ("int", "Integer"),
-            ("selection", "Selection"),
-        ],
-        translate=False,
+        selection=lambda r: r.env["medical.report.item.abstract"]
+        ._fields["value_type"]
+        .selection,
     )
-    selection_options = fields.Char()
-    uom_id = fields.Many2one(
-        "uom.uom", string="Unit of measure", translate=False
-    )
-    reference_range_low = fields.Float(translate=False)
-    reference_range_high = fields.Float(translate=False)
+    selection_options = fields.Char(translate=True)
+    uom_id = fields.Many2one("uom.uom", string="Unit of measure")
+    reference_range_low = fields.Float()
+    reference_range_high = fields.Float()
 
     _sql_constraints = [
         ("name_uniq", "UNIQUE (name)", "Concept name must be unique!")

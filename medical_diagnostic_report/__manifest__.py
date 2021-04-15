@@ -19,6 +19,7 @@
         "web_widget_digitized_signature",
     ],
     "data": [
+        "wizards/medical_diagnostic_report_template_print.xml",
         "wizards/medical_diagnostic_report_expand.xml",
         "templates/assets.xml",
         "views/medical_uom.xml",

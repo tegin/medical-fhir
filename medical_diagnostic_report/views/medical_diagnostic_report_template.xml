@@ -11,6 +11,14 @@
             <form>
                 <header />
                 <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button
+                            name="%(medical_diagnostic_report.medical_diagnostic_report_template_print_act_window)s"
+                            type="action"
+                            icon="fa-print"
+                            string="Preview"
+                        />
+                    </div>
                     <group>
                         <field name="name" />
                         <field name="with_observation" />
@@ -62,40 +70,45 @@
                                     </control>
                                     <field name="sequence" widget="handle" />
                                     <field name="display_type" invisible="1" />
-                                    <field name="concept_id" />
                                     <field
                                         name="name"
                                         widget="section_and_note_text"
-                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
+                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)], 'invisible': [('concept_id', '!=', False)]}"
                                         force_save="1"
                                     />
+                                    <field name="concept_id" />
                                     <field
-                                        name="value_type"
+                                        name="value_type_view"
+                                        string="Value type"
                                         attrs="{'required': [('display_type', '=', False)],'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
                                         force_save="1"
                                     />
                                     <field
                                         name="selection_options"
-                                        attrs="{'required': [('value_type', '=', 'selection')], 'readonly': [('value_type', '!=', 'selection')]}"
+                                        attrs="{'required': [('value_type_view', '=', 'selection')], 'readonly': [('value_type_view', '!=', 'selection')], 'invisible': [('concept_id', '!=', False)]}"
                                     />
                                     <field
-                                        name="uom_id"
-                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
+                                        name="view_uom_id"
+                                        string="Uom"
+                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type_view', '=', 'selection'), ('value_type_view', '=', 'str'), ('value_type_view', '=', 'bool')]}"
+                                        force_save="1"
+                                    />
+                                    <field name="reference_range_low" invisible="1" />
+                                    <field
+                                        name="reference_range_low_view"
+                                        string="Reference range low"
+                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type_view', '=', 'selection'), ('value_type_view', '=', 'str'), ('value_type_view', '=', 'bool')]}"
                                         force_save="1"
                                     />
                                     <field
-                                        name="reference_range_low"
-                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
-                                        force_save="1"
-                                    />
-                                    <field
-                                        name="reference_range_high"
-                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
+                                        name="reference_range_high_view"
+                                        string="Reference range high"
+                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type_view', '=', 'selection'), ('value_type_view', '=', 'str'), ('value_type_view', '=', 'bool')]}"
                                         force_save="1"
                                     />
                                     <field
                                         name="reference_range_limit"
-                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
+                                        attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type_view', '=', 'selection'), ('value_type_view', '=', 'str'), ('value_type_view', '=', 'bool')]}"
                                         force_save="1"
                                     />
                                     <field name="blocked" invisible="1" />

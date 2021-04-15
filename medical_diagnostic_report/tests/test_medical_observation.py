@@ -43,7 +43,7 @@ class TestMedicalObservation(TransactionCase):
         self.assertFalse(observation.interpretation)
 
     def test_compute_reference_range_with_range(self):
-        uom = self.env.ref("medical_diagnostic_report.uom_unit_liter")
+        uom = self.env.ref("medical_diagnostic_report.uom_gram_deciliter")
         observation = self.env["medical.observation"].create(
             {
                 "name": "Observation 4",
