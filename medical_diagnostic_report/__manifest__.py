@@ -10,6 +10,7 @@
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": [
+        "medical_administration",
         "medical_administration_encounter",
         "medical_clinical",
         "medical_workflow",
@@ -32,6 +33,7 @@
         "views/medical_diagnostic_report_template.xml",
         "views/medical_encounter.xml",
         "views/medical_observation_concept.xml",
+        "views/medical_patient.xml",
         "reports/medical_diagnostic_report_base.xml",
         "reports/medical_diagnostic_report_template.xml",
         "reports/medical_diagnostic_report_report.xml",
