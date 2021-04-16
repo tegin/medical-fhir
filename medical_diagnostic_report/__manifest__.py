@@ -5,11 +5,12 @@
     "name": "Medical Diagnostic Report",
     "summary": """
         Allows to create reports for patients""",
-    "version": "12.0.1.0.0",
+    "version": "12.0.2.0.0",
     "license": "AGPL-3",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": [
+        "medical_administration",
         "medical_administration_encounter",
         "medical_clinical",
         "medical_workflow",
@@ -17,11 +18,13 @@
         "web_translate_dialog",
         "medical_certify",
         "web_widget_digitized_signature",
+        "web_widget_bokeh_chart",
     ],
     "data": [
         "security/medical_security.xml",
         "security/ir.model.access.csv",
         "views/menu.xml",
+        "wizards/patient_concept_evolution.xml",
         "wizards/medical_diagnostic_report_template_print.xml",
         "wizards/medical_diagnostic_report_expand.xml",
         "templates/assets.xml",
@@ -33,6 +36,7 @@
         "views/medical_diagnostic_report_template.xml",
         "views/medical_encounter.xml",
         "views/medical_observation_concept.xml",
+        "views/medical_patient.xml",
         "reports/medical_diagnostic_report_base.xml",
         "reports/medical_diagnostic_report_template.xml",
         "reports/medical_diagnostic_report_report.xml",
@@ -40,4 +44,5 @@
         "reports/medical_diagnostic_report_report_preview.xml",
     ],
     "demo": ["demo/medical_diagnostic_report.xml"],
+    "external_dependencies": {"python": ["numpy", "pandas", "bokeh"]},
 }
