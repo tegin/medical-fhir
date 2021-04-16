@@ -28,29 +28,13 @@
         >medical.observation.tree (in medical_diagnostic_report)</field>
         <field name="model">medical.observation</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree default_order='observation_date desc'>
                 <field name="name" />
                 <field name="value_type" invisible="1" />
-                <field
-                    name="value_bool"
-                    attrs="{'invisible': [('value_type', '!=', 'bool')]}"
-                />
-                <field
-                    name="value_str"
-                    attrs="{'invisible': [('value_type', '!=', 'str')]}"
-                />
-                <field
-                    name="value_selection"
-                    attrs="{'invisible': [('value_type', '!=', 'selection')]}"
-                />
-                <field
-                    name="value_int"
-                    attrs="{'invisible': [('value_type', '!=', 'int')]}"
-                />
-                <field
-                    name="value_float"
-                    attrs="{'invisible': [('value_type', '!=', 'float')]}"
-                />
+                <field name="value_representation" />
+                <field name="uom_id" />
+                <field name="interpretation" />
+                <field name="observation_date" />
             </tree>
         </field>
     </record>

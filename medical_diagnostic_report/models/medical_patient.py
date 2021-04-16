@@ -17,5 +17,6 @@ class MedicalPatient(models.Model):
         action["domain"] = [
             ("diagnostic_report_id.patient_id", "=", self.id),
             ("concept_id", "!=", False),
+            ("diagnostic_report_id.state", "=", "final"),
         ]
         return action

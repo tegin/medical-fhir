@@ -9,7 +9,7 @@ class MedicalObservation(models.Model):
     _name = "medical.observation"
     _inherit = "medical.report.item.abstract"
     _description = "Medical observation"
-    _order = "sequence, id"
+    _order = "observation_date desc, sequence, id"
 
     diagnostic_report_id = fields.Many2one(
         comodel_name="medical.diagnostic.report"
@@ -28,6 +28,11 @@ class MedicalObservation(models.Model):
         compute="_compute_interpretation",
     )
     # FHIR Field: interpretation
+    observation_date = fields.Datetime(
+        string="Date", related="diagnostic_report_id.issued_date"
+    )
+
+    value_representation = fields.Char(compute="_compute_value_representation")
 
     @api.depends(
         "value_float",
@@ -76,3 +81,9 @@ class MedicalObservation(models.Model):
             "reference_range_high": self.reference_range_high,
             "interpretation": self.interpretation,
         }
+
+    def _compute_value_representation(self):
+        for rec in self:
+            if rec.value_type and hasattr(rec, "value_%s" % rec.value_type):
+                value = getattr(rec, "value_%s" % rec.value_type)
+                rec.value_representation = value
