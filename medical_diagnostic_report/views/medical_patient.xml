@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_patient_form_view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_administration.medical_patient_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_observations_with_concept"
+                    class="oe_stat_button"
+                    icon="fa-file-medical-alt"
+                    string="Observations"
+                >
+                </button>
+            </xpath>
+        </field>
+    </record>
+    <record
+        model="ir.ui.view"
+        id="medical_diagnostic_report_concepts_patient_tree_view"
+    >
+        <field
+            name="name"
+        >medical.observation.tree (in medical_diagnostic_report)</field>
+        <field name="model">medical.observation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="value_type" invisible="1" />
+                <field
+                    name="value_bool"
+                    attrs="{'invisible': [('value_type', '!=', 'bool')]}"
+                />
+                <field
+                    name="value_str"
+                    attrs="{'invisible': [('value_type', '!=', 'str')]}"
+                />
+                <field
+                    name="value_selection"
+                    attrs="{'invisible': [('value_type', '!=', 'selection')]}"
+                />
+                <field
+                    name="value_int"
+                    attrs="{'invisible': [('value_type', '!=', 'int')]}"
+                />
+                <field
+                    name="value_float"
+                    attrs="{'invisible': [('value_type', '!=', 'float')]}"
+                />
+            </tree>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="medical_diagnostic_report_concepts_patient_act_window"
+    >
+        <field name="name">Observations</field>
+        <field name="res_model">medical.observation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
