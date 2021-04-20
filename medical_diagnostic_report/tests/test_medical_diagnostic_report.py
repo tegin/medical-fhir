@@ -6,7 +6,9 @@ import base64
 from datetime import date, datetime
 
 import freezegun
+from odoo.exceptions import ValidationError
 from odoo.tests import TransactionCase
+from odoo.tests.common import Form
 
 
 class TestMedicalDiagnosticReport(TransactionCase):
@@ -21,6 +23,15 @@ class TestMedicalDiagnosticReport(TransactionCase):
         )
         uom = self.env.ref(
             "medical_diagnostic_report.uom_ten_thousand_micro_liter"
+        )
+        self.concept_1 = self.env["medical.observation.concept"].create(
+            {
+                "name": "Concept 1",
+                "value_type": "float",
+                "uom_id": uom.id,
+                "reference_range_low": 2,
+                "reference_range_high": 10,
+            }
         )
         items = [
             {"name": "Section 1", "display_type": "line_section"},
@@ -42,16 +53,42 @@ class TestMedicalDiagnosticReport(TransactionCase):
             {"name": "Line 3", "value_type": "bool"},
             {"name": "Line 4", "value_type": "str"},
             {"name": "Note 1", "display_type": "line_note"},
+            {"name": "Line 5", "concept_id": self.concept_1.id},
         ]
         self.template_1 = self.env[
             "medical.diagnostic.report.template"
         ].create(
             {
                 "name": "Template 1",
+                "with_observation": True,
                 "with_conclusion": True,
                 "conclusion": "Everything is ok",
                 "with_composition": False,
                 "item_ids": [(0, 0, item) for item in items],
+            }
+        )
+        self.template_2 = self.env[
+            "medical.diagnostic.report.template"
+        ].create(
+            {
+                "name": "Template 2",
+                "with_observation": True,
+                "with_conclusion": True,
+                "conclusion": "All the observations are in the reference range",
+                "with_composition": True,
+                "composition": "Composition 2",
+                "item_ids": [(0, 0, item) for item in items],
+            }
+        )
+        self.template_3 = self.env[
+            "medical.diagnostic.report.template"
+        ].create(
+            {
+                "name": "Template 3",
+                "with_conclusion": True,
+                "conclusion": "All the observations are in the reference range",
+                "with_composition": True,
+                "composition": "Composition 2",
             }
         )
         report_generation = self.env[
@@ -200,3 +237,67 @@ class TestMedicalDiagnosticReport(TransactionCase):
         action = self.encounter_1.action_view_report()
         reports = self.env[action["res_model"]].search(action["domain"])
         self.assertIn(self.report, reports)
+
+    def test_report_expand(self):
+        self.assertFalse(self.report.composition)
+        self.env["medical.diagnostic.report.expand"].create(
+            {
+                "diagnostic_report_id": self.report.id,
+                "template_id": self.template_2.id,
+            }
+        ).merge()
+        self.assertEqual(self.template_1.conclusion, self.report.conclusion)
+        self.assertTrue(self.report.with_composition)
+        self.assertTrue(self.report.composition)
+        self.assertRegex(self.report.composition, self.template_2.composition)
+        self.assertEqual(
+            len(self.template_1.item_ids) + len(self.template_2.item_ids),
+            len(self.report.observation_ids),
+        )
+
+    def test_report_expand_same_template_exception(self):
+        self.env["medical.diagnostic.report.expand"].create(
+            {
+                "diagnostic_report_id": self.report.id,
+                "template_id": self.template_2.id,
+            }
+        ).merge()
+        with self.assertRaises(ValidationError):
+            self.env["medical.diagnostic.report.expand"].create(
+                {
+                    "diagnostic_report_id": self.report.id,
+                    "template_id": self.template_2.id,
+                }
+            ).merge()
+
+    def test_report_expand_same_template_no_exception(self):
+        self.env["medical.diagnostic.report.expand"].create(
+            {
+                "diagnostic_report_id": self.report.id,
+                "template_id": self.template_2.id,
+            }
+        ).merge()
+        self.env["medical.diagnostic.report.expand"].create(
+            {
+                "diagnostic_report_id": self.report.id,
+                "template_id": self.template_2.id,
+            }
+        ).with_context(no_raise_error_on_duplicate_template=True).merge()
+
+    def test_report_expand_final_exception(self):
+        self.assertEqual(self.report.state, "registered")
+        self.report.registered2final_action()
+        self.assertEqual(self.report.state, "final")
+        with self.assertRaises(ValidationError):
+            self.env["medical.diagnostic.report.expand"].create(
+                {
+                    "diagnostic_report_id": self.report.id,
+                    "template_id": self.template_3.id,
+                }
+            ).merge()
+
+    def test_report_form(self):
+        with Form(self.template_3) as form:
+            with form.item_ids.new() as observation:
+                observation.concept_id = self.concept_1
+                self.assertTrue(observation.name)
