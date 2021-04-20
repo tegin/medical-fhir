@@ -27,7 +27,9 @@ class MedicalDiagnosticReportExpand(models.TransientModel):
         if self.diagnostic_report_id.state != "registered":
             raise ValidationError(_("Cannot update the report"))
         if self.template_id in self.diagnostic_report_id.template_ids:
-            if self.env.context("no_raise_error_on_duplicate_template", False):
+            if self.env.context.get(
+                "no_raise_error_on_duplicate_template", False
+            ):
                 return
             raise ValidationError(_("This template has already been imported"))
         vals = self.template_id.with_context(
@@ -61,14 +63,14 @@ class MedicalDiagnosticReportExpand(models.TransientModel):
             )
 
         if vals["with_observation"]:
-            max_seq = (
-                max(
+            max_seq = 0
+            if self.diagnostic_report_id.observation_ids:
+                max_seq = max(
                     self.diagnostic_report_id.observation_ids.mapped(
                         "sequence"
                     )
                 )
-                or 0
-            )
+
             for _a, _b, observation in vals["observation_ids"]:
                 observation["sequence"] += max_seq + 1
             new_vals.update(
