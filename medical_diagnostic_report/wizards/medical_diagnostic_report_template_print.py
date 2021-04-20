@@ -6,7 +6,9 @@ from odoo import api, fields, models
 
 class MedicalDiagnosticReportTemplatePrint(models.TransientModel):
     _name = "medical.diagnostic.report.template.print"
-
+    _description = (
+        "This wizard allows to print from template with the selected language"
+    )
     diagnostic_template_id = fields.Many2one(
         "medical.diagnostic.report.template", required=True
     )
