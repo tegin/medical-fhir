@@ -238,13 +238,13 @@
         </field>
     </record>
     <record model="ir.actions.act_window" id="medical_diagnostic_report_act_window">
-        <field name="name">Medical Diagnostic Report</field>
+        <field name="name">Diagnostic Report</field>
         <field name="res_model">medical.diagnostic.report</field>
         <field name="view_mode">tree,form</field>
     </record>
     <record model="ir.ui.menu" id="medical_diagnostic_report_menu">
-        <field name="name">Medical Diagnostic Report</field>
-        <field name="parent_id" ref="medical_clinical.medical_clinical_event" />
+        <field name="name">Diagnostic Report</field>
+        <field name="parent_id" ref="medical_root_diagnostic" />
         <field name="action" ref="medical_diagnostic_report_act_window" />
         <field name="sequence" eval="16" />
     </record>
