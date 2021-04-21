@@ -68,6 +68,7 @@ class MedicalDiagnosticReport(models.Model):
         "medical.diagnostic.report.template",
         relation="medical_diagnostic_report_templates_rel",
     )
+    is_cancellable = fields.Boolean(compute="_compute_is_cancellable")
 
     @api.model
     def _get_lang(self):
@@ -113,7 +114,18 @@ class MedicalDiagnosticReport(models.Model):
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:
-            rec.is_editable = rec.state in ("registered",)
+            rec.is_editable = rec._is_editable()
+
+    def _is_editable(self):
+        return self.state in ("registered",)
+
+    @api.depends("state")
+    def _compute_is_cancellable(self):
+        for rec in self:
+            rec.is_cancellable = rec._is_cancellable()
+
+    def _is_cancellable(self):
+        return self.state in ("registered", "final")
 
     def _generate_serializer(self):
         result = super(MedicalDiagnosticReport, self)._generate_serializer()
