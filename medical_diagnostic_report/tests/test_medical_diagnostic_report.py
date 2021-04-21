@@ -109,11 +109,13 @@ class TestMedicalDiagnosticReport(TransactionCase):
         self.assertFalse(self.report.issued_date)
         self.assertFalse(self.report.issued_user_id)
         self.assertTrue(self.report.is_editable)
+        self.assertTrue(self.report.is_cancellable)
         with freezegun.freeze_time("2020-01-01"):
             self.report.registered2final_action()
         self.assertEqual(self.report.state, "final")
         self.assertTrue(self.report.issued_date)
         self.assertFalse(self.report.is_editable)
+        self.assertTrue(self.report.is_cancellable)
         self.assertEqual(
             self.report.issued_date, datetime(2020, 1, 1, 0, 0, 0)
         )
@@ -131,6 +133,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
         self.assertFalse(self.report.cancel_date)
         self.assertFalse(self.report.cancel_user_id)
         self.assertTrue(self.report.is_editable)
+        self.assertTrue(self.report.is_cancellable)
         with freezegun.freeze_time("2020-01-01"):
             self.report.final2cancelled_action()
         self.assertEqual(self.report.state, "cancelled")
@@ -139,6 +142,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
             self.report.cancel_date, datetime(2020, 1, 1, 0, 0, 0)
         )
         self.assertFalse(self.report.is_editable)
+        self.assertFalse(self.report.is_cancellable)
         self.assertTrue(self.report.cancel_user_id)
         self.assertEqual(self.report.cancel_user_id, self.env.user)
 
