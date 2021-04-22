@@ -20,5 +20,10 @@ class MedicalObservationConcept(models.Model):
     reference_range_high = fields.Float()
 
     _sql_constraints = [
-        ("name_uniq", "UNIQUE (name)", "Concept name must be unique!")
+        ("name_uniq", "UNIQUE (name)", "Concept name must be unique!"),
+        (
+            "check_reference_range",
+            "CHECK(reference_range_low <= reference_range_high)",
+            "Reference range low cannot be larger that reference range high",
+        ),
     ]
