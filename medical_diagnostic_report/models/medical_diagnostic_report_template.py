@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class MedicalDiagnosticReportTemplate(models.Model):
-
     _name = "medical.diagnostic.report.template"
     _inherit = ["medical.report.abstract"]
     _description = "Diagnostic Report Template"
@@ -93,7 +92,13 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
             "concept_id_uniq",
             "UNIQUE (concept_id, template_id)",
             "Observation concept must be unique.",
-        )
+        ),
+        (
+            "check_reference_range",
+            "CHECK(concept_id is not null "
+            "or reference_range_low <= reference_range_high)",
+            "Reference range low cannot be larger that reference range high",
+        ),
     ]
 
     @api.depends(
