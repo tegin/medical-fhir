@@ -29,6 +29,7 @@
                         type="object"
                         name="planned2arrived"
                         class="oe_highlight"
+                        groups="medical_administration_encounter.group_medical_encounter_manager"
                         attrs="{'invisible': [('state','!=','planned')]}"
                     />
                     <button
@@ -36,6 +37,7 @@
                         type="object"
                         name="planned2cancelled"
                         class="oe_highlight"
+                        groups="medical_administration_encounter.group_medical_encounter_manager"
                         attrs="{'invisible': [('state','!=','planned')]}"
                     />
                     <button
@@ -43,6 +45,7 @@
                         type="object"
                         name="arrived2inprogress"
                         class="oe_highlight"
+                        groups="medical_administration_encounter.group_medical_encounter_manager"
                         attrs="{'invisible': [('state','!=','arrived')]}"
                     />
                     <button
@@ -50,6 +53,7 @@
                         type="object"
                         name="arrived2cancelled"
                         class="oe_highlight"
+                        groups="medical_administration_encounter.group_medical_encounter_manager"
                         attrs="{'invisible': [('state','!=','arrived')]}"
                     />
                     <button
@@ -57,12 +61,14 @@
                         type="object"
                         name="inprogress2onleave"
                         class="oe_highlight"
+                        groups="medical_administration_encounter.group_medical_encounter_manager"
                         attrs="{'invisible': [('state','!=','in-progress')]}"
                     />
                     <button
                         string="Cancel"
                         type="object"
                         name="inprogress2cancelled"
+                        groups="medical_administration_encounter.group_medical_encounter_manager"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','in-progress')]}"
                     />
@@ -70,6 +76,7 @@
                         string="Finished"
                         type="object"
                         name="onleave2finished"
+                        groups="medical_administration_encounter.group_medical_encounter_manager"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','onleave')]}"
                     />
@@ -77,6 +84,7 @@
                         string="Cancel"
                         type="object"
                         name="onleave2cancelled"
+                        groups="medical_administration_encounter.group_medical_encounter_manager"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','onleave')]}"
                     />
