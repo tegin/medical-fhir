@@ -155,7 +155,7 @@
                                             <td>
                                                 <t
                                                     name="interpretation_range"
-                                                    t-if="obs.reference_range_low and obs.reference_range_high "
+                                                    t-if="obs.reference_range_limit"
                                                 >
                                                     ( RV:
                                                     <t
