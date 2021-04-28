@@ -153,6 +153,7 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
             "value_type": concept.value_type,
             "blocked": self.blocked or self.template_id.item_blocked,
             "sequence": self.sequence,
+            "patient_id": encounter.patient_id.id,
         }
 
     @api.model

@@ -17,14 +17,6 @@
                     >
                     </field>
                 </group>
-                <!-- <group>
-                    <button
-                        name="compute_evolution"
-                        string="Generate graph"
-                        class="btn-primary"
-                        type="object"
-                    />
-                </group> -->
                 <group>
                     <field name="date_low_limit" />
                     <field name="date_high_limit" />
