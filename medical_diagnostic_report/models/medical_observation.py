@@ -14,7 +14,9 @@ class MedicalObservation(models.Model):
     diagnostic_report_id = fields.Many2one(
         comodel_name="medical.diagnostic.report"
     )
-    patient_id = fields.Many2one("medical.patient", readonly=True,)
+    patient_id = fields.Many2one(
+        "medical.patient", readonly=True, required=True
+    )
     value = fields.Char(store=False)
     value_float = fields.Float()
     value_str = fields.Char()
@@ -27,6 +29,7 @@ class MedicalObservation(models.Model):
     interpretation = fields.Selection(
         [("low", "Low"), ("normal", "Normal"), ("high", "High")],
         compute="_compute_interpretation",
+        store=True,
     )
     # FHIR Field: interpretation
     observation_date = fields.Datetime(string="Date",)
@@ -68,7 +71,7 @@ class MedicalObservation(models.Model):
         self.write(self._cancel_vals())
 
     def _cancel_vals(self):
-        return {"state": "Cancelled"}
+        return {"state": "cancelled"}
 
     @api.depends(
         "value_float",
@@ -130,4 +133,3 @@ class MedicalObservation(models.Model):
             return self.value_float
         else:
             return self.value_int
-        return False

@@ -37,6 +37,7 @@
         "views/medical_encounter.xml",
         "views/medical_observation_concept.xml",
         "views/medical_patient.xml",
+        "views/medical_observation_report.xml",
         "reports/medical_diagnostic_report_base.xml",
         "reports/medical_diagnostic_report_template.xml",
         "reports/medical_diagnostic_report_report.xml",

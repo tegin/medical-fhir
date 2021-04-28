@@ -99,15 +99,16 @@ class MedicalDiagnosticReport(models.Model):
     def _get_observation_date(self):
         return self.encounter_id.create_date
 
-    def final2cancelled_change_state(self):
+    def _cancel_vals(self):
         return {
             "state": "cancelled",
             "cancel_date": fields.Datetime.now(),
             "cancel_user_id": self.env.user.id,
         }
 
-    def final2cancelled_action(self):
-        self.write(self.final2cancelled_change_state())
+    def cancel_action(self):
+        self.write(self._cancel_vals())
+        self.observation_ids.cancel_action()
 
     @api.depends("state")
     def _compute_is_editable(self):

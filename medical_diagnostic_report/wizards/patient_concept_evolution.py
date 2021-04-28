@@ -8,7 +8,6 @@ from bokeh.models import BoxAnnotation, ColumnDataSource, DatetimeTickFormatter
 from bokeh.models.tools import HoverTool
 from bokeh.plotting import figure
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
 
 
 class PatientConceptEvolution(models.TransientModel):
@@ -35,13 +34,13 @@ class PatientConceptEvolution(models.TransientModel):
         return domain
 
     def _compute_evolution_dataframe(self):
-        df = pd.DataFrame({"Date": []})
-        df = df.set_index("Date")
         domain = self._get_dataframe_domain()
         observations = self.env["medical.observation"].search(
             domain, order="observation_date"
         )
         if observations:
+            df = pd.DataFrame({"Date": []})
+            df = df.set_index("Date")
             for observation in observations:
                 obs_date = fields.Datetime.context_timestamp(
                     observation, observation.observation_date
@@ -53,14 +52,20 @@ class PatientConceptEvolution(models.TransientModel):
                 df.loc[obs_date, observation.name] = observation.get_value()
             return df
         else:
-            raise ValidationError(
-                _("This patient does not have observations for this concept")
-            )
+            return False
 
     @api.depends("concept_id", "date_low_limit", "date_high_limit")
     def _compute_bokeh_chart(self):
         if self.concept_id:
             df = self._compute_evolution_dataframe()
+            if not isinstance(df, pd.DataFrame):
+                self.bokeh_chart = """
+                <div class="alert alert-danger text-center o_form_header"
+                     role="alert" style="margin-bottom:0px;"><bold>%s</bold></div>
+                """ % _(
+                    "No data found"
+                )
+                return
             source = ColumnDataSource(df)
             p = figure(sizing_mode="stretch_width", plot_height=450,)
             hover = HoverTool(

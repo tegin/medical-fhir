@@ -34,7 +34,7 @@
         >medical.observation.tree (in medical_diagnostic_report)</field>
         <field name="model">medical.observation</field>
         <field name="arch" type="xml">
-            <tree default_order='observation_date desc'>
+            <tree default_order='observation_date desc' create="false">
                 <field name="name" />
                 <field name="value_type" invisible="1" />
                 <field name="value_representation" />
