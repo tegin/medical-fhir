@@ -18,7 +18,7 @@
                     attrs="{'invisible':[('is_editable', '=', False)]}"
                 />
                 <button
-                    name="final2cancelled_action"
+                    name="cancel_action"
                     string="Cancel report"
                     type="object"
                     attrs="{'invisible':[('is_cancellable', '=', False)]}"

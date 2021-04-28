@@ -73,8 +73,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
             {
                 "name": "Template 2",
                 "with_observation": True,
-                "with_conclusion": True,
-                "conclusion": "All the observations are in the reference range",
+                "with_conclusion": False,
                 "with_composition": True,
                 "composition": "Composition 2",
                 "item_ids": [(0, 0, item) for item in items],
@@ -135,7 +134,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
         self.assertTrue(self.report.is_editable)
         self.assertTrue(self.report.is_cancellable)
         with freezegun.freeze_time("2020-01-01"):
-            self.report.final2cancelled_action()
+            self.report.cancel_action()
         self.assertEqual(self.report.state, "cancelled")
         self.assertTrue(self.report.cancel_date)
         self.assertEqual(
@@ -258,6 +257,28 @@ class TestMedicalDiagnosticReport(TransactionCase):
             len(self.template_1.item_ids) + len(self.template_2.item_ids),
             len(self.report.observation_ids),
         )
+
+    def test_report_expand_without_current_report_conclusion(self):
+        report_generation = self.env[
+            "medical.encounter.create.diagnostic.report"
+        ].create(
+            {
+                "encounter_id": self.encounter_1.id,
+                "template_id": self.template_2.id,
+            }
+        )
+        action = report_generation.generate()
+        report = self.env[action.get("res_model")].browse(action.get("res_id"))
+        self.assertFalse(report.conclusion)
+        self.env["medical.diagnostic.report.expand"].create(
+            {
+                "diagnostic_report_id": report.id,
+                "template_id": self.template_3.id,
+            }
+        ).merge()
+        self.assertTrue(report.with_conclusion)
+        self.assertTrue(report.conclusion)
+        self.assertRegex(report.conclusion, self.template_3.conclusion)
 
     def test_report_expand_same_template_exception(self):
         self.env["medical.diagnostic.report.expand"].create(

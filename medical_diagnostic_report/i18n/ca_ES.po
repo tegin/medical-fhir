@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-21 19:31+0000\n"
-"PO-Revision-Date: 2021-04-21 22:10+0200\n"
+"POT-Creation-Date: 2021-04-27 15:31+0000\n"
+"PO-Revision-Date: 2021-04-28 08:28+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -58,6 +58,11 @@ msgid "<i class=\"fa fa-map-marker fa-fw\" role=\"img\" aria-label=\"Address\" t
 msgstr ""
 
 #. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template,composition:medical_diagnostic_report.medical_diagnostic_report_template_demo_1
+msgid "<p>All the observations are in the reference range</p>"
+msgstr "<p>Totes les observacions es troben en el rang de referència</p>"
+
+#. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_layout_preview
 msgid "<span>MDR000000(0)</span>"
 msgstr ""
@@ -70,7 +75,7 @@ msgstr ""
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_layout_preview
 msgid "<span>Template Patient Name</span>"
-msgstr ""
+msgstr "<span>Nom pacient plantilla</span>"
 
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_base
@@ -84,7 +89,7 @@ msgstr ""
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_base
 msgid "<strong>Conclusions:</strong>"
-msgstr "<strong>Conclusions:</strong>"
+msgstr ""
 
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_base
@@ -207,11 +212,6 @@ msgid "Add a subsection"
 msgstr "Afegir una subsecció"
 
 #. module: medical_diagnostic_report
-#: model:medical.diagnostic.report.template,composition:medical_diagnostic_report.medical_diagnostic_report_template_demo_1
-msgid "All the observations are in the reference range"
-msgstr "Totes les observacions estan en el seu rang de referencia"
-
-#. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_attachment_count
 msgid "Attachment Count"
 msgstr "Nombre d'adjunts"
@@ -236,7 +236,12 @@ msgstr "Anàlisis de sang"
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_01
 msgid "Blood count"
-msgstr ""
+msgstr "Hemograma"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__bokeh_chart
+msgid "Bokeh Chart"
+msgstr "Gràfic Bokeh"
 
 #. module: medical_diagnostic_report
 #: selection:medical.diagnostic.report.template.item,value_type:0
@@ -249,6 +254,7 @@ msgstr "Booleà"
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_expand_form_view
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_print_form_view
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_encounter_create_diagnostic_report_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.patient_concept_evolution_form_view
 msgid "Cancel"
 msgstr "Cancel·lar"
 
@@ -259,6 +265,7 @@ msgstr "Cancel·lar informe"
 
 #. module: medical_diagnostic_report
 #: selection:medical.diagnostic.report,state:0
+#: selection:medical.observation,state:0
 msgid "Cancelled"
 msgstr "Cancel·lat"
 
@@ -281,13 +288,13 @@ msgstr "No pot actualitzar l'informe"
 #. module: medical_diagnostic_report
 #: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_catalytic_activity_litre
 msgid "Catalytic Activity Litre"
-msgstr ""
+msgstr "Activitat catalítica per litre"
 
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_10
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_12
 msgid "Colorimetric serum"
-msgstr ""
+msgstr "Sèrum colorimètric"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__composition
@@ -306,14 +313,20 @@ msgstr "Concentració"
 #. module: medical_diagnostic_report
 #: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_concentration_water
 msgid "Concentration in Water"
-msgstr ""
+msgstr "Concentracció en aigua"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__concept_id
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__concept_id
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__concept_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__concept_id
 msgid "Concept"
 msgstr "Concepte"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.patient_concept_evolution_form_view
+msgid "Concept Evolution"
+msgstr "Evolució de concepte"
 
 #. module: medical_diagnostic_report
 #: sql_constraint:medical.observation.concept:0
@@ -331,7 +344,7 @@ msgstr "Conclusió"
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
 msgid "Conclusions"
-msgstr ""
+msgstr "Conclusions"
 
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_encounter_create_diagnostic_report_form_view
@@ -352,6 +365,7 @@ msgstr "Crear informe mèdic"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__create_uid
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__create_uid
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__create_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__create_uid
 msgid "Created by"
 msgstr "Creat per"
 
@@ -364,13 +378,14 @@ msgstr "Creat per"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__create_date
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__create_date
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__create_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__create_date
 msgid "Created on"
 msgstr "Creat el"
 
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_13
 msgid "Creatinine"
-msgstr ""
+msgstr "Creatinina"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__serializer_current
@@ -391,6 +406,22 @@ msgstr "Plantilles actuals"
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_single_preview
 msgid "DKV"
 msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__observation_date
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_observation_pivot_search
+msgid "Date"
+msgstr "Data"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__date_high_limit
+msgid "Date High Limit"
+msgstr "Límit superior de data"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__date_low_limit
+msgid "Date Low Limit"
+msgstr "Límit inferior de data"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__issued_date
@@ -426,7 +457,7 @@ msgstr "Informe"
 #. module: medical_diagnostic_report
 #: model:ir.actions.report,name:medical_diagnostic_report.medical_diagnostic_report
 msgid "Diagnostic Report "
-msgstr "Informe"
+msgstr "Informe "
 
 #. module: medical_diagnostic_report
 #: model:res.groups,name:medical_diagnostic_report.group_medical_diagnostic_report_display
@@ -451,7 +482,7 @@ msgstr "Gestor d'informe mèdic"
 #. module: medical_diagnostic_report
 #: model:ir.actions.report,name:medical_diagnostic_report.medical_diagnostic_report_template_preview
 msgid "Diagnostic Report Preview "
-msgstr "Previsualitzar"
+msgstr "Previsualitzar "
 
 #. module: medical_diagnostic_report
 #: model:ir.actions.act_window,name:medical_diagnostic_report.medical_report_template_act_window
@@ -500,8 +531,9 @@ msgstr "Digest alterat"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__display_name
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__display_name
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__display_name
 msgid "Display Name"
-msgstr "Nom a mostrar"
+msgstr "Mostrar Nom"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__display_type
@@ -526,7 +558,7 @@ msgstr "Afiliació"
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_14
 msgid "Enzymatic serum"
-msgstr ""
+msgstr "Sèrum enzimàtic"
 
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
@@ -535,6 +567,7 @@ msgstr "Expandir"
 
 #. module: medical_diagnostic_report
 #: selection:medical.diagnostic.report,state:0
+#: selection:medical.observation,state:0
 msgid "Final"
 msgstr ""
 
@@ -573,12 +606,12 @@ msgstr "Generar un informe desde una plantilla"
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_09
 msgid "Glucose"
-msgstr ""
+msgstr "Glucosa"
 
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_04
 msgid "Hematocrit"
-msgstr ""
+msgstr "Hematòcrit"
 
 #. module: medical_diagnostic_report
 #: selection:medical.observation,interpretation:0
@@ -601,6 +634,7 @@ msgstr "Hora/es"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__id
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__id
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__id
 msgid "ID"
 msgstr ""
 
@@ -681,7 +715,7 @@ msgstr "Element bloquejat"
 #. module: medical_diagnostic_report
 #: model:uom.uom,name:medical_diagnostic_report.uom_litre_litre
 msgid "L/L"
-msgstr ""
+msgstr "L/L"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__lang
@@ -701,6 +735,7 @@ msgstr "Idioma"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept____last_update
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract____last_update
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution____last_update
 msgid "Last Modified on"
 msgstr "Última modificació el"
 
@@ -713,6 +748,7 @@ msgstr "Última modificació el"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__write_uid
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__write_uid
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__write_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__write_uid
 msgid "Last Updated by"
 msgstr "Última actualització per"
 
@@ -725,18 +761,19 @@ msgstr "Última actualització per"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__write_date
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__write_date
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__write_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__write_date
 msgid "Last Updated on"
 msgstr "Última actualització el"
 
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_06
 msgid "Leukocytes"
-msgstr ""
+msgstr "Leucòcits"
 
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_05
 msgid "Leukocytes and leukocytic formula"
-msgstr ""
+msgstr "Leucòcits i fórmula leucocítica"
 
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_base_layout
@@ -791,7 +828,7 @@ msgstr "Unir"
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_expand_form_view
 msgid "Merge template"
-msgstr ""
+msgstr "Unir plantilla"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_has_error
@@ -830,7 +867,7 @@ msgstr "Nom"
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_07
 msgid "Neutrophil"
-msgstr ""
+msgstr "Neutròfil"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__activity_date_deadline
@@ -851,6 +888,12 @@ msgstr "Tipus de la següent activitat"
 #: model:medical.diagnostic.report.template,conclusion:medical_diagnostic_report.medical_diagnostic_report_template_demo_1
 msgid "No abnormalities present"
 msgstr "Sense anormalitats"
+
+#. module: medical_diagnostic_report
+#: code:addons/medical_diagnostic_report/wizards/patient_concept_evolution.py:66
+#, python-format
+msgid "No data found"
+msgstr "No s'han trobat dades"
 
 #. module: medical_diagnostic_report
 #: selection:medical.observation,interpretation:0
@@ -896,6 +939,7 @@ msgstr "Nombre de missatges no llegits"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__observation_ids
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_observation_pivot
 msgid "Observation"
 msgstr "Observació"
 
@@ -907,7 +951,7 @@ msgstr "Concepte"
 #. module: medical_diagnostic_report
 #: sql_constraint:medical.diagnostic.report.template.item:0
 msgid "Observation concept must be unique."
-msgstr "El concepte ha de ser únic"
+msgstr "El concepte ha de ser únic."
 
 #. module: medical_diagnostic_report
 #: model:ir.ui.menu,name:medical_diagnostic_report.medical_observation_concept_menu
@@ -915,11 +959,30 @@ msgid "Observation concepts"
 msgstr "Conceptes"
 
 #. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.patient_concept_evolution_act_window
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_patient_form_view
+msgid "Observation evolution"
+msgstr "Evolució d'observació"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_observation_pivot_search
+msgid "Observation search"
+msgstr "Cerca d'observacions"
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_diagnostic_report_concepts_patient_act_window
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_observation_pivot_action
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__item_ids
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_patient_form_view
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
 msgid "Observations"
 msgstr "Observacions"
+
+#. module: medical_diagnostic_report
+#: model:ir.ui.menu,name:medical_diagnostic_report.menu_medical_report_pivot_observation
+msgid "Observations report"
+msgstr "Informe d'observacions"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__occurrence_date
@@ -929,7 +992,7 @@ msgstr "Data"
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__occurrence_date
 msgid "Occurrence of the order."
-msgstr "Data de la petició"
+msgstr "Data de la petició."
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__digest
@@ -956,6 +1019,8 @@ msgstr ""
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__patient_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__patient_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__patient_id
 msgid "Patient"
 msgstr "Pacient"
 
@@ -1026,12 +1091,12 @@ msgstr "Taxa"
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_02
 msgid "Red Series"
-msgstr ""
+msgstr "Sèrie Vermella"
 
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_03
 msgid "Red blood cells"
-msgstr ""
+msgstr "Glòbuls vermells"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__reference_format
@@ -1083,7 +1148,14 @@ msgid "Reference range low"
 msgstr ""
 
 #. module: medical_diagnostic_report
+#: sql_constraint:medical.diagnostic.report.template.item:0
+#: sql_constraint:medical.observation.concept:0
+msgid "Reference range low cannot be larger that reference range high"
+msgstr "El valor baix del rang de referència no pot ser més gran que el valor alt"
+
+#. module: medical_diagnostic_report
 #: selection:medical.diagnostic.report,state:0
+#: selection:medical.observation,state:0
 msgid "Registered"
 msgstr "Registrat"
 
@@ -1108,6 +1180,11 @@ msgstr "Informes"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__name
 msgid "Report Name"
 msgstr "Nom"
+
+#. module: medical_diagnostic_report
+#: model:ir.ui.menu,name:medical_diagnostic_report.menu_medical_report_root
+msgid "Reports"
+msgstr "Informes"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__activity_user_id
@@ -1151,7 +1228,7 @@ msgstr "Servei"
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
 msgid "Signature"
-msgstr "Signatura"
+msgstr "Firma"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__signature_date
@@ -1165,6 +1242,7 @@ msgstr "Detall de la signatura"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__state
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__state
 msgid "State"
 msgstr "Estat"
 
@@ -1226,6 +1304,11 @@ msgstr "La plantilla ja ha sigut importada"
 #: model:ir.model,name:medical_diagnostic_report.model_medical_diagnostic_report_template_print
 msgid "This wizard allows to print from template with the selected language"
 msgstr "L'assistent permet imprimir una plantilla en l'idioma seleccionat"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_patient_concept_evolution
+msgid "This wizard allows to view a patient's concept evolution"
+msgstr "Aquesta pàgina emergent permet veure l'evolució gràfica de les observacions del pacient"
 
 #. module: medical_diagnostic_report
 #: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_time_hour
@@ -1306,6 +1389,11 @@ msgstr "Valor numèric"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_int
 msgid "Value Int"
 msgstr "Valor enter"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_representation
+msgid "Value Representation"
+msgstr ""
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_selection
@@ -1442,6 +1530,11 @@ msgstr ""
 #. module: medical_diagnostic_report
 #: model:uom.uom,name:medical_diagnostic_report.uom_millilitre_litre
 msgid "mL/L"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_patient
+msgid "medical.patient"
 msgstr ""
 
 #. module: medical_diagnostic_report
