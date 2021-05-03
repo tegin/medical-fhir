@@ -22,6 +22,7 @@
         "web_widget_bokeh_chart",
     ],
     "data": [
+        "data/report_paper_format.xml",
         "security/medical_security.xml",
         "security/ir.model.access.csv",
         "views/menu.xml",
