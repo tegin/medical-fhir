@@ -16,6 +16,7 @@
         "medical_workflow",
         "account",
         "web_translate_dialog",
+        "web_editor",
         "medical_certify",
         "web_widget_digitized_signature",
         "web_widget_bokeh_chart",
