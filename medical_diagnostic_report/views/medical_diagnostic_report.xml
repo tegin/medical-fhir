@@ -185,6 +185,7 @@
                 >
                     <field
                         name="composition"
+                        options="{'automatic_summernote_height': 1}"
                         attrs="{'readonly':[('is_editable', '=', False)]}"
                     />
                 </page>
