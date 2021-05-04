@@ -15,7 +15,8 @@ class MedicalDiagnosticReportTemplate(models.Model):
         copy=True,
         string="Observations",
     )
-    name = fields.Char(translate=True, required=True)
+    name = fields.Char(required=True)
+    title = fields.Char(translate=True)
     composition = fields.Html(translate=True, sanitize=False)
     conclusion = fields.Text(translate=True)
 
@@ -28,7 +29,7 @@ class MedicalDiagnosticReportTemplate(models.Model):
             "patient_age": self._compute_age(encounter.patient_id),
             "conclusion": self.conclusion,
             "composition": self.composition,
-            "name": self.name,
+            "name": self.title or self.name,
             "lang": self.env.context.get("lang") or self.env.user.lang,
             "item_blocked": self.item_blocked,
             "with_conclusion": self.with_conclusion,
