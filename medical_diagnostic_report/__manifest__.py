@@ -5,7 +5,7 @@
     "name": "Medical Diagnostic Report",
     "summary": """
         Allows to create reports for patients""",
-    "version": "12.0.2.0.0",
+    "version": "12.0.2.0.1",
     "license": "AGPL-3",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "https://github.com/tegin/medical-fhir",
@@ -16,11 +16,13 @@
         "medical_workflow",
         "account",
         "web_translate_dialog",
+        "web_editor",
         "medical_certify",
         "web_widget_digitized_signature",
         "web_widget_bokeh_chart",
     ],
     "data": [
+        "data/report_paper_format.xml",
         "security/medical_security.xml",
         "security/ir.model.access.csv",
         "views/menu.xml",

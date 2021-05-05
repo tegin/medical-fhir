@@ -14,7 +14,7 @@
                 <button
                     type="action"
                     name="%(medical_diagnostic_report.medical_encounter_create_diagnostic_report_act_window)s"
-                    class="oe_stat_button"
+                    class="oe_stat_button btn-warning"
                     icon="fa-file-medical-alt"
                     string="Generate Medical Report"
                     groups="medical_diagnostic_report.group_medical_diagnostic_report_manager"

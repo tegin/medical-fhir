@@ -12,5 +12,6 @@
         >medical_diagnostic_report.medical_diagnostic_report_template_preview</field>
         <field name="binding_model_id" ref="model_medical_diagnostic_report_template" />
         <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format" />
     </record>
 </odoo>
