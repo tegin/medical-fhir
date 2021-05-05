@@ -45,7 +45,7 @@ class MedicalDiagnosticReport(models.Model):
     patient_origin = fields.Char(readonly=True,)
 
     issued_date = fields.Datetime(
-        help="Date of report's publication", readonly=True, copy=False,
+        help="Date of report's publication", readonly=0, copy=False,
     )
     issued_user_id = fields.Many2one(
         "res.users", string="Issued by User", readonly=True, copy=False
@@ -90,26 +90,25 @@ class MedicalDiagnosticReport(models.Model):
     def registered2final_action(self):
         self.ensure_one()
         self.write(self.registered2final_change_state())
-        for obs in self.observation_ids:
-            if obs.uom_id and not obs.uom:
-                obs.write(
-                    {
-                        "uom": obs.uom_id.name,
-                        "reference_format": obs.uom_id.reference_format,
-                    }
-                )
+        self.observation_ids.registered2final_action(
+            observation_date=self._get_observation_date()
+        )
         # The document is signed when issued.
         self._sign_document()
 
-    def final2cancelled_change_state(self):
+    def _get_observation_date(self):
+        return self.encounter_id.create_date
+
+    def _cancel_vals(self):
         return {
             "state": "cancelled",
             "cancel_date": fields.Datetime.now(),
             "cancel_user_id": self.env.user.id,
         }
 
-    def final2cancelled_action(self):
-        self.write(self.final2cancelled_change_state())
+    def cancel_action(self):
+        self.write(self._cancel_vals())
+        self.observation_ids.cancel_action()
 
     @api.depends("state")
     def _compute_is_editable(self):

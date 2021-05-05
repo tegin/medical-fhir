@@ -26,6 +26,8 @@ jobs:
             DB_PORT: 5432
         steps:
             - uses: actions/checkout@v2
+              with:
+                  path: testing_repo
             - name: Set up Python
               uses: actions/setup-python@v2
               with:
@@ -45,7 +47,9 @@ jobs:
               run: |
                   git clone --depth=1 https://github.com/tegin/maintainer-quality-tools.git -b master-github ${HOME}/maintainer-quality-tools
             - name: Defining environment
-              run: echo "TRAVIS_BUILD_DIR=${GITHUB_WORKSPACE}" >> $GITHUB_ENV
+              run:
+                  echo "TRAVIS_BUILD_DIR=${GITHUB_WORKSPACE}/testing_repo" >>
+                  $GITHUB_ENV
             - name: Defining Path
               run: echo "${HOME}/maintainer-quality-tools/travis" >> $GITHUB_PATH
             - name: Install nightly
