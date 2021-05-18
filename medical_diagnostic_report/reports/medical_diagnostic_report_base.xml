@@ -42,9 +42,9 @@
                         />
                     </div>
                     <div class="col-6 text-right o_patient_header ">
-                        <h4>
+                        <h6>
                             <div name="patient_id" />
-                        </h4>
+                        </h6>
                         <div name="internal_identifier" />
                     </div>
                 </div>
