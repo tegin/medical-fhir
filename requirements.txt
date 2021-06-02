@@ -1,2 +1,5 @@
-odoo_test_helper
-freezegun
+# generated from manifests external_dependencies
+bokeh
+cryptography
+numpy
+pandas
