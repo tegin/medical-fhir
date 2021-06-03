@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 15:31+0000\n"
-"PO-Revision-Date: 2021-04-28 08:28+0200\n"
+"POT-Creation-Date: 2021-06-03 14:14+0000\n"
+"PO-Revision-Date: 2021-06-03 16:17+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -56,11 +56,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_base_layout
 msgid "<i class=\"fa fa-map-marker fa-fw\" role=\"img\" aria-label=\"Address\" title=\"Address\"/>"
 msgstr ""
-
-#. module: medical_diagnostic_report
-#: model:medical.diagnostic.report.template,composition:medical_diagnostic_report.medical_diagnostic_report_template_demo_1
-msgid "<p>All the observations are in the reference range</p>"
-msgstr "<p>Totes les observacions es troben en el rang de referència</p>"
 
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_layout_preview
@@ -212,6 +207,21 @@ msgid "Add a subsection"
 msgstr "Afegir una subsecció"
 
 #. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template,composition:medical_diagnostic_report.medical_diagnostic_report_template_demo_1
+msgid "All the observations are in the reference range"
+msgstr "Totes les observacions estan dins del rang de referència"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Are you sure you want to cancel this report?"
+msgstr "Està segur que vol cancel·lar l'informe?"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Are you sure you want to validate this report?"
+msgstr "Està segur que vol validar l'informe?"
+
+#. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_attachment_count
 msgid "Attachment Count"
 msgstr "Nombre d'adjunts"
@@ -227,11 +237,6 @@ msgstr "Bioquímica"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__blocked
 msgid "Blocked"
 msgstr "Bloquejat"
-
-#. module: medical_diagnostic_report
-#: model:medical.diagnostic.report.template,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1
-msgid "Blood analysis"
-msgstr "Anàlisis de sang"
 
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_01
@@ -344,7 +349,7 @@ msgstr "Conclusió"
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
 msgid "Conclusions"
-msgstr "Conclusions"
+msgstr ""
 
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_encounter_create_diagnostic_report_form_view
@@ -715,7 +720,7 @@ msgstr "Element bloquejat"
 #. module: medical_diagnostic_report
 #: model:uom.uom,name:medical_diagnostic_report.uom_litre_litre
 msgid "L/L"
-msgstr "L/L"
+msgstr ""
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__lang
@@ -890,7 +895,7 @@ msgid "No abnormalities present"
 msgstr "Sense anormalitats"
 
 #. module: medical_diagnostic_report
-#: code:addons/medical_diagnostic_report/wizards/patient_concept_evolution.py:66
+#: code:addons/medical_diagnostic_report/wizards/patient_concept_evolution.py:65
 #, python-format
 msgid "No data found"
 msgstr "No s'han trobat dades"
@@ -1319,6 +1324,11 @@ msgstr "Temps Hora/Dia/Setmana"
 #: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_time_month
 msgid "Time Month/Year"
 msgstr "Temps Mes/any"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__title
+msgid "Title"
+msgstr "Títol"
 
 #. module: medical_diagnostic_report
 #: selection:medical.diagnostic.report,activity_state:0

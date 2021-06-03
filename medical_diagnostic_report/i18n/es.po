@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 14:50+0000\n"
-"PO-Revision-Date: 2021-04-28 10:55+0200\n"
+"POT-Creation-Date: 2021-06-03 13:56+0000\n"
+"PO-Revision-Date: 2021-06-03 16:19+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -212,6 +212,16 @@ msgid "All the observations are in the reference range"
 msgstr "Todas las observaciones están dentro de los valores de referencia"
 
 #. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Are you sure you want to cancel this report?"
+msgstr "¿Está seguro que quiere cancelar el informe?"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Are you sure you want to validate this report?"
+msgstr "¿Está seguro que quiere validar el informe?"
+
+#. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_attachment_count
 msgid "Attachment Count"
 msgstr "Conteo de archivos adjuntos"
@@ -227,11 +237,6 @@ msgstr "Bioquímica"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__blocked
 msgid "Blocked"
 msgstr "Bloqueado"
-
-#. module: medical_diagnostic_report
-#: model:medical.diagnostic.report.template,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1
-msgid "Blood analysis"
-msgstr "Análisis de sangre"
 
 #. module: medical_diagnostic_report
 #: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_01
@@ -636,7 +641,7 @@ msgstr "Hora(s)"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__id
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__id
 msgid "ID"
-msgstr "Identificador"
+msgstr ""
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__message_unread
@@ -793,7 +798,7 @@ msgstr "Adjuntos principales"
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_uom_category__measure_type
 msgid "Measure Type"
-msgstr "Tipo de medida"
+msgstr ""
 
 #. module: medical_diagnostic_report
 #: model:ir.actions.act_window,name:medical_diagnostic_report.medical_diagnostic_report_expand_act_window
@@ -890,9 +895,15 @@ msgid "No abnormalities present"
 msgstr "No presenta anomalías"
 
 #. module: medical_diagnostic_report
+#: code:addons/medical_diagnostic_report/wizards/patient_concept_evolution.py:65
+#, python-format
+msgid "No data found"
+msgstr ""
+
+#. module: medical_diagnostic_report
 #: selection:medical.observation,interpretation:0
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 #. module: medical_diagnostic_report
 #: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_search_view
@@ -1238,7 +1249,7 @@ msgstr "Detalle de la firma"
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__state
 #: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__state
 msgid "State"
-msgstr "Estado"
+msgstr "Provincia"
 
 #. module: medical_diagnostic_report
 #: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__activity_state
@@ -1289,12 +1300,6 @@ msgid "This model allows to add templates to a report"
 msgstr "Este modelo permite añadir plantillas a un informe"
 
 #. module: medical_diagnostic_report
-#: code:addons/medical_diagnostic_report/wizards/patient_concept_evolution.py:57
-#, python-format
-msgid "This patient does not have observations for this concept"
-msgstr "Este paciente no tiene observaciones para este concepto"
-
-#. module: medical_diagnostic_report
 #: code:addons/medical_diagnostic_report/wizards/medical_diagnostic_report_expand.py:34
 #, python-format
 msgid "This template has already been imported"
@@ -1319,6 +1324,11 @@ msgstr "Tiempo Hora/Día/Semana"
 #: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_time_month
 msgid "Time Month/Year"
 msgstr "Tiempo Mes/Año"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__title
+msgid "Title"
+msgstr "Título"
 
 #. module: medical_diagnostic_report
 #: selection:medical.diagnostic.report,activity_state:0
@@ -1535,7 +1545,7 @@ msgstr ""
 #. module: medical_diagnostic_report
 #: model:ir.model,name:medical_diagnostic_report.model_medical_patient
 msgid "medical.patient"
-msgstr "medical.patient"
+msgstr "medical.pacientes"
 
 #. module: medical_diagnostic_report
 #: model:uom.uom,name:medical_diagnostic_report.uom_milligram_liter
