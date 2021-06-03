@@ -14,12 +14,16 @@
                 <button
                     name="registered2final_action"
                     string="Issue report"
+                    class="btn-success"
+                    confirm="Are you sure you want to validate this report?"
                     type="object"
                     attrs="{'invisible':[('is_editable', '=', False)]}"
                 />
                 <button
                     name="cancel_action"
                     string="Cancel report"
+                    confirm="Are you sure you want to cancel this report?"
+                    class="btn-danger"
                     type="object"
                     attrs="{'invisible':[('is_cancellable', '=', False)]}"
                 />
