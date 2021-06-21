@@ -22,26 +22,19 @@
             <form>
                 <header />
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button
-                            name="toggle_active"
-                            type="object"
-                            confirm="Are you sure you want to archive/unarchive this element?"
-                            class="oe_stat_button"
-                            icon="fa-archive"
-                        >
-                            <field
-                                name="active"
-                                widget="boolean_button"
-                                options='{"terminology": "archive"}'
-                            />
-                        </button>
-                    </div>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field name="active" invisible="1" />
+                    <div class="oe_button_box" name="button_box" />
                     <field
-                        name="image"
+                        name="image_1920"
                         widget='image'
                         class="oe_avatar"
-                        options='{"preview_image": "image_medium", "size": [90, 90]}'
+                        options='{"preview_image": "image_128", "size": [90, 90]}'
                     />
                     <div class="oe_title">
                         <field name="is_company" invisible="1" />
@@ -65,17 +58,14 @@
                                 attrs="{'required' : [('type', '=', 'contact')]}"
                             />
                             <field name="is_company" invisible="True" />
-                            <field name="supplier" invisible="True" />
-                            <field name="customer" invisible="True" />
                             <field name="parent_id" invisible="True" />
                         </h1>
                         <div class="o_row">
-                            <field name="supplier" invisible="True" />
                             <field
                                 name="parent_id"
                                 placeholder="Company"
                                 domain="[('is_company', '=', True)]"
-                                context="{'default_is_company': True, 'default_supplier': supplier, 'default_customer': customer}"
+                                context="{'default_is_company': True}"
                                 attrs="{'invisible': ['|', '&amp;', ('is_company','=', True),('parent_id', '=', False),('company_name', '!=', False),('company_name', '!=', '')]}"
                             />
                             <field
@@ -202,8 +192,6 @@
                             </group>
                         </page>
                     </notebook>
-                    <field name="supplier" invisible="True" />
-                    <field name="customer" invisible="True" />
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers" />
@@ -235,7 +223,7 @@
                 <field name="mobile" />
                 <field name="state_id" />
                 <field name="category_id" />
-                <field name="image_small" />
+                <field name="image_128" />
                 <field name="type" />
                 <field name="id" invisible="1" />
                 <templates>
@@ -245,13 +233,13 @@
                                 class="o_kanban_tags_section oe_kanban_partner_categories"
                             />
                             <div class="o_kanban_image">
-                                <t t-if="record.image_small.raw_value">
+                                <t t-if="record.image_128.raw_value">
                                     <img
                                         alt="Image"
-                                        t-att-src="kanban_image('medical.patient', 'image_small', record.id.raw_value)"
+                                        t-att-src="kanban_image('medical.patient', 'image_128', record.id.raw_value)"
                                     />
                                 </t>
-                                <t t-if="!record.image_small.raw_value">
+                                <t t-if="!record.image_128.raw_value">
                                     <t t-if="record.is_company.raw_value === true">
                                         <img
                                             alt="company_image"
@@ -292,7 +280,6 @@
         <field name="name">Patients</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.patient</field>
-        <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="context">{'default_company_type': 'person'}</field>
     </record>
