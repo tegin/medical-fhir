@@ -18,7 +18,7 @@ class MedicalCoverage(models.Model):
         required=True,
         ondelete="restrict",
         index=True,
-        track_visibility=True,
+        tracking=True,
         help="Patient name",
     )  # FHIR Field: beneficiary
     coverage_template_id = fields.Many2one(
@@ -39,7 +39,7 @@ class MedicalCoverage(models.Model):
             ("entered-in-error", "Entered In Error"),
         ],
         default="draft",
-        track_visibility=True,
+        tracking=True,
         help="Current state of the coverage.",
     )  # FHIR Field: status
     is_editable = fields.Boolean(compute="_compute_is_editable")
@@ -49,7 +49,6 @@ class MedicalCoverage(models.Model):
     def _get_internal_identifier(self, vals):
         return self.env["ir.sequence"].next_by_code("medical.coverage") or "/"
 
-    @api.multi
     @api.depends("name", "internal_identifier")
     def name_get(self):
         result = []
@@ -60,7 +59,6 @@ class MedicalCoverage(models.Model):
             result.append((record.id, name))
         return result
 
-    @api.multi
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:

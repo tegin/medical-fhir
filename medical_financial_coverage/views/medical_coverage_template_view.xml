@@ -138,7 +138,6 @@
         <field name="name">Coverages</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.coverage.template</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
     </record>

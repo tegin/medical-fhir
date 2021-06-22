@@ -19,7 +19,7 @@ class MedicalCoverageTemplate(models.Model):
         required=True,
         ondelete="restrict",
         index=True,
-        track_visibility=True,
+        tracking=True,
         help="Payer name",
     )
     coverage_ids = fields.One2many(
@@ -37,7 +37,7 @@ class MedicalCoverageTemplate(models.Model):
             ("entered-in-error", "Entered In Error"),
         ],
         default="draft",
-        track_visibility=True,
+        tracking=True,
         help="Current state of the coverage.",
     )
     is_editable = fields.Boolean(compute="_compute_is_editable")
@@ -49,7 +49,6 @@ class MedicalCoverageTemplate(models.Model):
             or "/"
         )
 
-    @api.multi
     @api.depends("name", "internal_identifier")
     def name_get(self):
         result = []
@@ -60,7 +59,6 @@ class MedicalCoverageTemplate(models.Model):
             result.append((record.id, name))
         return result
 
-    @api.multi
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:
