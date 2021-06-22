@@ -12,6 +12,7 @@ from odoo.modules import get_module_resource
 class MedicalPatient(models.Model):
     # FHIR Entity: Patient (http://hl7.org/fhir/patient.html)
     _name = "medical.patient"
+    _description = "Medical Patient"
     _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
     _inherits = {"res.partner": "partner_id"}
 
