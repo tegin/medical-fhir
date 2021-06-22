@@ -8,7 +8,6 @@
     <record id="medical_procedure_request_make_procedure_view" model="ir.ui.view">
         <field name="name">Procedure Request Make Procedure</field>
         <field name="model">procedure.request.make.procedure</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Create Procedures" create="false">
                 <separator
@@ -31,10 +30,10 @@
     <act_window
         id="medical_procedure_request_make_procedure_action"
         name="Create Procedure"
-        src_model="medical.procedure.request"
+        binding_model="medical.procedure.request"
+        binding_views="form"
         res_model="procedure.request.make.procedure"
         view_mode="form"
         target="new"
-        key2="client_action_multi"
     />
 </odoo>
