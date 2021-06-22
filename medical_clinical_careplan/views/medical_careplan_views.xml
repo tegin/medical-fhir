@@ -11,11 +11,10 @@
         <field name="mode">primary</field>
         <field name="inherit_id" ref="medical_workflow.medical_request_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <tree position="attributes">
+                <attribute name="decoration-muted">state=='cancelled'</attribute>
                 <attribute name="string">Care plans</attribute>
-                <attribute name="colors">grey:state in ('cancelled');
-                </attribute>
-            </xpath>
+            </tree>
         </field>
     </record>
     <record id="medical_procedure_request_view_form" model="ir.ui.view">
@@ -86,7 +85,6 @@
         <field name="name">Care Plans</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.careplan</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
     </record>

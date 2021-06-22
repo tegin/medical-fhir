@@ -8,6 +8,7 @@ from odoo import fields, models
 class MedicalCareplanAddPlanDefinition(models.TransientModel):
     _name = "medical.careplan.add.plan.definition"
     _inherit = "medical.add.plan.definition"
+    _description = "Add a plan Definition on a Careplan"
 
     def _domain_plan_definition(self):
         return [
