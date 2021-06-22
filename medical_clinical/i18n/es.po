@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* medical_clinical
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: medical_clinical
+#: model:ir.ui.view,arch_db:medical_clinical.res_config_settings_view_form
+msgid "Allows to use Care plans"
+msgstr "Permite utilizar los procesos"
+
+#. module: medical_clinical
+#: model:ir.ui.view,arch_db:medical_clinical.res_config_settings_view_form
+msgid "Allows to use Medical condition"
+msgstr "Permite utilizar condición"
+
+#. module: medical_clinical
+#: model:ir.ui.view,arch_db:medical_clinical.res_config_settings_view_form
+msgid "Allows to use Procedures and Procedure requests"
+msgstr "Permite utilizar procedimientos y solicitudes de servicios"
+
+#. module: medical_clinical
+#: model:ir.ui.view,arch_db:medical_clinical.res_config_settings_view_form
+msgid "Allows to use Request groups"
+msgstr "Permite utilizar actos medicos"
+
+#. module: medical_clinical
+#: model:ir.model.fields,field_description:medical_clinical.field_connector_config_settings_module_medical_clinical_careplan
+#: model:ir.model.fields,field_description:medical_clinical.field_res_config_settings_module_medical_clinical_careplan
+#: model:ir.ui.view,arch_db:medical_clinical.res_config_settings_view_form
+msgid "Care plans"
+msgstr "Procesos"
+
+#. module: medical_clinical
+#: model:ir.ui.menu,name:medical_clinical.medical_clinical_event
+msgid "Events"
+msgstr "Eventos"
+
+#. module: medical_clinical
+#: model:ir.model.fields,field_description:medical_clinical.field_connector_config_settings_module_medical_clinical_condition
+#: model:ir.model.fields,field_description:medical_clinical.field_res_config_settings_module_medical_clinical_condition
+#: model:ir.ui.view,arch_db:medical_clinical.res_config_settings_view_form
+msgid "Medical Condition"
+msgstr "Condición"
+
+#. module: medical_clinical
+#: model:res.groups,name:medical_clinical.group_medical_view_requests
+msgid "Medical view requests"
+msgstr "Peticiones de vista medica"
+
+#. module: medical_clinical
+#: model:ir.model.fields,field_description:medical_clinical.field_connector_config_settings_module_medical_clinical_procedure
+#: model:ir.model.fields,field_description:medical_clinical.field_res_config_settings_module_medical_clinical_procedure
+msgid "Procedures"
+msgstr "Procedimientos"
+
+#. module: medical_clinical
+#: model:ir.ui.view,arch_db:medical_clinical.res_config_settings_view_form
+msgid "Procedures & Procedure requests"
+msgstr "Procedures & Procedure requests"
+
+#. module: medical_clinical
+#: model:ir.model.fields,field_description:medical_clinical.field_connector_config_settings_module_medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical.field_res_config_settings_module_medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical.res_config_settings_view_form
+msgid "Request groups"
+msgstr "Actos mèdicos"
+
+#. module: medical_clinical
+#: model:ir.ui.menu,name:medical_clinical.medical_clinical_request
+msgid "Requests"
+msgstr "Peticiones"
+
+#. module: medical_clinical
+#: model:ir.model,name:medical_clinical.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
+
