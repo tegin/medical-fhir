@@ -5,7 +5,7 @@
 {
     "name": "Medical Location with stock",
     "summary": "Medical administration location with stock",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Medical",
     "author": "Creu Blanca, Eficent, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/vertical-medical",
