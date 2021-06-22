@@ -14,21 +14,14 @@
             <form string="Role">
                 <header />
                 <sheet>
-                    <div name="button_box" class="oe_button_box">
-                        <button
-                            name="toggle_active"
-                            type="object"
-                            confirm="Are you sure you want to archive/unarchive this element?"
-                            class="oe_stat_button"
-                            icon="fa-archive"
-                        >
-                            <field
-                                name="active"
-                                widget="boolean_button"
-                                options='{"terminology": "archive"}'
-                            />
-                        </button>
-                    </div>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field name="active" invisible="1" />
+                    <div name="button_box" class="oe_button_box" />
                     <group>
                         <field name="name" />
                         <field name="description" />
@@ -52,7 +45,6 @@
         <field name="name">Roles</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.role</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>
