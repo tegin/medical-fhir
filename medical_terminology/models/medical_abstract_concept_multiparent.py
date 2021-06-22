@@ -34,13 +34,11 @@ class MedicalAbstractConceptMultiparent(models.AbstractModel):
             res += child._get_childs()
         return res
 
-    @api.multi
     @api.depends("parent_ids")
     def _compute_full_child_ids(self):
         for record in self:
             record.full_child_ids = record.browse(record._get_childs())
 
-    @api.multi
     @api.depends("parent_ids")
     def _compute_child_ids(self):
         for record in self:
