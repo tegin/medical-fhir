@@ -1,0 +1,35 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* medical_financial
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: medical_financial
+#: model:ir.ui.view,arch_db:medical_financial.res_config_settings_view_form
+msgid "Allows to use coverages."
+msgstr "Permite utilizar coberturas."
+
+#. module: medical_financial
+#: model:ir.model.fields,field_description:medical_financial.field_connector_config_settings_module_medical_financial_coverage
+#: model:ir.model.fields,field_description:medical_financial.field_res_config_settings_module_medical_financial_coverage
+#: model:ir.ui.menu,name:medical_financial.medical_financial_coverage
+#: model:ir.ui.view,arch_db:medical_financial.res_config_settings_view_form
+msgid "Coverages"
+msgstr "Coberturas"
+
+#. module: medical_financial
+#: model:ir.model,name:medical_financial.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
+
