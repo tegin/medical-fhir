@@ -31,7 +31,7 @@ class MedicalRequest(models.AbstractModel):
             "completed": [("readonly", True)],
         },
         required=True,
-        track_visibility=True,
+        tracking=True,
         index=True,
         default="draft",
     )  # FHIR field: status
@@ -54,7 +54,7 @@ class MedicalRequest(models.AbstractModel):
         string="Patient",
         comodel_name="medical.patient",
         required=True,
-        track_visibility=True,
+        tracking=True,
         ondelete="restrict",
         index=True,
         help="Patient Name",
@@ -65,13 +65,13 @@ class MedicalRequest(models.AbstractModel):
         domain=[("is_practitioner", "=", True)],
         ondelete="restrict",
         index=True,
-        track_visibility=True,
+        tracking=True,
         help="Who is to perform the procedure",
     )  # FHIR Field : performer
     service_id = fields.Many2one(
         string="Service",
         comodel_name="product.product",
-        track_visibility=True,
+        tracking=True,
         ondelete="restrict",
         index=True,
         domain="[('type', '=', 'service')]",
@@ -79,7 +79,7 @@ class MedicalRequest(models.AbstractModel):
     order_by_id = fields.Many2one(
         string="Ordered by",
         comodel_name="res.partner",
-        track_visibility=True,
+        tracking=True,
         help="Person who has initiated the order.",
         ondelete="restrict",
         index=True,
@@ -127,7 +127,6 @@ class MedicalRequest(models.AbstractModel):
                         context.update({"default_%s" % field.name: field_id})
         return context
 
-    @api.multi
     @api.depends("name", "internal_identifier")
     def name_get(self):
         result = []
@@ -138,7 +137,6 @@ class MedicalRequest(models.AbstractModel):
             result.append((record.id, name))
         return result
 
-    @api.multi
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:
@@ -157,46 +155,39 @@ class MedicalRequest(models.AbstractModel):
     def draft2active_values(self):
         return {"state": "active"}
 
-    @api.multi
     def draft2active(self):
         self.write(self.draft2active_values())
 
     def active2suspended_values(self):
         return {"state": "suspended"}
 
-    @api.multi
     def active2suspended(self):
         self.write(self.active2suspended_values())
 
     def active2completed_values(self):
         return {"state": "completed"}
 
-    @api.multi
     def active2completed(self):
         self.write(self.active2completed_values())
 
     def active2error_values(self):
         return {"state": "entered-in-error"}
 
-    @api.multi
     def active2error(self):
         self.write(self.active2error_values())
 
     def reactive_values(self):
         return {"state": "active"}
 
-    @api.multi
     def reactive(self):
         self.write(self.reactive_values())
 
     def cancel_values(self):
         return {"state": "cancelled"}
 
-    @api.multi
     def cancel(self):
         self.write(self.cancel_values())
 
-    @api.multi
     def generate_event(self):
         """ Implement method in order to generate an event"""
         raise UserError(_("Function is not defined"))
@@ -227,7 +218,6 @@ class MedicalRequest(models.AbstractModel):
         """ Implement method in order to return the parent field name"""
         raise UserError(_("Field name is not defined"))
 
-    @api.multi
     def action_view_request(self):
         self.ensure_one()
         model = self.env.context.get("model_name", False)
