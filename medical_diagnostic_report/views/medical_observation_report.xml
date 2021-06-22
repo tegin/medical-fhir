@@ -39,7 +39,6 @@
     <record id="medical_observation_pivot_action" model="ir.actions.act_window">
         <field name="name">Observations</field>
         <field name="res_model">medical.observation</field>
-        <field name="view_type">form</field>
         <field
             name="domain"
         >[('state', '=', 'final'), ('concept_id', '!=', False)]</field>
