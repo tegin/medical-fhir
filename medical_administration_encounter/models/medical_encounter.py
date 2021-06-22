@@ -18,7 +18,7 @@ class MedicalEncounter(models.Model):
         string="Patient",
         comodel_name="medical.patient",
         required=True,
-        track_visibility=True,
+        tracking=True,
         ondelete="restrict",
         index=True,
         help="Patient name",
@@ -32,14 +32,14 @@ class MedicalEncounter(models.Model):
         string="Location",
         comodel_name="res.partner",
         domain=[("is_location", "=", True)],
-        track_visibility=True,
+        tracking=True,
         ondelete="restrict",
         index=True,
     )  # FHIR Field: location
     state = fields.Selection(
         string="Encounter Status",
         required="True",
-        track_visibility=True,
+        tracking=True,
         selection=[
             ("planned", "Planned"),
             ("arrived", "Arrived"),
@@ -57,7 +57,6 @@ class MedicalEncounter(models.Model):
     def _get_internal_identifier(self, vals):
         return self.env["ir.sequence"].next_by_code("medical.encounter") or "/"
 
-    @api.multi
     @api.depends("name", "internal_identifier")
     def name_get(self):
         result = []
@@ -68,7 +67,6 @@ class MedicalEncounter(models.Model):
             result.append((record.id, name))
         return result
 
-    @api.multi
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:
@@ -85,55 +83,47 @@ class MedicalEncounter(models.Model):
     def planned2arrived_values(self):
         return {"state": "arrived"}
 
-    @api.multi
     def planned2arrived(self):
         self.write(self.planned2arrived_values())
 
     def planned2cancelled_values(self):
         return {"state": "cancelled"}
 
-    @api.multi
     def planned2cancelled(self):
         self.write(self.planned2cancelled_values())
 
     def arrived2inprogress_values(self):
         return {"state": "in-progress"}
 
-    @api.multi
     def arrived2inprogress(self):
         self.write(self.arrived2inprogress_values())
 
     def arrived2cancelled_values(self):
         return {"state": "cancelled"}
 
-    @api.multi
     def arrived2cancelled(self):
         self.write(self.arrived2cancelled_values())
 
     def inprogress2onleave_values(self):
         return {"state": "onleave"}
 
-    @api.multi
     def inprogress2onleave(self):
         self.write(self.inprogress2onleave_values())
 
     def inprogress2cancelled_values(self):
         return {"state": "cancelled"}
 
-    @api.multi
     def inprogress2cancelled(self):
         self.write(self.inprogress2cancelled_values())
 
     def onleave2finished_values(self):
         return {"state": "finished"}
 
-    @api.multi
     def onleave2finished(self):
         self.write(self.onleave2finished_values())
 
     def onleave2cancelled_values(self):
         return {"state": "cancelled"}
 
-    @api.multi
     def onleave2cancelled(self):
         self.write(self.onleave2cancelled_values())
