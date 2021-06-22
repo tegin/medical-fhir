@@ -5,7 +5,7 @@
 
 {
     "name": "Medical Administration Location",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Medical",
     "website": "https://github.com/OCA/vertical-medical",
     "author": "LasLabs, Creu Blanca, Eficent,"
