@@ -35,10 +35,11 @@
                 <div class="row">
                     <div class="col-6 text-left">
                         <img
-                            t-if="partner.image"
-                            t-att-src="image_data_uri(partner.image)"
+                            t-if="partner.image_1920"
+                            t-att-src="image_data_uri(partner.image_1920)"
                             alt="Logo"
                             class="text-left"
+                            style="max-width:100%"
                         />
                     </div>
                     <div class="col-6 text-right o_patient_header ">
