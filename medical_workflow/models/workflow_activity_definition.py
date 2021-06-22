@@ -12,6 +12,7 @@ class ActivityDefinition(models.Model):
     _name = "workflow.activity.definition"
     _description = "Activity Definition"
     _order = "name"
+    _parent_order = "name"
     _inherit = ["mail.thread", "mail.activity.mixin", "medical.abstract"]
 
     name = fields.Char(
@@ -125,7 +126,6 @@ class ActivityDefinition(models.Model):
     def generate_record(self, values):
         return self.env[self.model_id.model].create(values)
 
-    @api.multi
     def execute_activity(self, vals, parent=False, plan=False, action=False):
         self.ensure_one()
         values = self._get_activity_values(vals, parent, plan, action)
@@ -137,20 +137,17 @@ class ActivityDefinition(models.Model):
     def _activate_vals(self):
         return {"state": "active"}
 
-    @api.multi
     def activate(self):
         self.write(self._activate_vals())
 
     def _reactivate_vals(self):
         return {"state": "active"}
 
-    @api.multi
     def reactivate(self):
         self.write(self._reactivate_vals())
 
     def _retire_vals(self):
         return {"state": "retired"}
 
-    @api.multi
     def retire(self):
         self.write(self._retire_vals())

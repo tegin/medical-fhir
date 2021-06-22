@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError
 from odoo.tests import TransactionCase
 
 
@@ -12,7 +12,7 @@ class TestRecursion(TransactionCase):
         action_obj = self.env["workflow.plan.definition.action"]
         workflow_type = self.browse_ref("medical_workflow.medical_workflow")
         plan_1 = plan_obj.create({"name": "P1", "type_id": workflow_type.id})
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             action_obj.create(
                 {
                     "direct_plan_definition_id": plan_1.id,
@@ -28,7 +28,7 @@ class TestRecursion(TransactionCase):
                 "execute_plan_definition_id": plan_2.id,
             }
         )
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             action_obj.create(
                 {
                     "direct_plan_definition_id": plan_2.id,
@@ -44,7 +44,7 @@ class TestRecursion(TransactionCase):
                 "execute_plan_definition_id": plan_3.id,
             }
         )
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             action_obj.create(
                 {
                     "direct_plan_definition_id": plan_3.id,
@@ -55,7 +55,7 @@ class TestRecursion(TransactionCase):
         action = action_obj.create(
             {"direct_plan_definition_id": plan_1.id, "name": "AUX"}
         )
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             action_obj.create(
                 {
                     "parent_id": action.id,

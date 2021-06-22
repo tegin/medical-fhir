@@ -14,6 +14,7 @@ class PlanDefinition(models.Model):
     _name = "workflow.plan.definition"
     _description = "Plan Definition"
     _order = "name"
+    _parent_order = "name"
     _inherit = ["mail.thread", "mail.activity.mixin", "medical.abstract"]
 
     name = fields.Char(
@@ -73,7 +74,6 @@ class PlanDefinition(models.Model):
             or "/"
         )
 
-    @api.multi
     def _check_plan_recursion(self, plan_ids):
         self.ensure_one()
         if self.id in plan_ids:
@@ -87,7 +87,6 @@ class PlanDefinition(models.Model):
                     plan_ids
                 )
 
-    @api.multi
     def execute_plan_definition(self, vals, parent=False):
         """It will return the parent or the main activity.
         The action result could be of different models.
@@ -122,25 +121,21 @@ class PlanDefinition(models.Model):
     def _activate_vals(self):
         return {"state": "active"}
 
-    @api.multi
     def activate(self):
         self.write(self._activate_vals())
 
     def _reactivate_vals(self):
         return {"state": "active"}
 
-    @api.multi
     def reactivate(self):
         self.write(self._reactivate_vals())
 
     def _retire_vals(self):
         return {"state": "retired"}
 
-    @api.multi
     def retire(self):
         self.write(self._retire_vals())
 
-    @api.multi
     def copy_data(self, default=None):
         if default is None:
             default = {}

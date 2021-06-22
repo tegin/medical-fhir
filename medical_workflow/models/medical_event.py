@@ -42,7 +42,7 @@ class MedicalEvent(models.AbstractModel):
         readonly=False,
         states={"completed": [("readonly", True)]},
         required=True,
-        track_visibility=True,
+        tracking=True,
         index=True,
         default="preparation",
     )  # FHIR field: status
@@ -57,7 +57,7 @@ class MedicalEvent(models.AbstractModel):
         string="Patient",
         comodel_name="medical.patient",
         required=True,
-        track_visibility=True,
+        tracking=True,
         ondelete="restrict",
         index=True,
         help="Patient Name",
@@ -70,13 +70,12 @@ class MedicalEvent(models.AbstractModel):
         comodel_name="res.partner",
         ondelete="restrict",
         index=True,
-        track_visibility=True,
+        tracking=True,
         domain=[("is_practitioner", "=", True)],
         help="Who is to perform the procedure",
     )  # FHIR Field : performer/actor
     is_editable = fields.Boolean(compute="_compute_is_editable")
 
-    @api.multi
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:
@@ -91,7 +90,6 @@ class MedicalEvent(models.AbstractModel):
             else:
                 rec.is_editable = True
 
-    @api.multi
     @api.depends("name", "internal_identifier")
     def name_get(self):
         result = []
@@ -105,34 +103,29 @@ class MedicalEvent(models.AbstractModel):
     def preparation2in_progress_values(self):
         return {"state": "in-progress"}
 
-    @api.multi
     def preparation2in_progress(self):
         self.write(self.preparation2in_progress_values())
 
     def suspended2in_progress_values(self):
         return {"state": "in-progress"}
 
-    @api.multi
     def suspended2in_progress(self):
         self.write(self.suspended2in_progress_values())
 
     def in_progress2completed_values(self):
         return {"state": "completed"}
 
-    @api.multi
     def in_progress2completed(self):
         self.write(self.in_progress2completed_values())
 
     def in_progress2aborted_values(self):
         return {"state": "aborted"}
 
-    @api.multi
     def in_progress2aborted(self):
         self.write(self.in_progress2aborted_values())
 
     def in_progress2suspended_values(self):
         return {"state": "suspended"}
 
-    @api.multi
     def in_progress2suspended(self):
         self.write(self.in_progress2suspended_values())

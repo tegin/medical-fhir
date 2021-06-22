@@ -1,7 +1,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.exceptions import Warning as Warn
 from odoo.tests.common import TransactionCase
 
@@ -83,7 +83,7 @@ class TestWorkflowPlandefinition(TransactionCase):
                 "activity_definition_id": self.activity.id,
             }
         )
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             self.activity.type_id = self.aux_type
 
     def test_action(self):
@@ -108,7 +108,7 @@ class TestWorkflowPlandefinition(TransactionCase):
                 "activity_definition_id": self.activity.id,
             }
         )
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(UserError):
             action.parent_id = action
         action2 = self.env["workflow.plan.definition.action"].create(
             {"name": "Action", "direct_plan_definition_id": self.plan.id}
