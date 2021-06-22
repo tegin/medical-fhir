@@ -27,7 +27,6 @@ class MedicalRequest(models.AbstractModel):
         default=0,
     )
 
-    @api.multi
     def _compute_request_group_ids(self):
         inverse_field_name = self._get_parent_field_name()
         for rec in self:
