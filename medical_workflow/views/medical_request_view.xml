@@ -15,6 +15,7 @@
                 <field name="name" />
                 <field name="patient_id" />
                 <field name="service_id" />
+                <field name="state" />
             </tree>
         </field>
     </record>
