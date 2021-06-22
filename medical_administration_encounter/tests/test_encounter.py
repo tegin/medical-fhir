@@ -62,7 +62,7 @@ class TestMedicalEncounter(TransactionCase):
             "location_id": self.location_1.id,
             "state": "arrived",
         }
-        encounter = self.encounter_model.sudo(self.medical_user).create(
+        encounter = self.encounter_model.with_user(self.medical_user).create(
             encounter_vals
         )
         self.assertNotEquals(encounter, False)
