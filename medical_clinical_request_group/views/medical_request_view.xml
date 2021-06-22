@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    Copyright 2017 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+    -->
+<odoo>
+    <record model="ir.ui.view" id="medical_request_form">
+        <field name="name">medical.request.form</field>
+        <field name="model">medical.request</field>
+        <field name="inherit_id" ref="medical_workflow.medical_request_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_request"
+                    class="oe_stat_button"
+                    icon="fa-object-group"
+                    groups="medical_clinical_request_group.group_medical_request_group_list"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                    context="{'model_name': 'medical.request.group'}"
+                >
+                    <field
+                        name="request_group_count"
+                        widget="statinfo"
+                        string="Request Groups"
+                    />
+                    <field name='request_group_ids' invisible="1" />
+                </button>
+            </xpath>
+            <group name="inheritance" position="inside">
+                <field
+                    name="request_group_id"
+                    readonly="1"
+                    attrs="{'invisible': [('request_group_id', '=', False)]}"
+                />
+            </group>
+            <notebook position="attributes">
+                <attributes name="invisible">0</attributes>
+            </notebook>
+        </field>
+    </record>
+    <record id="medical_request_form_request_group" model="ir.ui.view">
+        <field name="name">medical.request.view.form</field>
+        <field name="model">medical.request</field>
+        <field name="inherit_id" ref="medical_request_form" />
+        <field name="groups_id" eval="[(4, ref('group_medical_request_group_list'))]" />
+        <field name="arch" type="xml">
+            <field name="request_group_id" position="attributes">
+                <attribute
+                    name="options"
+                >{'no_open': False, 'no_create': True}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

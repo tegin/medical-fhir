@@ -1,0 +1,169 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* medical_clinical_request_group
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_careplan_request_group_count
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_document_reference_request_group_count
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_laboratory_request_request_group_count
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_medication_request_request_group_count
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_procedure_request_request_group_count
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_request_group_count
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_request_group_count
+msgid "# of Request Groups"
+msgstr "# de actos médicos"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Active"
+msgstr "Activo"
+
+#. module: medical_clinical_request_group
+#: model:ir.model,name:medical_clinical_request_group.model_workflow_activity_definition
+msgid "Activity Definition"
+msgstr "Actividad"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Completed"
+msgstr "Terminado"
+
+#. module: medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Error"
+msgstr "Error"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Group By..."
+msgstr "Agrupar Por..."
+
+#. module: medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_id
+msgid "ID"
+msgstr "ID"
+
+#. module: medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group___last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: medical_clinical_request_group
+#: model:ir.model,name:medical_clinical_request_group.model_medical_request
+msgid "Medical request"
+msgstr "Medical request"
+
+#. module: medical_clinical_request_group
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_careplan_request_group_id
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_careplan_request_group_ids
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_document_reference_request_group_id
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_document_reference_request_group_ids
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_laboratory_request_request_group_id
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_laboratory_request_request_group_ids
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_medication_request_request_group_id
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_medication_request_request_group_ids
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_procedure_request_request_group_id
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_procedure_request_request_group_ids
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_request_group_id
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_group_request_group_ids
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_request_group_id
+#: model:ir.model.fields,field_description:medical_clinical_request_group.field_medical_request_request_group_ids
+msgid "Parent Request group"
+msgstr "Acto medico"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Patient"
+msgstr "Paciente"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Priority"
+msgstr "Prioridad"
+
+#. module: medical_clinical_request_group
+#: model:ir.actions.act_window,name:medical_clinical_request_group.medical_request_group_window_action
+#: model:ir.model,name:medical_clinical_request_group.model_medical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_form
+msgid "Request Group"
+msgstr "Servicio"
+
+#. module: medical_clinical_request_group
+#: model:res.groups,name:medical_clinical_request_group.group_medical_request_group_display
+msgid "Request Group Display"
+msgstr "Visualizador acto medico"
+
+#. module: medical_clinical_request_group
+#: model:res.groups,name:medical_clinical_request_group.group_medical_request_group_manager
+msgid "Request Group Manager"
+msgstr "Gestor acto medico"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_form
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Request Groups"
+msgstr "Actos medicos"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.menu,name:medical_clinical_request_group.medical_request_groups
+msgid "Request groups"
+msgstr "Actos Médicos"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_tree
+msgid "Requests groups"
+msgstr "Actos medicos"
+
+#. module: medical_clinical_request_group
+#: model:ir.ui.view,arch_db:medical_clinical_request_group.medical_request_group_view_search
+msgid "Suspended"
+msgstr "Suspendido"
+
