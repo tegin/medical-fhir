@@ -10,6 +10,7 @@ class MedicalAbstractConceptUniparent(models.AbstractModel):
     # (https://www.hl7.org/fhir/codesystem.html)
     _name = "medical.abstract.concept.uniparent"
     _inherit = "medical.abstract.concept"
+    _description = "medical abstract concept uniparent"
     _parent_name = "parent_id"
     _parent_store = True
     _parent_order = "code"

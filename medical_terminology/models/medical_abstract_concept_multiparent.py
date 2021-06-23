@@ -10,6 +10,7 @@ class MedicalAbstractConceptMultiparent(models.AbstractModel):
     # (https://www.hl7.org/fhir/codesystem.html)
     _name = "medical.abstract.concept.multiparent"
     _inherit = "medical.abstract.concept"
+    _description = "medical abstract concept multiparent"
 
     parent_ids = fields.Many2many(
         comodel_name="medical.abstract.concept",
