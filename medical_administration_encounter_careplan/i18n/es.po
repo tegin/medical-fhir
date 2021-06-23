@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* medical_administration_encounter_careplan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: medical_administration_encounter_careplan
+#: model:ir.model.fields,field_description:medical_administration_encounter_careplan.field_medical_encounter_careplan_ids
+msgid "Careplan"
+msgstr "Proceso"
+
+#. module: medical_administration_encounter_careplan
+#: model:ir.model.fields,field_description:medical_administration_encounter_careplan.field_medical_encounter_careplan_count
+msgid "Careplan Count"
+msgstr "Recuento proceso"
+
+#. module: medical_administration_encounter_careplan
+#: model:ir.ui.view,arch_db:medical_administration_encounter_careplan.medical_encounter_view_form
+msgid "Careplans"
+msgstr "Procesos"
+
+#. module: medical_administration_encounter_careplan
+#: model:ir.model.fields,field_description:medical_administration_encounter_careplan.field_medical_careplan_encounter_id
+#: model:ir.model.fields,field_description:medical_administration_encounter_careplan.field_medical_document_reference_encounter_id
+#: model:ir.model.fields,field_description:medical_administration_encounter_careplan.field_medical_laboratory_request_encounter_id
+#: model:ir.model.fields,field_description:medical_administration_encounter_careplan.field_medical_medication_request_encounter_id
+#: model:ir.model.fields,field_description:medical_administration_encounter_careplan.field_medical_procedure_request_encounter_id
+#: model:ir.model.fields,field_description:medical_administration_encounter_careplan.field_medical_request_encounter_id
+#: model:ir.model.fields,field_description:medical_administration_encounter_careplan.field_medical_request_group_encounter_id
+msgid "Encounter"
+msgstr "Afiliación"
+
+#. module: medical_administration_encounter_careplan
+#: code:addons/medical_administration_encounter_careplan/models/medical_request.py:21
+#, python-format
+msgid "Inconsistency between patient and encounter"
+msgstr "Inconsistencia entre paciente y afiliación"
+
+#. module: medical_administration_encounter_careplan
+#: model:ir.model,name:medical_administration_encounter_careplan.model_medical_encounter
+msgid "Medical Encounter"
+msgstr "Afiliación"
+
+#. module: medical_administration_encounter_careplan
+#: model:ir.model,name:medical_administration_encounter_careplan.model_medical_request
+msgid "Medical request"
+msgstr "Medical request"
+
+#. module: medical_administration_encounter_careplan
+#: model:ir.model,name:medical_administration_encounter_careplan.model_medical_careplan_add_plan_definition
+msgid "medical.careplan.add.plan.definition"
+msgstr "medical.careplan.add.plan.definition"
+
