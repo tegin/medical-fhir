@@ -1,0 +1,113 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* medical_administration_practitioner_specialty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-14 08:29+0000\n"
+"PO-Revision-Date: 2018-11-14 08:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_active
+msgid "Active"
+msgstr "Activo"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model,name:medical_administration_practitioner_specialty.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_id
+msgid "ID"
+msgstr "ID"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_sct_concept_is_specialty
+msgid "Is Specialty"
+msgstr "Es especialidad"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty___last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_specialty_sct_code
+msgid "Sct Code"
+msgstr "Codigo sct"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.actions.act_window,name:medical_administration_practitioner_specialty.medical_specialty_action
+#: model:ir.ui.menu,name:medical_administration_practitioner_specialty.medical_specialty_menu
+#: model:ir.ui.view,arch_db:medical_administration_practitioner_specialty.medical_specialty_view_tree
+msgid "Specialties"
+msgstr "Especialidades"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model,name:medical_administration_practitioner_specialty.model_medical_specialty
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_medical_patient_specialty_ids
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_res_partner_specialty_ids
+#: model:ir.model.fields,field_description:medical_administration_practitioner_specialty.field_res_users_specialty_ids
+#: model:ir.ui.view,arch_db:medical_administration_practitioner_specialty.medical_specialty_view_form
+msgid "Specialty"
+msgstr "Especialidad"
+
+#. module: medical_administration_practitioner_specialty
+#: model:res.groups,name:medical_administration_practitioner_specialty.group_medical_specialty_display
+msgid "Specialty Display"
+msgstr "Visualización especializada"
+
+#. module: medical_administration_practitioner_specialty
+#: model:res.groups,name:medical_administration_practitioner_specialty.group_medical_specialty_manager
+msgid "Specialty Manager"
+msgstr "Gerente de especialidad"
+
+#. module: medical_administration_practitioner_specialty
+#: model:ir.model,name:medical_administration_practitioner_specialty.model_medical_sct_concept
+msgid "medical.sct.concept"
+msgstr "medical.sct.concept"
+
