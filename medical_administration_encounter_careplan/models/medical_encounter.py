@@ -19,7 +19,6 @@ class MedicalEncounter(models.Model):
         for record in self:
             record.careplan_count = len(record.careplan_ids)
 
-    @api.multi
     def action_view_careplans(self):
         self.ensure_one()
         action = self.env.ref(

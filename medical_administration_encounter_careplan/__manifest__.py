@@ -5,7 +5,7 @@
 {
     "name": "Medical Encounter careplan",
     "summary": "Joins careplans and encounters",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "author": "Creu Blanca, Eficent, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/vertical-medical",
     "category": "Medical",
