@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record
+        model="medical.diagnostic.report.template"
+        id="medical_diagnostic_report_template_demo_1"
+    >
+        <field name="name">Blood analysis</field>
+        <field name="with_observation" eval="True" />
+        <field name="with_composition" eval="True" />
+        <field name="with_conclusion" eval="True" />
+        <field
+            name="composition"
+        >All the observations are in the reference range</field>
+        <field name="conclusion">No abnormalities present</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_01"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Blood count</field>
+        <field name="display_type">line_section</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_02"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Red Series</field>
+        <field name="display_type">line_subsection</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_03"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Red blood cells</field>
+        <field name="value_type">float</field>
+        <field name="uom_id" ref="uom_million_micro_liter" />
+        <field name="reference_range_low">4.6</field>
+        <field name="reference_range_high">5.8</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_04"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Hematocrit</field>
+        <field name="value_type">float</field>
+        <field name="uom_id" ref="uom_percentage" />
+        <field name="reference_range_low">40</field>
+        <field name="reference_range_high">52</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_05"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Leukocytes and leukocytic formula</field>
+        <field name="display_type">line_subsection</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_06"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Leukocytes</field>
+        <field name="value_type">float</field>
+        <field name="uom_id" ref="uom_thousand_micro_liter" />
+        <field name="reference_range_low">4.5</field>
+        <field name="reference_range_high">11</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_07"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Neutrophil</field>
+        <field name="value_type">float</field>
+        <field name="uom_id" ref="uom_thousand_micro_liter" />
+        <field name="reference_range_low">1.6</field>
+        <field name="reference_range_high">7.8</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_08"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Biochemistry</field>
+        <field name="display_type">line_section</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_09"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Glucose</field>
+        <field name="value_type">float</field>
+        <field name="uom_id" ref="uom_milligram_deciliter" />
+        <field name="reference_range_low">60</field>
+        <field name="reference_range_high">110</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_10"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Colorimetric serum</field>
+        <field name="display_type">line_note</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_11"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Urea</field>
+        <field name="value_type">float</field>
+        <field name="uom_id" ref="uom_milligram_deciliter" />
+        <field name="reference_range_low">20</field>
+        <field name="reference_range_high">50</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_12"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Colorimetric serum</field>
+        <field name="display_type">line_note</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_13"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Creatinine</field>
+        <field name="value_type">float</field>
+        <field name="uom_id" ref="uom_milligram_deciliter" />
+        <field name="reference_range_low">0.5</field>
+        <field name="reference_range_high">1.4</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_demo_1_item_14"
+    >
+        <field name="template_id" ref="medical_diagnostic_report_template_demo_1" />
+        <field name="name">Enzymatic serum</field>
+        <field name="display_type">line_note</field>
+    </record>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2021 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <menuitem
+        id="menu_medical_report_root"
+        name="Reports"
+        sequence="80"
+        parent="medical_base.medical_root"
+    />
+    <record id="medical_observation_pivot" model="ir.ui.view">
+        <field name="name">medical.observation.pivot</field>
+        <field name="model">medical.observation</field>
+        <field name="arch" type="xml">
+            <pivot string="Observation" disable_linking="True" display_quantity="True">
+                <field name="concept_id" type="row" />
+            </pivot>
+        </field>
+    </record>
+    <record id="medical_observation_pivot_search" model="ir.ui.view">
+        <field name="name">medical.observation.pivot.search</field>
+        <field name="model">medical.observation</field>
+        <field name="arch" type="xml">
+            <search string="Observation search">
+                <filter
+                    string="Date"
+                    name="year"
+                    date="create_date"
+                    default_period="this_year"
+                />
+                <separator />
+                <field name="concept_id" />
+                <field name="interpretation" />
+            </search>
+        </field>
+    </record>
+    <record id="medical_observation_pivot_action" model="ir.actions.act_window">
+        <field name="name">Observations</field>
+        <field name="res_model">medical.observation</field>
+        <field
+            name="domain"
+        >[('state', '=', 'final'), ('concept_id', '!=', False)]</field>
+        <field name="view_mode">pivot</field>
+        <field name="search_view_id" ref="medical_observation_pivot_search" />
+        <field name="view_id" ref="medical_observation_pivot" />
+    </record>
+    <menuitem
+        id="menu_medical_report_pivot_observation"
+        name="Observations report"
+        parent="menu_medical_report_root"
+        action="medical_observation_pivot_action"
+    />
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="medical_diagnostic_report_template"
+        inherit_id="medical_diagnostic_report.medical_diagnostic_report_template_base"
+        primary="True"
+    >
+        <xpath expr="//t[@t-set='lang']" position="attributes">
+            <attribute name="t-value">o.lang</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='medical_diagnostic_report.diagnostic_report_base_layout']"
+            position="attributes"
+        >
+            <attribute
+                name="t-call"
+            >medical_diagnostic_report.diagnostic_report_layout</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='medical_diagnostic_report.medical_diagnostic_report_base']"
+            position="attributes"
+        >
+            <attribute
+                name="t-call"
+            >medical_diagnostic_report.medical_diagnostic_report_template_single</attribute>
+        </xpath>
+    </template>
+    <template
+        id="diagnostic_report_layout"
+        inherit_id="medical_diagnostic_report.diagnostic_report_base_layout"
+        primary="True"
+    >
+        <xpath expr="//div[@name='patient_id']" position="inside">
+            <span class="m-0" t-field="doc.patient_name" />
+        </xpath>
+        <xpath expr="//div[@name='internal_identifier']" position="inside">
+                <span class="m-0" t-field="doc.internal_identifier" />
+                            (<span class="m-0" t-esc="doc.id" />)
+        </xpath>
+        <xpath expr="//div[@name='footer_internal_identifier']" position="inside">
+             <span t-field="doc.internal_identifier" /><span
+                t-esc="o.env.user.id"
+            />-<span t-esc="int(datetime.datetime.now().timestamp())" />
+        </xpath>
+    </template>
+    <template
+        id="medical_diagnostic_report_template_single"
+        inherit_id="medical_diagnostic_report.medical_diagnostic_report_base"
+        primary="True"
+    >
+        <xpath expr="//t[@t-set='observations']" position="attributes">
+            <attribute name="t-value">doc.observation_ids</attribute>
+        </xpath>
+        <xpath expr="//td[@name='interpretation_flag']" position="inside">
+            <i
+                t-if="obs.interpretation and obs.interpretation!='normal'"
+                class=" fa fa-exclamation-triangle oe_red"
+            />
+        </xpath>
+        <xpath expr="//t[@name='observation_value']" position="inside">
+            <td class="text-left" t-if="obs.value_type not in ['int', 'float']">
+                <t t-esc="obs.value_bool" t-if="obs.value_type=='bool'" />
+                <t t-esc="obs.value_str" t-elif="obs.value_type=='str'" />
+                <t t-esc="obs.value_selection" t-elif="obs.value_type=='selection'" />
+            </td>
+            <td class="text-right" t-if="obs.value_type in ['int', 'float']">
+                <t t-esc="obs.value_int" t-if="obs.value_type=='int'" />
+                <t
+                    t-esc="obs.value_float"
+                    t-elif="obs.value_type=='float'"
+                    t-options="{'widget': 'float', 'precision': 2}"
+                />
+            </td>
+        </xpath>
+        <xpath expr="//small[@name='uom_value']" position="inside">
+            <t t-esc="obs.uom or obs.uom_id.name" />
+        </xpath>
+        <xpath expr="//small[@name='uom_range_value']" position="inside">
+            <t t-esc="obs.uom or obs.uom_id.name" />
+        </xpath>
+        <xpath expr="//span[@name='patient_age_value']" position="attributes">
+            <attribute name="t-field">doc.patient_age</attribute>
+        </xpath>
+        <xpath expr="//span[@name='vat_value']" position="attributes">
+            <attribute name="t-field">doc.vat</attribute>
+        </xpath>
+        <xpath expr="//span[@name='occurrence_date_value']" position="attributes">
+            <attribute name="t-field">doc.occurrence_date</attribute>
+        </xpath>
+        <xpath expr="//span[@name='patient_origin_value']" position="attributes">
+            <attribute name="t-field">doc.patient_origin</attribute>
+        </xpath>
+        <xpath expr="//div[@id='informations']" position="after">
+            <div t-if="doc.state!='final'" class="o_watermark watermark">
+                <p t-field="doc.state" />
+            </div>
+        </xpath>
+    </template>
+</odoo>
