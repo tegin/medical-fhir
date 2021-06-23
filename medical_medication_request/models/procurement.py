@@ -12,8 +12,8 @@ class StockRule(models.Model):
         location_id,
         name,
         origin,
+        company_id,
         values,
-        group_id,
     ):
         res = super()._get_stock_move_values(
             product_id,
@@ -22,8 +22,8 @@ class StockRule(models.Model):
             location_id,
             name,
             origin,
+            company_id,
             values,
-            group_id,
         )
         if values.get("medication_administration_id", False):
             res["medication_administration_id"] = values.get(
