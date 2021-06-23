@@ -13,7 +13,41 @@ class TestEncounter(TransactionCase):
         self.patient_2 = self.env["medical.patient"].create(
             {"name": "Patient 2"}
         )
-        self.plan = self.browse_ref("medical_workflow.mr_knee")
+        self.plan = self.env["workflow.plan.definition"].create(
+            {
+                "name": "Knee MR",
+                "description": "Basic MR",
+                "type_id": self.env.ref(
+                    "medical_workflow.medical_workflow"
+                ).id,
+                "state": "active",
+            }
+        )
+        self.product = self.env["product.product"].create(
+            {"name": "DEMO Product", "type": "service"}
+        )
+        self.activity = self.env["workflow.activity.definition"].create(
+            {
+                "name": "MCT",
+                "description": "demo",
+                "type_id": self.env.ref(
+                    "medical_workflow.medical_workflow"
+                ).id,
+                "model_id": self.env.ref(
+                    "medical_clinical_careplan.model_medical_careplan"
+                ).id,
+                "state": "active",
+                "service_id": self.product.id,
+                "quantity": 1,
+            }
+        )
+        self.action = self.env["workflow.plan.definition.action"].create(
+            {
+                "name": "Action",
+                "activity_definition_id": self.activity.id,
+                "direct_plan_definition_id": self.plan.id,
+            }
+        )
 
     def test_create_careplan_constrains(self):
         encounter = self.env["medical.encounter"].create(
