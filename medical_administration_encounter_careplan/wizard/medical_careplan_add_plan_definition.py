@@ -9,7 +9,7 @@ class MedicalCareplanAddPlanDefinition(models.TransientModel):
     _inherit = "medical.careplan.add.plan.definition"
 
     def _get_values(self):
-        values = super(MedicalCareplanAddPlanDefinition, self)._get_values()
+        values = super()._get_values()
         if self.careplan_id.encounter_id:
             values["encounter_id"] = self.careplan_id.encounter_id.id
         return values
