@@ -19,6 +19,7 @@ class MedicalSCTConcept(models.Model):
 
     _name = "medical.sct.concept"
     _inherit = "medical.abstract.concept.multiparent"
+    _description = "Medical SCT Concept"
 
     parent_ids = fields.Many2many(
         comodel_name="medical.sct.concept", relation="medical_sct_concept_is_a"
