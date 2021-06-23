@@ -20,6 +20,7 @@ class MedicalATCConcept(models.Model):
     _name = "medical.atc.concept"
     _inherit = "medical.abstract.concept.uniparent"
     _parent_order = False
+    _description = "medical atc concept"
 
     code = fields.Char(compute="_compute_code", store=True, required=False)
     level_code = fields.Char(required=True)
