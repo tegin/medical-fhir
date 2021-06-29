@@ -96,3 +96,13 @@ repos:
           - id: isort
             name: isort except __init__.py
             exclude: /__init__\.py$
+    - repo: https://github.com/acsone/setuptools-odoo
+      rev: 2.6.0
+      hooks:
+          - id: setuptools-odoo-make-default
+          - id: setuptools-odoo-get-requirements
+            args:
+                - --output
+                - requirements.txt
+                - --header
+                - "# generated from manifests external_dependencies"
