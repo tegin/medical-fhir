@@ -33,7 +33,7 @@ while pending_data:
             new_pending_data.append(d)
             continue
         install_requires.append(
-            "odoo12-addon-{module}@git+https://github.com/{organization}/{repo_name}.git@{branch}#subdirectory=setup/{module}".format(
+            "odoo13-addon-{module}@git+https://github.com/{organization}/{repo_name}.git@{branch}#subdirectory=setup/{module}".format(
                 module=d, organization=organization, repo_name=repo_name, branch=branch
             ))
         dependency_links.append(
