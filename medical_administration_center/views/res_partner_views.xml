@@ -66,7 +66,7 @@
         <field name="model">res.partner</field>
         <field
             name="inherit_id"
-            ref="cb_medical_administration_center.res_partner_view_form"
+            ref="medical_administration_center.res_partner_view_form"
         />
         <field
             name="groups_id"
