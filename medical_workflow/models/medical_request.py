@@ -13,17 +13,20 @@ class MedicalRequest(models.AbstractModel):
     _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
     _order = "create_date DESC"
 
-    _STATES = [
-        ("draft", "Draft"),
-        ("active", "Active"),
-        ("suspended", "Suspended"),
-        ("completed", "Completed"),
-        ("entered-in-error", "Entered in Error"),
-        ("cancelled", "Cancelled"),
-    ]
+    @api.model
+    def _get_states(self):
+        return [
+            ("draft", "Draft"),
+            ("active", "Active"),
+            ("suspended", "Suspended"),
+            ("completed", "Completed"),
+            ("entered-in-error", "Entered in Error"),
+            ("cancelled", "Cancelled"),
+        ]
+
     name = fields.Char(string="Name", help="Name", copy=False)
     state = fields.Selection(
-        _STATES,
+        selection=lambda r: r._get_states(),
         readonly=False,
         copy=False,
         states={
