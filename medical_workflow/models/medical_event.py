@@ -11,15 +11,17 @@ class MedicalEvent(models.AbstractModel):
     _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
     _order = "create_date DESC"
 
-    _STATES = [
-        ("preparation", "Preparation"),
-        ("in-progress", "In progress"),
-        ("suspended", "Suspended"),
-        ("aborted", "Aborted"),
-        ("completed", "Completed"),
-        ("entered-in-error", "Entered in error"),
-        ("unknown", "Unknown"),
-    ]
+    @api.model
+    def _get_states(self):
+        return [
+            ("preparation", "Preparation"),
+            ("in-progress", "In progress"),
+            ("suspended", "Suspended"),
+            ("aborted", "Aborted"),
+            ("completed", "Completed"),
+            ("entered-in-error", "Entered in error"),
+            ("unknown", "Unknown"),
+        ]
 
     name = fields.Char(string="Name", help="Name")
     plan_definition_id = fields.Many2one(
@@ -38,7 +40,7 @@ class MedicalEvent(models.AbstractModel):
         comodel_name="workflow.plan.definition.action", index=True
     )  # FHIR Field: definition
     state = fields.Selection(
-        _STATES,
+        selection=lambda r: r._get_states(),
         readonly=False,
         states={"completed": [("readonly", True)]},
         required=True,
