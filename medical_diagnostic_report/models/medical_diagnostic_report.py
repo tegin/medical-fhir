@@ -11,16 +11,16 @@ class MedicalDiagnosticReport(models.Model):
     _description = "Diagnostic Report"
     _rec_name = "internal_identifier"
 
-    name = fields.Char(string="Report Name")
-    state = fields.Selection(
-        [
+    @api.model
+    def _get_states(self):
+        return [
             ("registered", "Registered"),
             ("final", "Final"),
             ("cancelled", "Cancelled"),
-        ],
-        default="registered",
-        copy=False,
-    )
+        ]
+
+    name = fields.Char(string="Report Name")
+    state = fields.Selection(default="registered", copy=False,)
     lang = fields.Selection(
         string="Language", selection="_get_lang", readonly=True
     )
