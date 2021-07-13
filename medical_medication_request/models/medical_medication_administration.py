@@ -108,13 +108,16 @@ class MedicalMedicationAdministration(models.Model):
             or "/"
         )
 
+    def _get_procurement_group_vals(self):
+        return {
+            "name": self.internal_identifier,
+            "move_type": "direct",
+            "partner_id": self.patient_id.partner_id.id,
+        }
+
     def _get_procurement_group(self):
         return self.env["procurement.group"].create(
-            {
-                "name": self.internal_identifier,
-                "move_type": "direct",
-                "partner_id": self.patient_id.partner_id.id,
-            }
+            self._get_procurement_group_vals()
         )
 
     def _get_origin(self):
