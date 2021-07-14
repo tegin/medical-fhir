@@ -106,3 +106,17 @@ repos:
                 - requirements.txt
                 - --header
                 - "# generated from manifests external_dependencies"
+    - repo: https://github.com/OCA/maintainer-tools
+      rev: master
+      hooks:
+          - id: oca-gen-addon-readme
+            args:
+                - --repo-name
+                - medical-fhir
+                - --org-name
+                - tegin
+                - --branch
+                - "13.0"
+                - --addons-dir
+                - .
+          - id: oca-gen-addons-table
