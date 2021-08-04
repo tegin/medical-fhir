@@ -15,7 +15,10 @@
         <field name="model">medical.observation</field>
         <field name="arch" type="xml">
             <pivot string="Observation" disable_linking="True" display_quantity="True">
+                <field name="value_selection" type="col" />
                 <field name="concept_id" type="row" />
+                <field name="encounter_id" type="row" />
+                <field name="vat" type="row" />
             </pivot>
         </field>
     </record>

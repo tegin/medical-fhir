@@ -14,6 +14,10 @@ class MedicalObservation(models.Model):
     diagnostic_report_id = fields.Many2one(
         comodel_name="medical.diagnostic.report"
     )
+    vat = fields.Char(related="diagnostic_report_id.vat", store=True)
+    encounter_id = fields.Many2one(
+        related="diagnostic_report_id.encounter_id", store=True
+    )
     patient_id = fields.Many2one(
         "medical.patient", readonly=True, required=True
     )
