@@ -1,6 +1,9 @@
 odoo.define("medical_diagnostic_report.ValueWidget", function(require) {
     "use strict";
-
+    /*
+       This code modifies the "group" tag allowing to add
+       a group of fields as a single field in a table column.
+    */
     var field_utils = require("web.field_utils");
     var ListRenderer = require("web.ListRenderer");
     ListRenderer.include({
@@ -26,7 +29,7 @@ odoo.define("medical_diagnostic_report.ValueWidget", function(require) {
         },
         _renderBodyCell: function(record, node, colIndex, options) {
             if (node.tag === "group") {
-                var $td = $("<td>", {class: "o_data_cell"});
+                var $td = $("<td>", {class: "o_data_cell o_field_cell"});
                 var modifiers = this._registerModifiers(
                     node,
                     record,
