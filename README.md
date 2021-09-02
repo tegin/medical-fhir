@@ -33,6 +33,7 @@ addon | version | maintainers | summary
 [medical_diagnostic_report_graph](medical_diagnostic_report_graph/) | 13.0.1.0.0 |  | This addons enables to add a graph to the medical diagnostic report
 [medical_financial](medical_financial/) | 13.0.1.0.0 |  | Medical financial
 [medical_financial_coverage](medical_financial_coverage/) | 13.0.1.0.0 |  | Add Coverage concept
+[medical_imaging_study](medical_imaging_study/) | 13.0.1.0.0 |  | Medical Imaging Study
 [medical_medication](medical_medication/) | 13.0.1.0.0 |  | Medical medication base
 [medical_medication_request](medical_medication_request/) | 13.0.1.0.0 |  | Medical medication request and administration
 [medical_terminology](medical_terminology/) | 13.0.1.0.0 |  | Medical terminology base
