@@ -1,0 +1,55 @@
+id,code,name
+modality_ar,AR,Autorefraction
+modality_bi,BI,Biomagnetic Imaging
+modality_bmd,BMD,Bone Mineral Densitometry
+modality_eps,EPS,Cardiac Electrophysiology
+modality_cr,CR,Computed Radiography
+modality_ct,CT,Computed Tomography
+modality_dms,DMS,Dermoscopy
+modality_dg,DG,Diaphanography
+modality_dx,DX,Digital Radiography
+modality_ecg,ECG,Electrocardiography
+modality_eeg,EEG,Electroencephalography
+modality_emg,EMG,Electromyography
+modality_eog,EOG,Electrooculography
+modality_es,ES,Endoscopy
+modality_xc,XC,External-camera Photography
+modality_gm,GM,General Microscopy
+modality_hd,HD,Hemodynamic Waveform
+modality_io,IO,Intra-oral Radiography
+modality_ivoct,IVOCT,Intravascular Optical Coherence Tomography
+modality_ivus,IVUS,Intravascular Ultrasound
+modality_ker,KER,Keratometry
+modality_ko,KO,Key Object Selection
+modality_ls,LS,Laser Scan
+modality_len,LEN,Lensometry
+modality_mr,MR,Magnetic Resonance
+modality_mg,MG,Mammography
+modality_nm,NM,Nuclear Medicine
+modality_oam,OAM,Ophthalmic Axial Measurements
+modality_opm,OPM,Ophthalmic Mapping
+modality_op,OP,Ophthalmic Photography
+modality_opt,OPT,Ophthalmic Tomography
+modality_optbsv,OPTBSV,Ophthalmic Tomography B-scan Volume Analysis
+modality_optenf,OPTENF,Ophthalmic Tomography En Face
+modality_opv,OPV,Ophthalmic Visual Field
+modality_oct,OCT,Optical Coherence Tomography
+modality_oss,OSS,Optical Surface Scanner
+modality_ot,OT,Other
+modality_px,PX,Panoramic X-Ray
+modality_pos,POS,Position Sensor
+modality_pr,PR,Presentation State
+modality_pt,PT,Positron emission tomography
+modality_rf,RF,Radiofluoroscopy
+modality_rg,RG,Radiographic imaging
+modality_resp,RESP,Respiratory Waveform
+modality_rtimage,RTIMAGE,RT Image
+modality_sc,SC,Secondary Capture
+modality_sm,SM,Slide Microscopy
+modality_sr,SR,SR Document
+modality_srf,SRF,Subjective Refraction
+modality_tg,TG,Thermography
+modality_us,US,Ultrasound
+modality_bdus,BDUS,Ultrasound Bone Densitometry
+modality_va,VA,Visual Acuity
+modality_xa,XA,X-Ray Angiography
