@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="storage_pacs" model="medical.imaging.storage">
+        <field name="name">PACS</field>
+    </record>
+    <record id="endpoint_qido" model="medical.imaging.endpoint">
+        <field name="name">Qido</field>
+        <field name="connection_type">dicom-qido-rs</field>
+        <field name="tech_name">pacs_qido</field>
+        <field name="storage_id" ref="storage_pacs" />
+    </record>
+</odoo>
