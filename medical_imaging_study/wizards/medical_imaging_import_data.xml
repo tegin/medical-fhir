@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_imaging_import_data_form_view">
+        <field
+            name="name"
+        >medical.imaging.import.data.form (in medical_imaging_study)</field>
+        <field name="model">medical.imaging.import.data</field>
+        <field name="arch" type="xml">
+            <form string="Medical Imaging Import Data">
+                <group>
+                    <field name="study_uid" />
+                    <field name="storage_id" />
+                </group>
+                <footer>
+                    <button
+                        name="import_imaging_study"
+                        string="Import Imaging Study"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="medical_imaging_import_data_act_window">
+        <field name="name">Medical Imaging Import Data</field>
+        <field name="res_model">medical.imaging.import.data</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+    <record model="ir.ui.menu" id="medical_imaging_import_data__menu">
+        <field name="name">Medical Imaging Import Data</field>
+        <field name="parent_id" ref="medical_imaging_study_root_menu" />
+        <field name="action" ref="medical_imaging_import_data_act_window" />
+        <field name="sequence" eval="19" />
+    </record>
+</odoo>
