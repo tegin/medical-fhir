@@ -20,7 +20,7 @@ class MedicalDiagnosticReportTemplate(models.Model):
     composition = fields.Html(translate=True, sanitize=False)
     conclusion = fields.Text(translate=True)
 
-    def _generate_report_vals(self, encounter):
+    def _generate_report_vals(self, encounter=None, **kwargs):
         return {
             "template_ids": [(4, self.id)],
             "encounter_id": encounter.id,
@@ -36,7 +36,13 @@ class MedicalDiagnosticReportTemplate(models.Model):
             "with_observation": self.with_observation,
             "with_composition": self.with_composition,
             "observation_ids": [
-                (0, 0, item._generate_report_observation_vals(encounter))
+                (
+                    0,
+                    0,
+                    item._generate_report_observation_vals(
+                        encounter=encounter, **kwargs
+                    ),
+                )
                 for item in self.item_ids
             ],
         }
@@ -54,9 +60,9 @@ class MedicalDiagnosticReportTemplate(models.Model):
         )
         return age
 
-    def _generate_report(self, encounter):
+    def _generate_report(self, **kwargs):
         return self.env["medical.diagnostic.report"].create(
-            self._generate_report_vals(encounter)
+            self._generate_report_vals(**kwargs)
         )
 
 
@@ -141,7 +147,7 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
             if not record.concept_id:
                 record.uom_id = record.view_uom_id
 
-    def _generate_report_observation_vals(self, encounter):
+    def _generate_report_observation_vals(self, encounter=None, **kwargs):
         concept = self.concept_id or self
         return {
             "uom_id": concept.uom_id.id,
