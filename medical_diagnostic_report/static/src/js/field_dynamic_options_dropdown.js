@@ -4,7 +4,14 @@
  */
 odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require) {
     "use strict";
-
+    /*
+       This code allows to add a dynamic dropdown in a selection field inside a table.
+       To use it, add a selection_options field in the corresponding model of type char.
+       The options will be separated by ";". For example: yes;no
+       Finally, add these attributes to the field tag:
+            widget="dynamic_selection_diagnostic_report"
+            context="{'options': selection_options}"
+    */
     var core = require("web.core");
     var AbstractField = require("web.AbstractField");
     var field_registry = require("web.field_registry");
