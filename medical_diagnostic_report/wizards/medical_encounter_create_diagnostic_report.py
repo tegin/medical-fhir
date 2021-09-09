@@ -24,9 +24,12 @@ class MedicalEncounterCreateDiagnosticReport(models.TransientModel):
     def _get_lang(self):
         return self.env["res.lang"].get_installed()
 
+    def _generate_kwargs(self):
+        return {"encounter": self.encounter_id}
+
     def generate(self):
         self.ensure_one()
         report = self.template_id.with_context(
             lang=self.lang
-        )._generate_report(self.encounter_id)
+        )._generate_report(**self._generate_kwargs())
         return report.get_formview_action()
