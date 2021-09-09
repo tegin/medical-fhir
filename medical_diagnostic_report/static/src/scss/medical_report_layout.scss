@@ -100,33 +100,4 @@
             }
         }
     }
-    .page > table:not(.o_main_table) tr td:last-child {
-        background-color: gray("200");
-    }
-    .row:not(#total) > div > table tr:not(:first-child):not(:last-child) td:last-child {
-        background-color: gray("200");
-    }
-    .row > div > table,
-    div#total table {
-        tr {
-            &:first-child,
-            &.o_subtotal {
-                border-bottom: 1px solid gray("700");
-            }
-            &.o_subtotal {
-                td:first-child {
-                    border-right: none;
-                }
-            }
-            &:last-child td,
-            &.o_total td {
-                background-color: gray("700");
-                color: #fff;
-
-                &:first-child {
-                    border-right: none;
-                }
-            }
-        }
-    }
 }
