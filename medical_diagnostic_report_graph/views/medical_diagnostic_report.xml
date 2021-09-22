@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_diagnostic_report_form_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.form (in medical_diagnostic_report_graph)</field>
+        <field name="model">medical.diagnostic.report</field>
+        <field
+            name="inherit_id"
+            ref="medical_diagnostic_report.medical_diagnostic_report_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="with_composition" position="after">
+                <field name="compute_graph" invisible="1" />
+                <field name="hide_observations" invisible="1" />
+            </field>
+            <div name="button_box" position="inside">
+                <button
+                    string="View Graphs"
+                    name="show_graphs"
+                    type="object"
+                    icon="fa-line-chart"
+                    class="btn-primary"
+                    attrs="{'invisible': [('compute_graph', '=', False)]}"
+                />
+            </div>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_form_view_preview_graph">
+        <field
+            name="name"
+        >medical.diagnostic.report.form.preview.graph (in medical_diagnostic_report_graph)</field>
+        <field name="model">medical.diagnostic.report</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field
+                        name="bokeh_chart"
+                        widget='bokeh_chart'
+                        attrs="{'invisible': [('bokeh_image', '!=', False)]}"
+                    />
+                    <field
+                        name="bokeh_image"
+                        widget='image'
+                        attrs="{'invisible': [('bokeh_image', '=', False)]}"
+                    />
+                    <field name="html_chart" />
+                </sheet>
+                <footer>
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

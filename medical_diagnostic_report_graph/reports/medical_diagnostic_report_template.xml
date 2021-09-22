@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="medical_diagnostic_report_graph.medical_diagnostic_report_template_single"
+        inherit_id="medical_diagnostic_report.medical_diagnostic_report_template_single"
+    >
+        <xpath expr="//div[@id='graph']" position="inside">
+            <t t-if="doc.compute_graph and doc.state!='registered'">
+                <!-- <div t-raw="doc.bokeh_chart"/> -->
+                <div>
+                    <div>
+                        <br />
+                        <t t-raw="doc.html_chart" />
+                    </div>
+                    <br />
+                    <t t-if="doc.bokeh_image">
+                        <img
+                            class="image"
+                            t-attf-src="data:image/*;base64,{{doc.bokeh_image}}"
+                            style="border:auto; max-width:100%;"
+                        />
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
