@@ -2,11 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-import base64
-import threading
-
 from odoo import api, fields, models
-from odoo.modules import get_module_resource
 
 
 class MedicalPatient(models.Model):
@@ -52,33 +48,9 @@ class MedicalPatient(models.Model):
         return self.env["ir.sequence"].next_by_code("medical.patient") or "/"
 
     @api.model
-    def _get_default_image_path(self, vals):
-        icon = "patient-male-avatar.png"
-        if vals.get("gender", "female") == "female":
-            icon = "patient-female-avatar.png"
-        return get_module_resource(
-            "medical_administration", "static/src/img", icon
-        )
-
-    @api.model
     def create(self, vals):
         vals_upd = vals.copy()
-        if not vals_upd.get("image_1920"):
-            vals_upd["image_1920"] = self._get_default_medical_image(vals_upd)
         return super(MedicalPatient, self).create(vals_upd)
-
-    @api.model
-    def _get_default_medical_image(self, vals):
-        if getattr(
-            threading.currentThread(), "testing", False
-        ) or self._context.get("install_mode"):
-            return False
-        image_path = self._get_default_image_path(vals)
-        if not image_path:
-            return False
-        with open(image_path, "rb") as f:
-            image = f.read()
-        return base64.b64encode(image)
 
     def open_parent(self):
         """ Utility method used to add an "Open Parent" button in partner
