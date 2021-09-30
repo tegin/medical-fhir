@@ -8,11 +8,8 @@ odoo.define("medical_diagnostic_report.ValueWidget", function(require) {
     var ListRenderer = require("web.ListRenderer");
     ListRenderer.include({
         init: function(parent, state, params) {
-            if (parent !== undefined && parent.record !== undefined) {
-                var new_context = parent.record.getContext({
-                    additionalContext: parent.attrs.context || {},
-                });
-                if (new_context.hide_delete_create) {
+            if (parent && parent.record && parent.attrs.options.hide_delete_create) {
+                if (parent.recordData[parent.attrs.options.hide_delete_create]) {
                     params.addCreateLine = false;
                     params.addTrashIcon = false;
                 }

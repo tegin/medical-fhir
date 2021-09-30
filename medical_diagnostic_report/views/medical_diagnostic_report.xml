@@ -96,7 +96,7 @@
                     <field
                         name="observation_ids"
                         widget="section_and_note_one2many"
-                        context="{'hide_delete_create': item_blocked}"
+                        options="{'hide_delete_create': 'item_blocked'}"
                         attrs="{'readonly':[('is_editable', '=', False)]}"
                     >
                         <tree editable="bottom">
