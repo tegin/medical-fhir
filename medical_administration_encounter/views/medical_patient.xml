@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_patient_form_view">
+        <field
+            name="name"
+        >medical.patient.form (in medical_administration_encounter)</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_administration.medical_patient_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_encounter_ids"
+                    class="oe_stat_button"
+                    attrs="{'invisible': [('encounter_count', '=', 0)]}"
+                    icon="fa-hospital-o"
+                    groups="medical_administration_encounter.group_medical_encounter_list"
+                >
+                    <field
+                        name="encounter_count"
+                        widget="statinfo"
+                        string="Encounters"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
