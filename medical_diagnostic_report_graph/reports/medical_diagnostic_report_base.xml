@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="medical_diagnostic_report_graph.medical_diagnostic_report_base"
+        inherit_id="medical_diagnostic_report.medical_diagnostic_report_base"
+    >
+        <xpath expr="//div/t[@t-set='observations']/.." position="after">
+            <div id="graph">
+            </div>
+        </xpath>
+        <xpath
+            expr="//div//t[@t-if='doc.with_observation and observations']"
+            position="attributes"
+        >
+            <attribute
+                name="t-if"
+            >doc.with_observation and observations and not doc.hide_observations</attribute>
+        </xpath>
+    </template>
+</odoo>

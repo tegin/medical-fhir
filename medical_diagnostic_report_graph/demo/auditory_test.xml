@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <!--Concepts -->
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_derecha_250hz"
+    >
+        <field name="name">250 Hz AD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_derecha_500hz"
+    >
+        <field name="name">500 Hz AD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_derecha_1000hz"
+    >
+        <field name="name">1000 Hz AD </field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_derecha_2000hz"
+    >
+        <field name="name">2000 Hz AD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_derecha_4000hz"
+    >
+        <field name="name">4000 Hz AD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_derecha_8000hz"
+    >
+        <field name="name">8000 Hz AD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_derecha_250hz"
+    >
+        <field name="name">250 Hz OD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_derecha_500hz"
+    >
+        <field name="name">500 Hz OD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_derecha_1000hz"
+    >
+        <field name="name">1000 Hz OD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_derecha_2000hz"
+    >
+        <field name="name">2000 Hz OD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_derecha_4000hz"
+    >
+        <field name="name">4000 Hz OD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_derecha_8000hz"
+    >
+        <field name="name">8000 Hz OD</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_izquierda_250hz"
+    >
+        <field name="name">250 Hz AI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_izquierda_500hz"
+    >
+        <field name="name">500 Hz AI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_izquierda_1000hz"
+    >
+        <field name="name">1000 Hz AI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_izquierda_2000hz"
+    >
+        <field name="name">2000 Hz AI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_izquierda_4000hz"
+    >
+        <field name="name">4000 Hz AI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_aerea_izquierda_8000hz"
+    >
+        <field name="name">8000 Hz AI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_izquierda_250hz"
+    >
+        <field name="name">250 Hz OI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_izquierda_500hz"
+    >
+        <field name="name">500 Hz OI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_izquierda_1000hz"
+    >
+        <field name="name">1000 Hz OI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_izquierda_2000hz"
+    >
+        <field name="name">2000 Hz OI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_izquierda_4000hz"
+    >
+        <field name="name">4000 Hz OI</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_osea_izquierda_8000hz"
+    >
+        <field name="name">8000 Hz OI</field>
+        <field name="value_type">int</field>
+    </record>
+    <!-- Template -->
+    <record
+        model="medical.diagnostic.report.template"
+        id="medical_diagnostic_report_template_auditory_test"
+    >
+        <field name="name">Test Auditivo</field>
+        <field name="with_observation" eval="True" />
+        <field name="with_composition" eval="True" />
+        <field name="with_conclusion" eval="True" />
+        <field name="compute_graph" eval="True" />
+        <field name="compute_html" eval="True" />
+        <field name="hide_observations" eval="True" />
+        <field
+            name="composition"
+        >All the observations are in the reference range</field>
+        <field name="conclusion">No abnormalities present</field>
+    </record>
+    <!-- Items template -->
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field name="name">Oído Derecho</field>
+        <field name="display_type">line_section</field>
+        <field name="sequence">1</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_oido_derecho_aerea"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field name="name">Aérea Derecha</field>
+        <field name="display_type">line_subsection</field>
+        <field name="sequence">2</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_aerea_250hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_derecha_250hz"
+        />
+        <field name="name">250 Hz</field>
+        <field name="sequence">3</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_aerea_500hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_derecha_500hz"
+        />
+        <field name="name">500 Hz</field>
+        <field name="sequence">4</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_aerea_1000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_derecha_1000hz"
+        />
+        <field name="name">1000 Hz</field>
+        <field name="sequence">5</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_aerea_2000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_derecha_2000hz"
+        />
+        <field name="name">2000 Hz</field>
+        <field name="sequence">6</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_aerea_4000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_derecha_4000hz"
+        />
+        <field name="name">4000 Hz</field>
+        <field name="sequence">7</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_aerea_8000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_derecha_8000hz"
+        />
+        <field name="name">8000 Hz</field>
+        <field name="sequence">8</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_osea"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field name="display_type">line_subsection</field>
+        <field name="name">Ósea Derecha</field>
+        <field name="sequence">9</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_osea_250hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field name="concept_id" ref="medical_observation_concept_osea_derecha_250hz" />
+        <field name="name">250 Hz</field>
+        <field name="sequence">10</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_osea_500hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field name="concept_id" ref="medical_observation_concept_osea_derecha_500hz" />
+        <field name="name">500 Hz</field>
+        <field name="sequence">11</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_osea_1000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_derecha_1000hz"
+        />
+        <field name="name">1000 Hz</field>
+        <field name="sequence">12</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_osea_2000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_derecha_2000hz"
+        />
+        <field name="name">2000 Hz</field>
+        <field name="sequence">13</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_osea_4000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_derecha_4000hz"
+        />
+        <field name="name">4000 Hz</field>
+        <field name="sequence">14</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_derecho_osea_8000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_derecha_8000hz"
+        />
+        <field name="name">8000 Hz</field>
+        <field name="sequence">15</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field name="name">Oído Izquierdo</field>
+        <field name="display_type">line_section</field>
+        <field name="sequence">16</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_oido_izquierdo_aerea"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field name="name">Aérea Izquierda</field>
+        <field name="display_type">line_subsection</field>
+        <field name="sequence">17</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_aerea_250hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_izquierda_250hz"
+        />
+        <field name="name">250 Hz</field>
+        <field name="sequence">18</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_aerea_500hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_izquierda_500hz"
+        />
+        <field name="name">500 Hz</field>
+        <field name="sequence">19</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_aerea_1000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_izquierda_1000hz"
+        />
+        <field name="name">1000 Hz</field>
+        <field name="sequence">20</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_aerea_2000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_izquierda_2000hz"
+        />
+        <field name="name">2000 Hz</field>
+        <field name="sequence">21</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_aerea_4000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_izquierda_4000hz"
+        />
+        <field name="name">4000 Hz</field>
+        <field name="sequence">22</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_aerea_8000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_aerea_izquierda_8000hz"
+        />
+        <field name="name">8000 Hz</field>
+        <field name="sequence">23</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_oido_izquierdo_osea"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field name="name">Ósea Izquierda</field>
+        <field name="display_type">line_subsection</field>
+        <field name="sequence">24</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_osea_250hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_izquierda_250hz"
+        />
+        <field name="name">250 Hz</field>
+        <field name="sequence">25</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_osea_500hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_izquierda_500hz"
+        />
+        <field name="name">500 Hz</field>
+        <field name="sequence">25</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_osea_1000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_izquierda_1000hz"
+        />
+        <field name="name">1000 Hz</field>
+        <field name="sequence">26</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_osea_2000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_izquierda_2000hz"
+        />
+        <field name="name">2000 Hz</field>
+        <field name="sequence">27</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_osea_4000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_izquierda_4000hz"
+        />
+        <field name="name">4000 Hz</field>
+        <field name="sequence">28</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_oido_izquierdo_osea_8000hz"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_auditory_test"
+        />
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_osea_izquierda_8000hz"
+        />
+        <field name="name">8000 Hz</field>
+        <field name="sequence">29</field>
+    </record>
+</odoo>

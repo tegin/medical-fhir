@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_diagnostic_report_template_form_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.template.form (in medical_diagnostic_report_graph)</field>
+        <field name="model">medical.diagnostic.report.template</field>
+        <field
+            name="inherit_id"
+            ref="medical_diagnostic_report.medical_report_template_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="with_conclusion" position="after">
+                <field name="compute_graph" groups="base.group_no_one" />
+                <field name="compute_html" groups="base.group_no_one" />
+                <field name="hide_observations" groups="base.group_no_one" />
+            </field>
+            <page name="composition" position="after">
+                <page
+                    name="graph"
+                    string="Graphs Python Code"
+                    attrs="{'invisible': [('compute_graph', '=', False)]}"
+                    groups="base.group_no_one"
+                >
+                    <field
+                        name="graph_python_code"
+                        widget="ace"
+                        options="{'mode': 'python'}"
+                    />
+                </page>
+                <page
+                    name="html_code"
+                    string="Html Code"
+                    attrs="{'invisible': [('compute_html', '=', False)]}"
+                    groups="base.group_no_one"
+                >
+                    <field name="html_code" widget="ace" options="{'mode': 'xml'}" />
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
