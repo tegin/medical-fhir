@@ -27,7 +27,6 @@ class MedicalDiagnosticReport(models.Model):
     _inherit = "medical.diagnostic.report"
 
     bokeh_chart = fields.Text(copy=False)
-    html_code = fields.Text()
     html_chart = fields.Html()
     bokeh_image = fields.Binary(copy=False)
 
@@ -55,9 +54,9 @@ class MedicalDiagnosticReport(models.Model):
 
     def _get_html_information(self):
         for template in self.template_ids:
-            code = template.html_code
-            if not code:
+            if not template.compute_html:
                 continue
+            code = template.html_code
             tree = etree.fromstring(code)
             html = self.env["ir.qweb"].render(tree, {"record": self},)
             return html
@@ -96,10 +95,10 @@ class MedicalDiagnosticReport(models.Model):
     def _get_image_from_code(self):
         if self.compute_graph:
             bokeh_image = self._get_bokeh_information(True)
-            self.write({"bokeh_image": bokeh_image})
-        if self.html_chart:
+            self.bokeh_image = bokeh_image
+        if self.compute_html:
             html_chart = self._get_html_information()
-            self.write({"html_chart": html_chart})
+            self.html_chart = html_chart
 
     def registered2final_action(self):
         self._get_image_from_code()
