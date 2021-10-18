@@ -18,6 +18,7 @@
         "web_editor",
         "medical_certify",
         "web_widget_bokeh_chart",
+        "account",
     ],
     "data": [
         "data/report_paper_format.xml",

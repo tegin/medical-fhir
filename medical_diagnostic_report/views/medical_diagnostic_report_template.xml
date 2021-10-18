@@ -74,7 +74,7 @@
                                     <field
                                         name="name"
                                         widget="section_and_note_text"
-                                        attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)], 'invisible': [('concept_id', '!=', False)]}"
+                                        attrs="{'readonly': [('blocked', '=', True)]}"
                                         force_save="1"
                                     />
                                     <field name="concept_id" />

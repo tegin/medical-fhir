@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <!--Concepts -->
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_lejos_der_con_correccion"
+    >
+        <field name="name">Lejos D Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_lejos_izq_con_correccion"
+    >
+        <field name="name">Lejos I Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_lejos_bi_con_correccion"
+    >
+        <field name="name">Lejos B Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_cerca_der_con_correccion"
+    >
+        <field name="name">Cerca D Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_cerca_izq_con_correccion"
+    >
+        <field name="name">Cerca I Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_cerca_bi_con_correccion"
+    >
+        <field name="name">Cerca B Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_lejos_der_sin_correccion"
+    >
+        <field name="name">Lejos D Sin Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_lejos_izq_sin_correccion"
+    >
+        <field name="name">Lejos I Sin Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_lejos_bi_sin_correccion"
+    >
+        <field name="name">Lejos B Sin Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_cerca_der_sin_correccion"
+    >
+        <field name="name">Cerca D Sin Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_cerca_izq_sin_correccion"
+    >
+        <field name="name">Cerca I Sin Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <record
+        model="medical.observation.concept"
+        id="medical_observation_concept_cerca_bi_sin_correccion"
+    >
+        <field name="name">Cerca B Sin Correccion</field>
+        <field name="value_type">int</field>
+    </record>
+    <!-- Template -->
+    <record
+        model="medical.diagnostic.report.template"
+        id="medical_diagnostic_report_template_visual_acuity_test"
+    >
+        <field name="name">Agudezas visuales</field>
+        <field name="with_observation" eval="True" />
+        <field name="with_composition" eval="True" />
+        <field name="with_conclusion" eval="True" />
+        <field name="compute_graph" eval="True" />
+        <field name="compute_html" eval="True" />
+        <field name="hide_observations" eval="True" />
+        <field
+            name="composition"
+        >All the observations are in the reference range</field>
+        <field name="conclusion">No abnormalities present</field>
+    </record>
+    <!-- Items template -->
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_con_correccion"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Con Corrección</field>
+        <field name="display_type">line_section</field>
+        <field name="sequence">1</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_con_correcion_lejos"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Lejos</field>
+        <field name="display_type">line_subsection</field>
+        <field name="sequence">2</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_con_correcion_lejos_derecho"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Derecho</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_lejos_der_con_correccion"
+        />
+        <field name="sequence">3</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_con_correcion_lejos_izquierdo"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Izquierdo</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_lejos_izq_con_correccion"
+        />
+        <field name="sequence">4</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_con_correcion_lejos_binocular"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Binocular</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_lejos_bi_con_correccion"
+        />
+        <field name="sequence">5</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_con_correcion_cerca"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Cerca</field>
+        <field name="display_type">line_subsection</field>
+        <field name="sequence">6</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_con_correcion_cerca_derecho"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Derecho</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_cerca_der_con_correccion"
+        />
+        <field name="sequence">7</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_con_correcion_cerca_izquierdo"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Izquierdo</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_cerca_izq_con_correccion"
+        />
+        <field name="sequence">8</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_con_correcion_cerca_binocular"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Binocular</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_cerca_bi_con_correccion"
+        />
+        <field name="sequence">9</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_section_sin_correccion"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Sin Corrección</field>
+        <field name="display_type">line_section</field>
+        <field name="sequence">10</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_sin_correcion_lejos"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Lejos</field>
+        <field name="display_type">line_subsection</field>
+        <field name="sequence">11</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_sin_correcion_lejos_derecho"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Derecho</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_lejos_der_sin_correccion"
+        />
+        <field name="sequence">12</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_sin_correcion_lejos_izquierdo"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Izquierdo</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_lejos_izq_sin_correccion"
+        />
+        <field name="sequence">13</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_sin_correcion_lejos_binocular"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Binocular</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_lejos_bi_sin_correccion"
+        />
+        <field name="sequence">14</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_sin_correcion_cerca"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Cerca</field>
+        <field name="display_type">line_subsection</field>
+        <field name="sequence">15</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_sin_correcion_cerca_derecho"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Derecho</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_cerca_der_sin_correccion"
+        />
+        <field name="sequence">16</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_sin_correcion_cerca_izquierdo"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Izquierdo</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_cerca_izq_sin_correccion"
+        />
+        <field name="sequence">17</field>
+    </record>
+    <record
+        model="medical.diagnostic.report.template.item"
+        id="medical_diagnostic_report_template_subsection_sin_correcion_cerca_binocular"
+    >
+        <field
+            name="template_id"
+            ref="medical_diagnostic_report_template_visual_acuity_test"
+        />
+        <field name="name">Binocular</field>
+        <field
+            name="concept_id"
+            ref="medical_observation_concept_cerca_bi_sin_correccion"
+        />
+        <field name="sequence">18</field>
+    </record>
+</odoo>
