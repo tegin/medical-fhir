@@ -2,3 +2,4 @@
 bokeh
 numpy
 pandas
+phantomjs
