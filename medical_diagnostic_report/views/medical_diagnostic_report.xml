@@ -133,7 +133,7 @@
                             <field
                                 name="sequence"
                                 widget="handle"
-                                attrs="{'readonly': [('blocked', '=', True)]}"
+                                attrs="{'column_invisible': [('parent.item_blocked', '=', True)]}"
                             />
                             <field name="display_type" invisible="1" />
                             <field name="concept_id" invisible="1" />
