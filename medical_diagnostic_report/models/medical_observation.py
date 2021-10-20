@@ -126,6 +126,8 @@ class MedicalObservation(models.Model):
             if rec.value_type and hasattr(rec, "value_%s" % rec.value_type):
                 value = getattr(rec, "value_%s" % rec.value_type)
                 rec.value_representation = value
+            else:
+                rec.value_representation = False
 
     def get_value(self):
         self.ensure_one()

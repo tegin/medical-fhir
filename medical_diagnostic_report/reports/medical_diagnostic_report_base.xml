@@ -186,10 +186,10 @@
                     name="conclusion"
                     style="width:100%"
                 >
-                    <t t-if="doc.composition">
+                    <t t-if="doc.with_composition">
                         <p t-field="doc.composition" />
                     </t>
-                    <t class="o_conclusion" t-if="doc.conclusion">
+                    <t class="o_conclusion" t-if="doc.with_conclusion">
                         <strong>Conclusions:</strong>
                         <p t-field="doc.conclusion" />
                     </t>

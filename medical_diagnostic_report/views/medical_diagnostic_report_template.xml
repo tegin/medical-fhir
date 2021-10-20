@@ -11,6 +11,12 @@
             <form>
                 <header />
                 <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <div name="button_box" class="oe_button_box">
                         <button
                             name="%(medical_diagnostic_report.medical_diagnostic_report_template_print_act_window)s"
@@ -26,6 +32,7 @@
                         <field name="item_blocked" />
                         <field name="with_composition" />
                         <field name="with_conclusion" />
+                        <field name="active" invisible="1" />
                     </group>
                     <notebook>
                         <page
@@ -74,7 +81,6 @@
                                     <field
                                         name="name"
                                         widget="section_and_note_text"
-                                        attrs="{'readonly': [('blocked', '=', True)]}"
                                         force_save="1"
                                     />
                                     <field name="concept_id" />
