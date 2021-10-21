@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_clinical_impression_form_view">
+        <field
+            name="name"
+        >medical.clinical.impression.form (in medical_clinical_impression)</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="arch" type="xml">
+            <form string="Clinical Impression">
+                <header>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <group>
+                        <field name="name" />
+                        <field name="code" />
+                    </group>
+                    <group>
+                        <field name="encounter_id" />
+                        <field name="patient_id" />
+                        <field name="impression_date" />
+                        <field name="create_uid" />
+                    </group>
+                    <group>
+                        <field name="parent_impression_id" />
+                        <field
+                            name="condition_ids"
+                            widget="many2many_tags"
+                            options="{'no_create': True}"
+                        />
+                        <field name="description" />
+                    </group>
+                    <notebook>
+                        <page string="Investigation">
+                            <field name="investigation_ids" />
+                        </page>
+                        <page string="Findings">
+                            <field name="finding_ids" />
+                        </page>
+                        <page string="Summary">
+                            <field name="summary" />
+                        </page>
+                        <page string="Notes">
+                            <field name="note" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_clinical_impression_search_view">
+        <field
+            name="name"
+        >medical.clinical.impression.search (in medical_clinical_impression)</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code" />
+            </search>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Clinical Impressions -->
+    <record model="ir.ui.view" id="medical_patient_form_view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_administration.medical_patient_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_clinical_impressions"
+                    class="oe_stat_button"
+                    icon="fa-stethoscope"
+                    string="Clinical Impressions"
+                >
+                </button>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_clinical_impression_patient_tree_view">
+        <field
+            name="name"
+        >medical.clinical.impression.tree (in medical_clinical_impression)</field>
+        <field name="model">medical.clinical.impression</field>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_impression_encounter_tree_view"
+        />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="edit">false</attribute>
+            </xpath>
+            <field name="code" position="before">
+                <field name="encounter_id" />
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_clinical_impression_patient_form_view">
+        <field name="name">medical.clinical.impression.form</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="inherit_id" ref="medical_clinical_impression_form_view" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="edit">false</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="medical_patient_clinical_impression_act_window"
+    >
+        <field name="name">Medical Clinical Impression</field>
+        <field name="res_model">medical.clinical.impression</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="view_ids"
+            eval="[(5,0,0),
+                          (0,0,{'view_mode':'tree', 'view_id': ref('medical_clinical_impression_patient_tree_view')}),
+                          (0,0,{'view_mode':'form', 'view_id': ref('medical_clinical_impression_patient_form_view')})]"
+        />
+    </record>
+</odoo>
