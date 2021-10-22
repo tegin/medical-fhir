@@ -39,7 +39,6 @@ class MedicalPatient(models.Model):
                 )
             )
 
-    @api.multi
     def toggle_is_pregnant(self):
         pregnant_id = self.env.ref(
             "medical_clinical_condition.finding_pregnant"
@@ -58,7 +57,6 @@ class MedicalPatient(models.Model):
                     }
                 )
 
-    @api.multi
     def action_view_medical_conditions(self):
         self.ensure_one()
         action = self.env.ref(

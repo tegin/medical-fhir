@@ -5,7 +5,7 @@
 {
     "name": "Medical Condition",
     "summary": "Medical condition",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "author": "Creu Blanca, Eficent, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/vertical-medical",
     "license": "LGPL-3",
