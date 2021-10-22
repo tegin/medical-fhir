@@ -11,6 +11,8 @@ class MedicalCondition(models.Model):
     _inherit = "medical.abstract"
     _description = "Conditions"
 
+    name = fields.Char(related="clinical_finding_id.name")
+
     patient_id = fields.Many2one(
         comodel_name="medical.patient", string="Subject", required=True
     )  # FHIR Field: Subject

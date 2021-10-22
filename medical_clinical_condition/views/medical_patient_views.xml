@@ -12,23 +12,6 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
-                    name="toggle_is_pregnant"
-                    type="object"
-                    class="oe_stat_button"
-                    icon="fa-venus"
-                >
-                    <field
-                        name="is_pregnant"
-                        widget="boolean_button"
-                        options="{'terminology': {
-                                    'string_true': 'Pregnant',
-                                    'hover_true': 'Not pregnant',
-                                    'string_false': 'Not pregnant',
-                                    'hover_false': 'Pregnant'
-                                }}"
-                    />
-                </button>
-                <button
                     type="object"
                     name="action_view_medical_conditions"
                     class="oe_stat_button"
