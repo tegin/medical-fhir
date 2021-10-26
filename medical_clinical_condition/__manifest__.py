@@ -18,6 +18,7 @@
         "views/medical_patient_views.xml",
         "views/medical_condition_views.xml",
         "views/medical_clinical_finding_views.xml",
+        "views/medical_allergy_substance_views.xml",
     ],
     "demo": ["demo/medical_demo.xml"],
     "application": False,
