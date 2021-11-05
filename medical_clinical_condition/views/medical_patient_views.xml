@@ -16,6 +16,7 @@
                     name="action_view_medical_conditions"
                     class="oe_stat_button"
                     icon="fa-heartbeat"
+                    attrs="{'invisible':[('medical_condition_count', '=', 0)]}"
                 >
                     <field
                         name="medical_condition_count"
@@ -23,6 +24,20 @@
                         string="Conditions"
                     />
                     <field name="medical_condition_ids" invisible="1" />
+                </button>
+                <button
+                    type="object"
+                    name="action_view_medical_warnings"
+                    class="oe_stat_button"
+                    icon="fa-exclamation-triangle"
+                    attrs="{'invisible':[('medical_warning_count', '=', 0)]}"
+                >
+                    <field
+                        name="medical_warning_count"
+                        widget="statinfo"
+                        string="Warnings"
+                    />
+                    <field name="medical_warning_ids" invisible="1" />
                 </button>
             </xpath>
         </field>

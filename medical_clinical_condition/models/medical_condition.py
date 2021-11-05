@@ -23,6 +23,10 @@ class MedicalCondition(models.Model):
 
     active = fields.Boolean(default=True)
 
+    create_warning = fields.Boolean(
+        help="Mark if this conditions needs to create a warning for taking medical decisions"
+    )
+
     is_allergy = fields.Boolean()
 
     allergy_category = fields.Selection(
@@ -39,6 +43,7 @@ class MedicalCondition(models.Model):
         comodel_name="medical.clinical.finding"
     )
     last_occurrence_date = fields.Date()
+    color = fields.Integer(default=1)
 
     @api.model
     def _get_internal_identifier(self, vals):
@@ -50,3 +55,12 @@ class MedicalCondition(models.Model):
                 rec.name = _("Allergy to %s" % rec.allergy_id.name)
             else:
                 rec.name = rec.clinical_finding_id.name
+
+    _sql_constraints = [
+        (
+            "finding_uniq",
+            "unique (patient_id, clinical_finding_id)",
+            "This finding already exists for this patient !",
+        )
+    ]
+    # TODO: fix

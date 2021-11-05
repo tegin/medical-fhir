@@ -20,6 +20,20 @@ class MedicalPatient(models.Model):
         default=0,
     )
 
+    medical_warning_ids = fields.One2many(
+        comodel_name="medical.condition",
+        inverse_name="patient_id",
+        string="Conditions",
+        domain=[("create_warning", "=", True)],
+    )
+
+    medical_warning_count = fields.Integer(
+        compute="_compute_medical_warnings_count",
+        string="# of Warnings",
+        copy=False,
+        default=0,
+    )
+
     @api.depends("medical_condition_ids")
     def _compute_medical_condition_count(self):
         for record in self:
@@ -34,3 +48,22 @@ class MedicalPatient(models.Model):
         result["context"] = {"default_patient_id": self.id}
         result["domain"] = "[('patient_id', '=', " + str(self.id) + ")]"
         return result
+
+    def action_view_medical_warnings(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "medical_clinical_condition.medical_clinical_condition_action"
+        )
+        result = action.read()[0]
+        result["context"] = {"default_patient_id": self.id}
+        result["domain"] = (
+            "[('patient_id', '=', "
+            + str(self.id)
+            + "), ('create_warning', '=', True)]"
+        )
+        return result
+
+    @api.depends("medical_warning_ids")
+    def _compute_medical_warnings_count(self):
+        for record in self:
+            record.medical_warning_count = len(record.medical_warning_ids)

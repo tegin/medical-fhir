@@ -36,6 +36,7 @@
                         <group>
                             <field name="patient_id" readonly="1" />
                             <field name="is_allergy" />
+                            <field name="create_warning" />
                             <field
                                 name="clinical_finding_id"
                                 attrs="{'required': [('is_allergy', '=', False)],
