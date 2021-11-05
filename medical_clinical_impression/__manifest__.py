@@ -10,6 +10,7 @@
     "author": "Creu Blanca,Odoo Community Association (OCA)",
     "website": "www.creublanca.es",
     "depends": [
+        "medical_workflow",
         "medical_clinical",
         "medical_clinical_condition",
         "medical_administration_encounter",

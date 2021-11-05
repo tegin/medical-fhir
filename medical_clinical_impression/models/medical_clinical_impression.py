@@ -164,7 +164,9 @@ class MedicalClinicalImpression(models.Model):
 
     def _compute_clinical_impression_name(self):
         for rec in self:
-            rec.name = _("{} {}".format(rec.patient_id.name, rec.impression_date))
+            rec.name = _(
+                "{} {}".format(rec.patient_id.name, rec.impression_date)
+            )
 
     def action_view_medical_conditions(self):
         self.ensure_one()
@@ -228,8 +230,12 @@ class MedicalClinicalImpression(models.Model):
 
     def action_create_condition(self):
         self.ensure_one()
-        impression = self.env["medical.condition"].create({
-            'patient_id': self.patient_id.id,
-            'clinical_finding_id': self.finding_ids[0].id if self.finding_ids else False
-        })
+        impression = self.env["medical.condition"].create(
+            {
+                "patient_id": self.patient_id.id,
+                "clinical_finding_id": self.finding_ids[0].id
+                if self.finding_ids
+                else False,
+            }
+        )
         return impression.get_formview_action()
