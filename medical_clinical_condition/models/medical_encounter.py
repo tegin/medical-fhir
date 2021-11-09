@@ -5,13 +5,11 @@
 from odoo import api, fields, models
 
 
-class MedicalPatient(models.Model):
-    _inherit = "medical.patient"
+class MedicalEncounter(models.Model):
+    _inherit = "medical.encounter"
 
     medical_condition_ids = fields.One2many(
-        comodel_name="medical.condition",
-        inverse_name="patient_id",
-        string="Conditions",
+        related="patient_id.medical_condition_ids"
     )
     medical_condition_count = fields.Integer(
         compute="_compute_medical_condition_count",
@@ -20,10 +18,7 @@ class MedicalPatient(models.Model):
         default=0,
     )
     medical_allergy_ids = fields.One2many(
-        comodel_name="medical.condition",
-        inverse_name="patient_id",
-        domain=[("is_allergy", "=", True)],
-        string="Allergies",
+        related="patient_id.medical_allergy_ids"
     )
     medical_allergies_count = fields.Integer(
         compute="_compute_medical_allergy_count",
@@ -34,10 +29,7 @@ class MedicalPatient(models.Model):
     )
 
     medical_warning_ids = fields.One2many(
-        comodel_name="medical.condition",
-        inverse_name="patient_id",
-        string="Conditions",
-        domain=[("create_warning", "=", True)],
+        related="patient_id.medical_warning_ids"
     )
 
     medical_warning_count = fields.Integer(
@@ -59,7 +51,9 @@ class MedicalPatient(models.Model):
         )
         result = action.read()[0]
         result["context"] = {"default_patient_id": self.id}
-        result["domain"] = "[('patient_id', '=', " + str(self.id) + ")]"
+        result["domain"] = (
+            "[('patient_id', '=', " + str(self.patient_id.id) + ")]"
+        )
         return result
 
     def action_view_medical_warnings(self):
@@ -71,7 +65,7 @@ class MedicalPatient(models.Model):
         result["context"] = {"default_patient_id": self.id}
         result["domain"] = (
             "[('patient_id', '=', "
-            + str(self.id)
+            + str(self.patient_id.id)
             + "), ('create_warning', '=', True)]"
         )
         return result
@@ -98,7 +92,7 @@ class MedicalPatient(models.Model):
         }
         result["domain"] = (
             "[('patient_id', '=', "
-            + str(self.id)
+            + str(self.patient_id.id)
             + "), ('is_allergy', '=', True)]"
         )
         return result

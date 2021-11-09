@@ -35,27 +35,27 @@
                     <group name="details">
                         <group>
                             <field name="patient_id" readonly="1" />
-                            <field name="is_allergy" />
-                            <field name="create_warning" />
+                            <field name="is_allergy" invisible="1" />
+                            <field name="create_warning" invisible="1" />
                             <field
                                 name="clinical_finding_id"
                                 attrs="{'required': [('is_allergy', '=', False)],
                                    'invisible': [('is_allergy', '=', True)]}"
                             />
-                        </group>
-                        <group>
                             <field
                                 name="allergy_category"
-                                attrs="{'invisible': [('is_allergy', '=', False)]}"
-                            />
-                            <field
-                                name="criticality"
                                 attrs="{'invisible': [('is_allergy', '=', False)]}"
                             />
                             <field
                                 name="allergy_id"
                                 attrs="{'invisible': [('is_allergy', '=', False)],
                                    'required': [('is_allergy', '=', True)]}"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="criticality"
+                                attrs="{'invisible': [('is_allergy', '=', False)]}"
                             />
                             <field
                                 name="last_occurrence_date"

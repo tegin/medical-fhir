@@ -18,6 +18,10 @@ class MedicalClinicalFinding(models.Model):
         comodel_name="medical.sct.concept",
         domain=[("is_clinical_finding", "=", True)],
     )
+    create_warning = fields.Boolean(
+        help="Mark if this clinical finding needs to create "
+        "a warning for taking medical decisions"
+    )
 
     @api.model
     def _get_internal_identifier(self, vals):

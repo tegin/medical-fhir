@@ -24,7 +24,7 @@ class MedicalCondition(models.Model):
     active = fields.Boolean(default=True)
 
     create_warning = fields.Boolean(
-        help="Mark if this conditions needs to create a warning for taking medical decisions"
+        related="clinical_finding_id.create_warning"
     )
 
     is_allergy = fields.Boolean()
@@ -59,7 +59,7 @@ class MedicalCondition(models.Model):
     _sql_constraints = [
         (
             "finding_uniq",
-            "unique (patient_id, clinical_finding_id)",
+            "UNIQUE(patient_id, clinical_finding_id)",
             "This finding already exists for this patient !",
         )
     ]
