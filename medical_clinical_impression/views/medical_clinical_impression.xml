@@ -54,6 +54,20 @@
                 </button>
                 <button
                     type="object"
+                    name="action_view_medical_allergies"
+                    class="oe_stat_button"
+                    icon="fa-allergies"
+                >
+                    <!-- attrs="{'invisible':[('medical_condition_count', '=', 0)]}"-->
+                    <field
+                        name="allergies_count"
+                        widget="statinfo"
+                        string="Allergies"
+                    />
+                    <field name="allergy_ids" invisible="1" />
+                </button>
+                <button
+                    type="object"
                     name="action_view_warnings"
                     class="oe_stat_button"
                     icon="fa-exclamation-triangle"
@@ -72,59 +86,56 @@
                     <attribute name="cols">0</attribute>
                 </xpath>
                 -->
-            <group name="details" position="attributes">
+            <field name="name" position="attributes">
                 <attribute name="invisible">1</attribute>
-            </group>
-            <group name="details" position="before">
+            </field>
+            <field name="patient_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="patient_id" position="after">
+                <field name="patient_id" />
+            </field>
+            <xpath expr="//field[@name='patient_id']/.." position="after">
                 <group>
+                    <field name="encounter_id" />
                     <field
-                        name="code"
+                        name="specialty_id"
                         attrs="{'readonly':[('is_editable', '=', False)]}"
                     />
                 </group>
                 <group>
-                    <field name="encounter_id" />
-                    <field name="patient_id" />
-                    <field
+                    <!--
+                     <field
                         name="warning_ids"
                         widget="many2many_tags"
                         options="{'no_create': True, 'color_field': 'color'}"
-                    />
-                    <field
-                        name="impression_date"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
-                </group>
-                <group>
-                    <field name="create_uid" />
-                    <field
-                        name="parent_impression_id"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
-                </group>
-                <group>
+                    /> -->
                     <field
                         name="description"
                         attrs="{'readonly':[('is_editable', '=', False)]}"
                     />
                 </group>
-            </group>
+                <group>
+                    <field
+                        name="parent_impression_id"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    />
+                    <field
+                        name="impression_date"
+                        attrs="{'readonly':[('is_editable', '=', False)],
+                           'invisible':[('validation_user_id', '=', False)]}"
+                    />
+                    <field
+                        name="validation_user_id"
+                        attrs="{'readonly':[('is_editable', '=', False)],
+                           'invisible':[('validation_user_id', '=', False)]}"
+                    />
+                </group>
+            </xpath>
             <group name="sale" position="attributes">
                 <attribute name="invisible">1</attribute>
             </group>
             <xpath expr="//notebook/page[1]" position="before">
-                <page string="Investigation">
-                    <field
-                        name="investigation_ids"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
-                </page>
-                <page string="Findings">
-                    <field
-                        name="finding_ids"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
-                </page>
                 <page string="Summary">
                     <field
                         name="summary"
@@ -137,7 +148,27 @@
                         attrs="{'readonly':[('is_editable', '=', False)]}"
                     />
                 </page>
+                <page string="Findings">
+                    <field
+                        name="finding_ids"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    />
+                </page>
+                <page string="Allergies">
+                    <field
+                        name="allergy_ids"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    />
+                </page>
+                <!--
+                <page string="Investigation">
+                    <field
+                        name="investigation_ids"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    />
+                </page> -->
             </xpath>
+            <!--
             <header position="inside">
                 <button
                     name="validate_clinical_impression"
@@ -172,7 +203,7 @@
                     class="oe_stat_button"
                     icon="fa-heartbeat"
                 >
-                    <!-- attrs="{'invisible':[('medical_condition_count', '=', 0)]}"-->
+
                     <field
                         name="condition_count"
                         widget="statinfo"
@@ -195,18 +226,14 @@
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Clinical Impression</attribute>
             </xpath>
-            <!--
-               <xpath expr="//group[@name='details']" position="attributes">
-                    <attribute name="cols">0</attribute>
-                </xpath>
-                -->
+
             <group name="details" position="attributes">
                 <attribute name="invisible">1</attribute>
             </group>
             <group name="details" position="before">
                 <group>
                     <field
-                        name="code"
+                        name="specialty_id"
                         attrs="{'readonly':[('is_editable', '=', False)]}"
                     />
                 </group>
@@ -265,7 +292,7 @@
                         attrs="{'readonly':[('is_editable', '=', False)]}"
                     />
                 </page>
-            </xpath>
+            </xpath> -->
         </field>
     </record>
     <record model="ir.ui.view" id="medical_clinical_impression_search_view">
@@ -275,8 +302,8 @@
         <field name="model">medical.clinical.impression</field>
         <field name="arch" type="xml">
             <search>
-                <field name="code" />
-                <filter name="Code" context="{'group_by': 'code'}" />
+                <field name="specialty_id" />
+                <filter name="Specialty" context="{'group_by': 'specialty_id'}" />
             </search>
         </field>
     </record>

@@ -1,7 +1,7 @@
 # Copyright 2021 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import api, fields, models
 
 
 class MedicalPatient(models.Model):
@@ -19,11 +19,12 @@ class MedicalPatient(models.Model):
     def _compute_impression_specialties(self):
         for record in self:
             record.impression_specialty_ids = record.medical_impression_ids.mapped(
-                "code"
+                "specialty_id"
             )
 
     def action_view_clinical_impressions(self):
         self.ensure_one()
+        encounter = self._get_last_encounter()
         action = self.env.ref(
             "medical_clinical_impression."
             "medical_patient_clinical_impression_act_window"
@@ -31,4 +32,15 @@ class MedicalPatient(models.Model):
         action["domain"] = [
             ("patient_id", "=", self.id),
         ]
+        if encounter:
+            action["context"] = {"default_encounter_id": encounter.id}
         return action
+
+    def _get_last_encounter(self):
+        encounter = False
+        self.ensure_one()
+        if self.encounter_ids:
+            encounter = self.encounter_ids.sorted(key=lambda r: r.create_date)[
+                -1
+            ]
+        return encounter

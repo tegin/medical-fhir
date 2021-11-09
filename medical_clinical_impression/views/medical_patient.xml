@@ -31,16 +31,12 @@
         />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
-                <attribute name="create">false</attribute>
-                <attribute name="edit">false</attribute>
-            </xpath>
-            <field name="code" position="before">
+            <field name="specialty_id" position="before">
                 <field name="encounter_id" />
             </field>
         </field>
     </record>
-    <record model="ir.ui.view" id="medical_clinical_impression_patient_form_view">
+    <!-- <record model="ir.ui.view" id="medical_clinical_impression_patient_form_view">
         <field name="name">medical.clinical.impression.form</field>
         <field name="model">medical.clinical.impression</field>
         <field name="inherit_id" ref="medical_clinical_impression_form_view" />
@@ -51,7 +47,7 @@
                 <attribute name="edit">false</attribute>
             </xpath>
         </field>
-    </record>
+    </record> -->
     <record
         model="ir.actions.act_window"
         id="medical_patient_clinical_impression_act_window"
@@ -62,8 +58,7 @@
         <field
             name="view_ids"
             eval="[(5,0,0),
-                          (0,0,{'view_mode':'tree', 'view_id': ref('medical_clinical_impression_patient_tree_view')}),
-                          (0,0,{'view_mode':'form', 'view_id': ref('medical_clinical_impression_patient_form_view')})]"
+                          (0,0,{'view_mode':'tree', 'view_id': ref('medical_clinical_impression_patient_tree_view')})]"
         />
     </record>
 </odoo>

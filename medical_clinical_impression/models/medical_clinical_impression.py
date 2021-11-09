@@ -27,13 +27,17 @@ class MedicalClinicalImpression(models.Model):
 
     # FHIR statusreason: not needed I think
     @api.model
-    def _get_impression_code(self):
+    def _get_impression_specialty_id(self):
         if self.create_uid.partner_id.specialty_ids:
             return self.create_uid.partner_id.specialty_ids[0].name
         else:
             return False
 
-    code = fields.Many2one("medical.specialty", default=_get_impression_code)
+    specialty_id = fields.Many2one(
+        "medical.specialty",
+        default=_get_impression_specialty_id,
+        required=True,
+    )
     # FHIR code: type of clinical assessment performed.
     # Can be used as a tag. Which should be related model?
     # Related to the specialty?
@@ -44,7 +48,9 @@ class MedicalClinicalImpression(models.Model):
     )
     # FHIR: description
 
-    encounter_id = fields.Many2one("medical.encounter", readonly=True)
+    encounter_id = fields.Many2one(
+        "medical.encounter", readonly=True, required=True
+    )
     # FHIR: encounter
 
     patient_id = fields.Many2one(related="encounter_id.patient_id")
@@ -54,6 +60,11 @@ class MedicalClinicalImpression(models.Model):
 
     impression_date = fields.Datetime()
     # FHIR: date
+
+    validation_user_id = fields.Many2one(
+        "res.users", string="Validated by", readonly=True, copy=False
+    )
+    # FHIR: Performer
 
     """
     performer_id = fields.Many2one(
@@ -72,26 +83,35 @@ class MedicalClinicalImpression(models.Model):
         index=True,
         help="Select an impression if this impression makes a reference "
         "to a previous one",
-        domain='[("id", "!=", id)]',
+        domain='[("id", "!=", id), ("state", "=", "completed")]',
     )
     # FHIR: previous
 
     condition_ids = fields.Many2many(
         comodel_name="medical.condition",
         string="Conditions",
-        compute="_get_condition_ids",
+        compute="_compute_condition_ids",
     )
     condition_count = fields.Integer(
         compute="_compute_medical_condition_count",
         string="# of Conditions",
         copy=False,
     )
-
+    allergy_ids = fields.Many2many(
+        comodel_name="medical.condition",
+        string="Allergies",
+        compute="_compute_allergy_ids",
+    )
+    allergies_count = fields.Integer(
+        compute="_compute_medical_allergies_count",
+        string="# of Allergies",
+        copy=False,
+    )
     warning_ids = fields.Many2many(
         comodel_name="medical.condition",
         # domain='[("patient_id", "=", patient_id), ("create_warning", "=", True)]',
         help="Conditions relevant for this clinical impression",
-        compute="_get_warning_ids",
+        compute="_compute_warning_ids",
     )
     # FHIR: problem
 
@@ -143,15 +163,19 @@ class MedicalClinicalImpression(models.Model):
     # TODO: add counts on button
 
     @api.depends("patient_id", "patient_id.medical_warning_ids")
-    def _get_warning_ids(self):
+    def _compute_warning_ids(self):
         self.warning_ids = self.patient_id.medical_warning_ids
 
     @api.depends("patient_id", "patient_id.medical_condition_ids")
-    def _get_condition_ids(self):
+    def _compute_condition_ids(self):
         self.condition_ids = self.patient_id.medical_condition_ids
 
+    @api.depends("patient_id", "patient_id.medical_allergy_ids")
+    def _compute_allergy_ids(self):
+        self.allergy_ids = self.patient_id.medical_allergy_ids
+
     @api.model
-    def _get_internal_identifier(self, vals):
+    def _compute_internal_identifier(self, vals):
         return (
             self.env["ir.sequence"].next_by_code("medical.clinical.impression")
             or "/"
@@ -161,6 +185,11 @@ class MedicalClinicalImpression(models.Model):
     def _compute_medical_condition_count(self):
         for record in self:
             record.condition_count = len(record.condition_ids)
+
+    @api.depends("patient_id", "allergy_ids")
+    def _compute_medical_allergies_count(self):
+        for record in self:
+            record.allergies_count = len(record.allergy_ids)
 
     def _compute_clinical_impression_name(self):
         for rec in self:
@@ -205,7 +234,11 @@ class MedicalClinicalImpression(models.Model):
             if not self.impression_date
             else self.impression_date
         )
-        return {"state": "completed", "impression_date": impression_date}
+        return {
+            "state": "completed",
+            "impression_date": impression_date,
+            "validation_user_id": self.env.user.id,
+        }
 
     def validate_clinical_impression(self):
         self.ensure_one()

@@ -8,7 +8,7 @@
         <field name="model">medical.encounter</field>
         <field
             name="inherit_id"
-            ref="medical_administration_encounter.medical_encounter_view_form"
+            ref="medical_clinical_condition.medical_encounter_view_form"
         />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
@@ -30,7 +30,7 @@
         <field name="model">medical.clinical.impression</field>
         <field name="arch" type="xml">
             <tree string="Clinical Impressions">
-                <field name="code" />
+                <field name="specialty_id" />
                 <field name="summary" />
                 <field name="impression_date" />
             </tree>
@@ -46,8 +46,7 @@
         <field
             name="view_ids"
             eval="[(5,0,0),
-                          (0,0,{'view_mode':'tree', 'view_id': ref('medical_clinical_impression_encounter_tree_view')}),
-                          (0,0,{'view_mode':'form', 'view_id': ref('medical_clinical_impression_form_view')})]"
+                          (0,0,{'view_mode':'tree', 'view_id': ref('medical_clinical_impression_encounter_tree_view')})]"
         />
     </record>
 </odoo>
