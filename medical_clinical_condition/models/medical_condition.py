@@ -24,7 +24,7 @@ class MedicalCondition(models.Model):
     active = fields.Boolean(default=True)
 
     create_warning = fields.Boolean(
-        related="clinical_finding_id.create_warning"
+        compute="_compute_create_warning", store=True
     )
 
     is_allergy = fields.Boolean()
@@ -45,6 +45,8 @@ class MedicalCondition(models.Model):
     last_occurrence_date = fields.Date()
     color = fields.Integer(default=1)
 
+    # TODO: Remove non-necessary fields
+
     @api.model
     def _get_internal_identifier(self, vals):
         return self.env["ir.sequence"].next_by_code("medical.condition") or "/"
@@ -64,3 +66,15 @@ class MedicalCondition(models.Model):
         )
     ]
     # TODO: fix
+
+    @api.depends(
+        "allergy_id.create_warning", "clinical_finding_id.create_warning"
+    )
+    def _compute_create_warning(self):
+        if (
+            self.allergy_id.create_warning
+            or self.clinical_finding_id.create_warning
+        ):
+            self.create_warning = True
+        else:
+            self.create_warning = False

@@ -27,7 +27,7 @@ class MedicalPatient(models.Model):
     )
     medical_allergies_count = fields.Integer(
         compute="_compute_medical_allergy_count",
-        string="# of Conditions",
+        string="# of Allergies",
         domain=[("is_allergy", "=", True)],
         copy=False,
         default=0,
