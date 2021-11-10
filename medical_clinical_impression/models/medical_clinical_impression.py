@@ -86,7 +86,9 @@ class MedicalClinicalImpression(models.Model):
         domain='[("id", "!=", id), ("state", "=", "completed")]',
     )
     # FHIR: previous
-
+    allergy_substance_ids = fields.Many2many(
+        comodel_name="medical.allergy.substance",
+    )
     condition_ids = fields.Many2many(
         comodel_name="medical.condition",
         string="Conditions",
@@ -175,7 +177,7 @@ class MedicalClinicalImpression(models.Model):
         self.allergy_ids = self.patient_id.medical_allergy_ids
 
     @api.model
-    def _compute_internal_identifier(self, vals):
+    def _get_internal_identifier(self, vals):
         return (
             self.env["ir.sequence"].next_by_code("medical.clinical.impression")
             or "/"
@@ -223,10 +225,67 @@ class MedicalClinicalImpression(models.Model):
         )
         return result
 
+    def action_view_medical_allergies(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "medical_clinical_condition.medical_clinical_condition_action"
+        )
+        result = action.read()[0]
+        result["context"] = {
+            "default_patient_id": self.patient_id.id,
+            "default_is_allergy": True,
+        }
+        result["domain"] = (
+            "[('patient_id', '=', "
+            + str(self.patient_id.id)
+            + "), ('is_allergy', '=', True)]"
+        )
+        return result
+
     @api.depends("warning_ids")
     def _compute_warnings_count(self):
         for record in self:
             record.warnings_count = len(record.warning_ids)
+
+    def _create_conditions_from_findings(self):
+        finding_ids = self.finding_ids.filtered(
+            lambda f: f.create_condition_from_clinical_impression
+        )
+        if finding_ids:
+            for finding in finding_ids:
+                condition = self.env["medical.condition"].search(
+                    [
+                        ("clinical_finding_id", "=", finding.id),
+                        ("patient_id", "=", self.patient_id.id),
+                    ],
+                    limit=1,
+                )
+                if not condition:
+                    self.env["medical.condition"].create(
+                        {
+                            "patient_id": self.patient_id.id,
+                            "clinical_finding_id": finding.id,
+                        }
+                    )
+
+    def _create_allergies_from_findings(self):
+        if self.allergy_substance_ids:
+            for substance in self.allergy_substance_ids:
+                allergy = self.env["medical.condition"].search(
+                    [
+                        ("allergy_id", "=", substance.id),
+                        ("patient_id", "=", self.patient_id.id),
+                    ],
+                    limit=1,
+                )
+                if not allergy:
+                    self.env["medical.condition"].create(
+                        {
+                            "patient_id": self.patient_id.id,
+                            "is_allergy": True,
+                            "allergy_id": substance.id,
+                        }
+                    )
 
     def _validate_clinical_impression_fields(self):
         impression_date = (
@@ -243,6 +302,8 @@ class MedicalClinicalImpression(models.Model):
     def validate_clinical_impression(self):
         self.ensure_one()
         self.write(self._validate_clinical_impression_fields())
+        self._create_conditions_from_findings()
+        self._create_allergies_from_findings()
 
     @api.depends("state")
     def _compute_is_editable(self):

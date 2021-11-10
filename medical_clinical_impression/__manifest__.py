@@ -23,6 +23,7 @@
         "views/medical_clinical_impression.xml",
         "views/medical_encounter.xml",
         "views/medical_patient.xml",
+        "views/medical_clinical_finding.xml",
     ],
     "demo": [],
 }
