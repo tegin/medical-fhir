@@ -18,6 +18,36 @@
                 >
                 </button>
             </xpath>
+            <page name="medical_administration" position="after">
+                <page name="impression_specialty_ids" string="Impressions">
+                    <div>
+                        <button
+                            type="action"
+                            name="%(medical_clinical_impression.create_impression_from_patient_act_window)s"
+                            class="oe_stat_button btn-primary"
+                            string="Create Impression"
+                        />
+                        <button
+                            type="object"
+                            name="action_view_clinical_impressions"
+                            class="oe_stat_button btn-secondary"
+                            icon="fa-stethoscope"
+                            string="View all impressions"
+                        >
+                        </button>
+                    </div>
+                    <field name="impression_specialty_ids" context="{'patient_id': id}">
+                        <tree>
+                            <field name="name" />
+                            <button
+                                name="get_speciality_impression"
+                                icon="fa-stethoscope"
+                                type="object"
+                            />
+                        </tree>
+                    </field>
+                </page>
+            </page>
         </field>
     </record>
     <record model="ir.ui.view" id="medical_clinical_impression_patient_tree_view">

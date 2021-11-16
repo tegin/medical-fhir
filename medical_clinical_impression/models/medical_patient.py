@@ -31,6 +31,7 @@ class MedicalPatient(models.Model):
         ).read()[0]
         action["domain"] = [
             ("patient_id", "=", self.id),
+            ("state", "=", "completed"),
         ]
         if encounter:
             action["context"] = {"default_encounter_id": encounter.id}

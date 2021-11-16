@@ -253,12 +253,8 @@ class MedicalClinicalImpression(models.Model):
         )
         if finding_ids:
             for finding in finding_ids:
-                condition = self.env["medical.condition"].search(
-                    [
-                        ("clinical_finding_id", "=", finding.id),
-                        ("patient_id", "=", self.patient_id.id),
-                    ],
-                    limit=1,
+                condition = self.patient_id.medical_condition_ids.filtered(
+                    lambda r: r.clinical_finding_id.id == finding.id
                 )
                 if not condition:
                     self.env["medical.condition"].create(
@@ -271,12 +267,8 @@ class MedicalClinicalImpression(models.Model):
     def _create_allergies_from_findings(self):
         if self.allergy_substance_ids:
             for substance in self.allergy_substance_ids:
-                allergy = self.env["medical.condition"].search(
-                    [
-                        ("allergy_id", "=", substance.id),
-                        ("patient_id", "=", self.patient_id.id),
-                    ],
-                    limit=1,
+                allergy = self.patient_id.medical_allergy_ids.filtered(
+                    lambda r: r.allergy_id.id == substance.id
                 )
                 if not allergy:
                     self.env["medical.condition"].create(

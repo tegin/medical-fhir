@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 CreuBlanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="create_impression_from_patient_form_view">
+        <field name="name">create.impression.from.patient.form</field>
+        <field name="model">create.impression.from.patient</field>
+        <field name="arch" type="xml">
+            <form string="Create Clinical Impression">
+                <group>
+                    <field name="patient_id" invisible="1" />
+                    <field
+                        name="specialty_id"
+                        options="{'no_create': 1, 'no_open': 1}"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="generate"
+                        string="Create"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="create_impression_from_patient_act_window"
+    >
+        <field name="name">Create clinical impression from patient</field>
+        <field name="res_model">create.impression.from.patient</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_patient_id': active_id}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
