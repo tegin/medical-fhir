@@ -9,6 +9,7 @@ class MedicalClinicalImpression(models.Model):
     _name = "medical.clinical.impression"
     _inherit = "medical.event"
     _description = "Medical Clinical Impression"
+    _conditions = "condition_ids"
 
     @api.model
     def _get_states(self):
@@ -157,12 +158,6 @@ class MedicalClinicalImpression(models.Model):
 
     # TODO: add a button to see diagnostic reports of this encounter?
     #  Or would it be better to add on the item reference of findings?
-
-    # TODO: create wizard to create a clinical impressions
-
-    # TODO: decide how to create medical conditions
-
-    # TODO: add counts on button
 
     @api.depends("patient_id", "patient_id.medical_warning_ids")
     def _compute_warning_ids(self):

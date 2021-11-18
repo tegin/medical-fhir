@@ -16,6 +16,7 @@
         "medical_administration_practitioner_specialty",
     ],
     "data": [
+        "views/assets.xml",
         "security/medical_security.xml",
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
@@ -26,5 +27,6 @@
         "views/medical_patient.xml",
         "views/medical_clinical_finding.xml",
     ],
+    "qweb": ["static/src/xml/widget_warning_dropdown.xml"],
     "demo": [],
 }

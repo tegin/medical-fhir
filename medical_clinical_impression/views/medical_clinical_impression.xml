@@ -87,9 +87,33 @@
             <field name="patient_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
-            <field name="patient_id" position="after">
+            <field name="patient_id" position="before">
                 <field name="patient_id" />
             </field>
+            <xpath expr="//h2" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//h2" position="after">
+                <div class="row">
+                    <div class="col-4">
+                        <h2 modifiers="{}">
+                            <label for="internal_identifier" modifiers="{}" />
+                            <field
+                                name="internal_identifier"
+                                readonly="1"
+                                modifiers="{'readonly':true}"
+                            />
+                        </h2>
+                    </div>
+                    <field
+                        name="condition_ids"
+                        widget="warning_dropdown"
+                        class="col-8"
+                        context="{'patient_id': patient_id}"
+                        attrs="{'invisible':[('condition_count', '=', 0)]}"
+                    />
+                </div>
+            </xpath>
             <xpath expr="//field[@name='patient_id']/.." position="after">
                 <group>
                     <field name="encounter_id" />
@@ -99,12 +123,6 @@
                     />
                 </group>
                 <group>
-                    <!--
-                     <field
-                        name="warning_ids"
-                        widget="many2many_tags"
-                        options="{'no_create': True, 'color_field': 'color'}"
-                    /> -->
                     <field
                         name="description"
                         attrs="{'readonly':[('is_editable', '=', False)]}"
