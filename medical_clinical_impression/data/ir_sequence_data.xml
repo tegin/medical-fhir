@@ -17,4 +17,10 @@
         <field name="prefix">MCI</field>
         <field name="padding">7</field>
     </record>
+    <record id="seq_medical_family_member_history" model="ir.sequence">
+        <field name="name">Medical Family member History sequence</field>
+        <field name="code">medical.family.member.history</field>
+        <field name="prefix">FMH</field>
+        <field name="padding">7</field>
+    </record>
 </odoo>

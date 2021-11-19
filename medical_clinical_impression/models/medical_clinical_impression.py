@@ -124,6 +124,13 @@ class MedicalClinicalImpression(models.Model):
         copy=False,
         default=0,
     )
+    family_history_ids = fields.Many2many(
+        "medical.family.member.history", compute="_compute_family_history_ids"
+    )
+
+    family_history_count = fields.Integer(
+        compute="_compute_family_history_count"
+    )
 
     investigation_ids = fields.Many2many(
         comodel_name="medical.clinical.investigation",
@@ -158,6 +165,10 @@ class MedicalClinicalImpression(models.Model):
 
     # TODO: add a button to see diagnostic reports of this encounter?
     #  Or would it be better to add on the item reference of findings?
+
+    @api.depends("patient_id", "patient_id.family_history_ids")
+    def _compute_family_history_ids(self):
+        self.family_history_ids = self.patient_id.family_history_ids
 
     @api.depends("patient_id", "patient_id.medical_warning_ids")
     def _compute_warning_ids(self):
@@ -320,3 +331,20 @@ class MedicalClinicalImpression(models.Model):
             }
         )
         return impression.get_formview_action()
+
+    def action_view_family_history(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "medical_clinical_impression."
+            "medical_family_member_history_action"
+        ).read()[0]
+        action["domain"] = [
+            ("patient_id", "=", self.patient_id.id),
+        ]
+
+        action["context"] = {"default_patient_id": self.patient_id.id}
+        return action
+
+    @api.depends("family_history_ids")
+    def _compute_family_history_count(self):
+        self.family_history_count = len(self.family_history_ids)

@@ -20,6 +20,19 @@
                     string="Clinical Impressions"
                 >
                 </button>
+                <button
+                    type="object"
+                    name="action_view_family_history"
+                    class="oe_stat_button"
+                    icon="fa-history"
+                >
+                    <field
+                        name="family_history_count"
+                        widget="statinfo"
+                        string="Family History"
+                    />
+                    <field name="family_history_ids" invisible="1" />
+                </button>
             </xpath>
         </field>
     </record>

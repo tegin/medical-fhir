@@ -15,6 +15,17 @@ class MedicalPatient(models.Model):
         "medical.specialty", compute="_compute_impression_specialties"
     )
 
+    family_history_ids = fields.One2many(
+        "medical.family.member.history", inverse_name="patient_id"
+    )
+
+    family_history_count = fields.Integer(
+        compute="_compute_family_history_count"
+    )
+
+    def _compute_family_history_count(self):
+        self.family_history_count = len(self.family_history_ids)
+
     @api.depends("medical_impression_ids")
     def _compute_impression_specialties(self):
         for record in self:
@@ -45,3 +56,16 @@ class MedicalPatient(models.Model):
                 -1
             ]
         return encounter
+
+    def action_view_family_history(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "medical_clinical_impression."
+            "medical_family_member_history_action"
+        ).read()[0]
+        action["domain"] = [
+            ("patient_id", "=", self.id),
+        ]
+
+        action["context"] = {"default_patient_id": self.id}
+        return action

@@ -77,6 +77,19 @@
                     <field name="warning_ids" invisible="1" />
                     <field name="is_editable" invisible="1" />
                 </button>
+                <button
+                    type="object"
+                    name="action_view_family_history"
+                    class="oe_stat_button"
+                    icon="fa-history"
+                >
+                    <field
+                        name="family_history_count"
+                        widget="statinfo"
+                        string="Family History"
+                    />
+                    <field name="family_history_ids" invisible="1" />
+                </button>
             </xpath>
             <xpath expr="//form" position="attributes">
                 <attribute name="string">Clinical Impression</attribute>
@@ -179,6 +192,20 @@
                     >
                         <tree editable="bottom">
                             <field name="name" />
+                        </tree>
+                    </field>
+                </page>
+                <page string="Family History">
+                    <field
+                        name="family_history_ids"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    >
+                        <tree editable="bottom">
+                            <field name="relationship" />
+                            <field name="family_member_name" />
+                            <field name="sex" />
+                            <field name="deceased" />
+                            <field name="note" string="Conditions" />
                         </tree>
                     </field>
                 </page>
