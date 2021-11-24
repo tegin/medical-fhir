@@ -6,7 +6,7 @@
                 <div class="col-1" />
                 <div class="col-10">
                     <span class="fas fa-exclamation-triangle text-danger" />
-                    <span class="o_warning_text">Warnings</span>
+                    <span class="o_warning_title_text">Warnings</span>
                     <span class="fas fa-exclamation-triangle text-danger" />
                 </div>
                 <div class="col-1 o_expand_icon" />

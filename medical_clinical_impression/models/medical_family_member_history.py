@@ -11,7 +11,12 @@ class MedicalFamilyMemberHistory(models.Model):
     _inherit = "medical.abstract"
     _description = "Medical Family Member History"
 
+    name = fields.Char(compute="_compute_name")
     # FHIR: state
+
+    def _compute_name(self):
+        self.name = "Familiar History of %s" % self.patient_id.name
+
     active = fields.Boolean(default=True)
     unable_to_obtain = fields.Boolean()
     # FHIR: tdataAbstenReaso, in fact is a codeable concept
@@ -50,13 +55,6 @@ class MedicalFamilyMemberHistory(models.Model):
     deceased_age = fields.Char()
     # FHIR: deceased
 
-    condition_ids = fields.One2many(
-        "medical.family.member.history.condition",
-        inverse_name="family_history_id",
-    )
-    # FHIR: conditions. It should be a codeableconcept,
-    # but maybe the patient does not know exactly. For.example: cancer
-
     note = fields.Text()
     # FHIR: note
 
@@ -68,17 +66,3 @@ class MedicalFamilyMemberHistory(models.Model):
             )
             or "/"
         )
-
-
-class MedicalFamilyMemberHistoryCondition(models.Model):
-
-    _name = "medical.family.member.history.condition"
-    _description = "Medical Family Member History Condition"
-
-    name = fields.Char()
-
-    contributed_to_death = fields.Boolean()
-
-    family_history_id = fields.Many2one("medical.family.member.history")
-
-    note = fields.Text()

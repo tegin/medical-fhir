@@ -20,10 +20,10 @@
                     attrs="{'invisible':[('is_editable', '=', False)]}"
                 />
                 <button
-                    name="action_create_condition"
-                    string="Create Condition"
+                    name="action_create_familiar_history"
+                    string="Create Familiar History"
                     class="btn-info"
-                    type="action"
+                    type="object"
                 />
                 <button
                     name="cancel_clinical_impression"
@@ -192,20 +192,6 @@
                     >
                         <tree editable="bottom">
                             <field name="name" />
-                        </tree>
-                    </field>
-                </page>
-                <page string="Family History">
-                    <field
-                        name="family_history_ids"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    >
-                        <tree editable="bottom">
-                            <field name="relationship" />
-                            <field name="family_member_name" />
-                            <field name="sex" />
-                            <field name="deceased" />
-                            <field name="note" string="Conditions" />
                         </tree>
                     </field>
                 </page>

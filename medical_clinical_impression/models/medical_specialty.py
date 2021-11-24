@@ -1,6 +1,6 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import _, models, tools
+from odoo import _, models
 from odoo.exceptions import ValidationError
 from odoo.osv import expression
 
@@ -28,14 +28,12 @@ class MedicalSpecialty(models.Model):
         encounter = self._get_last_encounter(
             [("patient_id", "=", self.env.context.get("patient_id"))]
         )
-        domain = tools.safe_eval(result["domain"])
         domain = expression.AND(
             [
-                domain,
+                result["domain"],
                 [
                     ("specialty_id", "=", self.id),
                     ("patient_id", "=", self.env.context.get("patient_id")),
-                    ("state", "=", "completed"),
                 ],
             ]
         )

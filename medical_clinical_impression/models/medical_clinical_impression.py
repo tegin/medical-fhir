@@ -22,7 +22,6 @@ class MedicalClinicalImpression(models.Model):
     name = fields.Char(compute="_compute_clinical_impression_name", copy=False)
 
     state = fields.Selection(default="in_progress", states={}, required=False)
-    # TODO: add buttons to change state
     # Should cancelled be added?
     #   FHIR: status
 
@@ -320,17 +319,12 @@ class MedicalClinicalImpression(models.Model):
         self.ensure_one()
         self.write(self._cancel_clinical_impression_fields())
 
-    def action_create_condition(self):
+    def action_create_familiar_history(self):
         self.ensure_one()
-        impression = self.env["medical.condition"].create(
-            {
-                "patient_id": self.patient_id.id,
-                "clinical_finding_id": self.finding_ids[0].id
-                if self.finding_ids
-                else False,
-            }
+        familiar_history = self.env["medical.family.member.history"].create(
+            {"patient_id": self.patient_id.id}
         )
-        return impression.get_formview_action()
+        return familiar_history.get_formview_action()
 
     def action_view_family_history(self):
         self.ensure_one()

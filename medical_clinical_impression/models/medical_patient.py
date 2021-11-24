@@ -1,7 +1,8 @@
 # Copyright 2021 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class MedicalPatient(models.Model):
@@ -9,7 +10,7 @@ class MedicalPatient(models.Model):
     _inherit = "medical.patient"
 
     medical_impression_ids = fields.One2many(
-        "medical.clinical.impression", inverse_name="patient_id"
+        "medical.clinical.impression", inverse_name="patient_id",
     )
     impression_specialty_ids = fields.Many2many(
         "medical.specialty", compute="_compute_impression_specialties"
@@ -40,22 +41,17 @@ class MedicalPatient(models.Model):
             "medical_clinical_impression."
             "medical_patient_clinical_impression_act_window"
         ).read()[0]
-        action["domain"] = [
-            ("patient_id", "=", self.id),
-            ("state", "=", "completed"),
-        ]
+        action["domain"] = [("patient_id", "=", self.id)]
         if encounter:
             action["context"] = {"default_encounter_id": encounter.id}
         return action
 
     def _get_last_encounter(self):
-        encounter = False
-        self.ensure_one()
-        if self.encounter_ids:
-            encounter = self.encounter_ids.sorted(key=lambda r: r.create_date)[
-                -1
-            ]
-        return encounter
+        if not self.encounter_ids:
+            raise ValidationError(
+                _("No encounters can be found for this patient")
+            )
+        return self.encounter_ids[0]
 
     def action_view_family_history(self):
         self.ensure_one()

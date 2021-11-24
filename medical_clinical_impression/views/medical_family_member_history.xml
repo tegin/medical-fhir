@@ -44,14 +44,27 @@
                         <group>
                             <field name="family_member_name" />
                             <field name="relationship" />
+                        </group>
+                        <group>
                             <field name="sex" />
+                        </group>
+                        <group>
                             <field name="born_date" />
+                        </group>
+                        <group>
                             <field name="age" />
+                        </group>
+                        <group>
                             <field name="deceased" />
+                        </group>
+                        <group />
+                        <group>
                             <field
                                 name="deceased_date"
                                 attrs="{'invisible':[('deceased', '=', False)]}"
                             />
+                        </group>
+                        <group>
                             <field
                                 name="deceased_age"
                                 attrs="{'invisible':[('deceased', '=', False)]}"
@@ -60,15 +73,8 @@
                         </group>
                     </group>
                     <notebook>
-                        <page name="conditions" string="Conditions">
-                            <field name="condition_ids">
-                                <tree editable="bottom">
-                                    <field name="name" />
-                                    <field name="contributed_to_death" />
-                                    <field name="family_history_id" invisible="1" />
-                                    <field name="note" />
-                                </tree>
-                            </field>
+                        <page name="note" string="Notes">
+                            <field name="note" />
                         </page>
                     </notebook>
                 </sheet>

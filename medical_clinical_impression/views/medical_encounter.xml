@@ -42,10 +42,14 @@
         >medical.clinical.impression.tree (in medical_clinical_impression)</field>
         <field name="model">medical.clinical.impression</field>
         <field name="arch" type="xml">
-            <tree string="Clinical Impressions">
+            <tree
+                string="Clinical Impressions"
+                decoration-warning="state != 'completed'"
+            >
                 <field name="specialty_id" />
                 <field name="summary" />
                 <field name="impression_date" />
+                <field name="state" invisible="1" />
             </tree>
         </field>
     </record>

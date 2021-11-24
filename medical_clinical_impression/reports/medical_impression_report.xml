@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<odoo>
+    <report
+        id="action_clinical_impression_report"
+        string="Clinical impressions report"
+        model="medical.clinical.impression"
+        report_type="qweb-pdf"
+        name="medical_clinical_impression.report_medical_clinical_impression"
+    />
+    <template id="report_medical_clinical_impression">
+        <t t-set="company" t-value="docs.env.user.company_id" />
+        <t t-set="partner" t-value="company.partner_id" />
+        <t t-call="web.html_container">
+            <div class="header" t-att-style="report_header_style">
+                <div class="row">
+                    <div class="col-6 text-left">
+                        <img
+                            t-if="partner.image_1920"
+                            t-att-src="image_data_uri(partner.image_1920)"
+                            alt="Logo"
+                            class="text-left"
+                            style="max-width:100%"
+                        />
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5>
+                            <div t-field="docs.patient_id.internal_identifier" />
+                        </h5>
+                        <h3>
+                            <div t-field="docs.patient_id.name" />
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="article o_report_layout_standard">
+                <t t-foreach="docs" t-as="o">
+                    <h4>
+                        <b>
+                            <span t-field="o.internal_identifier" />
+                        </b>
+                    </h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Encounter:</strong>
+                            <span t-field="o.encounter_id" />
+                        </div>
+                        <div class="col-6">
+                            <strong>Date:</strong>
+                            <span t-field="o.impression_date" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Validated by:</strong>
+                            <span t-field="o.validation_user_id" />
+                        </div>
+                        <div class="col-6">
+                            <strong>Specialty:</strong>
+                            <span t-field="o.specialty_id" />
+                        </div>
+                    </div>
+                    <div t-if="o.description">
+                        <strong>Description:</strong>
+                        <span t-field="o.description" />
+                    </div>
+                    <div t-if="o.finding_ids">
+                        <strong>Findings:</strong>
+                        <t t-foreach="o.finding_ids" t-as="finding">
+                            <ul>
+                                <li>
+                                    <span t-field="finding.name" />
+                                </li>
+                            </ul>
+                        </t>
+                    </div>
+                    <div t-if="o.allergy_substance_ids">
+                        <strong>Allergies:</strong>
+                        <t t-foreach="o.allergy_substance_ids" t-as="allergy">
+                            <ul>
+                                <li>
+                                    <span t-field="allergy.name" />
+                                </li>
+                            </ul>
+                        </t>
+                    </div>
+                    <div t-if="o.summary">
+                        <strong>Summary:</strong>
+                        <span t-field="o.summary" />
+                    </div>
+                </t>
+            </div>
+            <div class="footer">
+                <div class="text-center" style="border-top: 1px solid black;">
+                    <div class="text-muted">
+                    Page: <span class="page" /> / <span class="topage" />
+                </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
