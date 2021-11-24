@@ -58,15 +58,6 @@ class MedicalCondition(models.Model):
             else:
                 rec.name = rec.clinical_finding_id.name
 
-    _sql_constraints = [
-        (
-            "finding_uniq",
-            "UNIQUE(patient_id, clinical_finding_id)",
-            "This finding already exists for this patient !",
-        )
-    ]
-    # TODO: fix
-
     @api.depends(
         "allergy_id.create_warning", "clinical_finding_id.create_warning"
     )
