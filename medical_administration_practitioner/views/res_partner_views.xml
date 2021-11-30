@@ -15,6 +15,12 @@
             eval="[(4, ref('medical_administration_practitioner.group_medical_practitioner_display'))]"
         />
         <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='child_ids']//form//field[@name='parent_id']"
+                position="after"
+            >
+                <field name="is_practitioner" invisible="1" />
+            </xpath>
             <xpath expr="//h1" position="before">
                 <h1>
                     <field name="is_practitioner" invisible="1" />

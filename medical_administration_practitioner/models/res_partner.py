@@ -54,3 +54,9 @@ class ResPartner(models.Model):
                 "static/src/img",
                 "practitioner-avatar.png",
             )
+
+    @api.model
+    def default_medical_fields(self):
+        result = super(ResPartner, self).default_medical_fields()
+        result.append("is_practitioner")
+        return result
