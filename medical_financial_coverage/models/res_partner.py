@@ -57,3 +57,9 @@ class ResPartner(models.Model):
             result["views"] = [(res and res.id or False, "form")]
             result["res_id"] = self.coverage_template_ids.id
         return result
+
+    @api.model
+    def default_medical_fields(self):
+        result = super(ResPartner, self).default_medical_fields()
+        result.append("is_payor")
+        return result
