@@ -60,3 +60,15 @@ class Partner(models.Model):
         with open(image_path, "rb") as f:
             image = f.read()
         return base64.b64encode(image)
+
+    @api.model
+    def default_medical_fields(self):
+        return ["is_medical", "company_type"]
+
+    @api.model
+    def default_get(self, fields_list):
+        result = super(Partner, self).default_get(fields_list)
+        for field in self.default_medical_fields():
+            if result.get(field) and self.env.context.get("default_parent_id"):
+                result[field] = False
+        return result

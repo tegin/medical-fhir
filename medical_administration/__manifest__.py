@@ -18,6 +18,7 @@
         "views/medical_menu.xml",
         "views/medical_patient_views.xml",
         "views/res_config_settings_views.xml",
+        "views/res_partner.xml",
     ],
     "demo": ["demo/medical_demo.xml"],
     "application": False,
