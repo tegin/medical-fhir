@@ -35,7 +35,7 @@
         </xpath>
         <xpath expr="//div[@name='internal_identifier']" position="inside">
                 <span class="m-0" t-field="doc.internal_identifier" />
-                            (<span class="m-0" t-esc="doc.id" />)
+                            (Id: <span class="m-0" t-esc="doc.id" />)
         </xpath>
         <xpath expr="//div[@name='footer_internal_identifier']" position="inside">
              <span t-field="doc.internal_identifier" /><span
