@@ -3,7 +3,35 @@
 .o_diagnostic_report_layout {
     font-family: "Lato", "Noto";
     color: gray("700");
-    font-size: 16px;
+    font-size: 13px;
+    .o_informations {
+        p {
+            font-size: 13px !important;
+            margin-bottom: 2px;
+        }
+        h6 {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-weight: bold !important;
+        }
+        h5 {
+            margin-top: 15px;
+            font-weight: bold !important;
+        }
+        h4 {
+            margin-top: 15px;
+        }
+        h3 {
+            margin-top: 15px;
+        }
+        h2 {
+            margin-top: 15px;
+        }
+        h1 {
+            margin-top: 15px;
+        }
+    }
 }
 .o_diagnostic_report_layout_header {
     .o_diagnostic_report_layout_header_row {
@@ -56,7 +84,7 @@
     .oe_red {
         color: #9c1b31;
     }
-    h1 {
+    h3 {
         padding-top: 20px;
         margin-bottom: 0px;
     }
