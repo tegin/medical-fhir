@@ -28,6 +28,14 @@
                     attrs="{'invisible':[('is_cancellable', '=', False)]}"
                 />
             </header>
+            <xpath expr="//div[@name='button_box']" position="before">
+                <widget
+                    name="web_ribbon"
+                    text="Cancelled"
+                    bg_color="bg-danger"
+                    attrs="{'invisible':[('state', '!=', 'cancelled')]}"
+                />
+            </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     type="object"
