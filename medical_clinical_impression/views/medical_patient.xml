@@ -58,6 +58,7 @@
                                 type="object"
                             />
                         </tree>
+                        <form options="{'no_open':True}" />
                     </field>
                 </page>
             </page>

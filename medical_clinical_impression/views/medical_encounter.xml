@@ -47,8 +47,10 @@
                 decoration-warning="state != 'completed'"
             >
                 <field name="specialty_id" />
+                <field name="description" />
                 <field name="summary" />
                 <field name="impression_date" />
+                <field name="validation_user_id" />
                 <field name="state" invisible="1" />
             </tree>
         </field>

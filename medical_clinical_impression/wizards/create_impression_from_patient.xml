@@ -8,11 +8,28 @@
         <field name="arch" type="xml">
             <form string="Create Clinical Impression">
                 <group>
-                    <field name="patient_id" invisible="1" />
-                    <field
-                        name="specialty_id"
-                        options="{'no_create': 1, 'no_open': 1}"
-                    />
+                    <group>
+                        <field
+                            name="specialty_id"
+                            options="{'no_create': 1, 'no_open': 1}"
+                        />
+                    </group>
+                    <group>
+                        <field name="patient_id" invisible="0" />
+                        <field
+                            name="encounter_warning"
+                            nolabel="1"
+                            decoration-danger="1"
+                            attrs="{'invisible':[('show_encounter_warning', '=', False)]}"
+                        />
+                        <field name="show_encounter_warning" invisible="1" />
+                        <field
+                            name="encounter_id"
+                            widget="selection"
+                            readonly="False"
+                            domain="[('patient_id', '=', patient_id)]"
+                        />
+                    </group>
                 </group>
                 <footer>
                     <button

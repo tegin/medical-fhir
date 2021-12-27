@@ -107,29 +107,35 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//h2" position="after">
+                <div class="col-4">
+                    <h2 modifiers="{}">
+                        <label for="internal_identifier" modifiers="{}" />
+                        <field
+                            name="internal_identifier"
+                            readonly="1"
+                            modifiers="{'readonly':true}"
+                        />
+                    </h2>
+                </div>
                 <div class="row">
-                    <div class="col-4">
-                        <h2 modifiers="{}">
-                            <label for="internal_identifier" modifiers="{}" />
-                            <field
-                                name="internal_identifier"
-                                readonly="1"
-                                modifiers="{'readonly':true}"
-                            />
-                        </h2>
-                    </div>
+                    <div class="col-3" />
                     <field
                         name="condition_ids"
                         widget="warning_dropdown"
-                        class="col-8"
+                        class="col-6"
                         context="{'patient_id': patient_id}"
                         attrs="{'invisible':[('condition_count', '=', 0)]}"
                     />
+                    <div class="col-3" />
                 </div>
             </xpath>
             <xpath expr="//field[@name='patient_id']/.." position="after">
                 <group>
-                    <field name="encounter_id" />
+                    <field
+                        name="encounter_id"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                        domain="[('patient_id', '=', patient_id)]"
+                    />
                     <field
                         name="specialty_id"
                         attrs="{'readonly':[('is_editable', '=', False)]}"
@@ -142,10 +148,6 @@
                     />
                 </group>
                 <group>
-                    <field
-                        name="parent_impression_id"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
                     <field
                         name="impression_date"
                         attrs="{'readonly':[('is_editable', '=', False)],

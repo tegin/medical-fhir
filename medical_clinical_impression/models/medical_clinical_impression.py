@@ -48,9 +48,7 @@ class MedicalClinicalImpression(models.Model):
     )
     # FHIR: description
 
-    encounter_id = fields.Many2one(
-        "medical.encounter", readonly=True, required=True
-    )
+    encounter_id = fields.Many2one("medical.encounter", required=True)
     # FHIR: encounter
 
     patient_id = fields.Many2one(related="encounter_id.patient_id")
@@ -77,15 +75,6 @@ class MedicalClinicalImpression(models.Model):
     """
     # The create_uid is used as the assessor
     # FHIR Field : assessor
-
-    parent_impression_id = fields.Many2one(
-        "medical.clinical.impression",
-        index=True,
-        help="Select an impression if this impression makes a reference "
-        "to a previous one",
-        domain='[("id", "!=", id), ("state", "=", "completed")]',
-    )
-    # FHIR: previous
     allergy_substance_ids = fields.Many2many(
         comodel_name="medical.allergy.substance",
     )
