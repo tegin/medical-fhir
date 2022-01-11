@@ -45,7 +45,7 @@ class MedicalDiagnosticReport(models.Model):
     patient_origin = fields.Char(readonly=True,)
 
     issued_date = fields.Datetime(
-        help="Date of report's publication", readonly=0, copy=False,
+        help="Date of report's publication", readonly=1, copy=False,
     )
     issued_user_id = fields.Many2one(
         "res.users", string="Issued by User", readonly=True, copy=False
