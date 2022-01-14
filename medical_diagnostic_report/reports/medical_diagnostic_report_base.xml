@@ -190,7 +190,7 @@
                         <p t-field="doc.composition" />
                     </t>
                     <t class="o_conclusion" t-if="doc.with_conclusion">
-                        <h6>Conclusions:</h6>
+                        <h6>CONCLUSIONS:</h6>
                         <p t-field="doc.conclusion" />
                     </t>
                 </div>
