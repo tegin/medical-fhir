@@ -9,7 +9,7 @@ class MedicalDiagnosticReportTemplate(models.Model):
     _inherit = "medical.diagnostic.report.template"
 
     graph_python_code = fields.Text()
-    html_code = fields.Text()
+    html_code = fields.Text(translate=True)
 
     def _generate_report_vals(self, encounter=None, **kwargs):
         res = super()._generate_report_vals(encounter, **kwargs)
