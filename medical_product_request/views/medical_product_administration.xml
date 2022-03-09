@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_product_administration_form_view">
+        <field
+            name="name"
+        >medical.product.administration.form (in medical_product_request)</field>
+        <field name="model">medical.product.administration</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        string="Complete"
+                        name="complete_administration_action"
+                        states="in_progress"
+                        type="object"
+                        class="btn-success"
+                    />
+                    <button
+                        string="Cancel"
+                        name="cancel_action"
+                        states="in_progress,completed"
+                        type="object"
+                        class="btn-danger"
+                    />
+                    <field name="state" widget="statusbar" nolabel="1" />
+                </header>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        text="Cancelled"
+                        bg_color="bg-danger"
+                        attrs="{'invisible':[('state', '!=', 'cancelled')]}"
+                    />
+                    <widget
+                        name="web_ribbon"
+                        text="Completed"
+                        bg_color="bg-success"
+                        attrs="{'invisible':[('state', '!=', 'completed')]}"
+                    />
+                    <h2>
+                        <label for="internal_identifier" />
+                        <field name="internal_identifier" readonly="1" />
+                    </h2>
+                    <group>
+                        <group name="patient">
+                            <field name="patient_id" readonly="1" />
+                            <field name="encounter_id" readonly="1" />
+                        </group>
+                        <group name="product_request">
+                            <field name="product_request_id" readonly="1" />
+                            <field name="product_type" invisible="1" />
+                        </group>
+                        <group
+                            string="Medication"
+                            attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                        >
+                            <label
+                                string="Medication"
+                                for="medical_product_template_id"
+                            />
+                            <field
+                                name="medical_product_template_id"
+                                nolabel="1"
+                                readonly="1"
+                            />
+                        </group>
+                        <group
+                            string="Device"
+                            attrs="{'invisible': [('product_type', '!=', 'device')]}"
+                        >
+                            <label string="Device" for="medical_product_template_id" />
+                            <field
+                                name="medical_product_template_id"
+                                nolabel="1"
+                                readonly="1"
+                            />
+                        </group>
+                        <group name="administration" string="Administration">
+                            <group>
+                                <field
+                                    name="quantity_administered"
+                                    string="Quantity"
+                                    attrs="{'readonly':[('state', '!=', 'in_progress')]}"
+                                />
+                            </group>
+                            <group>
+                                <field name="quantity_uom_domain" invisible="1" />
+                                <field
+                                    name="quantity_administered_uom_id"
+                                    string="Uom"
+                                    domain="quantity_uom_domain"
+                                    attrs="{'readonly':[('state', '!=', 'in_progress')]}"
+                                />
+                            </group>
+                            <group
+                                attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                            >
+                                <field
+                                    name="administration_route_domain"
+                                    invisible="1"
+                                />
+                                <field
+                                    name="administration_route_id"
+                                    string="Route"
+                                    domain="administration_route_domain"
+                                    attrs="{'readonly':[('state', '!=', 'in_progress')]}"
+                                />
+                            </group>
+                        </group>
+                        <group
+                            name="validation"
+                            string="Validation"
+                            states="completed,cancelled"
+                        >
+                            <field
+                                name="administration_user_id"
+                                string="Validation User"
+                                readonly="1"
+                            />
+                            <field
+                                name="administration_date"
+                                string="Validation Date"
+                                readonly="1"
+                            />
+                        </group>
+                        <group
+                            name="cancellation"
+                            string="Cancellation"
+                            states="cancelled"
+                        >
+                            <field
+                                name="cancel_date"
+                                states="cancelled"
+                                readonly="1"
+                                force_save="1"
+                            />
+                            <field
+                                name="cancel_user_id"
+                                states="cancelled"
+                                readonly="1"
+                                force_save="1"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="comments" string="Comments">
+                            <field
+                                name="comments"
+                                attrs="{'readonly':[('state', '!=', 'in_progress')]}"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_product_administration_pop_up_form_view">
+        <field
+            name="name"
+        >medical.product.administration.form (in medical_product_request)</field>
+        <field name="model">medical.product.administration</field>
+        <field name="arch" type="xml">
+            <form string="Create Administration">
+                <sheet>
+                    <h2>
+                        <field
+                            name="patient_id"
+                            readonly="1"
+                            nolabel="1"
+                            options='{"no_open": True}'
+                        />
+                    </h2>
+                    <group>
+                        <group
+                            string="Medication"
+                            attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                        >
+                            <label
+                                string="Medication"
+                                for="medical_product_template_id"
+                            />
+                            <field
+                                name="medical_product_template_id"
+                                nolabel="1"
+                                readonly="1"
+                            />
+                        </group>
+                        <group
+                            string="Device"
+                            attrs="{'invisible': [('product_type', '!=', 'device')]}"
+                        >
+                            <label string="Device" for="medical_product_template_id" />
+                            <field
+                                name="medical_product_template_id"
+                                nolabel="1"
+                                readonly="1"
+                                options='{"no_open": True}'
+                            />
+                        </group>
+                        <group name="administration" string="Administration">
+                            <group>
+                                <field name="quantity_administered" string="Quantity" />
+                                <field name="quantity_uom_domain" invisible="1" />
+                            </group>
+                            <group>
+                                <field
+                                    name="quantity_administered_uom_id"
+                                    string="Uom"
+                                    domain="quantity_uom_domain"
+                                />
+                            </group>
+                            <group
+                                attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                            >
+                                <field
+                                    name="administration_route_domain"
+                                    invisible="1"
+                                />
+                                <field
+                                    name="administration_route_id"
+                                    string="Route"
+                                    domain="administration_route_domain"
+                                />
+                            </group>
+                        </group>
+                        <group name="product_request">
+                            <field name="product_request_id" invisible="1" />
+                            <field name="product_type" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="comments" string="Comments">
+                            <field name="comments" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter" />
+                <footer>
+                    <button
+                        name="complete_administration_action"
+                        string="Validate"
+                        type="object"
+                        class="btn-success"
+                    />
+                    <button string="Discard" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_product_administration_search_view">
+        <field
+            name="name"
+        >medical.product.administration.search (in medical_product_request)</field>
+        <field name="model">medical.product.administration</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="internal_identifier" />
+                <field name="product_request_id" />
+                <field name="medical_product_template_id" />
+                <field name="administration_user_id" />
+                <filter
+                    string="Not Cancelled"
+                    name="not_cancelled"
+                    domain="[('state', '!=', 'cancelled')]"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_product_administration_tree_view">
+        <field
+            name="name"
+        >medical.product.administration.tree (in medical_product_request)</field>
+        <field name="model">medical.product.administration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="internal_identifier" />
+                <field name="medical_product_template_id" />
+                <field name="quantity_administered" />
+                <field name="product_request_id" />
+                <field name="administration_user_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="medical_product_administration_act_window"
+    >
+        <field name="name">Medical Product Administration</field>
+        <field name="res_model">medical.product.administration</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_not_cancelled': 1}</field>
+    </record>
+</odoo>

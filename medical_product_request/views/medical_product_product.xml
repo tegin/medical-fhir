@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_product_product_form_view">
+        <field
+            name="name"
+        >medical.product.product.form (in medical_product_request)</field>
+        <field name="model">medical.product.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <div name="button_box" class="oe_button_box" />
+                    <h3>
+                        <field name="name_product" />
+                    </h3>
+                    <group>
+                        <group name="name" string="Name">
+                            <field name="name" />
+                        </group>
+                        <group name="code" string="Code">
+                            <field name="code_product" />
+                            <field name="code_template" />
+                            <field name="product_tmpl_id" required="0" />
+                        </group>
+                        <group name="product_type" string="Product Type">
+                            <field name="product_type" />
+                        </group>
+                        <group
+                            name='ingredient'
+                            string='Ingredient'
+                            attrs="{'invisible':[('product_type', '!=', 'medication')]}"
+                        >
+                            <field
+                                name="ingredients"
+                                attrs="{'required':[('product_type', '==', 'medication')]}"
+                            />
+                            <field
+                                name="dosage"
+                                attrs="{'required':[('product_type', '==', 'medication')]}"
+                            />
+                        </group>
+                        <group
+                            name="form"
+                            string="Form"
+                            attrs="{'invisible':[('product_type', '!=', 'medication')]}"
+                        >
+                            <field
+                                name="form_id"
+                                widget="selection"
+                                attrs="{'required':[('product_type', '==', 'medication')]}"
+                            />
+                            <field
+                                name="administration_route_ids"
+                                widget="many2many_tags"
+                                attrs="{'required':[('product_type', '==', 'medication')]}"
+                            />
+                        </group>
+                        <group
+                            name="amount"
+                            string="Amount"
+                            attrs="{'invisible':['&amp;', ('product_type', '==', 'medication'), ('form_id', '==', False)]}"
+                        >
+                            <field name="amount" required="1" />
+                            <field name="amount_uom_domain" invisible="1" />
+                            <field
+                                name="amount_uom_id"
+                                domain="amount_uom_domain"
+                                options="{'no_create': True, 'no_open': True}"
+                                required="1"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_product_product_tree_view">
+        <field
+            name="name"
+        >medical.product.product.tree (in medical_product_request)</field>
+        <field name="model">medical.product.product</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name_product" />
+                <field name="code_product" />
+                <field name="ingredients" />
+                <field name="form_id" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_product_product_search_view">
+        <field
+            name="name"
+        >medical.product.product.search (in medical_product_request)</field>
+        <field name="model">medical.product.product</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name_product" />
+                <field name="product_type" />
+                <field name="code_product" />
+                <field name="code_template" />
+                <field name="ingredients" />
+                <field name="form_id" />
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="medical_product_product_act_window">
+        <field name="name">Medical Product</field>
+        <field name="res_model">medical.product.product</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.ui.menu" id="medical_product_product_menu">
+        <field name="name">Medical Product</field>
+        <field name="parent_id" ref="medical_product_menu" />
+        <field name="action" ref="medical_product_product_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>

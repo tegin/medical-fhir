@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medication_form_form_view">
+        <field name="name">medication.form.form (in medical_product_request)</field>
+        <field name="model">medication.form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="uom_ids" widget="many2many_tags" required="True" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter" />
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medication_form_search_view">
+        <field name="name">medication.form.search (in medical_product_request)</field>
+        <field name="model">medication.form</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medication_form_tree_view">
+        <field name="name">medication.form.tree (in medical_product_request)</field>
+        <field name="model">medication.form</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="medication_form_act_window">
+        <field name="name">Medication Form</field>
+        <field name="res_model">medication.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.ui.menu" id="medication_form_menu">
+        <field name="name">Medication Form</field>
+        <field name="parent_id" ref="medical_product_menu" />
+        <field name="action" ref="medication_form_act_window" />
+        <field name="sequence" eval="50" />
+    </record>
+</odoo>
