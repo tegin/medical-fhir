@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_product_request_order_form_view">
+        <field
+            name="name"
+        >medical.product.request.order.form (in medical_product_request)</field>
+        <field name="model">medical.product.request.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        string="Validate"
+                        name="validate_action"
+                        states="draft"
+                        type="object"
+                        class="btn-success"
+                    />
+                    <button
+                        string="Complete"
+                        name="complete_action"
+                        states="active"
+                        type="object"
+                        class="btn-success"
+                    />
+                    <button
+                        string="Cancel"
+                        name="cancel_action"
+                        states="draft,active,completed"
+                        type="object"
+                        class="btn-danger"
+                    />
+                    <field name="state" widget="statusbar" nolabel="1" />
+                </header>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        text="Completed"
+                        bg_color="bg-success"
+                        attrs="{'invisible':[('state', '!=', 'completed')]}"
+                    />
+                    <widget
+                        name="web_ribbon"
+                        text="Cancelled"
+                        bg_color="bg-danger"
+                        attrs="{'invisible':[('state', '!=', 'cancelled')]}"
+                    />
+                    <h2>
+                        <label for="internal_identifier" />
+                        <field name="internal_identifier" readonly="1" />
+                    </h2>
+                    <group name="patient">
+                        <group>
+                            <field name="patient_id" readonly="1" force_save="1" />
+                            <field
+                                name="encounter_warning"
+                                nolabel="1"
+                                decoration-danger="1"
+                                attrs="{'invisible':[('show_encounter_warning', '=', False)], 'readonly':[('state', '!=', 'draft')]}"
+                            />
+                            <field name="show_encounter_warning" invisible="1" />
+                            <field
+                                name="encounter_id"
+                                widget="selection"
+                                readonly="False"
+                                domain="[('patient_id', '=', patient_id)]"
+                                attrs="{'readonly':[('state', '!=', 'draft')]}"
+                            />
+                            <field name="category" invisible="1" />
+                        </group>
+                        <group>
+                            <field
+                                name="requester_id"
+                                states="active,completed,cancelled"
+                            />
+                            <field
+                                name="validation_date"
+                                states="active,completed,cancelled"
+                            />
+                            <field name="cancel_date" states="cancelled" readonly="1" />
+                            <field
+                                name="cancel_user_id"
+                                states="cancelled"
+                                readonly="1"
+                            />
+                            <field name="can_administrate" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="prescriptions" string="Prescriptions" required="1">
+                            <field
+                                name="product_request_ids"
+                                attrs="{'readonly':[('state', '!=', 'draft')]}"
+                            >
+                                <tree
+                                    editable="bottom"
+                                    decoration-muted="state == 'cancelled'"
+                                >
+                                    <field
+                                        name="medical_product_template_id"
+                                        options="{'no_create': True, 'no_open': True}"
+                                    />
+                                    <field
+                                        name="dose_quantity"
+                                        string="Dose"
+                                        required="1"
+                                    />
+                                    <field name="dose_uom_domain" invisible="1" />
+                                    <field
+                                        name="dose_uom_id"
+                                        string="Uom"
+                                        domain="dose_uom_domain"
+                                        options="{'no_create': True, 'no_open': True}"
+                                        required="1"
+                                    />
+                                    <field
+                                        name="rate_quantity"
+                                        string="Rate"
+                                        attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                                    />
+                                    <field
+                                        name="rate_uom_id"
+                                        string="Uom"
+                                        attrs="{'invisible': [('product_type', '!=', 'medication')], 'required': [('product_type', '==', 'medication')]}"
+                                        domain="[('measure_type', '=', 'working_time')]"
+                                        options="{'no_create': True, 'no_open': True}"
+                                    />
+                                    <field name="category" invisible="1" />
+                                    <field name="product_type" invisible="1" />
+                                    <field
+                                        name="duration"
+                                        string="Duration"
+                                        attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                                    />
+                                    <field
+                                        name="duration_uom_id"
+                                        string="Uom"
+                                        attrs="{'invisible': [('product_type', '!=', 'medication')], 'required': [('product_type', '==', 'medication')]}"
+                                        domain="[('measure_type', '=', 'working_time')]"
+                                        options="{'no_create': True, 'no_open': True}"
+                                    />
+                                    <field name="observations" />
+                                    <field
+                                        name="medical_product_id"
+                                        attrs="{'column_invisible': [('parent.category', '!=', 'discharge')]}"
+                                    />
+                                    <field
+                                        name="quantity_to_dispense"
+                                        attrs="{'column_invisible': [('parent.category', '!=', 'discharge')]}"
+                                    />
+                                    <field name="can_administrate" invisible="1" />
+                                    <button
+                                        name="create_medical_product_administration"
+                                        class="btn btn-link text-left"
+                                        type="object"
+                                        icon="fa-hand-holding-medical"
+                                        string="Administrate"
+                                        attrs="{'column_invisible': ['|', ('parent.can_administrate', '!=', True), ('parent.category', '==', 'discharge')], 'invisible': [('can_administrate', '!=', True)]}"
+                                    />
+                                    <field
+                                        name="product_administrations_count"
+                                        class="text-right"
+                                        string="Administrations"
+                                        attrs="{'column_invisible': ['|', ('parent.can_administrate', '!=', True), ('parent.category', '==', 'discharge')]}"
+                                    />
+                                    <button
+                                        name="action_view_medical_product_administration"
+                                        class="btn btn-link text-left"
+                                        type="object"
+                                        icon="fa-solid fa-prescription-bottle"
+                                        string="View Administrations"
+                                        attrs="{'invisible': ['|', ('state', '==', 'draft'), ('product_administrations_count', '==', 0)], 'column_invisible': [('parent.category', '==', 'discharge')]}"
+                                    />
+                                    <field name="state" readonly="1" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_product_request_order_search_view">
+        <field
+            name="name"
+        >medical.product.request.order.search (in medical_product_request)</field>
+        <field name="model">medical.product.request.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="encounter_id" />
+                <field name="medical_product_template_id" />
+                <field name="internal_identifier" />
+                <field name="requester_id" />
+                <filter
+                    name="not_cancelled"
+                    string="Not Cancelled"
+                    domain="[('state', '!=', 'cancelled')]"
+                />
+                <filter
+                    name="my_medical_orders"
+                    string="My Medical Orders"
+                    domain="[('requester_id', '=', uid )]"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_product_request_order_tree_view">
+        <field
+            name="name"
+        >medical.product.request.order.tree (in medical_product_request)</field>
+        <field name="model">medical.product.request.order</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-muted="state == 'cancelled'"
+                decoration-warning="state == 'draft'"
+            >
+                <field name="internal_identifier" />
+                <field name="patient_id" invisible="1" />
+                <field name="encounter_id" />
+                <field name="medical_product_ids" widget="many2many_tags" />
+                <field name="requester_id" />
+                <field name="validation_date" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="external_medical_product_request_order_act_window"
+    >
+        <field name="name">External Prescriptions</field>
+        <field name="res_model">medical.product.request.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('category', '=', 'discharge')]</field>
+        <field
+            name="context"
+        >{'search_default_not_cancelled':1, 'default_category': 'discharge'}</field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="internal_medical_product_request_order_act_window"
+    >
+        <field name="name">Internal Medical Orders</field>
+        <field name="res_model">medical.product.request.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('category', '=', 'inpatient')]</field>
+        <field
+            name="context"
+        >{'search_default_not_cancelled':1, 'default_category': 'inpatient'}</field>
+    </record>
+</odoo>
