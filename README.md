@@ -36,6 +36,7 @@ addon | version | maintainers | summary
 [medical_imaging_study](medical_imaging_study/) | 13.0.1.0.0 |  | Medical Imaging Study
 [medical_medication](medical_medication/) | 13.0.1.0.0 |  | Medical medication base
 [medical_medication_request](medical_medication_request/) | 13.0.1.0.0 |  | Medical medication request and administration
+[medical_product_request](medical_product_request/) | 13.0.1.0.0 |  | This addon sets the base of the medical fhir concepts of medication.request and device.request
 [medical_terminology](medical_terminology/) | 13.0.1.0.0 |  | Medical terminology base
 [medical_terminology_atc](medical_terminology_atc/) | 13.0.1.0.0 |  | Medical codification base
 [medical_terminology_sct](medical_terminology_sct/) | 13.0.1.0.0 |  | Medical codification base

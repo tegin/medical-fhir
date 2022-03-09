@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_encounter_form_view">
+        <field name="name">medical.encounter.form (in medical_product_request)</field>
+        <field name="model">medical.encounter</field>
+        <field
+            name="groups_id"
+            eval="[(4, ref('medical_product_request.group_medical_product_request_display'))]"
+        />
+        <field
+            name="inherit_id"
+            ref="medical_administration_encounter.medical_encounter_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[last()]" position="after">
+                <button
+                    name="create_medical_product_request"
+                    class="oe_stat_button btn-info"
+                    string=" Create Ext. Prescription"
+                    type="object"
+                    context="{'default_category': 'discharge'}"
+                    icon="fa-prescription"
+                />
+                <button
+                    name="create_medical_product_request"
+                    class="oe_stat_button btn-success"
+                    string=" Create Int. Medical Order"
+                    type="object"
+                    context="{'default_category': 'inpatient'}"
+                    icon="fa-pills"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_external_medical_product_request_order_ids"
+                    class="oe_stat_button"
+                    icon="fa-prescription"
+                >
+                    <field
+                        name="external_product_request_order_count"
+                        widget="statinfo"
+                        string="Ext. Prescriptions"
+                    />
+                </button>
+                <button
+                    type="object"
+                    name="action_view_internal_medical_product_request_order_ids"
+                    class="oe_stat_button"
+                    icon="fa-pills"
+                >
+                    <field
+                        name="internal_product_request_order_count"
+                        widget="statinfo"
+                        string="Int. Medical Order"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

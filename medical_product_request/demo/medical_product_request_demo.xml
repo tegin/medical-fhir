@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="encounter_01_patient_01" model="medical.encounter">
+        <field name="patient_id" ref="medical_administration.patient_01" />
+    </record>
+    <record id="tablet_uom_uom" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_unit" />
+        <field name="name">Tablets</field>
+        <field name="factor" eval="1.0" />
+        <field name="uom_type">bigger</field>
+        <field name="rounding" eval="0.001" />
+    </record>
+    <record id="drop_uom_uom" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_vol" />
+        <field name="name">Drops</field>
+        <field name="factor" eval="20000" />
+        <field name="uom_type">smaller</field>
+        <field name="rounding" eval="0.001" />
+    </record>
+    <record id="ml_uom_uom" model="uom.uom">
+        <field name="category_id" ref="uom.product_uom_categ_vol" />
+        <field name="name">ml</field>
+        <field name="factor" eval="1000" />
+        <field name="uom_type">smaller</field>
+        <field name="rounding" eval="0.001" />
+    </record>
+    <record id="tablet_form" model="medication.form">
+        <field name="name">EFG film coated tablets</field>
+        <field name="uom_ids" eval="[(6, 0, [ref('tablet_uom_uom')])]" />
+    </record>
+    <record id="solution_form" model="medication.form">
+        <field name="name">Eye drops in solution</field>
+        <field
+            name="uom_ids"
+            eval="[(6, 0, [ref('drop_uom_uom'), ref('ml_uom_uom')])]"
+        />
+    </record>
+    <record id="oral_administration_route" model="medical.administration.route">
+        <field name="name">Oral</field>
+    </record>
+    <record id="ocular_administration_route" model="medical.administration.route">
+        <field name="name">Ocular</field>
+    </record>
+    <record id="ibuprofen_medical_product_template" model="medical.product.template">
+        <field name="name">Ibuprofen</field>
+        <field name="product_type">medication</field>
+        <field name="ingredients">Ibuprofen</field>
+        <field name="dosage">600 mg</field>
+        <field name="form_id" ref="tablet_form" />
+        <field
+            name="administration_route_ids"
+            eval="[(6, 0, [ref('oral_administration_route')])]"
+        />
+    </record>
+    <record id="acular_medical_product_template" model="medical.product.template">
+        <field name="name">Acular</field>
+        <field name="product_type">medication</field>
+        <field name="ingredients">Ketorolac tromethamol</field>
+        <field name="dosage">5 mg/ml</field>
+        <field name="form_id" ref="solution_form" />
+        <field
+            name="administration_route_ids"
+            eval="[(6, 0, [ref('ocular_administration_route')])]"
+        />
+    </record>
+    <record id="crutch_medical_product_template" model="medical.product.template">
+        <field name="name">Crutch</field>
+        <field name="product_type">device</field>
+    </record>
+    <record id="ibuprofen_medical_product_01" model="medical.product.product">
+        <field name="product_tmpl_id" ref="ibuprofen_medical_product_template" />
+        <field name="amount">30</field>
+        <field name="amount_uom_id" ref="tablet_uom_uom" />
+    </record>
+    <record id="ibuprofen_medical_product_02" model="medical.product.product">
+        <field name="product_tmpl_id" ref="ibuprofen_medical_product_template" />
+        <field name="amount">60</field>
+        <field name="amount_uom_id" ref="tablet_uom_uom" />
+    </record>
+    <record id="acular_medical_product" model="medical.product.product">
+        <field name="product_tmpl_id" ref="acular_medical_product_template" />
+        <field name="amount">5</field>
+        <field name="amount_uom_id" ref="ml_uom_uom" />
+    </record>
+    <record id="crutch_medical_product" model="medical.product.product">
+        <field name="product_tmpl_id" ref="crutch_medical_product_template" />
+        <field name="amount">1</field>
+        <field name="amount_uom_id" ref="uom.product_uom_unit" />
+    </record>
+    <record
+        id="patient_01_medical_product_request_order_01"
+        model="medical.product.request.order"
+    >
+        <field name="state">draft</field>
+        <field name="category">discharge</field>
+        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="encounter_id" ref="encounter_01_patient_01" />
+    </record>
+    <record
+        id="patient_01_medical_product_request_01_01"
+        model="medical.product.request"
+    >
+        <field name="state">draft</field>
+        <field
+            name="request_order_id"
+            ref="patient_01_medical_product_request_order_01"
+        />
+        <field
+            name="medical_product_template_id"
+            ref="ibuprofen_medical_product_template"
+        />
+        <field name="dose_quantity">1</field>
+        <field name="dose_uom_id" ref="tablet_uom_uom" />
+        <field name="rate_quantity">3</field>
+        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="duration">10</field>
+        <field name="duration_uom_id" ref="uom.product_uom_day" />
+    </record>
+    <record
+        id="patient_01_medical_product_request_02_01"
+        model="medical.product.request"
+    >
+        <field name="state">draft</field>
+        <field
+            name="request_order_id"
+            ref="patient_01_medical_product_request_order_01"
+        />
+        <field
+            name="medical_product_template_id"
+            ref="ibuprofen_medical_product_template"
+        />
+        <field name="dose_quantity">1</field>
+        <field name="dose_uom_id" ref="tablet_uom_uom" />
+        <field name="rate_quantity">3</field>
+        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="duration">15</field>
+        <field name="duration_uom_id" ref="uom.product_uom_day" />
+    </record>
+    <record
+        id="patient_01_medical_product_request_03_01"
+        model="medical.product.request"
+    >
+        <field name="state">draft</field>
+        <field
+            name="request_order_id"
+            ref="patient_01_medical_product_request_order_01"
+        />
+        <field
+            name="medical_product_template_id"
+            ref="ibuprofen_medical_product_template"
+        />
+        <field name="dose_quantity">1</field>
+        <field name="dose_uom_id" ref="tablet_uom_uom" />
+        <field name="rate_quantity">3</field>
+        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="duration">60</field>
+        <field name="duration_uom_id" ref="uom.product_uom_day" />
+    </record>
+    <record
+        id="patient_01_medical_product_request_04_01"
+        model="medical.product.request"
+    >
+        <field name="state">draft</field>
+        <field
+            name="request_order_id"
+            ref="patient_01_medical_product_request_order_01"
+        />
+        <field
+            name="medical_product_template_id"
+            ref="acular_medical_product_template"
+        />
+        <field name="dose_quantity">2</field>
+        <field name="dose_uom_id" ref="drop_uom_uom" />
+        <field name="rate_quantity">4</field>
+        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="duration">30</field>
+        <field name="duration_uom_id" ref="uom.product_uom_day" />
+    </record>
+    <record
+        id="patient_01_medical_product_request_05_01"
+        model="medical.product.request"
+    >
+        <field name="state">draft</field>
+        <field
+            name="request_order_id"
+            ref="patient_01_medical_product_request_order_01"
+        />
+        <field
+            name="medical_product_template_id"
+            ref="crutch_medical_product_template"
+        />
+        <field name="dose_quantity">1</field>
+        <field name="dose_uom_id" ref="uom.product_uom_unit" />
+        <field name="duration">7</field>
+        <field name="duration_uom_id" ref="uom.product_uom_day" />
+    </record>
+    <record
+        id="patient_01_medical_product_request_order_02"
+        model="medical.product.request.order"
+    >
+        <field name="state">active</field>
+        <field name="category">inpatient</field>
+        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="encounter_id" ref="encounter_01_patient_01" />
+    </record>
+    <record
+        id="patient_01_medical_product_request_01_02"
+        model="medical.product.request"
+    >
+        <field name="state">active</field>
+        <field name="can_administrate" eval="True" />
+        <field
+            name="request_order_id"
+            ref="patient_01_medical_product_request_order_02"
+        />
+        <field
+            name="medical_product_template_id"
+            ref="ibuprofen_medical_product_template"
+        />
+        <field name="dose_quantity">1</field>
+        <field name="dose_uom_id" ref="tablet_uom_uom" />
+        <field name="rate_quantity">3</field>
+        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="duration">10</field>
+        <field name="duration_uom_id" ref="uom.product_uom_day" />
+    </record>
+    <record id="patient_01_administration_01" model="medical.product.administration">
+        <field
+            name="product_request_id"
+            ref="patient_01_medical_product_request_01_02"
+        />
+        <field name="state">completed</field>
+        <field name="quantity_administered">1</field>
+        <field name="quantity_administered_uom_id" ref="uom.product_uom_unit" />
+        <field name="administration_user_id" ref="base.user_demo" />
+    </record>
+</odoo>
