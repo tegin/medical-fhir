@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2021 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="group_medical_product_request_display" model="res.groups">
+        <field name="name">Medical Product Request Display</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('medical_clinical.group_medical_view_requests'))]"
+        />
+    </record>
+    <record id="group_medical_product_request_manager" model="res.groups">
+        <field name="name">Medical Product Request Manager</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('group_medical_product_request_display'))]"
+        />
+    </record>
+    <record id="group_medical_product_display" model="res.groups">
+        <field name="name">Medical Product Display</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('medical_clinical.group_medical_view_requests'))]"
+        />
+    </record>
+    <record id="group_medical_product_manager" model="res.groups">
+        <field name="name">Medical Product Manager</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('group_medical_product_request_display'))]"
+        />
+    </record>
+</odoo>
