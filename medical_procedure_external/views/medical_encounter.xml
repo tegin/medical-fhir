@@ -16,7 +16,7 @@
                 <button
                     type="action"
                     name="%(medical_procedure_external.medical_encounter_create_procedure_external_act_window)s"
-                    class="oe_stat_button btn-warning"
+                    class="oe_stat_button btn-info"
                     icon="fa-file-prescription"
                     string="Generate External Request"
                     groups="medical_procedure_external.group_medical_procedure_external_request_manager"
@@ -29,6 +29,7 @@
                     class="oe_stat_button"
                     icon="fa-file-prescription"
                     groups="medical_procedure_external.group_medical_procedure_external_request_list"
+                    attrs="{'invisible':[('external_request_count', '=', 0)]}"
                 >
                     <field
                         name="external_request_count"

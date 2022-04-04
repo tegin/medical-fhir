@@ -41,7 +41,7 @@ class MedicalProcedureExternalRequest(models.Model):
     )
     issued_date = fields.Datetime(
         help="Date of report's publication",
-        readonly=0,
+        readonly=True,
         copy=False,
     )
     issued_user_id = fields.Many2one(
