@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record model="medical.encounter" id="medical_encounter_demo_1">
+        <field name="name">Encounter 1</field>
+        <field name="patient_id" ref="medical_administration.patient_01" />
+    </record>
+    <record
+        model="medical.procedure.external.request.template"
+        id="medical_procedure_external_template_demo_1"
+    >
+        <field name="name">Blood analysis</field>
+        <field
+            name="composition"
+        >I request a blood analysis with the following parameters: Sugar</field>
+    </record>
+    <record
+        model="medical.procedure.external.request"
+        id="medical_procedure_external_demo_1"
+    >
+        <field name="lang">en_US</field>
+        <field name="name">Blood analysis</field>
+        <field name="composition">Everything is ok</field>
+        <field name="encounter_id" ref="medical_encounter_demo_1" />
+        <field
+            name="template_ids"
+            eval="[(6, 0, [ref('medical_procedure_external_template_demo_1')])]"
+        />
+    </record>
+</odoo>

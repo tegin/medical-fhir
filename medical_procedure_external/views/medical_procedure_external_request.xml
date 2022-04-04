@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_procedure_external_request_form_view">
+        <field
+            name="name"
+        >medical.procedure.external.request.form (in medical_procedure_external)</field>
+        <field name="model">medical.procedure.external.request</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="medical_workflow.medical_event_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="draft2final_action"
+                    string="Issue request"
+                    class="btn-success"
+                    confirm="Are you sure you want to validate this external request?"
+                    type="object"
+                    attrs="{'invisible':[('is_editable', '=', False)]}"
+                />
+                <button
+                    name="cancel_action"
+                    string="Cancel request"
+                    confirm="Are you sure you want to cancel this external request?"
+                    class="btn-danger"
+                    type="object"
+                    attrs="{'invisible':[('is_cancellable', '=', False)]}"
+                />
+            </header>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="show_signature"
+                    class="oe_stat_button"
+                    icon="fa-signature"
+                    string="Signature"
+                    attrs="{'invisible': [('signature_date', '=', False)]}"
+                >
+                    <field name="signature_date" invisible="1" />
+                </button>
+            </xpath>
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">External Request</attribute>
+            </xpath>
+            <field name="patient_id" position="attributes">
+                <attribute name="attrs">{}</attribute>
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="patient_id" position="before">
+                <field
+                    name="patient_name"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                />
+                <field name="encounter_id" />
+                <field name="vat" attrs="{'readonly':[('is_editable', '=', False)]}" />
+                <field
+                    name="patient_age"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                />
+                <field
+                    name="patient_origin"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                />
+                <field name="is_cancellable" invisible="1" />
+            </field>
+            <field name="state" position="attributes">
+                <attribute name="statusbar_visible">draft,final</attribute>
+            </field>
+            <xpath expr="//group[@name='sale_01']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <field name="occurrence_date" position="after">
+                <field name="issued_date" />
+                <field name="issued_user_id" states="final,cancelled" />
+                <field name="cancel_date" states="cancelled" />
+                <field name="cancel_user_id" states="cancelled" />
+            </field>
+            <xpath expr="//notebook/page[1]" position="before">
+                <page name="composition" string="Composition">
+                    <field
+                        name="composition"
+                        options="{'automatic_summernote_height': 1}"
+                        attrs="{'readonly':[('is_editable', '=', False)]}"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_procedure_external_request_search_view">
+        <field
+            name="name"
+        >medical.procedure.external.request.search (in medical_procedure_external)</field>
+        <field name="model">medical.procedure.external.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="internal_identifier" />
+                <separator />
+                <filter
+                    name="filter_not_cancelled"
+                    string="Not cancelled"
+                    domain="[('state', '!=', 'cancelled')]"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_procedure_external_request_tree_view">
+        <field
+            name="name"
+        >medical.procedure.external.request.tree (in medical_procedure_external)</field>
+        <field name="model">medical.procedure.external.request</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="medical_workflow.medical_event_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">false</attribute>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">External Request</attribute>
+            </xpath>
+            <tree>
+                <field name="issued_date" />
+            </tree>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="medical_procedure_external_request_act_window"
+    >
+        <field name="name">External Request</field>
+        <field name="res_model">medical.procedure.external.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.ui.menu" id="medical_procedure_external_request_menu">
+        <field name="name">External Request</field>
+        <field name="parent_id" ref="medical_root_request" />
+        <field name="action" ref="medical_procedure_external_request_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+</odoo>
