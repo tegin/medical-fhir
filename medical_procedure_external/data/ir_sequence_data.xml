@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2022 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="seq_medical_procedure_external_request" model="ir.sequence">
+        <field name="name">External Request</field>
+        <field name="code">medical.procedure.external.request</field>
+        <field name="prefix">MPER</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>

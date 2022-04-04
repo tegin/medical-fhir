@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="medical_procedure_external_request_template"
+        inherit_id="medical_procedure_external.medical_procedure_external_request_template_base"
+        primary="True"
+    >
+        <xpath expr="//t[@t-set='lang']" position="attributes">
+            <attribute name="t-value">o.lang</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='medical_procedure_external.procedure_external_request_base_layout']"
+            position="attributes"
+        >
+            <attribute
+                name="t-call"
+            >medical_procedure_external.procedure_external_request_layout</attribute>
+        </xpath>
+    </template>
+    <template
+        id="procedure_external_request_layout"
+        inherit_id="medical_procedure_external.procedure_external_request_base_layout"
+        primary="True"
+    >
+        <xpath expr="//div[@name='patient_id']" position="inside">
+            <span class="m-0" t-field="doc.patient_name" />
+        </xpath>
+        <xpath expr="//div[@name='internal_identifier']" position="inside">
+                <span class="m-0" t-field="doc.internal_identifier" />
+                            (<span class="m-0" t-esc="doc.id" />)
+        </xpath>
+        <xpath expr="//div[@name='footer_internal_identifier']" position="inside">
+             <span t-field="doc.internal_identifier" /><span
+                t-esc="o.env.user.id"
+            />-<span t-esc="int(datetime.datetime.now().timestamp())" />
+        </xpath>
+    </template>
+</odoo>

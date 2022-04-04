@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_assets_common"
+        name="Report Assets (used in backend interface)"
+        inherit_id="web.report_assets_common"
+    >
+        <xpath expr="." position="inside">
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/medical_procedure_external/static/src/scss/medical_procedure_external_layout.scss"
+            />
+        </xpath>
+    </template>
+</odoo>
