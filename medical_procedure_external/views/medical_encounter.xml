@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 CreuBlanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_encounter_form_view">
+        <field
+            name="name"
+        >medical.encounter.form (in medical_procedure_external)</field>
+        <field name="model">medical.encounter</field>
+        <field
+            name="inherit_id"
+            ref="medical_administration_encounter.medical_encounter_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[last()]" position="after">
+                <button
+                    type="action"
+                    name="%(medical_procedure_external.medical_encounter_create_procedure_external_act_window)s"
+                    class="oe_stat_button btn-info"
+                    icon="fa-file-prescription"
+                    string="Generate External Request"
+                    groups="medical_procedure_external.group_medical_procedure_external_request_manager"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_external_request"
+                    class="oe_stat_button"
+                    icon="fa-file-prescription"
+                    groups="medical_procedure_external.group_medical_procedure_external_request_list"
+                    attrs="{'invisible':[('external_request_count', '=', 0)]}"
+                >
+                    <field
+                        name="external_request_count"
+                        widget="statinfo"
+                        string="External Requests"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

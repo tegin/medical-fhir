@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2022 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="group_medical_procedure_external_request_display" model="res.groups">
+        <field name="name">Procedure External Request Display</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('medical_clinical.group_medical_view_requests'))]"
+        />
+    </record>
+    <record id="group_medical_procedure_external_request_list" model="res.groups">
+        <field name="name">Procedure External Request List</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('group_medical_procedure_external_request_display'))]"
+        />
+    </record>
+    <record id="group_medical_procedure_external_request_manager" model="res.groups">
+        <field name="name">Procedure External Request Manager</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('group_medical_procedure_external_request_list'))]"
+        />
+    </record>
+    <record
+        id="group_medical_procedure_external_request_template_manager"
+        model="res.groups"
+    >
+        <field name="name">Procedure External Request Template Manager</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('group_medical_procedure_external_request_list'))]"
+        />
+    </record>
+    <!-- Generic groups -->
+    <record id="medical_base.group_medical_user" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('group_medical_procedure_external_request_display'))]"
+        />
+    </record>
+    <record id="medical_base.group_medical_configurator" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('group_medical_procedure_external_request_manager')),(4, ref('group_medical_procedure_external_request_template_manager'))]"
+        />
+    </record>
+</odoo>
