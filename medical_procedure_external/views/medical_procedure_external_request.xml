@@ -28,6 +28,20 @@
                     attrs="{'invisible':[('is_cancellable', '=', False)]}"
                 />
             </header>
+            <xpath expr="//div[@name='button_box']" position="before">
+                <widget
+                    name="web_ribbon"
+                    title="Final"
+                    bg_color="bg-success"
+                    attrs="{'invisible': [('state', '!=', 'final')]}"
+                />
+                <widget
+                    name="web_ribbon"
+                    title="Cancelled"
+                    bg_color="bg-danger"
+                    attrs="{'invisible': [('state', '!=', 'cancelled')]}"
+                />
+            </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     type="object"
@@ -118,8 +132,13 @@
             <xpath expr="//tree" position="attributes">
                 <attribute name="string">External Request</attribute>
             </xpath>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-warning">state == 'draft'</attribute>
+                <attribute name="decoration-muted">state == 'cancelled'</attribute>
+            </xpath>
             <tree>
                 <field name="issued_date" />
+                <field name="state" invisible="1" />
             </tree>
         </field>
     </record>
