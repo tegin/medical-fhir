@@ -53,8 +53,8 @@ class MedicalPatient(models.Model):
         return super(MedicalPatient, self).create(vals_upd)
 
     def open_parent(self):
-        """ Utility method used to add an "Open Parent" button in partner
-        views """
+        """Utility method used to add an "Open Parent" button in partner
+        views"""
         self.ensure_one()
         address_form_id = self.env.ref("base.view_partner_address_form").id
         return {

@@ -10,7 +10,7 @@ class TestCodification(TransactionCase):
         code = self.env["medical.sct.concept"].create(
             {"code": "001", "name": "Test"}
         )
-        self.assertEquals(code.display_name, "[001] Test")
+        self.assertEqual(code.display_name, "[001] Test")
 
     def test_search(self):
         code = self.env["medical.sct.concept"].name_search("138875005")

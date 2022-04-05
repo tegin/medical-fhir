@@ -10,9 +10,7 @@ from bokeh.util.string import decode_utf8
 
 
 def get_layout_html(obj, resources=INLINE, theme=FromCurdoc, **kwargs):
-    """
-
-    """
+    """ """
     resize = False
     if kwargs.get("height") is not None or kwargs.get("width") is not None:
         # Defer this import, it is expensive
@@ -48,7 +46,7 @@ def get_layout_html(obj, resources=INLINE, theme=FromCurdoc, **kwargs):
 
 
 def get_screenshot_as_png(obj, driver=None, **kwargs):
-    """ Get a screenshot of a ``LayoutDOM`` object.
+    """Get a screenshot of a ``LayoutDOM`` object.
 
     Args:
         obj (LayoutDOM or Document) : a Layout (Row/Column), Plot or Widget

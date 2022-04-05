@@ -67,7 +67,10 @@ class PatientConceptEvolution(models.TransientModel):
                 )
                 return
             source = ColumnDataSource(df)
-            p = figure(sizing_mode="stretch_width", plot_height=450,)
+            p = figure(
+                sizing_mode="stretch_width",
+                plot_height=450,
+            )
             hover = HoverTool(
                 tooltips=[
                     ("Date", "@Date{%d/%m/%y}"),
@@ -108,7 +111,8 @@ class PatientConceptEvolution(models.TransientModel):
             p.ygrid[0].grid_line_alpha = 0.5
             p.xaxis.axis_label = "Date"
             p.yaxis.axis_label = "{} ({})".format(
-                self.concept_id.name, self.concept_id.uom_id.name,
+                self.concept_id.name,
+                self.concept_id.uom_id.name,
             )
             if self.concept_id.reference_range_high:
                 if self.concept_id.reference_range_low:

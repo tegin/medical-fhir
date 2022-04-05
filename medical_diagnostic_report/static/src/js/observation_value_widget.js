@@ -1,4 +1,4 @@
-odoo.define("medical_diagnostic_report.ValueWidget", function(require) {
+odoo.define("medical_diagnostic_report.ValueWidget", function (require) {
     "use strict";
     /*
        This code modifies the "group" tag allowing to add
@@ -9,7 +9,7 @@ odoo.define("medical_diagnostic_report.ValueWidget", function(require) {
     var relational_fields = require("web.relational_fields");
 
     ListRenderer.include({
-        _renderHeaderCell: function(node) {
+        _renderHeaderCell: function (node) {
             var $th = this._super.apply(this, arguments);
             var name = node.attrs.name;
             if (node.tag === "group" && !this.state.fields[name] && node.attrs.string) {
@@ -17,7 +17,7 @@ odoo.define("medical_diagnostic_report.ValueWidget", function(require) {
             }
             return $th;
         },
-        _renderBodyCell: function(record, node, colIndex, options) {
+        _renderBodyCell: function (record, node, colIndex, options) {
             if (node.tag === "group") {
                 var $td = $("<td>", {class: "o_data_cell o_field_cell"});
                 var modifiers = this._registerModifiers(
@@ -33,7 +33,7 @@ odoo.define("medical_diagnostic_report.ValueWidget", function(require) {
                     return $td;
                 }
                 var self = this;
-                _.map(node.children, function(child_node) {
+                _.map(node.children, function (child_node) {
                     var child_modifiers = self._registerModifiers(
                         child_node,
                         record,
@@ -99,7 +99,7 @@ odoo.define("medical_diagnostic_report.ValueWidget", function(require) {
         },
     });
     relational_fields.FieldX2Many.include({
-        init: function(parent, name, record) {
+        init: function (parent, name, record) {
             this._super.apply(this, arguments);
             if (
                 this.attrs.options.hide_delete_create &&
@@ -112,7 +112,7 @@ odoo.define("medical_diagnostic_report.ValueWidget", function(require) {
         },
     });
     ListRenderer.include({
-        _renderBodyCell: function(record, node) {
+        _renderBodyCell: function (record, node) {
             var $cell = this._super.apply(this, arguments);
             var isSubSection = record.data.display_type === "line_subsection";
             if (isSubSection) {

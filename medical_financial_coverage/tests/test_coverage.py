@@ -85,12 +85,12 @@ class TestMedicalCoverage(TransactionCase):
         coverage = self.coverage_model.with_user(self.medical_user).create(
             coverage_vals
         )
-        self.assertEquals(coverage.subscriber_id, "abc123")
+        self.assertEqual(coverage.subscriber_id, "abc123")
         self.assertNotEquals(coverage, False)
 
     def test_create_coverage_for_a_patient(self):
         num_coverages = self.patient_1.coverage_count
-        self.assertEquals(num_coverages, 0)
+        self.assertEqual(num_coverages, 0)
         self.patient_1.action_view_coverage()
         coverage_template = self._create_coverage_template()
         self.patient_1.coverage_ids = [
@@ -118,19 +118,19 @@ class TestMedicalCoverage(TransactionCase):
     def test_payor_navigation_to_coverage_template(self):
         # 0 coverage template
         num_coverages_temp = self.payor_1.coverage_template_count
-        self.assertEquals(num_coverages_temp, 0)
+        self.assertEqual(num_coverages_temp, 0)
         self.payor_1.action_view_coverage_template()
         # 1 coverage template
         self._create_coverage_template()
         self.payor_1._compute_coverage_template_count()
         num_coverages_temp = self.payor_1.coverage_template_count
-        self.assertEquals(num_coverages_temp, 1)
+        self.assertEqual(num_coverages_temp, 1)
         self.payor_1.action_view_coverage_template()
         # >1 coverage template
         self._create_coverage_template()
         self.payor_1._compute_coverage_template_count()
         num_coverages_temp = self.payor_1.coverage_template_count
-        self.assertEquals(num_coverages_temp, 2)
+        self.assertEqual(num_coverages_temp, 2)
         self.payor_1.action_view_coverage_template()
 
     def test_coverage_template_complete_flow(self):
