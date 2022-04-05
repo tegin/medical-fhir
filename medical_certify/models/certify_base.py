@@ -71,7 +71,12 @@ class DigestBase(models.AbstractModel):
             "target": "new",
             "view_mode": "form",
             "context": ctx,
-            "views": [(self._show_signature_view().id, "form",)],
+            "views": [
+                (
+                    self._show_signature_view().id,
+                    "form",
+                )
+            ],
         }
 
     def _show_signature_view(self):
