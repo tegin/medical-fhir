@@ -192,7 +192,7 @@ class MedicalRequest(models.AbstractModel):
         self.write(self.cancel_values())
 
     def generate_event(self):
-        """ Implement method in order to generate an event"""
+        """Implement method in order to generate an event"""
         raise UserError(_("Function is not defined"))
 
     @api.model
@@ -218,7 +218,7 @@ class MedicalRequest(models.AbstractModel):
                 child._check_hierarchy_children(vals, counter + 1)
 
     def _get_parent_field_name(self):
-        """ Implement method in order to return the parent field name"""
+        """Implement method in order to return the parent field name"""
         raise UserError(_("Field name is not defined"))
 
     def action_view_request(self):
