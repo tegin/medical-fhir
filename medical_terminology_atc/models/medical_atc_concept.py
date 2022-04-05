@@ -7,14 +7,14 @@ from odoo import api, fields, models
 
 class MedicalATCConcept(models.Model):
     """
-        Medical ATC concept
-        (https://www.hl7.org/fhir/terminologies-systems.html)
-        It has been defined following the code system entity with the following
-        information:
-        - url: http://www.whocc.no/atc
-        - identifier: urn:oid:2.16.840.1.113883.6.73
-        - name: ATC/DDD
-        - publisher: WHO
+    Medical ATC concept
+    (https://www.hl7.org/fhir/terminologies-systems.html)
+    It has been defined following the code system entity with the following
+    information:
+    - url: http://www.whocc.no/atc
+    - identifier: urn:oid:2.16.840.1.113883.6.73
+    - name: ATC/DDD
+    - publisher: WHO
     """
 
     _name = "medical.atc.concept"
