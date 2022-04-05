@@ -20,7 +20,10 @@ class MedicalDiagnosticReport(models.Model):
         ]
 
     name = fields.Char(string="Report Name")
-    state = fields.Selection(default="registered", copy=False,)
+    state = fields.Selection(
+        default="registered",
+        copy=False,
+    )
     lang = fields.Selection(
         string="Language", selection="_get_lang", readonly=True
     )
@@ -42,10 +45,14 @@ class MedicalDiagnosticReport(models.Model):
 
     patient_age = fields.Integer(readonly=True)
 
-    patient_origin = fields.Char(readonly=True,)
+    patient_origin = fields.Char(
+        readonly=True,
+    )
 
     issued_date = fields.Datetime(
-        help="Date of report's publication", readonly=1, copy=False,
+        help="Date of report's publication",
+        readonly=1,
+        copy=False,
     )
     issued_user_id = fields.Many2one(
         "res.users", string="Issued by User", readonly=True, copy=False

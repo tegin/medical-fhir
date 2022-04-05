@@ -68,7 +68,7 @@ class PlanDefinitionAction(models.Model):
 
     @api.depends("name", "parent_id")
     def _compute_complete_name(self):
-        """ Forms complete name of action from parent to child action. """
+        """Forms complete name of action from parent to child action."""
         for rec in self:
             name = rec.name
             current = rec

@@ -58,7 +58,10 @@ class MedicalDiagnosticReport(models.Model):
                 continue
             code = template.html_code
             tree = etree.fromstring(code)
-            html = self.env["ir.qweb"].render(tree, {"record": self},)
+            html = self.env["ir.qweb"].render(
+                tree,
+                {"record": self},
+            )
             return html
         return False
 

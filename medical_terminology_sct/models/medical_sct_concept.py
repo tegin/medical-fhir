@@ -7,14 +7,14 @@ from odoo import fields, models
 
 class MedicalSCTConcept(models.Model):
     """
-        Medical SNOMED CT concept
-        (https://www.hl7.org/fhir/codesystem-snomedct.html)
-        It has been defined following the code system entity with the following
-        information:
-        - url: http://snomed.info/sct
-        - identifier: urn:ietf:rfc:3986 / urn:oid:2.16.840.1.113883.6.96
-        - name: SNOMED_CT
-        - publisher: IHTSDO
+    Medical SNOMED CT concept
+    (https://www.hl7.org/fhir/codesystem-snomedct.html)
+    It has been defined following the code system entity with the following
+    information:
+    - url: http://snomed.info/sct
+    - identifier: urn:ietf:rfc:3986 / urn:oid:2.16.840.1.113883.6.96
+    - name: SNOMED_CT
+    - publisher: IHTSDO
     """
 
     _name = "medical.sct.concept"
