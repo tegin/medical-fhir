@@ -32,7 +32,9 @@ class MedicalObservation(models.Model):
         store=True,
     )
     # FHIR Field: interpretation
-    observation_date = fields.Datetime(string="Date",)
+    observation_date = fields.Datetime(
+        string="Date",
+    )
     state = fields.Selection(
         [
             ("registered", "Registered"),

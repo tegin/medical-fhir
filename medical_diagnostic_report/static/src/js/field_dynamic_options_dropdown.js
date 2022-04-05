@@ -2,7 +2,7 @@
  * Copyright 2021 Creu Blanca
  * License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
  */
-odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require) {
+odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function (require) {
     "use strict";
     /*
        This code allows to add a dynamic dropdown in a selection field inside a table.
@@ -28,7 +28,7 @@ odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require
         /**
          * @override
          */
-        init: function() {
+        init: function () {
             this._super.apply(this, arguments);
             this._setValues();
         },
@@ -41,13 +41,13 @@ odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require
          * @override
          * @returns {jQuery}
          */
-        getFocusableElement: function() {
+        getFocusableElement: function () {
             return this.$el.is("select") ? this.$el : $();
         },
         /**
          * @override
          */
-        isSet: function() {
+        isSet: function () {
             return this.value !== false;
         },
         /**
@@ -56,7 +56,7 @@ odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require
          *
          * @override
          */
-        updateModifiersValue: function() {
+        updateModifiersValue: function () {
             this._super.apply(this, arguments);
             if (!this.attrs.modifiersValue.invisible && this.mode !== "readonly") {
                 this._setValues();
@@ -72,14 +72,14 @@ odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require
          * @override
          * @private
          */
-        _formatValue: function(value) {
+        _formatValue: function (value) {
             var options = _.extend(
                 {},
                 this.nodeOptions,
                 {data: this.recordData},
                 this.formatOptions
             );
-            var formattedValue = _.find(this.values, function(option) {
+            var formattedValue = _.find(this.values, function (option) {
                 return option[0] === value;
             });
             if (!formattedValue) {
@@ -95,7 +95,7 @@ odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require
          * @override
          * @private
          */
-        _renderEdit: function() {
+        _renderEdit: function () {
             this.$el.empty();
             for (var i = 0; i < this.values.length; i++) {
                 this.$el.append(
@@ -111,13 +111,13 @@ odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require
          * @override
          * @private
          */
-        _renderReadonly: function() {
+        _renderReadonly: function () {
             this.$el.empty().text(this._formatValue(this.value));
         },
         /**
          * @override
          */
-        _reset: function() {
+        _reset: function () {
             this._super.apply(this, arguments);
             this._setValues();
         },
@@ -126,15 +126,15 @@ odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require
          *
          * @private
          */
-        _setValues: function() {
+        _setValues: function () {
             var context = this.record.getContext({
                 additionalContext: this.attrs.context,
             });
             var options = [];
-            _.each(context.options.split(";"), function(v) {
+            _.each(context.options.split(";"), function (v) {
                 options.push([v, v]);
             });
-            this.values = _.reject(options, function(v) {
+            this.values = _.reject(options, function (v) {
                 return v[0] === false && v[1] === "";
             });
             if (!this.attrs.modifiersValue || !this.attrs.modifiersValue.required) {
@@ -151,7 +151,7 @@ odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function(require
         /**
          * @private
          */
-        _onChange: function() {
+        _onChange: function () {
             var value = JSON.parse(this.$el.val());
             this._setValue(value.toString());
         },
