@@ -18,7 +18,6 @@
         "security/medical_security.xml",
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
-        "data/medical_clinical_finding.xml",
         "views/medical_patient_views.xml",
         "views/medical_encounter_views.xml",
         "views/medical_condition_views.xml",

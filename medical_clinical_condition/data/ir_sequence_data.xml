@@ -8,7 +8,7 @@
     <record id="seq_medical_condition" model="ir.sequence">
         <field name="name">Medical condition sequence</field>
         <field name="code">medical.condition</field>
-        <field name="prefix">CDT</field>
+        <field name="prefix">MCON</field>
         <field name="padding">6</field>
     </record>
     <record id="seq_medical_clinical_finding" model="ir.sequence">

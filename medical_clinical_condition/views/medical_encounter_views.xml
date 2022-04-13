@@ -2,7 +2,6 @@
 <!-- Copyright 2021 Creu Blanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <!-- Clinical Impressions -->
     <record model="ir.ui.view" id="medical_encounter_view_form">
         <field name="name">medical.encounter.form</field>
         <field name="model">medical.encounter</field>
@@ -11,6 +10,24 @@
             ref="medical_administration_encounter.medical_encounter_view_form"
         />
         <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="create_medical_clinical_condition"
+                    class="oe_stat_button btn-warning"
+                    string=" Create Clin. Condition"
+                    type="object"
+                    context="{'default_is_allergy': False}"
+                    icon="fa-heartbeat"
+                />
+                <button
+                    name="create_medical_clinical_condition"
+                    class="oe_stat_button btn-danger"
+                    string=" Create Allergy"
+                    type="object"
+                    context="{'default_is_allergy': True}"
+                    icon="fa-allergies"
+                />
+            </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     type="object"

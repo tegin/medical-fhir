@@ -8,7 +8,7 @@ from odoo import _, api, fields, models
 class MedicalCondition(models.Model):
     # FHIR Entity: Condition (https://www.hl7.org/fhir/condition.html)
     _name = "medical.condition"
-    _inherit = "medical.abstract"
+    _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
     _description = "Conditions"
 
     name = fields.Char(compute="_compute_condition_name")
@@ -18,10 +18,10 @@ class MedicalCondition(models.Model):
     )  # FHIR Field: Subject
 
     clinical_finding_id = fields.Many2one(
-        comodel_name="medical.clinical.finding"
+        comodel_name="medical.clinical.finding", tracking=True
     )
 
-    active = fields.Boolean(default=True)
+    active = fields.Boolean(default=True, tracking=True)
 
     create_warning = fields.Boolean(
         compute="_compute_create_warning", store=True
@@ -29,23 +29,14 @@ class MedicalCondition(models.Model):
 
     is_allergy = fields.Boolean()
 
-    allergy_category = fields.Selection(
-        [
-            ("food", "Food"),
-            ("medication", "Medication"),
-            ("environment", "Environment"),
-            ("biologic", "Biologic"),
-        ]
-    )
     criticality = fields.Selection([("low", "Low"), ("high", "High")])
-    allergy_id = fields.Many2one(comodel_name="medical.allergy.substance")
-    allergy_reaction_id = fields.Many2one(
-        comodel_name="medical.clinical.finding"
+    allergy_id = fields.Many2one(
+        comodel_name="medical.allergy.substance", tracking=True
     )
-    last_occurrence_date = fields.Date()
-    color = fields.Integer(default=1)
 
-    # TODO: Remove non-necessary fields
+    last_occurrence_date = fields.Date(tracking=True)
+
+    notes = fields.Text(tracking=True)
 
     @api.model
     def _get_internal_identifier(self, vals):
@@ -69,3 +60,16 @@ class MedicalCondition(models.Model):
             self.create_warning = True
         else:
             self.create_warning = False
+
+    _sql_constraints = [
+        (
+            "clinical_finding_id_uniq",
+            "UNIQUE (clinical_finding_id, patient_id)",
+            _("Clinical Finding must be unique for a patient."),
+        ),
+        (
+            "allergy_id_uniq",
+            "UNIQUE (allergy_id, patient_id)",
+            _("Allergy must be unique for a patient."),
+        ),
+    ]

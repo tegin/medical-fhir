@@ -12,4 +12,8 @@
             ref="medical_clinical_condition.finding_pregnant"
         />
     </record>
+    <record id="finding_pregnant" model="medical.clinical.finding">
+        <field name="name">Pregnant</field>
+        <field name="description">Pregnant</field>
+    </record>
 </odoo>
