@@ -53,13 +53,14 @@ class MedicalCondition(models.Model):
         "allergy_id.create_warning", "clinical_finding_id.create_warning"
     )
     def _compute_create_warning(self):
-        if (
-            self.allergy_id.create_warning
-            or self.clinical_finding_id.create_warning
-        ):
-            self.create_warning = True
-        else:
-            self.create_warning = False
+        for rec in self:
+            if (
+                rec.allergy_id.create_warning
+                or rec.clinical_finding_id.create_warning
+            ):
+                rec.create_warning = True
+            else:
+                rec.create_warning = False
 
     _sql_constraints = [
         (
