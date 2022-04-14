@@ -17,15 +17,14 @@ class MedicalSpecialty(models.Model):
             )
         return encounters[0]
 
-    def _get_act_window_view(self):
-        return self.env.ref(
+    def get_speciality_impression(self):
+        action = self.env.ref(
             "medical_clinical_impression."
             "medical_patient_clinical_impression_act_window"
         )
 
-    def get_speciality_impression(self):
-        action = self._get_act_window_view()
         result = action.read()[0]
+        print(self.env.context.get("patient_id"))
         if not self.env.context.get("patient_id"):
             raise ValidationError(_("Patient cannot be found"))
         encounter = self._get_last_encounter(

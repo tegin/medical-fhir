@@ -120,18 +120,6 @@ class MedicalClinicalImpression(models.Model):
         compute="_compute_family_history_count"
     )
 
-    investigation_ids = fields.Many2many(
-        comodel_name="medical.clinical.investigation",
-        help="Signs, symptoms...",
-    )
-    # FHIR: Investigation
-    # Each investigation should have an investigation code (type)
-    # and a item (an observation, a report, an imagins study...)
-
-    # protocol_id = fields.One2many()
-    # FHI: protocol (clinical protocol followed)
-    # I think not needed for the moment
-
     summary = fields.Text()
     # FHIR: summary
 

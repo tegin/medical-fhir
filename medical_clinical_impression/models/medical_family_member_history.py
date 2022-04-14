@@ -19,20 +19,15 @@ class MedicalFamilyMemberHistory(models.Model):
 
     active = fields.Boolean(default=True)
     unable_to_obtain = fields.Boolean()
-    # FHIR: tdataAbstenReaso, in fact is a codeable concept
-    # It could also be determined at the patient profile
 
     patient_id = fields.Many2one("medical.patient")
     # FHIR: patient
-
-    recorded_date = fields.Date()
-    # FHIR: date
 
     family_member_name = fields.Char()
     # FHIR: name
 
     relationship = fields.Char()
-    # FHIR: relationship (in fact is a codeableConcept)
+    # FHIR: relationship
 
     sex = fields.Selection(
         [

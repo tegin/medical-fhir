@@ -31,7 +31,7 @@
                     class="btn-danger"
                     confirm="Are you sure you want to cancel this impression?"
                     type="object"
-                    attrs="{'invisible':[('is_editable', '=', True)]}"
+                    states="in_progress,completed"
                 />
             </header>
             <field name="state" position="attributes">

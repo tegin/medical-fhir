@@ -14,12 +14,8 @@ class MedicalEncounter(models.Model):
     )
 
     family_history_count = fields.Integer(
-        compute="_compute_family_history_count"
+        related="patient_id.family_history_count"
     )
-
-    @api.depends("family_history_ids")
-    def _compute_family_history_count(self):
-        self.family_history_count = len(self.family_history_ids)
 
     def action_view_clinical_impressions(self):
         self.ensure_one()
