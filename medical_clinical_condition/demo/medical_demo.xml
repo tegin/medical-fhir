@@ -5,6 +5,10 @@
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
+   <record id="finding_pregnant" model="medical.clinical.finding">
+        <field name="name">Pregnant</field>
+        <field name="description">Pregnant</field>
+    </record>
     <record id="patient_01_pregnant" model="medical.condition">
         <field name="patient_id" ref="medical_administration.patient_01" />
         <field
@@ -12,8 +16,5 @@
             ref="medical_clinical_condition.finding_pregnant"
         />
     </record>
-    <record id="finding_pregnant" model="medical.clinical.finding">
-        <field name="name">Pregnant</field>
-        <field name="description">Pregnant</field>
-    </record>
+ 
 </odoo>
