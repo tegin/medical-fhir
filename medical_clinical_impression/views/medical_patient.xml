@@ -49,13 +49,15 @@
                         >
                         </button>
                     </div>
-                    <field name="impression_specialty_ids" context="{'patient_id': id}">
+                    <br/>
+                    <field name="impression_specialty_ids" context="{'patient_id': active_id}">
                         <tree>
                             <field name="name" />
                             <button
                                 name="get_speciality_impression"
                                 icon="fa-stethoscope"
                                 type="object"
+                                class="oe_link"
                             />
                         </tree>
                         <form options="{'no_open':True}" />
@@ -80,18 +82,7 @@
             </field>
         </field>
     </record>
-    <!-- <record model="ir.ui.view" id="medical_clinical_impression_patient_form_view">
-        <field name="name">medical.clinical.impression.form</field>
-        <field name="model">medical.clinical.impression</field>
-        <field name="inherit_id" ref="medical_clinical_impression_form_view" />
-        <field name="mode">primary</field>
-        <field name="arch" type="xml">
-            <xpath expr="//form" position="attributes">
-                <attribute name="create">false</attribute>
-                <attribute name="edit">false</attribute>
-            </xpath>
-        </field>
-    </record> -->
+
     <record
         model="ir.actions.act_window"
         id="medical_patient_clinical_impression_act_window"

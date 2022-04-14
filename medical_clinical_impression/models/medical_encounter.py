@@ -8,6 +8,15 @@ class MedicalEncounter(models.Model):
 
     _inherit = "medical.encounter"
 
+    medical_impression_ids = fields.One2many(
+        "medical.clinical.impression",
+        inverse_name="encounter_id",
+    )
+
+    impression_specialty_ids = fields.Many2many(
+        "medical.specialty", compute="_compute_impression_specialties"
+    )
+
     family_history_ids = fields.One2many(
         "medical.family.member.history",
         related="patient_id.family_history_ids",
@@ -16,6 +25,13 @@ class MedicalEncounter(models.Model):
     family_history_count = fields.Integer(
         related="patient_id.family_history_count"
     )
+
+    @api.depends("medical_impression_ids")
+    def _compute_impression_specialties(self):
+        for record in self:
+            record.impression_specialty_ids = (
+                record.medical_impression_ids.mapped("specialty_id")
+            )
 
     def action_view_clinical_impressions(self):
         self.ensure_one()

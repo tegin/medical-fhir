@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2018 Creu Blanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
-    <record id="seq_medical_clinical_investigation" model="ir.sequence">
-        <field name="name">Medical Clinical Investigation sequence</field>
-        <field name="code">medical.clinical.investigation</field>
-        <field name="prefix">CINV</field>
-        <field name="padding">6</field>
-    </record>
     <record id="seq_medical_clinical_impression" model="ir.sequence">
         <field name="name">Clinical Impression sequence</field>
         <field name="code">medical.clinical.impression</field>

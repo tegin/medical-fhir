@@ -9,14 +9,6 @@ class MedicalSpecialty(models.Model):
 
     _inherit = "medical.specialty"
 
-    def _get_last_encounter(self, domain):
-        encounters = self.env["medical.encounter"].search(domain)
-        if not encounters:
-            raise ValidationError(
-                _("No encounters can be found for this patient")
-            )
-        return encounters[0]
-
     def get_speciality_impression(self):
         action = self.env.ref(
             "medical_clinical_impression."
@@ -24,24 +16,30 @@ class MedicalSpecialty(models.Model):
         )
 
         result = action.read()[0]
-        print(self.env.context.get("patient_id"))
-        if not self.env.context.get("patient_id"):
+        if self.env.context.get("patient_id"):
+            patient_id = self.env['medical.patient'].browse(
+                self.env.context.get("patient_id")
+            )
+            encounter_id =  patient_id._get_last_encounter()
+        elif self.env.context.get("encounter_id"):
+             encounter_id = self.env['medical.encounter'].browse(
+                self.env.context.get("encounter_id")
+            )
+             patient_id = encounter_id.patient_id
+        else:
             raise ValidationError(_("Patient cannot be found"))
-        encounter = self._get_last_encounter(
-            [("patient_id", "=", self.env.context.get("patient_id"))]
-        )
         domain = expression.AND(
             [
                 result["domain"],
                 [
                     ("specialty_id", "=", self.id),
-                    ("patient_id", "=", self.env.context.get("patient_id")),
+                    ("patient_id", "=", patient_id.id),
                 ],
             ]
         )
         result["domain"] = domain
         result["context"] = {
-            "default_encounter_id": encounter.id,
+            "default_encounter_id": encounter_id.id,
             "default_specialty_id": self.id,
         }
         return result

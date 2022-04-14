@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-6">
                             <strong>Date:</strong>
-                            <span t-field="o.impression_date" />
+                            <span t-field="o.validation_date" />
                         </div>
                     </div>
                     <div class="row">

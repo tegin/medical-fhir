@@ -43,7 +43,6 @@ odoo.define("web.web_widget_warning_dropdown", function (require) {
                     all_data: this.all_data,
                 })
             );
-            console.log(this.$view);
         },
         _onToggleCreateWarning: function () {
             this.all_data = !this.all_data;

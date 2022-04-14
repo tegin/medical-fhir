@@ -7,197 +7,164 @@
             name="name"
         >medical.clinical.impression.form (in medical_clinical_impression)</field>
         <field name="model">medical.clinical.impression</field>
-        <field name="mode">primary</field>
-        <field name="inherit_id" ref="medical_workflow.medical_event_form" />
         <field name="arch" type="xml">
-            <header position="inside">
-                <button
-                    name="validate_clinical_impression"
-                    string="Validate Impression"
-                    class="btn-success"
-                    confirm="Are you sure you want to validate this impression?"
-                    type="object"
-                    attrs="{'invisible':[('is_editable', '=', False)]}"
-                />
-                <button
-                    name="action_create_familiar_history"
-                    string="Create Familiar History"
-                    class="btn-info"
-                    type="object"
-                />
-                <button
-                    name="cancel_clinical_impression"
-                    string="Cancel Impression"
-                    class="btn-danger"
-                    confirm="Are you sure you want to cancel this impression?"
-                    type="object"
-                    states="in_progress,completed"
-                />
-            </header>
-            <field name="state" position="attributes">
-                <attribute name="statusbar_visible">in_progress,completed</attribute>
-            </field>
-            <xpath expr="//div[@name='button_box']" position="inside">
-                <button
-                    type="object"
-                    name="action_view_medical_conditions"
-                    class="oe_stat_button"
-                    icon="fa-heartbeat"
-                    attrs="{'invisible':[('condition_count', '=', 0)]}"
-                >
-                    <field
-                        name="condition_count"
-                        widget="statinfo"
-                        string="Conditions"
+            <form string="Clinical Impression">
+                <header>
+                    <field name="state" widget="statusbar" nolabel="1" />
+                    <button
+                        name="validate_clinical_impression"
+                        string="Validate Impression"
+                        class="btn-success"
+                        confirm="Are you sure you want to validate this impression?"
+                        type="object"
+                        attrs="{'invisible':[('is_editable', '=', False)]}"
                     />
-                    <field name="condition_ids" invisible="1" />
-                </button>
-                <button
-                    type="object"
-                    name="action_view_medical_allergies"
-                    class="oe_stat_button"
-                    icon="fa-allergies"
-                    attrs="{'invisible':[('allergies_count', '=', 0)]}"
-                >
-                    <field
-                        name="allergies_count"
-                        widget="statinfo"
-                        string="Allergies"
+                    <button
+                        name="cancel_clinical_impression"
+                        string="Cancel Impression"
+                        class="btn-danger"
+                        confirm="Are you sure you want to cancel this impression?"
+                        type="object"
+                        states="in_progress,completed"
                     />
-                    <field name="allergy_ids" invisible="1" />
-                </button>
-                <button
-                    type="object"
-                    name="action_view_warnings"
-                    class="oe_stat_button"
-                    icon="fa-exclamation-triangle"
-                    attrs="{'invisible':[('warnings_count', '=', 0)]}"
-                >
-                    <field name="warnings_count" widget="statinfo" string="Warnings" />
-                    <field name="warning_ids" invisible="1" />
-                    <field name="is_editable" invisible="1" />
-                </button>
-                <button
-                    type="object"
-                    name="action_view_family_history"
-                    class="oe_stat_button"
-                    icon="fa-history"
-                >
-                    <field
-                        name="family_history_count"
-                        widget="statinfo"
-                        string="Family History"
+                    <button
+                        name="action_create_familiar_history"
+                        string="Create Familiar History"
+                        class="btn-info"
+                        type="object"
+                        states="in_progress,completed"
                     />
-                    <field name="family_history_ids" invisible="1" />
-                </button>
-            </xpath>
-            <xpath expr="//form" position="attributes">
-                <attribute name="string">Clinical Impression</attribute>
-            </xpath>
-            <field name="name" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </field>
-            <field name="patient_id" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </field>
-            <field name="patient_id" position="before">
-                <field name="patient_id" />
-            </field>
-            <xpath expr="//h2" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-            <xpath expr="//h2" position="after">
-                <div class="col-4">
-                    <h2 modifiers="{}">
-                        <label for="internal_identifier" modifiers="{}" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            type="object"
+                            name="action_view_family_history"
+                            class="oe_stat_button"
+                            icon="fa-history"
+                        >
                         <field
-                            name="internal_identifier"
-                            readonly="1"
-                            modifiers="{'readonly':true}"
+                            name="family_history_count"
+                            widget="statinfo"
+                            string="Family History"
                         />
-                    </h2>
-                </div>
-                <div class="row">
-                    <div class="col-3" />
-                    <field
-                        name="condition_ids"
-                        widget="warning_dropdown"
-                        class="col-6"
-                        context="{'patient_id': patient_id}"
-                        attrs="{'invisible':[('condition_count', '=', 0)]}"
+                        <field name="family_history_ids" invisible="1" />
+                        </button>
+                    </div>
+                    <widget
+                        name="web_ribbon"
+                        text="Cancelled"
+                        bg_color="bg-danger"
+                        attrs="{'invisible':[('state', '!=', 'cancelled')]}"
                     />
-                    <div class="col-3" />
-                </div>
-            </xpath>
-            <xpath expr="//field[@name='patient_id']/.." position="after">
-                <group>
-                    <field
-                        name="encounter_id"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                        domain="[('patient_id', '=', patient_id)]"
+                       <widget
+                        name="web_ribbon"
+                        text="Completed"
+                        bg_color="bg-success"
+                        attrs="{'invisible':[('state', '!=', 'completed')]}"
                     />
-                    <field
-                        name="specialty_id"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
-                </group>
-                <group>
-                    <field
-                        name="description"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
-                </group>
-                <group>
-                    <field
-                        name="impression_date"
-                        attrs="{'readonly':[('is_editable', '=', False)],
-                           'invisible':[('validation_user_id', '=', False)]}"
-                    />
-                    <field
-                        name="validation_user_id"
-                        attrs="{'readonly':[('is_editable', '=', False)],
-                           'invisible':[('validation_user_id', '=', False)]}"
-                    />
-                </group>
-            </xpath>
-            <group name="sale" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </group>
-            <xpath expr="//notebook/page[1]" position="before">
-                <page string="Summary">
-                    <field
-                        name="summary"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
-                </page>
-                <page string="Notes">
-                    <field
-                        name="note"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
-                </page>
-                <!-- TODO: make trees more beautiful -->
-                <page string="Findings">
-                    <field
-                        name="finding_ids"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    >
-                        <tree editable="bottom">
-                            <field name="name" />
-                        </tree>
-                    </field>
-                </page>
-                <page string="Allergies">
-                    <field
-                        name="allergy_substance_ids"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    >
-                        <tree editable="bottom">
-                            <field name="name" />
-                        </tree>
-                    </field>
-                </page>
-            </xpath>
+                    <div class="row">
+                        <div class="col-4">
+                            <h3>
+                                <field name="internal_identifier" readonly="1" />
+                            </h3>
+                                <h1>
+                                <field name="patient_id" readonly="1"
+                                options="{'no_create': True, 'no_open': True}" />
+                            </h1>
+                        </div>
+                        <field
+                            name="condition_ids"
+                            widget="warning_dropdown"
+                            class="col-7"
+                            context="{'patient_id': patient_id}"
+                            attrs="{'invisible':[('condition_count', '=', 0)]}"
+                        />
+                        <div class="col-1"/>
+                        <field name="condition_count" invisible="1"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="encounter_id"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                                domain="[('patient_id', '=', patient_id)]"
+                                 options="{'no_create': True, 'no_open': True}" 
+                            />
+                            <field
+                            name="specialty_id"
+                            attrs="{'readonly':[('is_editable', '=', False)]}"
+                             options="{'no_create': True, 'no_open': True}" 
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="validation_date"
+                                attrs="{'readonly':[('is_editable', '=', False)],
+                                'invisible':[('validation_user_id', '=', False)]}"
+                            />
+                            <field
+                                name="validation_user_id"
+                                attrs="{'readonly':[('is_editable', '=', False)],
+                                'invisible':[('validation_user_id', '=', False)]}"
+                            />
+                             <field
+                                name="cancellation_date"
+                                attrs="{'readonly':[('is_editable', '=', False)],
+                                'invisible':[('cancellation_user_id', '=', False)]}"
+                            />
+                            <field
+                                name="cancellation_user_id"
+                                attrs="{'readonly':[('is_editable', '=', False)],
+                                'invisible':[('cancellation_user_id', '=', False)]}"
+                            />
+                        </group>
+                       
+                    </group>
+                    <group>
+                        <field name="is_editable" invisible="1"/>
+                        <field
+                            name="description"
+                            attrs="{'readonly':[('is_editable', '=', False)]}"
+                        />
+                    </group>
+                   
+                    <notebook>
+                        <page string="Summary">
+                            <field
+                                name="summary"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                            />
+                        </page>
+                        <page string="Findings">
+                            <field
+                                name="finding_ids"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Allergies">
+                            <field
+                                name="allergy_substance_ids"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                        </page>
+                          <page string="Private Notes">
+                            <field
+                                name="note"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
         </field>
     </record>
     <record model="ir.ui.view" id="medical_clinical_impression_search_view">

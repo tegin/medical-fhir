@@ -34,6 +34,23 @@
                     <field name="family_history_ids" invisible="1" />
                 </button>
             </xpath>
+            <page name="first" position="after">
+                <page name="impression_ids" string="Impressions">
+                    <!-- TODO: create impressions from encounter-->
+                    <field name="impression_specialty_ids" context="{'encounter_id': active_id}">
+                        <tree>
+                            <field name="name" />
+                            <button
+                                name="get_speciality_impression"
+                                icon="fa-stethoscope"
+                                type="object"
+                                class="oe_link"
+                            />
+                        </tree>
+                        <form options="{'no_open':True}" />
+                    </field>
+                </page>
+            </page>
         </field>
     </record>
     <record model="ir.ui.view" id="medical_clinical_impression_encounter_tree_view">
@@ -44,12 +61,13 @@
         <field name="arch" type="xml">
             <tree
                 string="Clinical Impressions"
-                decoration-warning="state != 'completed'"
+                decoration-warning="state == 'in_progress'"
+                decoration-muted="state == 'cancelled'"
             >
                 <field name="specialty_id" />
                 <field name="description" />
                 <field name="summary" />
-                <field name="impression_date" />
+                <field name="validation_date" />
                 <field name="validation_user_id" />
                 <field name="state" invisible="1" />
             </tree>

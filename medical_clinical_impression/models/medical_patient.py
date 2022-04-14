@@ -17,6 +17,9 @@ class MedicalPatient(models.Model):
         "medical.specialty", compute="_compute_impression_specialties"
     )
 
+    # TODO: can we add counter on impression_speciality_ids?
+    # TODO: ad counter on imressions
+
     family_history_ids = fields.One2many(
         "medical.family.member.history", inverse_name="patient_id"
     )
