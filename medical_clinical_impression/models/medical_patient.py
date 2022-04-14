@@ -10,7 +10,8 @@ class MedicalPatient(models.Model):
     _inherit = "medical.patient"
 
     medical_impression_ids = fields.One2many(
-        "medical.clinical.impression", inverse_name="patient_id",
+        "medical.clinical.impression",
+        inverse_name="patient_id",
     )
     impression_specialty_ids = fields.Many2many(
         "medical.specialty", compute="_compute_impression_specialties"
@@ -30,8 +31,8 @@ class MedicalPatient(models.Model):
     @api.depends("medical_impression_ids")
     def _compute_impression_specialties(self):
         for record in self:
-            record.impression_specialty_ids = record.medical_impression_ids.mapped(
-                "specialty_id"
+            record.impression_specialty_ids = (
+                record.medical_impression_ids.mapped("specialty_id")
             )
 
     def action_view_clinical_impressions(self):

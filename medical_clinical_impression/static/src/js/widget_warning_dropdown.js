@@ -1,4 +1,4 @@
-odoo.define("web.web_widget_warning_dropdown", function(require) {
+odoo.define("web.web_widget_warning_dropdown", function (require) {
     "use strict";
 
     var field_registry = require("web.field_registry");
@@ -10,13 +10,13 @@ odoo.define("web.web_widget_warning_dropdown", function(require) {
             "click .toggle_create_warning": "_onToggleCreateWarning",
         }),
         template: "WarningDropdown",
-        start: function() {
+        start: function () {
             this.$view = this.$(".o_warning_conditions");
             this.$icon = this.$(".o_expand_icon");
             this._set_childs();
             return this._super.apply(this, arguments);
         },
-        _set_childs: function() {
+        _set_childs: function () {
             var self = this;
             this.all_data = false;
             this.conditions = [];
@@ -24,12 +24,12 @@ odoo.define("web.web_widget_warning_dropdown", function(require) {
                 model: this.field.relation,
                 method: "read",
                 args: [this.value.res_ids, ["name", "create_warning"]],
-            }).then(function(data) {
+            }).then(function (data) {
                 self.conditions = data;
                 self._fill_warnings();
             });
         },
-        _fill_warnings: function() {
+        _fill_warnings: function () {
             this.$icon.empty();
             this.$icon.append(
                 qweb.render("ExpandIcon", {
@@ -45,7 +45,7 @@ odoo.define("web.web_widget_warning_dropdown", function(require) {
             );
             console.log(this.$view);
         },
-        _onToggleCreateWarning: function() {
+        _onToggleCreateWarning: function () {
             this.all_data = !this.all_data;
             this._fill_warnings();
         },
