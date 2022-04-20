@@ -11,7 +11,9 @@ class CreateImpressionFromEncounter(models.TransientModel):
     _name = "create.impression.from.encounter"
     _description = "Create Impression From Encounter"
 
-    patient_id = fields.Many2one("medical.patient", required=True, related="encounter_id.patient_id")
+    patient_id = fields.Many2one(
+        "medical.patient", required=True, related="encounter_id.patient_id"
+    )
     specialty_id = fields.Many2one("medical.specialty", required=True)
     encounter_id = fields.Many2one(
         "medical.encounter",

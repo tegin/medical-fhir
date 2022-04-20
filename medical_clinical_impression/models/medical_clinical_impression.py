@@ -37,9 +37,7 @@ class MedicalClinicalImpression(models.Model):
         required=True,
     )
     # FHIR code: type of clinical assessment performed.
-    # Can be used as a tag. Which should be related model?
-    # Related to the specialty?
-    # It can be manually written or coming from the performer?
+    # TODO: add domain, so a partner can only select between their specialities
 
     description = fields.Text(
         help="Context of the impression: Why/how the assessment was performed"
@@ -52,8 +50,6 @@ class MedicalClinicalImpression(models.Model):
     patient_id = fields.Many2one(related="encounter_id.patient_id")
     # FHIR: patient
 
-    # FHIR: Effective date: needed?
-
     validation_date = fields.Datetime()
     # FHIR: date
 
@@ -63,10 +59,10 @@ class MedicalClinicalImpression(models.Model):
 
     cancellation_date = fields.Datetime()
 
-    cancellation_user_id =  fields.Many2one(
+    cancellation_user_id = fields.Many2one(
         "res.users", string="Cancelled by", readonly=True, copy=False
     )
-    
+
     allergy_substance_ids = fields.Many2many(
         comodel_name="medical.allergy.substance",
     )
@@ -76,7 +72,9 @@ class MedicalClinicalImpression(models.Model):
         related="patient_id.medical_condition_ids",
     )
 
-    condition_count = fields.Integer(related="patient_id.medical_condition_count")
+    condition_count = fields.Integer(
+        related="patient_id.medical_condition_count"
+    )
 
     family_history_ids = fields.Many2many(
         "medical.family.member.history", compute="_compute_family_history_ids"
@@ -126,7 +124,7 @@ class MedicalClinicalImpression(models.Model):
                         {
                             "patient_id": self.patient_id.id,
                             "clinical_finding_id": finding.id,
-                            "origin_clinical_impression_id": self.id
+                            "origin_clinical_impression_id": self.id,
                         }
                     )
 
@@ -142,7 +140,7 @@ class MedicalClinicalImpression(models.Model):
                             "patient_id": self.patient_id.id,
                             "is_allergy": True,
                             "allergy_id": substance.id,
-                            "origin_clinical_impression_id": self.id
+                            "origin_clinical_impression_id": self.id,
                         }
                     )
 
@@ -208,6 +206,3 @@ class MedicalClinicalImpression(models.Model):
     @api.depends("family_history_ids")
     def _compute_family_history_count(self):
         self.family_history_count = len(self.family_history_ids)
-
-    
-    # TODO: add emial thread to family and impressions

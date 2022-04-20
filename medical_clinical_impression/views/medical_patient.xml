@@ -41,8 +41,11 @@
                         >
                         </button>
                     </div>
-                    <br/>
-                    <field name="impression_specialty_ids" context="{'patient_id': active_id}">
+                    <br />
+                    <field
+                        name="impression_specialty_ids"
+                        context="{'patient_id': active_id}"
+                    >
                         <tree>
                             <field name="name" />
                             <button

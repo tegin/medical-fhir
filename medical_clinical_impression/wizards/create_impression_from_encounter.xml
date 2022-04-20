@@ -15,7 +15,7 @@
                         />
                     </group>
                     <group>
-                        <field name="patient_id"/>
+                        <field name="patient_id" />
                         <field
                             name="encounter_warning"
                             nolabel="1"

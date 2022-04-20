@@ -39,8 +39,8 @@ class MedicalFamilyMemberHistory(models.Model):
     )
 
     born_date = fields.Char()
-    # FHIR: born . This is given bu char becasue in
-    # this way it can put an approximate date, or a date range...
+    # FHIR: born
+    # It is a char field to be able to put an approximate date, or a date range...
 
     age = fields.Char()
     # FHIR: age. Same as born.

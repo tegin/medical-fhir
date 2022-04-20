@@ -42,8 +42,10 @@ class MedicalEncounter(models.Model):
         action["domain"] = [
             ("patient_id", "=", self.patient_id.id),
         ]
-        action["context"] = {"default_encounter_id": self.id, "search_default_encounter_id": self.id}
-        # TODO: should it see all mpressions or the one of this encounter?
+        action["context"] = {
+            "default_encounter_id": self.id,
+            "search_default_encounter_id": self.id,
+        }
         return action
 
     def action_view_family_history(self):

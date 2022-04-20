@@ -20,16 +20,16 @@ class MedicalSpecialty(models.Model):
         result = action.read()[0]
         ctx_dict = self._get_default_context()
         if self.env.context.get("patient_id"):
-            patient_id = self.env['medical.patient'].browse(
+            patient_id = self.env["medical.patient"].browse(
                 self.env.context.get("patient_id")
             )
             encounter_id = patient_id._get_last_encounter()
         elif self.env.context.get("encounter_id"):
-            encounter_id = self.env['medical.encounter'].browse(
+            encounter_id = self.env["medical.encounter"].browse(
                 self.env.context.get("encounter_id")
             )
             patient_id = encounter_id.patient_id
-            ctx_dict['search_default_encounter_id'] = encounter_id.id
+            ctx_dict["search_default_encounter_id"] = encounter_id.id
         else:
             raise ValidationError(_("Patient cannot be found"))
         domain = expression.AND(
