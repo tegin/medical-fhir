@@ -48,3 +48,11 @@ class MedicalEncounter(models.Model):
     def create_medical_clinical_condition(self):
         self.ensure_one()
         return self.patient_id.create_medical_clinical_condition()
+
+    def create_allergy(self):
+        self.ensure_one()
+        return self.patient_id.create_allergy()
+
+    def create_family_member_history(self):
+        self.ensure_one()
+        return self.patient_id.create_family_member_history()

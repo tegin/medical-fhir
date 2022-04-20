@@ -16,15 +16,13 @@
                     class="oe_stat_button btn-warning"
                     string=" Create Clin. Condition"
                     type="object"
-                    context="{'default_is_allergy': False, 'default_patient_id': active_id}"
                     icon="fa-heartbeat"
                 />
                 <button
-                    name="create_medical_clinical_condition"
+                    name="create_allergy"
                     class="oe_stat_button btn-danger"
                     string=" Create Allergy"
                     type="object"
-                    context="{'default_is_allergy': True, 'default_patient_id': active_id}"
                     icon="fa-allergies"
                 />
             </xpath>

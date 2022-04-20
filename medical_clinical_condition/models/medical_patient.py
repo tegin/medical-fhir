@@ -87,14 +87,31 @@ class MedicalPatient(models.Model):
         ]
         return result
 
+    def create_allergy(self):
+        self.ensure_one()
+        view_id = self.env.ref(
+            "medical_clinical_condition.medical_condition_view_form"
+        ).id
+        ctx = dict(self._context)
+        ctx["default_is_allergy"] = True
+        ctx["default_patient_id"] = self.id
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "medical.condition",
+            "name": _("Create clinical condition"),
+            "view_type": "form",
+            "view_mode": "form",
+            "views": [(view_id, "form")],
+            "target": "new",
+            "context": ctx,
+        }
+
     def create_medical_clinical_condition(self):
         self.ensure_one()
         view_id = self.env.ref(
             "medical_clinical_condition.medical_condition_view_form"
         ).id
         ctx = dict(self._context)
-        is_allergy = self.env.context.get("default_is_allergy", False)
-        ctx["default_is_allergy"] = is_allergy
         ctx["default_patient_id"] = self.id
         return {
             "type": "ir.actions.act_window",
