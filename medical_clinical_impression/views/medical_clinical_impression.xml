@@ -167,6 +167,28 @@
             </form>
         </field>
     </record>
+     <record model="ir.ui.view" id="medical_clinical_impression_tree_view">
+        <field
+            name="name"
+        >medical.clinical.impression.tree (in medical_clinical_impression)</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="arch" type="xml">
+            <tree
+                string="Clinical Impressions"
+                decoration-warning="state == 'in_progress'"
+                decoration-muted="state == 'cancelled'"
+            >
+                <field name="specialty_id" />
+                <field name="encounter_id"/>
+                <field name="patient_id"/>
+                <field name="description" />
+                <field name="summary" />
+                <field name="validation_date" />
+                <field name="validation_user_id" />
+                <field name="state" invisible="1" />
+            </tree>
+        </field>
+    </record>
     <record model="ir.ui.view" id="medical_clinical_impression_search_view">
         <field
             name="name"
@@ -175,8 +197,18 @@
         <field name="arch" type="xml">
             <search>
                 <field name="specialty_id" />
+                <field name="encounter_id"/>
+                <field name="validation_user_id"/>
                 <filter name="Specialty" context="{'group_by': 'specialty_id'}" />
             </search>
         </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="medical_clinical_impression_act_window"
+    >
+        <field name="name">Medical Clinical Impression</field>
+        <field name="res_model">medical.clinical.impression</field>
+        <field name="view_mode">tree,form</field>
     </record>
 </odoo>

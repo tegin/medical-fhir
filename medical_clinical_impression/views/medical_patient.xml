@@ -11,14 +11,6 @@
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     type="object"
-                    name="action_view_clinical_impressions"
-                    class="oe_stat_button"
-                    icon="fa-stethoscope"
-                    string="Clinical Impressions"
-                >
-                </button>
-                <button
-                    type="object"
                     name="action_view_family_history"
                     class="oe_stat_button"
                     icon="fa-history"
@@ -65,35 +57,5 @@
                 </page>
             </page>
         </field>
-    </record>
-    <record model="ir.ui.view" id="medical_clinical_impression_patient_tree_view">
-        <field
-            name="name"
-        >medical.clinical.impression.tree (in medical_clinical_impression)</field>
-        <field name="model">medical.clinical.impression</field>
-        <field
-            name="inherit_id"
-            ref="medical_clinical_impression_encounter_tree_view"
-        />
-        <field name="mode">primary</field>
-        <field name="arch" type="xml">
-            <field name="specialty_id" position="before">
-                <field name="encounter_id" />
-            </field>
-        </field>
-    </record>
-
-    <record
-        model="ir.actions.act_window"
-        id="medical_patient_clinical_impression_act_window"
-    >
-        <field name="name">Medical Clinical Impression</field>
-        <field name="res_model">medical.clinical.impression</field>
-        <field name="view_mode">tree,form</field>
-        <field
-            name="view_ids"
-            eval="[(5,0,0),
-                          (0,0,{'view_mode':'tree', 'view_id': ref('medical_clinical_impression_patient_tree_view')})]"
-        />
     </record>
 </odoo>

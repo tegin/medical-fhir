@@ -14,14 +14,6 @@
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     type="object"
-                    name="action_view_clinical_impressions"
-                    class="oe_stat_button"
-                    icon="fa-stethoscope"
-                    string="Clinical Impressions"
-                >
-                </button>
-                <button
-                    type="object"
                     name="action_view_family_history"
                     class="oe_stat_button"
                     icon="fa-history"
@@ -36,7 +28,23 @@
             </xpath>
             <page name="first" position="after">
                 <page name="impression_ids" string="Impressions">
-                    <!-- TODO: create impressions from encounter-->
+                     <div>
+                        <button
+                            type="action"
+                            name="%(medical_clinical_impression.create_impression_from_encounter_act_window)s"
+                            class="oe_stat_button btn-primary"
+                            string="Create Impression"
+                        />
+                        <button
+                            type="object"
+                            name="action_view_clinical_impressions"
+                            class="oe_stat_button btn-secondary"
+                            icon="fa-stethoscope"
+                            string="View all impressions"
+                        >
+                        </button>
+                    </div>
+                    <br/>
                     <field name="impression_specialty_ids" context="{'encounter_id': active_id}">
                         <tree>
                             <field name="name" />
@@ -52,38 +60,5 @@
                 </page>
             </page>
         </field>
-    </record>
-    <record model="ir.ui.view" id="medical_clinical_impression_encounter_tree_view">
-        <field
-            name="name"
-        >medical.clinical.impression.tree (in medical_clinical_impression)</field>
-        <field name="model">medical.clinical.impression</field>
-        <field name="arch" type="xml">
-            <tree
-                string="Clinical Impressions"
-                decoration-warning="state == 'in_progress'"
-                decoration-muted="state == 'cancelled'"
-            >
-                <field name="specialty_id" />
-                <field name="description" />
-                <field name="summary" />
-                <field name="validation_date" />
-                <field name="validation_user_id" />
-                <field name="state" invisible="1" />
-            </tree>
-        </field>
-    </record>
-    <record
-        model="ir.actions.act_window"
-        id="medical_encounter_clinical_impression_act_window"
-    >
-        <field name="name">Medical Clinical Impression</field>
-        <field name="res_model">medical.clinical.impression</field>
-        <field name="view_mode">tree,form</field>
-        <field
-            name="view_ids"
-            eval="[(5,0,0),
-                          (0,0,{'view_mode':'tree', 'view_id': ref('medical_clinical_impression_encounter_tree_view')})]"
-        />
     </record>
 </odoo>

@@ -37,12 +37,12 @@ class MedicalEncounter(models.Model):
         self.ensure_one()
         action = self.env.ref(
             "medical_clinical_impression."
-            "medical_encounter_clinical_impression_act_window"
+            "medical_clinical_impression_act_window"
         ).read()[0]
         action["domain"] = [
-            ("encounter_id", "=", self.id),
+            ("patient_id", "=", self.patient_id.id),
         ]
-        action["context"] = {"default_encounter_id": self.id}
+        action["context"] = {"default_encounter_id": self.id, "search_default_encounter_id": self.id}
         # TODO: should it see all mpressions or the one of this encounter?
         return action
 

@@ -43,7 +43,7 @@ class MedicalPatient(models.Model):
         encounter = self._get_last_encounter()
         action = self.env.ref(
             "medical_clinical_impression."
-            "medical_patient_clinical_impression_act_window"
+            "medical_clinical_impression_act_window"
         ).read()[0]
         action["domain"] = [("patient_id", "=", self.id)]
         if encounter:
