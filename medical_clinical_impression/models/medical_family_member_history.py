@@ -8,7 +8,7 @@ from odoo import api, fields, models
 class MedicalFamilyMemberHistory(models.Model):
     # FHIR Entity: Family Member History
     _name = "medical.family.member.history"
-    _inherit = "medical.abstract"
+    _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
     _description = "Medical Family Member History"
 
     name = fields.Char(compute="_compute_name")

@@ -7,7 +7,7 @@ from odoo import _, api, fields, models
 class MedicalClinicalImpression(models.Model):
 
     _name = "medical.clinical.impression"
-    _inherit = "medical.event"
+    _inherit = ["medical.event", "mail.thread", "mail.activity.mixin"]
     _description = "Medical Clinical Impression"
     _conditions = "condition_ids"
 
