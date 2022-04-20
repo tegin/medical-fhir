@@ -13,7 +13,14 @@
                 <field name="internal_identifier" />
                 <field name="relationship" />
                 <field name="family_member_name" />
+                <field name="sex" />
+                <field name="born_date" />
+                <field name="age" />
+                <field name="note" />
                 <field name="deceased" />
+                <field name="deceased_date" />
+                <field name="deceased_age" />
+                <field name="unable_to_obtain" />
             </tree>
         </field>
     </record>
@@ -41,34 +48,29 @@
                         <group>
                             <field name="unable_to_obtain" />
                         </group>
-                        <group>
+                        <group attrs="{'invisible': [('unable_to_obtain', '=', True)]}">
                             <field name="family_member_name" />
                             <field name="relationship" />
                         </group>
-                        <group>
+                        <group attrs="{'invisible': [('unable_to_obtain', '=', True)]}">
                             <field name="sex" />
                         </group>
-                        <group>
+                        <group attrs="{'invisible': [('unable_to_obtain', '=', True)]}">
                             <field name="born_date" />
-                        </group>
-                        <group>
                             <field name="age" />
                         </group>
-                        <group>
+                        <group attrs="{'invisible': [('unable_to_obtain', '=', True)]}">
                             <field name="deceased" />
-                        </group>
-                        <group />
-                        <group>
                             <field
                                 name="deceased_date"
                                 attrs="{'invisible':[('deceased', '=', False)]}"
                             />
-                        </group>
-                        <group>
                             <field
                                 name="deceased_age"
                                 attrs="{'invisible':[('deceased', '=', False)]}"
                             />
+                        </group>
+                        <group>
                             <field name="active" invisible="1" />
                         </group>
                     </group>

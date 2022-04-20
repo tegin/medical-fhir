@@ -68,3 +68,21 @@ class MedicalPatient(models.Model):
 
         action["context"] = {"default_patient_id": self.id}
         return action
+
+    def create_family_member_history(self):
+        self.ensure_one()
+        view_id = self.env.ref(
+            "medical_clinical_impression.medical_family_member_history_view_form"
+        ).id
+        ctx = dict(self._context)
+        ctx["default_patient_id"] = self.id
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "medical.family.member.history",
+            "name": _("Create family member history"),
+            "view_type": "form",
+            "view_mode": "form",
+            "views": [(view_id, "form")],
+            "target": "new",
+            "context": ctx,
+        }

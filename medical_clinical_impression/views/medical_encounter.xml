@@ -11,12 +11,22 @@
             ref="medical_clinical_condition.medical_encounter_view_form"
         />
         <field name="arch" type="xml">
+            <button name="create_allergy" position="after">
+                <button
+                    name="create_family_member_history"
+                    string=" Create Familiar History"
+                    class="btn-info"
+                    type="object"
+                    icon="fa-history"
+                />
+            </button>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     type="object"
                     name="action_view_family_history"
                     class="oe_stat_button"
                     icon="fa-history"
+                    attrs="{'invisible':[('family_history_count', '=', 0)]}"
                 >
                     <field
                         name="family_history_count"

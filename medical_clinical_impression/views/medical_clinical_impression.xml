@@ -42,6 +42,7 @@
                             name="action_view_family_history"
                             class="oe_stat_button"
                             icon="fa-history"
+                            attrs="{'invisible':[('family_history_count', '=', 0)]}"
                         >
                             <field
                                 name="family_history_count"
