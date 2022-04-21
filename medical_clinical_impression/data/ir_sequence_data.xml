@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2018 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="seq_medical_clinical_impression" model="ir.sequence">
+        <field name="name">Clinical Impression sequence</field>
+        <field name="code">medical.clinical.impression</field>
+        <field name="prefix">MCI</field>
+        <field name="padding">7</field>
+    </record>
+    <record id="seq_medical_family_member_history" model="ir.sequence">
+        <field name="name">Medical Family member History sequence</field>
+        <field name="code">medical.family.member.history</field>
+        <field name="prefix">FMH</field>
+        <field name="padding">7</field>
+    </record>
+</odoo>
