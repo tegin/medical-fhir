@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2017 Creu Blanca
+    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="medical_clinical_finding_view_tree" model="ir.ui.view">
+        <field name="name">medical.clinical.finding.view.tree</field>
+        <field name="model">medical.clinical.finding</field>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_condition.medical_clinical_finding_view_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="create_warning" position="after">
+                <field name="create_condition_from_clinical_impression" />
+            </field>
+        </field>
+    </record>
+    <record id="medical_clinical_finding_view_form" model="ir.ui.view">
+        <field name="name">medical.clinical.finding.view.form</field>
+        <field name="model">medical.clinical.finding</field>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_condition.medical_clinical_finding_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="create_warning" position="after">
+                <field name="create_condition_from_clinical_impression" />
+            </field>
+        </field>
+    </record>
+</odoo>
