@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_clinical_impression_form_view">
+        <field
+            name="name"
+        >medical.clinical.impression.form (in medical_clinical_impression)</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="arch" type="xml">
+            <form string="Clinical Impression">
+                <header>
+                    <field name="state" widget="statusbar" nolabel="1" />
+                    <button
+                        name="validate_clinical_impression"
+                        string="Validate Impression"
+                        class="btn-success"
+                        confirm="Are you sure you want to validate this impression?"
+                        type="object"
+                        attrs="{'invisible':[('is_editable', '=', False)]}"
+                    />
+                    <button
+                        name="cancel_clinical_impression"
+                        string="Cancel Impression"
+                        class="btn-danger"
+                        confirm="Are you sure you want to cancel this impression?"
+                        type="object"
+                        states="in_progress,completed"
+                    />
+                    <button
+                        name="action_create_familiar_history"
+                        string="Create Familiar History"
+                        class="btn-info"
+                        type="object"
+                        states="in_progress,completed"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            type="object"
+                            name="action_view_family_history"
+                            class="oe_stat_button"
+                            icon="fa-history"
+                            attrs="{'invisible':[('family_history_count', '=', 0)]}"
+                        >
+                            <field
+                                name="family_history_count"
+                                widget="statinfo"
+                                string="Family History"
+                            />
+                            <field name="family_history_ids" invisible="1" />
+                        </button>
+                    </div>
+                    <widget
+                        name="web_ribbon"
+                        text="Cancelled"
+                        bg_color="bg-danger"
+                        attrs="{'invisible':[('state', '!=', 'cancelled')]}"
+                    />
+                    <widget
+                        name="web_ribbon"
+                        text="Completed"
+                        bg_color="bg-success"
+                        attrs="{'invisible':[('state', '!=', 'completed')]}"
+                    />
+                    <div class="row">
+                        <div class="col-4">
+                            <h3>
+                                <field name="internal_identifier" readonly="1" />
+                            </h3>
+                            <h1>
+                                <field
+                                    name="patient_id"
+                                    readonly="1"
+                                    options="{'no_create': True, 'no_open': True}"
+                                />
+                            </h1>
+                        </div>
+                        <field
+                            name="condition_ids"
+                            widget="warning_dropdown"
+                            class="col-7"
+                            context="{'patient_id': patient_id}"
+                            attrs="{'invisible':[('condition_count', '=', 0)]}"
+                        />
+                        <div class="col-1" />
+                        <field name="condition_count" invisible="1" />
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="encounter_id"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                                domain="[('patient_id', '=', patient_id)]"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field
+                                name="specialty_id"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="validation_date"
+                                attrs="{'readonly':[('is_editable', '=', False)],
+                                'invisible':[('validation_user_id', '=', False)]}"
+                            />
+                            <field
+                                name="validation_user_id"
+                                attrs="{'readonly':[('is_editable', '=', False)],
+                                'invisible':[('validation_user_id', '=', False)]}"
+                            />
+                            <field
+                                name="cancellation_date"
+                                attrs="{'readonly':[('is_editable', '=', False)],
+                                'invisible':[('cancellation_user_id', '=', False)]}"
+                            />
+                            <field
+                                name="cancellation_user_id"
+                                attrs="{'readonly':[('is_editable', '=', False)],
+                                'invisible':[('cancellation_user_id', '=', False)]}"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="is_editable" invisible="1" />
+                        <field
+                            name="description"
+                            attrs="{'readonly':[('is_editable', '=', False)]}"
+                        />
+                    </group>
+                    <notebook>
+                        <page string="Summary">
+                            <field
+                                name="summary"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                            />
+                        </page>
+                        <page string="Findings">
+                            <field
+                                name="finding_ids"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Allergies">
+                            <field
+                                name="allergy_substance_ids"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Private Notes">
+                            <field
+                                name="note"
+                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_clinical_impression_tree_view">
+        <field
+            name="name"
+        >medical.clinical.impression.tree (in medical_clinical_impression)</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="arch" type="xml">
+            <tree
+                string="Clinical Impressions"
+                decoration-warning="state == 'in_progress'"
+                decoration-muted="state == 'cancelled'"
+            >
+                <field name="specialty_id" />
+                <field name="encounter_id" />
+                <field name="patient_id" />
+                <field name="description" />
+                <field name="summary" />
+                <field name="validation_date" />
+                <field name="validation_user_id" />
+                <field name="state" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_clinical_impression_search_view">
+        <field
+            name="name"
+        >medical.clinical.impression.search (in medical_clinical_impression)</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="specialty_id" />
+                <field name="encounter_id" />
+                <field name="validation_user_id" />
+                <filter name="Specialty" context="{'group_by': 'specialty_id'}" />
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="medical_clinical_impression_act_window">
+        <field name="name">Medical Clinical Impression</field>
+        <field name="res_model">medical.clinical.impression</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

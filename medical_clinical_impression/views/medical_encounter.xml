@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Clinical Impressions -->
+    <record model="ir.ui.view" id="medical_encounter_view_form">
+        <field name="name">medical.encounter.form</field>
+        <field name="model">medical.encounter</field>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_condition.medical_encounter_view_form"
+        />
+        <field name="arch" type="xml">
+            <button name="create_allergy" position="after">
+                <button
+                    name="create_family_member_history"
+                    string=" Create Familiar History"
+                    class="btn-info"
+                    type="object"
+                    icon="fa-history"
+                />
+            </button>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_family_history"
+                    class="oe_stat_button"
+                    icon="fa-history"
+                    attrs="{'invisible':[('family_history_count', '=', 0)]}"
+                >
+                    <field
+                        name="family_history_count"
+                        widget="statinfo"
+                        string="Family History"
+                    />
+                    <field name="family_history_ids" invisible="1" />
+                </button>
+            </xpath>
+            <page name="first" position="after">
+                <page name="impression_ids" string="Impressions">
+                    <div>
+                        <button
+                            type="action"
+                            name="%(medical_clinical_impression.create_impression_from_encounter_act_window)s"
+                            class="oe_stat_button btn-primary"
+                            string="Create Impression"
+                        />
+                        <button
+                            type="object"
+                            name="action_view_clinical_impressions"
+                            class="oe_stat_button btn-secondary"
+                            icon="fa-stethoscope"
+                            string="View all impressions"
+                        >
+                        </button>
+                    </div>
+                    <br />
+                    <field
+                        name="impression_specialty_ids"
+                        context="{'encounter_id': active_id}"
+                    >
+                        <tree>
+                            <field name="name" />
+                            <button
+                                name="get_speciality_impression"
+                                icon="fa-stethoscope"
+                                type="object"
+                                class="oe_link"
+                            />
+                        </tree>
+                        <form options="{'no_open':True}" />
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

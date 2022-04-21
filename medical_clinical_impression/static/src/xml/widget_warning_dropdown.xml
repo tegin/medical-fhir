@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="WarningDropdown">
+        <div class="o_conditions_view">
+            <div class="row">
+                <div class="col-1" />
+                <div class="col-10">
+                    <span class="fas fa-exclamation-triangle text-danger" />
+                    <span class="o_warning_title_text">Warnings</span>
+                    <span class="fas fa-exclamation-triangle text-danger" />
+                </div>
+                <div class="col-1 o_expand_icon" />
+            </div>
+            <div class="o_warning_conditions" />
+        </div>
+    </t>
+    <t t-name="WarningDropdownFields">
+        <div t-foreach="conditions" t-as="condition">
+            <span
+                t-esc="condition['name']"
+                t-if="all_data or condition['create_warning']"
+                t-att-class="condition['create_warning']? 'text-danger' : ''"
+            />
+        </div>
+    </t>
+    <t t-name="ExpandIcon">
+        <t t-if="all_data">
+            <a
+                class="fa fa-caret-down toggle_create_warning "
+                style="font-size:18px;"
+            />
+        </t>
+        <t t-else="">
+            <a class="fa fa-caret-up toggle_create_warning" style="font-size:18px;" />
+        </t>
+    </t>
+</templates>
