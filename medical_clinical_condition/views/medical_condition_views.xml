@@ -9,10 +9,9 @@
         <field name="name">medical.condition.view.tree</field>
         <field name="model">medical.condition</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="false">
                 <field name="internal_identifier" />
-                <field name="category_code" />
-                <field name="clinical_finding_id" />
+                <field name="name" />
             </tree>
         </field>
     </record>
@@ -20,38 +19,58 @@
         <field name="name">medical.condition.view.form</field>
         <field name="model">medical.condition</field>
         <field name="arch" type="xml">
-            <form string="Condition">
+            <form string="Condition" create="false">
                 <header />
                 <sheet>
-                    <div name="button_box" class="oe_button_box">
-                        <button
-                            name="toggle_active"
-                            type="object"
-                            confirm="Are you sure you want to archive/unarchive this element?"
-                            class="oe_stat_button"
-                            icon="fa-archive"
-                        >
-                            <field
-                                name="active"
-                                widget="boolean_button"
-                                options='{"terminology": "archive"}'
-                            />
-                        </button>
-                    </div>
+                    <div name="button_box" class="oe_button_box" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <h2>
                         <field name="internal_identifier" readonly="1" />
                     </h2>
-                    <group name="details" cols="4">
+                    <group name="details">
                         <group>
                             <field name="patient_id" readonly="1" />
-                            <field name="clinical_finding_id" />
+                            <field name="is_allergy" invisible="1" />
+                            <field name="create_warning" invisible="1" />
+                            <field
+                                name="clinical_finding_id"
+                                attrs="{'required': [('is_allergy', '=', False)],
+                                   'invisible': [('is_allergy', '=', True)]}"
+                            />
+                            <field
+                                name="allergy_id"
+                                attrs="{'invisible': [('is_allergy', '=', False)],
+                                   'required': [('is_allergy', '=', True)]}"
+                            />
                         </group>
                         <group>
-                            <field name="category_code" />
+                            <field
+                                name="criticality"
+                                attrs="{'invisible': [('is_allergy', '=', False)]}"
+                            />
+                            <field
+                                name="last_occurrence_date"
+                                attrs="{'invisible': [('is_allergy', '=', False)]}"
+                            />
+                            <field name="active" invisible="1" />
                         </group>
                     </group>
-                    <notebook invisible="1" />
+                    <notebook>
+                        <page name="notes" string="Comments">
+                            <field name="notes" />
+                        </page>
+                    </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
             </form>
         </field>
     </record>
@@ -59,7 +78,20 @@
         <field name="name">Clinical Conditions</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.condition</field>
-        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.actions.act_window" id="medical_allergy_action">
+        <field name="name">Allergies</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.condition</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.actions.act_window" id="medical_warning_action">
+        <field name="name">Warnings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.condition</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
     </record>
