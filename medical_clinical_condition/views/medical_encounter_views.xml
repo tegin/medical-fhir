@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!--
-    Copyright 2017 Creu Blanca
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
--->
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.ui.view" id="medical_patient_form">
-        <field name="name">medical.patient.form</field>
-        <field name="model">medical.patient</field>
-        <field name="inherit_id" ref="medical_administration.medical_patient_form" />
+    <record model="ir.ui.view" id="medical_encounter_view_form">
+        <field name="name">medical.encounter.form</field>
+        <field name="model">medical.encounter</field>
+        <field
+            name="inherit_id"
+            ref="medical_administration_encounter.medical_encounter_view_form"
+        />
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button
