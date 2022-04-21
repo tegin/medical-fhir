@@ -14,11 +14,9 @@
                 <field name="relationship" />
                 <field name="family_member_name" />
                 <field name="sex" />
-                <field name="born_date" />
                 <field name="age" />
                 <field name="note" />
                 <field name="deceased" />
-                <field name="deceased_date" />
                 <field name="deceased_age" />
                 <field name="unable_to_obtain" />
             </tree>
@@ -56,15 +54,10 @@
                             <field name="sex" />
                         </group>
                         <group attrs="{'invisible': [('unable_to_obtain', '=', True)]}">
-                            <field name="born_date" />
                             <field name="age" />
                         </group>
                         <group attrs="{'invisible': [('unable_to_obtain', '=', True)]}">
                             <field name="deceased" />
-                            <field
-                                name="deceased_date"
-                                attrs="{'invisible':[('deceased', '=', False)]}"
-                            />
                             <field
                                 name="deceased_age"
                                 attrs="{'invisible':[('deceased', '=', False)]}"

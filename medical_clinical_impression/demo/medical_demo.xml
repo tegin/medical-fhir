@@ -5,80 +5,75 @@
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
-    <record id="sct_ibuprofen" model="medical.sct.concept">
-        <field name="name">Ibuprofen</field>
-        <field name="code">387207008</field>
-        <field name="is_pharmaceutical_product" eval="True" />
-    </record>
-    <record id="sct_pollen" model="medical.sct.concept">
-        <field name="name">Pollen</field>
-        <field name="code">256259004</field>
-        <field name="is_clinical_substance" eval="True" />
-    </record>
-    <record id="sct_pregnant" model="medical.sct.concept">
-        <field name="name">Pregnant</field>
-        <field name="code">77386006</field>
-        <field name="is_clinical_finding" eval="True" />
-    </record>
     <record id="sct_eye_infection" model="medical.sct.concept">
         <field name="name">Eye Infection</field>
         <field name="code">128351009</field>
         <field name="is_clinical_finding" eval="True" />
     </record>
-    <record id="allergy_substance_ibuprofen" model="medical.allergy.substance">
-        <field name="name">Ibuprofen</field>
-        <field name="description">Ibuprofen</field>
-        <field name="sct_code_id" ref="medical_clinical_condition.sct_ibuprofen" />
-        <field name="create_warning" eval="True" />
-    </record>
-    <record id="allergy_substance_pollen" model="medical.allergy.substance">
-        <field name="name">Pollen</field>
-        <field name="description">Pollen</field>
-        <field name="sct_code_id" ref="medical_clinical_condition.sct_pollen" />
-        <field name="create_warning" eval="False" />
-    </record>
-    <record id="finding_pregnant" model="medical.clinical.finding">
-        <field name="name">Pregnant</field>
-        <field name="description">Pregnant</field>
-        <field name="sct_code_id" ref="medical_clinical_condition.sct_pregnant" />
-        <field name="create_warning" eval="True" />
-    </record>
     <record id="finding_eye_infection" model="medical.clinical.finding">
         <field name="name">Eye Infection</field>
         <field name="description">Eye Infection</field>
-        <field name="sct_code_id" ref="medical_clinical_condition.sct_eye_infection" />
+        <field name="sct_code_id" ref="medical_clinical_impression.sct_eye_infection" />
         <field name="create_warning" eval="False" />
     </record>
-    <record id="patient_01_pregnant" model="medical.condition">
+    <record
+        id="medical_clinical_condition.finding_pregnant"
+        model="medical.clinical.finding"
+    >
+        <field name="create_condition_from_clinical_impression" eval="True" />
+    </record>
+    <record
+        id="medical_clinical_condition.finding_knee_joint_prosthesis_present"
+        model="medical.clinical.finding"
+    >
+        <field name="create_condition_from_clinical_impression" eval="True" />
+    </record>
+    <record id="specialty_cardiology" model="medical.specialty">
+        <field name="name">Cardiology</field>
+        <field name="description">Cardiology</field>
+    </record>
+    <record id="specialty_gynecology" model="medical.specialty">
+        <field name="name">Gynecology</field>
+        <field name="description">Gynecology</field>
+    </record>
+    <record id="encounter_01_patient_01" model="medical.encounter">
+        <field name="patient_id" ref="medical_administration.patient_01" />
+    </record>
+    <record id="impression_01_patient_01" model="medical.clinical.impression">
+        <field name="state">completed</field>
+        <field
+            name="specialty_id"
+            ref="medical_clinical_impression.specialty_gynecology"
+        />
         <field name="patient_id" ref="medical_administration.patient_01" />
         <field
-            name="clinical_finding_id"
-            ref="medical_clinical_condition.finding_pregnant"
+            name="encounter_id"
+            ref="medical_clinical_impression.encounter_01_patient_01"
+        />
+        <field name="validation_date" eval="datetime.now()" />
+        <field name="validation_user_id" ref="base.user_demo" />
+        <field
+            name="description"
+        >Patient comes saying that she did not have her last period. She has obtained a positive result in the pregnancy test.</field>
+        <field
+            name="summary"
+        >An abdominal echography is performed and confirms pregnancy.</field>
+        <field
+            name="finding_ids"
+            eval="[(6, 0, [ref('medical_clinical_condition.finding_pregnant')])]"
+        />
+        <field
+            name="allergy_substance_ids"
+            eval="[(6, 0, [ref('medical_clinical_condition.allergy_substance_ibuprofen')])]"
         />
     </record>
-    <record id="patient_01_eye_infection" model="medical.condition">
+    <record id="familiar_history_01_patient_01" model="medical.family.member.history">
         <field name="patient_id" ref="medical_administration.patient_01" />
-        <field
-            name="clinical_finding_id"
-            ref="medical_clinical_condition.finding_eye_infection"
-        />
-    </record>
-    <record id="patient_01_ibuprofen_allergy" model="medical.condition">
-        <field name="patient_id" ref="medical_administration.patient_01" />
-        <field name="is_allergy" eval="True" />
-        <field name="criticality">high</field>
-        <field
-            name="allergy_id"
-            ref="medical_clinical_condition.allergy_substance_ibuprofen"
-        />
-    </record>
-    <record id="patient_01_ibuprofen_pollen" model="medical.condition">
-        <field name="patient_id" ref="medical_administration.patient_01" />
-        <field name="is_allergy" eval="True" />
-        <field name="criticality">low</field>
-        <field
-            name="allergy_id"
-            ref="medical_clinical_condition.allergy_substance_pollen"
-        />
+        <field name="family_member_name">Maria</field>
+        <field name="relationship">Mother</field>
+        <field name="sex">female</field>
+        <field name="deceased" eval="True" />
+        <field name="deceased_age">62</field>
+        <field name="note">Died because of a breast cancer</field>
     </record>
 </odoo>

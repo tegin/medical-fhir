@@ -30,5 +30,5 @@
         "reports/medical_impression_report.xml",
     ],
     "qweb": ["static/src/xml/widget_warning_dropdown.xml"],
-    "demo": [],
+    "demo": ["demo/medical_demo.xml"],
 }

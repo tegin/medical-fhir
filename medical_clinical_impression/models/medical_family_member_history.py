@@ -23,7 +23,7 @@ class MedicalFamilyMemberHistory(models.Model):
     patient_id = fields.Many2one("medical.patient")
     # FHIR: patient
 
-    family_member_name = fields.Char()
+    family_member_name = fields.Char(required=True)
     # FHIR: name
 
     relationship = fields.Char()
@@ -38,16 +38,13 @@ class MedicalFamilyMemberHistory(models.Model):
         ]
     )
 
-    born_date = fields.Char()
+    age = fields.Char(string="Age/Born Date")
+    # FHIR: age. Same as born.
     # FHIR: born
     # It is a char field to be able to put an approximate date, or a date range...
 
-    age = fields.Char()
-    # FHIR: age. Same as born.
-
     deceased = fields.Boolean()
-    deceased_date = fields.Char()
-    deceased_age = fields.Char()
+    deceased_age = fields.Char(string="Deceased Age/Date")
     # FHIR: deceased
 
     note = fields.Text()
