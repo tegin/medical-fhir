@@ -15,7 +15,7 @@
                 <button
                     name="create_family_member_history"
                     string=" Create Familiar History"
-                    class="btn-info"
+                    class="btn-default"
                     type="object"
                     icon="fa-history"
                 />
@@ -51,22 +51,36 @@
                             class="oe_stat_button btn-secondary"
                             icon="fa-stethoscope"
                             string="View all impressions"
+                            context="{'encounter_id': id}"
                         >
                         </button>
                     </div>
                     <br />
                     <field
                         name="impression_specialty_ids"
-                        context="{'encounter_id': active_id}"
+                        context="{'encounter_id': id}"
                     >
-                        <tree>
-                            <field name="name" />
+                        <tree
+                            decoration-warning="impressions_in_progress_count &gt; 0"
+                            default_order="impression_last_update desc"
+                        >
+                            <field name="name" string="Impressions by speciality" />
+                            <field name="impression_last_update" string="Last Update" />
+                            <field
+                                name="encounter_impression_count"
+                                string="Encounter Count"
+                            />
+                            <field
+                                name="patient_impression_count"
+                                string="Patient Count"
+                            />
                             <button
                                 name="get_speciality_impression"
                                 icon="fa-stethoscope"
                                 type="object"
                                 class="oe_link"
                             />
+                            <field name="impressions_in_progress_count" invisible="1" />
                         </tree>
                         <form options="{'no_open':True}" />
                     </field>

@@ -45,6 +45,7 @@ class MedicalEncounter(models.Model):
         action["context"] = {
             "default_encounter_id": self.id,
             "search_default_encounter_id": self.id,
+            "search_default_filter_not_cancelled": True,
         }
         return action
 

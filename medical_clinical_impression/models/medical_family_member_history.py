@@ -23,10 +23,10 @@ class MedicalFamilyMemberHistory(models.Model):
     patient_id = fields.Many2one("medical.patient")
     # FHIR: patient
 
-    family_member_name = fields.Char(required=True)
+    family_member_name = fields.Char()
     # FHIR: name
 
-    relationship = fields.Char()
+    relationship = fields.Char(required=True)
     # FHIR: relationship
 
     sex = fields.Selection(

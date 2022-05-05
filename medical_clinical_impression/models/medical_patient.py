@@ -46,7 +46,10 @@ class MedicalPatient(models.Model):
         ).read()[0]
         action["domain"] = [("patient_id", "=", self.id)]
         if encounter:
-            action["context"] = {"default_encounter_id": encounter.id}
+            action["context"] = {
+                "default_encounter_id": encounter.id,
+                "search_default_filter_not_cancelled": True,
+            }
         return action
 
     def _get_last_encounter(self):

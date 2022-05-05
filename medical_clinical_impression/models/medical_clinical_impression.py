@@ -10,6 +10,7 @@ class MedicalClinicalImpression(models.Model):
     _inherit = ["medical.event", "mail.thread", "mail.activity.mixin"]
     _description = "Medical Clinical Impression"
     _conditions = "condition_ids"
+    _order = "validation_date desc, id"
 
     @api.model
     def _get_states(self):
@@ -92,6 +93,21 @@ class MedicalClinicalImpression(models.Model):
 
     note = fields.Text()
     # FHIR: Note
+
+    current_encounter = fields.Boolean(
+        help="This field is only used to stand out the impressions "
+        "of the current encounter in the tree view",
+        compute="_compute_current_encounter",
+    )
+
+    def _compute_current_encounter(self):
+        for rec in self:
+            current_encounter = False
+            if self.env.context.get("encounter_id"):
+                default_encounter = self.env.context.get("encounter_id")
+                if default_encounter == rec.encounter_id.id:
+                    current_encounter = True
+            rec.current_encounter = current_encounter
 
     @api.depends("patient_id", "patient_id.family_history_ids")
     def _compute_family_history_ids(self):
