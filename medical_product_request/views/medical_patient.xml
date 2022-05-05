@@ -14,18 +14,18 @@
             <xpath expr="//header" position="inside">
                 <button
                     name="create_medical_product_request"
-                    class="oe_stat_button btn-info"
+                    class="oe_stat_button btn-success"
                     string="Create Ext. Prescription"
                     type="object"
-                    context="{'default_category': 'discharge', 'default_patient_id': active_id}"
+                    context="{'default_category': 'discharge', 'default_patient_id': id}"
                     icon="fa-prescription"
                 />
                 <button
                     name="create_medical_product_request"
-                    class="oe_stat_button btn-success"
-                    string="Create Int. Medical Order"
+                    class="oe_stat_button btn-warning"
+                    string=" Create Int. Medical Order"
                     type="object"
-                    context="{'default_category': 'inpatient',  'default_patient_id': active_id}"
+                    context="{'default_category': 'inpatient',  'default_patient_id': id}"
                     icon="fa-pills"
                 />
             </xpath>
