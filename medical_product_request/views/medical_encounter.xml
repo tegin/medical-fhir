@@ -17,7 +17,7 @@
             <xpath expr="//header/button[last()]" position="after">
                 <button
                     name="create_medical_product_request"
-                    class="oe_stat_button btn-info"
+                    class="oe_stat_button btn-success"
                     string=" Create Ext. Prescription"
                     type="object"
                     context="{'default_category': 'discharge'}"
@@ -25,7 +25,7 @@
                 />
                 <button
                     name="create_medical_product_request"
-                    class="oe_stat_button btn-success"
+                    class="oe_stat_button btn-warning"
                     string=" Create Int. Medical Order"
                     type="object"
                     context="{'default_category': 'inpatient'}"
