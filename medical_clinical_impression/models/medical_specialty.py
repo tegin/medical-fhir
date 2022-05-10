@@ -29,6 +29,7 @@ class MedicalSpecialty(models.Model):
         for rec in self:
             patient_count = 0
             encounter_count = 0
+            impressions_in_progress = 0
             patient_id = None
             last_update = False
             if self.env.context.get("patient_id"):
@@ -54,9 +55,11 @@ class MedicalSpecialty(models.Model):
                     )
                 )
                 patient_count = len(patient_impression_ids)
-                last_update = patient_impression_ids.filtered(
+                impressions_completed = patient_impression_ids.filtered(
                     lambda r: r.state == "completed"
-                )[0].validation_date
+                )
+                if impressions_completed:
+                    last_update = impressions_completed[0].validation_date
                 impressions_in_progress = len(
                     patient_impression_ids.filtered(
                         lambda r: r.state == "in_progress"
