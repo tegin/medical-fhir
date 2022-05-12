@@ -11,7 +11,6 @@ class MedicalEncounter(models.Model):
     external_request_ids = fields.One2many(
         comodel_name="medical.procedure.external.request",
         inverse_name="encounter_id",
-        domain=[("state", "!=", "cancelled")],
     )
 
     external_request_count = fields.Integer(
@@ -21,7 +20,11 @@ class MedicalEncounter(models.Model):
     @api.depends("external_request_ids")
     def _compute_external_request_count(self):
         for record in self:
-            record.external_request_count = len(record.external_request_ids)
+            record.external_request_count = len(
+                record.external_request_ids.filtered(
+                    lambda r: r.state != "cancelled"
+                )
+            )
 
     def action_view_external_request(self):
         self.ensure_one()
