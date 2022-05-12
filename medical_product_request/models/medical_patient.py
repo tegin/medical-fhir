@@ -12,7 +12,7 @@ class MedicalPatient(models.Model):
 
     external_product_request_order_ids = fields.One2many(
         comodel_name="medical.product.request.order",
-        domain=[("state", "!=", "cancelled"), ("category", "=", "discharge")],
+        domain=[("category", "=", "discharge")],
         inverse_name="patient_id",
     )
 
@@ -22,7 +22,7 @@ class MedicalPatient(models.Model):
 
     internal_product_request_order_ids = fields.One2many(
         comodel_name="medical.product.request.order",
-        domain=[("state", "!=", "cancelled"), ("category", "=", "inpatient")],
+        domain=[("category", "=", "inpatient")],
         inverse_name="patient_id",
     )
 
@@ -42,7 +42,7 @@ class MedicalPatient(models.Model):
             "category": self.env.context.get("default_category", False),
         }
 
-    def create_medical_product_request(self):
+    def create_medical_product_request_order(self):
         self.ensure_one()
         view_id = self.env.ref(
             "medical_product_request.medical_product_request_order_form_view"
@@ -66,7 +66,9 @@ class MedicalPatient(models.Model):
     def _compute_external_medical_product_request_ids(self):
         for rec in self:
             rec.external_product_request_order_count = len(
-                rec.external_product_request_order_ids
+                rec.external_product_request_order_ids.filtered(
+                    lambda r: r.state != "cancelled"
+                )
             )
 
     def action_view_external_medical_product_request_order_ids(self):
@@ -101,7 +103,9 @@ class MedicalPatient(models.Model):
     def _compute_internal_medical_product_request_ids(self):
         for rec in self:
             rec.internal_product_request_order_count = len(
-                rec.internal_product_request_order_ids
+                rec.internal_product_request_order_ids.filtered(
+                    lambda r: r.state != "cancelled"
+                )
             )
 
     def action_view_internal_medical_product_request_order_ids(self):

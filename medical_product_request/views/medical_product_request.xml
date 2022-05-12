@@ -239,6 +239,7 @@
                 />
                 <field name="requester_id" states="active,completed,cancelled" />
                 <field name="validation_date" states="active,completed,cancelled" />
+                <field name="state" invisible="1" />
             </tree>
         </field>
     </record>
