@@ -21,6 +21,12 @@
                 t-if="all_data or condition['create_warning']"
                 t-att-class="condition['create_warning']? 'text-danger' : ''"
             />
+            <t t-if="all_data or condition['create_warning']">
+                 (<span
+                    t-esc="condition['create_date']"
+                    t-options='{"widget": "date"}'
+                />)
+            </t>
         </div>
     </t>
     <t t-name="ExpandIcon">

@@ -133,10 +133,21 @@
                     </group>
                     <notebook>
                         <page string="Summary">
-                            <field
-                                name="summary"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
-                            />
+                            <group name="summary" string="Summary">
+                                <field
+                                    name="summary"
+                                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                                    nolabel="1"
+                                />
+                            </group>
+                            <group name="note" string="Private Notes">
+                                <field
+                                    name="note"
+                                    string="Private Notes"
+                                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                                    nolabel="1"
+                                />
+                            </group>
                         </page>
                         <page string="Findings">
                             <field
@@ -157,12 +168,6 @@
                                     <field name="name" />
                                 </tree>
                             </field>
-                        </page>
-                        <page string="Private Notes">
-                            <field
-                                name="note"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
-                            />
                         </page>
                     </notebook>
                 </sheet>

@@ -23,7 +23,7 @@ odoo.define("web.web_widget_warning_dropdown", function (require) {
             this._rpc({
                 model: this.field.relation,
                 method: "read",
-                args: [this.value.res_ids, ["name", "create_warning"]],
+                args: [this.value.res_ids, ["name", "create_warning", "create_date"]],
             }).then(function (data) {
                 self.conditions = data;
                 self._fill_warnings();
