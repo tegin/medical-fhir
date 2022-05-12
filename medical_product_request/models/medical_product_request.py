@@ -44,9 +44,14 @@ class MedicalProductRequest(models.Model):
         "administered or consumed in an inpatient or acute care setting "
         " 'Discharge' Includes requests for medications created when "
         "the patient is being released from a facility ",
-        related="request_order_id.category",
+        compute="_compute_category_from_request_order_id",
+        store=True,
+        readonly=False,
     )
     # Fhir Concept:Category
+    # Category, patient_id and encounter_id are done with computes
+    # and setting store=True and readonly=False
+    # to be able to create medical.product.requests without an order
 
     validation_date = fields.Datetime(copy=False)
     # Fhir Concept: authoredOn
@@ -65,10 +70,20 @@ class MedicalProductRequest(models.Model):
         compute="_compute_medical_product_id"
     )
 
-    patient_id = fields.Many2one(related="request_order_id.patient_id")
+    patient_id = fields.Many2one(
+        comodel_name="medical.patient",
+        compute="_compute_patient_id_from_request_order_id",
+        store=True,
+        readonly=False,
+    )
     # Fhir Concept: Subject
 
-    encounter_id = fields.Many2one(related="request_order_id.encounter_id")
+    encounter_id = fields.Many2one(
+        comodel_name="medical.encounter",
+        compute="_compute_encounter_id_from_request_order_id",
+        store=True,
+        readonly=False,
+    )
     # Fhir Concept: Encounter
 
     requester_id = fields.Many2one(comodel_name="res.users", copy=False)
@@ -109,7 +124,7 @@ class MedicalProductRequest(models.Model):
     )
 
     cancel_date = fields.Datetime()
-    cancel_user_id = fields.Many2one(comodel_name="res.users")
+    cancel_user_id = fields.Many2one(comodel_name="res.users", copy=False)
 
     can_administrate = fields.Boolean(
         help="Field depending on state used for view and security purposes",
@@ -117,6 +132,36 @@ class MedicalProductRequest(models.Model):
     )
 
     observations = fields.Text()
+
+    @api.depends("request_order_id", "medical_product_template_id")
+    def _compute_patient_id_from_request_order_id(self):
+        for rec in self:
+            if rec.request_order_id:
+                rec.patient_id = rec.request_order_id.patient_id
+            elif self.env.context.get("default_patient_id"):
+                rec.patient_id = self.env.context.get("default_patient_id")
+            else:
+                rec.patient_id = False
+
+    @api.depends("request_order_id", "medical_product_template_id")
+    def _compute_encounter_id_from_request_order_id(self):
+        for rec in self:
+            if rec.request_order_id:
+                rec.encounter_id = rec.request_order_id.encounter_id
+            elif rec.patient_id:
+                rec.encounter_id = rec.patient_id._get_last_encounter()
+            else:
+                rec.encounter_id = False
+
+    @api.depends("request_order_id", "medical_product_template_id")
+    def _compute_category_from_request_order_id(self):
+        for rec in self:
+            if rec.request_order_id:
+                rec.category = rec.request_order_id.category
+            elif self.env.context.get("default_category"):
+                rec.category = self.env.context.get("default_category")
+            else:
+                rec.category = False
 
     def _get_internal_identifier(self, vals):
         return (
@@ -273,7 +318,7 @@ class MedicalProductRequest(models.Model):
         else:
             raise ValidationError(
                 _(
-                    "You cant not cancel a medical product request"
+                    "You cant not cancel a medical product request "
                     "that has administrations completed"
                 )
             )

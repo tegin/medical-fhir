@@ -13,7 +13,7 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button
-                    name="create_medical_product_request"
+                    name="create_medical_product_request_order"
                     class="oe_stat_button btn-success"
                     string="Create Ext. Prescription"
                     type="object"
@@ -21,7 +21,7 @@
                     icon="fa-prescription"
                 />
                 <button
-                    name="create_medical_product_request"
+                    name="create_medical_product_request_order"
                     class="oe_stat_button btn-warning"
                     string=" Create Int. Medical Order"
                     type="object"
