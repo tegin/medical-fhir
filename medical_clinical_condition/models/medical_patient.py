@@ -87,14 +87,23 @@ class MedicalPatient(models.Model):
         ]
         return result
 
+    def _get_allergy_values(self):
+        return {"is_allergy": True, "patient_id": self.id}
+
+    # All the "crate" actions are returning an ir.actions.act.window
+    # This way, if the button "discard" is clicked, the record is not saved.
+    # If not, we would have a lot of records created
+    # when the button is clicked by mistake.
+    # All needed values are passed by "default".
     def create_allergy(self):
         self.ensure_one()
         view_id = self.env.ref(
             "medical_clinical_condition.medical_condition_view_form"
         ).id
         ctx = dict(self._context)
-        ctx["default_is_allergy"] = True
-        ctx["default_patient_id"] = self.id
+        vals = self._get_allergy_values()
+        for key in vals:
+            ctx["default_%s" % key] = vals[key]
         return {
             "type": "ir.actions.act_window",
             "res_model": "medical.condition",
@@ -106,13 +115,18 @@ class MedicalPatient(models.Model):
             "context": ctx,
         }
 
+    def _get_medical_clinical_condition_values(self):
+        return {"patient_id": self.id}
+
     def create_medical_clinical_condition(self):
         self.ensure_one()
         view_id = self.env.ref(
             "medical_clinical_condition.medical_condition_view_form"
         ).id
         ctx = dict(self._context)
-        ctx["default_patient_id"] = self.id
+        vals = self._get_medical_clinical_condition_values()
+        for key in vals:
+            ctx["default_%s" % key] = vals[key]
         return {
             "type": "ir.actions.act_window",
             "res_model": "medical.condition",

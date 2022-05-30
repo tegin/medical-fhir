@@ -408,6 +408,11 @@ direct or indirect impact on the patient’s health:</p>
 <li>Patient has had coronary bypass graft</li>
 </ul>
 <p>For further information about FHIR Condition visit: <a class="reference external" href="https://www.hl7.org/fhir/condition.html">https://www.hl7.org/fhir/condition.html</a></p>
+<p>TODO:</p>
+<ul class="simple">
+<li>Decide if field medical_condition_ids should contain allergies or not. On one said, allergies are medical.condition records. On the other hand, the information is repeated and can cause confusion as the conditions can be seen from the “Condition” button and the “Allergies” button.</li>
+<li>If finally medical_condition_ids do not contain allergies, the warning_dropdowm from medical_clinical_impression should be modified, as it is computed with the medical_condition_ids.</li>
+</ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -432,10 +437,15 @@ direct or indirect impact on the patient’s health:</p>
 <ol class="arabic simple">
 <li>Go to ‘Medical / Terminologies / Clinical Finding Codes’</li>
 <li>Click ‘Create’.</li>
-<li>Provide a name and (if desired) a description and a Sct Code.</li>
+<li>Provide a name and (if desired) a description and a Sct Code. You can also select if this finding should create a warning.</li>
 <li>Click ‘Save’.</li>
-<li>Go to ‘Medical / Administration / Patients’</li>
-<li>Select a patient and create a condition or an allergy.</li>
+<li>Go to ‘Medical / Terminologies / Allergy Substance Codes’</li>
+<li>Click ‘Create’.</li>
+<li>Provide a name and (if desired) a description and a Sct Code. You can also select if this substance should create a warning.</li>
+<li>Click ‘Save’.</li>
+<li>Go to ‘Medical / Administration / Patients’ or to ‘Medical / Administration / Encounters’</li>
+<li>Select a patient/encounter and create a condition or an allergy.</li>
+<li>You can view conditions, allergies and warnings from encounter or patient through smart buttons.</li>
 </ol>
 <a class="reference external image-reference" href="https://runbot.odoo-community.org/runbot/159/11.0"><img alt="Try me on Runbot" src="https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas" /></a>
 </div>

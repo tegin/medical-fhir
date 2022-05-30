@@ -52,7 +52,3 @@ class MedicalEncounter(models.Model):
     def create_allergy(self):
         self.ensure_one()
         return self.patient_id.create_allergy()
-
-    def create_family_member_history(self):
-        self.ensure_one()
-        return self.patient_id.create_family_member_history()
