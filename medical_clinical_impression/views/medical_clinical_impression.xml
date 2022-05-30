@@ -219,6 +219,11 @@
                     string="Not cancelled"
                     domain="[('state', '!=', 'cancelled')]"
                 />
+                <filter
+                    name="filter_cancelled"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                />
             </search>
         </field>
     </record>
