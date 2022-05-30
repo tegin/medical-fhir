@@ -64,6 +64,12 @@ direct or indirect impact on the patient’s health:
 
 For further information about FHIR Condition visit: https://www.hl7.org/fhir/condition.html
 
+
+TODO:
+
+* Decide if field medical_condition_ids should contain allergies or not. On one said, allergies are medical.condition records. On the other hand, the information is repeated and can cause confusion as the conditions can be seen from the "Condition" button and the "Allergies" button.
+* If finally medical_condition_ids do not contain allergies, the warning_dropdowm from medical_clinical_impression should be modified, as it is computed with the medical_condition_ids.
+
 **Table of contents**
 
 .. contents::
@@ -80,10 +86,15 @@ Usage
 
 #. Go to 'Medical / Terminologies / Clinical Finding Codes'
 #. Click 'Create'.
-#. Provide a name and (if desired) a description and a Sct Code.
+#. Provide a name and (if desired) a description and a Sct Code. You can also select if this finding should create a warning.
 #. Click 'Save'.
-#. Go to 'Medical / Administration / Patients'
-#. Select a patient and create a condition or an allergy.
+#. Go to 'Medical / Terminologies / Allergy Substance Codes'
+#. Click 'Create'.
+#. Provide a name and (if desired) a description and a Sct Code. You can also select if this substance should create a warning.
+#. Click 'Save'.
+#. Go to 'Medical / Administration / Patients' or to 'Medical / Administration / Encounters'
+#. Select a patient/encounter and create a condition or an allergy.
+#. You can view conditions, allergies and warnings from encounter or patient through smart buttons.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

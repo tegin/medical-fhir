@@ -42,3 +42,9 @@ direct or indirect impact on the patient’s health:
 * Patient has had coronary bypass graft
 
 For further information about FHIR Condition visit: https://www.hl7.org/fhir/condition.html
+
+
+TODO:
+
+* Decide if field medical_condition_ids should contain allergies or not. On one said, allergies are medical.condition records. On the other hand, the information is repeated and can cause confusion as the conditions can be seen from the "Condition" button and the "Allergies" button.
+* If finally medical_condition_ids do not contain allergies, the warning_dropdowm from medical_clinical_impression should be modified, as it is computed with the medical_condition_ids.
