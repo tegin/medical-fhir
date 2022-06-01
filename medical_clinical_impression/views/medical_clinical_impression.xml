@@ -27,31 +27,9 @@
                         type="object"
                         states="in_progress,completed"
                     />
-                    <button
-                        name="action_create_familiar_history"
-                        string="Create Familiar History"
-                        class="btn-info"
-                        type="object"
-                        states="in_progress,completed"
-                    />
                 </header>
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button
-                            type="object"
-                            name="action_view_family_history"
-                            class="oe_stat_button"
-                            icon="fa-history"
-                            attrs="{'invisible':[('family_history_count', '=', 0)]}"
-                        >
-                            <field
-                                name="family_history_count"
-                                widget="statinfo"
-                                string="Family History"
-                            />
-                            <field name="family_history_ids" invisible="1" />
-                        </button>
-                    </div>
+                    <div class="oe_button_box" name="button_box" />
                     <widget
                         name="web_ribbon"
                         text="Cancelled"

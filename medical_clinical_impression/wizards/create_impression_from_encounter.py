@@ -14,6 +14,10 @@ class CreateImpressionFromEncounter(models.TransientModel):
     patient_id = fields.Many2one(
         "medical.patient", required=True, related="encounter_id.patient_id"
     )
+    # The field patient_id is used for the domain of the encounter_id.
+    # This way, even if coming from the view encounter, the default encounter
+    # is the current but can be changed.
+
     specialty_id = fields.Many2one("medical.specialty", required=True)
     encounter_id = fields.Many2one(
         "medical.encounter",
@@ -39,6 +43,6 @@ class CreateImpressionFromEncounter(models.TransientModel):
         return action
 
     @api.onchange("encounter_id")
-    def check_encounter_date(self):
+    def _onchange_encounter_date(self):
         if datetime.now() - self.encounter_id.create_date >= timedelta(days=7):
             self.show_encounter_warning = True

@@ -12,6 +12,7 @@ class CreateImpressionFromPatient(models.TransientModel):
     _description = "Create Impression From Patient"
 
     patient_id = fields.Many2one("medical.patient", required=True)
+
     specialty_id = fields.Many2one("medical.specialty", required=True)
     encounter_id = fields.Many2one(
         "medical.encounter",
@@ -42,9 +43,6 @@ class CreateImpressionFromPatient(models.TransientModel):
         self.encounter_id = self.patient_id._get_last_encounter()
 
     @api.onchange("encounter_id")
-    def check_encounter_date(self):
-        if datetime.now() - self.encounter_id.create_date >= timedelta(days=1):
+    def _onchange_encounter_date(self):
+        if datetime.now() - self.encounter_id.create_date >= timedelta(days=7):
             self.show_encounter_warning = True
-
-        # TODO: change to 7 days
-        # TODO: make a method to filter reports

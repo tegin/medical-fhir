@@ -17,8 +17,6 @@ class MedicalPatient(models.Model):
         "medical.specialty", compute="_compute_impression_specialties"
     )
 
-    # TODO: can we add counter on impression_speciality_ids?
-
     family_history_ids = fields.One2many(
         "medical.family.member.history", inverse_name="patient_id"
     )
@@ -27,6 +25,7 @@ class MedicalPatient(models.Model):
         compute="_compute_family_history_count"
     )
 
+    @api.depends("family_history_ids")
     def _compute_family_history_count(self):
         self.family_history_count = len(self.family_history_ids)
 

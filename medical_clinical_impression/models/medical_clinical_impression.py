@@ -1,7 +1,7 @@
 # Copyright 2021 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class MedicalClinicalImpression(models.Model):
@@ -11,6 +11,7 @@ class MedicalClinicalImpression(models.Model):
     _description = "Medical Clinical Impression"
     _conditions = "condition_ids"
     _order = "validation_date desc, id"
+    _rec_name = "internal_identifier"
 
     @api.model
     def _get_states(self):
@@ -20,21 +21,11 @@ class MedicalClinicalImpression(models.Model):
             ("cancelled", "Cancelled"),
         ]
 
-    name = fields.Char(compute="_compute_clinical_impression_name", copy=False)
-
     state = fields.Selection(default="in_progress", states={}, required=False)
     #   FHIR: status
 
-    @api.model
-    def _get_impression_specialty_id(self):
-        if self.create_uid.partner_id.specialty_ids:
-            return self.create_uid.partner_id.specialty_ids[0].name
-        else:
-            return False
-
     specialty_id = fields.Many2one(
         "medical.specialty",
-        default=_get_impression_specialty_id,
         required=True,
     )
     # FHIR code: type of clinical assessment performed.
@@ -63,7 +54,8 @@ class MedicalClinicalImpression(models.Model):
     cancellation_user_id = fields.Many2one(
         "res.users", string="Cancelled by", readonly=True, copy=False
     )
-
+    finding_ids = fields.Many2many(comodel_name="medical.clinical.finding")
+    # FHIR: finding
     allergy_substance_ids = fields.Many2many(
         comodel_name="medical.allergy.substance",
     )
@@ -77,20 +69,8 @@ class MedicalClinicalImpression(models.Model):
         related="patient_id.medical_condition_count"
     )
 
-    family_history_ids = fields.Many2many(
-        "medical.family.member.history", compute="_compute_family_history_ids"
-    )
-
-    family_history_count = fields.Integer(
-        compute="_compute_family_history_count"
-    )
-
     summary = fields.Text()
     # FHIR: summary
-
-    finding_ids = fields.Many2many(comodel_name="medical.clinical.finding")
-    # FHIR: finding
-
     note = fields.Text()
     # FHIR: Note
 
@@ -100,6 +80,14 @@ class MedicalClinicalImpression(models.Model):
         compute="_compute_current_encounter",
     )
 
+    @api.model
+    def _get_internal_identifier(self, vals):
+        return (
+            self.env["ir.sequence"].next_by_code("medical.clinical.impression")
+            or "/"
+        )
+
+    @api.depends("encounter_id")
     def _compute_current_encounter(self):
         for rec in self:
             current_encounter = False
@@ -109,22 +97,10 @@ class MedicalClinicalImpression(models.Model):
                     current_encounter = True
             rec.current_encounter = current_encounter
 
-    @api.depends("patient_id", "patient_id.family_history_ids")
-    def _compute_family_history_ids(self):
-        self.family_history_ids = self.patient_id.family_history_ids
-
-    @api.model
-    def _get_internal_identifier(self, vals):
-        return (
-            self.env["ir.sequence"].next_by_code("medical.clinical.impression")
-            or "/"
-        )
-
-    def _compute_clinical_impression_name(self):
+    @api.depends("state")
+    def _compute_is_editable(self):
         for rec in self:
-            rec.name = _(
-                "{} {}".format(rec.patient_id.name, rec.validation_date)
-            )
+            rec.is_editable = rec._is_editable()
 
     def _create_conditions_from_findings(self):
         finding_ids = self.finding_ids.filtered(
@@ -173,11 +149,6 @@ class MedicalClinicalImpression(models.Model):
         self._create_conditions_from_findings()
         self._create_allergies_from_findings()
 
-    @api.depends("state")
-    def _compute_is_editable(self):
-        for rec in self:
-            rec.is_editable = rec._is_editable()
-
     def _is_editable(self):
         return self.state in ("in_progress",)
 
@@ -198,27 +169,3 @@ class MedicalClinicalImpression(models.Model):
         self.ensure_one()
         self._cancel_related_conditions()
         self.write(self._cancel_clinical_impression_fields())
-
-    def action_create_familiar_history(self):
-        self.ensure_one()
-        familiar_history = self.env["medical.family.member.history"].create(
-            {"patient_id": self.patient_id.id}
-        )
-        return familiar_history.get_formview_action()
-
-    def action_view_family_history(self):
-        self.ensure_one()
-        action = self.env.ref(
-            "medical_clinical_impression."
-            "medical_family_member_history_action"
-        ).read()[0]
-        action["domain"] = [
-            ("patient_id", "=", self.patient_id.id),
-        ]
-
-        action["context"] = {"default_patient_id": self.patient_id.id}
-        return action
-
-    @api.depends("family_history_ids")
-    def _compute_family_history_count(self):
-        self.family_history_count = len(self.family_history_ids)

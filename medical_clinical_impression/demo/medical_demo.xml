@@ -67,7 +67,7 @@
             eval="[(6, 0, [ref('medical_clinical_condition.allergy_substance_ibuprofen')])]"
         />
     </record>
-    <record id="familiar_history_01_patient_01" model="medical.family.member.history">
+    <record id="family_history_01_patient_01" model="medical.family.member.history">
         <field name="patient_id" ref="medical_administration.patient_01" />
         <field name="family_member_name">Maria</field>
         <field name="relationship">Mother</field>

@@ -14,7 +14,7 @@
             <button name="create_allergy" position="after">
                 <button
                     name="create_family_member_history"
-                    string=" Create Familiar History"
+                    string=" Create Family History"
                     class="btn-default"
                     type="object"
                     icon="fa-history"
@@ -64,7 +64,7 @@
                             decoration-warning="impressions_in_progress_count &gt; 0"
                             default_order="impression_last_update desc"
                         >
-                            <field name="name" string="Impressions by speciality" />
+                            <field name="name" string="Impressions by specialty" />
                             <field name="impression_last_update" string="Last Update" />
                             <field
                                 name="encounter_impression_count"
@@ -75,7 +75,7 @@
                                 string="Patient Count"
                             />
                             <button
-                                name="get_speciality_impression"
+                                name="get_specialty_impression"
                                 icon="fa-stethoscope"
                                 type="object"
                                 class="oe_link"

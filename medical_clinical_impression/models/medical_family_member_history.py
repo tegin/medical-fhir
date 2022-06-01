@@ -14,9 +14,6 @@ class MedicalFamilyMemberHistory(models.Model):
     name = fields.Char(compute="_compute_name")
     # FHIR: state
 
-    def _compute_name(self):
-        self.name = "Familiar History of %s" % self.patient_id.name
-
     active = fields.Boolean(default=True)
     unable_to_obtain = fields.Boolean()
 
@@ -49,6 +46,10 @@ class MedicalFamilyMemberHistory(models.Model):
 
     note = fields.Text()
     # FHIR: note
+
+    @api.depends("patient_id")
+    def _compute_name(self):
+        self.name = "Family History of %s" % self.patient_id.name
 
     @api.model
     def _get_internal_identifier(self, vals):

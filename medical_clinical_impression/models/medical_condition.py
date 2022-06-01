@@ -12,3 +12,5 @@ class MedicalCondition(models.Model):
     origin_clinical_impression_id = fields.Many2one(
         comodel_name="medical.clinical.impression"
     )
+    # This is used to keep track of the condition in case
+    # the related impression is cancelled
