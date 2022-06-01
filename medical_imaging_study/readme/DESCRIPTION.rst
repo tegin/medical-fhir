@@ -1,1 +1,1 @@
-This addon enables to import imaging studies
+This addon enables to import imaging studies and series.

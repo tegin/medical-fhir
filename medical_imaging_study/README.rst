@@ -19,12 +19,20 @@ Medical Imaging Study
 
 |badge1| |badge2| |badge3| 
 
-This addon enables to import imaging studies
+This addon enables to import imaging studies and series.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Usage
+=====
+
+#. Go to "Medical" -> "Configuration" -> "Medical Imaging Storage" and create an storage.
+#. Go to "Medical" -> "Configuration" -> "Medical Imaging Endpoint", create an endpoint and complete the fields.
+#. Go to "Medical" -> "Clinical" -> "Medical Imaging import Data", write the study uid and select its corresponding storage.  Click "Import Imaging Study".
+#. After importing it, you can find it at "Medical" -> "Clinical" -> "Imaging Studies". You can also update study data with "Update data" button.
 
 Bug Tracker
 ===========
