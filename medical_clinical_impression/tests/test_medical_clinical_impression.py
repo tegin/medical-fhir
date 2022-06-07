@@ -13,23 +13,42 @@ class TestClinicalImpression(TransactionCase):
         self.encounter = self.env["medical.encounter"].create(
             {"patient_id": self.patient.id}
         )
-        self.finding_pregnant = self.env.ref(
-            "medical_clinical_condition.finding_pregnant"
+        self.finding_pregnant = self.env["medical.clinical.finding"].create(
+            {
+                "name": "Pregnant",
+                "create_condition_from_clinical_impression": True,
+            }
         )
-        self.finding_eye_infection = self.env.ref(
-            "medical_clinical_impression.finding_eye_infection"
+        self.finding_eye_infection = self.env[
+            "medical.clinical.finding"
+        ].create(
+            {
+                "name": "Eye infection",
+                "create_condition_from_clinical_impression": False,
+            }
         )
-        self.allergy_substance_pollen = self.env.ref(
-            "medical_clinical_condition.allergy_substance_pollen"
+        self.allergy_substance_pollen = self.env[
+            "medical.allergy.substance"
+        ].create(
+            {
+                "name": "Pollen",
+                "description": "Pollen",
+            }
         )
-        self.allergy_substance_ibuprofen = self.env.ref(
-            "medical_clinical_condition.allergy_substance_ibuprofen"
+        self.allergy_substance_ibuprofen = self.env[
+            "medical.allergy.substance"
+        ].create(
+            {
+                "name": "Ibuprofen",
+                "description": "Ibuprofen",
+                "create_warning": True,
+            }
         )
-        self.specialty_cardiology = self.env.ref(
-            "medical_clinical_impression.specialty_cardiology"
+        self.specialty_cardiology = self.env["medical.specialty"].create(
+            {"name": "Cardiology", "description": "Cardiology"}
         )
-        self.specialty_gynecology = self.env.ref(
-            "medical_clinical_impression.specialty_gynecology"
+        self.specialty_gynecology = self.env["medical.specialty"].create(
+            {"name": "Gynecology", "description": "Gynecology"}
         )
 
     def test_validate_impression_fields(self):

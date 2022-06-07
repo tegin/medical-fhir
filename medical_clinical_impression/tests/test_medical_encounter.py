@@ -9,11 +9,11 @@ class TestMedicalEncounter(TransactionCase):
     def setUp(self):
         super(TestMedicalEncounter, self).setUp()
         self.patient = self.env["medical.patient"].create({"name": "Patient"})
-        self.specialty_cardiology = self.env.ref(
-            "medical_clinical_impression.specialty_cardiology"
+        self.specialty_cardiology = self.env["medical.specialty"].create(
+            {"name": "Cardiology", "description": "Cardiology"}
         )
-        self.specialty_gynecology = self.env.ref(
-            "medical_clinical_impression.specialty_gynecology"
+        self.specialty_gynecology = self.env["medical.specialty"].create(
+            {"name": "Gynecology", "description": "Gynecology"}
         )
 
     def test_create_impression_from_encounter_with_old_encounter(self):
