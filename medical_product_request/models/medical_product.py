@@ -69,15 +69,7 @@ class MedicalProductTemplate(models.Model):
         action["domain"] = [("product_tmpl_id", "=", self.id)]
         if len(self.product_ids) == 1:
             view = "medical_product_request.medical_product_product_form_view"
-            form_view = [(self.env.ref(view).id, "form")]
-            if "views" in action:
-                action["views"] = form_view + [
-                    (state, view)
-                    for state, view in action["views"]
-                    if view != "form"
-                ]
-            else:
-                action["views"] = form_view
+            action["views"] = [(self.env.ref(view).id, "form")]
             action["res_id"] = self.product_ids.id
         return action
 
@@ -146,6 +138,8 @@ class MedicalProductProduct(models.Model):
                 )
                 rec.amount_uom_domain = json.dumps([("id", "in", uoms.ids)])
 
+    # If this is not done, when the product is duplicated, the product template too.
+    # We want that the product duplicated has the same template.
     @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
         if default is None:

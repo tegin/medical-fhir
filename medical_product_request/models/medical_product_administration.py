@@ -33,13 +33,18 @@ class MedicalProductAdministration(models.Model):
     # Fhir Concept: status
 
     product_type = fields.Selection(
-        selection=[("medication", "Medication"), ("device", "Device")]
+        related="medical_product_template_id.product_type"
     )
 
     medical_product_template_id = fields.Many2one(
         comodel_name="medical.product.template"
     )
     # Fhir Concept: medication
+
+    product_type = fields.Selection(
+        related="medical_product_template_id.product_type"
+    )
+    # Used for visualization purposes
 
     patient_id = fields.Many2one(related="product_request_id.patient_id")
     # Fhir Concept: Subject
@@ -97,7 +102,7 @@ class MedicalProductAdministration(models.Model):
         for rec in self:
             if rec.quantity_administered < 1:
                 raise ValidationError(
-                    _("Quantity administrations must be positive")
+                    _("Quantity administrated must be positive")
                 )
 
     def _complete_administration_vals(self):
