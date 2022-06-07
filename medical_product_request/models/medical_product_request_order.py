@@ -47,8 +47,12 @@ class MedicalProductRequestOrder(models.Model):
 
     encounter_id = fields.Many2one(
         comodel_name="medical.encounter",
-        default=lambda r: r._get_last_encounter_or_false(),
+        compute="_compute_last_encounter",
+        store=True,
+        readonly=False,
     )
+    # It is done with a default and not a "compute" because
+    # we only want that it is computed when the record is created.
 
     requester_id = fields.Many2one(
         comodel_name="res.users", readonly=True, copy=False
@@ -76,22 +80,29 @@ class MedicalProductRequestOrder(models.Model):
         readonly=True,
     )  # used for search purposes
 
-    medical_product_ids = fields.Many2many(
-        comodel_name="medical.product.product",
-        compute="_compute_medical_product_ids",
+    medical_product_template_ids = fields.Many2many(
+        comodel_name="medical.product.template",
+        compute="_compute_medical_product_template_ids",
     )
+    # This field is used as a fast visualization of products at the order's tree view.
 
-    @api.depends(
-        "product_request_ids", "product_request_ids.medical_product_id"
-    )
-    def _compute_medical_product_ids(self):
+    @api.depends("product_request_ids")
+    def _compute_medical_product_template_ids(self):
         for rec in self:
-            rec.medical_product_ids = rec.product_request_ids.mapped(
-                "medical_product_id"
+            rec.medical_product_template_ids = rec.product_request_ids.mapped(
+                "medical_product_template_id"
             )
 
-    def _get_last_encounter_or_false(self):
-        if self.patient_id:
+    # The _get_last_encounter() function is not used here as in other modules.
+    # The reason is that in other modules we want to raise a ValidationError
+    # because the encounter is required.
+    # But in this case, we can have a medical.product.request without the encounter
+    @api.depends("patient_id")
+    def _compute_last_encounter(self):
+        if self.patient_id and (
+            not self.encounter_id
+            or self.encounter_id.patient_id != self.patient_id
+        ):
             self.encounter_id = self.patient_id._get_last_encounter_or_false()
 
     def _get_internal_identifier(self, vals):
@@ -102,7 +113,7 @@ class MedicalProductRequestOrder(models.Model):
             or "/"
         )
 
-    @api.onchange("state")
+    @api.depends("state")
     def _compute_can_administrate(self):
         for rec in self:
             if rec.state == "active":
@@ -111,13 +122,15 @@ class MedicalProductRequestOrder(models.Model):
                 rec.can_administrate = False
 
     @api.onchange("encounter_id")
-    def check_encounter_date(self):
+    def _onchange_encounter_date(self):
         if self.encounter_id:
             diff = datetime.now() - self.encounter_id.create_date
             if diff >= timedelta(days=7):
                 self.show_encounter_warning = True
             else:
                 self.show_encounter_warning = False
+        else:
+            self.show_encounter_warning = False
 
     def validate_action(self):
         self.ensure_one()
