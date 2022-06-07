@@ -8,8 +8,6 @@ class MedicalPatient(models.Model):
 
     _inherit = "medical.patient"
 
-    # TODO: add groups to buttons
-
     external_product_request_order_ids = fields.One2many(
         comodel_name="medical.product.request.order",
         domain=[("category", "=", "discharge")],
@@ -78,15 +76,7 @@ class MedicalPatient(models.Model):
         ).read()[0]
         if self.external_product_request_order_count == 1:
             view = "medical_product_request.medical_product_request_order_form_view"
-            form_view = [(self.env.ref(view).id, "form")]
-            if "views" in action:
-                action["views"] = form_view + [
-                    (state, view)
-                    for state, view in action["views"]
-                    if view != "form"
-                ]
-            else:
-                action["views"] = form_view
+            action["views"] = [(self.env.ref(view).id, "form")]
             action["res_id"] = self.external_product_request_order_ids.id
         ctx = dict(self._context)
         ctx["default_patient_id"] = self.id
@@ -115,15 +105,7 @@ class MedicalPatient(models.Model):
         ).read()[0]
         if self.internal_product_request_order_count == 1:
             view = "medical_product_request.medical_product_request_order_form_view"
-            form_view = [(self.env.ref(view).id, "form")]
-            if "views" in action:
-                action["views"] = form_view + [
-                    (state, view)
-                    for state, view in action["views"]
-                    if view != "form"
-                ]
-            else:
-                action["views"] = form_view
+            action["views"] = [(self.env.ref(view).id, "form")]
             action["res_id"] = self.internal_product_request_order_ids.id
         ctx = dict(self.env.context)
         ctx["default_patient_id"] = self.id

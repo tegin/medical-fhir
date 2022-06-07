@@ -223,7 +223,7 @@
                 <field name="internal_identifier" />
                 <field name="patient_id" invisible="1" />
                 <field name="encounter_id" />
-                <field name="medical_product_ids" widget="many2many_tags" />
+                <field name="medical_product_template_ids" widget="many2many_tags" />
                 <field name="requester_id" />
                 <field name="validation_date" />
                 <field name="state" />

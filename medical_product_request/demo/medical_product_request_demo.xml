@@ -234,4 +234,34 @@
         <field name="quantity_administered_uom_id" ref="uom.product_uom_unit" />
         <field name="administration_user_id" ref="base.user_demo" />
     </record>
+    <record
+        id="patient_01_medical_product_request_order_03"
+        model="medical.product.request.order"
+    >
+        <field name="state">draft</field>
+        <field name="category">inpatient</field>
+        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="encounter_id" ref="encounter_01_patient_01" />
+    </record>
+    <record
+        id="patient_01_medical_product_request_01_03"
+        model="medical.product.request"
+    >
+        <field name="state">draft</field>
+        <field name="can_administrate" eval="True" />
+        <field
+            name="request_order_id"
+            ref="patient_01_medical_product_request_order_03"
+        />
+        <field
+            name="medical_product_template_id"
+            ref="ibuprofen_medical_product_template"
+        />
+        <field name="dose_quantity">1</field>
+        <field name="dose_uom_id" ref="tablet_uom_uom" />
+        <field name="rate_quantity">3</field>
+        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="duration">10</field>
+        <field name="duration_uom_id" ref="uom.product_uom_day" />
+    </record>
 </odoo>

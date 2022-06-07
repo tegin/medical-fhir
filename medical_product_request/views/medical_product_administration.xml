@@ -222,7 +222,7 @@
                         type="object"
                         class="btn-success"
                     />
-                    <button string="Discard" class="btn-danger" special="cancel" />
+                    <button string="Discard" special="cancel" />
                 </footer>
             </form>
         </field>

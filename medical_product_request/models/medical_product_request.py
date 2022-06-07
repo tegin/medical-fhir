@@ -216,15 +216,7 @@ class MedicalProductRequest(models.Model):
         action["domain"] = [("product_request_id", "=", self.id)]
         if len(self.product_administration_ids) == 1:
             view = "medical_product_request.medical_product_administration_form_view"
-            form_view = [(self.env.ref(view).id, "form")]
-            if "views" in action:
-                action["views"] = form_view + [
-                    (state, view)
-                    for state, view in action["views"]
-                    if view != "form"
-                ]
-            else:
-                action["views"] = form_view
+            action["views"] = [(self.env.ref(view).id, "form")]
             action["res_id"] = self.product_administration_ids.id
         return action
 
@@ -242,7 +234,6 @@ class MedicalProductRequest(models.Model):
             else False,
             "quantity_administered": self.dose_quantity or 1,
             "quantity_administered_uom_id": dose_uom_id,
-            "product_type": self.product_type,
         }
 
     def create_medical_product_administration(self):
@@ -382,7 +373,13 @@ class MedicalProductRequest(models.Model):
     def _compute_medical_product_id(self):
         for rec in self:
             template = rec.medical_product_template_id
-            if template and template.product_ids:
+            product_id = False
+            qty = 0
+            if (
+                rec.category == "discharge"
+                and template
+                and template.product_ids
+            ):
                 if template.product_type == "medication":
                     # Search the most appropriate medical_product_id
                     # and quantity to dispense
@@ -392,8 +389,5 @@ class MedicalProductRequest(models.Model):
                 else:
                     product_id = template.product_ids[0].id
                     qty = rec.dose_quantity
-            else:
-                product_id = False
-                qty = 1
             rec.medical_product_id = product_id
             rec.quantity_to_dispense = qty
