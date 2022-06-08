@@ -4,7 +4,7 @@ from datetime import datetime
 
 import freezegun
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestMedicalProductAdministration(TransactionCase):
@@ -20,21 +20,26 @@ class TestMedicalProductAdministration(TransactionCase):
                 "rounding": 0.001,
             }
         )
+
         self.tablet_form = self.env["medication.form"].create(
             {
                 "name": "EFG film coated tablets",
                 "uom_ids": [(4, self.tablet_uom.id)],
             }
         )
-        self.medical_product_ibuprofen_template = self.env[
-            "medical.product.template"
-        ].create(
+        self.oral_administration_route = self.env[
+            "medical.administration.route"
+        ].create({"name": "Oral"})
+        self.ibuprofen_template = self.env["medical.product.template"].create(
             {
                 "name": "Ibuprofen",
                 "product_type": "medication",
                 "ingredients": "Ibuprofen",
                 "dosage": "600 mg",
                 "form_id": self.tablet_form.id,
+                "administration_route_ids": [
+                    (4, self.oral_administration_route.id)
+                ],
             }
         )
         self.patient = self.env["medical.patient"].create({"name": "Patient"})
@@ -55,7 +60,7 @@ class TestMedicalProductAdministration(TransactionCase):
         ].create(
             {
                 "request_order_id": self.internal_product_request_order.id,
-                "medical_product_template_id": self.medical_product_ibuprofen_template.id,
+                "medical_product_template_id": self.ibuprofen_template.id,
                 "dose_quantity": 1,
                 "dose_uom_id": self.tablet_uom.id,
                 "rate_quantity": 3,
@@ -71,7 +76,7 @@ class TestMedicalProductAdministration(TransactionCase):
             {
                 "product_request_id": self.internal_product_request.id,
                 "quantity_administered": 1,
-                "medical_product_template_id": self.medical_product_ibuprofen_template.id,
+                "medical_product_template_id": self.ibuprofen_template.id,
                 "quantity_administered_uom_id": self.tablet_uom.id,
             }
         )
@@ -114,4 +119,17 @@ class TestMedicalProductAdministration(TransactionCase):
             self.administration.quantity_uom_domain, "%s" % self.tablet_uom.id
         )
         self.administration.medical_product_template_id = False
-        self.assertRegex(self.administration.quantity_uom_domain, "%s" % 0)
+        self.assertRegex(
+            self.administration.quantity_uom_domain,
+            "%s" % self.ref("uom.product_uom_unit"),
+        )
+
+    def test_compute_administration_route_domain(self):
+        self.assertRegex(
+            self.administration.administration_route_domain,
+            "%s" % self.oral_administration_route.id,
+        )
+        self.administration.medical_product_template_id = False
+        self.assertRegex(
+            self.administration.administration_route_domain, "%s" % 0
+        )

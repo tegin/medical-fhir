@@ -1,10 +1,6 @@
 # Copyright 2022 Creu Blanca
 
-from datetime import datetime
-
-import freezegun
-from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestMedicalEncounter(TransactionCase):

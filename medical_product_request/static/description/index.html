@@ -372,17 +372,102 @@ ul.auto-toc {
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#bug-tracker" id="id1">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id2">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id3">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id4">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id5">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="id1">Usage</a><ul>
+<li><a class="reference internal" href="#medication-form" id="id2">Medication Form</a></li>
+<li><a class="reference internal" href="#medical-administration-route" id="id3">Medical Administration Route</a></li>
+<li><a class="reference internal" href="#medical-product" id="id4">Medical Product</a></li>
+<li><a class="reference internal" href="#medical-product-request-order" id="id5">Medical Product Request Order</a><ul>
+<li><a class="reference internal" href="#external-discharge-medical-product-request-order" id="id6">External (‘discharge’) Medical Product Request Order</a></li>
+<li><a class="reference internal" href="#internal-inpatient-medical-product-request-order" id="id7">Internal (‘inpatient’) Medical Product Request Order</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-tracker" id="id8">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id9">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id10">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id11">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id12">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#id1">Usage</a></h1>
+<p>First, check that the user has the needed security permits.</p>
+<div class="section" id="medication-form">
+<h2><a class="toc-backref" href="#id2">Medication Form</a></h2>
+<p>To create a new medication.form:</p>
+<ol class="arabic simple">
+<li>Go to Medical –&gt; Configuration –&gt; Medication Form</li>
+<li>Create a new record.</li>
+</ol>
+<p>The uoms selected on the uom_ids field, will be the ones allowed to choose when creating a medical.product.request of a medication with this form. The first one will be set as default.</p>
+</div>
+<div class="section" id="medical-administration-route">
+<h2><a class="toc-backref" href="#id3">Medical Administration Route</a></h2>
+<p>To create a new medical.administration.route:</p>
+<ol class="arabic simple">
+<li>Go to Medical –&gt; Configuration –&gt; Medical Administration Route</li>
+<li>Create a new record.</li>
+</ol>
+</div>
+<div class="section" id="medical-product">
+<h2><a class="toc-backref" href="#id4">Medical Product</a></h2>
+<dl class="docutils">
+<dt>To create a new medical.product.template there are two options:</dt>
+<dd><ol class="first last arabic simple">
+<li><dl class="first docutils">
+<dt>Create the medical.product.template record manually:</dt>
+<dd><ul class="first last">
+<li>Go to Medical –&gt; Configuration –&gt; Medical Product Template</li>
+<li>Create a new record and complete the fields. The administration routes selected will be the ones that can be chosen in a request of this product.</li>
+<li>Go to Medical –&gt; Configuration –&gt; Medical Product</li>
+<li>Create a new record and select as template the one just created. The fields will be automatically filled.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Create the medical.product.product record, and template created automatically.</dt>
+<dd><ul class="first last">
+<li>Go to Medical –&gt; Configuration  –&gt; Medical Product</li>
+<li>Create a new record and fill all the required fields. DO NOT fill the product_tmpl_id field. When the record is saved, the medical.product.template record is created automatically.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</dd>
+</dl>
+<p>If you want to create a new medical.product.product of an already existing template, just select this template at the product_tmpl_id field.</p>
+<p>This amount will be used to compute the quantity to dispense in the case of ‘discharge’ requests. Set the total quantity of the package. For example, if a package has 5 bottles of 5 ml each, set an amount of 25 ml.</p>
+</div>
+<div class="section" id="medical-product-request-order">
+<h2><a class="toc-backref" href="#id5">Medical Product Request Order</a></h2>
+<p>A Medical Product Request can be created from an order or not. To create it from a request order the steps are:</p>
+<div class="section" id="external-discharge-medical-product-request-order">
+<h3><a class="toc-backref" href="#id6">External (‘discharge’) Medical Product Request Order</a></h3>
+<ol class="arabic simple">
+<li>Go to a Patient or an Encounter form and click on “Create Ext. Prescription”.</li>
+<li>Create a new line on prescriptions and set the desired values.</li>
+<li>Once everything is correct, click “Validate”. The state will be set to Completed.</li>
+</ol>
+</div>
+<div class="section" id="internal-inpatient-medical-product-request-order">
+<h3><a class="toc-backref" href="#id7">Internal (‘inpatient’) Medical Product Request Order</a></h3>
+<ol class="arabic simple">
+<li>Go to Patient or an Encounter form and click on “Create Int. Medical Order”</li>
+<li>Create a new line on prescriptions and set the desired values.</li>
+<li>Once everything is correct, click “Validate”. The state will be set to Active and you’ll be able to create administrations.</li>
+<li>To create an administration for a request click on “Administrate”. A pop up will be opened, and the values will be filled by default with the request’s values. Change values if needed and validate it.</li>
+<li>You cannot cancel a request that has completed administrations. To do so, you should cancel them first.</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#id1">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#id8">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/tegin/medical-fhir/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -390,21 +475,21 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#id2">Credits</a></h1>
+<h1><a class="toc-backref" href="#id9">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id3">Authors</a></h2>
+<h2><a class="toc-backref" href="#id10">Authors</a></h2>
 <ul class="simple">
 <li>Creu Blanca</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#id4">Contributors</a></h2>
+<h2><a class="toc-backref" href="#id11">Contributors</a></h2>
 <ul class="simple">
 <li>Creu Blanca</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#id5">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#id12">Maintainers</a></h2>
 <p>This module is part of the <a class="reference external" href="https://github.com/tegin/medical-fhir/tree/13.0/medical_product_request">tegin/medical-fhir</a> project on GitHub.</p>
 <p>You are welcome to contribute.</p>
 </div>

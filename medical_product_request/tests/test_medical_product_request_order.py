@@ -30,9 +30,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
                 "uom_ids": [(4, self.tablet_uom.id)],
             }
         )
-        self.medical_product_ibuprofen_template = self.env[
-            "medical.product.template"
-        ].create(
+        self.ibuprofen_template = self.env["medical.product.template"].create(
             {
                 "name": "Ibuprofen",
                 "product_type": "medication",
@@ -45,7 +43,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
             "medical.product.product"
         ].create(
             {
-                "product_tmpl_id": self.medical_product_ibuprofen_template.id,
+                "product_tmpl_id": self.ibuprofen_template.id,
                 "amount": 30,
                 "amount_uom_id": self.tablet_uom.id,
             }
@@ -64,7 +62,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
         ].create(
             {
                 "request_order_id": self.external_product_request_order.id,
-                "medical_product_template_id": self.medical_product_ibuprofen_template.id,
+                "medical_product_template_id": self.ibuprofen_template.id,
                 "dose_quantity": 1,
                 "dose_uom_id": self.tablet_uom.id,
                 "rate_quantity": 3,
@@ -87,7 +85,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
         ].create(
             {
                 "request_order_id": self.internal_product_request_order.id,
-                "medical_product_template_id": self.medical_product_ibuprofen_template.id,
+                "medical_product_template_id": self.ibuprofen_template.id,
                 "dose_quantity": 1,
                 "dose_uom_id": self.tablet_uom.id,
                 "rate_quantity": 3,
@@ -192,7 +190,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
             self.internal_product_request_order.medical_product_template_ids[
                 0
             ].id,
-            self.medical_product_ibuprofen_template.id,
+            self.ibuprofen_template.id,
         )
 
     def test_get_last_encounter_or_false(self):

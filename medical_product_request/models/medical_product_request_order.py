@@ -83,6 +83,7 @@ class MedicalProductRequestOrder(models.Model):
     medical_product_template_ids = fields.Many2many(
         comodel_name="medical.product.template",
         compute="_compute_medical_product_template_ids",
+        string="Product Template",
     )
     # This field is used as a fast visualization of products at the order's tree view.
 

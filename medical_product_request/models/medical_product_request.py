@@ -90,7 +90,7 @@ class MedicalProductRequest(models.Model):
     # Fhir Concept: Requester
 
     """Posology FHIR: Dosage"""
-    dose_quantity = fields.Float()
+    dose_quantity = fields.Float(default=1)
     # Fhir Concept: doseQuantity
 
     dose_uom_id = fields.Many2one(comodel_name="uom.uom")
@@ -114,6 +114,15 @@ class MedicalProductRequest(models.Model):
         default=lambda self: self.env.ref("uom.product_uom_day").id,
     )
 
+    administration_route_id = fields.Many2one(
+        comodel_name="medical.administration.route"
+    )
+    administration_route_domain = fields.Char(
+        compute="_compute_administration_route_domain",
+        readonly=True,
+        store=False,
+    )
+
     product_administration_ids = fields.One2many(
         comodel_name="medical.product.administration",
         inverse_name="product_request_id",
@@ -133,27 +142,39 @@ class MedicalProductRequest(models.Model):
 
     observations = fields.Text()
 
-    @api.depends("request_order_id", "medical_product_template_id")
+    @api.depends(
+        "request_order_id", "patient_id", "medical_product_template_id"
+    )
     def _compute_patient_id_from_request_order_id(self):
         for rec in self:
             if rec.request_order_id:
-                rec.patient_id = rec.request_order_id.patient_id
+                rec.patient_id = rec.request_order_id.patient_id.id
             elif self.env.context.get("default_patient_id"):
                 rec.patient_id = self.env.context.get("default_patient_id")
             else:
                 rec.patient_id = False
 
-    @api.depends("request_order_id", "medical_product_template_id")
+    @api.depends(
+        "request_order_id",
+        "patient_id",
+        "encounter_id",
+        "medical_product_template_id",
+    )
     def _compute_encounter_id_from_request_order_id(self):
         for rec in self:
             if rec.request_order_id:
-                rec.encounter_id = rec.request_order_id.encounter_id
+                rec.encounter_id = rec.request_order_id.encounter_id.id
             elif rec.patient_id:
-                rec.encounter_id = rec.patient_id._get_last_encounter()
+                rec.encounter_id = (
+                    rec.patient_id._get_last_encounter_or_false()
+                )
             else:
                 rec.encounter_id = False
 
-    @api.depends("request_order_id", "medical_product_template_id")
+    # Without the medical_product_template_id dependency it was not computed
+    @api.depends(
+        "request_order_id", "patient_id", "medical_product_template_id"
+    )
     def _compute_category_from_request_order_id(self):
         for rec in self:
             if rec.request_order_id:
@@ -169,21 +190,22 @@ class MedicalProductRequest(models.Model):
             or "/"
         )
 
-    @api.onchange("state")
-    def _compute_can_administrate(self):
-        for rec in self:
-            if rec.state == "active":
-                rec.can_administrate = True
-            else:
-                rec.can_administrate = False
-
     @api.onchange("medical_product_template_id")
     def _get_default_dose_uom_id(self):
         template = self.medical_product_template_id
         if template and template.form_id:
-            uom_ids = template.form_id.uom_ids
-            if uom_ids:
-                self.dose_uom_id = uom_ids[0]
+            if template.form_id.uom_ids:
+                self.dose_uom_id = template.form_id.uom_ids[0]
+        else:
+            self.dose_uom_id = self.env.ref("uom.product_uom_unit")
+
+    @api.onchange("medical_product_template_id")
+    def _get_default_administration_route_id(self):
+        template = self.medical_product_template_id
+        if template and template.administration_route_ids:
+            self.administration_route_id = template.administration_route_ids[0]
+        else:
+            self.administration_route_id = False
 
     @api.depends("medical_product_template_id")
     def _compute_dose_uom_domain(self):
@@ -199,6 +221,17 @@ class MedicalProductRequest(models.Model):
                     [("category_id", "=", categ.id)]
                 )
                 rec.dose_uom_domain = json.dumps([("id", "in", uoms.ids)])
+
+    @api.depends("medical_product_template_id")
+    def _compute_administration_route_domain(self):
+        for rec in self:
+            template = rec.medical_product_template_id
+            if template and template.administration_route_ids:
+                rec.administration_route_domain = json.dumps(
+                    [("id", "in", template.administration_route_ids.ids)]
+                )
+            else:
+                rec.administration_route_domain = json.dumps([("id", "!=", 0)])
 
     @api.depends("product_administration_ids")
     def _compute_product_administrations_count(self):
@@ -221,10 +254,11 @@ class MedicalProductRequest(models.Model):
         return action
 
     def _get_medical_product_administration_values(self):
-        if self.dose_uom_id:
-            dose_uom_id = self.dose_uom_id.id
-        else:
-            dose_uom_id = self.env.ref("uom.product_uom_unit").id
+        route = (
+            self.administration_route_id.id
+            if self.administration_route_id
+            else False
+        )
         return {
             "product_request_id": self.id,
             "medical_product_template_id": self.medical_product_template_id.id,
@@ -233,7 +267,8 @@ class MedicalProductRequest(models.Model):
             if self.encounter_id
             else False,
             "quantity_administered": self.dose_quantity or 1,
-            "quantity_administered_uom_id": dose_uom_id,
+            "quantity_administered_uom_id": self.dose_uom_id.id,
+            "administration_route_id": route,
         }
 
     def create_medical_product_administration(self):
@@ -255,13 +290,6 @@ class MedicalProductRequest(models.Model):
             "target": "new",
             "context": ctx,
         }
-
-    def validate_action(self):
-        self.ensure_one()
-        if self.category == "inpatient":
-            self.draft2active_action()
-        elif self.category == "discharge":
-            self.complete_action()
 
     def _draft2active_change_state(self):
         return {
@@ -289,6 +317,13 @@ class MedicalProductRequest(models.Model):
             if rec.state != "completed":
                 rec.write(rec._complete_change_state())
 
+    def validate_action(self):
+        self.ensure_one()
+        if self.category == "inpatient":
+            self.draft2active_action()
+        elif self.category == "discharge":
+            self.complete_action()
+
     def _cancel_vals(self):
         return {
             "state": "cancelled",
@@ -303,21 +338,21 @@ class MedicalProductRequest(models.Model):
         return True
 
     def cancel_action(self):
-        self.ensure_one()
-        if self._check_if_cancellable():
-            self.write(self._cancel_vals())
-        else:
-            raise ValidationError(
-                _(
-                    "You cant not cancel a medical product request "
-                    "that has administrations completed"
+        for rec in self:
+            if rec._check_if_cancellable():
+                rec.write(rec._cancel_vals())
+            else:
+                raise ValidationError(
+                    _(
+                        "You cant not cancel a medical product request "
+                        "that has administrations completed"
+                    )
                 )
-            )
 
     @api.constrains("dose_quantity")
     def _check_dose_quantity(self):
         for rec in self:
-            if rec.product_type == "medication" and rec.dose_quantity < 1:
+            if rec.dose_quantity < 1:
                 raise ValidationError(_("Dose must be positive"))
 
     @api.constrains("rate_quantity")
@@ -332,6 +367,8 @@ class MedicalProductRequest(models.Model):
             if rec.product_type == "medication" and rec.duration < 1:
                 raise ValidationError(_("Duration must be positive"))
 
+    # This is done just for security to avoid infinite loops.
+    # For example, if the amount of a product was 0
     def _get_loop_security_limit(self):
         return 50
 
@@ -358,8 +395,7 @@ class MedicalProductRequest(models.Model):
                 if amount and amount * qty_to_dispense >= total_dose:
                     return product.id, qty_to_dispense
             qty_to_dispense += 1
-        self.medical_product_id = template.product_ids[0].id
-        self.quantity_to_dispense = self.dose_quantity
+        return template.product_ids[0].id, self.dose_quantity
 
     @api.depends(
         "medical_product_template_id",

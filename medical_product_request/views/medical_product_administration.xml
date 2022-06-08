@@ -84,13 +84,27 @@
                                     string="Quantity"
                                     attrs="{'readonly':[('state', '!=', 'in_progress')]}"
                                 />
-                                <field name="quantity_uom_domain" invisible="1" />
                             </group>
                             <group>
+                                <field name="quantity_uom_domain" invisible="1" />
                                 <field
                                     name="quantity_administered_uom_id"
                                     string="Uom"
                                     domain="quantity_uom_domain"
+                                    attrs="{'readonly':[('state', '!=', 'in_progress')]}"
+                                />
+                            </group>
+                            <group
+                                attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                            >
+                                <field
+                                    name="administration_route_domain"
+                                    invisible="1"
+                                />
+                                <field
+                                    name="administration_route_id"
+                                    string="Route"
+                                    domain="administration_route_domain"
                                     attrs="{'readonly':[('state', '!=', 'in_progress')]}"
                                 />
                             </group>
@@ -200,6 +214,19 @@
                                     name="quantity_administered_uom_id"
                                     string="Uom"
                                     domain="quantity_uom_domain"
+                                />
+                            </group>
+                            <group
+                                attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                            >
+                                <field
+                                    name="administration_route_domain"
+                                    invisible="1"
+                                />
+                                <field
+                                    name="administration_route_id"
+                                    string="Route"
+                                    domain="administration_route_domain"
                                 />
                             </group>
                         </group>
