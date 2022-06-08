@@ -59,6 +59,15 @@ class MedicalProductAdministration(models.Model):
 
     quantity_uom_domain = fields.Char(compute="_compute_quantity_uom_domain")
 
+    administration_route_id = fields.Many2one(
+        comodel_name="medical.administration.route"
+    )
+    administration_route_domain = fields.Char(
+        compute="_compute_administration_route_domain",
+        readonly=True,
+        store=False,
+    )
+
     administration_date = fields.Datetime(copy=False)
     administration_user_id = fields.Many2one(
         comodel_name="res.users", copy=False
@@ -73,21 +82,28 @@ class MedicalProductAdministration(models.Model):
     @api.depends("medical_product_template_id")
     def _compute_quantity_uom_domain(self):
         for rec in self:
-            domain = []
-            if rec.medical_product_template_id:
-                domain.append(("measure_type", "=", "unit"))
-                if rec.medical_product_template_id.form_id:
-                    domain.insert(0, "|")
-                    domain.append(
-                        (
-                            "id",
-                            "in",
-                            rec.medical_product_template_id.form_id.uom_ids.ids,
-                        )
-                    )
+            template = rec.medical_product_template_id
+            if template and template.form_id:
+                rec.quantity_uom_domain = json.dumps(
+                    [("id", "in", template.form_id.uom_ids.ids)]
+                )
             else:
-                domain = [("id", "=", 0)]
-            rec.quantity_uom_domain = json.dumps(domain)
+                categ = self.env.ref("uom.product_uom_categ_unit")
+                uoms = self.env["uom.uom"].search(
+                    [("category_id", "=", categ.id)]
+                )
+                rec.quantity_uom_domain = json.dumps([("id", "in", uoms.ids)])
+
+    @api.depends("medical_product_template_id")
+    def _compute_administration_route_domain(self):
+        for rec in self:
+            template = rec.medical_product_template_id
+            if template and template.administration_route_ids:
+                rec.administration_route_domain = json.dumps(
+                    [("id", "in", template.administration_route_ids.ids)]
+                )
+            else:
+                rec.administration_route_domain = json.dumps([("id", "!=", 0)])
 
     def _get_internal_identifier(self, vals):
         return (
@@ -113,8 +129,8 @@ class MedicalProductAdministration(models.Model):
         }
 
     def complete_administration_action(self):
-        self.ensure_one()
-        self.write(self._complete_administration_vals())
+        for rec in self:
+            rec.write(rec._complete_administration_vals())
 
     def _cancel_vals(self):
         return {
@@ -124,5 +140,5 @@ class MedicalProductAdministration(models.Model):
         }
 
     def cancel_action(self):
-        self.ensure_one()
-        self.write(self._cancel_vals())
+        for rec in self:
+            rec.write(self._cancel_vals())

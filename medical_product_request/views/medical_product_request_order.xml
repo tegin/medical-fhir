@@ -57,7 +57,7 @@
                                 name="encounter_warning"
                                 nolabel="1"
                                 decoration-danger="1"
-                                attrs="{'invisible':[('show_encounter_warning', '=', False)], 'readonly':[('state', '!=', 'draft')]}"
+                                attrs="{'invisible':[('show_encounter_warning', '=', False)]}"
                             />
                             <field name="show_encounter_warning" invisible="1" />
                             <field
@@ -140,6 +140,17 @@
                                         domain="[('measure_type', '=', 'working_time')]"
                                         options="{'no_create': True, 'no_open': True}"
                                     />
+                                    <field
+                                        name="administration_route_id"
+                                        string="Adm. Route"
+                                        domain="administration_route_domain"
+                                        options="{'no_create': True, 'no_open': True}"
+                                        attrs="{'column_invisible': [('parent.category', '!=', 'inpatient')], 'invisible': [('product_type', '!=', 'medication')]}"
+                                    />
+                                    <field
+                                        name="administration_route_domain"
+                                        invisible="1"
+                                    />
                                     <field name="observations" />
                                     <field
                                         name="medical_product_id"
@@ -170,7 +181,7 @@
                                         type="object"
                                         icon="fa-solid fa-prescription-bottle"
                                         string="View Administrations"
-                                        attrs="{'invisible': ['|', ('state', '==', 'draft'), ('product_administrations_count', '==', 0)], 'column_invisible': [('parent.category', '==', 'discharge')]}"
+                                        attrs="{'invisible': [('state', '==', 'draft')], 'column_invisible': [('parent.category', '==', 'discharge')]}"
                                     />
                                     <field name="state" readonly="1" />
                                 </tree>
