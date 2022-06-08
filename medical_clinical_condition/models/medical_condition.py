@@ -74,3 +74,17 @@ class MedicalCondition(models.Model):
             _("Allergy must be unique for a patient."),
         ),
     ]
+
+    @api.model
+    def create(self, vals):
+        condition = self.with_context(active_test=False).search(
+            [
+                ("patient_id", "=", vals.get("patient_id")),
+                ("clinical_finding_id", "=", vals.get("clinical_finding_id")),
+            ]
+        )
+        if condition:
+            condition.toggle_active()
+            condition.write(vals)
+            return condition
+        return super().create(vals)

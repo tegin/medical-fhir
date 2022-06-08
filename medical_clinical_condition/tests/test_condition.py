@@ -130,3 +130,25 @@ class TestCondition(TransactionCase):
     def test_view_warnings_from_encounter(self):
         res = self.encounter.action_view_medical_warnings()
         self.assertEqual(res["context"]["default_patient_id"], self.patient.id)
+
+    def test_create_again_an_archived_condition(self):
+        self.assertEqual(self.patient.medical_condition_count, 0)
+        condition = self.env["medical.condition"].create(
+            {
+                "patient_id": self.patient.id,
+                "clinical_finding_id": self.finding_warning.id,
+            }
+        )
+        self.assertEqual(self.patient.medical_condition_count, 1)
+        condition.toggle_active()
+        self.patient.refresh()
+        self.assertEqual(self.patient.medical_condition_count, 0)
+        condition_2 = self.env["medical.condition"].create(
+            {
+                "patient_id": self.patient.id,
+                "clinical_finding_id": self.finding_warning.id,
+            }
+        )
+        self.patient.refresh()
+        self.assertEqual(self.patient.medical_condition_count, 1)
+        self.assertEqual(condition.id, condition_2.id)
