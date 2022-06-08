@@ -223,6 +223,7 @@
         <field name="rate_uom_id" ref="uom.product_uom_day" />
         <field name="duration">10</field>
         <field name="duration_uom_id" ref="uom.product_uom_day" />
+        <field name="administration_route_id" ref="oral_administration_route" />
     </record>
     <record id="patient_01_administration_01" model="medical.product.administration">
         <field
@@ -263,5 +264,6 @@
         <field name="rate_uom_id" ref="uom.product_uom_day" />
         <field name="duration">10</field>
         <field name="duration_uom_id" ref="uom.product_uom_day" />
+        <field name="administration_route_id" ref="oral_administration_route" />
     </record>
 </odoo>
