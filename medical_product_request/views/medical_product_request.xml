@@ -145,6 +145,19 @@
                                 />
                             </group>
                         </group>
+                        <group
+                            name="administration_route"
+                            string="Administration Route"
+                            attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                        >
+                            <field
+                                name="administration_route_id"
+                                string="Adm.Route"
+                                domain="administration_route_domain"
+                                attrs="{ 'readonly':[('state', '!=', 'draft')]}"
+                            />
+                            <field name="administration_route_domain" invisible="1" />
+                        </group>
                     </group>
                     <notebook>
                         <page
@@ -222,7 +235,6 @@
                 />
                 <field
                     name="rate_uom_id"
-                    class="oe_inline"
                     string="Uom"
                     attrs="{'invisible': [('product_type', '==', 'device')]}"
                 />
@@ -233,8 +245,12 @@
                 />
                 <field
                     name="duration_uom_id"
-                    class="oe_inline"
                     string="Uom"
+                    attrs="{'invisible': [('product_type', '==', 'device')]}"
+                />
+                <field
+                    name="administration_route_id"
+                    string="Adm. Route"
                     attrs="{'invisible': [('product_type', '==', 'device')]}"
                 />
                 <field name="requester_id" states="active,completed,cancelled" />
