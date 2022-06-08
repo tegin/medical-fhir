@@ -31,7 +31,7 @@ class MedicalPatient(models.Model):
     medical_warning_ids = fields.One2many(
         comodel_name="medical.condition",
         inverse_name="patient_id",
-        string="Conditions",
+        string="Warnings",
         domain=[("create_warning", "=", True)],
     )
 

@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [medical_certify](medical_certify/) | 13.0.1.0.0 |  | Certify medical entities
 [medical_clinical](medical_clinical/) | 13.0.1.0.0 |  | Medical clinical
 [medical_clinical_careplan](medical_clinical_careplan/) | 13.0.1.0.0 |  | Medical care plan
+[medical_clinical_condition](medical_clinical_condition/) | 13.0.1.0.0 |  | Medical condition
 [medical_clinical_procedure](medical_clinical_procedure/) | 13.0.1.0.0 |  | Medical Procedures and Procedure requests
 [medical_clinical_request_group](medical_clinical_request_group/) | 13.0.1.0.0 |  | Medical request group
 [medical_diagnostic_report](medical_diagnostic_report/) | 13.0.1.0.0 |  | Allows to create reports for patients
