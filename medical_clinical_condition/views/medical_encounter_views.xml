@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_encounter_view_form">
+        <field name="name">medical.encounter.form</field>
+        <field name="model">medical.encounter</field>
+        <field
+            name="inherit_id"
+            ref="medical_administration_encounter.medical_encounter_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="create_medical_clinical_condition"
+                    class="oe_stat_button btn-primary"
+                    string=" Create Clin. Condition"
+                    type="object"
+                    icon="fa-heartbeat"
+                />
+                <button
+                    name="create_allergy"
+                    class="oe_stat_button btn-danger"
+                    string=" Create Allergy"
+                    type="object"
+                    icon="fa-allergies"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_medical_conditions"
+                    class="oe_stat_button"
+                    icon="fa-heartbeat"
+                    attrs="{'invisible':[('medical_condition_count', '=', 0)]}"
+                >
+                    <field
+                        name="medical_condition_count"
+                        widget="statinfo"
+                        string="Conditions"
+                    />
+                    <field name="medical_condition_ids" invisible="1" />
+                </button>
+                <button
+                    type="object"
+                    name="action_view_medical_allergies"
+                    class="oe_stat_button"
+                    icon="fa-allergies"
+                    attrs="{'invisible':[('medical_allergies_count', '=', 0)]}"
+                >
+                    <field
+                        name="medical_allergies_count"
+                        widget="statinfo"
+                        string="Allergies"
+                    />
+                    <field name="medical_allergy_ids" invisible="1" />
+                </button>
+                <button
+                    type="object"
+                    name="action_view_medical_warnings"
+                    class="oe_stat_button"
+                    icon="fa-exclamation-triangle"
+                    attrs="{'invisible':[('medical_warning_count', '=', 0)]}"
+                >
+                    <field
+                        name="medical_warning_count"
+                        widget="statinfo"
+                        string="Warnings"
+                    />
+                    <field name="medical_warning_ids" invisible="1" />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>
