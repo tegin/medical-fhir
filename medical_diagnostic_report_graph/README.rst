@@ -14,12 +14,19 @@ Medical Diagnostic Report Graph
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-tegin%2Fmedical--fhir-lightgray.png?logo=github
-    :target: https://github.com/tegin/medical-fhir/tree/13.0/medical_diagnostic_report
+    :target: https://github.com/tegin/medical-fhir/tree/13.0/medical_diagnostic_report_graph
     :alt: tegin/medical-fhir
 
 |badge1| |badge2| |badge3| 
 
-This addon enables to create medical diagnostic reports with a lot of flexibility.
+This model expands the medical_diagnostic_report by adding the possibility to add a graph and/or an html to the report.
+
+To use it, in a report template mark the fields "Compute Graph" and/or "Compute Html". One page for each case will appear in the template where you can write the desired code.
+The html field is done with ir.qweb and the chart can be done using bokeh. You fill find the resources available for the graph at the function "_get_input_dict". In case you needed more resources, just use this function as a hook.
+
+The graphs will appear in the report once validated.
+
+In case you want to hide the observations, you can do it by marking the Hide Observations field.
 
 **Table of contents**
 
@@ -32,7 +39,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/tegin/medical-fhir/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/tegin/medical-fhir/issues/new?body=module:%20medical_diagnostic_report%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/tegin/medical-fhir/issues/new?body=module:%20medical_diagnostic_report_graph%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -52,6 +59,6 @@ Contributors
 Maintainers
 ~~~~~~~~~~~
 
-This module is part of the `tegin/medical-fhir <https://github.com/tegin/medical-fhir/tree/13.0/medical_diagnostic_report>`_ project on GitHub.
+This module is part of the `tegin/medical-fhir <https://github.com/tegin/medical-fhir/tree/13.0/medical_diagnostic_report_graph>`_ project on GitHub.
 
 You are welcome to contribute.
