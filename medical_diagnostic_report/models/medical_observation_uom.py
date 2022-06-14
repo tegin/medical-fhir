@@ -8,6 +8,10 @@ class UomCategory(models.Model):
     _inherit = "uom.category"
     measure_type = fields.Char(required=True)
 
+    # I don't remember why did this.
+    # We are changing the type of data from selection to char.
+    # But WHY? We are not really using it.
+
 
 class UomUom(models.Model):
     _inherit = "uom.uom"

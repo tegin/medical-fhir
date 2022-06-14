@@ -369,20 +369,89 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/tegin/medical-fhir/tree/13.0/medical_diagnostic_report"><img alt="tegin/medical-fhir" src="https://img.shields.io/badge/github-tegin%2Fmedical--fhir-lightgray.png?logo=github" /></a></p>
 <p>This addon enables to create medical diagnostic reports with a lot of flexibility.</p>
+<p>The reports are created from report templates which can be configured with several options, as for example, adding observations, composition, conclusions… It also ensures that the report has not been modified through a digest process.</p>
+<p>The observations can be created with a concept or without. Is it recommended to do it with a concept, specially if it’s an observation that you want to keep track.
+From the patient view you can see a concept evolution through a wizard in a graph and a pivot report in Medical -&gt; Report -&gt; Observations.</p>
+<p>This model medical.observation is done in such a way the they can be created from a report or not in order to do it more scalable.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#bug-tracker" id="id1">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id2">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id3">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id4">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id5">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="id1">Usage</a><ul>
+<li><a class="reference internal" href="#medical-diagnostic-report-template" id="id2">Medical Diagnostic Report Template</a></li>
+<li><a class="reference internal" href="#medical-observation-concept" id="id3">Medical Observation Concept</a></li>
+<li><a class="reference internal" href="#create-a-report-from-an-encounter" id="id4">Create a report from an encounter</a></li>
+<li><a class="reference internal" href="#patient-concept-evolution" id="id5">Patient Concept Evolution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-tracker" id="id6">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id7">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id8">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id9">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id10">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="usage">
+<h1><a class="toc-backref" href="#id1">Usage</a></h1>
+<p>Make sure the user has the permits needed.</p>
+<div class="section" id="medical-diagnostic-report-template">
+<h2><a class="toc-backref" href="#id2">Medical Diagnostic Report Template</a></h2>
+<p>To create a new report template:</p>
+<ol class="arabic">
+<li><p class="first">Go to Clinical -&gt; Report Configuration -&gt; Diagnostic Report Templates</p>
+</li>
+<li><p class="first">Create a new one and configure the report:</p>
+<blockquote>
+<ul class="simple">
+<li>Report name: the name used to search the report at the report creation wizard</li>
+<li>Title: name that will appear at the report</li>
+<li>With observations: When true, the report will have an observations page.</li>
+<li>Observations: The records added here will appear by default in the report. Each record can be filled with or without a concept . The former it is recommended if you want to keep track of these observations, as for example creating a pivot report or seeing its evolution through time. You can add 4 types of records: line, section, subsection and note. Each of them has a different format. They all can also be blocked, it means that this record will be blocked for the user in the report.</li>
+<li>Item Blocked: Mark it as true if you want to block all observations records (so only the value field can be edited).</li>
+<li>With composition: When true, the report will have a composition page.</li>
+<li>Composition: The html added here will be set as default in the report.</li>
+<li>With conclusion: When true, the report will have a conclusion page.</li>
+<li>Conclusion: The text added here will be set as the default conclusion in the report.</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">You can preview the report with demo data with the “Preview button”</p>
+</li>
+</ol>
+</div>
+<div class="section" id="medical-observation-concept">
+<h2><a class="toc-backref" href="#id3">Medical Observation Concept</a></h2>
+<p>To create a new concept:</p>
+<ol class="arabic simple">
+<li>Go to Clinical -&gt; Report Configuration -&gt; Observation Concepts</li>
+<li>Create a new record.</li>
+<li>Write the name and the value type. In the case of an integer or float value, write also the unit of measure and, if desired, the reference range. In the case of a selection value, the different options are separated by “;” (Ex: yes;no)</li>
+</ol>
+</div>
+<div class="section" id="create-a-report-from-an-encounter">
+<h2><a class="toc-backref" href="#id4">Create a report from an encounter</a></h2>
+<ol class="arabic simple">
+<li>Select an encounter in Administration -&gt; Encounter and enter in its form view.</li>
+<li>Click on “Generate Medical Report” and choose the template of the report and the language.</li>
+<li>Add the desired data.</li>
+<li>You can add another template by clicking the “Expand” button.</li>
+<li>Once everything is correct, you can issue the report and print it at “Print -&gt; Diagnostic Report”.</li>
+<li>To ensure that it has not been modified, you can click on the “Signature” button and if the Digest Altered field is false, it means that it has not been modified.</li>
+</ol>
+</div>
+<div class="section" id="patient-concept-evolution">
+<h2><a class="toc-backref" href="#id5">Patient Concept Evolution</a></h2>
+<p>To see the evolution on a graph of a patient’s concept (only for float and integer values):</p>
+<ol class="arabic simple">
+<li>Go to a patient form view and click on “Observations Evolution”.</li>
+<li>Select a concept and filter by dates if desired.</li>
+<li>You can save the image or perform additional actions.</li>
+</ol>
+</div>
+</div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#id1">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#id6">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/tegin/medical-fhir/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -390,21 +459,21 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#id2">Credits</a></h1>
+<h1><a class="toc-backref" href="#id7">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id3">Authors</a></h2>
+<h2><a class="toc-backref" href="#id8">Authors</a></h2>
 <ul class="simple">
 <li>Creu Blanca</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#id4">Contributors</a></h2>
+<h2><a class="toc-backref" href="#id9">Contributors</a></h2>
 <ul class="simple">
 <li>Creu Blanca</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#id5">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#id10">Maintainers</a></h2>
 <p>This module is part of the <a class="reference external" href="https://github.com/tegin/medical-fhir/tree/13.0/medical_diagnostic_report">tegin/medical-fhir</a> project on GitHub.</p>
 <p>You are welcome to contribute.</p>
 </div>

@@ -150,3 +150,5 @@ class PatientConceptEvolution(models.TransientModel):
                 p.add_layout(high_box)
             script, div = components(p)
             self.bokeh_chart = "{}{}".format(div, script)
+        else:
+            self.bokeh_chart = ""
