@@ -33,6 +33,7 @@ class MedicalDiagnosticReportTemplate(models.Model):
             "name": self.title or self.name,
             "lang": self.env.context.get("lang") or self.env.user.lang,
             "item_blocked": self.item_blocked,
+            "report_action_id": self.report_action_id.id,
             "with_conclusion": self.with_conclusion,
             "with_observation": self.with_observation,
             "with_composition": self.with_composition,

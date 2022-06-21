@@ -23,6 +23,8 @@ class MedicalDiagnosticReportTemplatePrint(models.TransientModel):
     def _get_lang(self):
         return self.env["res.lang"].get_installed()
 
+    # This preview method will only show the default action and template,
+    # even if an specific report_action_id is defined
     def print(self):
         return (
             self.env.ref(

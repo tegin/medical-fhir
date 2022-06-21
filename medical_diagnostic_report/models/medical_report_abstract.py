@@ -13,6 +13,10 @@ class MedicalReportAbstract(models.AbstractModel):
     conclusion = fields.Text()
     composition = fields.Html()
     item_blocked = fields.Boolean(help="When checked, no lines can be added")
+    report_action_id = fields.Many2one(
+        comodel_name="ir.actions.report",
+        domain=[("model", "=", "medical.diagnostic.report")],
+    )
     with_conclusion = fields.Boolean(
         help="When checked,a conclusion will be added",
     )

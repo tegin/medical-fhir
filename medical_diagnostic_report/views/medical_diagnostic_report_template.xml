@@ -32,6 +32,7 @@
                         <field name="item_blocked" />
                         <field name="with_composition" />
                         <field name="with_conclusion" />
+                        <field name="report_action_id" groups="base.group_no_one" />
                         <field name="active" invisible="1" />
                     </group>
                     <notebook>

@@ -94,6 +94,7 @@
                 <field name="with_observation" invisible="1" />
                 <field name="with_conclusion" invisible="1" />
                 <field name="with_composition" invisible="1" />
+                <field name="report_action_id" invisible="1" />
             </field>
             <xpath expr="//notebook/page[1]" position="before">
                 <page
