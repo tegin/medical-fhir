@@ -43,7 +43,11 @@ class MedicalDiagnosticReport(models.Model):
 
     vat = fields.Char(string="VAT", readonly=True)
 
-    patient_age = fields.Integer(readonly=True)
+    birth_date = fields.Date(
+        related="patient_id.birth_date", store=True, readonly=False
+    )
+
+    patient_age = fields.Integer(readonly=True, compute="_compute_patient_age")
 
     patient_origin = fields.Char(
         readonly=True,
@@ -76,6 +80,21 @@ class MedicalDiagnosticReport(models.Model):
         relation="medical_diagnostic_report_templates_rel",
     )
     is_cancellable = fields.Boolean(compute="_compute_is_cancellable")
+
+    @api.depends("birth_date")
+    def _compute_patient_age(self):
+        for rec in self:
+            today = fields.Date.today()
+            birth = rec.birth_date
+            if not birth:
+                age = False
+            else:
+                age = (
+                    today.year
+                    - birth.year
+                    - ((today.month, today.day) < (birth.month, birth.day))
+                )
+            rec.patient_age = age
 
     @api.model
     def _get_lang(self):

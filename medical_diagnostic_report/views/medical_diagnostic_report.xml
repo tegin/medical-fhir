@@ -70,6 +70,10 @@
                 <field name="encounter_id" />
                 <field name="vat" attrs="{'readonly':[('is_editable', '=', False)]}" />
                 <field
+                    name="birth_date"
+                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                />
+                <field
                     name="patient_age"
                     attrs="{'readonly':[('is_editable', '=', False)]}"
                 />
