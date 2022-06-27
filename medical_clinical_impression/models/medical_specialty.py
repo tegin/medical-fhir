@@ -92,6 +92,8 @@ class MedicalSpecialty(models.Model):
                 self.env.context.get("encounter_id")
             )
             patient_id = encounter_id.patient_id
+        else:
+            return False
         domain = expression.AND(
             [
                 result["domain"],
