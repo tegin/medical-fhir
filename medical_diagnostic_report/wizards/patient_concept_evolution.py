@@ -3,10 +3,12 @@
 
 import numpy as np
 import pandas as pd
-from bokeh.embed import components
-from bokeh.models import BoxAnnotation, ColumnDataSource, DatetimeTickFormatter
-from bokeh.models.tools import HoverTool
-from bokeh.plotting import figure
+from bokeh.embed import components  # pylint: disable=W7936
+from bokeh.models import BoxAnnotation  # pylint: disable=W7936
+from bokeh.models import ColumnDataSource  # pylint: disable=W7936
+from bokeh.models import DatetimeTickFormatter  # pylint: disable=W7936
+from bokeh.models.tools import HoverTool  # pylint: disable=W7936
+from bokeh.plotting import figure  # pylint: disable=W7936
 from odoo import _, api, fields, models
 
 
