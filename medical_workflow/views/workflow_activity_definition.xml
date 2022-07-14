@@ -46,7 +46,14 @@
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <div name="button_box" class="oe_button_box" />
+                    <div name="button_box" class="oe_button_box">
+                        <button
+                            name="action_show_plans"
+                            type="object"
+                            string="Show plans"
+                            icon="fa-code-branch"
+                        />
+                    </div>
                     <h2>
                         <field name="internal_identifier" readonly="1" />
                     </h2>
