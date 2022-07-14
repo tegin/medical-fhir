@@ -151,3 +151,13 @@ class ActivityDefinition(models.Model):
 
     def retire(self):
         self.write(self._retire_vals())
+
+    def action_show_plans(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "medical_workflow.workflow_plan_definition"
+        ).read()[0]
+        action["domain"] = [
+            ("id", "in", self.action_ids.mapped("plan_definition_id").ids)
+        ]
+        return action

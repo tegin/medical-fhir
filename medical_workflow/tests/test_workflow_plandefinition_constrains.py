@@ -51,6 +51,7 @@ class TestWorkflowPlandefinition(TransactionCase):
         self.plan = self.env["workflow.plan.definition"].create(
             {"name": "Plan", "type_id": self.type.id}
         )
+        self.plan.activate()
         self.activity_2 = self.env["workflow.activity.definition"].create(
             {
                 "name": "Activity 2",
@@ -85,6 +86,24 @@ class TestWorkflowPlandefinition(TransactionCase):
         )
         with self.assertRaises(UserError):
             self.activity.type_id = self.aux_type
+
+    def test_show_plan(self):
+        plan_action = self.activity.action_show_plans()
+        self.assertFalse(
+            self.env[plan_action["res_model"]].search(plan_action["domain"])
+        )
+        self.env["workflow.plan.definition.action"].create(
+            {
+                "name": "Action",
+                "direct_plan_definition_id": self.plan.id,
+                "activity_definition_id": self.activity.id,
+            }
+        )
+        plan_action = self.activity.action_show_plans()
+        self.assertEqual(
+            self.plan,
+            self.env[plan_action["res_model"]].search(plan_action["domain"]),
+        )
 
     def test_action(self):
         action = self.env["workflow.plan.definition.action"].new(
