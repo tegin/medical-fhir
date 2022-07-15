@@ -47,5 +47,5 @@
         "reports/medical_diagnostic_report_report_preview.xml",
     ],
     "demo": ["demo/medical_diagnostic_report.xml"],
-    "external_dependencies": {"python": ["numpy", "pandas", "bokeh"]},
+    "external_dependencies": {"python": ["numpy", "pandas", "bokeh==1.1.0"]},
 }
