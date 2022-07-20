@@ -30,7 +30,7 @@ addon | version | maintainers | summary
 [medical_clinical_condition](medical_clinical_condition/) | 13.0.1.0.0 |  | Medical condition
 [medical_clinical_procedure](medical_clinical_procedure/) | 13.0.1.0.0 |  | Medical Procedures and Procedure requests
 [medical_clinical_request_group](medical_clinical_request_group/) | 13.0.1.0.0 |  | Medical request group
-[medical_diagnostic_report](medical_diagnostic_report/) | 13.0.1.0.0 |  | Allows to create reports for patients
+[medical_diagnostic_report](medical_diagnostic_report/) | 13.0.2.0.0 |  | Allows to create reports for patients
 [medical_diagnostic_report_graph](medical_diagnostic_report_graph/) | 13.0.1.0.0 |  | This addons enables to add a graph to the medical diagnostic report
 [medical_financial](medical_financial/) | 13.0.1.0.0 |  | Medical financial
 [medical_financial_coverage](medical_financial_coverage/) | 13.0.1.0.0 |  | Add Coverage concept
