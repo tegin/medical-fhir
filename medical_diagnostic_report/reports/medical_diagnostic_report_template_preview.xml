@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <template
-        id="medical_diagnostic_report_template_preview"
+        id="medical_diagnostic_report_template_preview_report"
         inherit_id="medical_diagnostic_report.medical_diagnostic_report_template_base"
         primary="True"
     >
