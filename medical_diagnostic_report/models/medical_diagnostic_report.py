@@ -65,9 +65,30 @@ class MedicalDiagnosticReport(models.Model):
     cancel_user_id = fields.Many2one(
         "res.users", string="Cancelled by User", readonly=True, copy=False
     )
-
-    conclusion = fields.Text(readonly=True)
-    composition = fields.Html(readonly=True)
+    conclusion = fields.Text(
+        readonly=True,
+        prefetch=False,
+        compute="_compute_conclusion",
+        inverse="_inverse_conclusion",
+        copy=True,
+    )
+    database_conclusion = fields.Text(
+        readonly=True,
+        copy=False,
+        prefetch=False,
+    )
+    composition = fields.Html(
+        readonly=True,
+        compute="_compute_composition",
+        inverse="_inverse_composition",
+        prefetch=False,
+        copy=True,
+    )
+    database_composition = fields.Html(
+        readonly=True,
+        copy=False,
+        prefetch=False,
+    )
     observation_ids = fields.One2many(
         "medical.observation", inverse_name="diagnostic_report_id", copy=True
     )
@@ -76,6 +97,30 @@ class MedicalDiagnosticReport(models.Model):
         relation="medical_diagnostic_report_templates_rel",
     )
     is_cancellable = fields.Boolean(compute="_compute_is_cancellable")
+
+    @api.depends("database_composition")
+    def _compute_composition(self):
+        for record in self:
+            record.composition = record._get_database_composition()
+
+    def _inverse_composition(self):
+        for record in self:
+            record.database_composition = record.composition
+
+    def _get_database_composition(self):
+        return self.database_composition
+
+    @api.depends("database_conclusion")
+    def _compute_conclusion(self):
+        for record in self:
+            record.conclusion = record._get_database_conclusion()
+
+    def _inverse_conclusion(self):
+        for record in self:
+            record.database_conclusion = record.conclusion
+
+    def _get_database_conclusion(self):
+        return self.database_conclusion
 
     @api.model
     def _get_lang(self):
