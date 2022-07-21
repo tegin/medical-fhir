@@ -62,13 +62,13 @@
     <record id="medical_base.group_medical_user" model="res.groups">
         <field
             name="implied_ids"
-            eval="[(4, ref('group_medical_procedure_display'))]"
+            eval="[(4, ref('group_medical_procedure_display')), (4, ref('group_medical_procedure_request_display'))]"
         />
     </record>
     <record id="medical_base.group_medical_configurator" model="res.groups">
         <field
             name="implied_ids"
-            eval="[(4, ref('group_medical_procedure_manager'))]"
+            eval="[(4, ref('group_medical_procedure_manager')), (4, ref('group_medical_procedure_request_manager'))]"
         />
     </record>
 </odoo>
