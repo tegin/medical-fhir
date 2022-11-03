@@ -4,14 +4,9 @@
         <div class="o_conditions_view">
             <div class="row">
                 <div class="col-1" />
-                <div class="col-10">
-                    <span class="fas fa-exclamation-triangle text-danger" />
-                    <span class="o_warning_title_text">Warnings</span>
-                    <span class="fas fa-exclamation-triangle text-danger" />
-                </div>
+                <div class="col-10 o_warning_conditions" />
                 <div class="col-1 o_expand_icon" />
             </div>
-            <div class="o_warning_conditions" />
         </div>
     </t>
     <t t-name="WarningDropdownFields">
