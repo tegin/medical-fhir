@@ -28,6 +28,19 @@
                         states="in_progress,completed"
                     />
                 </header>
+                <div
+                    class="alert alert-danger row"
+                    role="alert"
+                    attrs="{'invisible':[('condition_count', '=', 0)]}"
+                    style="margin-bottom:0px;"
+                >
+                    <field
+                        name="condition_ids"
+                        widget="warning_dropdown"
+                        class="col-12"
+                        context="{'patient_id': id}"
+                    />
+                </div>
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
                     <widget
@@ -55,14 +68,6 @@
                                 />
                             </h1>
                         </div>
-                        <field
-                            name="condition_ids"
-                            widget="warning_dropdown"
-                            class="col-7"
-                            context="{'patient_id': patient_id}"
-                            attrs="{'invisible':[('condition_count', '=', 0)]}"
-                        />
-                        <div class="col-1" />
                         <field name="condition_count" invisible="1" />
                     </div>
                     <group>
