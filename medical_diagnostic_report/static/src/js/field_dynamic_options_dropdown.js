@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Creu Blanca
+ * Copyright 2021 CreuBlanca
  * License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
  */
 odoo.define("medical_diagnostic_report.field_dynamic_dropdown", function (require) {

@@ -11,7 +11,7 @@
         >medical.encounter.create.diagnostic.report.form (in medical_diagnostic_report)</field>
         <field name="model">medical.encounter.create.diagnostic.report</field>
         <field name="arch" type="xml">
-            <form string="Create Diagnostic Report">
+            <form>
                 <group>
                     <field name="encounter_id" invisible="1" />
                     <field

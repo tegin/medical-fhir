@@ -1,4 +1,4 @@
-# Copyright 2021 Creu Blanca
+# Copyright 2021 CreuBlanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import numpy as np
@@ -9,6 +9,7 @@ from bokeh.models import ColumnDataSource  # pylint: disable=W7936
 from bokeh.models import DatetimeTickFormatter  # pylint: disable=W7936
 from bokeh.models.tools import HoverTool  # pylint: disable=W7936
 from bokeh.plotting import figure  # pylint: disable=W7936
+
 from odoo import _, api, fields, models
 
 
