@@ -1,14 +1,14 @@
-# Copyright 2017 Creu Blanca
-# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2017 CreuBlanca
+# Copyright 2017 ForgeFlow
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
     "name": "Medical Medication",
     "summary": "Medical medication base",
-    "version": "13.0.1.0.0",
-    "author": "Creu Blanca, Eficent, Odoo Community Association (OCA)",
+    "version": "14.0.1.0.0",
+    "author": "CreuBlanca, ForgeFlow, Odoo Community Association (OCA)",
     "category": "Medical",
-    "website": "https://github.com/OCA/vertical-medical",
+    "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
     "depends": [
         "medical_administration",
