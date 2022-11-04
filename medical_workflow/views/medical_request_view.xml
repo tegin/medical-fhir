@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
 <odoo>
@@ -24,7 +24,7 @@
         <field name="model">medical.request</field>
         <field name="priority" eval="16" />
         <field name="arch" type="xml">
-            <form string="Request">
+            <form>
                 <header>
                     <button
                         string="Activate"

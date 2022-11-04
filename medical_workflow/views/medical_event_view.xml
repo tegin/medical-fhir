@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    Copyright 2017 ForgeFlow
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
@@ -23,7 +23,7 @@
         <field name="model">medical.event</field>
         <field name="priority" eval="16" />
         <field name="arch" type="xml">
-            <form string="Event">
+            <form>
                 <header>
                     <button
                         string="Activate"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
 <odoo>
@@ -23,7 +23,7 @@
         <field name="model">workflow.plan.definition</field>
         <field name="priority" eval="16" />
         <field name="arch" type="xml">
-            <form string="Plan definition">
+            <form>
                 <header>
                     <button
                         name="activate"
@@ -76,7 +76,7 @@
                                 name="direct_action_ids"
                                 context="{'default_type_id':type_id}"
                             >
-                                <tree string="Actions">
+                                <tree>
                                     <field name="complete_name" />
                                     <field name="activity_definition_id" />
                                     <field name="execute_plan_definition_id" />
@@ -85,7 +85,7 @@
                         </page>
                         <page string="Actions list" name='actions_list'>
                             <field name="action_ids">
-                                <tree string="Actions">
+                                <tree>
                                     <field name="complete_name" />
                                     <field name="activity_definition_id" />
                                     <field name="execute_plan_definition_id" />

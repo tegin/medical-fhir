@@ -1,8 +1,7 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.exceptions import UserError, ValidationError
-from odoo.exceptions import Warning as Warn
+from odoo.exceptions import UserError, ValidationError, Warning as Warn
 from odoo.tests.common import TransactionCase
 
 

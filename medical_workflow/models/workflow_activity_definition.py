@@ -1,5 +1,5 @@
-# Copyright 2017 Creu Blanca
-# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2017 CreuBlanca
+# Copyright 2017 ForgeFlow
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import _, api, exceptions, fields, models
@@ -36,7 +36,6 @@ class ActivityDefinition(models.Model):
     model_id = fields.Many2one(
         string="Model",
         comodel_name="ir.model",
-        required=True,
         domain="[('id', 'in', model_ids)]",
     )  # FHIR field: kind
     state = fields.Selection(
