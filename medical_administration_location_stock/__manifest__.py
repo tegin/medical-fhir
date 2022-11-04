@@ -1,14 +1,14 @@
-# Copyright 2017 Creu Blanca
-# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2017 CreuBlanca
+# Copyright 2017 ForgeFlow
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
     "name": "Medical Location with stock",
     "summary": "Medical administration location with stock",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Medical",
-    "author": "Creu Blanca, Eficent, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/vertical-medical",
+    "author": "CreuBlanca, ForgeFlow, Odoo Community Association (OCA)",
+    "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
     "depends": ["medical_administration_location", "stock"],
     "data": ["security/medical_security.xml", "views/res_partner_views.xml"],
