@@ -1,1 +1,1 @@
-* Creu Blanca
+* CreuBlanca
