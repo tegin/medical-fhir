@@ -6,7 +6,6 @@ from bokeh.embed import file_html
 from bokeh.embed.util import FromCurdoc
 from bokeh.resources import INLINE
 from bokeh.util.dependencies import import_required
-from bokeh.util.string import decode_utf8
 
 
 def get_layout_html(obj, resources=INLINE, theme=FromCurdoc, **kwargs):
@@ -72,7 +71,7 @@ def get_screenshot_as_png(obj, driver=None, **kwargs):
     with export._tmp_html() as tmp:
         html = get_layout_html(obj, **kwargs)
         with io.open(tmp.path, mode="w", encoding="utf-8") as file:
-            file.write(decode_utf8(html))
+            file.write(html)
 
         web_driver = (
             driver if driver is not None else export.webdriver_control.get()
