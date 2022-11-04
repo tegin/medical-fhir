@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
@@ -15,7 +15,6 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree position="attributes">
-                <attribute name="string">SNOMED CT Concepts</attribute>
                 <attribute name="delete">false</attribute>
             </tree>
         </field>
@@ -30,7 +29,6 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <form position="attributes">
-                <attribute name="string">SNOMED CT Concept</attribute>
                 <attribute name="delete">false</attribute>
             </form>
         </field>
@@ -44,9 +42,7 @@
         />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <search position="attributes">
-                <attribute name="string">SNOMED CT Filter</attribute>
-            </search>
+            <search position="attributes" />
         </field>
     </record>
     <record model="ir.actions.act_window" id="medical_sct_concept_window_action">

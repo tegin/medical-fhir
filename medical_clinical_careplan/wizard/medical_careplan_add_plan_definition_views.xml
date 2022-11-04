@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
 <odoo>
@@ -9,7 +9,7 @@
         <field name="name">medical.careplan.add.plan.definition.form</field>
         <field name="model">medical.careplan.add.plan.definition</field>
         <field name="arch" type="xml">
-            <form string="Activity Definition">
+            <form>
                 <group>
                     <field name="careplan_id" invisible="1" />
                     <field name="plan_definition_id" />

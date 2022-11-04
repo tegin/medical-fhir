@@ -48,8 +48,8 @@ Images
 Contributors
 ------------
 
-* Jordi Ballester <jordi.ballester@eficent.com>
-* Roser Garcia <roser.garcia@eficent.com>
+* Jordi Ballester <jordi.ballester@forgeflow.com>
+* Roser Garcia <roser.garcia@forgeflow.com>
 * Enric Tobella <etobella@creublanca.es>
 
 Maintainer

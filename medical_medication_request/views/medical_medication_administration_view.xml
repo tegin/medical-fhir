@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
 <odoo>
@@ -11,9 +11,7 @@
         <field name="mode">primary</field>
         <field name="inherit_id" ref="medical_workflow.medical_event_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
-                <attribute name="string">Medication administrations</attribute>
-            </xpath>
+            <xpath expr="//tree" position="attributes" />
         </field>
     </record>
     <record id="medical_medication_administration_view_form" model="ir.ui.view">
@@ -22,9 +20,6 @@
         <field name="mode">primary</field>
         <field name="inherit_id" ref="medical_workflow.medical_event_form" />
         <field name="arch" type="xml">
-            <xpath expr="//form" position="attributes">
-                <attribute name="string">Medication administration</attribute>
-            </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     string="Stock moves"
@@ -103,7 +98,7 @@
         <field name="name">medical.medication.administration.view.search</field>
         <field name="model">medical.medication.administration</field>
         <field name="arch" type="xml">
-            <search string="Medication Administration">
+            <search>
                 <field name="internal_identifier" />
                 <field name="patient_id" />
                 <field name="location_id" />

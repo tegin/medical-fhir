@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-    Copyright 2021 Creu Blanca
+    Copyright 2021 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
@@ -14,7 +14,7 @@
         <field name="name">medical.observation.pivot</field>
         <field name="model">medical.observation</field>
         <field name="arch" type="xml">
-            <pivot string="Observation" disable_linking="True" display_quantity="True">
+            <pivot disable_linking="True" display_quantity="True">
                 <field name="concept_id" type="row" />
             </pivot>
         </field>
@@ -23,7 +23,7 @@
         <field name="name">medical.observation.pivot.search</field>
         <field name="model">medical.observation</field>
         <field name="arch" type="xml">
-            <search string="Observation search">
+            <search>
                 <filter
                     string="Date"
                     name="year"

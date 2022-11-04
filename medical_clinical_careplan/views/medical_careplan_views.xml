@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-    Copyright 2017 Creu Blanca
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    Copyright 2017 CreuBlanca
+    Copyright 2017 ForgeFlow
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
@@ -13,7 +13,6 @@
         <field name="arch" type="xml">
             <tree position="attributes">
                 <attribute name="decoration-muted">state=='cancelled'</attribute>
-                <attribute name="string">Care plans</attribute>
             </tree>
         </field>
     </record>
@@ -23,9 +22,6 @@
         <field name="inherit_id" ref="medical_request_form" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <form position="attributes">
-                <attribute name="string">Careplan</attribute>
-            </form>
             <button name="draft2active" position="before">
                 <button
                     name="%(medical_clinical_careplan.action_medical_careplan_add_plan_definition_form)d"

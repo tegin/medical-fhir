@@ -1,20 +1,19 @@
-# Copyright 2021 Creu Blanca
+# Copyright 2021 CreuBlanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Medical Diagnostic Report",
     "summary": """
         Allows to create reports for patients""",
-    "version": "13.0.2.0.0",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "author": "Creu Blanca,Odoo Community Association (OCA)",
+    "author": "CreuBlanca,Odoo Community Association (OCA)",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": [
         "medical_administration",
         "medical_administration_encounter",
         "medical_clinical",
         "medical_workflow",
-        "web_translate_dialog",
         "web_editor",
         "medical_certify",
         "web_widget_bokeh_chart",
@@ -47,5 +46,5 @@
         "reports/medical_diagnostic_report_report_preview.xml",
     ],
     "demo": ["demo/medical_diagnostic_report.xml"],
-    "external_dependencies": {"python": ["numpy", "pandas", "bokeh==1.1.0"]},
+    "external_dependencies": {"python": ["numpy", "pandas", "bokeh==2.3.1"]},
 }

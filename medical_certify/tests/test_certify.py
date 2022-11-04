@@ -1,7 +1,8 @@
 from urllib.parse import urlparse
 
-from odoo.tests import SavepointCase
 from odoo_test_helper import FakeModelLoader
+
+from odoo.tests import SavepointCase
 
 
 class TestCertify(SavepointCase):

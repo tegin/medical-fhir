@@ -54,7 +54,7 @@ Contributors
 ------------
 
 * Enric Tobella <etobella@creublanca.es>
-* Roser Garcia <roser.garcia@eficent.com>
+* Roser Garcia <roser.garcia@forgeflow.com>
 
 Maintainer
 ----------

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
@@ -71,13 +71,6 @@
                             <field
                                 name="company_name"
                                 attrs="{'invisible': ['|', '|', ('company_name', '=', False), ('company_name', '=', ''), ('is_company', '=', True)]}"
-                            />
-                            <button
-                                name="create_company"
-                                type="object"
-                                string="Create company"
-                                class="btn btn-sm oe_edit_only fa fa-external-link btn btn-link "
-                                attrs="{'invisible': ['|', '|', ('is_company','=', True), ('company_name', '=', ''), ('company_name', '=', False)]}"
                             />
                         </div>
                     </div>

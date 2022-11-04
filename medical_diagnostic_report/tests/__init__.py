@@ -1,4 +1,4 @@
-# Copyright 2021 Creu Blanca
+# Copyright 2021 CreuBlanca
 
 from . import test_medical_observation
 from . import test_medical_diagnostic_report

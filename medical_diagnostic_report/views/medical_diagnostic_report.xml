@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2021 Creu Blanca
+<!-- Copyright 2021 CreuBlanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record model="ir.ui.view" id="medical_diagnostic_report_form_view">
@@ -54,9 +54,6 @@
                     string="Expand"
                     attrs="{'invisible':[('is_editable', '=', False)]}"
                 />
-            </xpath>
-            <xpath expr="//form" position="attributes">
-                <attribute name="string">Diagnostic Report</attribute>
             </xpath>
             <field name="patient_id" position="attributes">
                 <attribute name="attrs">{}</attribute>
@@ -151,30 +148,30 @@
                                 attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
                             />
                             <field name="value" invisible="1" />
-                            <group string="Value" name="value">
-                                <field
-                                    name="value_bool"
-                                    attrs="{'invisible': [('value_type', '!=', 'bool')]}"
-                                />
-                                <field
-                                    name="value_str"
-                                    attrs="{'invisible': [('value_type', '!=', 'str')]}"
-                                />
-                                <field
-                                    name="value_selection"
-                                    widget="dynamic_selection_diagnostic_report"
-                                    context="{'options': selection_options}"
-                                    attrs="{'invisible': [('value_type', '!=', 'selection')]}"
-                                />
-                                <field
-                                    name="value_int"
-                                    attrs="{'invisible': [('value_type', '!=', 'int')]}"
-                                />
-                                <field
-                                    name="value_float"
-                                    attrs="{'invisible': [('value_type', '!=', 'float')]}"
-                                />
-                            </group>
+                            <!-- TODO: Fix this, it needs to be grouped somehow -->
+                            <field
+                                name="value_bool"
+                                attrs="{'invisible': [('value_type', '!=', 'bool')]}"
+                            />
+                            <field
+                                name="value_str"
+                                attrs="{'invisible': [('value_type', '!=', 'str')]}"
+                            />
+                            <field
+                                name="value_selection"
+                                widget="dynamic_selection_diagnostic_report"
+                                context="{'options': selection_options}"
+                                attrs="{'invisible': [('value_type', '!=', 'selection')]}"
+                            />
+                            <field
+                                name="value_int"
+                                attrs="{'invisible': [('value_type', '!=', 'int')]}"
+                            />
+                            <field
+                                name="value_float"
+                                attrs="{'invisible': [('value_type', '!=', 'float')]}"
+                            />
+                            <!-- TODO: Unitl here....-->
                             <field
                                 name="uom_id"
                                 attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
@@ -241,9 +238,6 @@
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="create">false</attribute>
-            </xpath>
-            <xpath expr="//tree" position="attributes">
-                <attribute name="string">Diagnostic Report</attribute>
             </xpath>
             <tree>
                 <field name="issued_date" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2021 Creu Blanca
+<!-- Copyright 2021 CreuBlanca
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record model="ir.ui.view" id="medical_diagnostic_report_expand_form_view">
@@ -8,7 +8,7 @@
         >medical.diagnostic.report.expand.form (in medical_diagnostic_report)</field>
         <field name="model">medical.diagnostic.report.expand</field>
         <field name="arch" type="xml">
-            <form string="Merge template">
+            <form>
                 <group>
                     <field name="diagnostic_report_id" invisible="1" />
                     <field

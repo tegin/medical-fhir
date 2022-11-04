@@ -1,4 +1,4 @@
-# Copyright 2021 Creu Blanca
+# Copyright 2021 CreuBlanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
@@ -6,15 +6,17 @@ import io
 
 import numpy as np
 import pandas as pd
-from bokeh import embed as bokeh_embed
-from bokeh import layouts as bokeh_layouts
-from bokeh import models as bokeh_models
-from bokeh import themes as bokeh_themes
+from bokeh import (
+    embed as bokeh_embed,
+    layouts as bokeh_layouts,
+    models as bokeh_models,
+    themes as bokeh_themes,
+)
 from bokeh.embed.util import FromCurdoc
-from bokeh.io.webdriver import create_phantomjs_webdriver, terminate_webdriver
 from bokeh.models import widgets as bokeh_widgets
 from bokeh.plotting import figure
 from lxml import etree
+
 from odoo import fields, models
 from odoo.tools.safe_eval import safe_eval
 
@@ -81,13 +83,10 @@ class MedicalDiagnosticReport(models.Model):
                 )
                 bokeh = "{}{}".format(div, script)
             elif "result_data" in data:
-                web_driver = create_phantomjs_webdriver()
                 img = get_screenshot_as_png(
                     data["result_data"],
-                    driver=web_driver,
                     theme=data.get("result_theme", FromCurdoc),
                 )
-                terminate_webdriver(web_driver)
                 output = io.BytesIO()
                 img.save(output, format="PNG")
                 bokeh = base64.b64encode(output.getvalue())

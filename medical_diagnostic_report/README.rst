@@ -42,12 +42,12 @@ Credits
 Authors
 ~~~~~~~
 
-* Creu Blanca
+* CreuBlanca
 
 Contributors
 ~~~~~~~~~~~~
 
-* Creu Blanca
+* CreuBlanca
 
 Maintainers
 ~~~~~~~~~~~

@@ -1,4 +1,4 @@
 * Enric Tobella <etobella@creublanca.es>
-* Roser Garcia <roser.garcia@eficent.com>
-* Jordi Ballester <jordi.ballester@eficent.com>
+* Roser Garcia <roser.garcia@forgeflow.com>
+* Jordi Ballester <jordi.ballester@forgeflow.com>
 * Alba Riera <alba.riera@creublanca.es>

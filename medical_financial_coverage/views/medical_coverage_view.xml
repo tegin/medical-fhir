@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
@@ -9,7 +9,7 @@
         <field name="name">medical.coverage.view.tree</field>
         <field name="model">medical.coverage</field>
         <field name="arch" type="xml">
-            <tree string="Medical Coverages">
+            <tree>
                 <field name="internal_identifier" />
                 <field name="name" />
                 <field name="coverage_template_id" />
@@ -23,7 +23,7 @@
         <field name="name">medical.coverage.view.form</field>
         <field name="model">medical.coverage</field>
         <field name="arch" type="xml">
-            <form string="Medical Coverage">
+            <form>
                 <header>
                     <button
                         string="Activate"
@@ -132,7 +132,7 @@
         <field name="name">medical.coverage.search</field>
         <field name="model">medical.coverage</field>
         <field name="arch" type="xml">
-            <search string="Medical Coverages">
+            <search>
                 <field name="internal_identifier" />
                 <separator />
                 <field name="name" />

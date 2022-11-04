@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 -->
 <odoo>
@@ -12,7 +12,6 @@
         <field name="inherit_id" ref="medical_workflow.medical_request_tree" />
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
-                <attribute name="string">Group requests</attribute>
                 <attribute name="decoration-muted">state=='cancelled'</attribute>
             </xpath>
         </field>
@@ -23,9 +22,6 @@
         <field name="inherit_id" ref="medical_request_form" />
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <form position="attributes">
-                <attribute name="string">Request Group</attribute>
-            </form>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
                     type="object"
@@ -49,7 +45,7 @@
         <field name="name">medical.procedure.request.view.search</field>
         <field name="model">medical.procedure.request</field>
         <field name="arch" type="xml">
-            <search string="Medical Procedure Request">
+            <search>
                 <field name="internal_identifier" />
                 <field name="patient_id" />
                 <field name="name" />
