@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    Copyright 2017 Creu Blanca
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
@@ -9,7 +9,7 @@
         <field name="name">medical.encounter.view.tree</field>
         <field name="model">medical.encounter</field>
         <field name="arch" type="xml">
-            <tree string="Encounters">
+            <tree>
                 <field name="internal_identifier" />
                 <field name="patient_id" />
                 <field name="location_id" />
@@ -22,7 +22,7 @@
         <field name="name">medical.encounter.view.form</field>
         <field name="model">medical.encounter</field>
         <field name="arch" type="xml">
-            <form string="Encounter">
+            <form>
                 <header>
                     <button
                         string="Arrived"
@@ -172,7 +172,7 @@
         <field name="name">medical.encounter.search</field>
         <field name="model">medical.encounter</field>
         <field name="arch" type="xml">
-            <search string="Encounter">
+            <search>
                 <field name="internal_identifier" />
                 <separator />
                 <field name="patient_id" />
