@@ -12,7 +12,6 @@
     <record id="check_up_activity" model="workflow.activity.definition">
         <field name="name">CH</field>
         <field name="description">Check Up</field>
-        <field name="type_id" ref="medical_workflow.medical_workflow" />
         <field name="model_id" ref="model_medical_request_group" />
         <field name="state">active</field>
         <field name="service_id" ref="check_up_product" />

@@ -13,6 +13,7 @@ class MedicalRequest(models.AbstractModel):
         comodel_name="medical.request.group",
         ondelete="restrict",
         index=True,
+        readonly=True,
     )  # FHIR Field: BasedOn
 
     request_group_ids = fields.One2many(
@@ -23,8 +24,6 @@ class MedicalRequest(models.AbstractModel):
     request_group_count = fields.Integer(
         compute="_compute_request_group_ids",
         string="# of Request Groups",
-        copy=False,
-        default=0,
     )
 
     def _compute_request_group_ids(self):

@@ -12,7 +12,6 @@ class RequestGroup(models.Model):
     _inherit = "medical.request"
 
     request_group_ids = fields.One2many(inverse_name="request_group_id")
-    internal_identifier = fields.Char(string="Request group")
 
     def _get_internal_identifier(self, vals):
         return (
