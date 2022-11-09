@@ -30,42 +30,43 @@
                         type="object"
                         name="preparation2in_progress"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state','!=','preparation')]}"
+                        attrs="{'invisible': [('fhir_state','!=','preparation')]}"
                     />
                     <button
                         string="Complete"
                         type="object"
                         name="in_progress2completed"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state','!=','in-progress')]}"
+                        attrs="{'invisible': [('fhir_state','!=','in-progress')]}"
                     />
                     <button
                         string="Suspend"
                         type="object"
                         name="in_progress2suspended"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state','!=','in-progress')]}"
+                        attrs="{'invisible': [('fhir_state','!=','in-progress')]}"
                     />
                     <button
                         string="Abort"
                         type="object"
                         name="in_progress2aborted"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state','!=','in-progress')]}"
+                        attrs="{'invisible': [('fhir_state','!=','in-progress')]}"
                     />
                     <button
                         string="Reactivate"
                         type="object"
                         name="suspended2in_progress"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state','!=','suspended')]}"
+                        attrs="{'invisible': [('fhir_state','!=','suspended')]}"
                     />
                     <field
-                        name="state"
+                        name="fhir_state"
                         widget="statusbar"
                         statusbar_visible="preparation,in-progress,suspended,completed"
                     />
                 </header>
+                <field name="state" invisible="1" />
                 <sheet>
                     <div name="button_box" class="oe_button_box" />
                     <h2>
@@ -74,33 +75,17 @@
                     </h2>
                     <group name="details" cols="4">
                         <group>
-                            <field name="is_editable" invisible="1" />
-                            <field
-                                name="name"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
-                            />
-                            <field
-                                name="patient_id"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
-                            />
+                            <field name="name" />
+                            <field name="patient_id" />
                         </group>
                     </group>
                     <group name="sale">
                         <group name="sale_01">
-                            <field
-                                name="service_id"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
-                            />
-                            <field
-                                name="performer_id"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
-                            />
+                            <field name="service_id" />
+                            <field name="performer_id" />
                         </group>
                         <group name="sale_02">
-                            <field
-                                name="occurrence_date"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
-                            />
+                            <field name="occurrence_date" />
                         </group>
                     </group>
                     <notebook>
@@ -119,38 +104,6 @@
                     <field name="message_ids" widget="mail_thread" />
                 </div>
             </form>
-        </field>
-    </record>
-    <record id="medical_event_form_patient" model="ir.ui.view">
-        <field name="name">medical.event.view.form</field>
-        <field name="model">medical.event</field>
-        <field name="inherit_id" ref="medical_event_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('medical_administration.group_medical_patient_list'))]"
-        />
-        <field name="arch" type="xml">
-            <field name="patient_id" position="attributes">
-                <attribute
-                    name="options"
-                >{'no_open': False, 'no_create': True}</attribute>
-            </field>
-        </field>
-    </record>
-    <record id="medical_event_form_performer" model="ir.ui.view">
-        <field name="name">medical.event.view.form</field>
-        <field name="model">medical.event</field>
-        <field name="inherit_id" ref="medical_event_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('medical_administration_practitioner.group_medical_practitioner_list'))]"
-        />
-        <field name="arch" type="xml">
-            <field name="performer_id" position="attributes">
-                <attribute
-                    name="options"
-                >{'no_open': False, 'no_create': True}</attribute>
-            </field>
         </field>
     </record>
 </odoo>

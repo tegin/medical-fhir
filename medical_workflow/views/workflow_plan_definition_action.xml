@@ -45,10 +45,8 @@
                                 options="{'no_create': True}"
                             />
                             <field name="parent_id" />
-                            <field name="type_id" invisible="1" />
                             <field
                                 name="execute_plan_definition_id"
-                                domain="[('type_id', '=', type_id)]"
                                 options="{'no_create': True}"
                             />
                         </group>
@@ -85,7 +83,6 @@
         id="workflow_plan_definition_actions_menu"
         name="Actions"
         parent="medical_base.medical_root_workflow"
-        groups="medical_workflow.group_workflow_plan_definition_action_list"
         action="workflow_plan_definition_action"
         sequence="20"
     />

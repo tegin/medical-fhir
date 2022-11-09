@@ -15,24 +15,33 @@ class MedicalRequest(models.AbstractModel):
 
     @api.model
     def _get_states(self):
-        return [
-            ("draft", "Draft"),
-            ("active", "Active"),
-            ("suspended", "Suspended"),
-            ("completed", "Completed"),
-            ("entered-in-error", "Entered in Error"),
-            ("cancelled", "Cancelled"),
-        ]
+        return {
+            "draft": ("Draft", "draft"),
+            "active": ("Active", "draft"),
+            "suspended": ("Suspended", "done"),
+            "completed": ("Completed", "done"),
+            "entered-in-error": ("Entered in error", "done"),
+            "cancelled": ("Cancelled", "done"),
+        }
 
-    name = fields.Char(string="Name", help="Name", copy=False)
-    state = fields.Selection(
-        selection=lambda r: r._get_states(),
-        readonly=False,
+    name = fields.Char(
+        string="Name",
+        help="Name",
         copy=False,
-        states={
-            "cancelled": [("readonly", True)],
-            "completed": [("readonly", True)],
-        },
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
+    state = fields.Selection(
+        [("draft", "Draft"), ("done", "Done")],
+        store=True,
+        compute="_compute_state",
+    )
+    fhir_state = fields.Selection(
+        selection=lambda r: [
+            (key, value[0]) for key, value in r._get_states().items()
+        ],
+        readonly=True,
+        copy=False,
         required=True,
         tracking=True,
         index=True,
@@ -46,11 +55,15 @@ class MedicalRequest(models.AbstractModel):
             ("option", "Option"),
         ],
         required=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         default="proposal",
     )  # FHIR Field: intent
     priority = fields.Selection(
         [("low", "Low"), ("normal", "Normal"), ("high", "High")],
         required=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         default="normal",
     )  # FHIR Field: priority
     patient_id = fields.Many2one(
@@ -60,6 +73,8 @@ class MedicalRequest(models.AbstractModel):
         tracking=True,
         ondelete="restrict",
         index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         help="Patient Name",
     )  # FHIR field: subject
     performer_id = fields.Many2one(
@@ -69,6 +84,8 @@ class MedicalRequest(models.AbstractModel):
         ondelete="restrict",
         index=True,
         tracking=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         help="Who is to perform the procedure",
     )  # FHIR Field : performer
     service_id = fields.Many2one(
@@ -77,6 +94,8 @@ class MedicalRequest(models.AbstractModel):
         tracking=True,
         ondelete="restrict",
         index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         domain="[('type', '=', 'service')]",
     )  # FHIR Field: code
     order_by_id = fields.Many2one(
@@ -86,28 +105,41 @@ class MedicalRequest(models.AbstractModel):
         help="Person who has initiated the order.",
         ondelete="restrict",
         index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )  # FHIR Field: requester/agent
     order_date = fields.Datetime(
-        string="Order date", help="Start of the order."
+        string="Order date",
+        help="Start of the order.",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )  # FHIR Field: authoredOn
     observations = fields.Text(string="Observations")  # FHIR Field: note
     plan_definition_id = fields.Many2one(
         comodel_name="workflow.plan.definition",
         ondelete="restrict",
         index=True,
+        readonly=True,
     )  # FHIR Field: definition
     activity_definition_id = fields.Many2one(
         comodel_name="workflow.activity.definition",
         ondelete="restrict",
         index=True,
+        readonly=True,
     )  # FHIR Field: definition
     plan_definition_action_id = fields.Many2one(
-        comodel_name="workflow.plan.definition.action"
+        comodel_name="workflow.plan.definition.action",
+        readonly=True,
     )  # FHIR Field: definition
-    is_editable = fields.Boolean(compute="_compute_is_editable")
     is_medical_request = fields.Boolean(
         "Medical request", compute="_compute_is_medical_request"
     )
+
+    @api.depends("fhir_state")
+    def _compute_state(self):
+        state_vals = self._get_states()
+        for record in self:
+            record.state = state_vals[record.fhir_state][1]
 
     def _compute_is_medical_request(self):
         for rec in self:
@@ -140,53 +172,38 @@ class MedicalRequest(models.AbstractModel):
             result.append((record.id, name))
         return result
 
-    @api.depends("state")
-    def _compute_is_editable(self):
-        for rec in self:
-            if rec.state in (
-                "active",
-                "suspended",
-                "completed",
-                "entered-in-error",
-                "cancelled",
-                "unknown",
-            ):
-                rec.is_editable = False
-            else:
-                rec.is_editable = True
-
     def draft2active_values(self):
-        return {"state": "active"}
+        return {"fhir_state": "active"}
 
     def draft2active(self):
         self.write(self.draft2active_values())
 
     def active2suspended_values(self):
-        return {"state": "suspended"}
+        return {"fhir_state": "suspended"}
 
     def active2suspended(self):
         self.write(self.active2suspended_values())
 
     def active2completed_values(self):
-        return {"state": "completed"}
+        return {"fhir_state": "completed"}
 
     def active2completed(self):
         self.write(self.active2completed_values())
 
     def active2error_values(self):
-        return {"state": "entered-in-error"}
+        return {"fhir_state": "entered-in-error"}
 
     def active2error(self):
         self.write(self.active2error_values())
 
     def reactive_values(self):
-        return {"state": "active"}
+        return {"fhir_state": "active"}
 
     def reactive(self):
         self.write(self.reactive_values())
 
     def cancel_values(self):
-        return {"state": "cancelled"}
+        return {"fhir_state": "cancelled"}
 
     def cancel(self):
         self.write(self.cancel_values())

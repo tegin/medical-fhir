@@ -10,8 +10,7 @@ class TestRecursion(TransactionCase):
     def test_recursion(self):
         plan_obj = self.env["workflow.plan.definition"]
         action_obj = self.env["workflow.plan.definition.action"]
-        workflow_type = self.browse_ref("medical_workflow.medical_workflow")
-        plan_1 = plan_obj.create({"name": "P1", "type_id": workflow_type.id})
+        plan_1 = plan_obj.create({"name": "P1"})
         with self.assertRaises(UserError):
             action_obj.create(
                 {
@@ -20,7 +19,7 @@ class TestRecursion(TransactionCase):
                     "execute_plan_definition_id": plan_1.id,
                 }
             )
-        plan_2 = plan_obj.create({"name": "P2", "type_id": workflow_type.id})
+        plan_2 = plan_obj.create({"name": "P2"})
         action_obj.create(
             {
                 "direct_plan_definition_id": plan_1.id,
@@ -36,7 +35,7 @@ class TestRecursion(TransactionCase):
                     "execute_plan_definition_id": plan_1.id,
                 }
             )
-        plan_3 = plan_obj.create({"name": "P3", "type_id": workflow_type.id})
+        plan_3 = plan_obj.create({"name": "P3"})
         action_obj.create(
             {
                 "direct_plan_definition_id": plan_2.id,

@@ -3,21 +3,12 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import _, fields, models
-from odoo.exceptions import Warning as Warn
+from odoo.exceptions import UserError
 
 
 class MedicalAddPlanDefinition(models.TransientModel):
     _name = "medical.add.plan.definition"
     _description = "Add plan definition"
-
-    def _domain_plan_definition(self):
-        return [
-            (
-                "type_id",
-                "=",
-                self.env.ref("medical_workflow.medical_workflow").id,
-            )
-        ]
 
     patient_id = fields.Many2one(
         comodel_name="medical.patient", string="Patient", required=True
@@ -25,7 +16,6 @@ class MedicalAddPlanDefinition(models.TransientModel):
 
     plan_definition_id = fields.Many2one(
         comodel_name="workflow.plan.definition",
-        domain=_domain_plan_definition,
         required=True,
     )
 
@@ -53,4 +43,4 @@ class MedicalAddPlanDefinition(models.TransientModel):
     def run(self):
         res = self._run()
         if not res:
-            raise Warn(_("No requests were created"))
+            raise UserError(_("No requests were created"))

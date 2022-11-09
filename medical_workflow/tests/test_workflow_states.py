@@ -7,8 +7,7 @@ from odoo.tests.common import TransactionCase
 class TestWorkflowStates(TransactionCase):
     def test_plan_definition(self):
         plan_obj = self.env["workflow.plan.definition"]
-        workflow_type = self.browse_ref("medical_workflow.medical_workflow")
-        plan_1 = plan_obj.create({"name": "P1", "type_id": workflow_type.id})
+        plan_1 = plan_obj.create({"name": "P1"})
         self.assertFalse(plan_1.active)
         plan_1.activate()
         self.assertTrue(plan_1.active)
@@ -18,27 +17,12 @@ class TestWorkflowStates(TransactionCase):
         self.assertTrue(plan_1.active)
 
     def test_activity_definition(self):
-        w_type = self.env["workflow.type"].create(
-            {
-                "name": "TEST",
-                "model_id": self.browse_ref(
-                    "medical_administration.model_medical_patient"
-                ).id,
-                "model_ids": [
-                    (
-                        4,
-                        self.browse_ref(
-                            "medical_administration.model_medical_patient"
-                        ).id,
-                    )
-                ],
-            }
-        )
         activity = self.env["workflow.activity.definition"].create(
             {
                 "name": "Activity",
-                "type_id": w_type.id,
-                "model_id": w_type.model_id.id,
+                "model_id": self.browse_ref(
+                    "medical_base.model_medical_patient"
+                ).id,
             }
         )
         self.assertFalse(activity.active)
