@@ -12,22 +12,15 @@
             name="inherit_id"
             ref="medical_administration_location.res_partner_view_form"
         />
+
+        <field name="groups_id" eval="[(4, ref('stock.group_stock_user'))]" />
         <field name="arch" type="xml">
-            <notebook position="inside">
-                <page
-                    string="Location"
-                    groups="medical_administration_location_stock.group_medical_location_stock"
-                    name="stock_location"
-                    attrs="{'invisible': [('is_location', '=', False)]}"
-                >
-                    <group name="stock_location_group">
-                        <group>
-                            <field name="stock_location_id" />
-                            <field name="stock_picking_type_id" />
-                        </group>
-                    </group>
-                </page>
-            </notebook>
+            <group name="medical_config" position="after">
+                <group name="stock_location_group">
+                    <field name="stock_location_id" />
+                    <field name="stock_picking_type_id" />
+                </group>
+            </group>
         </field>
     </record>
 </odoo>
