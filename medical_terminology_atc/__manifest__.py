@@ -12,7 +12,6 @@
     "license": "LGPL-3",
     "depends": ["medical_terminology"],
     "data": [
-        "security/medical_security.xml",
         "security/ir.model.access.csv",
         "data/atc_data.xml",
         "views/medical_atc_concept_views.xml",
