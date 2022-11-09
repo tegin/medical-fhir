@@ -28,7 +28,6 @@
                     name="action_view_medication_administration"
                     class="oe_stat_button"
                     icon="fa-pills"
-                    groups="medical_medication_request.group_medical_medication_administration_list"
                     attrs="{'invisible': [('state','=','draft')]}"
                 >
                     <field
@@ -50,9 +49,6 @@
             <field name="service_id" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
-            <notebook position="attributes">
-                <attribute name="invisible">1</attribute>
-            </notebook>
         </field>
     </record>
     <record id="medical_medication_request_view_search" model="ir.ui.view">
@@ -120,8 +116,7 @@
     <menuitem
         id="medical_medication_request"
         name="Requests"
-        parent="medical_base.medical_root_medications"
-        groups="medical_medication_request.group_medical_medication_request_list"
+        parent="medical_base.medical_clinical_request"
         action="medical_medication_request_action"
         sequence="0"
     />

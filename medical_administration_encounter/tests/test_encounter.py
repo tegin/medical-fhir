@@ -8,11 +8,12 @@ from odoo.tests.common import TransactionCase
 class TestMedicalEncounter(TransactionCase):
     def setUp(self):
         super(TestMedicalEncounter, self).setUp()
-        self.medical_user_group = self.env.ref(
-            "medical_base.group_medical_configurator"
-        )
         self.medical_user = self._create_user(
-            "medical_user", self.medical_user_group.id
+            "medical_user", self.env.ref("medical_base.group_medical_admin").id
+        )
+        self.medical_reception = self._create_user(
+            "medical_reception",
+            self.env.ref("medical_base.group_medical_reception").id,
         )
         self.patient_model = self.env["medical.patient"]
         self.location_model = self.env["res.partner"]
@@ -62,10 +63,10 @@ class TestMedicalEncounter(TransactionCase):
             "location_id": self.location_1.id,
             "state": "arrived",
         }
-        encounter = self.encounter_model.with_user(self.medical_user).create(
-            encounter_vals
-        )
-        self.assertNotEquals(encounter, False)
+        encounter = self.encounter_model.with_user(
+            self.medical_reception
+        ).create(encounter_vals)
+        self.assertTrue(encounter)
 
     def test_encounter_complete_flow(self):
         encounter_vals = {
@@ -77,16 +78,12 @@ class TestMedicalEncounter(TransactionCase):
         encounter = self.encounter_model.create(encounter_vals)
         self.assertEqual(encounter.state, "planned")
         encounter.planned2arrived()
-        self.assertTrue(encounter.is_editable)
         self.assertEqual(encounter.state, "arrived")
         encounter.arrived2inprogress()
-        self.assertFalse(encounter.is_editable)
         self.assertEqual(encounter.state, "in-progress")
         encounter.inprogress2onleave()
-        self.assertFalse(encounter.is_editable)
         self.assertEqual(encounter.state, "onleave")
         encounter.onleave2finished()
-        self.assertFalse(encounter.is_editable)
         self.assertEqual(encounter.state, "finished")
 
     def test_encounter_cancelled_flow(self):
@@ -94,23 +91,19 @@ class TestMedicalEncounter(TransactionCase):
         encounter_1 = self._create_encounter("planned")
         self.assertEqual(encounter_1.state, "planned")
         encounter_1.planned2cancelled()
-        self.assertFalse(encounter_1.is_editable)
         self.assertEqual(encounter_1.state, "cancelled")
         # arrived2cancelled
         encounter_2 = self._create_encounter("arrived")
         self.assertEqual(encounter_2.state, "arrived")
         encounter_2.arrived2cancelled()
-        self.assertFalse(encounter_2.is_editable)
         self.assertEqual(encounter_2.state, "cancelled")
         # inprogress2cancelled
         encounter_3 = self._create_encounter("in-progress")
         self.assertEqual(encounter_3.state, "in-progress")
         encounter_3.inprogress2cancelled()
-        self.assertFalse(encounter_3.is_editable)
         self.assertEqual(encounter_3.state, "cancelled")
         # onleave2cancelled
         encounter_4 = self._create_encounter("onleave")
         self.assertEqual(encounter_4.state, "onleave")
         encounter_4.onleave2cancelled()
-        self.assertFalse(encounter_4.is_editable)
         self.assertEqual(encounter_4.state, "cancelled")

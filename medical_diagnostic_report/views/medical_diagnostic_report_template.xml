@@ -160,8 +160,7 @@
     <menuitem
         id="medical_report_configuration"
         name="Report Configuration"
-        parent="medical_root_diagnostic"
-        groups="group_medical_diagnostic_report_template_manager"
+        parent="medical_base.medical_root_configuration"
         sequence="20"
     />
     <record model="ir.ui.menu" id="medical_report_template_menu">

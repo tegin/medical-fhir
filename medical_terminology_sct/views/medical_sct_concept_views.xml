@@ -56,7 +56,6 @@
         id="medical_sct_concept"
         name="SCT Concepts"
         parent="medical_base.medical_root_terminologies"
-        groups="medical_terminology_sct.group_medical_sct_concept_list"
         sequence="10"
         action="medical_sct_concept_window_action"
     />

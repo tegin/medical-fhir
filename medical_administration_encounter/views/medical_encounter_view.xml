@@ -29,7 +29,7 @@
                         type="object"
                         name="planned2arrived"
                         class="oe_highlight"
-                        groups="medical_administration_encounter.group_medical_encounter_manager"
+                        groups="medical_base.group_medical_reception"
                         attrs="{'invisible': [('state','!=','planned')]}"
                     />
                     <button
@@ -37,7 +37,7 @@
                         type="object"
                         name="planned2cancelled"
                         class="oe_highlight"
-                        groups="medical_administration_encounter.group_medical_encounter_manager"
+                        groups="medical_base.group_medical_reception"
                         attrs="{'invisible': [('state','!=','planned')]}"
                     />
                     <button
@@ -45,7 +45,7 @@
                         type="object"
                         name="arrived2inprogress"
                         class="oe_highlight"
-                        groups="medical_administration_encounter.group_medical_encounter_manager"
+                        groups="medical_base.group_medical_reception"
                         attrs="{'invisible': [('state','!=','arrived')]}"
                     />
                     <button
@@ -53,7 +53,7 @@
                         type="object"
                         name="arrived2cancelled"
                         class="oe_highlight"
-                        groups="medical_administration_encounter.group_medical_encounter_manager"
+                        groups="medical_base.group_medical_reception"
                         attrs="{'invisible': [('state','!=','arrived')]}"
                     />
                     <button
@@ -61,22 +61,22 @@
                         type="object"
                         name="inprogress2onleave"
                         class="oe_highlight"
-                        groups="medical_administration_encounter.group_medical_encounter_manager"
+                        groups="medical_base.group_medical_reception"
                         attrs="{'invisible': [('state','!=','in-progress')]}"
                     />
                     <button
                         string="Cancel"
                         type="object"
                         name="inprogress2cancelled"
-                        groups="medical_administration_encounter.group_medical_encounter_manager"
+                        groups="medical_base.group_medical_reception"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','in-progress')]}"
                     />
                     <button
-                        string="Finished"
+                        string="Finish"
                         type="object"
                         name="onleave2finished"
-                        groups="medical_administration_encounter.group_medical_encounter_manager"
+                        groups="medical_base.group_medical_reception"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','onleave')]}"
                     />
@@ -84,7 +84,7 @@
                         string="Cancel"
                         type="object"
                         name="onleave2cancelled"
-                        groups="medical_administration_encounter.group_medical_encounter_manager"
+                        groups="medical_base.group_medical_reception"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','onleave')]}"
                     />
@@ -96,33 +96,18 @@
                     <h1>
                         <label for="internal_identifier" />
                         <field name="internal_identifier" />
-                        <field name="is_editable" invisible="1" />
                     </h1>
                     <h2>
-                        <field
-                            name="name"
-                            attrs="{'readonly': [('is_editable', '=', False)]}"
-                        />
+                        <field name="name" />
                     </h2>
                     <group>
                         <group name="patient">
-                            <field
-                                name="patient_id"
-                                attrs="{'readonly': [('is_editable', '=', False)]}"
-                                options="{'no_open': True, 'no_create': True}"
-                            />
-                            <field
-                                name="priority_id"
-                                attrs="{'readonly': [('is_editable', '=', False)]}"
-                            />
+                            <field name="patient_id" />
+                            <field name="priority_id" />
                         </group>
                     </group>
                     <group name="location_id">
-                        <field
-                            name="location_id"
-                            attrs="{'readonly': [('is_editable', '=', False)]}"
-                            options="{'no_open': True, 'no_create': True}"
-                        />
+                        <field name="location_id" />
                     </group>
                     <notebook>
                         <page name="first" invisible="1" />
@@ -134,38 +119,6 @@
                     <field name="message_ids" widget="mail_thread" />
                 </div>
             </form>
-        </field>
-    </record>
-    <record id="medical_encounter_view_form_patient" model="ir.ui.view">
-        <field name="name">medical.encounter.view.form</field>
-        <field name="model">medical.encounter</field>
-        <field name="inherit_id" ref="medical_encounter_view_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('medical_administration.group_medical_patient_list'))]"
-        />
-        <field name="arch" type="xml">
-            <field name="patient_id">
-                <attribute
-                    name="options"
-                >{'no_open': False, 'no_create': True}</attribute>
-            </field>
-        </field>
-    </record>
-    <record id="medical_encounter_view_form_location" model="ir.ui.view">
-        <field name="name">medical.encounter.view.form</field>
-        <field name="model">medical.encounter</field>
-        <field name="inherit_id" ref="medical_encounter_view_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('medical_administration_location.group_medical_location_list'))]"
-        />
-        <field name="arch" type="xml">
-            <field name="location_id">
-                <attribute
-                    name="options"
-                >{'no_open': False, 'no_create': True}</attribute>
-            </field>
         </field>
     </record>
     <record id="view_medical_encounter_search" model="ir.ui.view">

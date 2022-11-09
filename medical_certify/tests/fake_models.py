@@ -4,6 +4,7 @@ from odoo import fields, models
 class MedicalCertify(models.Model):
     _name = "medical.certify.demo"
     _inherit = "digest.base"
+    _description = "Demo digest"
 
     name = fields.Char(required=True)
 

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<odoo>
-    <menuitem
-        id="medical_root_diagnostic"
-        name="Diagnostic"
-        parent="medical_base.medical_root_clinical"
-        sequence="30"
-    />
-</odoo>

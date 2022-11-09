@@ -10,15 +10,6 @@ class MedicalCareplanAddPlanDefinition(models.TransientModel):
     _inherit = "medical.add.plan.definition"
     _description = "Add a plan Definition on a Careplan"
 
-    def _domain_plan_definition(self):
-        return [
-            (
-                "type_id",
-                "=",
-                self.env.ref("medical_workflow.medical_workflow").id,
-            )
-        ]
-
     patient_id = fields.Many2one(
         related="careplan_id.patient_id", readonly=True
     )
@@ -29,7 +20,6 @@ class MedicalCareplanAddPlanDefinition(models.TransientModel):
 
     plan_definition_id = fields.Many2one(
         comodel_name="workflow.plan.definition",
-        domain=_domain_plan_definition,
         required=True,
     )
 

@@ -21,10 +21,14 @@ class MedicalProcedure(models.Model):
         readonly=True,
     )  # FHIR Field: BasedOn
     performed_initial_date = fields.Datetime(
-        string="Initial date"
+        string="Initial date",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )  # FHIR Field: performed/performedPeriod
     performed_end_date = fields.Datetime(
-        string="End date"
+        string="End date",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )  # FHIR Field: performed/performedPeriod
     location_id = fields.Many2one(
         comodel_name="res.partner",
@@ -32,6 +36,8 @@ class MedicalProcedure(models.Model):
         ondelete="restrict",
         index=True,
         string="Location",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )  # FHIR Field: location
 
     @api.constrains("procedure_request_id")

@@ -14,10 +14,6 @@
     "data": [
         "views/medical_menu.xml",
         "views/medical_abstract_concept_views.xml",
-        "views/res_config_settings_views.xml",
     ],
-    "demo": [],
-    "application": False,
     "installable": True,
-    "auto_install": False,
 }

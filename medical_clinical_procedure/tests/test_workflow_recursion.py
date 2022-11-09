@@ -8,7 +8,7 @@ from odoo.tests import TransactionCase
 class TestProcedure(TransactionCase):
     def setUp(self):
         res = super(TestProcedure, self).setUp()
-        self.patient = self.browse_ref("medical_administration.patient_01")
+        self.patient = self.browse_ref("medical_base.patient_01")
         self.plan_mr = self.browse_ref("medical_workflow.mr_knee")
         self.plan_ct = self.browse_ref("medical_workflow.ct_abdominal")
         self.activity = self.browse_ref(
@@ -17,9 +17,6 @@ class TestProcedure(TransactionCase):
         self.plan_check_up = self.env["workflow.plan.definition"].create(
             {
                 "name": "CheckUp",
-                "type_id": self.browse_ref(
-                    "medical_workflow.medical_workflow"
-                ).id,
             }
         )
         return res

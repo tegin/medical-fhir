@@ -10,7 +10,6 @@
         id="medical_conf_practitioner_menu"
         name="Practitioners"
         parent="medical_base.medical_root_administration"
-        groups="medical_administration_practitioner.group_medical_practitioner_list"
         action="medical_practitioner_action"
         sequence="20"
     />
@@ -18,7 +17,6 @@
         id="medical_role_menu"
         name="Roles"
         parent="medical_base.medical_root_configuration"
-        groups="medical_administration_practitioner.group_medical_role_list"
         action="medical_role_action"
         sequence="60"
     />

@@ -16,23 +16,15 @@
             >
                 <field name="is_payor" invisible="1" />
             </xpath>
-            <xpath expr="//h1" position="before">
-                <h1>
-                    <field name="is_payor" invisible="1" />
-                    <field
-                        name="payor_identifier"
-                        attrs="{'invisible': [('is_payor','=',False)]}"
-                        groups="medical_financial_coverage.group_medical_payor_display"
-                    />
-                </h1>
-            </xpath>
+            <field name="is_medical" position="before">
+                <field name="is_payor" />
+            </field>
             <div name="button_box" position="inside">
                 <button
                     type="object"
                     name="action_view_coverage_template"
                     class="oe_stat_button"
                     icon="fa-plus-square"
-                    groups="medical_financial_coverage.group_medical_coverage_template_list"
                     attrs="{'invisible': [('is_payor', '=', False)]}"
                 >
                     <field

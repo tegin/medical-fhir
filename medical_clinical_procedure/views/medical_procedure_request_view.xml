@@ -26,7 +26,6 @@
                 <button
                     type="object"
                     name="action_view_procedure"
-                    groups="medical_clinical_procedure.group_medical_procedure_list"
                     class="oe_stat_button"
                     icon="fa-stethoscope"
                     attrs="{'invisible': [('state','=','draft')]}"
@@ -117,9 +116,8 @@
     <menuitem
         id="medical_procedure_request"
         name="Procedure Requests"
-        parent="medical_clinical.medical_clinical_request"
+        parent="medical_base.medical_clinical_request"
         sequence="10"
-        groups="group_medical_procedure_request_list"
         action="medical_procedure_request_action"
     />
 </odoo>

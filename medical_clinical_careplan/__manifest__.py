@@ -10,7 +10,7 @@
     "website": "https://github.com/tegin/medical-fhir",
     "category": "Medical",
     "license": "LGPL-3",
-    "depends": ["medical_clinical", "medical_workflow"],
+    "depends": ["medical_workflow"],
     "data": [
         "data/ir_sequence_data.xml",
         "security/medical_security.xml",
@@ -20,8 +20,5 @@
         "views/medical_careplan_views.xml",
         "views/res_config_settings_views.xml",
     ],
-    "demo": [],
-    "application": False,
     "installable": True,
-    "auto_install": False,
 }

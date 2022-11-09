@@ -15,10 +15,8 @@
                 <button
                     type="object"
                     name="action_view_request"
-                    groups="medical_clinical_procedure.group_medical_procedure_request_list"
                     class="oe_stat_button"
                     icon="fa-prescription"
-                    attrs="{'readonly':[('is_editable', '=', False)]}"
                     context="{'model_name': 'medical.procedure.request'}"
                 >
                     <field
@@ -33,29 +31,9 @@
                 <field
                     name="procedure_request_id"
                     readonly="1"
-                    options="{'no_create': True, 'no_open': True}"
                     attrs="{'invisible': [('procedure_request_id', '=', False)]}"
                 />
             </group>
-            <notebook position="attributes">
-                <attributes name="invisible">0</attributes>
-            </notebook>
-        </field>
-    </record>
-    <record id="medical_request_form_request" model="ir.ui.view">
-        <field name="name">medical.request.view.form</field>
-        <field name="model">medical.request</field>
-        <field name="inherit_id" ref="medical_request_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('group_medical_procedure_request_list'))]"
-        />
-        <field name="arch" type="xml">
-            <field name="procedure_request_id" position="attributes">
-                <attribute
-                    name="options"
-                >{'no_open': False, 'no_create': True}</attribute>
-            </field>
         </field>
     </record>
 </odoo>

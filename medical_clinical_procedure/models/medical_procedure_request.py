@@ -15,12 +15,19 @@ class MedicalProcedureRequest(models.Model):
     _order = "sequence, id"
 
     internal_identifier = fields.Char(string="Procedure request")
-    sequence = fields.Integer(required=True, default=1)
+    sequence = fields.Integer(
+        required=True,
+        default=1,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     occurrence = fields.Datetime(
         string="Occurrence date",
         help="When the procedure should occur",
         required=True,
         default=fields.Datetime.now,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     procedure_request_ids = fields.One2many(
         inverse_name="procedure_request_id"

@@ -10,9 +10,8 @@
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
-    "depends": ["medical_financial"],
+    "depends": ["medical_base"],
     "data": [
-        "security/medical_security.xml",
         "security/ir.model.access.csv",
         "data/medical_payor_sequence.xml",
         "data/medical_coverage_sequence.xml",

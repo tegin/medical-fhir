@@ -11,14 +11,13 @@
     "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
     "depends": [
-        "medical_administration",
+        "medical_base",
         "medical_terminology_sct",
         "medical_terminology_atc",
         "product",
         "stock",
     ],
     "data": [
-        "security/medical_security.xml",
         "data/sct_data.xml",
         "views/medical_menu.xml",
         "views/product_views.xml",

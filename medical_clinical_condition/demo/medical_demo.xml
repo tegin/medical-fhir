@@ -53,21 +53,21 @@
         <field name="create_warning" eval="False" />
     </record>
     <record id="patient_01_pregnant" model="medical.condition">
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
         <field
             name="clinical_finding_id"
             ref="medical_clinical_condition.finding_pregnant"
         />
     </record>
     <record id="patient_01_knee_joint_prosthesis_present" model="medical.condition">
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
         <field
             name="clinical_finding_id"
             ref="medical_clinical_condition.finding_knee_joint_prosthesis_present"
         />
     </record>
     <record id="patient_01_ibuprofen_allergy" model="medical.condition">
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
         <field name="is_allergy" eval="True" />
         <field name="criticality">high</field>
         <field
@@ -76,7 +76,7 @@
         />
     </record>
     <record id="patient_01_ibuprofen_pollen" model="medical.condition">
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
         <field name="is_allergy" eval="True" />
         <field name="criticality">low</field>
         <field

@@ -3,8 +3,12 @@
 # Copyright 2017 ForgeFlow
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models
-from odoo.modules import get_module_resource
+import logging
+
+from odoo import _, api, fields, models
+from odoo.exceptions import AccessError
+
+_logger = logging.getLogger(__name__)
 
 
 class ResPartner(models.Model):
@@ -23,40 +27,31 @@ class ResPartner(models.Model):
         ],
         readonly=False,
     )
-    practitioner_identifier = fields.Char(
-        readonly=True
-    )  # FHIR Field: identifier
-
-    @api.model
-    def _get_medical_identifiers(self):
-        res = super(ResPartner, self)._get_medical_identifiers()
-        res.append(
-            (
-                "is_medical",
-                "is_practitioner",
-                "practitioner_identifier",
-                self._get_practitioner_identifier,
-            )
-        )
-        return res
-
-    @api.model
-    def _get_practitioner_identifier(self, vals):
-        return (
-            self.env["ir.sequence"].next_by_code("medical.practitioner") or "/"
-        )
-
-    @api.model
-    def _get_default_image_path(self, vals):
-        if vals.get("is_practitioner", False):
-            return get_module_resource(
-                "medical_administration_practitioner",
-                "static/src/img",
-                "practitioner-avatar.png",
-            )
 
     @api.model
     def default_medical_fields(self):
         result = super(ResPartner, self).default_medical_fields()
         result.append("is_practitioner")
         return result
+
+    def _check_medical(self, mode="write"):
+        super()._check_medical(mode=mode)
+        if (
+            self.is_location
+            and mode != "read"
+            and not self.env.user.has_group(
+                "medical_base.group_medical_configurator"
+            )
+        ):
+            _logger.info(
+                "Access Denied by ACLs for operation: %s, uid: %s, model: %s",
+                "write",
+                self._uid,
+                self._name,
+            )
+            raise AccessError(
+                _(
+                    "You are not allowed to %(mode)s medical Contacts (res.partner) records.",
+                    mode=mode,
+                )
+            )

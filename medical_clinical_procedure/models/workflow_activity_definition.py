@@ -8,6 +8,9 @@ from odoo import models
 class ActivityDefinition(models.Model):
     _inherit = "workflow.activity.definition"
 
+    def _get_medical_models(self):
+        return super()._get_medical_models() + ["medical.procedure.request"]
+
     def _get_medical_values(
         self, vals, parent=False, plan=False, action=False
     ):

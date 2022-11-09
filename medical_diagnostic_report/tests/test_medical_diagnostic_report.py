@@ -105,16 +105,14 @@ class TestMedicalDiagnosticReport(TransactionCase):
         )
 
     def test_finalization(self):
-        self.assertNotEqual(self.report.state, "final")
+        self.assertNotEqual(self.report.fhir_state, "final")
         self.assertFalse(self.report.issued_date)
         self.assertFalse(self.report.issued_user_id)
-        self.assertTrue(self.report.is_editable)
         self.assertTrue(self.report.is_cancellable)
         with freezegun.freeze_time("2020-01-01"):
             self.report.registered2final_action()
-        self.assertEqual(self.report.state, "final")
+        self.assertEqual(self.report.fhir_state, "final")
         self.assertTrue(self.report.issued_date)
-        self.assertFalse(self.report.is_editable)
         self.assertTrue(self.report.is_cancellable)
         self.assertEqual(
             self.report.issued_date, datetime(2020, 1, 1, 0, 0, 0)
@@ -129,19 +127,17 @@ class TestMedicalDiagnosticReport(TransactionCase):
         )
 
     def test_cancellation(self):
-        self.assertNotEqual(self.report.state, "cancelled")
+        self.assertNotEqual(self.report.fhir_state, "cancelled")
         self.assertFalse(self.report.cancel_date)
         self.assertFalse(self.report.cancel_user_id)
-        self.assertTrue(self.report.is_editable)
         self.assertTrue(self.report.is_cancellable)
         with freezegun.freeze_time("2020-01-01"):
             self.report.cancel_action()
-        self.assertEqual(self.report.state, "cancelled")
+        self.assertEqual(self.report.fhir_state, "cancelled")
         self.assertTrue(self.report.cancel_date)
         self.assertEqual(
             self.report.cancel_date, datetime(2020, 1, 1, 0, 0, 0)
         )
-        self.assertFalse(self.report.is_editable)
         self.assertFalse(self.report.is_cancellable)
         self.assertTrue(self.report.cancel_user_id)
         self.assertEqual(self.report.cancel_user_id, self.env.user)
@@ -311,9 +307,9 @@ class TestMedicalDiagnosticReport(TransactionCase):
         ).with_context(no_raise_error_on_duplicate_template=True).merge()
 
     def test_report_expand_final_exception(self):
-        self.assertEqual(self.report.state, "registered")
+        self.assertEqual(self.report.fhir_state, "registered")
         self.report.registered2final_action()
-        self.assertEqual(self.report.state, "final")
+        self.assertEqual(self.report.fhir_state, "final")
         with self.assertRaises(ValidationError):
             self.env["medical.diagnostic.report.expand"].create(
                 {

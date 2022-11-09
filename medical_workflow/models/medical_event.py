@@ -13,36 +13,46 @@ class MedicalEvent(models.AbstractModel):
 
     @api.model
     def _get_states(self):
-        return [
-            ("preparation", "Preparation"),
-            ("in-progress", "In progress"),
-            ("suspended", "Suspended"),
-            ("aborted", "Aborted"),
-            ("completed", "Completed"),
-            ("entered-in-error", "Entered in error"),
-            ("unknown", "Unknown"),
-        ]
+        return {
+            "preparation": ("Preparation", "draft"),
+            "in-progress": ("In progress", "draft"),
+            "suspended": ("Suspended", "done"),
+            "aborted": ("Aborted", "done"),
+            "completed": ("Completed", "done"),
+            "entered-in-error": ("Entered in error", "done"),
+            "unknown": ("Unknown", "done"),
+        }
 
     name = fields.Char(string="Name", help="Name")
     plan_definition_id = fields.Many2one(
         comodel_name="workflow.plan.definition",
         ondelete="restrict",
         index=True,
+        readonly=True,
     )  # FHIR Field: definition
 
     activity_definition_id = fields.Many2one(
         comodel_name="workflow.activity.definition",
         ondelete="restrict",
         index=True,
+        readonly=True,
     )  # FHIR Field: definition
 
     plan_definition_action_id = fields.Many2one(
-        comodel_name="workflow.plan.definition.action", index=True
+        comodel_name="workflow.plan.definition.action",
+        index=True,
+        readonly=True,
     )  # FHIR Field: definition
     state = fields.Selection(
-        selection=lambda r: r._get_states(),
+        [("draft", "Draft"), ("done", "Done")],
+        store=True,
+        compute="_compute_state",
+    )
+    fhir_state = fields.Selection(
+        selection=lambda r: [
+            (key, value[0]) for key, value in r._get_states().items()
+        ],
         readonly=False,
-        states={"completed": [("readonly", True)]},
         required=True,
         tracking=True,
         index=True,
@@ -53,6 +63,8 @@ class MedicalEvent(models.AbstractModel):
         comodel_name="product.product",
         ondelete="restrict",
         index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         domain="[('type', '=', 'service')]",
     )  # FHIR Field: code
     patient_id = fields.Many2one(
@@ -62,10 +74,15 @@ class MedicalEvent(models.AbstractModel):
         tracking=True,
         ondelete="restrict",
         index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         help="Patient Name",
     )  # FHIR field: subject
     occurrence_date = fields.Datetime(
-        string="Occurrence date", help="Occurrence of the order."
+        string="Occurrence date",
+        help="Occurrence of the order.",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )  # FHIR Field: occurrence
     performer_id = fields.Many2one(
         string="Performer",
@@ -75,22 +92,15 @@ class MedicalEvent(models.AbstractModel):
         tracking=True,
         domain=[("is_practitioner", "=", True)],
         help="Who is to perform the procedure",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )  # FHIR Field : performer/actor
-    is_editable = fields.Boolean(compute="_compute_is_editable")
 
-    @api.depends("state")
-    def _compute_is_editable(self):
-        for rec in self:
-            if rec.state in (
-                "suspended",
-                "aborted",
-                "completed",
-                "entered-in-error",
-                "unknown",
-            ):
-                rec.is_editable = False
-            else:
-                rec.is_editable = True
+    @api.depends("fhir_state")
+    def _compute_state(self):
+        state_vals = self._get_states()
+        for record in self:
+            record.state = state_vals[record.fhir_state][1]
 
     @api.depends("name", "internal_identifier")
     def name_get(self):

@@ -12,14 +12,12 @@
     "license": "LGPL-3",
     "depends": [
         "medical_workflow",
-        "medical_clinical",
         "medical_administration_location",
     ],
     "data": [
         "security/medical_security.xml",
         "security/ir.model.access.csv",
         "data/ir_sequence.xml",
-        "data/medical_workflow.xml",
         "wizard/medical_procedure_request_make_procedure_view.xml",
         "views/medical_request_views.xml",
         "views/medical_procedure_view.xml",
