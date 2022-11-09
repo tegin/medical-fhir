@@ -11,11 +11,9 @@
     "author": "LasLabs, CreuBlanca, ForgeFlow,"
     "Odoo Community Association (OCA)",
     "license": "LGPL-3",
-    "depends": ["medical_administration"],
+    "depends": ["medical_base"],
     "data": [
-        "security/medical_security.xml",
         "data/ir_sequence_data.xml",
-        "views/res_config_settings_views.xml",
         "views/res_partner_views.xml",
         "views/medical_patient.xml",
         "views/medical_menu.xml",

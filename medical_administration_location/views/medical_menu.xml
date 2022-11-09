@@ -11,7 +11,7 @@
         name="Locations"
         sequence="30"
         parent="medical_base.medical_root_administration"
-        groups="medical_administration_location.group_medical_location_list"
+        groups="medical_base.group_medical_configurator"
         action="medical_location_action"
     />
 </odoo>
