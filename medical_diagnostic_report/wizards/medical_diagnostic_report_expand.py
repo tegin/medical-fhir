@@ -24,7 +24,7 @@ class MedicalDiagnosticReportExpand(models.TransientModel):
 
     def merge(self):
         self.ensure_one()
-        if self.diagnostic_report_id.state != "registered":
+        if self.diagnostic_report_id.fhir_state != "registered":
             raise ValidationError(_("Cannot update the report"))
         if self.template_id in self.diagnostic_report_id.template_ids:
             if self.env.context.get(
