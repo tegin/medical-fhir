@@ -15,7 +15,6 @@
         "medical_clinical_careplan",
     ],
     "data": [
-        "security/medical_security.xml",
         "views/medical_encounter_view.xml",
         "views/medical_request_views.xml",
     ],
