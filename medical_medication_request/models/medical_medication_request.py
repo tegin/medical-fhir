@@ -13,7 +13,6 @@ class MedicalMedicationRequest(models.Model):
     _description = "Medical Medication request"
     _inherit = "medical.request"
 
-    internal_identifier = fields.Char(string="Medication request")
     category = fields.Selection(
         [
             ("inpatient", "Inpatient"),
@@ -28,16 +27,24 @@ class MedicalMedicationRequest(models.Model):
         domain=[("is_medication", "=", True)],
         required=True,
         ondelete="restrict",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         index=True,
     )
     product_uom_id = fields.Many2one(
         "uom.uom",
-        "Unit of Measure",
         required=True,
         ondelete="restrict",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         index=True,
     )
-    qty = fields.Float("Quantity", default=1.0, required=True)
+    qty = fields.Float(
+        default=1.0,
+        required=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     medication_administration_ids = fields.One2many(
         comodel_name="medical.medication.administration",
         inverse_name="medication_request_id",

@@ -9,7 +9,7 @@ from odoo.tests import TransactionCase
 class TestMedicationRequest(TransactionCase):
     def setUp(self):
         super(TestMedicationRequest, self).setUp()
-        self.patient = self.browse_ref("medical_administration.patient_01")
+        self.patient = self.browse_ref("medical_base.patient_01")
         stock_location = self.browse_ref("stock.warehouse0").lot_stock_id
         picking_type = self.env["stock.picking.type"].search([], limit=1)
         self.location = self.env["res.partner"].create(

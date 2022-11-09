@@ -16,16 +16,19 @@ class MedicalMedicationAdministration(models.Model):
         # return self.env.ref('stock.stock_location_customers')
         return self.env.ref("medical_medication_request.location_patient")
 
-    internal_identifier = fields.Char(string="Medication administration")
     medication_request_id = fields.Many2one(
         comodel_name="medical.medication.request",
         ondelete="restrict",
         index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     location_id = fields.Many2one(
         comodel_name="res.partner",
         ondelete="restrict",
         index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         domain=[
             ("is_location", "=", True),
             ("stock_picking_type_id", "!=", False),
@@ -44,52 +47,53 @@ class MedicalMedicationAdministration(models.Model):
         related="location_id.stock_picking_type_id",
         ondelete="restrict",
         index=True,
+        store=True,
     )
     patient_location_id = fields.Many2one(
         comodel_name="stock.location",
         default=_default_patient_location,
         ondelete="restrict",
         index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     product_id = fields.Many2one(
         "product.product",
-        "Product",
         ondelete="restrict",
         index=True,
         required=True,
-        states={"done": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     product_uom_id = fields.Many2one(
         "uom.uom",
-        "Unit of Measure",
         ondelete="restrict",
         index=True,
         required=True,
-        states={"done": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
-    tracking = fields.Selection(
-        "Product Tracking", readonly=True, related="product_id.tracking"
-    )
+    tracking = fields.Selection(related="product_id.tracking")
     lot_id = fields.Many2one(
         "stock.production.lot",
-        "Lot",
         ondelete="restrict",
         index=True,
-        states={"done": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         domain="[('product_id', '=', product_id)]",
     )
     package_id = fields.Many2one(
         "stock.quant.package",
-        "Package",
         ondelete="restrict",
         index=True,
-        states={"done": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     qty = fields.Float(
-        "Quantity",
         default=1.0,
         required=True,
-        states={"done": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     move_ids = fields.One2many(
         "stock.move", inverse_name="medication_administration_id"

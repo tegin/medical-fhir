@@ -43,54 +43,10 @@
                 <attribute name="invisible">1</attribute>
             </field>
             <group name="inheritance" position="inside">
-                <field
-                    name="medication_request_id"
-                    options="{'no_create': True, 'no_open': True}"
-                />
+                <field name="medication_request_id" />
             </group>
             <field name="performer_id" position="after">
-                <field
-                    name="location_id"
-                    options="{'no_create': True, 'no_open': True}"
-                />
-            </field>
-        </field>
-    </record>
-    <record
-        id="medical_medication_administration_view_form_medication_request"
-        model="ir.ui.view"
-    >
-        <field name="name">medical.medication.administration.view.form</field>
-        <field name="model">medical.medication.administration</field>
-        <field name="inherit_id" ref="medical_medication_administration_view_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('group_medical_medication_administration_list'))]"
-        />
-        <field name="arch" type="xml">
-            <field name="medication_request_id" position="attributes">
-                <attribute
-                    name="options"
-                >{'no_open': False, 'no_create': True}</attribute>
-            </field>
-        </field>
-    </record>
-    <record
-        id="medical_medication_administration_view_form_form_location"
-        model="ir.ui.view"
-    >
-        <field name="name">medical.medication.administration.view.form</field>
-        <field name="model">medical.medication.administration</field>
-        <field name="inherit_id" ref="medical_medication_administration_view_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('medical_administration_location.group_medical_location_list'))]"
-        />
-        <field name="arch" type="xml">
-            <field name="location_id" position="attributes">
-                <attribute
-                    name="options"
-                >{'no_open': False, 'no_create': True}</attribute>
+                <field name="location_id" />
             </field>
         </field>
     </record>
@@ -169,8 +125,7 @@
     <menuitem
         id="medical_medication_administration"
         name="Administration"
-        parent="medical_base.medical_root_medications"
-        groups="medical_medication_request.group_medical_medication_administration_list"
+        parent="medical_base.medical_clinical_event"
         sequence="10"
         action="medical_medication_administration_action"
     />

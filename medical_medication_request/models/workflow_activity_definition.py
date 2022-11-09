@@ -10,6 +10,9 @@ class ActivityDefinition(models.Model):
     # (https://www.hl7.org/fhir/activitydefinition.html)
     _inherit = "workflow.activity.definition"
 
+    def _get_medical_models(self):
+        return super()._get_medical_models() + ["medical.medication.request"]
+
     def _get_medical_values(
         self, vals, parent=False, plan=False, action=False
     ):
