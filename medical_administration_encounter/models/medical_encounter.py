@@ -12,21 +12,40 @@ class MedicalEncounter(models.Model):
     _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
     _order = "create_date DESC"
 
-    name = fields.Char(string="Name")
-    internal_identifier = fields.Char(string="Encounter")
+    name = fields.Char(
+        readonly=True,
+        states={
+            "planned": [("readonly", False)],
+            "arrived": [("readonly", False)],
+            "in-progress": [("readonly", False)],
+            "onleave": [("readonly", False)],
+        },
+    )
+    internal_identifier = fields.Char()
     patient_id = fields.Many2one(
-        string="Patient",
         comodel_name="medical.patient",
         required=True,
         tracking=True,
         ondelete="restrict",
         index=True,
         help="Patient name",
+        states={
+            "planned": [("readonly", False)],
+            "arrived": [("readonly", False)],
+            "in-progress": [("readonly", False)],
+            "onleave": [("readonly", False)],
+        },
     )  # FHIR Field: subject
     priority_id = fields.Selection(
         string="Priority",
         selection=[("UR", "Urgent")],
         help="Indicates the urgency of the encounter.",
+        states={
+            "planned": [("readonly", False)],
+            "arrived": [("readonly", False)],
+            "in-progress": [("readonly", False)],
+            "onleave": [("readonly", False)],
+        },
     )  # FHIR Field: priority
     location_id = fields.Many2one(
         string="Location",
@@ -35,11 +54,17 @@ class MedicalEncounter(models.Model):
         tracking=True,
         ondelete="restrict",
         index=True,
+        states={
+            "planned": [("readonly", False)],
+            "arrived": [("readonly", False)],
+            "in-progress": [("readonly", False)],
+            "onleave": [("readonly", False)],
+        },
     )  # FHIR Field: location
     state = fields.Selection(
-        string="Encounter Status",
-        required="True",
+        required=True,
         tracking=True,
+        readonly=True,
         selection=[
             ("planned", "Planned"),
             ("arrived", "Arrived"),
@@ -51,11 +76,13 @@ class MedicalEncounter(models.Model):
         default="arrived",
         help="Current state of the encounter.",
     )  # FHIR Field: status
-    is_editable = fields.Boolean(compute="_compute_is_editable")
 
     @api.model
     def _get_internal_identifier(self, vals):
-        return self.env["ir.sequence"].next_by_code("medical.encounter") or "/"
+        return (
+            self.env["ir.sequence"].sudo().next_by_code("medical.encounter")
+            or "/"
+        )
 
     @api.depends("name", "internal_identifier")
     def name_get(self):
@@ -66,19 +93,6 @@ class MedicalEncounter(models.Model):
                 name = "{} {}".format(name, record.name)
             result.append((record.id, name))
         return result
-
-    @api.depends("state")
-    def _compute_is_editable(self):
-        for rec in self:
-            if rec.state in (
-                "in-progress",
-                "onleave",
-                "finished",
-                "cancelled",
-            ):
-                rec.is_editable = False
-            else:
-                rec.is_editable = True
 
     def planned2arrived_values(self):
         return {"state": "arrived"}
