@@ -67,7 +67,7 @@
                 <field name="patient_origin" />
                 <field name="is_cancellable" invisible="1" />
             </field>
-            <field name="state" position="attributes">
+            <field name="fhir_state" position="attributes">
                 <attribute name="statusbar_visible">registered,final</attribute>
             </field>
             <xpath expr="//group[@name='sale_01']" position="attributes">
