@@ -2,39 +2,30 @@
 <odoo noupdate="0">
     <record id="medical_uom_categ_rate" model="uom.category">
         <field name="name">Rate</field>
-        <field name="measure_type">rate</field>
     </record>
     <record id="medical_uom_categ_density" model="uom.category">
         <field name="name">Density</field>
-        <field name="measure_type">density</field>
     </record>
     <record id="medical_uom_categ_concentration" model="uom.category">
         <field name="name">Concentration</field>
-        <field name="measure_type">concentration</field>
     </record>
     <record id="medical_uom_categ_concentration_water" model="uom.category">
         <field name="name">Concentration in Water</field>
-        <field name="measure_type">concentration_in_water</field>
     </record>
     <record id="medical_uom_categ_concentration_molar" model="uom.category">
         <field name="name">Molar Concentration</field>
-        <field name="measure_type">concentration_molar</field>
     </record>
     <record id="medical_uom_mol" model="uom.category">
         <field name="name">Mol(s)</field>
-        <field name="measure_type">mol</field>
     </record>
     <record id="medical_uom_categ_time_month" model="uom.category">
         <field name="name">Time Month/Year</field>
-        <field name="measure_type">time_month_year</field>
     </record>
     <record id="medical_uom_categ_time_hour" model="uom.category">
         <field name="name">Time Hour/Day/Week</field>
-        <field name="measure_type">time_hour_day_week</field>
     </record>
     <record id="medical_uom_categ_catalytic_activity_litre" model="uom.category">
         <field name="name">Catalytic Activity Litre</field>
-        <field name="measure_type">catalytic_activity</field>
     </record>
     <record id="uom_rate" model="uom.uom">
         <field name="category_id" ref="medical_uom_categ_rate" />
