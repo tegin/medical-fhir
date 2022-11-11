@@ -23,7 +23,10 @@ class MedicalCarePlan(models.Model):
     )  # FHIR Field: Period
 
     def _get_internal_identifier(self, vals):
-        return self.env["ir.sequence"].next_by_code("medical.careplan") or "/"
+        return (
+            self.env["ir.sequence"].sudo().next_by_code("medical.careplan")
+            or "/"
+        )
 
     def draft2active_values(self):
         res = super().draft2active_values()

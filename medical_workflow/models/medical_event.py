@@ -113,31 +113,31 @@ class MedicalEvent(models.AbstractModel):
         return result
 
     def preparation2in_progress_values(self):
-        return {"state": "in-progress"}
+        return {"fhir_state": "in-progress"}
 
     def preparation2in_progress(self):
         self.write(self.preparation2in_progress_values())
 
     def suspended2in_progress_values(self):
-        return {"state": "in-progress"}
+        return {"fhir_state": "in-progress"}
 
     def suspended2in_progress(self):
         self.write(self.suspended2in_progress_values())
 
     def in_progress2completed_values(self):
-        return {"state": "completed"}
+        return {"fhir_state": "completed"}
 
     def in_progress2completed(self):
         self.write(self.in_progress2completed_values())
 
     def in_progress2aborted_values(self):
-        return {"state": "aborted"}
+        return {"fhir_state": "aborted"}
 
     def in_progress2aborted(self):
         self.write(self.in_progress2aborted_values())
 
     def in_progress2suspended_values(self):
-        return {"state": "suspended"}
+        return {"fhir_state": "suspended"}
 
     def in_progress2suspended(self):
         self.write(self.in_progress2suspended_values())
