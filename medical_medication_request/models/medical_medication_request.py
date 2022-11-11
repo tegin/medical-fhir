@@ -70,7 +70,9 @@ class MedicalMedicationRequest(models.Model):
 
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"].next_by_code("medical.medication.request")
+            self.env["ir.sequence"]
+            .sudo()
+            .next_by_code("medical.medication.request")
             or "/"
         )
 
