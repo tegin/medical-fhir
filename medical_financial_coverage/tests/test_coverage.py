@@ -9,7 +9,7 @@ class TestMedicalCoverage(TransactionCase):
     def setUp(self):
         super(TestMedicalCoverage, self).setUp()
         self.medical_user_group = self.env.ref(
-            "medical_base.group_medical_configurator"
+            "medical_base.group_medical_financial"
         )
         self.medical_user = self._create_user(
             "medical_user", self.medical_user_group.id
