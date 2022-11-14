@@ -1,90 +1,31 @@
 # Copyright 2017 ForgeFlow Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.exceptions import UserError, ValidationError, Warning as Warn
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import TransactionCase
 
 
 class TestWorkflowPlandefinition(TransactionCase):
     def setUp(self):
         res = super(TestWorkflowPlandefinition, self).setUp()
-        self.type = self.env["workflow.type"].create(
-            {
-                "name": "TEST",
-                "model_id": self.browse_ref(
-                    "medical_administration.model_medical_patient"
-                ).id,
-                "model_ids": [
-                    (
-                        4,
-                        self.browse_ref(
-                            "medical_administration.model_medical_patient"
-                        ).id,
-                    )
-                ],
-            }
-        )
-        self.aux_type = self.env["workflow.type"].create(
-            {
-                "name": "TEST",
-                "model_id": self.browse_ref(
-                    "medical_administration.model_medical_patient"
-                ).id,
-                "model_ids": [
-                    (
-                        4,
-                        self.browse_ref(
-                            "medical_administration.model_medical_patient"
-                        ).id,
-                    )
-                ],
-            }
-        )
         self.activity = self.env["workflow.activity.definition"].create(
             {
                 "name": "Activity",
-                "type_id": self.type.id,
-                "model_id": self.type.model_id.id,
             }
         )
         self.plan = self.env["workflow.plan.definition"].create(
-            {"name": "Plan", "type_id": self.type.id}
+            {"name": "Plan"}
         )
         self.plan.activate()
         self.activity_2 = self.env["workflow.activity.definition"].create(
             {
                 "name": "Activity 2",
-                "type_id": self.type.id,
-                "model_id": self.type.model_id.id,
             }
         )
         self.plan_2 = self.env["workflow.plan.definition"].create(
-            {"name": "Plan 2", "type_id": self.type.id}
+            {"name": "Plan 2"}
         )
         return res
-
-    def test_activity(self):
-        activity = self.env["workflow.activity.definition"].new(
-            {
-                "name": "Activity",
-                "type_id": self.type.id,
-                "model_id": self.type.model_id.id,
-            }
-        )
-        activity.type_id = self.aux_type
-        activity._onchange_type_id()
-        self.assertFalse(activity.model_id)
-
-    def test_activity_constrains(self):
-        self.env["workflow.plan.definition.action"].create(
-            {
-                "name": "Action",
-                "direct_plan_definition_id": self.plan.id,
-                "activity_definition_id": self.activity.id,
-            }
-        )
-        with self.assertRaises(UserError):
-            self.activity.type_id = self.aux_type
 
     def test_show_plan(self):
         plan_action = self.activity.action_show_plans()
@@ -138,18 +79,16 @@ class TestWorkflowPlandefinition(TransactionCase):
     def test_add_plan_definition_on_patients(self):
         plan_obj = self.env["workflow.plan.definition"]
         wzd = self.env["medical.add.plan.definition"]
-        workflow_type = self.browse_ref("medical_workflow.medical_workflow")
-        patient = self.browse_ref("medical_administration.patient_01")
-        plan_1 = plan_obj.create({"name": "P1", "type_id": workflow_type.id})
+        patient = self.browse_ref("medical_base.patient_01")
+        plan_1 = plan_obj.create({"name": "P1"})
         wzd_1 = wzd.create(
             {"patient_id": patient.id, "plan_definition_id": plan_1.id}
         )
-        with self.assertRaises(Warn):
+        with self.assertRaises(UserError):
             wzd_1.run()
 
     def test_execute_plan_definition(self):
         plan_obj = self.env["workflow.plan.definition"]
-        workflow_type = self.browse_ref("medical_workflow.medical_workflow")
-        patient = self.browse_ref("medical_administration.patient_01")
-        plan_1 = plan_obj.create({"name": "P1", "type_id": workflow_type.id})
+        patient = self.browse_ref("medical_base.patient_01")
+        plan_1 = plan_obj.create({"name": "P1"})
         plan_1.execute_plan_definition({"patient_id": patient.id})

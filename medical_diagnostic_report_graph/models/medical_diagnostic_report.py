@@ -13,12 +13,11 @@ from bokeh import (
     themes as bokeh_themes,
 )
 from bokeh.embed.util import FromCurdoc
-from bokeh.models import widgets as bokeh_widgets
 from bokeh.plotting import figure
 from lxml import etree
 
 from odoo import fields, models
-from odoo.tools.safe_eval import safe_eval
+from odoo.tools.safe_eval import safe_eval, wrap_module
 
 # from bokeh.io.export import get_screenshot_as_png
 from .export_png import get_screenshot_as_png
@@ -32,17 +31,33 @@ class MedicalDiagnosticReport(models.Model):
     html_chart = fields.Html()
     bokeh_image = fields.Binary(copy=False)
 
+    def _get_np_list(self):
+        return ["nan"]
+
+    def _get_bokeh_models_list(self):
+        return ["ColumnDataSource", "Range1d", "Legend", "LegendItem"]
+
+    def _get_bokeh_widgets_list(self):
+        return ["nan"]
+
     def _get_input_dict(self):
+        wrapped_pd = wrap_module(pd, ["DataFrame"])
+        wrapped_np = wrap_module(np, self._get_np_list())
         return {
             "observations": self.observation_ids,
-            "pd": pd,
-            "np": np,
+            "pd": wrapped_pd,
+            "np": wrapped_np,
             "figure": figure,
-            "bokeh_embed": bokeh_embed,
-            "bokeh_layouts": bokeh_layouts,
-            "bokeh_widgets": bokeh_widgets,
-            "bokeh_models": bokeh_models,
-            "bokeh_themes": bokeh_themes,
+            "bokeh_embed": wrap_module(bokeh_embed, bokeh_embed.__all__),
+            "bokeh_layouts": wrap_module(bokeh_layouts, bokeh_layouts.__all__),
+            "bokeh_annotations": wrap_module(
+                bokeh_models.annotations, bokeh_models.annotations.__all__
+            ),
+            # "bokeh_widgets": wrap_module(bokeh_widgets, self._get_bokeh_widgets_list()),
+            "bokeh_models": wrap_module(
+                bokeh_models, self._get_bokeh_models_list()
+            ),
+            "bokeh_themes": wrap_module(bokeh_themes, bokeh_themes.__all__),
             "self": self,
         }
 
@@ -60,7 +75,7 @@ class MedicalDiagnosticReport(models.Model):
                 continue
             code = template.html_code
             tree = etree.fromstring(code)
-            html = self.env["ir.qweb"].render(
+            html = self.env["ir.qweb"]._render(
                 tree,
                 {"record": self},
             )

@@ -42,7 +42,7 @@
     <!-- Coverage -->
     <record id="medical_coverage_1" model="medical.coverage">
         <field name="name">DKP Coverage</field>
-        <field name="patient_id" ref="medical_administration.patient_02" />
+        <field name="patient_id" ref="medical_base.patient_02" />
         <field
             name="coverage_template_id"
             ref="medical_financial_coverage.medical_coverage_template_1"
@@ -51,7 +51,7 @@
     </record>
     <record id="medical_coverage_2" model="medical.coverage">
         <field name="name">ADL Coverage</field>
-        <field name="patient_id" ref="medical_administration.patient_02" />
+        <field name="patient_id" ref="medical_base.patient_02" />
         <field
             name="coverage_template_id"
             ref="medical_financial_coverage.medical_coverage_template_2"

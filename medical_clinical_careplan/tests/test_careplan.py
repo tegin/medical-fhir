@@ -8,7 +8,9 @@ from odoo.tests import TransactionCase
 class TestCareplan(TransactionCase):
     def setUp(self):
         res = super(TestCareplan, self).setUp()
-        self.patient = self.browse_ref("medical_administration.patient_01")
+        self.patient = self.env["medical.patient"].create(
+            {"name": "Test Patient"}
+        )
         self.plan = self.browse_ref("medical_workflow.mr_knee")
         return res
 
@@ -17,29 +19,23 @@ class TestCareplan(TransactionCase):
             {"patient_id": self.patient.id}
         )
         self.assertNotEqual(request.internal_identifier, "/")
-        self.assertTrue(request.is_editable)
-        self.assertEqual(request.state, "draft")
+        self.assertEqual(request.fhir_state, "draft")
         self.assertFalse(request.start_date)
         request.draft2active()
         self.assertTrue(request.start_date)
-        self.assertFalse(request.is_editable)
-        self.assertEqual(request.state, "active")
+        self.assertEqual(request.fhir_state, "active")
         request.active2suspended()
-        self.assertFalse(request.is_editable)
-        self.assertEqual(request.state, "suspended")
+        self.assertEqual(request.fhir_state, "suspended")
         request.reactive()
         request.active2error()
-        self.assertFalse(request.is_editable)
-        self.assertEqual(request.state, "entered-in-error")
+        self.assertEqual(request.fhir_state, "entered-in-error")
         request.reactive()
         self.assertFalse(request.end_date)
         request.active2completed()
-        self.assertFalse(request.is_editable)
-        self.assertEqual(request.state, "completed")
+        self.assertEqual(request.fhir_state, "completed")
         self.assertTrue(request.end_date)
         request.reactive()
         request.cancel()
-        self.assertFalse(request.is_editable)
-        self.assertEqual(request.state, "cancelled")
+        self.assertEqual(request.fhir_state, "cancelled")
         inverse_name = request._get_parent_field_name()
         self.assertEqual(inverse_name, "careplan_id")

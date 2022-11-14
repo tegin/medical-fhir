@@ -5,4 +5,3 @@
 
 from . import res_partner
 from . import medical_role
-from . import res_config_settings

@@ -85,11 +85,11 @@ class TestMedicalPatientObservationButtons(TransactionCase):
 
     def test_report_observations_change_state(self):
         report_observation = self.report.observation_ids[8]
-        self.assertEqual(self.report.state, report_observation.state)
+        self.assertEqual(self.report.fhir_state, report_observation.state)
         self.report.registered2final_action()
-        self.assertEqual(self.report.state, report_observation.state)
+        self.assertEqual(self.report.fhir_state, report_observation.state)
         self.report.cancel_action()
-        self.assertEqual(self.report.state, report_observation.state)
+        self.assertEqual(self.report.fhir_state, report_observation.state)
 
     def test_action_view_observations_with_concept(self):
         self.report.registered2final_action()

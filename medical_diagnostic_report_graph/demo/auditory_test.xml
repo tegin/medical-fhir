@@ -182,6 +182,39 @@
         <field name="with_conclusion" eval="True" />
         <field name="compute_graph" eval="True" />
         <field name="compute_html" eval="True" />
+        <field name="html_code">
+            <![CDATA[ <div class="o_report_layout_boxed " style="font-size:10px">
+                <table class="table table-condensed" style="width:75%;margin-left:auto;margin-right:auto">
+                   <thead>
+                     <tr>
+                         <th style="text-align:center"></th>
+                             <t t-set="observations" t-value="record.observation_ids" />
+                             <t t-foreach="observations" t-as="obs">
+                                 <t t-if="obs.display_type == 'line_subsection'">
+                                   <th style="text-align:center"><t t-esc="obs.name"/></th>
+                                 </t>
+                             </t>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <t t-set="observations" t-value="record.observation_ids[:8]" />
+                     <t t-foreach="observations" t-as="observation">
+                         <t t-if="not observation.display_type">
+                             <tr>
+                               <td style="text-align:center"><t t-esc="observation.name"/></td>
+                               <t t-set="observations_total" t-value="record.observation_ids" />
+                               <t t-foreach="observations_total" t-as="obs">
+                                   <t t-if="obs.name == observation.name">
+                                     <td style="text-align:center"><t t-esc="obs.value_int"/></td>
+                                    </t>
+                               </t>
+                              </tr>
+                         </t>
+                    </t>
+                   </tbody>
+                 </table>
+                </div>]]>
+        </field>
         <field name="hide_observations" eval="True" />
         <field
             name="composition"

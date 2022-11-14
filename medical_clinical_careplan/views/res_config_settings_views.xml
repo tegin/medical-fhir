@@ -9,18 +9,22 @@
         <field name="name">res.config.settings.view.form.inherit.medical
         </field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="medical_clinical.res_config_settings_view_form" />
+        <field name="inherit_id" ref="medical_workflow.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//div[@name='module_medical_clinical_careplan']/div[@name='right']"
-                position="inside"
-            >
-                <div>
-                    <field
-                        class="oe_inline"
-                        name="group_medical_careplan_add_plan_definition"
-                    />
-                    Allow to add plan definitions on care plans
+            <xpath expr="//div[@id='medical_workflow']" position="inside">
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="group_medical_careplan_add_plan_definition" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            string="Plan definition on careplans"
+                            for="group_medical_careplan_add_plan_definition"
+                        />
+                        <div class="text-muted">
+                            Allow to add plan definitions on care plans
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>

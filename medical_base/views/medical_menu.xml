@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-    Copyright 2016 LasLabs Inc.
     Copyright 2017 ForgeFlow
     Copyright 2017 CreuBlanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
@@ -10,84 +9,88 @@
         id="medical_root"
         name="Medical"
         sequence="10"
-        groups="medical_base.group_medical_root_menu"
+        groups="group_medical_user"
         web_icon="medical_base,static/description/icon.png"
     />
     <menuitem
         id="medical_root_administration"
         name="Administration"
         parent="medical_root"
-        groups="medical_base.group_medical_administration_menu"
+        groups="group_medical_reception"
         sequence="1"
     />
-    <record id="medical_root_administration" model="ir.ui.menu">
-        <field name="active" eval="False" />
-    </record>
     <menuitem
         id="medical_root_clinical"
         name="Clinical"
         parent="medical_root"
-        groups="medical_base.group_medical_clinical_menu"
+        groups="group_medical_technician,group_medical_doctor,group_medical_nurse,group_medical_auxiliary,group_medical_pharmacy"
         sequence="10"
     />
-    <record id="medical_root_clinical" model="ir.ui.menu">
-        <field name="active" eval="False" />
-    </record>
+    <menuitem
+        id="medical_clinical_request"
+        name="Requests"
+        parent="medical_root_clinical"
+        sequence="10"
+    />
+    <menuitem
+        id="medical_clinical_event"
+        name="Events"
+        parent="medical_root_clinical"
+        sequence="10"
+    />
     <menuitem
         id="medical_root_diagnostics"
-        name="Administration"
+        name="Diagnostics"
         parent="medical_root"
-        groups="medical_base.group_medical_diagnostics_menu"
+        groups="group_medical_doctor,group_medical_technician"
         sequence="20"
     />
-    <record id="medical_root_diagnostics" model="ir.ui.menu">
-        <field name="active" eval="False" />
-    </record>
     <menuitem
         id="medical_root_medications"
         name="Medications"
         parent="medical_root"
-        groups="medical_base.group_medical_medications_menu"
+        groups="group_medical_doctor,group_medical_pharmacy"
         sequence="30"
     />
-    <record id="medical_root_medications" model="ir.ui.menu">
-        <field name="active" eval="False" />
-    </record>
     <menuitem
         id="medical_root_financial"
         name="Financial"
         parent="medical_root"
-        groups="medical_base.group_medical_financial_menu"
+        groups="group_medical_financial"
         sequence="40"
     />
-    <record id="medical_root_financial" model="ir.ui.menu">
-        <field name="active" eval="False" />
-    </record>
+    <menuitem
+        id="medical_financial_coverage"
+        name="Coverages"
+        parent="medical_base.medical_root_financial"
+        sequence="10"
+    />
     <menuitem
         id="medical_root_workflow"
         name="Workflow"
         parent="medical_root"
-        groups="medical_base.group_medical_workflow_menu"
+        groups="group_medical_configurator"
         sequence="50"
     />
-    <record id="medical_root_workflow" model="ir.ui.menu">
-        <field name="active" eval="False" />
-    </record>
     <menuitem
         id="medical_root_terminologies"
         name="Terminologies"
         parent="medical_root"
-        groups="medical_base.group_medical_terminologies_menu"
+        groups="group_medical_configurator"
         sequence="60"
     />
-    <record id="medical_root_terminologies" model="ir.ui.menu">
-        <field name="active" eval="False" />
-    </record>
     <menuitem
         id="medical_root_configuration"
         name="Configuration"
         parent="medical_root"
-        groups="medical_base.group_medical_configuration_menu"
+        groups="group_medical_configurator"
+        sequence="90"
+    />
+    <menuitem
+        id="medical_root_settings"
+        name="Settings"
+        parent="medical_root"
+        groups="group_medical_admin"
         sequence="100"
     />
 </odoo>

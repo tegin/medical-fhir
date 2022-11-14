@@ -16,7 +16,6 @@
         "medical_terminology_sct",
     ],
     "data": [
-        "security/medical_security.xml",
         "security/ir.model.access.csv",
         "data/sct_data.xml",
         "views/res_partner_views.xml",

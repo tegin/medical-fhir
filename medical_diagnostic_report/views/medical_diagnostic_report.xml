@@ -17,7 +17,7 @@
                     class="btn-success"
                     confirm="Are you sure you want to validate this report?"
                     type="object"
-                    attrs="{'invisible':[('is_editable', '=', False)]}"
+                    attrs="{'invisible':[('fhir_state', '!=', 'registered')]}"
                 />
                 <button
                     name="cancel_action"
@@ -33,7 +33,7 @@
                     name="web_ribbon"
                     text="Cancelled"
                     bg_color="bg-danger"
-                    attrs="{'invisible':[('state', '!=', 'cancelled')]}"
+                    attrs="{'invisible':[('fhir_state', '!=', 'cancelled')]}"
                 />
             </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
@@ -52,7 +52,7 @@
                     type="action"
                     icon="fa-plus"
                     string="Expand"
-                    attrs="{'invisible':[('is_editable', '=', False)]}"
+                    states="registered"
                 />
             </xpath>
             <field name="patient_id" position="attributes">
@@ -60,23 +60,14 @@
                 <attribute name="invisible">1</attribute>
             </field>
             <field name="patient_id" position="before">
-                <field
-                    name="patient_name"
-                    attrs="{'readonly':[('is_editable', '=', False)]}"
-                />
+                <field name="patient_name" />
                 <field name="encounter_id" />
-                <field name="vat" attrs="{'readonly':[('is_editable', '=', False)]}" />
-                <field
-                    name="patient_age"
-                    attrs="{'readonly':[('is_editable', '=', False)]}"
-                />
-                <field
-                    name="patient_origin"
-                    attrs="{'readonly':[('is_editable', '=', False)]}"
-                />
+                <field name="vat" />
+                <field name="patient_age" />
+                <field name="patient_origin" />
                 <field name="is_cancellable" invisible="1" />
             </field>
-            <field name="state" position="attributes">
+            <field name="fhir_state" position="attributes">
                 <attribute name="statusbar_visible">registered,final</attribute>
             </field>
             <xpath expr="//group[@name='sale_01']" position="attributes">
@@ -84,9 +75,18 @@
             </xpath>
             <field name="occurrence_date" position="after">
                 <field name="issued_date" />
-                <field name="issued_user_id" states="final,cancelled" />
-                <field name="cancel_date" states="cancelled" />
-                <field name="cancel_user_id" states="cancelled" />
+                <field
+                    name="issued_user_id"
+                    attrs="{'invisible':[('fhir_state', 'not in', ['final', 'cancelled'])]}"
+                />
+                <field
+                    name="cancel_date"
+                    attrs="{'invisible':[('fhir_state', '!=', 'cancelled')]}"
+                />
+                <field
+                    name="cancel_user_id"
+                    attrs="{'invisible':[('fhir_state', '!=', 'cancelled')]}"
+                />
                 <field name="item_blocked" invisible="1" />
                 <field name="with_observation" invisible="1" />
                 <field name="with_conclusion" invisible="1" />
@@ -102,7 +102,6 @@
                         name="observation_ids"
                         widget="section_and_note_one2many"
                         options="{'hide_delete_create': 'item_blocked'}"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
                     >
                         <tree editable="bottom">
                             <control>
@@ -147,30 +146,29 @@
                                 widget="section_and_note_text"
                                 attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
                             />
-                            <field name="value" invisible="1" />
+                            <field name="value" widget="diagnostic_report_value">
+
                             <!-- TODO: Fix this, it needs to be grouped somehow -->
-                            <field
-                                name="value_bool"
-                                attrs="{'invisible': [('value_type', '!=', 'bool')]}"
-                            />
-                            <field
-                                name="value_str"
-                                attrs="{'invisible': [('value_type', '!=', 'str')]}"
-                            />
-                            <field
+                                <field name="value_bool" />
+                                <field name="value_str" />
+                                <field
+                                    name="value_selection"
+                                    widget="dynamic_selection_diagnostic_report"
+                                    context="{'options': selection_options}"
+                                />
+                                <field name="value_int" />
+                                <field name="value_float" />
+                            </field>
+                            <field name="value_bool" invisible="1" />
+                                <field name="value_str" invisible="1" />
+                                <field
                                 name="value_selection"
                                 widget="dynamic_selection_diagnostic_report"
                                 context="{'options': selection_options}"
-                                attrs="{'invisible': [('value_type', '!=', 'selection')]}"
+                                invisible="1"
                             />
-                            <field
-                                name="value_int"
-                                attrs="{'invisible': [('value_type', '!=', 'int')]}"
-                            />
-                            <field
-                                name="value_float"
-                                attrs="{'invisible': [('value_type', '!=', 'float')]}"
-                            />
+                                <field name="value_int" invisible="1" />
+                                <field name="value_float" invisible="1" />
                             <!-- TODO: Unitl here....-->
                             <field
                                 name="uom_id"
@@ -195,7 +193,6 @@
                     <field
                         name="composition"
                         options="{'automatic_summernote_height': 1}"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
                     />
                 </page>
                 <page
@@ -203,10 +200,7 @@
                     string="Conclusion"
                     attrs="{'invisible':[('with_conclusion', '=', False)]}"
                 >
-                    <field
-                        name="conclusion"
-                        attrs="{'readonly':[('is_editable', '=', False)]}"
-                    />
+                    <field name="conclusion" />
                 </page>
             </xpath>
         </field>
@@ -251,7 +245,7 @@
     </record>
     <record model="ir.ui.menu" id="medical_diagnostic_report_menu">
         <field name="name">Diagnostic Report</field>
-        <field name="parent_id" ref="medical_root_diagnostic" />
+        <field name="parent_id" ref="medical_base.medical_root_diagnostics" />
         <field name="action" ref="medical_diagnostic_report_act_window" />
         <field name="sequence" eval="16" />
     </record>

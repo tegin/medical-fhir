@@ -41,9 +41,6 @@ class PlanDefinitionAction(models.Model):
         comodel_name="workflow.plan.definition",
         ondelete="cascade",
     )
-    type_id = fields.Many2one(
-        "workflow.type", related="plan_definition_id.type_id"
-    )
     plan_definition_id = fields.Many2one(
         string="Plan definition",
         comodel_name="workflow.plan.definition",
@@ -83,20 +80,6 @@ class PlanDefinitionAction(models.Model):
             rec.plan_definition_id = rec.direct_plan_definition_id
             if rec.parent_id:
                 rec.plan_definition_id = rec.parent_id.plan_definition_id
-
-    @api.onchange("plan_definition_id")
-    def _onchange_plan_definition_id(self):
-        return {
-            "domain": {
-                "activity_definition_id": [
-                    (
-                        "type_id",
-                        "in",
-                        [self.plan_definition_id.type_id.id, False],
-                    )
-                ]
-            }
-        }
 
     @api.onchange("activity_definition_id")
     def _onchange_activity_definition_id(self):

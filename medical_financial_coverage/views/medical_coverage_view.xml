@@ -95,28 +95,15 @@
                     </div>
                     <h1>
                         <field name="internal_identifier" />
-                        <field name="is_editable" invisible="1" />
                     </h1>
                     <h2>
-                        <field
-                            name="name"
-                            attrs="{'readonly': [('is_editable', '=', False)]}"
-                        />
+                        <field name="name" />
                     </h2>
                     <group>
                         <group name="patient">
-                            <field
-                                name="patient_id"
-                                attrs="{'readonly': [('is_editable', '=', False)]}"
-                            />
-                            <field
-                                name="subscriber_id"
-                                attrs="{'readonly': [('is_editable', '=', False)]}"
-                            />
-                            <field
-                                name="coverage_template_id"
-                                attrs="{'readonly': [('is_editable', '=', False)]}"
-                            />
+                            <field name="patient_id" />
+                            <field name="subscriber_id" />
+                            <field name="coverage_template_id" />
                         </group>
                     </group>
                 </sheet>

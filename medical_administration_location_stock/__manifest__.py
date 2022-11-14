@@ -11,7 +11,7 @@
     "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
     "depends": ["medical_administration_location", "stock"],
-    "data": ["security/medical_security.xml", "views/res_partner_views.xml"],
+    "data": ["views/res_partner_views.xml"],
     "demo": [],
     "application": False,
     "installable": True,

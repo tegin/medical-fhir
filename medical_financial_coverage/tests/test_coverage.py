@@ -9,7 +9,7 @@ class TestMedicalCoverage(TransactionCase):
     def setUp(self):
         super(TestMedicalCoverage, self).setUp()
         self.medical_user_group = self.env.ref(
-            "medical_base.group_medical_configurator"
+            "medical_base.group_medical_financial"
         )
         self.medical_user = self._create_user(
             "medical_user", self.medical_user_group.id
@@ -138,55 +138,46 @@ class TestMedicalCoverage(TransactionCase):
         coverage_template_1 = self._create_coverage_template("draft")
         self.assertEqual(coverage_template_1.state, "draft")
         coverage_template_1.draft2active()
-        self.assertFalse(coverage_template_1.is_editable)
         self.assertEqual(coverage_template_1.state, "active")
         # draft2cancelled
         coverage_template_2 = self._create_coverage_template("draft")
         self.assertEqual(coverage_template_2.state, "draft")
         coverage_template_2.draft2cancelled()
-        self.assertFalse(coverage_template_2.is_editable)
         self.assertEqual(coverage_template_2.state, "cancelled")
         # draft2enteredinerror
         coverage_template_3 = self._create_coverage_template("draft")
         self.assertEqual(coverage_template_3.state, "draft")
         coverage_template_3.draft2enteredinerror()
-        self.assertFalse(coverage_template_3.is_editable)
         self.assertEqual(coverage_template_3.state, "entered-in-error")
         # active2cancelled
         coverage_template_4 = self._create_coverage_template("active")
         self.assertEqual(coverage_template_4.state, "active")
         coverage_template_4.active2cancelled()
-        self.assertFalse(coverage_template_4.is_editable)
         self.assertEqual(coverage_template_4.state, "cancelled")
         # active2enteredinerror
         coverage_template_5 = self._create_coverage_template("active")
         self.assertEqual(coverage_template_5.state, "active")
         coverage_template_5.active2enteredinerror()
-        self.assertFalse(coverage_template_5.is_editable)
         self.assertEqual(coverage_template_5.state, "entered-in-error")
         # cancelled2enteredinerror
         coverage_template_6 = self._create_coverage_template("cancelled")
         self.assertEqual(coverage_template_6.state, "cancelled")
         coverage_template_6.cancelled2enteredinerror()
-        self.assertFalse(coverage_template_6.is_editable)
         self.assertEqual(coverage_template_6.state, "entered-in-error")
         # active2draft
         coverage_template_7 = self._create_coverage_template("active")
         self.assertEqual(coverage_template_7.state, "active")
         coverage_template_7.active2draft()
-        self.assertTrue(coverage_template_7.is_editable)
         self.assertEqual(coverage_template_7.state, "draft")
         # cancelled2draft
         coverage_template_8 = self._create_coverage_template("cancelled")
         self.assertEqual(coverage_template_8.state, "cancelled")
         coverage_template_8.cancelled2draft()
-        self.assertTrue(coverage_template_8.is_editable)
         self.assertEqual(coverage_template_8.state, "draft")
         # cancelled2active
         coverage_template_9 = self._create_coverage_template("cancelled")
         self.assertEqual(coverage_template_9.state, "cancelled")
         coverage_template_9.cancelled2active()
-        self.assertFalse(coverage_template_9.is_editable)
         self.assertEqual(coverage_template_9.state, "active")
 
     def test_coverage_complete_flow(self):
@@ -195,53 +186,44 @@ class TestMedicalCoverage(TransactionCase):
         coverage_1 = self._create_coverage(coverage_template, "draft")
         self.assertEqual(coverage_1.state, "draft")
         coverage_1.draft2active()
-        self.assertFalse(coverage_1.is_editable)
         self.assertEqual(coverage_1.state, "active")
         # draft2cancelled
         coverage_2 = self._create_coverage(coverage_template, "draft")
         self.assertEqual(coverage_2.state, "draft")
         coverage_2.draft2cancelled()
-        self.assertFalse(coverage_2.is_editable)
         self.assertEqual(coverage_2.state, "cancelled")
         # draft2enteredinerror
         coverage_3 = self._create_coverage(coverage_template, "draft")
         self.assertEqual(coverage_3.state, "draft")
         coverage_3.draft2enteredinerror()
-        self.assertFalse(coverage_3.is_editable)
         self.assertEqual(coverage_3.state, "entered-in-error")
         # active2cancelled
         coverage_4 = self._create_coverage(coverage_template, "active")
         self.assertEqual(coverage_4.state, "active")
         coverage_4.active2cancelled()
-        self.assertFalse(coverage_4.is_editable)
         self.assertEqual(coverage_4.state, "cancelled")
         # active2enteredinerror
         coverage_5 = self._create_coverage(coverage_template, "active")
         self.assertEqual(coverage_5.state, "active")
         coverage_5.active2enteredinerror()
-        self.assertFalse(coverage_5.is_editable)
         self.assertEqual(coverage_5.state, "entered-in-error")
         # cancelled2enteredinerror
         coverage_6 = self._create_coverage(coverage_template, "cancelled")
         self.assertEqual(coverage_6.state, "cancelled")
         coverage_6.cancelled2enteredinerror()
-        self.assertFalse(coverage_6.is_editable)
         self.assertEqual(coverage_6.state, "entered-in-error")
         # active2draft
         coverage_7 = self._create_coverage(coverage_template, "active")
         self.assertEqual(coverage_7.state, "active")
         coverage_7.active2draft()
-        self.assertTrue(coverage_7.is_editable)
         self.assertEqual(coverage_7.state, "draft")
         # cancelled2draft
         coverage_8 = self._create_coverage(coverage_template, "cancelled")
         self.assertEqual(coverage_8.state, "cancelled")
         coverage_8.cancelled2draft()
-        self.assertTrue(coverage_8.is_editable)
         self.assertEqual(coverage_8.state, "draft")
         # cancelled2active
         coverage_9 = self._create_coverage(coverage_template, "cancelled")
         self.assertEqual(coverage_9.state, "cancelled")
         coverage_9.cancelled2active()
-        self.assertFalse(coverage_9.is_editable)
         self.assertEqual(coverage_9.state, "active")

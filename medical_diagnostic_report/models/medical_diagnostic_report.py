@@ -13,16 +13,21 @@ class MedicalDiagnosticReport(models.Model):
 
     @api.model
     def _get_states(self):
-        return [
-            ("registered", "Registered"),
-            ("final", "Final"),
-            ("cancelled", "Cancelled"),
-        ]
+        return {
+            "registered": ("Registered", "draft"),
+            "final": ("Final", "done"),
+            "cancelled": ("Cancelled", "done"),
+        }
 
-    name = fields.Char(string="Report Name")
-    state = fields.Selection(
+    name = fields.Char(
+        string="Report Name",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
+    fhir_state = fields.Selection(
         default="registered",
         copy=False,
+        readonly=True,
     )
     lang = fields.Selection(
         string="Language", selection="_get_lang", readonly=True
@@ -35,18 +40,24 @@ class MedicalDiagnosticReport(models.Model):
         required=False,
         readonly=True,
     )
-    patient_name = fields.Char()
+    patient_name = fields.Char(
+        readonly=True, states={"draft": [("readonly", False)]}
+    )
     # FHIR Field: subject
 
     encounter_id = fields.Many2one("medical.encounter", readonly=True)
     # FHIR Field: encounter
 
-    vat = fields.Char(string="VAT", readonly=True)
+    vat = fields.Char(
+        string="VAT", readonly=True, states={"draft": [("readonly", False)]}
+    )
 
-    patient_age = fields.Integer(readonly=True)
+    patient_age = fields.Integer(
+        readonly=True, states={"draft": [("readonly", False)]}
+    )
 
     patient_origin = fields.Char(
-        readonly=True,
+        readonly=True, states={"draft": [("readonly", False)]}
     )
 
     issued_date = fields.Datetime(
@@ -67,6 +78,7 @@ class MedicalDiagnosticReport(models.Model):
     )
     conclusion = fields.Text(
         readonly=True,
+        states={"draft": [("readonly", False)]},
         prefetch=False,
         compute="_compute_conclusion",
         inverse="_inverse_conclusion",
@@ -74,11 +86,13 @@ class MedicalDiagnosticReport(models.Model):
     )
     database_conclusion = fields.Text(
         readonly=True,
+        states={"draft": [("readonly", False)]},
         copy=False,
         prefetch=False,
     )
     composition = fields.Html(
         readonly=True,
+        states={"draft": [("readonly", False)]},
         compute="_compute_composition",
         inverse="_inverse_composition",
         prefetch=False,
@@ -86,11 +100,16 @@ class MedicalDiagnosticReport(models.Model):
     )
     database_composition = fields.Html(
         readonly=True,
+        states={"draft": [("readonly", False)]},
         copy=False,
         prefetch=False,
     )
     observation_ids = fields.One2many(
-        "medical.observation", inverse_name="diagnostic_report_id", copy=True
+        "medical.observation",
+        inverse_name="diagnostic_report_id",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        copy=True,
     )
     template_ids = fields.Many2many(
         "medical.diagnostic.report.template",
@@ -128,13 +147,15 @@ class MedicalDiagnosticReport(models.Model):
 
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"].next_by_code("medical.diagnostic.report")
+            self.env["ir.sequence"]
+            .sudo()
+            .next_by_code("medical.diagnostic.report")
             or "/"
         )
 
     def registered2final_change_state(self):
         return {
-            "state": "final",
+            "fhir_state": "final",
             "issued_date": fields.Datetime.now(),
             "issued_user_id": self.env.user.id,
         }
@@ -153,7 +174,7 @@ class MedicalDiagnosticReport(models.Model):
 
     def _cancel_vals(self):
         return {
-            "state": "cancelled",
+            "fhir_state": "cancelled",
             "cancel_date": fields.Datetime.now(),
             "cancel_user_id": self.env.user.id,
         }
@@ -162,21 +183,13 @@ class MedicalDiagnosticReport(models.Model):
         self.write(self._cancel_vals())
         self.observation_ids.cancel_action()
 
-    @api.depends("state")
-    def _compute_is_editable(self):
-        for rec in self:
-            rec.is_editable = rec._is_editable()
-
-    def _is_editable(self):
-        return self.state in ("registered",)
-
-    @api.depends("state")
+    @api.depends("fhir_state")
     def _compute_is_cancellable(self):
         for rec in self:
             rec.is_cancellable = rec._is_cancellable()
 
     def _is_cancellable(self):
-        return self.state in ("registered", "final")
+        return self.fhir_state in ("registered", "final")
 
     def _generate_serializer(self):
         result = super(MedicalDiagnosticReport, self)._generate_serializer()

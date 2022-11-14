@@ -11,7 +11,11 @@ class MedicalCoverage(models.Model):
     _description = "Medical Coverage"
     _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
 
-    name = fields.Char(string="Name")
+    name = fields.Char(
+        string="Name",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     patient_id = fields.Many2one(
         string="Patient",
         comodel_name="medical.patient",
@@ -19,6 +23,8 @@ class MedicalCoverage(models.Model):
         ondelete="restrict",
         index=True,
         tracking=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         help="Patient name",
     )  # FHIR Field: beneficiary
     coverage_template_id = fields.Many2one(
@@ -28,6 +34,8 @@ class MedicalCoverage(models.Model):
         ondelete="restrict",
         index=True,
         help="Coverage Template",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     state = fields.Selection(
         string="Coverage Status",
@@ -42,12 +50,18 @@ class MedicalCoverage(models.Model):
         tracking=True,
         help="Current state of the coverage.",
     )  # FHIR Field: status
-    is_editable = fields.Boolean(compute="_compute_is_editable")
-    subscriber_id = fields.Char(string="Subscriber Id")
+    subscriber_id = fields.Char(
+        string="Subscriber Id",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
 
     @api.model
     def _get_internal_identifier(self, vals):
-        return self.env["ir.sequence"].next_by_code("medical.coverage") or "/"
+        return (
+            self.env["ir.sequence"].sudo().next_by_code("medical.coverage")
+            or "/"
+        )
 
     @api.depends("name", "internal_identifier")
     def name_get(self):
@@ -58,14 +72,6 @@ class MedicalCoverage(models.Model):
                 name = "{} {}".format(name, record.name)
             result.append((record.id, name))
         return result
-
-    @api.depends("state")
-    def _compute_is_editable(self):
-        for rec in self:
-            if rec.state in ("active", "cancelled", "entered-in-error"):
-                rec.is_editable = False
-            else:
-                rec.is_editable = True
 
     def draft2active(self):
         self.write({"state": "active"})

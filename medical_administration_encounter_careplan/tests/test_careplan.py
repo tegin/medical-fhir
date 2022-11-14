@@ -17,9 +17,6 @@ class TestEncounter(TransactionCase):
             {
                 "name": "Knee MR",
                 "description": "Basic MR",
-                "type_id": self.env.ref(
-                    "medical_workflow.medical_workflow"
-                ).id,
                 "state": "active",
             }
         )
@@ -30,9 +27,6 @@ class TestEncounter(TransactionCase):
             {
                 "name": "MCT",
                 "description": "demo",
-                "type_id": self.env.ref(
-                    "medical_workflow.medical_workflow"
-                ).id,
                 "model_id": self.env.ref(
                     "medical_clinical_careplan.model_medical_careplan"
                 ).id,

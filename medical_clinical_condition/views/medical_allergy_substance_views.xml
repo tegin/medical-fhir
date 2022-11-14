@@ -38,7 +38,7 @@
                             <field name="create_warning" />
                         </group>
                     </group>
-                    <notebook invisible="1" />
+                    <notebook />
                 </sheet>
             </form>
         </field>
@@ -64,7 +64,6 @@
         id="medical_allergy_substance"
         name="Allergy substances codes"
         parent="medical_base.medical_root_terminologies"
-        groups="medical_clinical_condition.group_medical_clinical_finding_list"
         action="medical_allergy_substance_action"
         sequence="3"
     />

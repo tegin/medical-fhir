@@ -8,7 +8,7 @@
     <record id="medical_patient_form" model="ir.ui.view">
         <field name="name">medical.patient.form</field>
         <field name="model">medical.patient</field>
-        <field name="inherit_id" ref="medical_administration.medical_patient_form" />
+        <field name="inherit_id" ref="medical_base.medical_patient_form" />
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button

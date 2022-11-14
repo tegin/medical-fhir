@@ -48,11 +48,13 @@ class PatientConceptEvolution(models.TransientModel):
                 obs_date = fields.Datetime.context_timestamp(
                     observation, observation.observation_date
                 ).replace(tzinfo=None)
-                if observation.name not in df.columns:
-                    df[observation.name] = np.nan
+                if observation.concept_id.name not in df.columns:
+                    df[observation.concept_id.name] = np.nan
                 if obs_date not in df.index:
                     df.loc[obs_date] = np.nan
-                df.loc[obs_date, observation.name] = observation.get_value()
+                df.loc[
+                    obs_date, observation.concept_id.name
+                ] = observation.get_value()
             return df
         else:
             return False
@@ -151,3 +153,5 @@ class PatientConceptEvolution(models.TransientModel):
                 p.add_layout(high_box)
             script, div = components(p)
             self.bokeh_chart = "{}{}".format(div, script)
+        else:
+            self.bokeh_chart = False

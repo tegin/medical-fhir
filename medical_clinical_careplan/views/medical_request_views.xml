@@ -17,8 +17,6 @@
                     name="action_view_request"
                     class="oe_stat_button"
                     icon="fa-hospital-o"
-                    groups="medical_clinical_careplan.group_medical_careplan_list"
-                    attrs="{'readonly':[('is_editable', '=', False)]}"
                     context="{'model_name': 'medical.careplan'}"
                 >
                     <field
@@ -33,26 +31,9 @@
                 <field
                     name="careplan_id"
                     readonly="1"
-                    options="{'no_open': True, 'no_create': True}"
                     attrs="{'invisible': [('careplan_id', '=', False)]}"
                 />
             </group>
-            <notebook position="attributes">
-                <attributes name="invisible">0</attributes>
-            </notebook>
-        </field>
-    </record>
-    <record id="medical_request_form_careplan" model="ir.ui.view">
-        <field name="name">medical.request.view.form</field>
-        <field name="model">medical.request</field>
-        <field name="inherit_id" ref="medical_request_form" />
-        <field name="groups_id" eval="[(4, ref('group_medical_careplan_list'))]" />
-        <field name="arch" type="xml">
-            <field name="careplan_id">
-                <attribute
-                    name="options"
-                >{'no_open': False, 'no_create': True}</attribute>
-            </field>
         </field>
     </record>
 </odoo>

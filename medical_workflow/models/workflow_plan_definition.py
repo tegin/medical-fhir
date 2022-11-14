@@ -25,13 +25,6 @@ class PlanDefinition(models.Model):
     description = fields.Text(
         string="Description", help="Summary of nature of plan"
     )  # FHIR field: description
-    type_id = fields.Many2one(
-        string="Workflow type",
-        comodel_name="workflow.type",
-        ondelete="restrict",
-        index=True,
-        required=True,
-    )  # FHIR field: type
     state = fields.Selection(
         [
             ("draft", "Draft"),
@@ -52,7 +45,6 @@ class PlanDefinition(models.Model):
     activity_definition_id = fields.Many2one(
         string="Activity definition",
         comodel_name="workflow.activity.definition",
-        description="Main action",
     )  # FHIR field: action (if a parent action is created)
     action_ids = fields.One2many(
         string="All actions",
@@ -70,7 +62,9 @@ class PlanDefinition(models.Model):
     @api.model
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"].next_by_code("workflow.plan.definition")
+            self.env["ir.sequence"]
+            .sudo()
+            .next_by_code("workflow.plan.definition")
             or "/"
         )
 

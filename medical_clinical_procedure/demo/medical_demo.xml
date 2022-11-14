@@ -21,7 +21,6 @@
         <record id="machine_time_activity" model="workflow.activity.definition">
             <field name="name">MACT</field>
             <field name="description">Machine time</field>
-            <field name="type_id" ref="medical_workflow.medical_workflow" />
             <field name="model_id" ref="model_medical_procedure_request" />
             <field name="state">active</field>
             <field name="service_id" ref="machine_time_product" />
@@ -30,7 +29,6 @@
         <record id="medical_report_activity" model="workflow.activity.definition">
             <field name="name">REP</field>
             <field name="description">Medical report</field>
-            <field name="type_id" ref="medical_workflow.medical_workflow" />
             <field name="model_id" ref="model_medical_procedure_request" />
             <field name="state">active</field>
             <field name="service_id" ref="medical_report_product" />
@@ -39,7 +37,6 @@
         <record id="quality_check_activity" model="workflow.activity.definition">
             <field name="name">QC</field>
             <field name="description">Quality check</field>
-            <field name="type_id" ref="medical_workflow.medical_workflow" />
             <field name="model_id" ref="model_medical_procedure_request" />
             <field name="state">active</field>
             <field name="service_id" ref="quality_check_product" />

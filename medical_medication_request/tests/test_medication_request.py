@@ -9,7 +9,7 @@ from odoo.tests import TransactionCase
 class TestMedicationRequest(TransactionCase):
     def setUp(self):
         super(TestMedicationRequest, self).setUp()
-        self.patient = self.browse_ref("medical_administration.patient_01")
+        self.patient = self.browse_ref("medical_base.patient_01")
         stock_location = self.browse_ref("stock.warehouse0").lot_stock_id
         picking_type = self.env["stock.picking.type"].search([], limit=1)
         self.location = self.env["res.partner"].create(
@@ -36,7 +36,7 @@ class TestMedicationRequest(TransactionCase):
         request.onchange_product_id()
         request = request.create(request._convert_to_write(request._cache))
         request.draft2active()
-        self.assertEqual(request.state, "active")
+        self.assertEqual(request.fhir_state, "active")
         res = request.action_view_medication_administration()
         self.assertFalse(res["res_id"])
         self.assertEqual(request.medication_administration_count, 0)
@@ -44,16 +44,16 @@ class TestMedicationRequest(TransactionCase):
         request.refresh()
         self.assertGreater(request.medication_administration_count, 0)
         event.preparation2in_progress()
-        self.assertEqual(event.state, "in-progress")
+        self.assertEqual(event.fhir_state, "in-progress")
         event.in_progress2suspended()
-        self.assertEqual(event.state, "suspended")
+        self.assertEqual(event.fhir_state, "suspended")
         event.suspended2in_progress()
-        self.assertEqual(event.state, "in-progress")
+        self.assertEqual(event.fhir_state, "in-progress")
         with self.assertRaises(ValidationError):
             event.in_progress2completed()
         event.location_id = self.location
         event.in_progress2completed()
-        self.assertEqual(event.state, "completed")
+        self.assertEqual(event.fhir_state, "completed")
         self.assertTrue(event.move_ids)
         self.assertTrue(event.occurrence_date)
         res = event.action_view_stock_moves()

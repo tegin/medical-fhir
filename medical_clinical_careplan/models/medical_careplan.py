@@ -12,13 +12,21 @@ class MedicalCarePlan(models.Model):
     _description = "Medical Care Plan"
     _inherit = "medical.request"
 
-    internal_identifier = fields.Char(string="Careplan")
-    start_date = fields.Datetime(string="start date")  # FHIR Field: Period
-    end_date = fields.Datetime(string="End date")  # FHIR Field: Period
-    careplan_ids = fields.One2many(inverse_name="careplan_id")
+    internal_identifier = fields.Char()
+    start_date = fields.Datetime(
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )  # FHIR Field: Period
+    end_date = fields.Datetime(
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )  # FHIR Field: Period
 
     def _get_internal_identifier(self, vals):
-        return self.env["ir.sequence"].next_by_code("medical.careplan") or "/"
+        return (
+            self.env["ir.sequence"].sudo().next_by_code("medical.careplan")
+            or "/"
+        )
 
     def draft2active_values(self):
         res = super().draft2active_values()

@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_medical_coverage_user,access.medical.coverage.user,model_medical_coverage,group_medical_coverage_display,1,0,0,0
-access_medical_coverage_manager,access.medical.coverage.manager,model_medical_coverage,group_medical_coverage_manager,0,1,1,0
-access_medical_coverage_template_user,access.medical.coverage.template.user,model_medical_coverage_template,group_medical_coverage_template_display,1,0,0,0
-access_medical_coverage_template_manager,access.medical.coverage.template.manager,model_medical_coverage_template,group_medical_coverage_template_manager,0,1,1,0
+access_medical_coverage_user,access.medical.coverage.user,model_medical_coverage,medical_base.group_medical_user,1,0,0,0
+access_medical_coverage_manager_reception,access.medical.coverage.manager,model_medical_coverage,medical_base.group_medical_reception,0,1,1,0
+access_medical_coverage_manager_financial,access.medical.coverage.manager,model_medical_coverage,medical_base.group_medical_financial,0,1,1,0
+access_medical_coverage_template_user,access.medical.coverage.template.user,model_medical_coverage_template,medical_base.group_medical_user,1,0,0,0
+access_medical_coverage_template_manager_reception,access.medical.coverage.template.manager,model_medical_coverage_template,medical_base.group_medical_financial,0,1,1,0

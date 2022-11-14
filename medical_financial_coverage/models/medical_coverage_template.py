@@ -11,7 +11,11 @@ class MedicalCoverageTemplate(models.Model):
     _order = "payor_id,name"
     _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
 
-    name = fields.Char(string="Name")
+    name = fields.Char(
+        string="Name",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     payor_id = fields.Many2one(
         string="Payor",
         comodel_name="res.partner",
@@ -21,6 +25,8 @@ class MedicalCoverageTemplate(models.Model):
         index=True,
         tracking=True,
         help="Payer name",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     coverage_ids = fields.One2many(
         string="Coverage",
@@ -38,14 +44,16 @@ class MedicalCoverageTemplate(models.Model):
         ],
         default="draft",
         tracking=True,
+        readonly=True,
         help="Current state of the coverage.",
     )
-    is_editable = fields.Boolean(compute="_compute_is_editable")
 
     @api.model
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"].next_by_code("medical.coverage.template")
+            self.env["ir.sequence"]
+            .sudo()
+            .next_by_code("medical.coverage.template")
             or "/"
         )
 
@@ -58,14 +66,6 @@ class MedicalCoverageTemplate(models.Model):
                 name = "{} {}".format(name, record.name)
             result.append((record.id, name))
         return result
-
-    @api.depends("state")
-    def _compute_is_editable(self):
-        for rec in self:
-            if rec.state in ("active", "cancelled", "entered-in-error"):
-                rec.is_editable = False
-            else:
-                rec.is_editable = True
 
     def draft2active(self):
         self.write({"state": "active"})
