@@ -12,9 +12,7 @@ class ResPartner(models.Model):
 
     is_center = fields.Boolean(default=False)
     center_identifier = fields.Char(readonly=True)  # FHIR Field: identifier
-    center_id = fields.Many2one(
-        "res.partner", domain=[("is_center", "=", True)]
-    )
+    center_id = fields.Many2one("res.partner", domain=[("is_center", "=", True)])
     location_ids = fields.One2many("res.partner", inverse_name="center_id")
     location_count = fields.Integer(compute="_compute_location_count")
 
