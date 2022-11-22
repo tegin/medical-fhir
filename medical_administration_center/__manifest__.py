@@ -4,15 +4,13 @@
 
 {
     "name": "Medical Administration Location",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Medical",
     "website": "https://github.com/tegin/cb-medical",
-    "author": "Creu Blanca, Eficent",
+    "author": "CreuBlanca, Eficent",
     "license": "AGPL-3",
     "depends": ["medical_administration_location"],
     "data": [
-        "security/medical_security.xml",
-        "data/ir_sequence_data.xml",
         "views/res_partner_views.xml",
         "views/medical_menu.xml",
     ],

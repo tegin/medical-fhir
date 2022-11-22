@@ -23,6 +23,7 @@
     <record id="res_partner_view_form" model="ir.ui.view">
         <field name="name">res.partner.view.form</field>
         <field name="model">res.partner</field>
+        <field name="groups_id" eval="[(4, ref('medical_base.group_medical_user'))]" />
         <field
             name="inherit_id"
             ref="medical_administration_location.res_partner_view_form"
@@ -34,23 +35,19 @@
             >
                 <field name="is_center" invisible="1" />
             </xpath>
-            <xpath expr="//h1" position="before">
-                <h1>
-                    <field name="is_center" invisible="1" />
+            <field name="is_medical" position="before">
+                <field name="is_center" />
+            </field>
+            <xpath expr="//field[@name='is_medical']/.." position="after">
+                <group
+                    name="location_config"
+                    attrs="{'invisible': [('is_location','=',False)]}"
+                >
                     <field
-                        name="center_identifier"
-                        attrs="{'invisible': [('is_center','=',False)]}"
-                        groups="medical_administration_location.group_medical_location_list"
+                        name="center_id"
+                        attrs="{'required': [('is_location', '=', True)]}"
                     />
-                    <h1>
-                        <field
-                            name="center_id"
-                            attrs="{'invisible': [('is_location','=',False)], 'required': [('is_location', '=', True)]}"
-                            groups="medical_administration_location.group_medical_location_list"
-                            readonly="1"
-                        />
-                    </h1>
-                </h1>
+                </group>
             </xpath>
             <div name="button_box" position="inside">
                 <button
@@ -58,30 +55,12 @@
                     name="%(medical_center_location_action)d"
                     class="oe_stat_button"
                     icon="fa-h-square"
-                    groups="medical_administration_location.group_medical_location_display"
                     attrs="{'invisible': [('is_center', '=', False)]}"
                 >
                     <field name="location_count" widget="statinfo" string="Locations" />
                     <field name='location_ids' invisible="1" />
                 </button>
             </div>
-        </field>
-    </record>
-    <record id="res_partner_view_edit_form" model="ir.ui.view">
-        <field name="name">res.partner.view.form</field>
-        <field name="model">res.partner</field>
-        <field
-            name="inherit_id"
-            ref="medical_administration_center.res_partner_view_form"
-        />
-        <field
-            name="groups_id"
-            eval="[(4, ref('medical_administration_location.group_medical_location_manager'))]"
-        />
-        <field name="arch" type="xml">
-            <field name="center_id" position="attributes">
-                <attribute name="readonly">0</attribute>
-            </field>
         </field>
     </record>
     <record id="medical_center_action" model="ir.actions.act_window">
