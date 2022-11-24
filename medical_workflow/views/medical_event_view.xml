@@ -14,7 +14,8 @@
                 <field name="name" />
                 <field name="patient_id" />
                 <field name="service_id" />
-                <field name="state" />
+                <field name="fhir_state" />
+                <field name="state" invisible="1" />
             </tree>
         </field>
     </record>
