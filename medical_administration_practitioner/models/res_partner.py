@@ -37,7 +37,7 @@ class ResPartner(models.Model):
     def _check_medical(self, mode="write"):
         super()._check_medical(mode=mode)
         if (
-            self.is_location
+            self.is_practitioner
             and mode != "read"
             and not self.env.user.has_group(
                 "medical_base.group_medical_configurator"
