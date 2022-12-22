@@ -6,6 +6,7 @@ import logging
 
 from odoo import _, api, fields, models
 from odoo.exceptions import AccessError, ValidationError
+from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
 
@@ -15,7 +16,9 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     is_center = fields.Boolean(default=False)
-    center_id = fields.Many2one("res.partner", domain=[("is_center", "=", True)])
+    center_id = fields.Many2one(
+        "res.partner", domain=[("is_center", "=", True)]
+    )
     location_ids = fields.One2many("res.partner", inverse_name="center_id")
     location_count = fields.Integer(compute="_compute_location_count")
 
@@ -26,8 +29,16 @@ class ResPartner(models.Model):
 
     @api.constrains("is_location", "center_id")
     def check_location_center(self):
-        if self.is_location and not self.center_id:
-            raise ValidationError(_("Center must be fullfilled on locations"))
+        test_condition = not config["test_enable"] or self.env.context.get(
+            "test_check_location_center"
+        )
+        if not test_condition:
+            return
+        for record in self:
+            if record.is_location and not record.center_id:
+                raise ValidationError(
+                    _("Center must be fullfilled on locations")
+                )
 
     @api.model
     def default_medical_fields(self):
@@ -40,7 +51,9 @@ class ResPartner(models.Model):
         if (
             self.is_center
             and mode != "read"
-            and not self.env.user.has_group("medical_base.group_medical_configurator")
+            and not self.env.user.has_group(
+                "medical_base.group_medical_configurator"
+            )
         ):
             _logger.info(
                 "Access Denied by ACLs for operation: %s, uid: %s, model: %s",

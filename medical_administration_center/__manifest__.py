@@ -6,7 +6,7 @@
     "name": "Medical Administration Location",
     "version": "14.0.1.0.0",
     "category": "Medical",
-    "website": "https://github.com/tegin/cb-medical",
+    "website": "https://github.com/tegin/medical-fhir",
     "author": "CreuBlanca, Eficent",
     "license": "AGPL-3",
     "depends": ["medical_administration_location"],
