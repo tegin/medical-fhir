@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2017 Creu Blanca
+    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <menuitem
+        id="medical_center_menu"
+        name="Centers"
+        sequence="30"
+        parent="medical_base.medical_root_administration"
+        groups="medical_base.group_medical_configurator"
+        action="medical_center_action"
+    />
+</odoo>
