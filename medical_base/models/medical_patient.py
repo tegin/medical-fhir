@@ -2,6 +2,8 @@
 # Copyright 2017 ForgeFlow
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
+from dateutil.relativedelta import relativedelta
+
 from odoo import api, fields, models
 
 
@@ -37,11 +39,22 @@ class MedicalPatient(models.Model):
     is_deceased = fields.Boolean(
         compute="_compute_is_deceased"
     )  # FHIR Field: deceasedBoolean
+    patient_age = fields.Integer(compute="_compute_age")
 
     @api.depends("deceased_date")
     def _compute_is_deceased(self):
         for record in self:
             record.is_deceased = bool(record.deceased_date)
+
+    @api.depends("birth_date")
+    def _compute_age(self):
+        for record in self:
+            age = 0
+            if record.birth_date:
+                age = relativedelta(
+                    fields.Date.today(), record.birth_date
+                ).years
+            record.patient_age = age
 
     @api.model
     def _get_internal_identifier(self, vals):
@@ -63,4 +76,21 @@ class MedicalPatient(models.Model):
             "res_id": self.parent_id.id,
             "target": "new",
             "flags": {"form": {"action_buttons": True}},
+        }
+
+    def get_medical_formview_id(self):
+        return self.env.ref("medical_base.medical_patient_his_form").id
+
+    def open_medical(self):
+        # TODO: Add a review if the user can open it from here.
+        view_id = self.sudo().get_medical_formview_id()
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": self._name,
+            "view_type": "form",
+            "view_mode": "form",
+            "views": [(view_id, "form")],
+            "target": "current",
+            "res_id": self.id,
+            "context": dict(self._context),
         }
