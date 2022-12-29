@@ -17,7 +17,7 @@
         name="Administration"
         parent="medical_root"
         groups="group_medical_reception"
-        sequence="1"
+        sequence="2"
     />
     <menuitem
         id="medical_root_clinical"
