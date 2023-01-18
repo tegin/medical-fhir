@@ -44,6 +44,36 @@
             </tree>
         </field>
     </record>
+    <record model="ir.ui.view" id="medical_patient_his_form_view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="diagnostic_reports" string="Reports">
+                    <field name="diagnostic_report_ids" widget="filter_one2many">
+                        <tree
+                            decoration-warning="fhir_state == 'registered'"
+                            decoration-danger="fhir_state == 'cancelled'"
+                            create="false"
+                            open="false"
+                            editable="bottom"
+                        >
+                            <field name="internal_identifier" />
+                            <field name="encounter_id" />
+                            <field name="name" />
+                            <field name="issued_user_id" />
+                            <field name="issued_date" />
+                            <field name="create_date" />
+                            <field name="state" invisible="1" />
+                            <field name="fhir_state" invisible="1" />
+                        </tree>
+                        <form options="{'no_open':True}" />
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
     <record
         model="ir.actions.act_window"
         id="medical_diagnostic_report_concepts_patient_act_window"
@@ -52,4 +82,5 @@
         <field name="res_model">medical.observation</field>
         <field name="view_mode">tree,form</field>
     </record>
+
 </odoo>

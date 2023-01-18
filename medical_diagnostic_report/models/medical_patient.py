@@ -1,12 +1,16 @@
 # Copyright 2021 CreuBlanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import fields, models
 
 
 class MedicalPatient(models.Model):
 
     _inherit = "medical.patient"
+
+    diagnostic_report_ids = fields.One2many(
+        "medical.diagnostic.report", inverse_name="patient_id"
+    )
 
     def action_view_observations_with_concept(self):
         self.ensure_one()

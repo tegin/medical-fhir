@@ -249,4 +249,5 @@
         <field name="action" ref="medical_diagnostic_report_act_window" />
         <field name="sequence" eval="16" />
     </record>
+
 </odoo>
