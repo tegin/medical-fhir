@@ -49,15 +49,16 @@
         <field name="model">medical.patient</field>
         <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
         <field name="arch" type="xml">
-            <xpath expr="//notebook" position="inside">
+            <xpath expr="//page[@name='administration_data']" position="before">
                 <page name="diagnostic_reports" string="Reports">
-                    <field name="diagnostic_report_ids" widget="filter_one2many">
+                    <field
+                        name="diagnostic_report_ids"
+                        widget="one2many_list"
+                        readonly="1"
+                    >
                         <tree
                             decoration-warning="fhir_state == 'registered'"
                             decoration-danger="fhir_state == 'cancelled'"
-                            create="false"
-                            open="false"
-                            editable="bottom"
                         >
                             <field name="internal_identifier" />
                             <field name="encounter_id" />
@@ -68,8 +69,16 @@
                             <field name="state" invisible="1" />
                             <field name="fhir_state" invisible="1" />
                         </tree>
-                        <form options="{'no_open':True}" />
                     </field>
+                    <button
+                        type="action"
+                        name="%(medical_diagnostic_report.medical_patient_create_diagnostic_report_act_window)s"
+                        class="oe_stat_button btn-warning"
+                        icon="fa-file-medical-alt"
+                        string="Generate Medical Report"
+                        groups="medical_base.group_medical_assistance_user"
+                        attrs="{'invisible': [('encounter_count', '=', 0)]}"
+                    />
                 </page>
             </xpath>
         </field>

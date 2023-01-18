@@ -18,6 +18,7 @@
         "account",
     ],
     "data": [
+        "wizards/medical_patient_create_diagnostic_report.xml",
         "data/report_paper_format.xml",
         "security/ir.model.access.csv",
         "wizards/patient_concept_evolution.xml",
