@@ -1,7 +1,7 @@
 # Copyright 2021 CreuBlanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-from odoo import fields, models
+from odoo import _, fields, models
+from odoo.exceptions import ValidationError
 
 
 class MedicalPatient(models.Model):
@@ -11,6 +11,13 @@ class MedicalPatient(models.Model):
     diagnostic_report_ids = fields.One2many(
         "medical.diagnostic.report", inverse_name="patient_id"
     )
+
+    def _get_last_encounter(self):
+        if not self.encounter_ids:
+            raise ValidationError(
+                _("No encounters can be found for this patient")
+            )
+        return self.encounter_ids[0]
 
     def action_view_observations_with_concept(self):
         self.ensure_one()
