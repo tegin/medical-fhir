@@ -25,3 +25,11 @@ class MedicalPatient(models.Model):
         )
         action["domain"] = [("patient_id", "=", self.id)]
         return action
+
+    def action_view_his_encounter_ids(self):
+        self.ensure_one()
+        action = self.env.ref(
+            "medical_administration_encounter.action_encounter_medical_his"
+        ).read()[0]
+        action["domain"] = [("patient_id", "=", self.id)]
+        return action
