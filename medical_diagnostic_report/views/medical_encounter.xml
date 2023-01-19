@@ -35,4 +35,32 @@
             </xpath>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="medical_encounter_his_form_view">
+        <field name="name">medical.encounter.form</field>
+        <field name="model">medical.encounter</field>
+        <field
+            name="inherit_id"
+            ref="medical_administration_encounter.medical_encounter_his_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="diagnostic_reports" string="Reports">
+                    <field name="report_ids" widget="one2many_list" readonly="1">
+                        <tree
+                            decoration-warning="fhir_state == 'registered'"
+                            decoration-danger="fhir_state == 'cancelled'"
+                        >
+                            <field name="internal_identifier" />
+                            <field name="name" />
+                            <field name="issued_user_id" />
+                            <field name="issued_date" />
+                            <field name="state" invisible="1" />
+                            <field name="fhir_state" invisible="1" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
 </odoo>
