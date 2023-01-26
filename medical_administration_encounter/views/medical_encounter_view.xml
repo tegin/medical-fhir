@@ -175,14 +175,79 @@
         <field name="context">{}</field>
     </record>
 
-
     <record model="ir.ui.view" id="medical_encounter_his_form_view">
         <field name="name">medical.encounter.form</field>
         <field name="model">medical.encounter</field>
         <field eval="99" name="priority" />
         <field name="arch" type="xml">
             <form create="false" edit="false">
-                <header />
+                <header>
+                    <button
+                        string="Arrived"
+                        type="object"
+                        name="planned2arrived"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','planned')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="planned2cancelled"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','planned')]}"
+                    />
+                    <button
+                        string="In-Progress"
+                        type="object"
+                        name="arrived2inprogress"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','arrived')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="arrived2cancelled"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','arrived')]}"
+                    />
+                    <button
+                        string="On Leave"
+                        type="object"
+                        name="inprogress2onleave"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','in-progress')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="inprogress2cancelled"
+                        groups="medical_base.group_medical_reception"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','in-progress')]}"
+                    />
+                    <button
+                        string="Finish"
+                        type="object"
+                        name="onleave2finished"
+                        groups="medical_base.group_medical_reception"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','onleave')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="onleave2cancelled"
+                        groups="medical_base.group_medical_reception"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','onleave')]}"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
