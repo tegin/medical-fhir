@@ -27,4 +27,27 @@
             </xpath>
         </field>
     </record>
+
+    <record id="medical_encounter_his_form_view" model="ir.ui.view">
+        <field name="name">medical.encounter.view.form</field>
+        <field name="model">medical.encounter</field>
+        <field
+            name="inherit_id"
+            ref="medical_administration_encounter.medical_encounter_his_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_careplans"
+                    class="oe_stat_button"
+                    icon="fa-hospital-o"
+                    attrs="{'invisible': [('state','=','planned')]}"
+                >
+                    <field name="careplan_count" widget="statinfo" string="Careplans" />
+                    <field name="careplan_ids" invisible="1" />
+                </button>
+            </xpath>
+        </field>
+    </record>
 </odoo>
