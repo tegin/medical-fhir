@@ -8,7 +8,7 @@
     <record id="res_partner_view_form" model="ir.ui.view">
         <field name="name">res.partner.view.form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="inherit_id" ref="medical_base.res_partner_view_form" />
         <field name="arch" type="xml">
             <xpath
                 expr="//field[@name='child_ids']//form//field[@name='parent_id']"
