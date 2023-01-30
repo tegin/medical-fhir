@@ -34,10 +34,9 @@ class ResPartner(models.Model):
             rec.coverage_template_count = len(rec.coverage_template_ids)
 
     def action_view_coverage_template(self):
-        action = self.env.ref(
+        result = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_financial_coverage.medical_coverage_template_action"
         )
-        result = action.read()[0]
         result["context"] = {"default_payor_id": self.id}
         result["domain"] = "[('payor_id', '=', " + str(self.id) + ")]"
         if len(self.coverage_template_ids) == 1:
