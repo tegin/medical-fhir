@@ -130,9 +130,9 @@ class ActivityDefinition(models.Model):
 
     def action_show_plans(self):
         self.ensure_one()
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_workflow.workflow_plan_definition"
-        ).read()[0]
+        )
         action["domain"] = [
             ("id", "in", self.action_ids.mapped("plan_definition_id").ids)
         ]

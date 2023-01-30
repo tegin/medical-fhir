@@ -23,9 +23,9 @@ class MedicalEncounter(models.Model):
 
     def action_view_report(self):
         self.ensure_one()
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_diagnostic_report.medical_diagnostic_report_act_window"
-        ).read()[0]
+        )
         action["domain"] = [("encounter_id", "=", self.id)]
         action["context"] = {"search_default_filter_not_cancelled": True}
         return action
