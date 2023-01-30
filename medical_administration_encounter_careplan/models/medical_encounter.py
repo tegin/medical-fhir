@@ -21,11 +21,9 @@ class MedicalEncounter(models.Model):
 
     def action_view_careplans(self):
         self.ensure_one()
-        action = self.env.ref(
+        result = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_clinical_careplan.medical_careplan_action"
         )
-        result = action.read()[0]
-
         result["context"] = {
             "default_patient_id": self.patient_id.id,
             "default_encounter_id": self.id,
