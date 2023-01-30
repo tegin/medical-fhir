@@ -25,7 +25,8 @@ class MedicalDiagnosticReportTemplatePrint(models.TransientModel):
 
     def print(self):
         return (
-            self.env.ref(
+            self.env["ir.actions.report"]
+            ._for_xml_id(
                 "medical_diagnostic_report.medical_diagnostic_report_template_preview"
             )
             .with_context(lang=self.lang, force_lang=self.lang)
