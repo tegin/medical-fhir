@@ -62,11 +62,9 @@ class MedicalProcedureRequest(models.Model):
 
     def action_view_procedure(self):
         self.ensure_one()
-        action = self.env.ref(
+        result = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_clinical_procedure.medical_procedure_action"
         )
-        result = action.read()[0]
-
         result["context"] = {
             "default_patient_id": self.patient_id.id,
             "default_performer_id": self.performer_id.id,
