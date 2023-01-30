@@ -49,20 +49,18 @@ class MedicalPatient(models.Model):
 
     def action_view_medical_conditions(self):
         self.ensure_one()
-        action = self.env.ref(
+        result = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_clinical_condition.medical_clinical_condition_action"
         )
-        result = action.read()[0]
         result["context"] = {"default_patient_id": self.id}
         result["domain"] = [("patient_id", "=", self.id)]
         return result
 
     def action_view_medical_warnings(self):
         self.ensure_one()
-        action = self.env.ref(
+        result = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_clinical_condition.medical_warning_action"
         )
-        result = action.read()[0]
         result["context"] = {"default_patient_id": self.id}
         result["domain"] = [
             ("patient_id", "=", self.id),
