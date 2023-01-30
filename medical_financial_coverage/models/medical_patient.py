@@ -27,10 +27,9 @@ class MedicalPatient(models.Model):
             record.coverage_count = len(record.coverage_ids)
 
     def action_view_coverage(self):
-        action = self.env.ref(
+        result = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_financial_coverage.medical_coverage_action"
         )
-        result = action.read()[0]
         result["context"] = {"default_patient_id": self.id}
         result["domain"] = "[('patient_id', '=', " + str(self.id) + ")]"
         if len(self.coverage_ids) == 1:

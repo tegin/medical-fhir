@@ -10,10 +10,10 @@ class MedicalPatient(models.Model):
 
     def action_view_observations_with_concept(self):
         self.ensure_one()
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_diagnostic_report."
             "medical_diagnostic_report_concepts_patient_act_window"
-        ).read()[0]
+        )
         action["domain"] = [
             ("patient_id", "=", self.id),
             ("concept_id", "!=", False),

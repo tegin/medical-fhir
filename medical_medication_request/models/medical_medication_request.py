@@ -94,11 +94,10 @@ class MedicalMedicationRequest(models.Model):
 
     def action_view_medication_administration(self):
         self.ensure_one()
-        action = self.env.ref(
+        result = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_medication_request."
             "medical_medication_administration_action"
         )
-        result = action.read()[0]
         result["context"] = {
             "default_patient_id": self.patient_id.id,
             "default_medication_request_id": self.id,

@@ -195,7 +195,9 @@ class MedicalMedicationAdministration(models.Model):
 
     def action_view_stock_moves(self):
         self.ensure_one()
-        action = self.env.ref("stock.stock_move_action").read([])[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "stock.stock_move_action"
+        )
         action["domain"] = [("medication_administration_id", "=", self.id)]
         if len(self.move_ids) == 1:
             action["views"] = [(False, "form")]

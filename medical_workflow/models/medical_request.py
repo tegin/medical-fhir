@@ -247,8 +247,7 @@ class MedicalRequest(models.AbstractModel):
             raise UserError(_("No model provided."))
         inverse_name = self._get_parent_field_name()
         requests = self.env[model].search([(inverse_name, "=", self.id)])
-        action = self.env.ref(params["view"])
-        result = action.read()[0]
+        result = self.env["ir.actions.act_window"]._for_xml_id(params["view"])
         context = {"default_patient_id": self.patient_id.id}
         context = self._get_medical_request_context(context)
         result["context"] = context
