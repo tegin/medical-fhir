@@ -58,7 +58,7 @@ class ResPartner(models.Model):
             self.is_payor
             and mode != "read"
             and not self.env.user.has_group(
-                "medical_base.group_medical_finance"
+                "medical_base.group_medical_financial"
             )
         ):
             _logger.info(
