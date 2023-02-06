@@ -1,11 +1,16 @@
 import io
 import warnings
 
-import bokeh.io.export as export
 from bokeh.embed import file_html
 from bokeh.embed.util import FromCurdoc
+from bokeh.io import webdriver
+from bokeh.io.export import (
+    _maximize_viewport as _maximize_viewport,
+    _tmp_html,
+    wait_until_render_complete,
+)
 from bokeh.resources import INLINE
-from bokeh.util.dependencies import import_required
+from PIL import Image
 
 
 def get_layout_html(obj, resources=INLINE, theme=FromCurdoc, **kwargs):
@@ -44,52 +49,48 @@ def get_layout_html(obj, resources=INLINE, theme=FromCurdoc, **kwargs):
     return html
 
 
-def get_screenshot_as_png(obj, driver=None, **kwargs):
+def get_screenshot_as_png(
+    obj,
+    *,
+    driver=None,
+    timeout=5,
+    resources=INLINE,
+    width=None,
+    height=None,
+    theme=None
+):
     """Get a screenshot of a ``LayoutDOM`` object.
-
     Args:
         obj (LayoutDOM or Document) : a Layout (Row/Column), Plot or Widget
             object or Document to export.
-
         driver (selenium.webdriver) : a selenium webdriver instance to use
             to export the image.
-
+        timeout (int) : the maximum amount of time to wait for initialization.
+            It will be used as a timeout for loading Bokeh, then when waiting for
+            the layout to be rendered.
     Returns:
-        cropped_image (PIL.Image.Image) : a pillow image loaded from PNG.
-
+        image (PIL.Image.Image) : a pillow image loaded from PNG.
     .. warning::
         Responsive sizing_modes may generate layouts with unexpected size and
         aspect ratios. It is recommended to use the default ``fixed`` sizing mode.
-
     """
-    Image = import_required(
-        "PIL.Image",
-        "To use bokeh.io.export_png you need pillow "
-        + '("conda install pillow" or "pip install pillow")',
-    )
 
-    with export._tmp_html() as tmp:
-        html = get_layout_html(obj, **kwargs)
-        with io.open(tmp.path, mode="w", encoding="utf-8") as file:
+    with _tmp_html() as tmp:
+        html = get_layout_html(
+            obj, resources=resources, width=width, height=height, theme=theme
+        )
+        with open(tmp.path, mode="w", encoding="utf-8") as file:
             file.write(html)
 
         web_driver = (
-            driver if driver is not None else export.webdriver_control.get()
+            driver
+            if driver is not None
+            else webdriver.create_chromium_webdriver(["--no-sandbox"])
         )
-
-        web_driver.get("file:///" + tmp.path)
         web_driver.maximize_window()
-
-        # resize for PhantomJS compat
-        web_driver.execute_script("document.body.style.width = '100%';")
-
-        export.wait_until_render_complete(web_driver)
-
+        web_driver.get(f"file://{tmp.path}")
+        wait_until_render_complete(web_driver, timeout)
+        [width, height, dpr] = _maximize_viewport(web_driver)
         png = web_driver.get_screenshot_as_png()
 
-        b_rect = web_driver.execute_script(export._BOUNDING_RECT_SCRIPT)
-
-    image = Image.open(io.BytesIO(png))
-    cropped_image = export._crop_image(image, **b_rect)
-
-    return cropped_image
+    return Image.open(io.BytesIO(png))
