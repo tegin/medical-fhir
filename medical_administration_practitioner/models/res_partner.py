@@ -39,9 +39,7 @@ class ResPartner(models.Model):
         if (
             self.is_practitioner
             and mode != "read"
-            and not self.env.user.has_group(
-                "medical_base.group_medical_configurator"
-            )
+            and not self._check_medical_practitioner()
         ):
             _logger.info(
                 "Access Denied by ACLs for operation: %s, uid: %s, model: %s",
@@ -55,3 +53,8 @@ class ResPartner(models.Model):
                     mode=mode,
                 )
             )
+
+    def _check_medical_practitioner(self):
+        return self.env.user.has_group(
+            "medical_base.group_medical_configurator"
+        )
