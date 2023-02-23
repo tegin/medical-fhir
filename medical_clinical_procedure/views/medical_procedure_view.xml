@@ -109,11 +109,11 @@
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
     </record>
-    <menuitem
-        id="medical_procedure"
-        name="Procedures"
-        parent="medical_base.medical_clinical_event"
-        sequence="10"
-        action="medical_procedure_action"
-    />
+
+    <record model="ir.ui.menu" id="medical_procedure">
+        <field name="name">Procedures</field>
+        <field name="parent_id" ref="medical_base.medical_clinical_event" />
+        <field name="action" ref="medical_procedure_action" />
+        <field name="sequence" eval="10" />
+    </record>
 </odoo>
