@@ -46,10 +46,12 @@
         <field name="search_view_id" ref="medical_observation_pivot_search" />
         <field name="view_id" ref="medical_observation_pivot" />
     </record>
-    <menuitem
-        id="menu_medical_report_pivot_observation"
-        name="Observations report"
-        parent="menu_medical_report_root"
-        action="medical_observation_pivot_action"
-    />
+    <record model="ir.ui.menu" id="menu_medical_report_pivot_observation">
+        <field name="name">Observations reports</field>
+        <field name="parent_id" ref="menu_medical_report_root" />
+        <field name="action" ref="medical_observation_pivot_action" />
+        <field name="sequence" eval="10" />
+    </record>
+
+
 </odoo>
