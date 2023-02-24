@@ -101,11 +101,10 @@
         <field name="res_model">workflow.activity.definition</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem
-        id="workflow_activity_definitions_menu"
-        name="Activity definitions"
-        parent="medical_base.medical_root_workflow"
-        action="workflow_activity_definition_action"
-        sequence="30"
-    />
+    <record model="ir.ui.menu" id="workflow_activity_definitions_menu">
+        <field name="name">Activity definitions</field>
+        <field name="parent_id" ref="medical_base.medical_root_workflow" />
+        <field name="action" ref="workflow_activity_definition_action" />
+        <field name="sequence" eval="30" />
+    </record>
 </odoo>

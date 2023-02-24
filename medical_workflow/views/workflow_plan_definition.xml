@@ -99,11 +99,10 @@
         <field name="res_model">workflow.plan.definition</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem
-        id="workflow_plan_definitions_menu"
-        name="Plan definitions"
-        parent="medical_base.medical_root_workflow"
-        action="workflow_plan_definition"
-        sequence="10"
-    />
+    <record model="ir.ui.menu" id="workflow_plan_definitions_menu">
+        <field name="name">Plan definitions</field>
+        <field name="parent_id" ref="medical_base.medical_root_workflow" />
+        <field name="action" ref="workflow_plan_definition" />
+        <field name="sequence" eval="10" />
+    </record>
 </odoo>
