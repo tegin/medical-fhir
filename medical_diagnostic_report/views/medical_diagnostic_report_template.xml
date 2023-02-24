@@ -157,12 +157,11 @@
         <field name="res_model">medical.diagnostic.report.template</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem
-        id="medical_report_configuration"
-        name="Report Configuration"
-        parent="medical_base.medical_root_configuration"
-        sequence="20"
-    />
+    <record model="ir.ui.menu" id="medical_report_configuration">
+        <field name="name">Report Configuration</field>
+        <field name="parent_id" ref="medical_base.medical_root_configuration" />
+        <field name="sequence" eval="20" />
+    </record>
     <record model="ir.ui.menu" id="medical_report_template_menu">
         <field name="name">Diagnostic Report Templates</field>
         <field name="parent_id" ref="medical_report_configuration" />
