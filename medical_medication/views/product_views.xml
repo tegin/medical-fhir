@@ -51,11 +51,10 @@
         <field name="domain">[('is_medication', '=', True)]</field>
         <field name="context">{'default_is_medication': True}</field>
     </record>
-    <menuitem
-        id="medical_medication"
-        name="Medications"
-        parent="medical_base.medical_root_medications"
-        sequence="10"
-        action="medical_medication_action"
-    />
+    <record model="ir.ui.menu" id="medical_medication">
+        <field name="name">Medications</field>
+        <field name="parent_id" ref="medical_base.medical_root_medications" />
+        <field name="action" ref="medical_medication_action" />
+        <field name="sequence" eval="10" />
+    </record>
 </odoo>
