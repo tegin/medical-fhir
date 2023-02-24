@@ -5,25 +5,25 @@
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
-    <menuitem
-        id="menu_medical_coverage_root"
-        name="Coverage"
-        sequence="40"
-        parent="medical_base.medical_root_financial"
-        action="medical_coverage_action"
-    />
-    <menuitem
-        id="menu_medical_coverage_template_root"
-        name="Coverage Template"
-        sequence="20"
-        parent="medical_base.medical_root_financial"
-        action="medical_coverage_template_action"
-    />
-    <menuitem
-        id="menu_medical_payor_root"
-        name="Payors"
-        sequence="10"
-        parent="medical_base.medical_root_financial"
-        action="medical_payor_action"
-    />
+
+    <record model="ir.ui.menu" id="menu_medical_coverage_root">
+        <field name="name">Coverage</field>
+        <field name="parent_id" ref="medical_base.medical_root_financial" />
+        <field name="action" ref="medical_coverage_action" />
+        <field name="sequence" eval="40" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_medical_coverage_template_root">
+        <field name="name">Coverage Template</field>
+        <field name="parent_id" ref="medical_base.medical_root_financial" />
+        <field name="action" ref="medical_coverage_template_action" />
+        <field name="sequence" eval="20" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_medical_payor_root">
+        <field name="name">Payors</field>
+        <field name="parent_id" ref="medical_base.medical_root_financial" />
+        <field name="action" ref="medical_payor_action" />
+        <field name="sequence" eval="10" />
+    </record>
 </odoo>
