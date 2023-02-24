@@ -5,12 +5,10 @@
     License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
-    <menuitem
-        id="medical_center_menu"
-        name="Centers"
-        sequence="30"
-        parent="medical_base.medical_root_administration"
-        groups="medical_base.group_medical_configurator"
-        action="medical_center_action"
-    />
+    <record model="ir.ui.menu" id="medical_center_menu">
+        <field name="name">Centers</field>
+        <field name="parent_id" ref="medical_base.medical_root_administration" />
+        <field name="action" ref="medical_center_action" />
+        <field name="sequence" eval="30" />
+    </record>
 </odoo>
