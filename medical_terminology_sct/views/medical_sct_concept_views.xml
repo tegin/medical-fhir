@@ -52,11 +52,11 @@
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
     </record>
-    <menuitem
-        id="medical_sct_concept"
-        name="SCT Concepts"
-        parent="medical_base.medical_root_terminologies"
-        sequence="10"
-        action="medical_sct_concept_window_action"
-    />
+    <record model="ir.ui.menu" id="medical_sct_concept">
+        <field name="name">SCT Concepts</field>
+        <field name="parent_id" ref="medical_base.medical_root_terminologies" />
+        <field name="action" ref="medical_sct_concept_window_action" />
+        <field name="sequence" eval="10" />
+    </record>
+
 </odoo>
