@@ -77,20 +77,3 @@ class MedicalPatient(models.Model):
             "target": "new",
             "flags": {"form": {"action_buttons": True}},
         }
-
-    def get_medical_formview_id(self):
-        return self.env.ref("medical_base.medical_patient_his_form").id
-
-    def open_medical(self):
-        # TODO: Add a review if the user can open it from here.
-        view_id = self.sudo().get_medical_formview_id()
-        return {
-            "type": "ir.actions.act_window",
-            "res_model": self._name,
-            "view_type": "form",
-            "view_mode": "form",
-            "views": [(view_id, "form")],
-            "target": "current",
-            "res_id": self.id,
-            "context": dict(self._context),
-        }
