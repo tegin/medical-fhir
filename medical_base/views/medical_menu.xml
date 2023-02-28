@@ -114,8 +114,8 @@
 
     <record model="ir.ui.menu" id="medical_root_settings">
         <field name="name">Settings</field>
-        <field name="parent_id" ref="medical_root" />
+        <field name="parent_id" ref="medical_root_configuration" />
         <field name="groups_id" eval="[(6, 0, [ref('group_medical_admin')])]" />
-        <field name="sequence" eval="100" />
+        <field name="sequence" eval="1" />
     </record>
 </odoo>
