@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 CreuBlanca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="encounter_01_patient_01" model="medical.encounter">
+        <field name="patient_id" ref="medical_base.patient_01" />
+    </record>
+    <record id="encounter_02_patient_01" model="medical.encounter">
+        <field name="patient_id" ref="medical_base.patient_01" />
+    </record>
+    <record id="encounter_03_patient_01" model="medical.encounter">
+        <field name="patient_id" ref="medical_base.patient_01" />
+    </record>
+
+    <record id="encounter_01_patient_02" model="medical.encounter">
+        <field name="patient_id" ref="medical_base.patient_02" />
+    </record>
+    <record id="encounter_02_patient_02" model="medical.encounter">
+        <field name="patient_id" ref="medical_base.patient_02" />
+    </record>
+</odoo>
