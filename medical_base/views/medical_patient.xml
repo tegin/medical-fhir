@@ -19,7 +19,7 @@
         <field name="model">medical.patient</field>
         <field name="priority">99</field>
         <field name="arch" type="xml">
-            <tree js_class="his_tree">
+            <tree>
                 <field name="internal_identifier" />
                 <field name="vat" />
                 <field name="name" />
@@ -345,16 +345,25 @@
         <field name="view_mode">tree</field>
         <field name="view_id" ref="medical_patient_his_tree" />
     </record>
-        <record model="ir.ui.menu" id="medical_patient">
-            <field name="name">Patients</field>
-            <field name="parent_id" ref="medical_base.medical_root_administration" />
-            <field name="action" ref="medical_patient_window_action" />
-            <field name="sequence" eval="10" />
-        </record>
+    <record
+        model="ir.actions.act_window.view"
+        id="medical_patient_his_window_action_form"
+    >
+        <field name="act_window_id" ref="medical_patient_his_window_action" />
+        <field name="sequence" eval="20" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="medical_patient_his_form" />
+    </record>
+    <record model="ir.ui.menu" id="medical_patient">
+        <field name="name">Patients</field>
+        <field name="parent_id" ref="medical_base.medical_root_administration" />
+        <field name="action" ref="medical_patient_window_action" />
+        <field name="sequence" eval="10" />
+    </record>
     <record model="ir.ui.menu" id="medical_patient_his">
         <field name="name">HIS</field>
         <field name="parent_id" ref="medical_root" />
         <field name="action" ref="medical_patient_his_window_action" />
-        <field name="sequence" eval="10" />
+        <field name="sequence" eval="1" />
     </record>
 </odoo>
