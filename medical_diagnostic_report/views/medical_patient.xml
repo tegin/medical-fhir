@@ -60,6 +60,12 @@
                             decoration-warning="fhir_state == 'registered'"
                             decoration-danger="fhir_state == 'cancelled'"
                         >
+                            <button
+                                type="object"
+                                name="print_medical_diagnostic_report"
+                                class="oe_stat_button"
+                                icon="fa-duotone fa-file-pdf"
+                            />
                             <field name="internal_identifier" />
                             <field name="encounter_id" />
                             <field name="name" />
@@ -68,6 +74,7 @@
                             <field name="create_date" />
                             <field name="state" invisible="1" />
                             <field name="fhir_state" invisible="1" />
+
                         </tree>
                     </field>
                     <button
