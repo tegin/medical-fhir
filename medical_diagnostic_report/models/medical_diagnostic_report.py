@@ -212,3 +212,8 @@ class MedicalDiagnosticReport(models.Model):
             }
         )
         return result
+
+    def print_medical_diagnostic_report(self):
+        return self.env.ref(
+            "medical_diagnostic_report.medical_diagnostic_report"
+        ).report_action(self)
