@@ -69,6 +69,12 @@
                             <field name="internal_identifier" />
                             <field name="encounter_id" />
                             <field name="name" />
+                            <field
+                                name="specialty_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                attrs="{'invisible': [('specialty_ids','=',False)]}"
+                            />
                             <field name="issued_user_id" />
                             <field name="issued_date" />
                             <field name="create_date" />
