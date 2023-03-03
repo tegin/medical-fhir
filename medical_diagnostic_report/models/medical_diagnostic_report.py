@@ -117,6 +117,8 @@ class MedicalDiagnosticReport(models.Model):
     )
     is_cancellable = fields.Boolean(compute="_compute_is_cancellable")
 
+    specialty_ids = fields.Many2many("medical.specialty", string="Specialties")
+
     @api.depends("database_composition")
     def _compute_composition(self):
         for record in self:
