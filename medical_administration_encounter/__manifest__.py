@@ -18,6 +18,8 @@
         "views/medical_patient.xml",
         "security/ir.model.access.csv",
         "data/medical_encounter_sequence.xml",
+    ],
+    "demo": [
         "demo/data.xml",
     ],
     "installable": True,
