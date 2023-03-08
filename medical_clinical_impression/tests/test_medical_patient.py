@@ -1,6 +1,7 @@
 # Copyright 2022 Creu Blanca
 
 import freezegun
+
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase

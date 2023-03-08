@@ -5,10 +5,10 @@
     "name": "Medical Clinical Impression",
     "summary": """
         Medical Clinical Impression based on FHIR""",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "author": "Creu Blanca,Odoo Community Association (OCA)",
-    "website": "www.creublanca.es",
+    "author": "CreuBlanca,Odoo Community Association (OCA)",
+    "website": "https://github.com/tegin/medical-fhir",
     "depends": [
         "medical_workflow",
         "medical_clinical",

@@ -1,6 +1,7 @@
 # Copyright 2022 Creu Blanca
 
 import freezegun
+
 from odoo import fields
 from odoo.tests.common import TransactionCase
 

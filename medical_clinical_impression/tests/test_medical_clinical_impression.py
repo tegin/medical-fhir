@@ -3,6 +3,7 @@
 from datetime import datetime
 
 import freezegun
+
 from odoo.tests.common import TransactionCase
 
 
