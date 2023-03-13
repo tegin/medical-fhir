@@ -9,7 +9,9 @@ class MedicalPatient(models.Model):
     _inherit = "medical.patient"
 
     diagnostic_report_ids = fields.One2many(
-        "medical.diagnostic.report", inverse_name="patient_id"
+        "medical.diagnostic.report",
+        inverse_name="patient_id",
+        domain=[("fhir_state", "!=", "cancelled")],
     )
 
     def _get_last_encounter(self):
