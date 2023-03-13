@@ -15,14 +15,13 @@ class MedicalClinicalImpression(models.Model):
 
     @api.model
     def _get_states(self):
-        return [
-            ("in_progress", "In Progress"),
-            ("completed", "Completed"),
-            ("cancelled", "Cancelled"),
-        ]
+        return {
+            "in_progress": ("In Progress", "draft"),
+            "completed": ("Completed", "done"),
+            "cancelled": ("Cancelled", "done"),
+        }
 
-    state = fields.Selection(default="in_progress", states={}, required=False)
-    #   FHIR: status
+    fhir_state = fields.Selection(default="in_progress")
 
     specialty_id = fields.Many2one(
         "medical.specialty",

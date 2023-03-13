@@ -37,15 +37,15 @@
         <field name="description">Gynecology</field>
     </record>
     <record id="encounter_01_patient_01" model="medical.encounter">
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
     </record>
     <record id="impression_01_patient_01" model="medical.clinical.impression">
-        <field name="state">completed</field>
+        <field name="fhir_state">completed</field>
         <field
             name="specialty_id"
             ref="medical_clinical_impression.specialty_gynecology"
         />
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
         <field
             name="encounter_id"
             ref="medical_clinical_impression.encounter_01_patient_01"
@@ -68,7 +68,7 @@
         />
     </record>
     <record id="family_history_01_patient_01" model="medical.family.member.history">
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
         <field name="family_member_name">Maria</field>
         <field name="relationship">Mother</field>
         <field name="sex">female</field>

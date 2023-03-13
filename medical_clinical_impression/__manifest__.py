@@ -11,7 +11,6 @@
     "website": "https://github.com/tegin/medical-fhir",
     "depends": [
         "medical_workflow",
-        "medical_clinical",
         "medical_clinical_condition",
         "medical_administration_practitioner_specialty",
     ],
