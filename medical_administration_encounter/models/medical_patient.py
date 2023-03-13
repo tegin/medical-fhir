@@ -28,8 +28,8 @@ class MedicalPatient(models.Model):
 
     def action_view_his_encounter_ids(self):
         self.ensure_one()
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_administration_encounter.action_encounter_medical_his"
-        ).read()[0]
+        )
         action["domain"] = [("patient_id", "=", self.id)]
         return action
