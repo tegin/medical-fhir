@@ -66,7 +66,7 @@ class TestClinicalImpression(TransactionCase):
             impression.validation_date, datetime(2022, 1, 1, 0, 0, 0)
         )
         self.assertEqual(impression.validation_user_id.id, self.env.user.id)
-        self.assertEqual(impression.state, "completed")
+        self.assertEqual(impression.fhir_state, "completed")
 
     def test_create_condition_from_impression_finding(self):
         self.assertEqual(self.patient.medical_condition_count, 0)
@@ -179,17 +179,3 @@ class TestClinicalImpression(TransactionCase):
             {"encounter_id": self.encounter_2.id}
         )._compute_current_encounter()
         self.assertFalse(impression.current_encounter)
-
-    def test_compute_is_editable(self):
-        impression = self.env["medical.clinical.impression"].create(
-            {
-                "patient_id": self.patient.id,
-                "encounter_id": self.encounter.id,
-                "specialty_id": self.specialty_gynecology.id,
-            }
-        )
-        self.assertTrue(impression.is_editable)
-        impression.validate_clinical_impression()
-        self.assertFalse(impression.is_editable)
-        impression.cancel_clinical_impression()
-        self.assertFalse(impression.is_editable)

@@ -1,12 +1,11 @@
 <?xml version="1.0" ?>
 <odoo>
-    <report
-        id="action_clinical_impression_report"
-        string="Clinical impressions report"
-        model="medical.clinical.impression"
-        report_type="qweb-pdf"
-        name="medical_clinical_impression.report_medical_clinical_impression"
-    />
+    <record id="action_clinical_impression_report" model="ir.actions.report">
+        <field name="name">Clinical impressions report</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">report_medical_clinical_impression</field>
+    </record>
     <template id="report_medical_clinical_impression">
         <t t-set="company" t-value="docs.env.user.company_id" />
         <t t-set="partner" t-value="company.partner_id" />
@@ -91,9 +90,10 @@
             </div>
             <div class="footer">
                 <div class="text-center" style="border-top: 1px solid black;">
-                    <div class="text-muted">
-                    Page: <span class="page" /> / <span class="topage" />
-                </div>
+                    <div class="text-muted"> Page: <span class="page" /> / <span
+                            class="topage"
+                        />
+                    </div>
                 </div>
             </div>
         </t>

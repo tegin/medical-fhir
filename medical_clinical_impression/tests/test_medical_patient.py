@@ -206,7 +206,7 @@ class TestMedicalPatient(TransactionCase):
                 "patient_id": self.patient.id,
                 "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_cardiology.id,
-                "state": "completed",
+                "fhir_state": "completed",
             }
         )
         # Impression 4 gynecology (should not be considered in the impression_count)

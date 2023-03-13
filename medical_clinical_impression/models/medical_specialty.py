@@ -42,7 +42,7 @@ class MedicalSpecialty(models.Model):
                 encounter_count = len(
                     encounter_id.medical_impression_ids.filtered(
                         lambda r: r.specialty_id.id == rec.id
-                        and r.state != "cancelled"
+                        and r.fhir_state != "cancelled"
                     )
                 )
                 patient_id = encounter_id.patient_id
@@ -50,18 +50,18 @@ class MedicalSpecialty(models.Model):
                 patient_impression_ids = (
                     patient_id.medical_impression_ids.filtered(
                         lambda r: r.specialty_id.id == rec.id
-                        and r.state != "cancelled"
+                        and r.fhir_state != "cancelled"
                     )
                 )
                 patient_count = len(patient_impression_ids)
                 impressions_completed = patient_impression_ids.filtered(
-                    lambda r: r.state == "completed"
+                    lambda r: r.fhir_state == "completed"
                 )
                 if impressions_completed:
                     last_update = impressions_completed[0].validation_date
                 impressions_in_progress = len(
                     patient_impression_ids.filtered(
-                        lambda r: r.state == "in_progress"
+                        lambda r: r.fhir_state == "in_progress"
                     )
                 )
             rec.patient_impression_count = patient_count
@@ -76,11 +76,10 @@ class MedicalSpecialty(models.Model):
     # is just to set the default_encounter_id
     # Always pass a context to this function
     def get_specialty_impression(self):
-        action = self.env.ref(
+        result = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_clinical_impression."
             "medical_clinical_impression_act_window"
         )
-        result = action.read()[0]
         ctx_dict = self._get_default_context()
         if self.env.context.get("patient_id"):
             patient_id = self.env["medical.patient"].browse(

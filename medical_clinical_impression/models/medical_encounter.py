@@ -28,10 +28,10 @@ class MedicalEncounter(models.Model):
 
     def action_view_clinical_impressions(self):
         self.ensure_one()
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_clinical_impression."
             "medical_clinical_impression_act_window"
-        ).read()[0]
+        )
         action["domain"] = [
             ("patient_id", "=", self.patient_id.id),
         ]
@@ -43,10 +43,10 @@ class MedicalEncounter(models.Model):
 
     def action_view_family_history(self):
         self.ensure_one()
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_clinical_impression."
             "medical_family_member_history_action"
-        ).read()[0]
+        )
         action["domain"] = [
             ("patient_id", "=", self.patient_id.id),
         ]
