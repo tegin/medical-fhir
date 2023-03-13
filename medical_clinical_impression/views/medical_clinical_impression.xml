@@ -18,7 +18,7 @@
                         class="btn-success"
                         confirm="Are you sure you want to validate this impression?"
                         type="object"
-                        attrs="{'invisible':[('fhir_state', '=', False)]}"
+                        attrs="{'invisible':[('fhir_state', '=', 'cancelled')]}"
                     />
                     <button
                         name="cancel_clinical_impression"
@@ -26,7 +26,7 @@
                         class="btn-danger"
                         confirm="Are you sure you want to cancel this impression?"
                         type="object"
-                        states="in_progress,completed"
+                        attrs="{'invisible':[('fhir_state', '=', 'cancelled')]}"
                     />
                 </header>
                 <div
@@ -48,13 +48,13 @@
                         name="web_ribbon"
                         text="Cancelled"
                         bg_color="bg-danger"
-                        attrs="{'invisible':[('state', '!=', 'cancelled')]}"
+                        attrs="{'invisible':[('fhir_state', '!=', 'cancelled')]}"
                     />
                     <widget
                         name="web_ribbon"
                         text="Completed"
                         bg_color="bg-success"
-                        attrs="{'invisible':[('state', '!=', 'completed')]}"
+                        attrs="{'invisible':[('fhir_state', '!=', 'completed')]}"
                     />
                     <div class="row">
                         <div class="col-4">
@@ -75,79 +75,55 @@
                         <group>
                             <field
                                 name="encounter_id"
-                                attrs="{'readonly':[('fhir_state', '=', False)]}"
                                 domain="[('patient_id', '=', patient_id)]"
                                 options="{'no_create': True, 'no_open': True}"
                             />
                             <field
                                 name="specialty_id"
-                                attrs="{'readonly':[('fhir_state', '=', False)]}"
                                 options="{'no_create': True, 'no_open': True}"
                             />
                         </group>
                         <group>
                             <field
                                 name="validation_date"
-                                attrs="{'readonly':[('fhir_state', '=', False)],
-                                'invisible':[('validation_user_id', '=', False)]}"
+                                attrs="{'invisible':[('validation_user_id', '=', False)]}"
                             />
                             <field
                                 name="validation_user_id"
-                                attrs="{'readonly':[('fhir_state', '=', False)],
-                                'invisible':[('validation_user_id', '=', False)]}"
+                                attrs="{'invisible':[('validation_user_id', '=', False)]}"
                             />
                             <field
                                 name="cancellation_date"
-                                attrs="{'readonly':[('fhir_state', '=', False)],
-                                'invisible':[('cancellation_user_id', '=', False)]}"
+                                attrs="{'invisible':[('cancellation_user_id', '=', False)]}"
                             />
                             <field
                                 name="cancellation_user_id"
-                                attrs="{'readonly':[('fhir_state', '=', False)],
-                                'invisible':[('cancellation_user_id', '=', False)]}"
+                                attrs="{'invisible':[('cancellation_user_id', '=', False)]}"
                             />
                         </group>
                     </group>
                     <group>
                         <field name="fhir_state" invisible="1" />
-                        <field
-                            name="description"
-                            attrs="{'readonly':[('fhir_state', '=', False)]}"
-                        />
+                        <field name="description" />
                     </group>
                     <notebook>
                         <page string="Summary">
                             <group name="summary" string="Summary">
-                                <field
-                                    name="summary"
-                                    attrs="{'readonly':[('fhir_state', '=', False)]}"
-                                    nolabel="1"
-                                />
+                                <field name="summary" nolabel="1" />
                             </group>
                             <group name="note" string="Private Notes">
-                                <field
-                                    name="note"
-                                    string="Private Notes"
-                                    attrs="{'readonly':[('fhir_state', '=', False)]}"
-                                    nolabel="1"
-                                />
+                                <field name="note" string="Private Notes" nolabel="1" />
                             </group>
                         </page>
                         <page string="Findings">
-                            <field
-                                name="finding_ids"
-                                attrs="{'readonly':[('fhir_state', '=', False)]}"
-                            >
+                            <field name="finding_ids">
                                 <tree editable="bottom">
                                     <field name="name" />
                                 </tree>
                             </field>
                         </page>
                         <page string="Allergies">
-                            <field
-                                name="allergy_substance_ids"
-                                attrs="{'readonly':[('fhir_state', '=', False)]}"
-                            >
+                            <field name="allergy_substance_ids">
                                 <tree editable="bottom">
                                     <field name="name" />
                                 </tree>
@@ -171,9 +147,9 @@
         <field name="arch" type="xml">
             <tree
                 string="Clinical Impressions"
-                decoration-warning="state == 'in_progress'"
-                decoration-muted="state == 'cancelled'"
-                decoration-info="current_encounter == True and state == 'completed'"
+                decoration-warning="fhir_state == 'in_progress'"
+                decoration-muted="fhir_state == 'cancelled'"
+                decoration-info="current_encounter == True and fhir_state == 'completed'"
             >
                 <field name="specialty_id" />
                 <field name="encounter_id" />
@@ -182,8 +158,9 @@
                 <field name="summary" />
                 <field name="validation_date" />
                 <field name="validation_user_id" />
-                <field name="state" invisible="1" />
-                <field name="current_encounter" invisible="1" />
+                <field name="fhir_state" invisible="0" />
+                <field name="state" invisible="0" />
+                <field name="current_encounter" invisible="0" />
             </tree>
         </field>
     </record>
@@ -201,12 +178,12 @@
                 <filter
                     name="filter_not_cancelled"
                     string="Not cancelled"
-                    domain="[('state', '!=', 'cancelled')]"
+                    domain="[('fhir_state', '!=', 'cancelled')]"
                 />
                 <filter
                     name="filter_cancelled"
                     string="Cancelled"
-                    domain="[('state', '=', 'cancelled')]"
+                    domain="[('fhir_state', '=', 'cancelled')]"
                 />
             </search>
         </field>
