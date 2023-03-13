@@ -96,11 +96,6 @@ class MedicalClinicalImpression(models.Model):
                     current_encounter = True
             rec.current_encounter = current_encounter
 
-    @api.depends("state")
-    def _compute_is_editable(self):
-        for rec in self:
-            rec.is_editable = rec._is_editable()
-
     def _create_conditions_from_findings(self):
         finding_ids = self.finding_ids.filtered(
             lambda f: f.create_condition_from_clinical_impression
@@ -137,7 +132,7 @@ class MedicalClinicalImpression(models.Model):
 
     def _validate_clinical_impression_fields(self):
         return {
-            "state": "completed",
+            "fhir_state": "completed",
             "validation_date": fields.Datetime.now(),
             "validation_user_id": self.env.user.id,
         }
@@ -148,12 +143,9 @@ class MedicalClinicalImpression(models.Model):
         self._create_conditions_from_findings()
         self._create_allergies_from_findings()
 
-    def _is_editable(self):
-        return self.state in ("in_progress",)
-
     def _cancel_clinical_impression_fields(self):
         return {
-            "state": "cancelled",
+            "fhir_state": "cancelled",
             "cancellation_date": fields.Datetime.now(),
             "cancellation_user_id": self.env.user.id,
         }
