@@ -11,13 +11,14 @@
             <form string="Clinical Impression">
                 <header>
                     <field name="state" widget="statusbar" nolabel="1" />
+                    <field name="fhir_state" invisible="1" />
                     <button
                         name="validate_clinical_impression"
                         string="Validate Impression"
                         class="btn-success"
                         confirm="Are you sure you want to validate this impression?"
                         type="object"
-                        attrs="{'invisible':[('is_editable', '=', False)]}"
+                        attrs="{'invisible':[('fhir_state', '=', False)]}"
                     />
                     <button
                         name="cancel_clinical_impression"
@@ -74,44 +75,44 @@
                         <group>
                             <field
                                 name="encounter_id"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                                attrs="{'readonly':[('fhir_state', '=', False)]}"
                                 domain="[('patient_id', '=', patient_id)]"
                                 options="{'no_create': True, 'no_open': True}"
                             />
                             <field
                                 name="specialty_id"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                                attrs="{'readonly':[('fhir_state', '=', False)]}"
                                 options="{'no_create': True, 'no_open': True}"
                             />
                         </group>
                         <group>
                             <field
                                 name="validation_date"
-                                attrs="{'readonly':[('is_editable', '=', False)],
+                                attrs="{'readonly':[('fhir_state', '=', False)],
                                 'invisible':[('validation_user_id', '=', False)]}"
                             />
                             <field
                                 name="validation_user_id"
-                                attrs="{'readonly':[('is_editable', '=', False)],
+                                attrs="{'readonly':[('fhir_state', '=', False)],
                                 'invisible':[('validation_user_id', '=', False)]}"
                             />
                             <field
                                 name="cancellation_date"
-                                attrs="{'readonly':[('is_editable', '=', False)],
+                                attrs="{'readonly':[('fhir_state', '=', False)],
                                 'invisible':[('cancellation_user_id', '=', False)]}"
                             />
                             <field
                                 name="cancellation_user_id"
-                                attrs="{'readonly':[('is_editable', '=', False)],
+                                attrs="{'readonly':[('fhir_state', '=', False)],
                                 'invisible':[('cancellation_user_id', '=', False)]}"
                             />
                         </group>
                     </group>
                     <group>
-                        <field name="is_editable" invisible="1" />
+                        <field name="fhir_state" invisible="1" />
                         <field
                             name="description"
-                            attrs="{'readonly':[('is_editable', '=', False)]}"
+                            attrs="{'readonly':[('fhir_state', '=', False)]}"
                         />
                     </group>
                     <notebook>
@@ -119,7 +120,7 @@
                             <group name="summary" string="Summary">
                                 <field
                                     name="summary"
-                                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                                    attrs="{'readonly':[('fhir_state', '=', False)]}"
                                     nolabel="1"
                                 />
                             </group>
@@ -127,7 +128,7 @@
                                 <field
                                     name="note"
                                     string="Private Notes"
-                                    attrs="{'readonly':[('is_editable', '=', False)]}"
+                                    attrs="{'readonly':[('fhir_state', '=', False)]}"
                                     nolabel="1"
                                 />
                             </group>
@@ -135,7 +136,7 @@
                         <page string="Findings">
                             <field
                                 name="finding_ids"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                                attrs="{'readonly':[('fhir_state', '=', False)]}"
                             >
                                 <tree editable="bottom">
                                     <field name="name" />
@@ -145,7 +146,7 @@
                         <page string="Allergies">
                             <field
                                 name="allergy_substance_ids"
-                                attrs="{'readonly':[('is_editable', '=', False)]}"
+                                attrs="{'readonly':[('fhir_state', '=', False)]}"
                             >
                                 <tree editable="bottom">
                                     <field name="name" />
