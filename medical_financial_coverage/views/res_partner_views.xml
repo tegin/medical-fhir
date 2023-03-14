@@ -25,6 +25,7 @@
                     name="action_view_coverage_template"
                     class="oe_stat_button"
                     icon="fa-plus-square"
+                    groups="medical_base.group_medical_financial"
                     attrs="{'invisible': [('is_payor', '=', False)]}"
                 >
                     <field
