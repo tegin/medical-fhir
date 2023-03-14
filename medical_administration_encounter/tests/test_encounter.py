@@ -107,3 +107,10 @@ class TestMedicalEncounter(TransactionCase):
         self.assertEqual(encounter_4.state, "onleave")
         encounter_4.onleave2cancelled()
         self.assertEqual(encounter_4.state, "cancelled")
+
+    def test_action_view_his_encounter_ids(self):
+        action = self.patient_1.action_view_his_encounter_ids()
+        self.assertEqual(action["res_model"], "medical.encounter")
+        self.assertEqual(
+            action["domain"], [("patient_id", "=", self.patient_1.id)]
+        )
