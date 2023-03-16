@@ -35,7 +35,9 @@ class MedicalPatientCreateDiagnosticReport(models.TransientModel):
 
     @api.onchange("encounter_id")
     def check_encounter_date(self):
-        if datetime.now() - self.encounter_id.create_date >= timedelta(days=7):
+        if (datetime.now() - self.encounter_id.create_date) >= timedelta(
+            days=7
+        ):
             self.show_encounter_warning = True
 
     @api.onchange("patient_id")
