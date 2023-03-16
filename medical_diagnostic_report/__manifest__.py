@@ -16,7 +16,6 @@
         "medical_certify",
         "web_widget_bokeh_chart",
         "account",
-        "medical_administration_practitioner_specialty",
     ],
     "data": [
         "wizards/medical_patient_create_diagnostic_report.xml",
