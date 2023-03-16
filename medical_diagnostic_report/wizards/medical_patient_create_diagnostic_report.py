@@ -29,7 +29,7 @@ class MedicalPatientCreateDiagnosticReport(models.TransientModel):
 
     show_encounter_warning = fields.Boolean(default=False)
     encounter_warning = fields.Char(
-        default="This encounter date is more than a week ago. REVISE THE CODE",
+        default="This encounter date is more than a week ago. Review it",
         readonly=True,
     )
 
