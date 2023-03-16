@@ -288,7 +288,7 @@
         <field name="name">Encounters</field>
         <field name="res_model">medical.encounter</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[(1, '=', 0)]</field>
+        <field name="domain">[('patient_id', '=', active_id)]</field>
         <field
             name="view_ids"
             eval="[(5,0,0),
