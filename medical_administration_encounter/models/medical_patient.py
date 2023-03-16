@@ -25,11 +25,3 @@ class MedicalPatient(models.Model):
         )
         action["domain"] = [("patient_id", "=", self.id)]
         return action
-
-    def action_view_his_encounter_ids(self):
-        self.ensure_one()
-        action = self.env["ir.actions.act_window"]._for_xml_id(
-            "medical_administration_encounter.action_encounter_medical_his"
-        )
-        action["domain"] = [("patient_id", "=", self.id)]
-        return action

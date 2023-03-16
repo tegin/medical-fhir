@@ -36,8 +36,8 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button
-                    type="object"
-                    name="action_view_his_encounter_ids"
+                    type="action"
+                    name="%(medical_administration_encounter.action_encounter_medical_his)"
                     class="oe_stat_button"
                     attrs="{'invisible': [('encounter_count', '=', 0)]}"
                     icon="fa-hospital-o"
