@@ -15,16 +15,12 @@ class TestMedicalPatientCreateReport(TransactionCase):
         self.patient = self.env["medical.patient"].create(
             {
                 "name": "Test Patient",
-                "gender": "male",
-                "dob": "1980-01-01",
-                "email": "test@example.com",
             }
         )
 
         self.encounter = self.env["medical.encounter"].create(
             {
                 "patient_id": self.patient.id,
-                "encounter_type": "outpatient",
                 "create_date": datetime.now() - timedelta(days=6),
             }
         )
@@ -32,7 +28,6 @@ class TestMedicalPatientCreateReport(TransactionCase):
         self.encounter2 = self.env["medical.encounter"].create(
             {
                 "patient_id": self.patient.id,
-                "encounter_type": "outpatient",
                 "create_date": datetime.now() - timedelta(days=8),
             }
         )
