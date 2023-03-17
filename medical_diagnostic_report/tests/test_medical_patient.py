@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime, timedelta
 
+from odoo.exceptions import ValidationError
 from odoo.tests import TransactionCase
 
 
@@ -162,4 +163,16 @@ class TestMedicalPatientObservationButtons(TransactionCase):
         self.assertRegex(
             concept_evolution.bokeh_chart,
             '.*<script type="text/javascript">.*',
+        )
+
+    def preview_test_medical_diagnostic_report(self, report):
+        try:
+            report.preview_medical_diagnostic_report()
+            return True
+        except ValidationError:
+            return False
+
+    def test_preview(self):
+        self.assertTrue(
+            self.preview_test_medical_diagnostic_report(self.report)
         )

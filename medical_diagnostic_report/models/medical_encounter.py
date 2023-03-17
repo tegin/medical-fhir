@@ -11,7 +11,7 @@ class MedicalEncounter(models.Model):
     report_ids = fields.One2many(
         comodel_name="medical.diagnostic.report",
         inverse_name="encounter_id",
-        domain=[("state", "!=", "cancelled")],
+        domain=[("fhir_state", "!=", "cancelled")],
     )
 
     report_count = fields.Integer(compute="_compute_report_count")
