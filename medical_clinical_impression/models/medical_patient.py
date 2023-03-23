@@ -25,6 +25,16 @@ class MedicalPatient(models.Model):
         compute="_compute_family_history_count"
     )
 
+    condition_ids = fields.One2many(
+        comodel_name="medical.condition",
+        string="Conditions Warning",
+        related="medical_impression_ids.condition_ids",
+    )
+
+    condition_count = fields.Integer(
+        related="medical_impression_ids.condition_count"
+    )
+
     @api.depends("family_history_ids")
     def _compute_family_history_count(self):
         self.family_history_count = len(self.family_history_ids)
