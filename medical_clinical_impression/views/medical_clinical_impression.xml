@@ -18,7 +18,7 @@
                         class="btn-success"
                         confirm="Are you sure you want to validate this impression?"
                         type="object"
-                        attrs="{'invisible':[('fhir_state', '=', 'cancelled')]}"
+                        attrs="{'invisible':[('fhir_state', 'in', ['completed','cancelled'])]}"
                     />
                     <button
                         name="cancel_clinical_impression"
@@ -159,8 +159,8 @@
                 <field name="validation_date" />
                 <field name="validation_user_id" />
                 <field name="fhir_state" invisible="0" />
-                <field name="state" invisible="0" />
-                <field name="current_encounter" invisible="0" />
+                <field name="state" invisible="1" />
+                <field name="current_encounter" invisible="1" />
             </tree>
         </field>
     </record>
