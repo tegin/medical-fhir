@@ -61,7 +61,7 @@
                     </field>
                     <button
                         type="action"
-                        name="%(medical_diagnostic_report.medical_patient_create_diagnostic_report_act_window)s"
+                        name="%(medical_diagnostic_report.medical_encounter_create_diagnostic_report_act_window)s"
                         class="oe_stat_button btn-warning"
                         icon="fa-file-medical-alt"
                         string="Generate Medical Report"
