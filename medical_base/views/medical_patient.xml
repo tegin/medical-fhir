@@ -253,7 +253,7 @@
         <field name="model">medical.patient</field>
         <field name="type">kanban</field>
         <field name="arch" type="xml">
-            <kanban class="o_res_partner_kanban">
+            <kanban class="o_res_partner_kanban o_kanban_form" js_class="kanban_form">
                 <field name="color" />
                 <field name="display_name" />
                 <field name="title" />
@@ -334,7 +334,7 @@
         <field name="name">HIS</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.patient</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
     <record
         model="ir.actions.act_window.view"
