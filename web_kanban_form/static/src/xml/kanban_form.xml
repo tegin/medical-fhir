@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <div t-name="KanbanFormAction" class="o_action o_action_kanban_form">
+
+        <div class="o_kanban_form_all_content">
+            <div class="o_content" />
+            <div class="o_form_content" />
+        </div>
+    </div>
+
+</templates>

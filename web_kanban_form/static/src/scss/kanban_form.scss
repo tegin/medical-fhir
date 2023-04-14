@@ -1,0 +1,40 @@
+.o_kanban_form_all_content {
+    display: flex;
+    height: 100%;
+    .o_content {
+        max-width: 30%;
+
+        .o_kanban_form {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+            height: 100%;
+            &.o_kanban_ungrouped .o_kanban_record {
+                margin: 0 0 0;
+                > div {
+                    border-right: thick solid rgba(0, 0, 0, 0);
+                }
+            }
+        }
+    }
+    .o_form_content {
+        max-width: 70%;
+        width: 70%;
+        max-height: 100%;
+        .o_control_panel {
+            padding: 0px;
+            .o_cp_top {
+                display: none;
+            }
+            .o_cp_bottom_right {
+                display: none;
+            }
+        }
+        .o_content {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+}

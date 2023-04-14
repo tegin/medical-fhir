@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="assets_backend"
+        name="Kanban Form assets"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/web_kanban_form/static/src/js/kanban_form/kanban_form_renderer.js"
+            />
+            <script
+                type="text/javascript"
+                src="/web_kanban_form/static/src/js/kanban_form/kanban_form_controller.js"
+            />
+            <script
+                type="text/javascript"
+                src="/web_kanban_form/static/src/js/kanban_form/kanban_form_view.js"
+            />
+
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/web_kanban_form/static/src/scss/kanban_form.scss"
+            />
+        </xpath>
+    </template>
+</odoo>
