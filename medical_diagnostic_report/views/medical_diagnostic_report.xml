@@ -188,19 +188,29 @@
                 <page
                     name="composition"
                     string="Composition"
-                    attrs="{'invisible':[('with_composition', '=', False)]}"
+                    attrs="{'invisible':['|', ('with_composition', '=', False), ('with_conclusion', '=', False)]}"
                 >
+                <group
+                        attrs="{'invisible':[('with_composition', '=', False)]}"
+                        string="Composition"
+                    >
                     <field
-                        name="composition"
-                        options="{'automatic_summernote_height': 1}"
-                    />
-                </page>
-                <page
-                    name="conclusion"
-                    string="Conclusion"
-                    attrs="{'invisible':[('with_conclusion', '=', False)]}"
-                >
-                    <field name="conclusion" />
+                            name="composition"
+                            nolabel="1"
+                            options="{'automatic_summernote_height': 1}"
+                        />
+                    </group>
+
+                <group
+                        attrs="{'invisible':[('with_conclusion', '=', False)]}"
+                        string="Conclusion"
+                    >
+                    <field
+                            name="conclusion"
+                            attrs="{'invisible':[('with_conclusion', '=', False)]}"
+                            nolabel="1"
+                        />
+                    </group>
                 </page>
             </xpath>
         </field>
