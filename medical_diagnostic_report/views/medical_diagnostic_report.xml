@@ -188,7 +188,7 @@
                 <page
                     name="composition"
                     string="Composition"
-                    attrs="{'invisible':['|', ('with_composition', '=', False), ('with_conclusion', '=', False)]}"
+                    attrs="{'invisible':[('with_composition', '=', False), ('with_conclusion', '=', False)]}"
                 >
                 <group
                         attrs="{'invisible':[('with_composition', '=', False)]}"
