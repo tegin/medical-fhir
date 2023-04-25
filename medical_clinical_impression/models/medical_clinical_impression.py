@@ -21,42 +21,53 @@ class MedicalClinicalImpression(models.Model):
             "cancelled": ("Cancelled", "done"),
         }
 
-    fhir_state = fields.Selection(default="in_progress")
+    fhir_state = fields.Selection(default="in_progress", readonly=True)
 
     specialty_id = fields.Many2one(
-        "medical.specialty",
-        required=True,
+        "medical.specialty", required=True, readonly=True
     )
     # FHIR code: type of clinical assessment performed.
     # TODO: add domain, so a partner can only select between their specialities
 
     description = fields.Text(
-        help="Context of the impression: Why/how the assessment was performed"
+        help="Context of the impression: Why/how the assessment was performed",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     # FHIR: description
 
-    encounter_id = fields.Many2one("medical.encounter", required=True)
+    encounter_id = fields.Many2one(
+        "medical.encounter", required=True, readonly=True
+    )
     # FHIR: encounter
 
-    patient_id = fields.Many2one(related="encounter_id.patient_id")
+    patient_id = fields.Many2one(
+        related="encounter_id.patient_id", readonly=True, states={}
+    )
     # FHIR: patient
 
-    validation_date = fields.Datetime()
+    validation_date = fields.Datetime(readonly=True)
     # FHIR: date
 
     validation_user_id = fields.Many2one(
         "res.users", string="Validated by", readonly=True, copy=False
     )
 
-    cancellation_date = fields.Datetime()
+    cancellation_date = fields.Datetime(readonly=True)
 
     cancellation_user_id = fields.Many2one(
         "res.users", string="Cancelled by", readonly=True, copy=False
     )
-    finding_ids = fields.Many2many(comodel_name="medical.clinical.finding")
+    finding_ids = fields.Many2many(
+        comodel_name="medical.clinical.finding",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     # FHIR: finding
     allergy_substance_ids = fields.Many2many(
         comodel_name="medical.allergy.substance",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     condition_ids = fields.One2many(
         comodel_name="medical.condition",
@@ -68,9 +79,11 @@ class MedicalClinicalImpression(models.Model):
         related="patient_id.medical_condition_count"
     )
 
-    summary = fields.Text()
+    summary = fields.Text(
+        readonly=True, states={"draft": [("readonly", False)]}
+    )
     # FHIR: summary
-    note = fields.Text()
+    note = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
     # FHIR: Note
 
     current_encounter = fields.Boolean(
