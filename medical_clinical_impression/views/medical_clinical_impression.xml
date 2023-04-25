@@ -147,20 +147,50 @@
         <field name="arch" type="xml">
             <tree
                 string="Clinical Impressions"
+                editable="bottom"
                 decoration-warning="fhir_state == 'in_progress'"
                 decoration-muted="fhir_state == 'cancelled'"
                 decoration-info="current_encounter == True and fhir_state == 'completed'"
             >
-                <field name="specialty_id" />
-                <field name="encounter_id" />
-                <field name="patient_id" />
+                <field name="specialty_id" optional="show" />
+                <field name="encounter_id" optional="hide" />
+                <field name="patient_id" optional="hide" />
                 <field name="description" />
                 <field name="summary" />
+                <field name="note" />
                 <field name="validation_date" />
                 <field name="validation_user_id" />
-                <field name="fhir_state" invisible="0" />
+                <field
+                    name="fhir_state"
+                    invisible="0"
+                    widget="badge"
+                    decoration-warning="fhir_state == 'in_progress'"
+                    decoration-info="state == 'completed'"
+                    decoration-success="state == 'cancelled'"
+                    optional="hide"
+                />
+                <field name="finding_ids" invisible="1" />
+                <field name="allergy_substance_ids" widget="many2many_tags" />
+                <field name="condition_ids" widget="many2many_tags" />
+                <field name="condition_count" invisible="1" />
                 <field name="state" invisible="1" />
                 <field name="current_encounter" invisible="1" />
+                <button
+                    name="validate_clinical_impression"
+                    string="Validate"
+                    confirm="Are you sure you want to validate this impression?"
+                    type="object"
+                    icon="fa-check"
+                    attrs="{'invisible':[('fhir_state', 'in', ['completed','cancelled'])]}"
+                />
+                <button
+                    name="cancel_clinical_impression"
+                    string="Cancel"
+                    confirm="Are you sure you want to cancel this impression?"
+                    type="object"
+                    icon="fa-times"
+                    attrs="{'invisible':[('fhir_state', '=', 'cancelled')]}"
+                />
             </tree>
         </field>
     </record>
