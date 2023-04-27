@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_category_view_owl_tree_view" model="ir.ui.view">
+        <field name="name">Impressions</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="arch" type="xml">
+            <owl_tree>
+                <field name="name" />
+                <field name="encounter_id" />
+            </owl_tree>
+        </field>
+    </record>
+
+    <record
+        id='medical_clinical_impression.medical_clinical_impression_act_window'
+        model='ir.actions.act_window'
+    >
+        <field name="name">Impressions</field>
+        <field name="view_mode">tree,owl_tree,form</field>
+    </record>
+
+</odoo>

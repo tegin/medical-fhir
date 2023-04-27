@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <div t-name="owl_tutorial_views.OWLTreeRenderer" class="o_owl_tree_view" owl="1">
+        <div class="d-flex p-2 flex-row owl-tree-root">
+            <div class="list-group">
+                <t t-foreach="props.data" t-as="item" t-key="item.id">
+                    <ImpressionComponent data="item" />
+                </t>
+            </div>
+        </div>
+    </div>
+
+    <div t-name="owl_tutorial_views.ImpressionComponent" owl="1">
+        <span t-esc="props.data.id" />
+    </div>
+
+</templates>
