@@ -55,6 +55,10 @@
         <field name="name">Observation concepts</field>
         <field name="parent_id" ref="medical_report_configuration" />
         <field name="action" ref="medical_observation_concept_act_window" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('medical_base.group_medical_configurator'))]"
+        />
         <field name="sequence" eval="16" />
     </record>
 </odoo>
