@@ -12,7 +12,7 @@ class MedicalPatient(models.Model):
         "medical.clinical.impression",
         inverse_name="patient_id",
     )
-    impression_specialty_ids = fields.Many2many(
+    impression_specialty_ids = fields.One2many(
         "medical.specialty", compute="_compute_impression_specialties"
     )
 
@@ -22,16 +22,6 @@ class MedicalPatient(models.Model):
 
     family_history_count = fields.Integer(
         compute="_compute_family_history_count"
-    )
-
-    condition_ids = fields.One2many(
-        comodel_name="medical.condition",
-        string="Conditions Warning",
-        related="medical_impression_ids.condition_ids",
-    )
-
-    condition_count = fields.Integer(
-        related="medical_impression_ids.condition_count"
     )
 
     @api.depends("family_history_ids")
@@ -59,6 +49,43 @@ class MedicalPatient(models.Model):
                 "search_default_filter_not_cancelled": True,
             }
         return action
+
+    def action_view_family_history_tree(self):
+        self.ensure_one()
+        view_id = self.env.ref(
+            "medical_clinical_impression.medical_family_member_history_view_tree"
+        ).id
+        ctx = dict(self._context)
+        ctx["default_patient_id"] = self.id
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "medical.family.member.history",
+            "name": _("Create family member history 2"),
+            "view_type": "list,form",
+            "view_mode": "tree",
+            "views": [(view_id, "list"), (False, "form")],
+            "context": ctx,
+            "domain": [("patient_id", "=", self.id)],
+        }
+
+    def action_view_medical_procedure_tree(self):
+        self.ensure_one()
+        view_id = self.env.ref(
+            "medical_clinical_procedure.medical_procedure_view_tree"
+        ).id
+        ctx = dict(self._context)
+        ctx["default_patient_id"] = self.id
+
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "medical.procedure",
+            "name": "Medical Procedures",
+            "view_type": "list",
+            "view_mode": "tree",
+            "views": [(view_id, "list")],
+            "context": ctx,
+            "domain": [("patient_id", "=", self.id)],
+        }
 
     def action_view_family_history(self):
         self.ensure_one()
@@ -90,3 +117,37 @@ class MedicalPatient(models.Model):
             "target": "new",
             "context": ctx,
         }
+
+    def get_patient_data(self):
+        condition_names = []
+        for i in self.medical_condition_ids:
+            condition_names.append("%s (%s)" % (i.name, i.create_date.date()))
+        gender = False
+        if self.gender:
+            for item in self._fields["gender"]._description_selection(
+                self.env
+            ):
+                if item[0] == self.gender:
+                    gender = item[1]
+                    continue
+        return {
+            "name": self.name,
+            "condition_count": self.medical_condition_count,
+            "condition_names": condition_names,
+            "gender": gender,
+            "patient_age": self.patient_age,
+        }
+
+    def create_impression(self):
+        self.ensure_one()
+        ctx = self.env.context.copy()
+        ctx.update({"impression_view": True, "default_patient_id": self.id})
+        if ctx.get("default_specialty_id"):
+            self.env["create.impression.from.patient"].with_context(
+                **ctx
+            ).create({}).generate()
+            return {"type": "ir.actions.act_view_reload"}
+        xmlid = "medical_clinical_impression.create_impression_from_patient_act_window"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+        action["context"] = ctx
+        return action

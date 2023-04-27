@@ -13,7 +13,7 @@ class MedicalEncounter(models.Model):
         inverse_name="encounter_id",
     )
 
-    impression_specialty_ids = fields.Many2many(
+    impression_specialty_ids = fields.One2many(
         "medical.specialty", related="patient_id.impression_specialty_ids"
     )
 

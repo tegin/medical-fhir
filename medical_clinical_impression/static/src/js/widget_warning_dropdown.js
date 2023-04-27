@@ -10,7 +10,12 @@ odoo.define("web.web_widget_warning_dropdown", function (require) {
             "click .toggle_create_warning": "_onToggleCreateWarning",
         }),
         template: "WarningDropdown",
+        init: function () {
+            console.log("INIT");
+            return this._super.apply(this, arguments);
+        },
         start: function () {
+            console.log(this);
             this.$view = this.$(".o_warning_conditions");
             this.$icon = this.$(".o_expand_icon");
             this._set_childs();
@@ -20,11 +25,13 @@ odoo.define("web.web_widget_warning_dropdown", function (require) {
             var self = this;
             this.all_data = false;
             this.conditions = [];
+            console.log(this);
             this._rpc({
                 model: this.field.relation,
                 method: "read",
                 args: [this.value.res_ids, ["name", "create_warning", "create_date"]],
             }).then(function (data) {
+                console.log(data);
                 self.conditions = data;
                 self._fill_warnings();
             });

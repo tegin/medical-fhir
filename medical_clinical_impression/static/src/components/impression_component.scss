@@ -1,0 +1,54 @@
+$primary-weaker: #9e9dcd;
+
+.o_impression_component {
+    border: 2px solid $o-brand-primary;
+    border-radius: 8px;
+
+    .style-header {
+        border: 1px solid $primary;
+        color: white;
+        background-color: $o-brand-primary;
+    }
+    &.o_impression_component_cancelled {
+        border: 2px solid #dc3545;
+        .style-header {
+            border: 1px solid #dc3545;
+            background-color: #dc3545;
+        }
+    }
+    &.o_impression_component_in_progress {
+        border: 2px solid $gray-500;
+        .style-header {
+            border: 1px solid $gray-500;
+            background-color: $gray-500;
+        }
+    }
+
+    .row {
+        button {
+            margin-right: 3px;
+        }
+    }
+    .border-bottom-custom {
+    }
+    .o_impression_internal_notes {
+        font-style: italic;
+        textarea {
+            font-style: italic;
+        }
+    }
+    .o_impression_header {
+        .o_impression_header_item {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        button {
+            padding: 0;
+        }
+    }
+}
+
+.o_impression_control_panel_data {
+    margin-top: auto;
+    margin-bottom: auto;
+}

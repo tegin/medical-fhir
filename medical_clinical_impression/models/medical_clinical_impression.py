@@ -10,7 +10,7 @@ class MedicalClinicalImpression(models.Model):
     _inherit = ["medical.event", "mail.thread", "mail.activity.mixin"]
     _description = "Medical Clinical Impression"
     _conditions = "condition_ids"
-    _order = "validation_date desc, id"
+    _order = "validation_date desc, id desc"
     _rec_name = "internal_identifier"
 
     @api.model
@@ -47,6 +47,7 @@ class MedicalClinicalImpression(models.Model):
     # FHIR: patient
 
     validation_date = fields.Datetime(readonly=True)
+
     # FHIR: date
 
     validation_user_id = fields.Many2one(
@@ -75,7 +76,7 @@ class MedicalClinicalImpression(models.Model):
         related="patient_id.medical_condition_ids",
     )
 
-    condition_count = fields.Integer(
+    medical_condition_count = fields.Integer(
         related="patient_id.medical_condition_count"
     )
 
@@ -91,6 +92,36 @@ class MedicalClinicalImpression(models.Model):
         "of the current encounter in the tree view",
         compute="_compute_current_encounter",
     )
+    template_id = fields.Many2one(
+        "medical.clinical.impression.template",
+        domain="[('specialty_id', '=', specialty_id)]",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
+
+    medical_procedure_external_request_ids = fields.Many2many(
+        "medical.procedure.external.request",
+        compute="_compute_procedure_external_request",
+    )
+
+    procedure_external_request_count = fields.Integer(
+        compute="_compute_procedure_external_request",
+    )
+
+    @api.depends("medical_procedure_external_request_ids")
+    def _compute_procedure_external_request(self):
+        for record in self:
+            record.medical_procedure_external_request_ids = self.env[
+                "medical.procedure.external.request"
+            ].search([("encounter_id", "=", record.encounter_id.id)])
+            record.procedure_external_request_count = len(
+                record.medical_procedure_external_request_ids
+            )
+
+    @api.onchange("template_id")
+    def _onchange_template_id(self):
+        if self.template_id and self.state == "draft":
+            self.description = self.template_id.description
 
     @api.model
     def _get_internal_identifier(self, vals):
@@ -143,16 +174,16 @@ class MedicalClinicalImpression(models.Model):
                         }
                     )
 
-    def _validate_clinical_impression_fields(self):
+    def _validate_clinical_impression_fields(self, **kwargs):
         return {
             "fhir_state": "completed",
             "validation_date": fields.Datetime.now(),
             "validation_user_id": self.env.user.id,
         }
 
-    def validate_clinical_impression(self):
+    def validate_clinical_impression(self, **kwargs):
         self.ensure_one()
-        self.write(self._validate_clinical_impression_fields())
+        self.write(self._validate_clinical_impression_fields(**kwargs))
         self._create_conditions_from_findings()
         self._create_allergies_from_findings()
 
@@ -173,3 +204,22 @@ class MedicalClinicalImpression(models.Model):
         self.ensure_one()
         self._cancel_related_conditions()
         self.write(self._cancel_clinical_impression_fields())
+
+    def action_create_medical_procedure_from(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "medical_procedure_external.medical_encounter_create_procedure_external_act_window"
+        )
+        action["context"] = {
+            "default_encounter_id": self.encounter_id.id,
+        }
+        return action
+
+    def action_show_medical_procedure(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "medical_procedure_external.medical_procedure_external_request_act_window"
+        )
+        # TODO: relate requests directly to the impression?
+        action["domain"] = [("encounter_id", "=", self.encounter_id.id)]
+        return action
