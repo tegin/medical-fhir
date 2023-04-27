@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <div t-name="owl_tutorial_views.OWLTreeRenderer" class="o_owl_tree_view" owl="1">
+        <div class="container mt-2">
+            <t t-foreach="props.data" t-as="item" t-key="item.id">
+                <div class="row">
+                    <div class="col">
+                        <ImpressionComponent data="item" />
+                    </div>
+                </div>
+            </t>
+        </div>
+    </div>
+    <t
+        t-name="owl_tree.ControlPanel"
+        t-inherit="web.ControlPanel"
+        t-inherit-mode="primary"
+        owl="1"
+    >
+        <xpath expr="//div[hasclass('o_control_panel')]" position="inside">
+            <div class="row p-0" t-if="props.info">
+                <div class="display-5 col-3 p-0 o_impression_control_panel_data">
+                    <strong t-esc="props.info.name" />
+                </div>
+                <div class="col-1 o_impression_control_panel_data">
+                    <span t-esc="props.info.gender" t-if="props.info.gender" />
+                </div>
+                <div class="col-2 o_impression_control_panel_data">
+                    <t t-if="props.info.patient_age">
+                        <span t-esc="props.info.patient_age" /> years
+                    </t>
+                </div>
+            </div>
+
+            <div
+                class="container-fluid p-0"
+                t-if="props.info &amp;&amp; props.info.condition_count!==0"
+            >
+                <div class="col-6 alert alert-danger mb-0 p-0" role="alert">
+                    <t
+                        t-foreach="props.info.condition_names"
+                        t-as="item"
+                        t-key="item.id"
+                    >
+                        <div class="row">
+                                <div class="col-12 text-center">
+                                    <span t-esc="item" />
+                                </div>
+                        </div>
+                    </t>
+                </div>
+                <div class="col-6 alert alert-warning mb-0 p-0" role="alert">
+                    <t
+                        t-foreach="props.info.condition_names"
+                        t-as="item"
+                        t-key="item.id"
+                    >
+                        <div class="row">
+                                <div class="col-12 text-center">
+                                    <span t-esc="item" />
+                                </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+
+        </xpath>
+    </t>
+    <div
+        t-name="owl_tutorial_views.ImpressionComponent"
+        t-attf-class="o_impression_component mb-1 o_impression_component_{{state.data.data.fhir_state}}"
+        owl="1"
+    >
+        <div class="container-fluid">
+            <div class="row style-header pt-1 pb-1 o_impression_header">
+                <div class="col-3 o_impression_header_item">
+                    <span t-esc="state.data.data.encounter_id.data.display_name" />
+                </div>
+                <div class="col-3 o_impression_header_item">
+                    <span
+                        t-esc="state.data.data.validation_user_id.data.display_name"
+                        t-if="state.data.data.validation_user_id"
+                    />
+                </div>
+                <div class="col-2 o_impression_header_item">
+                    <span
+                        t-esc="timeFromNow"
+                        t-if="state.data.data.validation_date"
+                        t-att-title="datetime"
+                    />
+                </div>
+                <div class="col-2 o_impression_header_item">
+                    <span t-esc="state.data.data.specialty_id.data.display_name" />
+                </div>
+
+            </div>
+            <div class="row row-text pt-3">
+                <div class="col-12 pb-3" t-if="state.data.data.summary">
+                    <i t-if="state.data.data.summary || state.edit">Summary: </i>
+                    <span
+                        t-esc="state.data.data.summary"
+                        t-if="state.data.data.summary &amp;&amp; !state.edit"
+                    />
+                    <FieldAdapter
+                        Component="FieldChar"
+                        widgetArgs="['summary', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {'placeholder': 'Summary'}}]"
+                        t-if="state.edit"
+                    />
+                </div>
+                <div class="col-12 pb-3" t-if="state.edit">
+                    <FieldAdapter
+                        Component="FieldMany2One"
+                        widgetArgs="['template_id', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {'placeholder': 'Template'}}]"
+                        t-if="state.edit"
+                    />
+                </div>
+                <div class="col-6">
+                    <i
+                        t-if="state.data.data.description || state.edit"
+                    >Description: </i>
+                    <span
+                        t-esc="state.data.data.description"
+                        t-if="state.data.data.description &amp;&amp; !state.edit"
+                    />
+                    <FieldAdapter
+                        Component="FieldText"
+                        widgetArgs="['description', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {'placeholder': 'Description'}}]"
+                        t-if="state.edit"
+                    />
+
+                </div>
+                <div class="col-6 o_impression_internal_notes">
+                    <i t-if="state.data.data.note || state.edit">Notes: </i>
+                    <span
+                        t-esc="state.data.data.note"
+                        t-if="state.data.data.note &amp;&amp; !state.edit"
+                    />
+                    <FieldAdapter
+                        Component="FieldText"
+                        widgetArgs="['note', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {'placeholder': 'Internal notes'}}]"
+                        t-if="state.edit"
+                    />
+                </div>
+            </div>
+            <div class="row pt-2 pb-2">
+                <div class="col-5">
+                    <FieldAdapter
+                        Component="FieldMany2ManyTags"
+                        widgetArgs="['finding_ids', state.data, {mode: 'readonly'}]"
+                        t-if="!state.edit"
+                    />
+                    <FieldAdapter
+                        Component="FieldMany2ManyTags"
+                        widgetArgs="['finding_ids', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {'placeholder': 'Conditions'}}]"
+                        t-if="state.edit"
+                    />
+                </div>
+                <div class="col-5">
+                    <FieldAdapter
+                        Component="FieldMany2ManyTags"
+                        widgetArgs="['allergy_substance_ids', state.data, {mode: 'readonly'}]"
+                        t-if="!state.edit"
+                    />
+                    <FieldAdapter
+                        Component="FieldMany2ManyTags"
+                        widgetArgs="['allergy_substance_ids', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {'placeholder': 'Allergies'}}]"
+                        t-if="state.edit"
+                    />
+                </div>
+                <div class="col-2 d-flex justify-content-end">
+                    <button
+                        class="btn btn-success btn-sm"
+                        style="white-space: nowrap"
+                        t-on-click="onValidate"
+                        t-if="state.data.data.fhir_state == 'in_progress'"
+                    >
+                        <i class="fas fa-check" /> <t
+                            t-if="state.edit"
+                        >Validar y Guardar</t><t t-else="">Validar</t>
+                    </button>
+
+                    <button
+                        class="btn btn-primary btn-sm"
+                        style="white-space: nowrap;"
+                        t-on-click="onEdit"
+                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
+                    >
+                        <i class="fas fa-edit" /> Editar
+                    </button>
+
+                    <button
+                        class="btn btn-primary btn-sm"
+                        style="white-space: nowrap;"
+                        t-on-click="onSave"
+                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
+                    >
+                        <i class="fas fa-save" /> Guardar
+                    </button>
+
+                      <button
+                        class="btn btn-secondary btn-sm"
+                        style="white-space: nowrap;"
+                        t-on-click="onDeleteChanges"
+                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
+                    >
+                        <i class="fas fa-trash" /> Descartar
+
+                    </button>
+
+                    <button
+                        class="btn btn-danger btn-sm"
+                        style="white-space: nowrap;"
+                        t-on-click="onCancel"
+                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
+                    >
+
+                        <i class="fas fa-times" /> Cancelar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <t t-name="OwlTreeView.buttons">
+        <div class="o_owltree_buttons" role="toolbar" aria-label="Main actions">
+            <button
+                type="button"
+                class="btn btn-primary o_owltree_button_add"
+                accesskey="c"
+            >
+                Create
+            </button>
+
+        </div>
+    </t>
+
+</templates>

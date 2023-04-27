@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_category_view_owl_tree_view" model="ir.ui.view">
+        <field name="name">Impressions</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="arch" type="xml">
+            <owl_tree>
+                <div>
+                    <field name="name" />
+                    <field name="encounter_id" />
+                    <field name="specialty_id" />
+                    <field name="patient_id" />
+                    <field name="description" />
+                    <field name="summary" />
+                    <field name="note" />
+                    <field name="validation_date" />
+                    <field name="state" />
+                    <field name="fhir_state" />
+                    <field name="validation_user_id" />
+                    <field name="finding_ids" widget="many2many_tags" />
+                    <field name="allergy_substance_ids" widget="many2many_tags" />
+                    <field name="template_id" />
+                </div>
+            </owl_tree>
+        </field>
+    </record>
+
+    <record
+        id='medical_clinical_impression.medical_clinical_impression_act_window'
+        model='ir.actions.act_window'
+    >
+        <field name="name">Impressions</field>
+        <field name="view_mode">owl_tree,tree,form</field>
+    </record>
+
+</odoo>

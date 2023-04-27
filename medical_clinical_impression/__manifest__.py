@@ -13,8 +13,11 @@
         "medical_workflow",
         "medical_clinical_condition",
         "medical_administration_practitioner_specialty",
+        "web_ir_actions_act_multi",
+        "web_ir_actions_act_view_reload",
     ],
     "data": [
+        "views/medical_clinical_impression_template.xml",
         "views/assets.xml",
         "security/medical_security.xml",
         "security/ir.model.access.csv",
@@ -29,5 +32,8 @@
         "reports/medical_impression_report.xml",
     ],
     "qweb": ["static/src/xml/widget_warning_dropdown.xml"],
-    "demo": ["demo/medical_demo.xml"],
+    "demo": [
+        "demo/medical_clinical_impression_template.xml",
+        "demo/medical_demo.xml",
+    ],
 }

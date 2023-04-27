@@ -90,3 +90,37 @@ class MedicalPatient(models.Model):
             "target": "new",
             "context": ctx,
         }
+
+    def get_patient_data(self):
+        condition_names = []
+        for i in self.condition_ids:
+            condition_names.append(i.name)
+        gender = False
+        if self.gender:
+            for item in self._fields["gender"]._description_selection(
+                self.env
+            ):
+                if item[0] == self.gender:
+                    gender = item[1]
+                    continue
+        return {
+            "name": self.name,
+            "condition_count": self.condition_count,
+            "condition_names": condition_names,
+            "gender": gender,
+            "patient_age": self.patient_age,
+        }
+
+    def create_impression(self):
+        self.ensure_one()
+        ctx = self.env.context.copy()
+        ctx.update({"impression_view": True, "default_patient_id": self.id})
+        if ctx.get("default_specialty_id"):
+            self.env["create.impression.from.patient"].with_context(
+                **ctx
+            ).create({}).generate()
+            return {"type": "ir.actions.act_view_reload"}
+        xmlid = "medical_clinical_impression.create_impression_from_patient_act_window"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+        action["context"] = ctx
+        return action
