@@ -28,8 +28,18 @@
                     <group>
                         <field name="name" />
                         <field name="title" />
-                        <field name="with_observation" />
-                        <field name="item_blocked" />
+                        <field
+                            name="template_type"
+                            groups="medical_base.group_medical_configurator"
+                        />
+                        <field
+                            name="with_observation"
+                            groups="medical_base.group_medical_configurator"
+                        />
+                        <field
+                            name="item_blocked"
+                            groups="medical_base.group_medical_configurator"
+                        />
                         <field name="with_composition" />
                         <field name="with_conclusion" />
                         <field name="active" invisible="1" />
@@ -38,6 +48,7 @@
                         <page
                             name="item"
                             string="Observations"
+                            groups="medical_base.group_medical_configurator"
                             attrs="{'invisible':[('with_observation', '=', False)]}"
                         >
                             <field name="item_ids" widget="section_and_note_one2many">
@@ -159,7 +170,11 @@
     </record>
     <record model="ir.ui.menu" id="medical_report_configuration">
         <field name="name">Report Configuration</field>
-        <field name="parent_id" ref="medical_base.medical_root_configuration" />
+        <field name="parent_id" ref="medical_base.medical_root_diagnostics" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('medical_base.group_medical_doctor')), (4, ref('medical_base.group_medical_configurator'))]"
+        />
         <field name="sequence" eval="20" />
     </record>
     <record model="ir.ui.menu" id="medical_report_template_menu">

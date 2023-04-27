@@ -9,11 +9,23 @@ class MedicalDiagnosticReportTemplate(models.Model):
     _inherit = ["medical.report.abstract"]
     _description = "Diagnostic Report Template"
 
+    @api.model
+    def _default_template_type(self):
+        if self.env.user.has_group("medical_base.group_medical_configurator"):
+            return "general"
+        return "user"
+
     item_ids = fields.One2many(
         "medical.diagnostic.report.template.item",
         inverse_name="template_id",
         copy=True,
         string="Observations",
+    )
+    template_type = fields.Selection(
+        [("user", "User"), ("general", "General")],
+        default=_default_template_type,
+        required=True,
+        copy=False,
     )
     name = fields.Char(required=True)
     title = fields.Char(translate=True)
