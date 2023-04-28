@@ -11,6 +11,13 @@ odoo.define("owl_tutorial_views.OWLTreeView", function (require) {
 
     const _lt = core._lt;
 
+    class NewRendererWrapper extends RendererWrapper {
+        canBeSaved () {
+            return []
+        }
+        commitChanges () {}
+    }
+
     const OWLTreeView = BasicView.extend({
         accesskey: "m",
         display_name: _lt("OWLTreeView"),
@@ -32,7 +39,7 @@ odoo.define("owl_tutorial_views.OWLTreeView", function (require) {
 
         getRenderer(parent, state) {
             state = Object.assign(state || {}, this.rendererParams);
-            return new RendererWrapper(parent, this.config.Renderer, state);
+            return new NewRendererWrapper(parent, this.config.Renderer, state);
         },
     });
 
