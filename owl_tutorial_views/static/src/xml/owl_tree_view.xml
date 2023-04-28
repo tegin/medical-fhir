@@ -11,45 +11,28 @@
         </div>
     </div>
 
-    <div
-        t-name="owl_tutorial_views.ImpressionComponent"
-        class="o_impression_component"
-        owl="1"
-    >
+    <div t-name="owl_tutorial_views.ImpressionComponent" class="o_impression_component" owl="1">
         <div class="row ">
             <div class="col-2">
-                <span t-esc="state.data.data.encounter_id.data.display_name" />
+                <span t-esc="state.data.data.encounter_id.data.display_name"/>
             </div>
             <div class="col-2">
-                <span
-                    t-esc="state.data.data.validation_user_id.data.display_name"
-                    t-if="state.data.data.validation_user_id"
-                />
+                <span t-esc="state.data.data.validation_user_id.data.display_name" t-if="state.data.data.validation_user_id"/>
             </div>
             <div class="col-3">
-                <span
-                    t-esc="state.data.data.validation_date"
-                    t-if="state.data.data.validation_date"
-                />
+                <span t-esc="state.data.data.validation_date" t-if="state.data.data.validation_date"/>
             </div>
             <div class="col-3">
-                <span t-esc="state.data.data.specialty_id.data.display_name" />
+                <span t-esc="state.data.data.specialty_id.data.display_name"/>
             </div>
         </div>
         <div class="row">
             <div class="col-6">
-                <span
-                    t-esc="state.data.data.summary"
-                    t-if="state.data.data.summary &amp;&amp; !state.edit"
-                />
-                <input
-                    t-esc="state.data.data.summary"
-                    t-if="state.edit"
-                    t-on-change="(ev) => this.onChange(ev, 'summary')"
-                />
+                <span t-esc="state.data.data.summary" t-if="state.data.data.summary &amp;&amp; !state.edit"/>
+                <input t-esc="state.data.data.summary" t-if="state.edit" t-on-change="(ev) => this.onChange(ev, 'summary')"/>
             </div>
             <div class="col-6">
-                <span t-esc="state.data.data.note" t-if="state.data.data.note" />
+                <span t-esc="state.data.data.note" t-if="state.data.data.note"/>
             </div>
         </div>
         <div class="row">
@@ -77,6 +60,7 @@
                 >Validate</button>
                 <button
                     class="btn btn-secondary"
+
                     t-if="state.data.data.fhir_state == 'in_progress'"
                 >Cancel</button>
             </div>
