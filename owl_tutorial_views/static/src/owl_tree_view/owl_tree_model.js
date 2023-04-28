@@ -3,9 +3,7 @@ odoo.define("owl_tutorial_views.OWLTreeModel", function (require) {
 
     var BasicModel = require("web.BasicModel");
 
-    const OWLTreeModel = BasicModel.extend({
-
-    });
+    const OWLTreeModel = BasicModel.extend({});
 
     return OWLTreeModel;
 });
