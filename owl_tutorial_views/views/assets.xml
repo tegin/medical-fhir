@@ -29,16 +29,16 @@
             />
         </xpath>
         <xpath expr="link[last()]" position="after">
-            <!--<link
+            <link
                 rel="stylesheet"
                 type="text/scss"
-                href="/owl_tutorial_views/static/src/components/tree_item/tree_item.scss"
+                href="/owl_tutorial_views/static/src/components/impression_component.scss"
             />
             <link
                 rel="stylesheet"
                 type="text/scss"
                 href="/owl_tutorial_views/static/src/owl_tree_view/owl_tree_view.scss"
-            />-->
+            />
         </xpath>
     </template>
 </odoo>

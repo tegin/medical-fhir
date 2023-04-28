@@ -16,72 +16,74 @@
         class="o_impression_component"
         owl="1"
     >
-        <div class="row ">
-            <div class="col-2">
-                <span t-esc="state.data.data.encounter_id.data.display_name" />
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col-2">
+                    <span t-esc="state.data.data.encounter_id.data.display_name" />
+                </div>
+                <div class="col-2">
+                    <span
+                        t-esc="state.data.data.validation_user_id.data.display_name"
+                        t-if="state.data.data.validation_user_id"
+                    />
+                </div>
+                <div class="col-3">
+                    <span
+                        t-esc="state.data.data.validation_date"
+                        t-if="state.data.data.validation_date"
+                    />
+                </div>
+                <div class="col-3">
+                    <span t-esc="state.data.data.specialty_id.data.display_name" />
+                </div>
             </div>
-            <div class="col-2">
-                <span
-                    t-esc="state.data.data.validation_user_id.data.display_name"
-                    t-if="state.data.data.validation_user_id"
-                />
+            <div class="row">
+                <div class="col-6">
+                    <span
+                        t-esc="state.data.data.summary"
+                        t-if="state.data.data.summary &amp;&amp; !state.edit"
+                    />
+                    <textarea
+                        t-esc="state.data.data.summary"
+                        t-if="state.edit"
+                        t-on-change="(ev) => this.onChange(ev, 'summary')"
+                        t-att-value="state.data.data.summary"
+                    />
+                </div>
+                <div class="col-6">
+                    <span t-esc="state.data.data.note" t-if="state.data.data.note" />
+                </div>
             </div>
-            <div class="col-3">
-                <span
-                    t-esc="state.data.data.validation_date"
-                    t-if="state.data.data.validation_date"
-                />
-            </div>
-            <div class="col-3">
-                <span t-esc="state.data.data.specialty_id.data.display_name" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <span
-                    t-esc="state.data.data.summary"
-                    t-if="state.data.data.summary &amp;&amp; !state.edit"
-                />
-                <textarea
-                    t-esc="state.data.data.summary"
-                    t-if="state.edit"
-                    t-on-change="(ev) => this.onChange(ev, 'summary')"
-                    t-att-value="state.data.data.summary"
-                />
-            </div>
-            <div class="col-6">
-                <span t-esc="state.data.data.note" t-if="state.data.data.note" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-5">
-            <span>FINDINGS</span>
-            </div>
-            <div class="col-5">
-            <span>ALERGIES</span>
-            </div>
-            <div class="col-2">
-                <button
-                    class="btn btn-primary"
-                    t-on-click="onEdit"
-                    t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
-                >Edit</button>
-                <button
-                    class="btn btn-primary"
-                    t-on-click="onSave"
-                    t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
-                >Save</button>
-                <button
-                    class="btn btn-primary"
-                    t-on-click="onValidate"
-                    t-if="state.data.data.fhir_state == 'in_progress'"
-                >Validate</button>
-                <button
-                    class="btn btn-secondary"
-                    t-if="state.data.data.fhir_state == 'in_progress'"
-                >Cancel</button>
-            </div>
+            <div class="row">
+                <div class="col-5">
+                <span>FINDINGS</span>
+                </div>
+                <div class="col-5">
+                <span>ALERGIES</span>
+                </div>
+                <div class="col-2">
+                    <button
+                        class="btn btn-primary"
+                        t-on-click="onEdit"
+                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
+                    >Edit</button>
+                    <button
+                        class="btn btn-primary"
+                        t-on-click="onSave"
+                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
+                    >Save</button>
+                    <button
+                        class="btn btn-primary"
+                        t-on-click="onValidate"
+                        t-if="state.data.data.fhir_state == 'in_progress'"
+                    >Validate</button>
+                    <button
+                        class="btn btn-secondary"
+                        t-if="state.data.data.fhir_state == 'in_progress'"
+                    >Cancel</button>
+                </div>
 
+            </div>
         </div>
     </div>
 </templates>
