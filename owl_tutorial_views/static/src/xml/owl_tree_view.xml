@@ -2,8 +2,8 @@
 <templates xml:space="preserve">
 
     <div t-name="owl_tutorial_views.OWLTreeRenderer" class="o_owl_tree_view" owl="1">
-        <div class="d-flex p-2 flex-row owl-tree-root">
-            <div class="list-group">
+        <div class="d-flex p-2 flex-row">
+            <div class="list-group" style="width:100%">
                 <t t-foreach="props.data" t-as="item" t-key="item.id">
                     <ImpressionComponent data="item" />
                 </t>
@@ -11,8 +11,76 @@
         </div>
     </div>
 
-    <div t-name="owl_tutorial_views.ImpressionComponent" owl="1">
-        <span t-esc="props.data.id" />
-    </div>
+    <div
+        t-name="owl_tutorial_views.ImpressionComponent"
+        class="o_impression_component"
+        owl="1"
+    >
+        <div class="row ">
+            <div class="col-2">
+                <span t-esc="state.data.data.encounter_id.data.display_name" />
+            </div>
+            <div class="col-2">
+                <span
+                    t-esc="state.data.data.validation_user_id.data.display_name"
+                    t-if="state.data.data.validation_user_id"
+                />
+            </div>
+            <div class="col-3">
+                <span
+                    t-esc="state.data.data.validation_date"
+                    t-if="state.data.data.validation_date"
+                />
+            </div>
+            <div class="col-3">
+                <span t-esc="state.data.data.specialty_id.data.display_name" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <span
+                    t-esc="state.data.data.summary"
+                    t-if="state.data.data.summary &amp;&amp; !state.edit"
+                />
+                <input
+                    t-esc="state.data.data.summary"
+                    t-if="state.edit"
+                    t-on-change="(ev) => this.onChange(ev, 'summary')"
+                />
+            </div>
+            <div class="col-6">
+                <span t-esc="state.data.data.note" t-if="state.data.data.note" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+            <span>FINDINGS</span>
+            </div>
+            <div class="col-5">
+            <span>ALERGIES</span>
+            </div>
+            <div class="col-2">
+                <button
+                    class="btn btn-primary"
+                    t-on-click="onEdit"
+                    t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
+                >Edit</button>
+                <button
+                    class="btn btn-primary"
+                    t-on-click="onSave"
+                    t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
+                >Save</button>
+                <button
+                    class="btn btn-primary"
+                    t-on-click="onValidate"
+                    t-if="state.data.data.fhir_state == 'in_progress'"
+                >Validate</button>
+                <button
+                    class="btn btn-secondary"
+                    t-if="state.data.data.fhir_state == 'in_progress'"
+                >Cancel</button>
+            </div>
 
+        </div>
+    </div>
 </templates>
