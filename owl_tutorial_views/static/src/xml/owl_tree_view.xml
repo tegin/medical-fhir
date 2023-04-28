@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                     <span
                         t-esc="state.data.data.summary"
                         t-if="state.data.data.summary &amp;&amp; !state.edit"
@@ -50,8 +50,27 @@
                         t-att-value="state.data.data.summary"
                     />
                 </div>
-                <div class="col-6">
-                    <span t-esc="state.data.data.note" t-if="state.data.data.note" />
+                <div class="col-4">
+                <span t-esc="state.data.data.note"
+                      t-if="state.data.data.note &amp;&amp; !state.edit"
+                />
+                <textarea
+                    t-esc="state.data.data.note"
+                    t-if="state.edit"
+                    t-on-change="(ev) => this.onChange(ev, 'note')"
+                    t-att-value="state.data.data.note"
+                />
+                </div>
+                <div class="col-4">
+                <span t-esc="state.data.data.description"
+                      t-if="state.data.data.description &amp;&amp; !state.edit"
+                />
+                <textarea
+                    t-esc="state.data.data.description"
+                    t-if="state.edit"
+                    t-on-change="(ev) => this.onChange(ev, 'description')"
+                    t-att-value="state.data.data.description"
+                />
                 </div>
             </div>
             <div class="row">
