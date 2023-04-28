@@ -12,10 +12,10 @@ odoo.define("owl_tutorial_views.OWLTreeView", function (require) {
     const _lt = core._lt;
 
     class NewRendererWrapper extends RendererWrapper {
-        canBeSaved () {
-            return []
+        canBeSaved() {
+            return [];
         }
-        commitChanges () {}
+        commitChanges() {}
     }
 
     const OWLTreeView = BasicView.extend({
