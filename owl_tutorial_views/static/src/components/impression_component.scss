@@ -1,4 +1,10 @@
 .o_impression_component {
     border: 1px solid red;
     margin-bottom: 10px;
+
+    .row {
+        [class*="col-"] {
+            border: 1px solid green;
+        }
+    }
 }

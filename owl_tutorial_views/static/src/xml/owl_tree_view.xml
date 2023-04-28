@@ -85,21 +85,32 @@
                         class="btn btn-primary"
                         t-on-click="onEdit"
                         t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
-                    >Edit</button>
+                    >
+                        <i class="fas fa-edit" />
+                    </button>
+
                     <button
                         class="btn btn-primary"
                         t-on-click="onSave"
                         t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
-                    >Save</button>
+                    >
+                        <i class="fas fa-save" />
+                    </button>
+
                     <button
                         class="btn btn-primary"
                         t-on-click="onValidate"
                         t-if="state.data.data.fhir_state == 'in_progress'"
-                    >Validate</button>
+                    >
+                        <i class="fas fa-check" />
+                    </button>
+
                     <button
                         class="btn btn-secondary"
                         t-if="state.data.data.fhir_state == 'in_progress'"
-                    >Cancel</button>
+                    >
+                        <i class="fas fa-times" />
+                    </button>
                 </div>
 
             </div>
