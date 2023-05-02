@@ -3,8 +3,9 @@ odoo.define(
     function (require) {
         "use strict";
         const {Component} = owl;
+        const {timeFromNow} = require("mail.utils");
         const patchMixin = require("web.patchMixin");
-
+        const {getLangDatetimeFormat} = require("web.time");
         const {useState} = owl.hooks;
 
         class ImpressionComponent extends Component {
@@ -30,6 +31,22 @@ odoo.define(
             onEdit() {
                 this.state.edit = true;
             }
+            get timeFromNow() {
+                if (!this.state.data.data.validation_date) {
+                    return false;
+                }
+                return timeFromNow(this.state.data.data.validation_date);
+            }
+
+            get datetime() {
+                if (!this.state.data.data.validation_date) {
+                    return false;
+                }
+                return this.state.data.data.validation_date.format(
+                    getLangDatetimeFormat()
+                );
+            }
+
             onSave() {
                 if (this.state.dirty) {
                     this.env.saveRecord({

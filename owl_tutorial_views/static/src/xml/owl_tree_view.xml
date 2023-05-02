@@ -18,10 +18,10 @@
     >
         <div class="container-fluid">
             <div class="row ">
-                <div class="col-2">
+                <div class="col-3">
                     <span t-esc="state.data.data.encounter_id.data.display_name" />
                 </div>
-                <div class="col-2">
+                <div class="col-3">
                     <span
                         t-esc="state.data.data.validation_user_id.data.display_name"
                         t-if="state.data.data.validation_user_id"
@@ -29,8 +29,9 @@
                 </div>
                 <div class="col-3">
                     <span
-                        t-esc="state.data.data.validation_date"
+                        t-esc="timeFromNow"
                         t-if="state.data.data.validation_date"
+                        t-att-title="datetime"
                     />
                 </div>
                 <div class="col-3">
@@ -51,36 +52,38 @@
                     />
                 </div>
                 <div class="col-4">
-                <span t-esc="state.data.data.note"
-                      t-if="state.data.data.note &amp;&amp; !state.edit"
-                />
+                <span
+                        t-esc="state.data.data.note"
+                        t-if="state.data.data.note &amp;&amp; !state.edit"
+                    />
                 <textarea
-                    t-esc="state.data.data.note"
-                    t-if="state.edit"
-                    t-on-change="(ev) => this.onChange(ev, 'note')"
-                    t-att-value="state.data.data.note"
-                />
+                        t-esc="state.data.data.note"
+                        t-if="state.edit"
+                        t-on-change="(ev) => this.onChange(ev, 'note')"
+                        t-att-value="state.data.data.note"
+                    />
                 </div>
                 <div class="col-4">
-                <span t-esc="state.data.data.description"
-                      t-if="state.data.data.description &amp;&amp; !state.edit"
-                />
+                <span
+                        t-esc="state.data.data.description"
+                        t-if="state.data.data.description &amp;&amp; !state.edit"
+                    />
                 <textarea
-                    t-esc="state.data.data.description"
-                    t-if="state.edit"
-                    t-on-change="(ev) => this.onChange(ev, 'description')"
-                    t-att-value="state.data.data.description"
-                />
+                        t-esc="state.data.data.description"
+                        t-if="state.edit"
+                        t-on-change="(ev) => this.onChange(ev, 'description')"
+                        t-att-value="state.data.data.description"
+                    />
                 </div>
             </div>
             <div class="row">
-                <div class="col-5">
+                <div class="col-4">
                 <span>FINDINGS</span>
                 </div>
-                <div class="col-5">
+                <div class="col-4">
                 <span>ALERGIES</span>
                 </div>
-                <div class="col-2">
+                <div class="col-4">
                     <button
                         class="btn btn-primary"
                         t-on-click="onEdit"
