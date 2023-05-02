@@ -7,6 +7,7 @@ odoo.define(
         const patchMixin = require("web.patchMixin");
         const {getLangDatetimeFormat} = require("web.time");
         const {useState} = owl.hooks;
+        const session = require('web.session');
 
         class ImpressionComponent extends Component {
             /**
@@ -42,7 +43,8 @@ odoo.define(
                 if (!this.state.data.data.validation_date) {
                     return false;
                 }
-                return this.state.data.data.validation_date.format(
+                var data = this.state.data.data.validation_date.clone();
+                return data.add(session.getTZOffset(data), "minutes").format(
                     getLangDatetimeFormat()
                 );
             }

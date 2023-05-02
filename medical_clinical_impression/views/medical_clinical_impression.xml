@@ -191,6 +191,12 @@
                     icon="fa-times"
                     attrs="{'invisible':[('fhir_state', '=', 'cancelled')]}"
                 />
+                <button
+                    name="get_formview_action"
+                    string="View"
+                    type="object"
+                    icon="fa-eye"
+                />
             </tree>
         </field>
     </record>
