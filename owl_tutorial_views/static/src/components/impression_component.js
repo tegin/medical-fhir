@@ -7,7 +7,8 @@ odoo.define(
         const patchMixin = require("web.patchMixin");
         const {getLangDatetimeFormat} = require("web.time");
         const {useState} = owl.hooks;
-        const session = require('web.session');
+        const session = require("web.session");
+        var rpc = require("web.rpc");
 
         class ImpressionComponent extends Component {
             /**
@@ -15,7 +16,6 @@ odoo.define(
              */
             constructor(...args) {
                 super(...args);
-                console.log(this);
                 this.state = useState({
                     edit: false,
                     dirty: false,
@@ -23,7 +23,33 @@ odoo.define(
                     changes: {},
                 });
             }
-            onValidate() {}
+            onValidate() {
+                const self = this;
+                return rpc
+                    .query({
+                        model: "medical.clinical.impression",
+                        method: "validate_clinical_impression",
+                        args: [[this.state.data.res_id]],
+                    })
+                    .then(function () {
+                        self.trigger("reload", {db_id: self.state.id});
+                    });
+            }
+
+            onCancel() {
+                const self = this;
+                console.log(this.state.data);
+                return rpc
+                    .query({
+                        model: "medical.clinical.impression",
+                        method: "cancel_clinical_impression",
+                        args: [[this.state.data.res_id]],
+                    })
+                    .then(function () {
+                        self.trigger("reload", {keepChanges: true});
+                    });
+            }
+
             onChange(ev, fieldname) {
                 this.state.data.data[fieldname] = ev.target.value;
                 this.state.dirty = true;
@@ -44,9 +70,9 @@ odoo.define(
                     return false;
                 }
                 var data = this.state.data.data.validation_date.clone();
-                return data.add(session.getTZOffset(data), "minutes").format(
-                    getLangDatetimeFormat()
-                );
+                return data
+                    .add(session.getTZOffset(data), "minutes")
+                    .format(getLangDatetimeFormat());
             }
 
             onSave() {

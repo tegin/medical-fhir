@@ -16,7 +16,9 @@ odoo.define("owl_tutorial_views.OWLTreeRenderer", function (require) {
                 localItems: props.items || [],
                 countField: "",
             });
-            useSubEnv({saveRecord: this.saveRecord.bind(this)});
+            useSubEnv({
+                saveRecord: this.saveRecord.bind(this),
+            });
             if (this.props.arch.attrs.count_field) {
                 Object.assign(this.state, {
                     countField: this.props.arch.attrs.count_field,

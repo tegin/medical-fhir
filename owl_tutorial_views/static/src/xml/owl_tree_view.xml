@@ -114,6 +114,7 @@
                     <button
                         class="btn btn-secondary"
                         t-if="state.data.data.fhir_state == 'in_progress'"
+                        t-on-click="onCancel"
                     >
                         <i class="fas fa-times" />
                     </button>
