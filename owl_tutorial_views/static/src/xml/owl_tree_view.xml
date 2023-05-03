@@ -48,7 +48,7 @@
                         t-esc="state.data.data.summary"
                         t-if="state.edit"
                         t-on-change="(ev) => this.onChange(ev, 'summary')"
-                        t-att-value="state.data.data.summary"
+                        t-att-value="state.data.data.summary || 'Please fill in with the summary of the impression...'"
                     />
                 </div>
                 <div class="col-4">
@@ -60,7 +60,7 @@
                         t-esc="state.data.data.note"
                         t-if="state.edit"
                         t-on-change="(ev) => this.onChange(ev, 'note')"
-                        t-att-value="state.data.data.note"
+                        t-att-value="state.data.data.note || 'Please fill in with the note of the impression...'"
                     />
                 </div>
                 <div class="col-4">
@@ -72,7 +72,7 @@
                         t-esc="state.data.data.description"
                         t-if="state.edit"
                         t-on-change="(ev) => this.onChange(ev, 'description')"
-                        t-att-value="state.data.data.description"
+                        t-att-value="state.data.data.description || 'Please fill in with the description of the impression...'"
                     />
                 </div>
             </div>
