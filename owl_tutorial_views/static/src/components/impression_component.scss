@@ -3,34 +3,18 @@
     margin-bottom: 10px;
 
     .row {
-        [class*="col-4"] {
-            border: 1px solid $primary;
-            color: var(--primary);
-            background-color: white;
-
-            .btn-primary {
-                padding: 5px 10px;
-            }
-            .btn-secondary {
-                [class*="fas fa-edit"] {
-                    padding: 1px 2px;
-                }
-                padding: 5px 10px;
-            }
+        border: 1px solid $primary;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        button {
+            margin-right: 3px;
+            margin-top: 2px;
+            margin-bottom: 2px;
         }
-        [class*="col-2"] {
-            border: 1px solid rgb(248, 232, 13);
-            color: var(--primary);
-        }
-        [class*="col-3"] {
-            border: 1px solid $primary;
-            color: white;
-            background-color: $o-brand-primary;
-        }
-        [class*="col-5"] {
-            border: 1px solid rgb(255, 255, 255);
-            color: black;
-            background-color: $o-brand-primary;
-        }
+    }
+    .style-header {
+        border: 1px solid $primary;
+        color: white;
+        background-color: $o-brand-primary;
     }
 }
