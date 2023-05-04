@@ -16,11 +16,11 @@
 
     <div
         t-name="owl_tutorial_views.ImpressionComponent"
-        class="o_impression_component"
+        class="o_impression_component mb-3"
         owl="1"
     >
         <div class="container-fluid">
-            <div class="row style-header">
+            <div class="row style-header pt-1 pb-1">
                 <div class="col-3">
                     <span t-esc="state.data.data.encounter_id.data.display_name" />
                 </div>
@@ -30,48 +30,90 @@
                         t-if="state.data.data.validation_user_id"
                     />
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <span
                         t-esc="timeFromNow"
                         t-if="state.data.data.validation_date"
                         t-att-title="datetime"
                     />
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <span t-esc="state.data.data.specialty_id.data.display_name" />
                 </div>
+
+                <div class="col-2 d-flex justify-content-end">
+                    <button
+                        class="btn btn-primary"
+                        t-on-click="onValidate"
+                        t-if="state.data.data.fhir_state == 'in_progress'"
+                    >
+                        <i class="fas fa-check" />
+                    </button>
+
+                    <button class="btn btn-primary" t-on-click="onCancel">
+                        <i class="fas fa-times" />
+                    </button>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-4">
+            <div class="row row-text pt-3 pb-3">
+                <div class="col-12 border-bottom-custom pb-3">
                     <span
                         t-esc="state.data.data.summary"
                         t-if="state.data.data.summary &amp;&amp; !state.edit"
                     />
-                    <FieldAdapter Component="FieldText" widgetArgs="['summary', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
+                    <FieldAdapter
+                        Component="FieldChar"
+                        widgetArgs="['summary', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]"
+                        t-if="state.edit"
+                    />
                 </div>
-                <div class="col-4">
+                <div class="col-6 pt-3">
                 <span
                         t-esc="state.data.data.note"
                         t-if="state.data.data.note &amp;&amp; !state.edit"
                     />
-                    <FieldAdapter Component="FieldText" widgetArgs="['note', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
+                    <FieldAdapter
+                        Component="FieldText"
+                        widgetArgs="['note', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]"
+                        t-if="state.edit"
+                    />
                 </div>
-                <div class="col-4">
+                <div class="col-6 pt-3">
                 <span
                         t-esc="state.data.data.description"
                         t-if="state.data.data.description &amp;&amp; !state.edit"
                     />
-                    <FieldAdapter Component="FieldText" widgetArgs="['description', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
+                    <FieldAdapter
+                        Component="FieldText"
+                        widgetArgs="['description', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]"
+                        t-if="state.edit"
+                    />
                 </div>
             </div>
-            <div class="row">
+            <div class="row pt-2 pb-2">
                 <div class="col-5">
-                    <FieldAdapter Component="FieldMany2ManyTags" widgetArgs="['finding_ids', state.data, {mode: 'readonly'}]" t-if="!state.edit"/>
-                    <FieldAdapter Component="FieldMany2ManyTags" widgetArgs="['finding_ids', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
+                    <FieldAdapter
+                        Component="FieldMany2ManyTags"
+                        widgetArgs="['finding_ids', state.data, {mode: 'readonly'}]"
+                        t-if="!state.edit"
+                    />
+                    <FieldAdapter
+                        Component="FieldMany2ManyTags"
+                        widgetArgs="['finding_ids', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]"
+                        t-if="state.edit"
+                    />
                 </div>
                 <div class="col-5">
-                    <FieldAdapter Component="FieldMany2ManyTags" widgetArgs="['allergy_substance_ids', state.data, {mode: 'readonly'}]" t-if="!state.edit"/>
-                    <FieldAdapter Component="FieldMany2ManyTags" widgetArgs="['allergy_substance_ids', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
+                    <FieldAdapter
+                        Component="FieldMany2ManyTags"
+                        widgetArgs="['allergy_substance_ids', state.data, {mode: 'readonly'}]"
+                        t-if="!state.edit"
+                    />
+                    <FieldAdapter
+                        Component="FieldMany2ManyTags"
+                        widgetArgs="['allergy_substance_ids', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]"
+                        t-if="state.edit"
+                    />
                 </div>
                 <div class="col-2 d-flex justify-content-end">
                     <button
@@ -88,22 +130,6 @@
                         t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
                     >
                         <i class="fas fa-save" />
-                    </button>
-
-                    <button
-                        class="btn btn-primary"
-                        t-on-click="onValidate"
-                        t-if="state.data.data.fhir_state == 'in_progress'"
-                    >
-                        <i class="fas fa-check" />
-                    </button>
-
-                    <button
-                        class="btn btn-secondary"
-                        t-if="state.data.data.fhir_state == 'in_progress'"
-                        t-on-click="onCancel"
-                    >
-                        <i class="fas fa-times" />
                     </button>
                 </div>
 

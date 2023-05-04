@@ -1,20 +1,20 @@
+$primary-weaker: #9e9dcd;
+
 .o_impression_component {
     border: 2px solid $o-brand-primary;
-    margin-bottom: 10px;
 
     .row {
         border: 1px solid $primary;
-        padding-top: 5px;
-        padding-bottom: 5px;
         button {
             margin-right: 3px;
-            margin-top: 2px;
-            margin-bottom: 2px;
         }
     }
     .style-header {
         border: 1px solid $primary;
         color: white;
         background-color: $o-brand-primary;
+    }
+    .border-bottom-custom {
+        border-bottom: 2px solid $primary-weaker;
     }
 }
