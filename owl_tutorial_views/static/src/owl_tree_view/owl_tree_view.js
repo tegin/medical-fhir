@@ -10,12 +10,26 @@ odoo.define("owl_tutorial_views.OWLTreeView", function (require) {
     const view_registry = require("web.view_registry");
 
     const _lt = core._lt;
+    const {useSubEnv} = owl.hooks;
 
     class NewRendererWrapper extends RendererWrapper {
+        constructor(parent, props) {
+            super(...arguments);
+            this.view = undefined;
+            useSubEnv({
+                setChild: (child) => this.view = child
+            })
+        }
         canBeSaved() {
             return [];
         }
         commitChanges() {}
+        onFieldChanged(ev) {
+            this.view.onFieldChanged(ev)
+        }
+        confirmChange() {
+
+        }
     }
 
     const OWLTreeView = BasicView.extend({

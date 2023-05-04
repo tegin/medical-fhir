@@ -6,9 +6,24 @@ odoo.define(
         const {timeFromNow} = require("mail.utils");
         const patchMixin = require("web.patchMixin");
         const {getLangDatetimeFormat} = require("web.time");
-        const {useState} = owl.hooks;
+        const {useState, useSubEnv} = owl.hooks;
+        const relational_fields = require("web.relational_fields");
+        const basic_fields = require("web.basic_fields");
+        const {ComponentAdapter} = require("web.OwlCompatibility");
         const session = require("web.session");
         var rpc = require("web.rpc");
+
+        class FieldAdapter extends ComponentAdapter {
+            // We need to modify the component adapter in order to define the update widget properly
+            constructor(...args) {
+                super(...args);
+                this.env.setField(this)
+            }
+            updateWidget(widgetArgs) {
+                var record = widgetArgs.widgetArgs[1]
+                this.widget.reset(record, {target: record});
+            }
+        }
 
         class ImpressionComponent extends Component {
             /**
@@ -22,6 +37,13 @@ odoo.define(
                     data: this.props.data,
                     changes: {},
                 });
+                this.env.setChilds(this.props.data.id, this)
+                this.fields = []
+                useSubEnv({
+                    setField: (field) => this.fields.push(field)
+                })
+                this.FieldMany2ManyTags = relational_fields.FieldMany2ManyTags;
+                this.FieldText = basic_fields.FieldText;
             }
             onValidate() {
                 const self = this;
@@ -38,7 +60,6 @@ odoo.define(
 
             onCancel() {
                 const self = this;
-                console.log(this.state.data);
                 return rpc
                     .query({
                         model: "medical.clinical.impression",
@@ -49,11 +70,11 @@ odoo.define(
                         self.trigger("reload", {db_id: self.state.id});
                     });
             }
-
-            onChange(ev, fieldname) {
-                this.state.data.data[fieldname] = ev.target.value;
+            setData(data, event) {
+                // We update the data. widgets will reset themselves with `updateWidget`
+                this.state.data = data;
                 this.state.dirty = true;
-                this.state.changes[fieldname] = ev.target.value;
+                this.state.changes = _.extend({}, this.state.changes, event.data.changes)
             }
             onEdit() {
                 this.state.edit = true;
@@ -89,7 +110,7 @@ odoo.define(
         }
 
         Object.assign(ImpressionComponent, {
-            components: {},
+            components: {FieldAdapter},
             props: {
                 data: {},
             },

@@ -16,15 +16,19 @@ odoo.define("owl_tutorial_views.OWLTreeRenderer", function (require) {
                 localItems: props.items || [],
                 countField: "",
             });
+            // we want to send to RendererWrapper, the function of the widget
+            this.env.setChild(this)
+            // We want to set all the childs in order send the changes properly later
+            this.childs = {};
             useSubEnv({
                 saveRecord: this.saveRecord.bind(this),
+                setChilds: (db_id, child) => this.childs[db_id] = child,
             });
             if (this.props.arch.attrs.count_field) {
                 Object.assign(this.state, {
                     countField: this.props.arch.attrs.count_field,
                 });
             }
-            console.log(this);
         }
         commitChanges() {}
         saveRecord(data) {
@@ -36,6 +40,10 @@ odoo.define("owl_tutorial_views.OWLTreeRenderer", function (require) {
                     onFailure: reject,
                 });
             });
+        }
+        onFieldChanged({dataPointID, data, event}) {
+            // We send the change only to the right children
+            this.childs[dataPointID].setData(data, event)
         }
     }
 

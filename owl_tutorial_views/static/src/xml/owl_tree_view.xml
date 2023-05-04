@@ -47,44 +47,31 @@
                         t-esc="state.data.data.summary"
                         t-if="state.data.data.summary &amp;&amp; !state.edit"
                     />
-                    <textarea
-                        t-esc="state.data.data.summary"
-                        t-if="state.edit"
-                        t-on-change="(ev) => this.onChange(ev, 'summary')"
-                        t-att-value="state.data.data.summary || 'Please fill in with the summary of the impression...'"
-                    />
+                    <FieldAdapter Component="FieldText" widgetArgs="['summary', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
                 </div>
                 <div class="col-4">
                 <span
                         t-esc="state.data.data.note"
                         t-if="state.data.data.note &amp;&amp; !state.edit"
                     />
-                <textarea
-                        t-esc="state.data.data.note"
-                        t-if="state.edit"
-                        t-on-change="(ev) => this.onChange(ev, 'note')"
-                        t-att-value="state.data.data.note || 'Please fill in with the note of the impression...'"
-                    />
+                    <FieldAdapter Component="FieldText" widgetArgs="['note', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
                 </div>
                 <div class="col-4">
                 <span
                         t-esc="state.data.data.description"
                         t-if="state.data.data.description &amp;&amp; !state.edit"
                     />
-                <textarea
-                        t-esc="state.data.data.description"
-                        t-if="state.edit"
-                        t-on-change="(ev) => this.onChange(ev, 'description')"
-                        t-att-value="state.data.data.description || 'Please fill in with the description of the impression...'"
-                    />
+                    <FieldAdapter Component="FieldText" widgetArgs="['description', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-5">
-                <span>FINDINGS</span>
+                    <FieldAdapter Component="FieldMany2ManyTags" widgetArgs="['finding_ids', state.data, {mode: 'readonly'}]" t-if="!state.edit"/>
+                    <FieldAdapter Component="FieldMany2ManyTags" widgetArgs="['finding_ids', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
                 </div>
                 <div class="col-5">
-                <span>ALERGIES</span>
+                    <FieldAdapter Component="FieldMany2ManyTags" widgetArgs="['allergy_substance_ids', state.data, {mode: 'readonly'}]" t-if="!state.edit"/>
+                    <FieldAdapter Component="FieldMany2ManyTags" widgetArgs="['allergy_substance_ids', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {}}]" t-if="state.edit"/>
                 </div>
                 <div class="col-2 d-flex justify-content-end">
                     <button

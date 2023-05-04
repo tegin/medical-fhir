@@ -17,6 +17,8 @@
                 <field name="state" />
                 <field name="fhir_state" />
                 <field name="validation_user_id" />
+                <field name="finding_ids" widget="many2many_tags"/>
+                <field name="allergy_substance_ids" widget="many2many_tags"/>
             </owl_tree>
         </field>
     </record>
