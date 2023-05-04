@@ -46,7 +46,7 @@ odoo.define(
                         args: [[this.state.data.res_id]],
                     })
                     .then(function () {
-                        self.trigger("reload", {keepChanges: true});
+                        self.trigger("reload", {db_id: self.state.id});
                     });
             }
 
