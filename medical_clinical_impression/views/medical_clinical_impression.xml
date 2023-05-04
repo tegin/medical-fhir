@@ -228,5 +228,7 @@
         <field name="name">Medical Clinical Impression</field>
         <field name="res_model">medical.clinical.impression</field>
         <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_filter_not_cancelled': True}</field>
+        <field name="domain">[('patient_id', '=', active_id)]</field>
     </record>
 </odoo>
