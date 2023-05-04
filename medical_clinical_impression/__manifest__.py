@@ -13,6 +13,8 @@
         "medical_workflow",
         "medical_clinical_condition",
         "medical_administration_practitioner_specialty",
+        "web_ir_actions_act_multi",
+        "web_ir_actions_act_view_reload",
     ],
     "data": [
         "views/assets.xml",

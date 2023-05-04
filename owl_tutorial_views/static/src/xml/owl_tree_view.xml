@@ -123,4 +123,17 @@
             </div>
         </div>
     </div>
+    <t t-name="OwlTreeView.buttons">
+        <div class="o_owltree_buttons" role="toolbar" aria-label="Main actions">
+            <button
+                type="button"
+                class="btn btn-primary o_owltree_button_add"
+                accesskey="c"
+            >
+                Create
+            </button>
+
+        </div>
+    </t>
+
 </templates>
