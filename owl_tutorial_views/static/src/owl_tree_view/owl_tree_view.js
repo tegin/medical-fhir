@@ -17,19 +17,17 @@ odoo.define("owl_tutorial_views.OWLTreeView", function (require) {
             super(...arguments);
             this.view = undefined;
             useSubEnv({
-                setChild: (child) => this.view = child
-            })
+                setChild: (child) => (this.view = child),
+            });
         }
         canBeSaved() {
             return [];
         }
         commitChanges() {}
         onFieldChanged(ev) {
-            this.view.onFieldChanged(ev)
+            this.view.onFieldChanged(ev);
         }
-        confirmChange() {
-
-        }
+        confirmChange() {}
     }
 
     const OWLTreeView = BasicView.extend({
@@ -40,6 +38,7 @@ odoo.define("owl_tutorial_views.OWLTreeView", function (require) {
             Controller: OWLTreeController,
             Model: OWLTreeModel,
             Renderer: OWLTreeRenderer,
+            ControlPanel: require("owl_tree.ControlPanel"),
         }),
         viewType: "owl_tree",
         searchMenuTypes: ["filter", "favorite"],

@@ -90,3 +90,6 @@ class MedicalPatient(models.Model):
             "target": "new",
             "context": ctx,
         }
+
+    def get_patient_data(self):
+        return {"name": self.name}

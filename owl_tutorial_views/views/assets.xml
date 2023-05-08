@@ -5,15 +5,11 @@
         name="assets_backend"
         inherit_id="web.assets_backend"
     > <!-- backend (herencia de erp) o frontend (website)-->
+
         <xpath expr="." position="inside">
             <script
                 type="text/javascript"
                 src="/owl_tutorial_views/static/src/components/impression_component.js"
-            />
-
-            <script
-                type="text/javascript"
-                src="/owl_tutorial_views/static/src/owl_tree_view/owl_tree_view.js"
             />
             <script
                 type="text/javascript"
@@ -26,6 +22,14 @@
             <script
                 type="text/javascript"
                 src="/owl_tutorial_views/static/src/owl_tree_view/owl_tree_renderer.js"
+            />
+            <script
+                type="text/javascript"
+                src="/owl_tutorial_views/static/src/owl_tree_view/owl_tree_controlpanel.js"
+            />
+            <script
+                type="text/javascript"
+                src="/owl_tutorial_views/static/src/owl_tree_view/owl_tree_view.js"
             />
         </xpath>
         <xpath expr="link[last()]" position="after">
