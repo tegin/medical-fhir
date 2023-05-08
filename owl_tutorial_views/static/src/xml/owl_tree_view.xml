@@ -20,8 +20,14 @@
         <xpath expr="//div[hasclass('o_control_panel')]" position="inside">
             <div class="row">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <div class="col-3">
             <span t-esc="info.name" />
+=======
+            <div class="col-1">
+            <span t-esc="info.name" />
+<<<<<<< HEAD
+>>>>>>> d5d4f7583cbd825a842167b65ea4fa5e07a159bb
 =======
             <div class="col-1">
             <span t-esc="info.name" />
@@ -36,7 +42,10 @@
             </div>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> d5d4f7583cbd825a842167b65ea4fa5e07a159bb
 =======
 
                 <div t-if="condition_count!=0">
@@ -50,6 +59,9 @@
                     </div>
                 </div>
 >>>>>>> 9e58390 ([IMP] add blque rojo warning y lista conditions)
+<<<<<<< HEAD
+>>>>>>> d5d4f7583cbd825a842167b65ea4fa5e07a159bb
+=======
 >>>>>>> d5d4f7583cbd825a842167b65ea4fa5e07a159bb
         </xpath>
     </t>
