@@ -4,13 +4,13 @@ odoo.define("owl_tutorial_views.OWLTreeController", function (require) {
     var core = require("web.core");
     var BasicController = require("web.BasicController");
     var qweb = core.qweb;
-    var FieldManagerMixin = require('web.FieldManagerMixin');
+    var FieldManagerMixin = require("web.FieldManagerMixin");
 
     var OWLTreeController = BasicController.extend({
         buttons_template: "OwlTreeView.buttons",
         custom_events: _.extend({}, BasicController.prototype.custom_events, {
             save_record: "_onSaveRecord",
-            field_changed: '_onFieldChanged',
+            field_changed: "_onFieldChanged",
         }),
         renderButtons: function ($node) {
             if (this.noLeaf || !this.hasButtons) {
@@ -28,14 +28,33 @@ odoo.define("owl_tutorial_views.OWLTreeController", function (require) {
                 this.$buttons.appendTo($node);
             }
         },
+        _discardChanges: function (recordId) {
+            var self = this;
+
+            return this._super(...arguments).then(function () {
+                console.log("HERE? ");
+                self.trigger_up("field_changed", {dataPointID: recordId, changes: {}});
+            });
+        },
+        canBeDiscarded: function () {
+            return new Promise(function () {
+                return true;
+            });
+        },
         _onFieldChanged: function (ev) {
             // Once a field has been changed, we need to send the change to the renderer,
             // it will send it to the impression components in the right way
             var self = this;
             const dataPointID = ev.data.dataPointID;
-            return  FieldManagerMixin._onFieldChanged.apply(this, arguments).then(function() {
-                self.renderer.onFieldChanged({dataPointID: ev.data.dataPointID, data: self.model.get(dataPointID), event: ev})
-            })
+            return FieldManagerMixin._onFieldChanged
+                .apply(this, arguments)
+                .then(function () {
+                    self.renderer.onFieldChanged({
+                        dataPointID: ev.data.dataPointID,
+                        data: self.model.get(dataPointID),
+                        event: ev,
+                    });
+                });
         },
         _onCreateRecord: function (ev) {
             var self = this;

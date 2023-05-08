@@ -13,14 +13,18 @@ odoo.define(
         const session = require("web.session");
         var rpc = require("web.rpc");
 
+        var core = require("web.core");
+        var Dialog = require("web.Dialog");
+        var _t = core._t;
+
         class FieldAdapter extends ComponentAdapter {
             // We need to modify the component adapter in order to define the update widget properly
             constructor(...args) {
                 super(...args);
-                this.env.setField(this)
+                this.env.setField(this);
             }
             updateWidget(widgetArgs) {
-                var record = widgetArgs.widgetArgs[1]
+                var record = widgetArgs.widgetArgs[1];
                 this.widget.reset(record, {target: record});
             }
         }
@@ -37,13 +41,14 @@ odoo.define(
                     data: this.props.data,
                     changes: {},
                 });
-                this.env.setChilds(this.props.data.id, this)
-                this.fields = []
+                this.env.setChilds(this.props.data.id, this);
+                this.fields = [];
                 useSubEnv({
-                    setField: (field) => this.fields.push(field)
-                })
+                    setField: (field) => this.fields.push(field),
+                });
                 this.FieldMany2ManyTags = relational_fields.FieldMany2ManyTags;
                 this.FieldText = basic_fields.FieldText;
+                this.FieldChar = basic_fields.FieldChar;
             }
             onValidate() {
                 const self = this;
@@ -74,7 +79,11 @@ odoo.define(
                 // We update the data. widgets will reset themselves with `updateWidget`
                 this.state.data = data;
                 this.state.dirty = true;
-                this.state.changes = _.extend({}, this.state.changes, event.data.changes)
+                this.state.changes = _.extend(
+                    {},
+                    this.state.changes,
+                    event.data.changes
+                );
             }
             onEdit() {
                 this.state.edit = true;
@@ -106,6 +115,37 @@ odoo.define(
                 this.state.edit = false;
                 this.state.dirty = false;
                 this.state.changes = {};
+            }
+
+            onDeleteChanges() {
+                var self = this;
+                /*
+                Var def = new Promise(function (resolve, reject) {
+                    var message = _t(
+                        "You need to save this new record before editing the translation. Do you want to proceed?"
+                    );
+                    var dialog = Dialog.confirm(self, message, {
+                        title: _t("Warning"),
+                        confirm_callback: function () {
+                            console.log(self);
+                            self.state.edit = false;
+                            resolve.call(self, true);
+                        },
+                        cancel_callback: reject,
+                    });
+
+                    dialog.on("closed", self, reject);
+                });
+                return def;*/
+                return new Promise(function (resolve, reject) {
+                    self.state.edit = false;
+                    self.state.changes = {};
+                    self.state.dirty = false;
+                    self.trigger("discard_changes", {
+                        recordID: self.state.data.id,
+                        onSuccess: resolve,
+                    });
+                });
             }
         }
 
