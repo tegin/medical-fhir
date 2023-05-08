@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-
-
-
     <div t-name="owl_tutorial_views.OWLTreeRenderer" class="o_owl_tree_view" owl="1">
         <div class="container mt-4">
-                <div
-                class="alert alert-danger row"
-                role="alert"
-                style="margin-bottom:0px;"
-                attrs="{'invisible':[('condition_count', '=', 0)]}"
-            >
-                <field
-                    name="condition_ids"
-                    widget="warning_dropdown"
-                    class="col-12"
-                    context="{'patient_id': id}"
-                />
-                <field name="condition_count" invisible="1" />
-            </div>
             <t t-foreach="props.data" t-as="item" t-key="item.id">
                 <div class="row">
                     <div class="col">
@@ -28,7 +11,6 @@
             </t>
         </div>
     </div>
-
     <t
         t-name="owl_tree.ControlPanel"
         t-inherit="web.ControlPanel"
@@ -36,12 +18,19 @@
         owl="1"
     >
         <xpath expr="//div[hasclass('o_control_panel')]" position="inside">
+            <div class="row">
+            <div class="col-3">
             <span t-esc="info.name" />
+            </div>
+            <div class="col-1">
+            <span t-esc="info.gender" />
+            </div>
+            <div class="col-1">
+            <span t-esc="info.patient_age" />
+            </div>
+            </div>
         </xpath>
     </t>
-
-
-
     <div
         t-name="owl_tutorial_views.ImpressionComponent"
         class="o_impression_component mb-3"

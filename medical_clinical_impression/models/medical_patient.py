@@ -92,4 +92,9 @@ class MedicalPatient(models.Model):
         }
 
     def get_patient_data(self):
-        return {"name": self.name}
+        return {
+            "name": self.name,
+            "gender": self.gender,
+            "patient_age": self.patient_age,
+
+        }
