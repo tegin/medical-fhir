@@ -19,8 +19,14 @@
     >
         <xpath expr="//div[hasclass('o_control_panel')]" position="inside">
             <div class="row">
+<<<<<<< HEAD
             <div class="col-3">
             <span t-esc="info.name" />
+=======
+            <div class="col-1">
+            <span t-esc="info.name" />
+<<<<<<< HEAD
+>>>>>>> d5d4f7583cbd825a842167b65ea4fa5e07a159bb
             </div>
             <div class="col-1">
             <span t-esc="info.gender" />
@@ -29,6 +35,22 @@
             <span t-esc="info.patient_age" />
             </div>
             </div>
+<<<<<<< HEAD
+=======
+=======
+
+                <div t-if="condition_count!=0">
+                    <div class="alert alert-danger" role="alert">
+                        <t t-foreach="info.condition_names" t-as="item" t-key="item.id">
+                            <div class="row">
+                                    <span t-esc="item" />
+
+                            </div>
+                        </t>
+                    </div>
+                </div>
+>>>>>>> 9e58390 ([IMP] add blque rojo warning y lista conditions)
+>>>>>>> d5d4f7583cbd825a842167b65ea4fa5e07a159bb
         </xpath>
     </t>
     <div

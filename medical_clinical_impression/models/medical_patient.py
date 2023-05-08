@@ -92,9 +92,14 @@ class MedicalPatient(models.Model):
         }
 
     def get_patient_data(self):
+        condition_names = []
+        for i in self.condition_ids:
+            condition_names.append(i.name)
+
         return {
             "name": self.name,
+            "condition_count": self.condition_count,
+            "condition_names": condition_names,
             "gender": self.gender,
             "patient_age": self.patient_age,
-
         }
