@@ -4,7 +4,6 @@ $primary-weaker: #9e9dcd;
     border: 2px solid $o-brand-primary;
 
     .row {
-        border: 1px solid $primary;
         button {
             margin-right: 3px;
         }
@@ -15,6 +14,5 @@ $primary-weaker: #9e9dcd;
         background-color: $o-brand-primary;
     }
     .border-bottom-custom {
-        border-bottom: 2px solid $primary-weaker;
     }
 }

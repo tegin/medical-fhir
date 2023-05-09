@@ -13,10 +13,6 @@ odoo.define(
         const session = require("web.session");
         var rpc = require("web.rpc");
 
-        var core = require("web.core");
-        var Dialog = require("web.Dialog");
-        var _t = core._t;
-
         class FieldAdapter extends ComponentAdapter {
             // We need to modify the component adapter in order to define the update widget properly
             constructor(...args) {
@@ -50,8 +46,9 @@ odoo.define(
                 this.FieldText = basic_fields.FieldText;
                 this.FieldChar = basic_fields.FieldChar;
             }
-            onValidate() {
+            async onValidate() {
                 const self = this;
+                await this.onSave();
                 return rpc
                     .query({
                         model: "medical.clinical.impression",
@@ -105,9 +102,9 @@ odoo.define(
                     .format(getLangDatetimeFormat());
             }
 
-            onSave() {
+            async onSave() {
                 if (this.state.dirty) {
-                    this.env.saveRecord({
+                    await this.env.saveRecord({
                         id: this.state.data.id,
                         changes: this.state.changes,
                     });
@@ -137,7 +134,7 @@ odoo.define(
                     dialog.on("closed", self, reject);
                 });
                 return def;*/
-                return new Promise(function (resolve, reject) {
+                return new Promise(function (resolve) {
                     self.state.edit = false;
                     self.state.changes = {};
                     self.state.dirty = false;
