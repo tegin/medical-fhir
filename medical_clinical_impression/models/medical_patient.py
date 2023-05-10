@@ -95,11 +95,18 @@ class MedicalPatient(models.Model):
         condition_names = []
         for i in self.condition_ids:
             condition_names.append(i.name)
-
+        gender = False
+        if self.gender:
+            for item in self._fields["gender"]._description_selection(
+                self.env
+            ):
+                if item[0] == self.gender:
+                    gender = item[1]
+                    continue
         return {
             "name": self.name,
             "condition_count": self.condition_count,
             "condition_names": condition_names,
-            "gender": self.gender,
+            "gender": gender,
             "patient_age": self.patient_age,
         }

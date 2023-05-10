@@ -2,6 +2,7 @@
 
 from odoo import fields, models
 from odoo.osv import expression
+from odoo.tools.safe_eval import safe_eval
 
 
 class MedicalSpecialty(models.Model):
@@ -93,17 +94,18 @@ class MedicalSpecialty(models.Model):
             patient_id = encounter_id.patient_id
         else:
             return False
+        ctx_dict["default_encounter_id"] = encounter_id.id
+        ctx_dict["search_default_filter_not_cancelled"] = True
+        ctx_dict["active_id"] = patient_id.id
         domain = expression.AND(
             [
-                result["domain"],
+                safe_eval(result["domain"], ctx_dict),
                 [
                     ("specialty_id", "=", self.id),
                     ("patient_id", "=", patient_id.id),
                 ],
             ]
         )
-        ctx_dict["default_encounter_id"] = encounter_id.id
-        ctx_dict["search_default_filter_not_cancelled"] = True
         result["domain"] = domain
         result["context"] = ctx_dict
         return result

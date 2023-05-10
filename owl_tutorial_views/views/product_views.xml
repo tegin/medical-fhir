@@ -30,7 +30,7 @@
         model='ir.actions.act_window'
     >
         <field name="name">Impressions</field>
-        <field name="view_mode">tree,owl_tree,form</field>
+        <field name="view_mode">owl_tree,tree,form</field>
     </record>
 
 </odoo>

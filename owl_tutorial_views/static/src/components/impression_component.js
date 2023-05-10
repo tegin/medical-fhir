@@ -12,6 +12,7 @@ odoo.define(
         const {ComponentAdapter} = require("web.OwlCompatibility");
         const session = require("web.session");
         var rpc = require("web.rpc");
+        var Dialog = require("web.Dialog");
 
         class FieldAdapter extends ComponentAdapter {
             // We need to modify the component adapter in order to define the update widget properly
@@ -59,9 +60,21 @@ odoo.define(
                         self.trigger("reload", {db_id: self.state.id});
                     });
             }
-
             onCancel() {
+                var self = this;
+                return new Promise(function (resolve) {
+                    Dialog.confirm(
+                        self,
+                        "Are you sure that you want to cancel this impression?",
+                        {
+                            confirm_callback: self._onCancel.bind(self),
+                        }
+                    ).on("closed", null, resolve);
+                });
+            }
+            _onCancel() {
                 const self = this;
+
                 return rpc
                     .query({
                         model: "medical.clinical.impression",
@@ -115,34 +128,10 @@ odoo.define(
             }
 
             onDeleteChanges() {
-                var self = this;
-                /*
-                Var def = new Promise(function (resolve, reject) {
-                    var message = _t(
-                        "You need to save this new record before editing the translation. Do you want to proceed?"
-                    );
-                    var dialog = Dialog.confirm(self, message, {
-                        title: _t("Warning"),
-                        confirm_callback: function () {
-                            console.log(self);
-                            self.state.edit = false;
-                            resolve.call(self, true);
-                        },
-                        cancel_callback: reject,
-                    });
-
-                    dialog.on("closed", self, reject);
-                });
-                return def;*/
-                return new Promise(function (resolve) {
-                    self.state.edit = false;
-                    self.state.changes = {};
-                    self.state.dirty = false;
-                    self.trigger("discard_changes", {
-                        recordID: self.state.data.id,
-                        onSuccess: resolve,
-                    });
-                });
+                this.state.edit = false;
+                this.state.changes = {};
+                this.state.dirty = false;
+                this.env.discardChanges(this.state.data.id);
             }
         }
 

@@ -17,10 +17,6 @@
             />
             <script
                 type="text/javascript"
-                src="/owl_tutorial_views/static/src/owl_tree_view/owl_tree_view.js"
-            />
-            <script
-                type="text/javascript"
                 src="/owl_tutorial_views/static/src/owl_tree_view/owl_tree_model.js"
             />
             <script

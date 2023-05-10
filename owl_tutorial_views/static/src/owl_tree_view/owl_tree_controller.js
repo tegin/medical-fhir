@@ -32,14 +32,14 @@ odoo.define("owl_tutorial_views.OWLTreeController", function (require) {
             var self = this;
 
             return this._super(...arguments).then(function () {
-                console.log("HERE? ");
                 self.trigger_up("field_changed", {dataPointID: recordId, changes: {}});
             });
         },
         canBeDiscarded: function () {
-            return new Promise(function () {
-                return true;
-            });
+            return Promise.resolve(true);
+        },
+        _confirmChange: function () {
+            return Promise.resolve(true);
         },
         _onFieldChanged: function (ev) {
             // Once a field has been changed, we need to send the change to the renderer,
@@ -56,8 +56,7 @@ odoo.define("owl_tutorial_views.OWLTreeController", function (require) {
                     });
                 });
         },
-        _onCreateRecord: function (ev) {
-            var self = this;
+        _onCreateRecord: function () {
             this.do_action(
                 "medical_clinical_impression.create_impression_from_patient_act_window",
                 {

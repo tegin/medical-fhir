@@ -23,6 +23,7 @@ odoo.define("owl_tutorial_views.OWLTreeRenderer", function (require) {
             useSubEnv({
                 saveRecord: this.saveRecord.bind(this),
                 setChilds: (db_id, child) => (this.childs[db_id] = child),
+                discardChanges: this.discardChanges.bind(this),
             });
             if (this.props.arch.attrs.count_field) {
                 Object.assign(this.state, {
@@ -30,6 +31,16 @@ odoo.define("owl_tutorial_views.OWLTreeRenderer", function (require) {
                 });
             }
         }
+        discardChanges(recordID) {
+            return new Promise((resolve, reject) => {
+                this.trigger("discard_changes", {
+                    recordID,
+                    onSuccess: resolve,
+                    onFailure: reject,
+                });
+            });
+        }
+        // eslint-disable-next-line no-empty-function
         commitChanges() {}
         saveRecord(data) {
             return new Promise((resolve, reject) => {
@@ -43,7 +54,9 @@ odoo.define("owl_tutorial_views.OWLTreeRenderer", function (require) {
         }
         onFieldChanged({dataPointID, data, event}) {
             // We send the change only to the right children
-            this.childs[dataPointID].setData(data, event);
+            if (this.childs[dataPointID]) {
+                this.childs[dataPointID].setData(data, event);
+            }
         }
     }
 
