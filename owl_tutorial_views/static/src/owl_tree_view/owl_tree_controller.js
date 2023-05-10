@@ -11,6 +11,7 @@ odoo.define("owl_tutorial_views.OWLTreeController", function (require) {
         custom_events: _.extend({}, BasicController.prototype.custom_events, {
             save_record: "_onSaveRecord",
             field_changed: "_onFieldChanged",
+            validate_record: "_onValidateRecord",
         }),
         renderButtons: function ($node) {
             if (this.noLeaf || !this.hasButtons) {
@@ -72,6 +73,35 @@ odoo.define("owl_tutorial_views.OWLTreeController", function (require) {
             this.saveRecord(ev.data.recordID)
                 .then(ev.data.onSuccess)
                 .guardedCatch(ev.data.onFailure);
+        },
+        updatePatientInfo() {
+            var self = this;
+            this._rpc({
+                model: "medical.patient",
+                method: "get_patient_data",
+                args: [[this.model.loadParams.context.active_id]],
+            }).then(function (data) {
+                self.updateControlPanel({info: data});
+            });
+        },
+        start: async function () {
+            this._super.apply(this, arguments);
+            this.updatePatientInfo();
+        },
+        _onValidateRecord: function (ev) {
+            const self = this;
+            this._rpc({
+                model: "medical.clinical.impression",
+                method: "validate_clinical_impression",
+                args: [[ev.data.res_id]],
+            })
+                .then(function () {
+                    self.trigger_up("reload", {db_id: ev.data.db_id});
+                })
+                .then(function () {
+                    self.updatePatientInfo();
+                });
+            console.log(this);
         },
     });
 

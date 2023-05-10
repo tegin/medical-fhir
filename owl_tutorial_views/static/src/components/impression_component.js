@@ -50,15 +50,10 @@ odoo.define(
             async onValidate() {
                 const self = this;
                 await this.onSave();
-                return rpc
-                    .query({
-                        model: "medical.clinical.impression",
-                        method: "validate_clinical_impression",
-                        args: [[this.state.data.res_id]],
-                    })
-                    .then(function () {
-                        self.trigger("reload", {db_id: self.state.id});
-                    });
+                return this.trigger("validate_record", {
+                    res_id: this.state.data.res_id,
+                    db_id: self.state.id,
+                });
             }
             onCancel() {
                 var self = this;

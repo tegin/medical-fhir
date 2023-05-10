@@ -5,22 +5,14 @@ odoo.define("owl_tree.ControlPanel", function (require) {
 
     const ControlPanel = require("web.ControlPanel");
 
-    const {hooks} = owl;
-    const {useRef, onWillStart} = hooks;
-
-    class OwlTreeControlPanel extends ControlPanel {
-        constructor(...args) {
-            super(...args);
-            onWillStart(async () => {
-                var data = await this.env.services.rpc({
-                    model: "medical.patient",
-                    method: "get_patient_data",
-                    args: [[this.env.action.context.active_id]],
-                });
-                this.info = data;
-            });
-        }
-    }
+    class OwlTreeControlPanel extends ControlPanel {}
     OwlTreeControlPanel.template = "owl_tree.ControlPanel";
+    OwlTreeControlPanel.props = {
+        ...OwlTreeControlPanel.props,
+        info: {
+            type: Object,
+            optional: 1,
+        },
+    };
     return OwlTreeControlPanel;
 });
