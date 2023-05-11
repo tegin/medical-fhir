@@ -6,19 +6,17 @@
     "summary": """
         This addon sets the base of the medical fhir concepts
         of medication.request and device.request""",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "author": "Creu Blanca,Odoo Community Association (OCA)",
-    "website": "www.creublanca.es",
+    "author": "CreuBlanca,Odoo Community Association (OCA)",
+    "website": "https://github.com/tegin/medical-fhir",
     "depends": [
         "medical_administration_encounter",
         "mail",
-        "medical_clinical",
         "medical_administration_practitioner",
         "web_domain_field",
     ],
     "data": [
-        "security/medical_security.xml",
         "security/ir.model.access.csv",
         "views/medical_patient.xml",
         "views/medical_encounter.xml",
