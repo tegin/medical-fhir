@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="medical_procedure_external_request_template_preview"
+        model="ir.actions.report"
+    >
+        <field name="name">External Request Preview</field>
+        <field name="model">medical.procedure.external.request.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >medical_procedure_external.template_medical_procedure_external_request_preview</field>
+        <field
+            name="report_file"
+        >medical_procedure_external.template_medical_procedure_external_request_preview</field>
+        <field
+            name="binding_model_id"
+            ref="model_medical_procedure_external_request_template"
+        />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format" />
+    </record>
+</odoo>

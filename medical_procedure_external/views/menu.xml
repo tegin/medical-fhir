@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.menu" id="medical_root_request">
+        <field name="name">External Request</field>
+        <field name="parent_id" ref="medical_base.medical_root_clinical" />
+        <field name="groups_id" eval="[(4, ref('medical_base.group_medical_admin'))]" />
+        <field name="sequence" eval="30" />
+    </record>
+</odoo>
