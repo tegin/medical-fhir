@@ -98,14 +98,13 @@ class MedicalImagingStudy(models.Model):
         )
     ]
 
+    def _get_encounter_from_qido_data(self, dic):
+        return [("name", "=", dic["accession_number"])]
+        # TODO: cambiar name por internal_identifier
+
     def _save_qido_data(self, dic):
-        encounter = self.env["medical.encounter"].search(
-            [("name", "=", dic["accession_number"])]
-        )  # TODO: cambiar name por internal_identifier
         result = {
             "study_date": dic["study_date"],
-            "encounter_id": encounter.id,
-            "patient_id": encounter.patient_id.id,
             "description": dic["description"],
             "series_ids": [
                 self.env["medical.imaging.series"]._save_qido_data_from_study(
@@ -114,6 +113,16 @@ class MedicalImagingStudy(models.Model):
                 for series in dic["series_ids"]
             ],
         }
+        encounter = self.env["medical.encounter"].search(
+            self._get_encounter_from_qido_data(dic), limit=1
+        )
+        if encounter:
+            result.update(
+                {
+                    "encounter_id": encounter.id,
+                    "patient_id": encounter.patient_id.id,
+                }
+            )
         return result
 
     def update_study_data(self):

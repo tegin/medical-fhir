@@ -9,7 +9,7 @@ class MedicalImagingStorage(models.Model):
     _name = "medical.imaging.storage"
     _description = "Medical Imaging Storage"
 
-    name = fields.Char()
+    name = fields.Char(required=True)
 
     endpoint_ids = fields.One2many(
         comodel_name="medical.imaging.endpoint", inverse_name="storage_id"

@@ -10,14 +10,21 @@ class MedicalImagingSeries(models.Model):
     _description = "Medical Imaging Series"
     _order = "series_number"
 
-    imaging_study_id = fields.Many2one(comodel_name="medical.imaging.study")
+    imaging_study_id = fields.Many2one(
+        comodel_name="medical.imaging.study",
+        required=True,
+        auto_join=True,
+        index=True,
+    )
 
     series_number = fields.Char(readonly=True)
 
-    instance_uid = fields.Char(index=True, readonly=True)
+    instance_uid = fields.Char(index=True, readonly=True, required=True)
 
     modality_id = fields.Many2one(
-        comodel_name="medical.imaging.acquisition.modality", readonly=True
+        comodel_name="medical.imaging.acquisition.modality",
+        readonly=True,
+        required=True,
     )
 
     description = fields.Text(readonly=True)

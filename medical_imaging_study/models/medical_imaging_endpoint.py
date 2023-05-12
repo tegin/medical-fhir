@@ -6,9 +6,11 @@ from datetime import datetime
 import pytz
 from dicomweb_client.api import DICOMwebClient
 from dicomweb_client.session_utils import create_session_from_auth
-from odoo import api, fields, models
-from odoo.addons.base.models.res_partner import _tz_get
 from requests.auth import HTTPBasicAuth
+
+from odoo import api, fields, models
+
+from odoo.addons.base.models.res_partner import _tz_get
 
 
 class MedicalImagingEndpoint(models.Model):

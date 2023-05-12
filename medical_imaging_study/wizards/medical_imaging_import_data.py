@@ -9,14 +9,13 @@ class MedicalImagingImportData(models.TransientModel):
     _name = "medical.imaging.import.data"
     _description = "Medical Imaging Import Data"
 
-    study_uid = fields.Char()
+    study_uid = fields.Char(required=True)
 
     storage_id = fields.Many2one(
         comodel_name="medical.imaging.storage", required=True
     )
 
     def import_imaging_study(self):
-        if self.study_uid and self.storage_id:
-            return self.storage_id.endpoint_ids._import_imaging_study(
-                self.study_uid
-            )
+        return self.storage_id.endpoint_ids._import_imaging_study(
+            self.study_uid
+        )
