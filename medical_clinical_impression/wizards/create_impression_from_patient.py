@@ -4,7 +4,6 @@
 from datetime import datetime, timedelta
 
 from odoo import api, fields, models
-from odoo.tests.common import Form
 
 
 class CreateImpressionFromPatient(models.TransientModel):
@@ -28,21 +27,16 @@ class CreateImpressionFromPatient(models.TransientModel):
 
     def _get_impression_vals(self):
         return {
-            "default_encounter_id": self.encounter_id.id,
-            "default_specialty_id": self.specialty_id.id,
+            "encounter_id": self.encounter_id.id,
+            "specialty_id": self.specialty_id.id,
         }
 
     def generate(self):
         self.ensure_one()
-        action = self.env["medical.clinical.impression"].get_formview_action()
-        action["context"] = self._get_impression_vals()
+        self.env["medical.clinical.impression"].create(
+            self._get_impression_vals()
+        )
         if self.env.context.get("impression_view"):
-            f = Form(
-                self.env["medical.clinical.impression"].with_context(
-                    action["context"]
-                )
-            )
-            f.save()
             return {
                 "type": "ir.actions.act_multi",
                 "actions": [
@@ -50,7 +44,9 @@ class CreateImpressionFromPatient(models.TransientModel):
                     {"type": "ir.actions.act_view_reload"},
                 ],
             }
-        return action
+        return self.specialty_id.with_context(
+            patient_id=self.patient_id.id
+        ).get_specialty_impression()
 
     @api.onchange("patient_id")
     def _compute_default_encounter(self):
