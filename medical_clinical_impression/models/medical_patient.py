@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
 
 
 class MedicalPatient(models.Model):
@@ -60,13 +59,6 @@ class MedicalPatient(models.Model):
                 "search_default_filter_not_cancelled": True,
             }
         return action
-
-    def _get_last_encounter(self):
-        if not self.encounter_ids:
-            raise ValidationError(
-                _("No encounters can be found for this patient")
-            )
-        return self.encounter_ids[0]
 
     def action_view_family_history(self):
         self.ensure_one()
