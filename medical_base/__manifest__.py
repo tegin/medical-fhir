@@ -19,6 +19,7 @@
         "views/medical_menu.xml",
         "views/medical_patient.xml",
         "views/res_config_settings_views.xml",
+        "templates/assets.xml",
     ],
     "demo": ["demo/medical_demo.xml"],
     "application": True,
