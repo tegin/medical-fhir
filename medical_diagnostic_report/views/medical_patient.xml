@@ -55,6 +55,7 @@
                         name="diagnostic_report_ids"
                         widget="one2many_list"
                         readonly="1"
+                        options="{'record_action': 'get_formview_action'}"
                     >
                         <tree
                             decoration-warning="fhir_state == 'registered'"
