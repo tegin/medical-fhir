@@ -1,7 +1,8 @@
 # Copyright 2021 CreuBlanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class MedicalPatient(models.Model):
@@ -25,3 +26,10 @@ class MedicalPatient(models.Model):
         )
         action["domain"] = [("patient_id", "=", self.id)]
         return action
+
+    def _get_last_encounter(self):
+        if not self.encounter_ids:
+            raise ValidationError(
+                _("No encounters can be found for this patient")
+            )
+        return self.encounter_ids[0]
