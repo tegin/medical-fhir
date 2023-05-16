@@ -20,6 +20,7 @@
                     <field name="validation_user_id" />
                     <field name="finding_ids" widget="many2many_tags" />
                     <field name="allergy_substance_ids" widget="many2many_tags" />
+                    <field name="template_id" />
                 </div>
             </owl_tree>
         </field>

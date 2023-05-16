@@ -47,6 +47,7 @@ class MedicalClinicalImpression(models.Model):
     # FHIR: patient
 
     validation_date = fields.Datetime(readonly=True)
+
     # FHIR: date
 
     validation_user_id = fields.Many2one(
@@ -91,6 +92,17 @@ class MedicalClinicalImpression(models.Model):
         "of the current encounter in the tree view",
         compute="_compute_current_encounter",
     )
+    template_id = fields.Many2one(
+        "medical.clinical.impression.template",
+        domain="[('specialty_id', '=', specialty_id)]",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
+
+    @api.onchange("template_id")
+    def _onchange_template_id(self):
+        if self.template_id and self.state == "draft":
+            self.description = self.template_id.description
 
     @api.model
     def _get_internal_identifier(self, vals):
