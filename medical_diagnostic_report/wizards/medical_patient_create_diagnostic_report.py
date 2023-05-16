@@ -9,6 +9,7 @@ from odoo import api, fields, models
 class MedicalPatientCreateDiagnosticReport(models.TransientModel):
 
     _name = "medical.patient.create.diagnostic.report"
+    _description = "Create a diagnostic report from patient"
 
     patient_id = fields.Many2one("medical.patient", readonly=True)
     encounter_id = fields.Many2one(
