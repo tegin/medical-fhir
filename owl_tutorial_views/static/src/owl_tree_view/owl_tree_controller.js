@@ -58,15 +58,29 @@ odoo.define("owl_tutorial_views.OWLTreeController", function (require) {
                 });
         },
         _onCreateRecord: function () {
-            this.do_action(
-                "medical_clinical_impression.create_impression_from_patient_act_window",
-                {
-                    additional_context: {
-                        active_id: this.model.get(this.handle).getContext().active_id,
-                        impression_view: true,
-                    },
-                }
-            );
+            console.log(this);
+
+            var self = this;
+            this._rpc({
+                model: "medical.patient",
+                method: "create_impression",
+                context: this.model.loadParams.context,
+                args: [[this.model.loadParams.context.active_id]],
+            }).then(function (action) {
+                console.log(action);
+                self.do_action(action);
+                // Self.updateControlPanel({info: action});
+            });
+
+            // This.do_action(
+            //     "medical_clinical_impression.create_impression_from_patient_act_window",
+            //     {
+            //         additional_context: {
+            //             active_id: this.model.get(this.handle).getContext().active_id,
+            //             impression_view: true,
+            //         },
+            //     }
+            // );
         },
         _onSaveRecord: function (ev) {
             this.model.notifyChanges(ev.data.recordID, ev.data.changes);

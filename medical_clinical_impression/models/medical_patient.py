@@ -110,3 +110,17 @@ class MedicalPatient(models.Model):
             "gender": gender,
             "patient_age": self.patient_age,
         }
+
+    def create_impression(self):
+        self.ensure_one()
+        ctx = self.env.context.copy()
+        ctx.update({"impression_view": True, "default_patient_id": self.id})
+        if ctx.get("default_specialty_id"):
+            self.env["create.impression.from.patient"].with_context(
+                **ctx
+            ).create({}).generate()
+            return {"type": "ir.actions.act_view_reload"}
+        xmlid = "medical_clinical_impression.create_impression_from_patient_act_window"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+        action["context"] = ctx
+        return action
