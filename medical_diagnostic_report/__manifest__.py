@@ -18,6 +18,7 @@
         "account",
     ],
     "data": [
+        "security/security.xml",
         "wizards/medical_patient_create_diagnostic_report.xml",
         "data/report_paper_format.xml",
         "security/ir.model.access.csv",

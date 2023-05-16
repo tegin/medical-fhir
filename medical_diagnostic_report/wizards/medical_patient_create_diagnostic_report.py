@@ -16,9 +16,11 @@ class MedicalPatientCreateDiagnosticReport(models.TransientModel):
         required=True,
         compute="_compute_default_encounter",
     )
-
     template_id = fields.Many2one(
-        "medical.diagnostic.report.template", required=True
+        "medical.diagnostic.report.template",
+        required=True,
+        domain="['|',('template_type','=','general'), '&', "
+        "('create_uid','=',uid), ('template_type', '=', 'user')]",
     )
     lang = fields.Selection(
         string="Language",

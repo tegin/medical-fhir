@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="diagnostic_report_template_rule_doctor" model="ir.rule">
+        <field name="name">Diagnostic Report Template: Doctor</field>
+        <field name="model_id" ref="model_medical_diagnostic_report_template" />
+        <field name="groups" eval="[(4, ref('medical_base.group_medical_doctor'))]" />
+        <field
+            name="domain_force"
+        >[('template_type', '=', 'user'), ('create_uid', '=', user.id)]</field>
+        <field name="perm_read" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+    <record id="diagnostic_report_template_rule_doctor_general" model="ir.rule">
+        <field name="name">Diagnostic Report Template: Doctor</field>
+        <field name="model_id" ref="model_medical_diagnostic_report_template" />
+        <field name="groups" eval="[(4, ref('medical_base.group_medical_doctor'))]" />
+        <field name="domain_force">[('template_type', '=', 'general')]</field>
+        <field name="perm_read" eval="True" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+    <record id="diagnostic_report_template_rule_configurator" model="ir.rule">
+        <field name="name">Diagnostic Report Template: Configurator</field>
+        <field name="model_id" ref="model_medical_diagnostic_report_template" />
+        <field
+            name="groups"
+            eval="[(4, ref('medical_base.group_medical_configurator'))]"
+        />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+</odoo>
