@@ -44,7 +44,6 @@ odoo.define(
                     setField: (field) => this.fields.push(field),
                 });
                 this.FieldMany2ManyTags = relational_fields.FieldMany2ManyTags;
-                console.log(relational_fields);
                 this.FieldMany2One = relational_fields.FieldMany2One;
                 this.FieldText = basic_fields.FieldText;
                 this.FieldChar = basic_fields.FieldChar;

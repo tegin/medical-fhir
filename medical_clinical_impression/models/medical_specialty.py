@@ -24,6 +24,11 @@ class MedicalSpecialty(models.Model):
     impressions_in_progress_count = fields.Integer(
         compute="_compute_impression_info"
     )
+    specialty_id = fields.Many2one(
+        "medical.specialty",
+        required=True,
+        domain="[('specialty_id', '=', self.id)]",
+    )
 
     def _compute_impression_info(self):
         for rec in self:
