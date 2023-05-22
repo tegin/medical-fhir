@@ -6,3 +6,4 @@ from . import medical_specialty
 from . import medical_family_member_history
 from . import medical_condition
 from . import medical_clinical_impression_template
+from . import ir_ui_view

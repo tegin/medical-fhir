@@ -26,7 +26,7 @@ class MedicalSpecialty(models.Model):
     )
     specialty_id = fields.Many2one(
         "medical.specialty",
-        required=True,
+        required=False,
         domain="[('specialty_id', '=', self.id)]",
     )
 

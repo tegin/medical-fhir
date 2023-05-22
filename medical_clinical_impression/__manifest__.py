@@ -30,8 +30,12 @@
         "views/medical_clinical_finding.xml",
         "views/medical_family_member_history.xml",
         "reports/medical_impression_report.xml",
+        "views/impression_view.xml",
     ],
-    "qweb": ["static/src/xml/widget_warning_dropdown.xml"],
+    "qweb": [
+        "static/src/xml/widget_warning_dropdown.xml",
+        "static/src/xml/owl_tree_view.xml",
+    ],
     "demo": [
         "demo/medical_clinical_impression_template.xml",
         "demo/medical_demo.xml",
