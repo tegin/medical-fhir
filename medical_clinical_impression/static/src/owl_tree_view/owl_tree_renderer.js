@@ -1,4 +1,4 @@
-odoo.define("owl_tutorial_views.OWLTreeRenderer", function (require) {
+odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
     "use strict";
 
     const AbstractRendererOwl = require("web.AbstractRendererOwl");
@@ -65,7 +65,7 @@ odoo.define("owl_tutorial_views.OWLTreeRenderer", function (require) {
     };
     Object.assign(OWLTreeRenderer, {
         components,
-        template: "owl_tutorial_views.OWLTreeRenderer",
+        template: "medical_clinical_impression.OWLTreeRenderer",
     });
 
     return patchMixin(OWLTreeRenderer);

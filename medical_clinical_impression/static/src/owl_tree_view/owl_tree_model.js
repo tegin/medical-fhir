@@ -1,4 +1,4 @@
-odoo.define("owl_tutorial_views.OWLTreeModel", function (require) {
+odoo.define("medical_clinical_impression.OWLTreeModel", function (require) {
     "use strict";
 
     var BasicModel = require("web.BasicModel");

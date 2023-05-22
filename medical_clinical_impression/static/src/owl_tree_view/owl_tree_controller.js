@@ -1,4 +1,4 @@
-odoo.define("owl_tutorial_views.OWLTreeController", function (require) {
+odoo.define("medical_clinical_impression.OWLTreeController", function (require) {
     "use strict";
 
     var core = require("web.core");

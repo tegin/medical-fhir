@@ -1,9 +1,9 @@
-odoo.define("owl_tutorial_views.OWLTreeView", function (require) {
+odoo.define("medical_clinical_impression.OWLTreeView", function (require) {
     "use strict";
 
-    const OWLTreeController = require("owl_tutorial_views.OWLTreeController");
-    const OWLTreeModel = require("owl_tutorial_views.OWLTreeModel");
-    const OWLTreeRenderer = require("owl_tutorial_views.OWLTreeRenderer");
+    const OWLTreeController = require("medical_clinical_impression.OWLTreeController");
+    const OWLTreeModel = require("medical_clinical_impression.OWLTreeModel");
+    const OWLTreeRenderer = require("medical_clinical_impression.OWLTreeRenderer");
     const BasicView = require("web.BasicView");
     const core = require("web.core");
     const RendererWrapper = require("web.RendererWrapper");

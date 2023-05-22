@@ -136,7 +136,7 @@ odoo.define(
             props: {
                 data: {},
             },
-            template: "owl_tutorial_views.ImpressionComponent",
+            template: "medical_clinical_impression.ImpressionComponent",
         });
 
         return patchMixin(ImpressionComponent);

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <div t-name="owl_tutorial_views.OWLTreeRenderer" class="o_owl_tree_view" owl="1">
+    <div
+        t-name="medical_clinical_impression.OWLTreeRenderer"
+        class="o_owl_tree_view"
+        owl="1"
+    >
         <div class="container mt-2">
             <t t-foreach="props.data" t-as="item" t-key="item.id">
                 <div class="row">
@@ -67,7 +71,7 @@
         </xpath>
     </t>
     <div
-        t-name="owl_tutorial_views.ImpressionComponent"
+        t-name="medical_clinical_impression.ImpressionComponent"
         t-attf-class="o_impression_component mb-1 o_impression_component_{{state.data.data.fhir_state}}"
         owl="1"
     >
