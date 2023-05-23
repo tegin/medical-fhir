@@ -60,6 +60,25 @@ class MedicalPatient(models.Model):
             }
         return action
 
+    def action_view_clinical_impressions_tree(self):
+        self.ensure_one()
+        view_id = self.env.ref(
+            "medical_clinical_impression.medical_family_member_history_view_tree"
+        ).id
+        ctx = dict(self._context)
+        ctx["default_patient_id"] = self.id
+
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "medical.family.member.history",
+            "name": _("Create family member history"),
+            "view_type": "list",
+            "view_mode": "tree",
+            "views": [(view_id, "list")],
+            "context": ctx,
+            "domain": [("patient_id", "=", self.id)],
+        }
+
     def action_view_family_history(self):
         self.ensure_one()
         action = self.env["ir.actions.act_window"]._for_xml_id(

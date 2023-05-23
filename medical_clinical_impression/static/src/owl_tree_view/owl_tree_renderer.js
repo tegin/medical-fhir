@@ -24,6 +24,7 @@ odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
                 saveRecord: this.saveRecord.bind(this),
                 setChilds: (db_id, child) => (this.childs[db_id] = child),
                 discardChanges: this.discardChanges.bind(this),
+                onViewFamilyHistory: this.onViewFamilyHistory.bind(this),
             });
             if (this.props.arch.attrs.count_field) {
                 Object.assign(this.state, {
@@ -57,6 +58,16 @@ odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
             if (this.childs[dataPointID]) {
                 this.childs[dataPointID].setData(data, event);
             }
+        }
+        onViewFamilyHistory(data) {
+            return new Promise((resolve, reject) => {
+                this.trigger("view_family_history", {
+                    recordID: data.id,
+                    onSuccess: resolve,
+                    onFailure: reject,
+                });
+            });
+            //this.trigger_up("view_family_history", {recordID: data.id});
         }
     }
 

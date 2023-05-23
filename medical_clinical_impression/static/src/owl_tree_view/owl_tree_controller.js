@@ -12,6 +12,7 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
             save_record: "_onSaveRecord",
             field_changed: "_onFieldChanged",
             validate_record: "_onValidateRecord",
+            view_family_history: "_onViewFamilyHistory",
         }),
         renderButtons: function ($node) {
             if (this.noLeaf || !this.hasButtons) {
@@ -100,6 +101,16 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
                 .then(function () {
                     self.updatePatientInfo();
                 });
+        },
+        _onViewFamilyHistory: function () {
+            var self = this;
+            self._rpc({
+                model: "medical.patient",
+                method: "action_view_clinical_impressions_tree",
+                args: [[self.model.loadParams.context.active_id]],
+            }).then(function (action) {
+                self.do_action(action);
+            });
         },
     });
 

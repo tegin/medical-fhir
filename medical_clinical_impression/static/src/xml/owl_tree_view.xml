@@ -34,6 +34,13 @@
                         <span t-esc="props.info.patient_age" /> years
                     </t>
                 </div>
+                <div class="col-6 d-flex justify-content-end p-0">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        t-on-click="onFamilyHistory"
+                    >Family History</button>
+                </div>
             </div>
 
             <div

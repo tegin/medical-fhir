@@ -5,7 +5,12 @@ odoo.define("owl_tree.ControlPanel", function (require) {
 
     const ControlPanel = require("web.ControlPanel");
 
-    class OwlTreeControlPanel extends ControlPanel {}
+    class OwlTreeControlPanel extends ControlPanel {
+        onFamilyHistory() {
+            this.trigger("view_family_history", {});
+        }
+    }
+
     OwlTreeControlPanel.template = "owl_tree.ControlPanel";
     OwlTreeControlPanel.props = {
         ...OwlTreeControlPanel.props,
