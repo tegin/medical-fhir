@@ -33,7 +33,7 @@ class CreateImpressionFromPatient(models.TransientModel):
 
     def generate(self):
         self.ensure_one()
-        self.env["medical.clinical.impression"].create(
+        impression = self.env["medical.clinical.impression"].create(
             self._get_impression_vals()
         )
         if self.env.context.get("impression_view"):
@@ -41,7 +41,7 @@ class CreateImpressionFromPatient(models.TransientModel):
                 "type": "ir.actions.act_multi",
                 "actions": [
                     {"type": "ir.actions.act_window_close"},
-                    {"type": "ir.actions.act_view_reload"},
+                    {"type": "ir.actions.act_select_record", "res_id": impression.id},
                 ],
             }
         return self.specialty_id.with_context(

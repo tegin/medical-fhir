@@ -30,15 +30,16 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
                 this.$buttons.appendTo($node);
             }
         },
+        selectRecord: function (recordId) {
+            console.log("SELECTING", recordId);
+            this.renderer.selectRecord(recordId);
+        },
         _discardChanges: function (recordId) {
             var self = this;
 
             return this._super(...arguments).then(function () {
                 self.trigger_up("field_changed", {dataPointID: recordId, changes: {}});
             });
-        },
-        canBeDiscarded: function () {
-            return Promise.resolve(true);
         },
         _confirmChange: function () {
             return Promise.resolve(true);

@@ -35,6 +35,10 @@
                 type="text/javascript"
                 src="/medical_clinical_impression/static/src/js/widget_warning_dropdown.js"
             />
+             <script
+                type="text/javascript"
+                src="/medical_clinical_impression/static/src/js/web_ir_actions_act_select_record.js"
+            />
 
         </xpath>
         <xpath expr="link[last()]" position="after">

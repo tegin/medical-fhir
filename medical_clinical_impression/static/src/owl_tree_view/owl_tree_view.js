@@ -28,6 +28,9 @@ odoo.define("medical_clinical_impression.OWLTreeView", function (require) {
             this.view.onFieldChanged(ev);
         }
         confirmChange() {}
+        selectRecord(recordId) {
+            this.view.selectRecord(recordId);
+        }
     }
 
     const OWLTreeView = BasicView.extend({

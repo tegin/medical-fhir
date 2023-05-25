@@ -20,9 +20,10 @@ odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
             this.env.setChild(this);
             // We want to set all the childs in order send the changes properly later
             this.childs = {};
+            this.child_map = {};
             useSubEnv({
                 saveRecord: this.saveRecord.bind(this),
-                setChilds: (db_id, child) => (this.childs[db_id] = child),
+                setChilds: this.setChilds.bind(this),
                 discardChanges: this.discardChanges.bind(this),
                 onViewFamilyHistory: this.onViewFamilyHistory.bind(this),
             });
@@ -31,6 +32,10 @@ odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
                     countField: this.props.arch.attrs.count_field,
                 });
             }
+        }
+        setChilds(db_id, child) {
+            this.childs[db_id] = child;
+            this.child_map[child.props.data.res_id] = db_id;
         }
         discardChanges(recordID) {
             return new Promise((resolve, reject) => {
@@ -58,6 +63,9 @@ odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
             if (this.childs[dataPointID]) {
                 this.childs[dataPointID].setData(data, event);
             }
+        }
+        selectRecord(recordID) {
+            this.childs[this.child_map[recordID]].onEdit();
         }
         onViewFamilyHistory(data) {
             return new Promise((resolve, reject) => {

@@ -10,7 +10,7 @@ class MedicalClinicalImpression(models.Model):
     _inherit = ["medical.event", "mail.thread", "mail.activity.mixin"]
     _description = "Medical Clinical Impression"
     _conditions = "condition_ids"
-    _order = "validation_date desc, id"
+    _order = "validation_date desc, id desc"
     _rec_name = "internal_identifier"
 
     @api.model
