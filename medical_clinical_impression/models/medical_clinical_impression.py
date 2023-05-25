@@ -155,16 +155,16 @@ class MedicalClinicalImpression(models.Model):
                         }
                     )
 
-    def _validate_clinical_impression_fields(self):
+    def _validate_clinical_impression_fields(self, **kwargs):
         return {
             "fhir_state": "completed",
             "validation_date": fields.Datetime.now(),
             "validation_user_id": self.env.user.id,
         }
 
-    def validate_clinical_impression(self):
+    def validate_clinical_impression(self, **kwargs):
         self.ensure_one()
-        self.write(self._validate_clinical_impression_fields())
+        self.write(self._validate_clinical_impression_fields(**kwargs))
         self._create_conditions_from_findings()
         self._create_allergies_from_findings()
 
