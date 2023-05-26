@@ -9,10 +9,14 @@
     "license": "AGPL-3",
     "author": "CreuBlanca,Odoo Community Association (OCA)",
     "website": "https://github.com/tegin/medical-fhir",
-    "depends": ["medical_clinical_impression"],
+    "depends": ["medical_clinical_impression", "medical_product_request"],
     "data": [
+        "views/medical_patient.xml",
         "data/cron.xml",
         "views/medical_clinical_impression.xml",
+    ],
+    "qweb": [
+        "static/src/xml/owl_tree_view.xml",
     ],
     "demo": [],
 }

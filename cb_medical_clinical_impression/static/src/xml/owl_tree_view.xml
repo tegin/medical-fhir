@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+ <t
+        t-name="cb_medical_clinical_impression.MedicalImpressionControlPanel"
+        t-inherit="medical_clinical_impression.MedicalImpressionControlPanel"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath
+            expr="//div[contains(@class, 'o_control_panel')]/div[@id='o_impression_control_panel_alerts']"
+            position="inside"
+        >
+            <div
+                class="col alert alert-warning mb-0 p-0"
+                role="warning"
+                style="white-space: pre-wrap;"
+            >
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <span t-esc="props.info.routine_medication" />
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+</templates>
