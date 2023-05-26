@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2021 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="seq_medical_product_request_order" model="ir.sequence">
+        <field name="name">Medical Product Request Order</field>
+        <field name="code">medical.product.request.order</field>
+        <field name="prefix">MPRO</field>
+        <field name="padding">6</field>
+    </record>
+    <record id="seq_medical_product_request" model="ir.sequence">
+        <field name="name">Medical Product Request</field>
+        <field name="code">medical.product.request</field>
+        <field name="prefix">MPR</field>
+        <field name="padding">6</field>
+    </record>
+    <record id="seq_medical_product_administration" model="ir.sequence">
+        <field name="name">Medical Product Administration</field>
+        <field name="code">medical.product.administration</field>
+        <field name="prefix">MPA</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>
