@@ -11,7 +11,8 @@ odoo.define("owl_tree.ControlPanel", function (require) {
         }
     }
 
-    OwlTreeControlPanel.template = "owl_tree.ControlPanel";
+    OwlTreeControlPanel.template =
+        "medical_clinical_impression.MedicalImpressionControlPanel";
     OwlTreeControlPanel.props = {
         ...OwlTreeControlPanel.props,
         info: {
