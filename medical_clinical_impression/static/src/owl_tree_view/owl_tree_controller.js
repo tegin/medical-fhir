@@ -41,6 +41,10 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
                 self.trigger_up("field_changed", {dataPointID: recordId, changes: {}});
             });
         },
+        canBeDiscarded: function () {
+            // TODO: This is a bad idea, as it will discard all changes without checking
+            return Promise.resolve(true);
+        },
         _confirmChange: function () {
             return Promise.resolve(true);
         },
@@ -86,7 +90,7 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
             });
         },
         start: async function () {
-            this._super.apply(this, arguments);
+            await this._super.apply(this, arguments);
             this.updatePatientInfo();
         },
         _onValidateRecord: function (ev) {
