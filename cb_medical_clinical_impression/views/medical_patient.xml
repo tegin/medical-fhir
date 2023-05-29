@@ -11,15 +11,15 @@
         <field name="inherit_id" ref="medical_base.medical_patient_form" />
         <field name="arch" type="xml">
             <!-- TODO -->
-             <xpath expr="//page[@name='medical_administration']" position="after">
+             <page name="medical_administration" position="after">
                 <page name="medical_routine_medication" string="Routine Medication">
                     <field name="routine_medication" />
                 </page>
-            </xpath>
+            </page>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="medical_patient_form_view">
+    <record model="ir.ui.view" id="medical_patient_his_form">
         <field
             name="name"
         >medical.patient.form (in cb_medical_clinical_impression)</field>
