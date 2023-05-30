@@ -39,7 +39,7 @@ odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
         }
         discardChanges(recordID) {
             return new Promise((resolve, reject) => {
-                this.trigger("discard_changes", {
+                this.trigger("discard_button", {
                     recordID,
                     onSuccess: resolve,
                     onFailure: reject,
@@ -75,7 +75,7 @@ odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
                     onFailure: reject,
                 });
             });
-            //this.trigger_up("view_family_history", {recordID: data.id});
+            // This.trigger_up("view_family_history", {recordID: data.id});
         }
     }
 

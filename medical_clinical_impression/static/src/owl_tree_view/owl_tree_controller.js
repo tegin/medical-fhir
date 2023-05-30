@@ -13,6 +13,7 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
             field_changed: "_onFieldChanged",
             validate_record: "_onValidateRecord",
             view_family_history: "_onViewFamilyHistory",
+            discard_button: "_onDiscardButton",
         }),
         renderButtons: function ($node) {
             if (this.noLeaf || !this.hasButtons) {
@@ -31,19 +32,25 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
             }
         },
         selectRecord: function (recordId) {
-            console.log("SELECTING", recordId);
             this.renderer.selectRecord(recordId);
         },
         _discardChanges: function (recordId) {
             var self = this;
-
             return this._super(...arguments).then(function () {
-                self.trigger_up("field_changed", {dataPointID: recordId, changes: {}});
+                self.trigger_up("field_changed", {
+                    dataPointID: recordId,
+                    changes: {},
+                    doNotSetDirty: true,
+                });
             });
         },
-        canBeDiscarded: function () {
-            // TODO: This is a bad idea, as it will discard all changes without checking
-            return Promise.resolve(true);
+        _onDiscardButton: function (ev) {
+            var self = this;
+            this.discardingDef = new Promise(function (resolve) {
+                resolve(true);
+                self.discardingDef = null;
+            });
+            return this._onDiscardChanges(ev);
         },
         _confirmChange: function () {
             return Promise.resolve(true);
