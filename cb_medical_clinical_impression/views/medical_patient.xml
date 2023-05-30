@@ -3,7 +3,7 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <record model="ir.ui.view" id="medical_patient_form_view">
+    <record model="ir.ui.view" id="medical_patient_form">
         <field
             name="name"
         >medical.patient.form (in cb_medical_clinical_impression)</field>

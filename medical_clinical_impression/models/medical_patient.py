@@ -60,7 +60,7 @@ class MedicalPatient(models.Model):
             }
         return action
 
-    def action_view_clinical_impressions_tree(self):
+    def action_view_family_history_tree(self):
         self.ensure_one()
         view_id = self.env.ref(
             "medical_clinical_impression.medical_family_member_history_view_tree"

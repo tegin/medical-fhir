@@ -179,3 +179,29 @@ class TestClinicalImpression(TransactionCase):
             {"encounter_id": self.encounter_2.id}
         )._compute_current_encounter()
         self.assertFalse(impression.current_encounter)
+
+    def test_onchange_template_id(self):
+        template_cardiology = self.env[
+            "medical.clinical.impression.template"
+        ].create(
+            {
+                "name": "Cardiology Template",
+                "description": "Cardiology Template",
+                "specialty_id": self.specialty_cardiology.id,
+            }
+        )
+        impression = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "encounter_id": self.encounter.id,
+                "specialty_id": self.specialty_cardiology.id,
+            }
+        )
+
+        impression.write({"template_id": template_cardiology.id})
+
+        self.assertEqual(impression.state, "draft")
+        impression._onchange_template_id()
+        self.assertEqual(
+            impression.description, template_cardiology.description
+        )

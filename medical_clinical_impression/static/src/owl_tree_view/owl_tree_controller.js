@@ -111,7 +111,7 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
             var self = this;
             self._rpc({
                 model: "medical.patient",
-                method: "action_view_clinical_impressions_tree",
+                method: "action_view_family_history_tree",
                 args: [[self.model.loadParams.context.active_id]],
             }).then(function (action) {
                 self.do_action(action);

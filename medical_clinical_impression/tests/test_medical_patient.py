@@ -18,6 +18,33 @@ class TestMedicalPatient(TransactionCase):
             {"name": "Gynecology", "description": "Gynecology"}
         )
 
+    def test_create_impression_from_patient_impression_view(self):
+        self.encounter = self.env["medical.encounter"].create(
+            {
+                "patient_id": self.patient.id,
+                "create_date": fields.Datetime.now(),
+            }
+        )
+        wizard = self.env["create.impression.from.patient"].create(
+            {
+                "patient_id": self.patient.id,
+                "encounter_id": self.encounter.id,
+                "specialty_id": self.specialty_cardiology.id,
+            }
+        )
+        wizard = wizard.with_context(impression_view=True)
+        action = wizard.generate()
+
+        self.assertEqual(action["type"], "ir.actions.act_multi")
+        self.assertEqual(len(action["actions"]), 2)
+        self.assertEqual(
+            action["actions"][0]["type"], "ir.actions.act_window_close"
+        )
+        self.assertEqual(
+            action["actions"][1]["type"], "ir.actions.act_select_record"
+        )
+        self.assertFalse(wizard.show_encounter_warning)
+
     def test_create_impression_from_patient_without_encounter(self):
         with self.assertRaises(ValidationError):
             self.env["create.impression.from.patient"].create(
@@ -178,6 +205,23 @@ class TestMedicalPatient(TransactionCase):
             action["context"]["default_patient_id"], self.patient.id
         )
 
+    def test_action_view_family_history_tree(self):
+        action = self.patient.action_view_family_history_tree()
+        self.assertEqual(
+            action["context"]["default_patient_id"], self.patient.id
+        )
+        self.assertEqual(
+            action["views"],
+            [
+                (
+                    self.env.ref(
+                        "medical_clinical_impression.medical_family_member_history_view_tree"
+                    ).id,
+                    "list",
+                )
+            ],
+        )
+
     def test_compute_impression_info_from_patient(self):
         self.encounter = self.env["medical.encounter"].create(
             {
@@ -247,3 +291,52 @@ class TestMedicalPatient(TransactionCase):
         self.assertEqual(
             action["context"]["default_encounter_id"], self.encounter_2.id
         )
+
+    def test_get_patient_data(self):
+        # Create a new patient with attributes for testing
+        new_patient = self.env["medical.patient"].create(
+            {
+                "name": "New Patient",
+                "gender": "female",
+                "birth_date": "1998-10-12",
+            }
+        )
+        encounter = self.env["medical.encounter"].create(
+            {"patient_id": new_patient.id}
+        )
+        finding_pregnant = self.env["medical.clinical.finding"].create(
+            {
+                "name": "Pregnant",
+                "create_condition_from_clinical_impression": True,
+            }
+        )
+        finding_eye_infection = self.env["medical.clinical.finding"].create(
+            {
+                "name": "Eye infection",
+                "create_condition_from_clinical_impression": False,
+            }
+        )
+
+        impression = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": new_patient.id,
+                "encounter_id": encounter.id,
+                "specialty_id": self.specialty_gynecology.id,
+                "finding_ids": [
+                    (4, finding_pregnant.id),
+                    (4, finding_eye_infection.id),
+                ],
+            }
+        )
+
+        impression.validate_clinical_impression()
+
+        # Call the function being tested
+        patient_data = new_patient.get_patient_data()
+
+        # Assert the expected output
+        self.assertEqual(patient_data["name"], "New Patient")
+        self.assertEqual(patient_data["condition_count"], 1)
+        self.assertCountEqual(patient_data["condition_names"], ["Pregnant"])
+        self.assertEqual(patient_data["gender"], "Female")
+        self.assertEqual(patient_data["patient_age"], 24)

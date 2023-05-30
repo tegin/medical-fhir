@@ -13,6 +13,6 @@ class MedicalClinicalImpressionTemplate(models.Model):
     description = fields.Char(required=True)
     specialty_id = fields.Many2one(
         "medical.specialty",
-        required=True,
+        required=False,
         domain="[('specialty_id', '=', specialty_id)]",
     )
