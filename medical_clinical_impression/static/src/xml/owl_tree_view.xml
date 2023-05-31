@@ -93,8 +93,15 @@
                 </div>
 
             </div>
-            <div class="row row-text pt-3">
-                <div class="col-12 pb-3" t-if="state.data.data.summary">
+            <div class="row row-text pt-3 pb-2">
+                <div class="col-12" t-if="state.edit">
+                    <FieldAdapter
+                        Component="FieldMany2One"
+                        widgetArgs="['template_id', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {'placeholder': 'Template'}}]"
+                        t-if="state.edit"
+                    />
+                </div>
+                <div class="col-12 pt-2" t-if="state.edit || state.data.data.summary">
                     <i t-if="state.data.data.summary || state.edit">Summary: </i>
                     <span
                         t-esc="state.data.data.summary"
@@ -106,14 +113,7 @@
                         t-if="state.edit"
                     />
                 </div>
-                <div class="col-12 pb-3" t-if="state.edit">
-                    <FieldAdapter
-                        Component="FieldMany2One"
-                        widgetArgs="['template_id', state.data, {mode: 'edit', viewType: 'owl_tree', attrs: {'placeholder': 'Template'}}]"
-                        t-if="state.edit"
-                    />
-                </div>
-                <div class="col-6">
+                <div class="col-6 pt-2">
                     <i
                         t-if="state.data.data.description || state.edit"
                     >Description: </i>
@@ -128,7 +128,7 @@
                     />
 
                 </div>
-                <div class="col-6 o_impression_internal_notes">
+                <div class="col-6 o_impression_internal_notes pt-2">
                     <i t-if="state.data.data.note || state.edit">Notes: </i>
                     <span
                         t-esc="state.data.data.note"
