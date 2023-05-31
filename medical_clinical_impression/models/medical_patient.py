@@ -12,7 +12,7 @@ class MedicalPatient(models.Model):
         "medical.clinical.impression",
         inverse_name="patient_id",
     )
-    impression_specialty_ids = fields.Many2many(
+    impression_specialty_ids = fields.One2many(
         "medical.specialty", compute="_compute_impression_specialties"
     )
 
