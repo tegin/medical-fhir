@@ -13,4 +13,25 @@
 
 -->
 
+    <record
+        id="medical_impression_generate_report_act_server"
+        model="ir.actions.server"
+    >
+        <field name="name">Generate report</field>
+        <field
+            name="model_id"
+            ref="medical_clinical_impression.model_medical_clinical_impression"
+        />
+        <field
+            name="binding_model_id"
+            ref="medical_clinical_impression.model_medical_clinical_impression"
+        />
+        <field name="state">code</field>
+        <field
+            name="code"
+        >action = records.action_create_clinical_impression_report()</field>
+    </record>
+
+
+
 </odoo>

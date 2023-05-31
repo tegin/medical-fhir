@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="assets_backend"
+        name="assets_backend"
+        inherit_id="medical_clinical_impression.assets_backend"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/cb_medical_clinical_impression/static/src/js/impression_component.js"
+            />
+            <script
+                type="text/javascript"
+                src="/cb_medical_clinical_impression/static/src/js/owl_tree_controller.js"
+            />
+        </xpath>
+    </template>
+</odoo>

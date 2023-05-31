@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="impression_to_diagnostic_report">
+        <div t-foreach="impressions" t-as="impression">
+            <b><t t-esc="impression.validation_user_id.name" /> on <t
+                    t-esc="impression.create_date.date()"
+                /></b>
+            <br t-if="impression.summary" />
+            <i t-esc="impression.summary" t-if="impression.summary" />
+            <br t-if="impression.description" />
+            <span
+                t-esc="impression.description"
+                style="white-space: pre-wrap;"
+                t-if="impression.description"
+            />
+        </div>
+    </template>
+</odoo>
