@@ -14,6 +14,10 @@
                 type="text/javascript"
                 src="/cb_medical_clinical_impression/static/src/js/owl_tree_controller.js"
             />
+           <script
+                type="text/javascript"
+                src="/cb_medical_clinical_impression/static/src/js/owl_tree_controlpanel.js"
+            />
         </xpath>
     </template>
 </odoo>

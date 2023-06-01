@@ -12,4 +12,10 @@ class MedicalPatient(models.Model):
     def get_patient_data(self):
         res = super().get_patient_data()
         res["routine_medication"] = self.routine_medication
+        res["id"] = self.id
         return res
+
+    def set_routine_medication(self, routine_medication):
+        self.ensure_one()
+        self.routine_medication = routine_medication
+        return True

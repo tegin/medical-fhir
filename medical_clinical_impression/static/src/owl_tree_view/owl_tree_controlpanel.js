@@ -4,6 +4,7 @@ odoo.define("owl_tree.ControlPanel", function (require) {
     "use strict";
 
     const ControlPanel = require("web.ControlPanel");
+    const patchMixin = require("web.patchMixin");
 
     class OwlTreeControlPanel extends ControlPanel {
         onFamilyHistory() {
@@ -20,5 +21,5 @@ odoo.define("owl_tree.ControlPanel", function (require) {
             optional: 1,
         },
     };
-    return OwlTreeControlPanel;
+    return patchMixin(OwlTreeControlPanel);
 });

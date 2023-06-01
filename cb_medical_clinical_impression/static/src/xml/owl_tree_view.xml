@@ -17,13 +17,37 @@
                 style="white-space: pre-wrap;"
             >
                 <div class="row">
-                    <div class="col-12 text-center">
+                    <div class="col-11 text-center">
                         <span t-esc="props.info.routine_medication" />
+                    </div>
+
+                    <div class="col-1">
+                      <button
+                            class="btn btn-secundary
+                         btn-sm d-flex justify-content-end p-0"
+                            style="white-space: nowrap;"
+                            t-on-click="onEditRoutineMedication"
+                        >
+                    <i class="fas fa-edit" />
+                </button>
                     </div>
                 </div>
             </div>
         </xpath>
     </t>
+
+
+    <div t-name="cb_medical_clinical_impression.RoutineMedicationDialog">
+        <textarea
+            class="form-control"
+            name="routine_medication"
+            id="routine_medication"
+            style="white-space: nowrap;min-height: 120px"
+            required="required"
+        >
+            <t t-esc="routine_medication" />
+        </textarea>
+    </div>
 
     <div
         t-name="cb_medical_clinical_impression.ImpressionComponent"
