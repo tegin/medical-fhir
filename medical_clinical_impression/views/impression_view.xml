@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record id="impression_owl_tree_view" model="ir.ui.view">
+    <record id="medical_impression_view" model="ir.ui.view">
         <field name="name">Impressions</field>
         <field name="model">medical.clinical.impression</field>
         <field name="arch" type="xml">
-            <owl_tree>
+            <medical_impression>
                 <div>
                     <field name="name" />
                     <field name="encounter_id" />
@@ -22,13 +22,13 @@
                     <field name="allergy_substance_ids" widget="many2many_tags" />
                     <field name="template_id" />
                 </div>
-            </owl_tree>
+            </medical_impression>
         </field>
     </record>
 
     <record id='medical_clinical_impression_act_window' model='ir.actions.act_window'>
         <field name="name">Impressions</field>
-        <field name="view_mode">owl_tree,tree,form</field>
+        <field name="view_mode">medical_impression,tree,form</field>
     </record>
 
 </odoo>

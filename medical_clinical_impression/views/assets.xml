@@ -9,7 +9,7 @@
         <xpath expr="." position="inside">
                <script
                 type="text/javascript"
-                src="/medical_clinical_impression/static/src/owl_tree_view/owl_tree_view.js"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_view.js"
             />
             <script
                 type="text/javascript"
@@ -17,19 +17,19 @@
             />
             <script
                 type="text/javascript"
-                src="/medical_clinical_impression/static/src/owl_tree_view/owl_tree_model.js"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_model.js"
             />
             <script
                 type="text/javascript"
-                src="/medical_clinical_impression/static/src/owl_tree_view/owl_tree_controller.js"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_controller.js"
             />
             <script
                 type="text/javascript"
-                src="/medical_clinical_impression/static/src/owl_tree_view/owl_tree_renderer.js"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_renderer.js"
             />
             <script
                 type="text/javascript"
-                src="/medical_clinical_impression/static/src/owl_tree_view/owl_tree_controlpanel.js"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_controlpanel.js"
             />
              <script
                 type="text/javascript"

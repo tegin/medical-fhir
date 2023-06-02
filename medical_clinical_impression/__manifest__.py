@@ -34,7 +34,7 @@
     ],
     "qweb": [
         "static/src/xml/widget_warning_dropdown.xml",
-        "static/src/xml/owl_tree_view.xml",
+        "static/src/xml/medical_impression_view.xml",
     ],
     "demo": [
         "demo/medical_clinical_impression_template.xml",

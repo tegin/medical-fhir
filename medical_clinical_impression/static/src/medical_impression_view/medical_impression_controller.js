@@ -1,4 +1,6 @@
-odoo.define("medical_clinical_impression.OWLTreeController", function (require) {
+odoo.define("medical_clinical_impression.MedicalImpressionController", function (
+    require
+) {
     "use strict";
 
     var core = require("web.core");
@@ -6,8 +8,8 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
     var qweb = core.qweb;
     var FieldManagerMixin = require("web.FieldManagerMixin");
 
-    var OWLTreeController = BasicController.extend({
-        buttons_template: "OwlTreeView.buttons",
+    var MedicalImpressionController = BasicController.extend({
+        buttons_template: "MedicalImpressionView.buttons",
         custom_events: _.extend({}, BasicController.prototype.custom_events, {
             save_record: "_onSaveRecord",
             field_changed: "_onFieldChanged",
@@ -126,5 +128,5 @@ odoo.define("medical_clinical_impression.OWLTreeController", function (require) 
         },
     });
 
-    return OWLTreeController;
+    return MedicalImpressionController;
 });

@@ -1,9 +1,9 @@
-odoo.define("medical_clinical_impression.OWLTreeView", function (require) {
+odoo.define("medical_clinical_impression.MedicalImpressionView", function (require) {
     "use strict";
 
-    const OWLTreeController = require("medical_clinical_impression.OWLTreeController");
-    const OWLTreeModel = require("medical_clinical_impression.OWLTreeModel");
-    const OWLTreeRenderer = require("medical_clinical_impression.OWLTreeRenderer");
+    const MedicalImpressionController = require("medical_clinical_impression.MedicalImpressionController");
+    const MedicalImpressionModel = require("medical_clinical_impression.MedicalImpressionModel");
+    const MedicalImpressionRenderer = require("medical_clinical_impression.MedicalImpressionRenderer");
     const BasicView = require("web.BasicView");
     const core = require("web.core");
     const RendererWrapper = require("web.RendererWrapper");
@@ -33,17 +33,17 @@ odoo.define("medical_clinical_impression.OWLTreeView", function (require) {
         }
     }
 
-    const OWLTreeView = BasicView.extend({
+    const MedicalImpressionView = BasicView.extend({
         accesskey: "m",
-        display_name: _lt("OWLTreeView"),
+        display_name: _lt("MedicalImpressionView"),
         icon: "fa-indent",
         config: _.extend({}, BasicView.prototype.config, {
-            Controller: OWLTreeController,
-            Model: OWLTreeModel,
-            Renderer: OWLTreeRenderer,
-            ControlPanel: require("owl_tree.ControlPanel"),
+            Controller: MedicalImpressionController,
+            Model: MedicalImpressionModel,
+            Renderer: MedicalImpressionRenderer,
+            ControlPanel: require("medical_impression.ControlPanel"),
         }),
-        viewType: "owl_tree",
+        viewType: "medical_impression",
         searchMenuTypes: ["filter", "favorite"],
 
         /**
@@ -59,7 +59,7 @@ odoo.define("medical_clinical_impression.OWLTreeView", function (require) {
         },
     });
 
-    view_registry.add("owl_tree", OWLTreeView);
+    view_registry.add("medical_impression", MedicalImpressionView);
 
-    return OWLTreeView;
+    return MedicalImpressionView;
 });

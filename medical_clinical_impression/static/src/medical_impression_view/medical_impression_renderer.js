@@ -1,4 +1,6 @@
-odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
+odoo.define("medical_clinical_impression.MedicalImpressionRenderer", function (
+    require
+) {
     "use strict";
 
     const AbstractRendererOwl = require("web.AbstractRendererOwl");
@@ -8,7 +10,7 @@ odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
 
     const {useState, useSubEnv} = owl.hooks;
 
-    class OWLTreeRenderer extends AbstractRendererOwl {
+    class MedicalImpressionRenderer extends AbstractRendererOwl {
         constructor(parent, props) {
             super(...arguments);
             this.qweb = new QWeb(this.env.isDebug(), {_s: session.origin});
@@ -82,10 +84,10 @@ odoo.define("medical_clinical_impression.OWLTreeRenderer", function (require) {
     const components = {
         ImpressionComponent: require("medical_clinical_impression/static/src/components/impression_component.js"),
     };
-    Object.assign(OWLTreeRenderer, {
+    Object.assign(MedicalImpressionRenderer, {
         components,
-        template: "medical_clinical_impression.OWLTreeRenderer",
+        template: "medical_clinical_impression.MedicalImpressionRenderer",
     });
 
-    return patchMixin(OWLTreeRenderer);
+    return patchMixin(MedicalImpressionRenderer);
 });
