@@ -12,11 +12,11 @@
             />
             <script
                 type="text/javascript"
-                src="/cb_medical_clinical_impression/static/src/js/owl_tree_controller.js"
+                src="/cb_medical_clinical_impression/static/src/js/medical_impression_controller.js"
             />
            <script
                 type="text/javascript"
-                src="/cb_medical_clinical_impression/static/src/js/owl_tree_controlpanel.js"
+                src="/cb_medical_clinical_impression/static/src/js/medical_impression_controlpanel.js"
             />
         </xpath>
     </template>

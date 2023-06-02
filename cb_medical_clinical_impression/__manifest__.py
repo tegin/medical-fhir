@@ -22,7 +22,7 @@
         "views/medical_clinical_impression.xml",
     ],
     "qweb": [
-        "static/src/xml/owl_tree_view.xml",
+        "static/src/xml/medical_impression_view.xml",
     ],
     "demo": [],
 }

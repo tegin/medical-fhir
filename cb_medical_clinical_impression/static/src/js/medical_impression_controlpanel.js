@@ -3,13 +3,13 @@
 odoo.define("cb_medical_clinical_impression.ControlPanelPatch", function (require) {
     "use strict";
 
-    const OwlTreeControlPanel = require("owl_tree.ControlPanel");
     var Dialog = require("web.Dialog");
     var core = require("web.core");
     var _t = core._t;
     var QWeb = core.qweb;
+    const MedicalImpressionControlPanel = require("medical_impression.ControlPanel");
 
-    OwlTreeControlPanel.patch(
+    MedicalImpressionControlPanel.patch(
         "cb_medical_clinical_impression.ControlPanel",
         (T) =>
             class extends T {
