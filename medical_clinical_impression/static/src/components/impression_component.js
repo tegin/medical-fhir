@@ -32,8 +32,14 @@ odoo.define(
              */
             constructor(...args) {
                 super(...args);
+                var edit = false;
+                if (this.props.currentImpression) {
+                    edit =
+                        parseInt(this.props.currentImpression, 10) ===
+                        this.props.data.res_id;
+                }
                 this.state = useState({
-                    edit: false,
+                    edit: edit,
                     dirty: false,
                     data: this.props.data,
                     changes: {},
@@ -93,6 +99,7 @@ odoo.define(
             }
             onEdit() {
                 this.state.edit = true;
+                this.trigger("edit_record", {id: this.state.data.res_id});
             }
             get timeFromNow() {
                 if (!this.state.data.data.validation_date) {
@@ -133,8 +140,12 @@ odoo.define(
 
         Object.assign(ImpressionComponent, {
             components: {FieldAdapter},
+            defaultProps: {
+                currentImpression: undefined,
+            },
             props: {
                 data: {},
+                currentImpression: {},
             },
             template: "medical_clinical_impression.ImpressionComponent",
         });

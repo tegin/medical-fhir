@@ -2,14 +2,17 @@
 <templates xml:space="preserve">
     <div
         t-name="medical_clinical_impression.MedicalImpressionRenderer"
-        class="o_owl_tree_view"
+        class="o_medical_impression_view"
         owl="1"
     >
         <div class="container mt-2">
             <t t-foreach="props.data" t-as="item" t-key="item.id">
                 <div class="row">
                     <div class="col">
-                        <ImpressionComponent data="item" />
+                        <ImpressionComponent
+                            data="item"
+                            currentImpression="state.currentImpression"
+                        />
                     </div>
                 </div>
             </t>
@@ -222,10 +225,14 @@
     </div>
 
     <t t-name="MedicalImpressionView.buttons">
-        <div class="o_owltree_buttons" role="toolbar" aria-label="Main actions">
+        <div
+            class="o_medical_impression_buttons"
+            role="toolbar"
+            aria-label="Main actions"
+        >
             <button
                 type="button"
-                class="btn btn-primary o_owltree_button_add"
+                class="btn btn-primary o_medical_impression_button_add"
                 accesskey="c"
             >
                 Create

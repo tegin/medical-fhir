@@ -47,12 +47,26 @@ odoo.define("medical_clinical_impression.MedicalImpressionView", function (requi
         searchMenuTypes: ["filter", "favorite"],
 
         /**
-         * @override
+         * Process the fields_view to find all fields appearing in the views.
+         * list those fields' name in this.fields_name, which will be the list
+         * of fields read when data is fetched.
+         * this.fields is the list of all field's description (the result of
+         * the fields_get), where the fields appearing in the fields_view are
+         * augmented with their attrs and some flags if they require a
+         * particular handling.
+         *
+         * @param {Object} viewInfo
+         * @param {Object} params
          */
-        init: function () {
+        init: function (viewInfo, params) {
             this._super.apply(this, arguments);
+            var impression = undefined;
+            if (params.context.params) {
+                impression = params.context.params.impression_id;
+            }
+            this.controllerParams.currentImpression = impression;
+            this.rendererParams.currentImpression = impression;
         },
-
         getRenderer(parent, state) {
             state = Object.assign(state || {}, this.rendererParams);
             return new NewRendererWrapper(parent, this.config.Renderer, state);

@@ -17,6 +17,7 @@ odoo.define("medical_clinical_impression.MedicalImpressionRenderer", function (
             this.state = useState({
                 localItems: props.items || [],
                 countField: "",
+                currentImpression: this.props.currentImpression,
             });
             // We want to send to RendererWrapper, the function of the widget
             this.env.setChild(this);
@@ -77,7 +78,6 @@ odoo.define("medical_clinical_impression.MedicalImpressionRenderer", function (
                     onFailure: reject,
                 });
             });
-            // This.trigger_up("view_family_history", {recordID: data.id});
         }
     }
 
@@ -86,6 +86,14 @@ odoo.define("medical_clinical_impression.MedicalImpressionRenderer", function (
     };
     Object.assign(MedicalImpressionRenderer, {
         components,
+        defaultProps: {
+            ...MedicalImpressionRenderer.defaultProps,
+            currentImpression: undefined,
+        },
+        props: {
+            ...MedicalImpressionRenderer.props,
+            currentImpression: {},
+        },
         template: "medical_clinical_impression.MedicalImpressionRenderer",
     });
 

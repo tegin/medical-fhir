@@ -16,7 +16,18 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
             validate_record: "_onValidateRecord",
             view_family_history: "_onViewFamilyHistory",
             discard_button: "_onDiscardButton",
+            edit_record: "_onEditRecord",
         }),
+        /**
+         * @override
+         *
+         * @param {Boolean} params.hasActionMenus
+         * @param {Object} params.toolbarActions
+         */
+        init: function (parent, model, renderer, params) {
+            this._super.apply(this, arguments);
+            this.currentImpression = params.currentImpression;
+        },
         renderButtons: function ($node) {
             if (this.noLeaf || !this.hasButtons) {
                 this.hasButtons = false;
@@ -25,7 +36,7 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
                 this.$buttons = $(qweb.render(this.buttons_template, {widget: this}));
                 this.$buttons.on(
                     "click",
-                    ".o_owltree_button_add",
+                    ".o_medical_impression_button_add",
                     this._onCreateRecord.bind(this)
                 );
             }
@@ -53,6 +64,13 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
                 self.discardingDef = null;
             });
             return this._onDiscardChanges(ev);
+        },
+        _onEditRecord: function (ev) {
+            this.currentImpression = ev.data.id;
+            this.trigger_up("push_state", {
+                controllerID: this.controllerID,
+                state: this.getState(),
+            });
         },
         _confirmChange: function () {
             return Promise.resolve(true);
@@ -84,8 +102,16 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
             });
         },
         _onSaveRecord: function (ev) {
+            var self = this;
             this.saveRecord(ev.data.recordID)
                 .then(ev.data.onSuccess)
+                .then(function () {
+                    self.currentImpression = undefined;
+                    self.trigger_up("push_state", {
+                        controllerID: self.controllerID,
+                        state: self.getState(),
+                    });
+                })
                 .guardedCatch(ev.data.onFailure);
         },
         updatePatientInfo() {
@@ -125,6 +151,16 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
             }).then(function (action) {
                 self.do_action(action);
             });
+        },
+        /**
+         * Add the current Selected impression to the state pushed in the url.
+         *
+         * @override
+         */
+        getState: function () {
+            const state = this._super.apply(this, arguments);
+            state.impression_id = this.currentImpression;
+            return state;
         },
     });
 
