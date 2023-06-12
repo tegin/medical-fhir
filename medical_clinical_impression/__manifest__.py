@@ -17,6 +17,7 @@
         "web_ir_actions_act_view_reload",
     ],
     "data": [
+        "views/res_users.xml",
         "views/medical_clinical_impression_template.xml",
         "views/assets.xml",
         "security/medical_security.xml",
@@ -39,5 +40,6 @@
     "demo": [
         "demo/medical_clinical_impression_template.xml",
         "demo/medical_demo.xml",
+        "demo/medical_security.xml",
     ],
 }

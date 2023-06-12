@@ -3,6 +3,43 @@
     Copyright 2021 Creu Blanca
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
-<odoo>
+<odoo noupdate="1">
+    <record id="medical_impression_rule" model="ir.rule">
+        <field name="name">Medical Impression: Creator and Doctors</field>
+        <field name="model_id" ref="model_medical_clinical_impression" />
+        <field name="groups" eval="[(4, ref('medical_base.group_medical_doctor'))]" />
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="perm_read" eval="False" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+
+    <record id="medical_impression_specialty_rule" model="ir.rule">
+        <field name="name">Medical Impression: Specialty</field>
+        <field name="model_id" ref="model_medical_clinical_impression" />
+        <field name="groups" eval="[(4, ref('medical_base.group_medical_doctor'))]" />
+        <field
+            name="domain_force"
+        >[('specialty_id', 'in', [user.partner_id.specialty_ids])]</field>
+        <field name="perm_read" eval="False" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+
+    <record id="medical_impression_manager_rule" model="ir.rule">
+        <field name="name">Medical Impression: Manager</field>
+        <field name="model_id" ref="model_medical_clinical_impression" />
+        <field
+            name="groups"
+            eval="[(4, ref('medical_base.group_medical_doctor_manager'))]"
+        />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="False" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_create" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
 
 </odoo>

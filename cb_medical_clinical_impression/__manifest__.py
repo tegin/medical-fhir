@@ -24,5 +24,4 @@
     "qweb": [
         "static/src/xml/medical_impression_view.xml",
     ],
-    "demo": [],
 }

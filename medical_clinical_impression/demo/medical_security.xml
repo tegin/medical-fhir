@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    Copyright 2017 Creu Blanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="base.user_admin" model="res.users">
+        <field
+            name="groups_id"
+            eval="[(4,ref('medical_base.group_medical_doctor_manager'))]"
+        />
+        <field
+            name="specialty_ids"
+            eval="[(6, 0, [ref('medical_clinical_impression.specialty_cardiology')])]"
+        />
+    </record>
+    <record id="base.user_demo" model="res.users">
+        <field name="groups_id" eval="[(4,ref('medical_base.group_medical_doctor'))]" />
+        <field
+            name="specialty_ids"
+            eval="[(6, 0, [ref('medical_clinical_impression.specialty_gynecology')])]"
+        />
+    </record>
+</odoo>
