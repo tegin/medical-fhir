@@ -140,13 +140,15 @@ odoo.define(
 
         Object.assign(ImpressionComponent, {
             components: {FieldAdapter},
+            /*
+            We cannot add props on renderer on v14. We will keep the code for future versions...
             defaultProps: {
                 currentImpression: undefined,
             },
             props: {
                 data: {},
                 currentImpression: {},
-            },
+            },*/
             template: "medical_clinical_impression.ImpressionComponent",
         });
 
