@@ -27,7 +27,7 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
         init: function (parent, model, renderer, params) {
             this._super.apply(this, arguments);
             this.currentImpression = params.currentImpression;
-            console.log(this.currentImpression)
+            console.log(this.currentImpression);
         },
         renderButtons: function ($node) {
             if (this.noLeaf || !this.hasButtons) {

@@ -87,15 +87,16 @@ odoo.define("medical_clinical_impression.MedicalImpressionRenderer", function (
     Object.assign(MedicalImpressionRenderer, {
         components,
         /*
+        We cannot add props on renderer on v14. We will keep the code for future versions...
         defaultProps: {
             ...AbstractRendererOwl.defaultProps,
             currentImpression: undefined,
-        }, We cannot add props on renderer on v14. We will keep the code for future versions...
-            props: {
-                ...AbstractRendererOwl.props,
-                currentImpression: {},
-            },
-            */
+        },
+        props: {
+            ...AbstractRendererOwl.props,
+            currentImpression: {},
+        },
+        */
         template: "medical_clinical_impression.MedicalImpressionRenderer",
     });
     return patchMixin(MedicalImpressionRenderer);
