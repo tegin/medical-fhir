@@ -73,7 +73,7 @@
         t-attf-class="o_impression_component mb-1 o_impression_component_{{state.data.data.fhir_state}}"
         owl="1"
     >
-        <div class="container-fluid">
+        <div class="container-fluid"> <!--TODO: botones se solapan al hacer zoom-->
             <div class="row style-header pt-1 pb-1 o_impression_header">
                 <div class="col-3 o_impression_header_item">
                     <span t-esc="state.data.data.encounter_id.data.display_name" />
@@ -94,6 +94,20 @@
                 <div class="col-2 o_impression_header_item">
                     <span t-esc="state.data.data.specialty_id.data.display_name" />
                 </div>
+                <div class="col-2 d-flex justify-content-end p-1">
+
+                    <button
+                        class="btn btn-primary btn-sm mr-3"
+                        style="white-space: nowrap;"
+                        t-on-click="onViewProcedureRequest"
+                        t-if="state.data.data.fhir_state == 'completed'">
+
+
+
+                        <i class="fas fa-prescription" /> Procedure Request
+                    </button>
+                </div>
+
 
             </div>
             <div class="row row-text pt-3 pb-2">
@@ -144,82 +158,90 @@
                     />
                 </div>
             </div>
-            <div class="row pt-2 pb-2">
-                <div class="col-5">
-                    <FieldAdapter
-                        Component="FieldMany2ManyTags"
-                        widgetArgs="['finding_ids', state.data, {mode: 'readonly'}]"
-                        t-if="!state.edit"
-                    />
-                    <FieldAdapter
-                        Component="FieldMany2ManyTags"
-                        widgetArgs="['finding_ids', state.data, {mode: 'edit', viewType: 'medical_impression', attrs: {'placeholder': 'Conditions'}}]"
-                        t-if="state.edit"
-                    />
-                </div>
-                <div class="col-5">
-                    <FieldAdapter
-                        Component="FieldMany2ManyTags"
-                        widgetArgs="['allergy_substance_ids', state.data, {mode: 'readonly'}]"
-                        t-if="!state.edit"
-                    />
-                    <FieldAdapter
-                        Component="FieldMany2ManyTags"
-                        widgetArgs="['allergy_substance_ids', state.data, {mode: 'edit', viewType: 'medical_impression', attrs: {'placeholder': 'Allergies'}}]"
-                        t-if="state.edit"
-                    />
-                </div>
-                <div class="col-2 d-flex justify-content-end">
-                    <button
-                        class="btn btn-success btn-sm"
-                        style="white-space: nowrap"
-                        t-on-click="onValidate"
-                        t-if="state.data.data.fhir_state == 'in_progress'"
-                    >
-                        <i class="fas fa-check" /> <t
+                <div class=" row pt-2 pb-2 ">
+                    <div class="col-3">
+                        <FieldAdapter
+                            Component="FieldMany2ManyTags"
+                            widgetArgs="['finding_ids', state.data, {mode: 'readonly'}]"
+                            t-if="!state.edit"
+                        />
+                        <FieldAdapter
+                            Component="FieldMany2ManyTags"
+                            widgetArgs="['finding_ids', state.data, {mode: 'edit', viewType: 'medical_impression', attrs: {'placeholder': 'Conditions'}}]"
                             t-if="state.edit"
-                        >Validar y Guardar</t><t t-else="">Validar</t>
-                    </button>
+                        />
+                    </div>
+                    <div class="col-3">
+                        <FieldAdapter
+                            Component="FieldMany2ManyTags"
+                            widgetArgs="['allergy_substance_ids', state.data, {mode: 'readonly'}]"
+                            t-if="!state.edit"
+                        />
+                        <FieldAdapter
+                            Component="FieldMany2ManyTags"
+                            widgetArgs="['allergy_substance_ids', state.data, {mode: 'edit', viewType: 'medical_impression', attrs: {'placeholder': 'Allergies'}}]"
+                            t-if="state.edit"
+                        />
+                    </div>
+                    <div class="col-6 d-flex justify-content-end p-0">
+                        <button
+                            class="btn btn-secundary btn-sm mr-3"
+                            style="white-space: nowrap;"
+                            t-on-click="onEdit"
+                            t-if="state.data.data.fhir_state == 'in_progress'"
+                            >
 
-                    <button
-                        class="btn btn-primary btn-sm"
-                        style="white-space: nowrap;"
-                        t-on-click="onEdit"
-                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
-                    >
-                        <i class="fas fa-edit" /> Editar
-                    </button>
+                            <i class="fas fa-prescription" /> Generate Procedure Request
+                        </button>
+                        <button
+                            class="btn btn-success btn-sm mr-3"
+                            style="white-space: nowrap"
+                            t-on-click="onValidate"
+                            t-if="state.data.data.fhir_state == 'in_progress'"
+                        >
+                            <i class="fas fa-check" /> <t
+                                t-if="state.edit"
+                            >Validar y Guardar</t><t t-else="">Validar</t>
+                        </button>
 
-                    <button
-                        class="btn btn-primary btn-sm"
-                        style="white-space: nowrap;"
-                        t-on-click="onSave"
-                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
-                    >
-                        <i class="fas fa-save" /> Guardar
-                    </button>
+                        <button
+                            class="btn btn-primary btn-sm mr-4"
+                            style="white-space: nowrap;"
+                            t-on-click="onEdit"
+                            t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
+                        >
+                            <i class="fas fa-edit" /> Editar
+                        </button>
 
-                    <button
-                        class="btn btn-secondary btn-sm"
-                        style="white-space: nowrap;"
-                        t-on-click="onDeleteChanges"
-                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
-                    >
-                        <i class="fas fa-trash" /> Descartar
+                        <button
+                            class="btn btn-primary btn-sm mr-4"
+                            style="white-space: nowrap;"
+                            t-on-click="onSave"
+                            t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
+                        >
+                            <i class="fas fa-save" /> Guardar
+                        </button>
 
-                    </button>
+                        <button
+                            class="btn btn-secondary btn-sm mr-4"
+                            style="white-space: nowrap;"
+                            t-on-click="onDeleteChanges"
+                            t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; state.edit"
+                        >
+                            <i class="fas fa-trash" /> Descartar
 
-                    <button
-                        class="btn btn-danger btn-sm"
-                        style="white-space: nowrap;"
-                        t-on-click="onCancel"
-                        t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
-                    >
+                        </button>
 
-                        <i class="fas fa-times" /> Cancelar
-                    </button>
-                </div>
+                        <button
+                            class="btn btn-danger btn-sm mr-3"
+                            style="white-space: nowrap;"
+                            t-on-click="onCancel"
+                            t-if="state.data.data.fhir_state == 'in_progress' &amp;&amp; !state.edit"
+                        >
 
+                            <i class="fas fa-times" /> Cancelar
+                        </button>
+                    </div>
             </div>
         </div>
     </div>

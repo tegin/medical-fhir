@@ -79,6 +79,25 @@ class MedicalPatient(models.Model):
             "domain": [("patient_id", "=", self.id)],
         }
 
+    def action_view_medical_procedure_tree(self):
+        self.ensure_one()
+        view_id = self.env.ref(
+            "medical_clinical_procedure.medical_procedure_view_tree"
+        ).id
+        ctx = dict(self._context)
+        ctx["default_patient_id"] = self.id
+
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "medical.procedure",
+            "name": "Medical Procedures",
+            "view_type": "list",
+            "view_mode": "tree",
+            "views": [(view_id, "list")],
+            "context": ctx,
+            "domain": [("patient_id", "=", self.id)],
+        }
+
     def action_view_family_history(self):
         self.ensure_one()
         action = self.env["ir.actions.act_window"]._for_xml_id(

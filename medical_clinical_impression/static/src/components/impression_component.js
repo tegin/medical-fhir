@@ -101,6 +101,12 @@ odoo.define(
                 this.state.edit = true;
                 this.trigger("edit_record", {id: this.state.data.res_id});
             }
+
+            onViewProcedureRequest() {
+               console.log("Viewin Procedure Rquests");
+
+               this.trigger("view_procedure_requests", {});
+            }
             get timeFromNow() {
                 if (!this.state.data.data.validation_date) {
                     return false;

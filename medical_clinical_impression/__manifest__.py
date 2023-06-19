@@ -15,6 +15,7 @@
         "medical_administration_practitioner_specialty",
         "web_ir_actions_act_multi",
         "web_ir_actions_act_view_reload",
+        "medical_clinical_procedure",
     ],
     "data": [
         "views/res_users.xml",
