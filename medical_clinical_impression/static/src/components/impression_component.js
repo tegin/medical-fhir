@@ -102,11 +102,16 @@ odoo.define(
                 this.trigger("edit_record", {id: this.state.data.res_id});
             }
 
-            onViewProcedureRequest() {
-               console.log("Viewin Procedure Rquests");
-
-               this.trigger("view_procedure_requests", {});
+            onViewExternalProcedure() {
+                console.log("Viewin Procedure Rquests");
+                this.trigger("view_external_procedure", {id: this.state.data.res_id});
             }
+
+            _onCreateExternalProcedure() {
+                console.log("Create Procedure Rquests");
+                this.trigger("create_external_procedure", {id: this.state.data.res_id});
+            }
+
             get timeFromNow() {
                 if (!this.state.data.data.validation_date) {
                     return false;

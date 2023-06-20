@@ -17,7 +17,8 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
             view_family_history: "_onViewFamilyHistory",
             discard_button: "_onDiscardButton",
             edit_record: "_onEditRecord",
-            view_procedure_requests: "_onViewProcedureRequest"
+            view_external_procedure: "_onViewExternalProcedure",
+            create_external_procedure: "_onCreateExternalProcedure",
         }),
         /**
          * @override
@@ -144,20 +145,34 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
                     self.updatePatientInfo();
                 });
         },
-        _onViewProcedureRequest: function (ev) {
+        _onViewExternalProcedure: function (ev) {
             const self = this;
-            console.log("Inside Controller")
+            console.log("Inside Controller");
 
             self._rpc({
-                model: "medical.patient",
-                method: "action_view_medical_procedure_tree",
-                args: [[self.model.loadParams.context.active_id]],
+                model: "medical.clinical.impression",
+                method: "action_show_medical_procedure",
+                args: [[ev.data.id]],
             }).then(function (action) {
                 console.log(action);
                 self.do_action(action);
             });
-
         },
+
+        _onCreateExternalProcedure: function (ev) {
+            const self = this;
+            console.log("Inside Controller");
+
+            self._rpc({
+                model: "medical.clinical.impression",
+                method: "action_create_medical_procedure_from",
+                args: [[ev.data.id]],
+            }).then(function (action) {
+                console.log(action);
+                self.do_action(action);
+            });
+        },
+
         _onViewFamilyHistory: function () {
             var self = this;
             self._rpc({

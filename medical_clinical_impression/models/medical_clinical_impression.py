@@ -185,3 +185,22 @@ class MedicalClinicalImpression(models.Model):
         self.ensure_one()
         self._cancel_related_conditions()
         self.write(self._cancel_clinical_impression_fields())
+
+    def action_create_medical_procedure_from(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "medical_procedure_external.medical_encounter_create_procedure_external_act_window"
+        )
+        action["context"] = {
+            "default_encounter_id": self.encounter_id.id,
+        }
+        return action
+
+    def action_show_medical_procedure(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "medical_procedure_external.medical_procedure_external_request_act_window"
+        )
+        # TODO: relate requests directly to the impression?
+        action["domain"] = [("encounter_id", "=", self.encounter_id.id)]
+        return action
