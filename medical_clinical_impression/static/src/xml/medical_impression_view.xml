@@ -97,26 +97,16 @@
                 <div class="col-2 d-flex justify-content-end p-1">
 
                     <button
-                        class="btn btn-primary btn-sm mr-3"
+                        class="btn btn-sm mr-3 text-white"
                         style="white-space: nowrap;"
                         t-on-click="onViewExternalProcedure"
-                        t-if="state.data.data.fhir_state == 'completed' || state.data.data.procedure_external_request_count >= '1'"
+                        t-if= "state.data.data.procedure_external_request_count >= '1'"
                     >
-                        <i class="fas fa-prescription" /> <span
+                        <i class="fas fa-prescription fa-lg" /> Procedure Request <span
                             t-esc="state.data.data.procedure_external_request_count"
-                        /> Procedure Request
-                    </button>
-
-                    <button
-                        class="btn oe_stat_button btn-sm mr-3"
-                        style="white-space: nowrap;"
-                        t-on-click="onViewExternalProcedure"
-                        t-if="state.data.data.fhir_state == 'in_progress'"
-                    >
-                        <i class="fas fa-prescription" /> Procedure Request
+                        />
                     </button>
                 </div>
-
 
             </div>
             <div class="row row-text pt-3 pb-2">
