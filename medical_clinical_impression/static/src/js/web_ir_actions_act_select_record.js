@@ -15,7 +15,6 @@ odoo.define("medical_clinical_impression.ir_actions_act_select_record", function
          */
         _handleAction: function (action, options) {
             if (action.type === "ir.actions.act_select_record") {
-                console.log(action, options);
                 return this._executeSelectReloadAction(action, options);
             }
 

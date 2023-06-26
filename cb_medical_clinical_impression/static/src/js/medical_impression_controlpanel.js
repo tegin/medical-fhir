@@ -35,7 +35,6 @@ odoo.define("cb_medical_clinical_impression.ControlPanelPatch", function (requir
                                     var newValue = this.$("#routine_medication")
                                         .val()
                                         .trim();
-                                    console.log("Save", newValue);
                                     self.trigger("update_routine_medication", {
                                         res_id: self.props.info.id,
                                         routine_medication: newValue,

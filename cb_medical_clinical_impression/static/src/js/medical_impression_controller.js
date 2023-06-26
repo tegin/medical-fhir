@@ -15,7 +15,6 @@ odoo.define("cb_medical_clinical_impression.MedicalImpressionController", functi
             }
         ),
         _onCreateReportImpression(ev) {
-            console.log("_generateDiagnosticReport");
             var self = this;
             self._rpc({
                 model: "medical.clinical.impression",

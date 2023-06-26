@@ -103,7 +103,7 @@ odoo.define(
             }
 
             onViewExternalProcedure() {
-                console.log("Viewin Procedure Rquests");
+                ("Viewin Procedure Rquests");
                 this.trigger("view_external_procedure", {id: this.state.data.res_id});
             }
 

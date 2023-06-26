@@ -5,11 +5,11 @@
         class="o_medical_impression_view"
         owl="1"
     >
-        <div class="container mt-2">
-            <t t-foreach="props.data" t-as="item" t-key="item.id">
-                <div class="row">
-                    <div class="col">
-                        <ImpressionComponent
+        <div class="container-fluid mt-4">
+             <t t-foreach="props.data" t-as="item" t-key="item.id">
+                 <div class="row">
+                    <div class="col-10 mx-auto">
+                         <ImpressionComponent
                             data="item"
                             currentImpression="state.currentImpression"
                         />
@@ -100,11 +100,19 @@
                         class="btn btn-primary btn-sm mr-3"
                         style="white-space: nowrap;"
                         t-on-click="onViewExternalProcedure"
-                        t-if="state.data.data.fhir_state == 'completed'"
+                        t-if="state.data.data.fhir_state == 'completed' || state.data.data.procedure_external_request_count >= '1'"
                     >
+                        <i class="fas fa-prescription" /> <span
+                            t-esc="state.data.data.procedure_external_request_count"
+                        /> Procedure Request
+                    </button>
 
-
-
+                    <button
+                        class="btn oe_stat_button btn-sm mr-3"
+                        style="white-space: nowrap;"
+                        t-on-click="onViewExternalProcedure"
+                        t-if="state.data.data.fhir_state == 'in_progress'"
+                    >
                         <i class="fas fa-prescription" /> Procedure Request
                     </button>
                 </div>

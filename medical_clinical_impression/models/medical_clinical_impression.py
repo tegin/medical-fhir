@@ -99,6 +99,25 @@ class MedicalClinicalImpression(models.Model):
         states={"draft": [("readonly", False)]},
     )
 
+    medical_procedure_external_request_ids = fields.Many2many(
+        "medical.procedure.external.request",
+        compute="_compute_procedure_external_request",
+    )
+
+    procedure_external_request_count = fields.Integer(
+        compute="_compute_procedure_external_request",
+    )
+
+    @api.depends("medical_procedure_external_request_ids")
+    def _compute_procedure_external_request(self):
+        for record in self:
+            record.medical_procedure_external_request_ids = self.env[
+                "medical.procedure.external.request"
+            ].search([("encounter_id", "=", record.encounter_id.id)])
+            record.procedure_external_request_count = len(
+                record.medical_procedure_external_request_ids
+            )
+
     @api.onchange("template_id")
     def _onchange_template_id(self):
         if self.template_id and self.state == "draft":

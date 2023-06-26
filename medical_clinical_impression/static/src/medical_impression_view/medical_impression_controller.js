@@ -29,7 +29,6 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
         init: function (parent, model, renderer, params) {
             this._super.apply(this, arguments);
             this.currentImpression = params.currentImpression;
-            console.log(this.currentImpression);
         },
         renderButtons: function ($node) {
             if (this.noLeaf || !this.hasButtons) {
@@ -124,6 +123,8 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
                 method: "get_patient_data",
                 args: [[this.model.loadParams.context.active_id]],
             }).then(function (data) {
+                console.log("Patient Data");
+                console.log(data);
                 self.updateControlPanel({info: data});
             });
         },
@@ -145,6 +146,7 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
                     self.updatePatientInfo();
                 });
         },
+
         _onViewExternalProcedure: function (ev) {
             const self = this;
             console.log("Inside Controller");
@@ -154,7 +156,6 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
                 method: "action_show_medical_procedure",
                 args: [[ev.data.id]],
             }).then(function (action) {
-                console.log(action);
                 self.do_action(action);
             });
         },
@@ -168,7 +169,6 @@ odoo.define("medical_clinical_impression.MedicalImpressionController", function 
                 method: "action_create_medical_procedure_from",
                 args: [[ev.data.id]],
             }).then(function (action) {
-                console.log(action);
                 self.do_action(action);
             });
         },
