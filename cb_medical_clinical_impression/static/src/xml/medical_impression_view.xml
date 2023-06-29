@@ -55,19 +55,18 @@
         t-inherit-mode="extension"
         owl="1"
     >
-        <xpath expr="//div[hasclass('o_impression_header')]" position="inside">
+        <xpath expr="//div[hasclass('o_impression_header_buttons')]" position="inside">
 
-                <div class="col-2 o_impression_header_item d-flex justify-content-end">
                     <button
-                    class="btn btn-primary btn-sm"
-                    style="white-space: nowrap;"
-                    t-on-click="generateDiagnosticReport"
-                    t-if="state.data.data.fhir_state == 'completed'"
-                >
-                        <i class="fas fa-file" /> Diagnostic Report
+                class="btn btn-primary btn-sm"
+                style="white-space: nowrap;"
+                t-on-click="generateDiagnosticReport"
+                t-if="state.data.data.fhir_state == 'completed'"
+            >
+                       <i class="fas fa-file-medical" />  Diagnostic Report
 
                     </button>
-                </div>
+
         </xpath>
 
     </div>

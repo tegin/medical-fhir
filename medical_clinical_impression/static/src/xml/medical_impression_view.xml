@@ -42,7 +42,7 @@
                         type="button"
                         class="btn btn-primary"
                         t-on-click="onFamilyHistory"
-                    >Family History</button>
+                    ><i class="fas fa-users" />  Family History</button>
                 </div>
             </div>
 
@@ -94,13 +94,15 @@
                 <div class="col-2 o_impression_header_item">
                     <span t-esc="state.data.data.specialty_id.data.display_name" />
                 </div>
-                <div class="col-2 d-flex justify-content-end p-1">
+                <div
+                    class="col-2 d-flex justify-content-end p-1 o_impression_header_buttons"
+                >
 
                     <button
                         class="btn btn-sm mr-3 text-white"
                         style="white-space: nowrap;"
                         t-on-click="onViewExternalProcedure"
-                        t-if= "state.data.data.procedure_external_request_count >= '1'"
+                        t-if="state.data.data.procedure_external_request_count >= '1'"
                     >
                         <i class="fas fa-prescription fa-lg" /> Procedure Request <span
                             t-esc="state.data.data.procedure_external_request_count"
