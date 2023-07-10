@@ -280,6 +280,7 @@
                                 name="patient_id"
                                 context="{'form_view_ref': 'medical_base.medical_patient_his_form_view'}"
                             />
+                            <field name="priority_id" />
                         </group>
                         <group>
                             <field name="create_date" />
@@ -298,7 +299,9 @@
             <tree>
                 <field name="internal_identifier" />
                 <field name="patient_id" />
-                <field name="create_date" />
+                <field name="location_id" />
+                <field name="priority_id" />
+                <field name="state" />
             </tree>
         </field>
     </record>
