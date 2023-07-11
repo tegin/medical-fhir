@@ -2,9 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
+import math
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools.float_utils import float_round
 
 
 class MedicalProductRequest(models.Model):
@@ -34,7 +36,6 @@ class MedicalProductRequest(models.Model):
     )
 
     product_type = fields.Selection(
-        selection=[("medication", "Medication"), ("device", "Device")],
         related="medical_product_template_id.product_type",
     )
 
@@ -65,9 +66,11 @@ class MedicalProductRequest(models.Model):
     medical_product_id = fields.Many2one(
         comodel_name="medical.product.product",
         compute="_compute_medical_product_id",
+        store=True,
     )
     quantity_to_dispense = fields.Integer(
-        compute="_compute_medical_product_id"
+        compute="_compute_medical_product_id",
+        store=True,
     )
 
     patient_id = fields.Many2one(
@@ -98,13 +101,21 @@ class MedicalProductRequest(models.Model):
     dose_uom_domain = fields.Char(
         compute="_compute_dose_uom_domain", readonly=True, store=False
     )
-
-    rate_quantity = fields.Float(default=1)
+    rate_quantity = fields.Float(
+        compute="_compute_rate_from_specific_rate", store=True
+    )
     # Fhir Concept: rateQuantity
 
     rate_uom_id = fields.Many2one(
         comodel_name="uom.uom",
-        default=lambda self: self.env.ref("uom.product_uom_day").id,
+        compute="_compute_rate_from_specific_rate",
+        store=True,
+    )
+
+    specific_rate = fields.Float(default=8)
+
+    specific_rate_uom_id = fields.Many2one(
+        "uom.uom", default=lambda self: self.env.ref("uom.product_uom_hour").id
     )
 
     duration = fields.Float(default=7)
@@ -358,7 +369,13 @@ class MedicalProductRequest(models.Model):
     @api.constrains("rate_quantity")
     def _check_rate_quantity(self):
         for rec in self:
-            if rec.product_type == "medication" and rec.rate_quantity < 1:
+            if rec.product_type == "medication" and rec.rate_quantity <= 0:
+                raise ValidationError(_("Rate must be positive"))
+
+    @api.constrains("specific_rate")
+    def _check_specific_rate_quantity(self):
+        for rec in self:
+            if rec.product_type == "medication" and rec.specific_rate <= 0:
                 raise ValidationError(_("Rate must be positive"))
 
     @api.constrains("duration")
@@ -386,16 +403,24 @@ class MedicalProductRequest(models.Model):
         )
 
     def _select_product_and_quantity(self, template):
-        qty_to_dispense = 1
         self._get_loop_security_limit()
         total_dose = self._get_total_dose()
-        while qty_to_dispense < self._get_loop_security_limit():
-            for product in template.product_ids:
-                amount = self._get_amount_in_dose_uom_id(product)
-                if amount and amount * qty_to_dispense >= total_dose:
-                    return product.id, qty_to_dispense
-            qty_to_dispense += 1
-        return template.product_ids[0].id, self.dose_quantity
+        product_info = []
+        for product in template.product_ids.filtered(
+            lambda r: self._filter_product(r)
+        ):
+            amount = self._get_amount_in_dose_uom_id(product)
+            to_dispense = math.ceil(total_dose / amount)
+            product_info.append(
+                (product.id, to_dispense, to_dispense * amount - total_dose)
+            )
+        product_id, to_dispense, remain_dose = sorted(
+            product_info, key=lambda value: (value[2], value[1])
+        )[0]
+        return product_id, to_dispense
+
+    def _filter_product(self, product):
+        return True
 
     @api.depends(
         "medical_product_template_id",
@@ -427,3 +452,35 @@ class MedicalProductRequest(models.Model):
                     qty = rec.dose_quantity
             rec.medical_product_id = product_id
             rec.quantity_to_dispense = qty
+
+    # This computation will have sense once we do the electronic prescription.
+    # We will have to think about what happens when we have decimals.
+    # For example, every 72 hours, which gives 2'33...
+    # Now is it rounded until the most proximal 0.5 up. In this case it would be 2.5.
+    @api.depends("specific_rate", "specific_rate_uom_id")
+    def _compute_rate_from_specific_rate(self):
+        for rec in self:
+            if rec.specific_rate_uom_id == self.env.ref(
+                "uom.product_uom_hour"
+            ):
+                if rec.specific_rate <= 24:
+                    rate = 24 / rec.specific_rate
+                    rate_uom_id = self.env.ref("uom.product_uom_day").id
+                else:
+                    rate = 24 * 7 / rec.specific_rate
+                    rate_uom_id = self.env.ref(
+                        "medical_product_request.product_uom_week"
+                    ).id
+            elif rec.specific_rate_uom_id == self.env.ref(
+                "uom.product_uom_day"
+            ):
+                rate = 1 / rec.specific_rate
+                rate_uom_id = rec.specific_rate_uom_id.id
+            else:  # specific_rate_uom_id == week
+                rate = 1 / rec.specific_rate
+                rate_uom_id = rec.specific_rate_uom_id.id
+            rate_rounded = 0.5 * float_round(
+                rate / 0.5, precision_digits=0, rounding_method="UP"
+            )
+            rec.rate_quantity = rate_rounded
+            rec.rate_uom_id = rate_uom_id

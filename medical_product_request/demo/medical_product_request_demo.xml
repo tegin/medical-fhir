@@ -111,8 +111,8 @@
         />
         <field name="dose_quantity">1</field>
         <field name="dose_uom_id" ref="tablet_uom_uom" />
-        <field name="rate_quantity">3</field>
-        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="specific_rate">3</field>
+        <field name="specific_rate_uom_id" ref="uom.product_uom_day" />
         <field name="duration">10</field>
         <field name="duration_uom_id" ref="uom.product_uom_day" />
     </record>
@@ -131,8 +131,8 @@
         />
         <field name="dose_quantity">1</field>
         <field name="dose_uom_id" ref="tablet_uom_uom" />
-        <field name="rate_quantity">3</field>
-        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="specific_rate">3</field>
+        <field name="specific_rate_uom_id" ref="uom.product_uom_day" />
         <field name="duration">15</field>
         <field name="duration_uom_id" ref="uom.product_uom_day" />
     </record>
@@ -151,8 +151,8 @@
         />
         <field name="dose_quantity">1</field>
         <field name="dose_uom_id" ref="tablet_uom_uom" />
-        <field name="rate_quantity">3</field>
-        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="specific_rate">3</field>
+        <field name="specific_rate_uom_id" ref="uom.product_uom_day" />
         <field name="duration">60</field>
         <field name="duration_uom_id" ref="uom.product_uom_day" />
     </record>
@@ -171,8 +171,8 @@
         />
         <field name="dose_quantity">2</field>
         <field name="dose_uom_id" ref="drop_uom_uom" />
-        <field name="rate_quantity">4</field>
-        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="specific_rate">4</field>
+        <field name="specific_rate_uom_id" ref="uom.product_uom_day" />
         <field name="duration">30</field>
         <field name="duration_uom_id" ref="uom.product_uom_day" />
     </record>
@@ -219,8 +219,8 @@
         />
         <field name="dose_quantity">1</field>
         <field name="dose_uom_id" ref="tablet_uom_uom" />
-        <field name="rate_quantity">3</field>
-        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="specific_rate">3</field>
+        <field name="specific_rate_uom_id" ref="uom.product_uom_day" />
         <field name="duration">10</field>
         <field name="duration_uom_id" ref="uom.product_uom_day" />
         <field name="administration_route_id" ref="oral_administration_route" />
@@ -260,8 +260,8 @@
         />
         <field name="dose_quantity">1</field>
         <field name="dose_uom_id" ref="tablet_uom_uom" />
-        <field name="rate_quantity">3</field>
-        <field name="rate_uom_id" ref="uom.product_uom_day" />
+        <field name="specific_rate">3</field>
+        <field name="specific_rate_uom_id" ref="uom.product_uom_day" />
         <field name="duration">10</field>
         <field name="duration_uom_id" ref="uom.product_uom_day" />
         <field name="administration_route_id" ref="oral_administration_route" />

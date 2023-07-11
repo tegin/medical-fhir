@@ -20,6 +20,7 @@ class MedicalProductRequestOrder(models.Model):
 
     category = fields.Selection(
         selection=[("inpatient", "Inpatient"), ("discharge", "Discharge")],
+        readonly=True,
         help="'Inpatient' includes requests for medications to be "
         "administered or consumed in an inpatient or acute care setting "
         " 'Discharge' Includes requests for medications created when "
@@ -34,6 +35,7 @@ class MedicalProductRequestOrder(models.Model):
             ("cancelled", "Cancelled"),
         ],
         default="draft",
+        readonly=True,
     )
     # Fhir Concept: Status
 

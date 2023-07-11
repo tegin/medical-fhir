@@ -17,6 +17,7 @@
         "web_domain_field",
     ],
     "data": [
+        "data/data.xml",
         "security/ir.model.access.csv",
         "views/medical_patient.xml",
         "views/medical_encounter.xml",

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="product_uom_week" model="uom.uom">
+        <field name="name">Week</field>
+        <field name="category_id" ref="uom.uom_categ_wtime" />
+        <field name="factor_inv" eval="7.0" />
+        <field name="uom_type">bigger</field>
+    </record>
+</odoo>
