@@ -67,7 +67,7 @@
                                 domain="[('patient_id', '=', patient_id)]"
                                 attrs="{'readonly':[('state', '!=', 'draft')]}"
                             />
-                            <field name="category" invisible="1" />
+                            <field name="category" />
                         </group>
                         <group>
                             <field
@@ -115,17 +115,19 @@
                                         required="1"
                                     />
                                     <field
-                                        name="rate_quantity"
-                                        string="Rate"
-                                        attrs="{'invisible': [('product_type', '!=', 'medication')]}"
+                                        name="specific_rate"
+                                        string="Every"
+                                        attrs="{'invisible': [('product_type', '!=', 'medication')], 'required': [('product_type', '==', 'medication')]}"
                                     />
                                     <field
-                                        name="rate_uom_id"
+                                        name="specific_rate_uom_id"
                                         string="Uom"
                                         attrs="{'invisible': [('product_type', '!=', 'medication')], 'required': [('product_type', '==', 'medication')]}"
                                         domain="[('category_id', '=', %(uom.uom_categ_wtime)s)]"
                                         options="{'no_create': True, 'no_open': True}"
                                     />
+                                    <field name="rate_quantity" invisible="1" />
+                                    <field name="rate_uom_id" invisible="1" />
                                     <field name="category" invisible="1" />
                                     <field name="product_type" invisible="1" />
                                     <field

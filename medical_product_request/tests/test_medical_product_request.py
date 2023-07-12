@@ -5,157 +5,156 @@ from datetime import datetime
 import freezegun
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form, SavepointCase
 
 
-class TestMedicalProductRequest(TransactionCase):
-    def setUp(self):
-        super(TestMedicalProductRequest, self).setUp()
-        self.patient = self.env["medical.patient"].create({"name": "Patient"})
-        self.encounter = self.env["medical.encounter"].create(
-            {"patient_id": self.patient.id}
+class TestMedicalProductRequest(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.patient = cls.env["medical.patient"].create({"name": "Patient"})
+        cls.encounter = cls.env["medical.encounter"].create(
+            {"patient_id": cls.patient.id}
         )
-        self.tablet_uom = self.env["uom.uom"].create(
+        cls.tablet_uom = cls.env["uom.uom"].create(
             {
                 "name": "Tablets",
-                "category_id": self.env.ref("uom.product_uom_categ_unit").id,
+                "category_id": cls.env.ref("uom.product_uom_categ_unit").id,
                 "factor": 1.0,
                 "uom_type": "bigger",
                 "rounding": 0.001,
             }
         )
-        self.tablet_form = self.env["medication.form"].create(
+        cls.tablet_form = cls.env["medication.form"].create(
             {
                 "name": "EFG film coated tablets",
-                "uom_ids": [(4, self.tablet_uom.id)],
+                "uom_ids": [(4, cls.tablet_uom.id)],
             }
         )
-        self.oral_administration_route = self.env[
+        cls.oral_administration_route = cls.env[
             "medical.administration.route"
         ].create({"name": "Oral"})
-        self.ocular_administration_route = self.env[
+        cls.ocular_administration_route = cls.env[
             "medical.administration.route"
         ].create({"name": "Ocular"})
-        self.ibuprofen_template = self.env["medical.product.template"].create(
+        cls.ibuprofen_template = cls.env["medical.product.template"].create(
             {
                 "name": "Ibuprofen",
                 "product_type": "medication",
                 "ingredients": "Ibuprofen",
                 "dosage": "600 mg",
-                "form_id": self.tablet_form.id,
+                "form_id": cls.tablet_form.id,
                 "administration_route_ids": [
-                    (4, self.oral_administration_route.id)
+                    (4, cls.oral_administration_route.id)
                 ],
             }
         )
-        self.ibuprofen_30_tablets = self.env["medical.product.product"].create(
+        cls.ibuprofen_30_tablets = cls.env["medical.product.product"].create(
             {
-                "product_tmpl_id": self.ibuprofen_template.id,
+                "product_tmpl_id": cls.ibuprofen_template.id,
                 "amount": 30,
-                "amount_uom_id": self.tablet_uom.id,
+                "amount_uom_id": cls.tablet_uom.id,
             }
         )
-        self.ibuprofen_60_tablets = self.env["medical.product.product"].create(
+        cls.ibuprofen_60_tablets = cls.env["medical.product.product"].create(
             {
-                "product_tmpl_id": self.ibuprofen_template.id,
+                "product_tmpl_id": cls.ibuprofen_template.id,
                 "amount": 60,
-                "amount_uom_id": self.tablet_uom.id,
+                "amount_uom_id": cls.tablet_uom.id,
             }
         )
 
-        self.crutch_template = self.env["medical.product.template"].create(
+        cls.crutch_template = cls.env["medical.product.template"].create(
             {
                 "name": "crutch",
                 "product_type": "device",
             }
         )
-        self.medical_product_crutch = self.env[
-            "medical.product.product"
-        ].create(
+        cls.medical_product_crutch = cls.env["medical.product.product"].create(
             {
-                "product_tmpl_id": self.crutch_template.id,
+                "product_tmpl_id": cls.crutch_template.id,
                 "amount": 1,
-                "amount_uom_id": self.env.ref("uom.product_uom_unit").id,
+                "amount_uom_id": cls.env.ref("uom.product_uom_unit").id,
             }
         )
 
-        self.ml_uom = self.env["uom.uom"].create(
+        cls.ml_uom = cls.env["uom.uom"].create(
             {
                 "name": "ml",
-                "category_id": self.env.ref("uom.product_uom_categ_vol").id,
+                "category_id": cls.env.ref("uom.product_uom_categ_vol").id,
                 "factor": 1000,
                 "uom_type": "smaller",
                 "rounding": 0.001,
             }
         )
 
-        self.drops_uom = self.env["uom.uom"].create(
+        cls.drops_uom = cls.env["uom.uom"].create(
             {
                 "name": "Drops",
-                "category_id": self.env.ref("uom.product_uom_categ_vol").id,
+                "category_id": cls.env.ref("uom.product_uom_categ_vol").id,
                 "factor": 20000,
                 "uom_type": "smaller",
                 "rounding": 0.001,
             }
         )
-        self.solution_form = self.env["medication.form"].create(
+        cls.solution_form = cls.env["medication.form"].create(
             {
                 "name": "Eye drops in solution",
-                "uom_ids": [(4, self.drops_uom.id), (4, self.ml_uom.id)],
+                "uom_ids": [(4, cls.drops_uom.id), (4, cls.ml_uom.id)],
             }
         )
 
-        self.acular_template = self.env["medical.product.template"].create(
+        cls.acular_template = cls.env["medical.product.template"].create(
             {
                 "name": "Acular",
                 "product_type": "medication",
                 "ingredients": "Ketorolac tromethamol",
                 "dosage": "5 mg/ml",
-                "form_id": self.solution_form.id,
+                "form_id": cls.solution_form.id,
                 "administration_route_ids": [
-                    (4, self.ocular_administration_route.id)
+                    (4, cls.ocular_administration_route.id)
                 ],
             }
         )
-        self.acular_5_ml = self.env["medical.product.product"].create(
+        cls.acular_5_ml = cls.env["medical.product.product"].create(
             {
-                "product_tmpl_id": self.acular_template.id,
+                "product_tmpl_id": cls.acular_template.id,
                 "amount": 5,
-                "amount_uom_id": self.ml_uom.id,
+                "amount_uom_id": cls.ml_uom.id,
             }
         )
-        self.acular_10_ml = self.env["medical.product.product"].create(
+        cls.acular_10_ml = cls.env["medical.product.product"].create(
             {
-                "product_tmpl_id": self.acular_template.id,
+                "product_tmpl_id": cls.acular_template.id,
                 "amount": 10,
-                "amount_uom_id": self.ml_uom.id,
+                "amount_uom_id": cls.ml_uom.id,
             }
         )
-        self.internal_request = self.env["medical.product.request"].create(
+        cls.internal_request = cls.env["medical.product.request"].create(
             {
-                "medical_product_template_id": self.ibuprofen_template.id,
+                "medical_product_template_id": cls.ibuprofen_template.id,
                 "category": "inpatient",
-                "patient_id": self.patient.id,
+                "patient_id": cls.patient.id,
                 "dose_quantity": 1,
-                "dose_uom_id": self.tablet_uom.id,
+                "dose_uom_id": cls.tablet_uom.id,
                 "rate_quantity": 3,
-                "rate_uom_id": self.env.ref("uom.product_uom_day").id,
+                "rate_uom_id": cls.env.ref("uom.product_uom_day").id,
                 "duration": 60,
-                "duration_uom_id": self.env.ref("uom.product_uom_day").id,
-                "administration_route_id": self.oral_administration_route.id,
+                "duration_uom_id": cls.env.ref("uom.product_uom_day").id,
+                "administration_route_id": cls.oral_administration_route.id,
             }
         )
-        self.external_request = self.env["medical.product.request"].create(
+        cls.external_request = cls.env["medical.product.request"].create(
             {
-                "medical_product_template_id": self.ibuprofen_template.id,
+                "medical_product_template_id": cls.ibuprofen_template.id,
                 "category": "discharge",
-                "patient_id": self.patient.id,
+                "patient_id": cls.patient.id,
                 "dose_quantity": 1,
-                "dose_uom_id": self.tablet_uom.id,
+                "dose_uom_id": cls.tablet_uom.id,
                 "rate_quantity": 1,
-                "rate_uom_id": self.env.ref("uom.product_uom_day").id,
+                "rate_uom_id": cls.env.ref("uom.product_uom_day").id,
                 "duration": 30,
-                "duration_uom_id": self.env.ref("uom.product_uom_day").id,
+                "duration_uom_id": cls.env.ref("uom.product_uom_day").id,
             }
         )
 
@@ -282,7 +281,20 @@ class TestMedicalProductRequest(TransactionCase):
         In this case the dose unit and the amount unit
         of the medical product are the same
         """
-        request = self.external_request
+        cls = self
+        request = cls.env["medical.product.request"].create(
+            {
+                "medical_product_template_id": cls.ibuprofen_template.id,
+                "category": "discharge",
+                "patient_id": cls.patient.id,
+                "dose_quantity": 1,
+                "dose_uom_id": cls.tablet_uom.id,
+                "specific_rate": 1,
+                "specific_rate_uom_id": cls.env.ref("uom.product_uom_day").id,
+                "duration": 30,
+                "duration_uom_id": cls.env.ref("uom.product_uom_day").id,
+            }
+        )
         self.assertEqual(
             request.medical_product_id.id,
             self.ibuprofen_30_tablets.id,
@@ -294,7 +306,7 @@ class TestMedicalProductRequest(TransactionCase):
             self.ibuprofen_60_tablets.id,
         )
         self.assertEqual(request.quantity_to_dispense, 1)
-        request.duration = 80
+        request.duration = 100
         self.assertEqual(
             request.medical_product_id.id,
             self.ibuprofen_60_tablets.id,
@@ -313,15 +325,17 @@ class TestMedicalProductRequest(TransactionCase):
                 "patient_id": self.patient.id,
                 "dose_quantity": 3,
                 "dose_uom_id": self.drops_uom.id,
-                "rate_quantity": 2,
-                "rate_uom_id": self.env.ref("uom.product_uom_day").id,
+                "specific_rate": 12,
+                "specific_rate_uom_id": self.env.ref(
+                    "uom.product_uom_hour"
+                ).id,
                 "duration": 10,
                 "duration_uom_id": self.env.ref("uom.product_uom_day").id,
             }
         )
 
         # We consider that a drop is equal to 0,05 ml
-        # total_dose = 3 drops * 0,05 ml/ 1 drop *  2 drops/day * 10 days = 3 ml
+        # total_dose = 3 drops * 0,05 ml/ 1 drop *  2 time/day * 10 days = 3 ml
         self.assertEqual(request.medical_product_id.id, self.acular_5_ml.id)
         self.assertEqual(request.quantity_to_dispense, 1)
         request.duration = 30

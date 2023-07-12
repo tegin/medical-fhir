@@ -85,7 +85,6 @@ class MedicalProductProduct(models.Model):
     name_product = fields.Char(
         compute="_compute_medical_product_name", store=True
     )
-
     product_tmpl_id = fields.Many2one(
         "medical.product.template",
         ondelete="cascade",
@@ -95,7 +94,9 @@ class MedicalProductProduct(models.Model):
 
     code_product = fields.Char()
 
-    amount = fields.Float(help="Amount of drug in package", required=True)
+    amount = fields.Float(
+        help="Amount of drug in package", required=True, default=1
+    )
     # Fhir concept: amount
 
     amount_uom_id = fields.Many2one(comodel_name="uom.uom", required=True)
@@ -151,5 +152,5 @@ class MedicalProductProduct(models.Model):
     @api.constrains("amount")
     def _check_amount(self):
         for rec in self:
-            if rec.amount < 1:
+            if rec.amount <= 0:
                 raise ValidationError(_("Amount must be positive"))
