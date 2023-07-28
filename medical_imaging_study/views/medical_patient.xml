@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Clinical Impressions -->
+
+    <record model="ir.ui.view" id="medical_patient_his_form">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='administration_data']" position="after">
+                <page name="imaging_studies" string="Imaging Studies">
+                    <field
+                    name="series_ids"
+                    >
+                        <tree editable="bottom">
+                            <field name="name" />
+                            <field name="instance_uid" />
+                            <field name="patient_id" />
+                            <field name="encounter_id" />
+                            <field name="modality_ids" widget="many2many_tags" />
+                            <field name="study_date" />
+                            <field name="series_count" />
+                            <field name="instances_count" />
+                            <field name="description" />
+                            <field name="storage_ids" widget="many2many_tags" />
+                        </tree>
+                  </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

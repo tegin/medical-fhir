@@ -57,18 +57,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="medical_imaging_study_search_view">
-        <field
-            name="name"
-        >medical.imaging.study.search (in medical_imaging_study)</field>
-        <field name="model">medical.imaging.study</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name" />
-                <field name="encounter_id" />
-            </search>
-        </field>
-    </record>
+
     <record model="ir.ui.view" id="medical_imaging_study_tree_view">
         <field name="name">medical.imaging.study.tree (in medical_imaging_study)</field>
         <field name="model">medical.imaging.study</field>

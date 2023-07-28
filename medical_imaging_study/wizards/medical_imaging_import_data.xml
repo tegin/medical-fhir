@@ -25,6 +25,29 @@
             </form>
         </field>
     </record>
+    <record model="ir.ui.view" id="medical_imaging_import_data_his_view_view">
+        <field
+            name="name"
+        >medical.imaging.import.data.form (in medical_imaging_study)</field>
+        <field name="model">medical.imaging.import.data</field>
+        <field name="arch" type="xml">
+            <form string="Medical Imaging Import Data">
+                <group>
+                    <field name="study_uid" />
+                    <field name="storage_id" />
+                </group>
+                <footer>
+                    <button
+                        name="import_imaging_study"
+                        string="Import Imaging Study"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
     <record model="ir.actions.act_window" id="medical_imaging_import_data_act_window">
         <field name="name">Medical Imaging Import Data</field>
         <field name="res_model">medical.imaging.import.data</field>

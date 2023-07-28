@@ -20,6 +20,7 @@
         "views/medical_imaging_acquisition_modality.xml",
         "views/medical_imaging_endpoint.xml",
         "views/medical_imaging_storage.xml",
+        "views/medical_patient.xml",
         "wizards/medical_imaging_import_data.xml",
     ],
     "external_dependencies": {"python": ["dicomweb_client"]},
