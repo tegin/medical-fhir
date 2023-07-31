@@ -52,6 +52,18 @@ class MedicalImagingStudy(models.Model):
 
     description = fields.Text(readonly=True)
 
+    referring_physician = fields.Char(readonly=True)
+
+    read_physician = fields.Char(readonly=True)
+
+    body_part = fields.Char(
+        compute="_compute_body_part",
+    )
+
+    description_series = fields.Char(
+        compute="_compute_description_series",
+    )
+
     series_ids = fields.One2many(
         comodel_name="medical.imaging.series",
         inverse_name="imaging_study_id",
@@ -102,10 +114,22 @@ class MedicalImagingStudy(models.Model):
         return [("name", "=", dic["accession_number"])]
         # TODO: cambiar name por internal_identifier
 
+    @api.depends("series_ids.body_part")
+    def _compute_body_part(self):
+        for record in self:
+            record.body_part = ", ".join(set(record.series_ids.filtered(lambda r: r.body_part).mapped("body_part")))
+
+    @api.depends("series_ids.description")
+    def _compute_description_series(self):
+        for record in self:
+            record.description_series = ", ".join(set(record.series_ids.filtered(lambda r: r.description).mapped("description")))
+
     def _save_qido_data(self, dic):
         result = {
             "study_date": dic["study_date"],
             "description": dic["description"],
+            "referring_physician": dic["referring_physician"],
+            "read_physician": dic["read_physician"],
             "series_ids": [
                 self.env["medical.imaging.series"]._save_qido_data_from_study(
                     self, series

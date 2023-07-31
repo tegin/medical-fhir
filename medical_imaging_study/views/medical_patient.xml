@@ -11,20 +11,20 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[@name='administration_data']" position="after">
                 <page name="imaging_studies" string="Imaging Studies">
-                    <field
-                    name="series_ids"
-                    >
+
+                    <field name="study_ids">
+
                         <tree editable="bottom">
                             <field name="name" />
-                            <field name="instance_uid" />
-                            <field name="patient_id" />
                             <field name="encounter_id" />
+                            <field name="series_count" string="Series"/>
                             <field name="modality_ids" widget="many2many_tags" />
-                            <field name="study_date" />
-                            <field name="series_count" />
-                            <field name="instances_count" />
                             <field name="description" />
-                            <field name="storage_ids" widget="many2many_tags" />
+                            <field name="referring_physician" />
+                            <field name="read_physician" />
+                            <field name="body_part" />
+                            <field name="description_series"/>
+                            <field name="study_date" />
                         </tree>
                   </field>
                 </page>

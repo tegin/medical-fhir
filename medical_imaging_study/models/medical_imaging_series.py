@@ -19,6 +19,7 @@ class MedicalImagingSeries(models.Model):
 
     series_number = fields.Char(readonly=True)
 
+
     instance_uid = fields.Char(index=True, readonly=True, required=True)
 
     modality_id = fields.Many2one(
@@ -28,6 +29,12 @@ class MedicalImagingSeries(models.Model):
     )
 
     description = fields.Text(readonly=True)
+
+    referring_physician = fields.Char(readonly=True)
+
+    read_physician = fields.Char(readonly=True)
+
+    body_part = fields.Char(readonly=True)
 
     instances_count = fields.Integer(
         string="Number of instances", readonly=True
@@ -69,8 +76,10 @@ class MedicalImagingSeries(models.Model):
             .search([("code", "=", dic["modality"])], limit=1)
             .id,
             "series_date": dic["series_date"],
+            "body_part": dic["body_part"],
             "instances_count": dic["instances_count"],
             "description": dic["description"],
+
         }
 
     def _save_qido_data_from_study(self, study, dic):

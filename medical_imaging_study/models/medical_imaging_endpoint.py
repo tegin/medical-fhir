@@ -38,10 +38,10 @@ class MedicalImagingEndpoint(models.Model):
     )
 
     def _add_study_fields_to_extract(self):
-        return "00081030,00080201"
+        return "00081030,00080201,00080090,00081060"
 
     def _add_series_fields_to_extract(self):
-        return "00080021,00080031"
+        return "00080021,00080031,00180015,0008103E"
 
     def _import_imaging_study(self, study_uid):
         for endpoint in self:
@@ -100,29 +100,35 @@ class MedicalImagingEndpoint(models.Model):
             "accession_number": study_data["00080050"]["Value"][0],
             "description": study_data["00081030"]["Value"][0],
             "series_ids": self._process_series_qido_data(series_data),
+            "referring_physician": study_data.get("00080090") and study_data["00080090"]["Value"][0]["Alphabetic"],
+            "read_physician": study_data.get("00081060") and study_data["00081060"]["Value"][0]["Alphabetic"],
         }
 
     def _process_series_qido_data(self, series_data):
         series_processed = []
         for series in series_data:
             context_tz = pytz.timezone(self.tz or self.env.user.tz)
-            series_date = (
-                context_tz.localize(
-                    datetime.strptime(
-                        series["00080021"]["Value"][0]
-                        + series["00080031"]["Value"][0],
-                        "%Y%m%d%H:%M:%S",
+            series_date = False
+            if series_date:
+                series_date = (
+                    context_tz.localize(
+                        datetime.strptime(
+                            series["00080021"]["Value"][0]
+                            + series["00080031"]["Value"][0],
+                            "%Y%m%d%H:%M:%S",
+                        )
                     )
+                    .astimezone(pytz.UTC)
+                    .replace(tzinfo=None)
                 )
-                .astimezone(pytz.UTC)
-                .replace(tzinfo=None)
-            )
+            print(series)
             dic = {
                 "instance_uid": series["0020000E"]["Value"][0],
                 "series_number": series["00200011"]["Value"][0],
                 "modality": series["00080060"]["Value"][0],
-                "description": series["0008103E"]["Value"][0],
-                "instances_count": series["00201209"]["Value"][0],
+                "description": series.get("0008103E") and series["0008103E"]["Value"][0],
+                "instances_count": series.get("00201209") and series["00201209"]["Value"][0],
+                "body_part": series.get("00180015") and series["00180015"]["Value"][0],
                 "series_date": series_date,
             }
             series_processed.append(dic)

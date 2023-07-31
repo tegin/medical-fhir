@@ -8,10 +8,12 @@ class MedicalPatient(models.Model):
 
     _inherit = "medical.patient"
 
-    series_ids = fields.One2many(
-        comodel_name="medical.imaging.series",
+    study_ids = fields.One2many(
+        comodel_name="medical.imaging.study",
         inverse_name="patient_id",
         copy=True,
         auto_join=True,
         readonly=True,
     )
+
+
