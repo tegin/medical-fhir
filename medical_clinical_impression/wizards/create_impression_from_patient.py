@@ -53,7 +53,13 @@ class CreateImpressionFromPatient(models.TransientModel):
 
     @api.onchange("patient_id")
     def _compute_default_encounter(self):
-        self.encounter_id = self.patient_id._get_last_encounter()
+        for record in self:
+            if self.env.context.get("default_encounter_id"):
+                record.encounter_id = self.env.context.get(
+                    "default_encounter_id"
+                )
+            else:
+                record.encounter_id = record.patient_id._get_last_encounter()
 
     @api.onchange("encounter_id")
     def _onchange_encounter_date(self):
