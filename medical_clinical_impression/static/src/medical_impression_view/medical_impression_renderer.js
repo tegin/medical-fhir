@@ -68,7 +68,9 @@ odoo.define("medical_clinical_impression.MedicalImpressionRenderer", function (
             }
         }
         selectRecord(recordID) {
-            this.childs[this.child_map[recordID]].onEdit();
+            if (this.child_map[recordID] !== undefined) {
+                this.childs[this.child_map[recordID]].onEdit();
+            }
         }
         onViewFamilyHistory(data) {
             return new Promise((resolve, reject) => {
