@@ -34,6 +34,36 @@
                 </div>
             </div>
         </xpath>
+
+        <xpath
+            expr="//div[contains(@class, 'o_control_panel')]/div[@id='o_impression_control_panel_alerts']"
+            position="inside"
+        >
+            <div class="row-1">
+            <div
+                class="alert alert-warning mb-0 p-0"
+                role="warning"
+                style="white-space: pre-wrap;"
+            >
+                <div class="row-12">
+                    <div class="col-12 text-center">
+                        <span t-esc="props.info.routine_medication" />
+                    </div>
+
+                    <div class="col-1">
+                      <button
+                            class="btn btn-secundary
+                         btn-sm d-flex justify-content-end p-0"
+                            style="white-space: nowrap;"
+                            t-on-click="onEditRoutineMedication"
+                        >
+                    <i class="fas fa-edit" />
+                </button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </xpath>
     </t>
 
 
