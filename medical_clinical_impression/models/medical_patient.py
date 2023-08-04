@@ -131,7 +131,7 @@ class MedicalPatient(models.Model):
     def get_patient_data(self):
         condition_names = []
         for i in self.condition_ids:
-            condition_names.append(i.name)
+            condition_names.append("%s (%s)" % (i.name, i.create_date))
         gender = False
         if self.gender:
             for item in self._fields["gender"]._description_selection(
