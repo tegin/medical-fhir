@@ -16,6 +16,7 @@
         "web_ir_actions_act_multi",
         "web_ir_actions_act_view_reload",
         "medical_procedure_external",
+        "medical_product_request",
     ],
     "data": [
         "views/res_users.xml",

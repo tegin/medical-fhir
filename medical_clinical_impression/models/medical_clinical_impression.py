@@ -76,7 +76,7 @@ class MedicalClinicalImpression(models.Model):
         related="patient_id.medical_condition_ids",
     )
 
-    condition_count = fields.Integer(
+    medical_condition_count = fields.Integer(
         related="patient_id.medical_condition_count"
     )
 

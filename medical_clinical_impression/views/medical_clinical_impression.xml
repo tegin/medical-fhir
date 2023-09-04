@@ -32,7 +32,7 @@
                 <div
                     class="alert alert-danger row"
                     role="alert"
-                    attrs="{'invisible':[('condition_count', '=', 0)]}"
+                    attrs="{'invisible':[('medical_condition_count', '=', 0)]}"
                     style="margin-bottom:0px;"
                 >
                     <field
@@ -69,7 +69,7 @@
                                 />
                             </h1>
                         </div>
-                        <field name="condition_count" invisible="1" />
+                        <field name="medical_condition_count" invisible="1" />
                     </div>
                     <group>
                         <group>
@@ -172,7 +172,7 @@
                 <field name="finding_ids" invisible="1" />
                 <field name="allergy_substance_ids" widget="many2many_tags" />
                 <field name="condition_ids" widget="many2many_tags" />
-                <field name="condition_count" invisible="1" />
+                <field name="medical_condition_count" invisible="1" />
                 <field name="state" invisible="1" />
                 <field name="current_encounter" invisible="1" />
                 <button

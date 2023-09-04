@@ -46,18 +46,18 @@
                 </div>
             </div>
 
-            <div
-                id="o_impression_control_panel_alerts"
-                class="container-fluid p-0"
-                t-if="props.info &amp;&amp; props.info.condition_count!==0"
-            >
-                <div class="col alert alert-danger mb-0 p-0" role="alert">
+            <div id="o_impression_control_panel_alerts" class="container-fluid p-0">
+                <div
+                    class="col alert alert-danger mb-0 p-0"
+                    role="alert"
+                    t-if="props.info &amp;&amp; props.info.medical_condition_count!==0"
+                >
                     <t
                         t-foreach="props.info.condition_names"
                         t-as="item"
                         t-key="item.id"
                     >
-                        <div class="row">
+                        <div class="row m-0">
                                 <div class="col-12 text-center">
                                     <span t-esc="item" />
                                 </div>

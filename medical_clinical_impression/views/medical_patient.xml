@@ -99,15 +99,15 @@
                     class="alert alert-danger row"
                     role="alert"
                     style="margin-bottom:0px;"
-                    attrs="{'invisible':[('condition_count', '=', 0)]}"
+                    attrs="{'invisible':[('medical_condition_count', '=', 0)]}"
                 >
                 <field
-                        name="condition_ids"
+                        name="medical_condition_ids"
                         widget="warning_dropdown"
                         class="col-12"
                         context="{'patient_id': id}"
                     />
-                <field name="condition_count" invisible="1" />
+                <field name="medical_condition_count" invisible="1" />
             </div>
             </xpath>
 

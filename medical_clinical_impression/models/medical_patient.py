@@ -24,16 +24,6 @@ class MedicalPatient(models.Model):
         compute="_compute_family_history_count"
     )
 
-    condition_ids = fields.One2many(
-        comodel_name="medical.condition",
-        string="Conditions Warning",
-        related="medical_impression_ids.condition_ids",
-    )
-
-    condition_count = fields.Integer(
-        related="medical_impression_ids.condition_count"
-    )
-
     @api.depends("family_history_ids")
     def _compute_family_history_count(self):
         self.family_history_count = len(self.family_history_ids)
@@ -130,8 +120,8 @@ class MedicalPatient(models.Model):
 
     def get_patient_data(self):
         condition_names = []
-        for i in self.condition_ids:
-            condition_names.append("%s (%s)" % (i.name, i.create_date))
+        for i in self.medical_condition_ids:
+            condition_names.append("%s (%s)" % (i.name, i.create_date.date()))
         gender = False
         if self.gender:
             for item in self._fields["gender"]._description_selection(
@@ -142,7 +132,7 @@ class MedicalPatient(models.Model):
                     continue
         return {
             "name": self.name,
-            "condition_count": self.condition_count,
+            "condition_count": self.medical_condition_count,
             "condition_names": condition_names,
             "gender": gender,
             "patient_age": self.patient_age,

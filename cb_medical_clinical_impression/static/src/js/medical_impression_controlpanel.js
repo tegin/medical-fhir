@@ -13,6 +13,9 @@ odoo.define("cb_medical_clinical_impression.ControlPanelPatch", function (requir
         "cb_medical_clinical_impression.ControlPanel",
         (T) =>
             class extends T {
+                onEditMedication() {
+                    // TODO: Open an action with the current open medication items
+                }
                 onEditRoutineMedication() {
                     var self = this;
                     var routine_medication_ = self.props.info.routine_medication || "";
@@ -53,6 +56,7 @@ odoo.define("cb_medical_clinical_impression.ControlPanelPatch", function (requir
                         size: "large",
                         title: _t("Routine Medication"),
                     }).open({shouldFocusButtons: true});
+                    return dialog;
                 }
             }
     );
