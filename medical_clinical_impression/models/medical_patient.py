@@ -67,14 +67,13 @@ class MedicalPatient(models.Model):
         ).id
         ctx = dict(self._context)
         ctx["default_patient_id"] = self.id
-
         return {
             "type": "ir.actions.act_window",
             "res_model": "medical.family.member.history",
-            "name": _("Create family member history"),
-            "view_type": "list",
+            "name": _("Create family member history 2"),
+            "view_type": "list,form",
             "view_mode": "tree",
-            "views": [(view_id, "list")],
+            "views": [(view_id, "list"), (False, "form")],
             "context": ctx,
             "domain": [("patient_id", "=", self.id)],
         }
