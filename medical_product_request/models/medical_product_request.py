@@ -3,6 +3,7 @@
 
 import json
 import math
+from datetime import timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -152,6 +153,22 @@ class MedicalProductRequest(models.Model):
     )
 
     observations = fields.Text()
+    end_date = fields.Date(
+        readonly=True, compute="_compute_end_date", store=True
+    )
+
+    @api.depends("validation_date")
+    def _compute_end_date(self):
+        day_uom = self.env.ref("uom.product_uom_day")
+        for record in self:
+            if not record.validation_date:
+                record.end_date = False
+                continue
+            record.end_date = record.validation_date + timedelta(
+                days=day_uom._compute_quantity(
+                    record.duration, record.duration_uom_id
+                )
+            )
 
     @api.depends(
         "request_order_id", "patient_id", "medical_product_template_id"
