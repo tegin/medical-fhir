@@ -30,7 +30,7 @@ odoo.define("cb_medical_clinical_impression.MedicalImpressionController", functi
                 model: "medical.patient",
                 method: "set_routine_medication",
                 args: [[ev.data.res_id], ev.data.routine_medication],
-            }).then(function (data) {
+            }).then(function () {
                 self.updatePatientInfo();
             });
         },

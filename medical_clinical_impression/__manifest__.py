@@ -33,7 +33,7 @@
         "views/medical_clinical_finding.xml",
         "views/medical_family_member_history.xml",
         "reports/medical_impression_report.xml",
-        "views/impression_view.xml",
+        # "views/impression_view.xml",
     ],
     "qweb": [
         "static/src/xml/widget_warning_dropdown.xml",

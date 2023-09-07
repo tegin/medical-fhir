@@ -13,6 +13,7 @@ odoo.define("medical_clinical_impression.MedicalImpressionView", function (requi
     const {useSubEnv} = owl.hooks;
 
     class NewRendererWrapper extends RendererWrapper {
+        // eslint-disable-next-line no-unused-vars
         constructor(parent, props) {
             super(...arguments);
             this.view = undefined;
@@ -23,10 +24,12 @@ odoo.define("medical_clinical_impression.MedicalImpressionView", function (requi
         canBeSaved() {
             return [];
         }
+        /* eslint-disable no-empty-function */
         commitChanges() {}
         onFieldChanged(ev) {
             this.view.onFieldChanged(ev);
         }
+        /* eslint-disable no-empty-function */
         confirmChange() {}
         selectRecord(recordId) {
             this.view.selectRecord(recordId);
