@@ -51,7 +51,7 @@ class MedicalProcedureRequest(models.Model):
 
     def unlink(self):
         if self.mapped("procedure_ids"):
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _("You cannot delete a record that refers to a Procedure!")
             )
         return super(MedicalProcedureRequest, self).unlink()

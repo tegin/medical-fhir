@@ -14,7 +14,7 @@ class ProcedureRequestMakeProcedure(models.Model):
         active_ids = self.env.context.get("active_ids", []) or []
         for pr in self.env["medical.procedure.request"].browse(active_ids):
             if pr.procedure_ids:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("This Procedure Request already has a Procedure.")
                 )
             procedure = pr.generate_event()
