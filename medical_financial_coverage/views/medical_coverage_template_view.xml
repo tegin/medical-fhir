@@ -35,6 +35,7 @@
                         type="object"
                         name="draft2cancelled"
                         class="oe_highlight"
+                        confirm="Are you sure that you want to cancel the coverage template"
                         attrs="{'invisible': [('state','!=','draft')]}"
                     />
                     <button
@@ -48,6 +49,7 @@
                         string="Cancel"
                         type="object"
                         name="active2cancelled"
+                        confirm="Are you sure that you want to cancel the coverage template"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','active')]}"
                     />
@@ -55,6 +57,7 @@
                         string="Entered In Error"
                         type="object"
                         name="active2enteredinerror"
+                        confirm="Are you sure that you want to mark as errored the coverage template"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','active')]}"
                     />
@@ -62,6 +65,7 @@
                         string="Entered In Error"
                         type="object"
                         name="cancelled2enteredinerror"
+                        confirm="Are you sure that you want to mark as errored the coverage template"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','cancelled')]}"
                     />
@@ -69,6 +73,7 @@
                         string="Send to draft"
                         type="object"
                         name="active2draft"
+                        confirm="Are you sure that you want to mark as draft the coverage template"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','active')]}"
                     />
@@ -76,6 +81,7 @@
                         string="Send to draft"
                         type="object"
                         name="cancelled2draft"
+                        confirm="Are you sure that you want to mark as draft the coverage template"
                         class="oe_highlight"
                         attrs="{'invisible': [('state','!=','cancelled')]}"
                     />
