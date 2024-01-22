@@ -133,6 +133,10 @@
                                     string="Add a Boolean"
                                     context="{'default_value_type': 'bool'}"
                                 />
+                                <create
+                                    string="Add a Date"
+                                    context="{'default_value_type': 'date'}"
+                                />
                             </control>
                             <field
                                 name="sequence"
@@ -172,7 +176,7 @@
                             <!-- TODO: Unitl here....-->
                             <field
                                 name="uom_id"
-                                attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'), ('value_type', '=', 'bool')]}"
+                                attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|','|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'),('value_type', '=', 'date'), ('value_type', '=', 'bool')]}"
                             />
                             <field name="reference_format" invisible="1" />
                             <field name="reference_range_high" invisible="1" />

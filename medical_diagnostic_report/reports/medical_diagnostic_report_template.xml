@@ -62,6 +62,7 @@
                 <t t-esc="obs.value_bool" t-if="obs.value_type=='bool'" />
                 <t t-esc="obs.value_str" t-elif="obs.value_type=='str'" />
                 <t t-esc="obs.value_selection" t-elif="obs.value_type=='selection'" />
+                <t t-esc="obs.value_date" t-elif="obs.value_type=='date'" />
             </td>
             <td class="text-right" t-if="obs.value_type in ['int', 'float']">
                 <t t-esc="obs.value_int" t-if="obs.value_type=='int'" />
