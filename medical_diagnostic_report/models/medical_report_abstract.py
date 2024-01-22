@@ -51,6 +51,7 @@ class MedicalReportItemAbstract(models.AbstractModel):
             ("bool", "Boolean"),
             ("int", "Integer"),
             ("selection", "Selection"),
+            ("date", "Date"),
         ]
     )
     blocked = fields.Boolean()
