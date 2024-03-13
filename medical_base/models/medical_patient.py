@@ -14,9 +14,7 @@ class MedicalPatient(models.Model):
     _inherit = ["medical.abstract", "mail.thread", "mail.activity.mixin"]
     _inherits = {"res.partner": "partner_id"}
 
-    partner_id = fields.Many2one(
-        "res.partner", required=True, ondelete="restrict"
-    )
+    partner_id = fields.Many2one("res.partner", required=True, ondelete="restrict")
 
     gender = fields.Selection(
         [("male", "Male"), ("female", "Female"), ("other", "Other")]
@@ -33,9 +31,7 @@ class MedicalPatient(models.Model):
     )  # FHIR Field: maritalStatus
     # https://www.hl7.org/fhir/valueset-marital-status.html
     birth_date = fields.Date(string="Birth date")  # FHIR Field: birthDate
-    deceased_date = fields.Date(
-        string="Deceased date"
-    )  # FHIR Field: deceasedDate
+    deceased_date = fields.Date(string="Deceased date")  # FHIR Field: deceasedDate
     is_deceased = fields.Boolean(
         compute="_compute_is_deceased"
     )  # FHIR Field: deceasedBoolean
@@ -51,17 +47,12 @@ class MedicalPatient(models.Model):
         for record in self:
             age = 0
             if record.birth_date:
-                age = relativedelta(
-                    fields.Date.today(), record.birth_date
-                ).years
+                age = relativedelta(fields.Date.today(), record.birth_date).years
             record.patient_age = age
 
     @api.model
     def _get_internal_identifier(self, vals):
-        return (
-            self.env["ir.sequence"].sudo().next_by_code("medical.patient")
-            or "/"
-        )
+        return self.env["ir.sequence"].sudo().next_by_code("medical.patient") or "/"
 
     def open_parent(self):
         """Utility method used to add an "Open Parent" button in partner

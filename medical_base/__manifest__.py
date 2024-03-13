@@ -5,8 +5,8 @@
 {
     "name": "Medical Base",
     "summary": "Medical Base",
-    "version": "14.0.1.0.0",
-    "author": "CreuBlanca, Eficent, Odoo Community Association (OCA)",
+    "version": "16.0.1.0.0",
+    "author": "CreuBlanca, Eficent, Odoo Community Association (OCA), Tegin",
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
