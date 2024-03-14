@@ -13,6 +13,7 @@
             <xpath expr="//div[hasclass('settings')]" position="inside">
                 <div
                     class="app_settings_block"
+                    string="Medical"
                     data-string="Medical"
                     data-key="medical_base"
                     groups="medical_base.group_medical_configurator"

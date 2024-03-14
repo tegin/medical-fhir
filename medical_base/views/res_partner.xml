@@ -6,10 +6,13 @@
         <field name="name">res.partner.view.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
-        <field name="groups_id" eval="[(4, ref('medical_base.group_medical_user'))]" />
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page name="medical" string="Medical">
+                <page
+                    name="medical"
+                    string="Medical"
+                    groups="medical_base.group_medical_user"
+                >
                     <group name="medical_config">
                         <field name="is_medical" />
                     </group>
