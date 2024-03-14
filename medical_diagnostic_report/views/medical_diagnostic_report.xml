@@ -161,18 +161,22 @@
                                     context="{'options': selection_options}"
                                 />
                                 <field name="value_int" />
+
+                                <field name="value_date" />
                                 <field name="value_float" />
                             </field>
                             <field name="value_bool" invisible="1" />
-                                <field name="value_str" invisible="1" />
-                                <field
+                            <field name="value_str" invisible="1" />
+                            <field
                                 name="value_selection"
                                 widget="dynamic_selection_diagnostic_report"
                                 context="{'options': selection_options}"
                                 invisible="1"
                             />
-                                <field name="value_int" invisible="1" />
-                                <field name="value_float" invisible="1" />
+                            <field name="value_int" invisible="1" />
+                            <field name="value_float" invisible="1" />
+
+                            <field name="value_date" invisible="1" />
                             <!-- TODO: Unitl here....-->
                             <field
                                 name="uom_id"
