@@ -23,6 +23,7 @@ class MedicalObservation(models.Model):
     value_selection = fields.Char()
     value_int = fields.Integer()
     value_bool = fields.Boolean()
+    value_date = fields.Date()
     # FHIR Field: value
     uom = fields.Char(readonly=True)
     reference_format = fields.Char(readonly=True)
