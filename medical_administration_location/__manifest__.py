@@ -5,7 +5,7 @@
 
 {
     "name": "Medical Administration Location",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
     "author": "LasLabs, CreuBlanca, ForgeFlow,"
