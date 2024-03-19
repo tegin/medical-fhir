@@ -120,8 +120,16 @@ class MedicalPatient(models.Model):
 
     def get_patient_data(self):
         condition_names = []
+        allergy_names = []
         for i in self.medical_condition_ids:
-            condition_names.append("%s (%s)" % (i.name, i.create_date.date()))
+            if i.is_allergy:
+                allergy_names.append(
+                    "%s (%s)" % (i.name, i.create_date.date())
+                )
+            else:
+                condition_names.append(
+                    "%s (%s)" % (i.name, i.create_date.date())
+                )
         gender = False
         if self.gender:
             for item in self._fields["gender"]._description_selection(
@@ -134,6 +142,7 @@ class MedicalPatient(models.Model):
             "name": self.name,
             "condition_count": self.medical_condition_count,
             "condition_names": condition_names,
+            "allergy_names": allergy_names,
             "gender": gender,
             "patient_age": self.patient_age,
         }
