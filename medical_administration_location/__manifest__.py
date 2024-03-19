@@ -9,7 +9,7 @@
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
     "author": "LasLabs, CreuBlanca, ForgeFlow,"
-    "Odoo Community Association (OCA)",
+    "Odoo Community Association (OCA), Tegin",
     "license": "LGPL-3",
     "depends": ["medical_base"],
     "data": [

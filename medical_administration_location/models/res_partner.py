@@ -28,9 +28,7 @@ class ResPartner(models.Model):
         if (
             self.is_location
             and mode != "read"
-            and not self.env.user.has_group(
-                "medical_base.group_medical_configurator"
-            )
+            and not self.env.user.has_group("medical_base.group_medical_configurator")
         ):
             _logger.info(
                 "Access Denied by ACLs for operation: %s, uid: %s, model: %s",
@@ -44,3 +42,4 @@ class ResPartner(models.Model):
                     mode=mode,
                 )
             )
+        return
