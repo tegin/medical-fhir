@@ -15,7 +15,7 @@ class MedicalPatient(models.Model):
     _inherits = {"res.partner": "partner_id"}
 
     partner_id = fields.Many2one("res.partner", required=True, ondelete="restrict")
-
+    partner_ids = fields.One2many("medical.patient.partner", inverse_name="patient_id")
     gender = fields.Selection(
         [("male", "Male"), ("female", "Female"), ("other", "Other")]
     )  # FHIR Field: gender

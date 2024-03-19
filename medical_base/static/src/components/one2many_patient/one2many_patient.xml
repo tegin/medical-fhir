@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+
+   <t
+        t-name="medical_base.One2manyPatientField"
+        t-inherit="web.X2ManyField"
+        t-inherit-mode="primary"
+        owl="1"
+    >
+        <xpath expr="//button[hasclass('o-kanban-button-new')]" position="after">
+            <button
+                type="button"
+                class="btn btn-secondary o-kanban-button-link"
+                title="Add Existing record"
+                accesskey="c"
+                t-on-click="() => this.onAddLink()"
+            >
+                <t t-esc="linkButtonText" />
+            </button>
+        </xpath>
+    </t>
+</templates>

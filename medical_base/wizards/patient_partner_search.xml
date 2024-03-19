@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="patient_partner_search_form_view">
+        <field name="model">patient.partner.search</field>
+        <field name="arch" type="xml">
+            <form string="Patient Partner Search">
+                <group>
+                    <field name="partner_id" />
+                    <field name="patient_id" invisible="0" />
+                    <field name="partner_type" />
+                </group>
+                <footer>
+                    <button
+                        name="add_contact"
+                        string="ADD"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="patient_partner_search_act_window">
+        <field name="name">Patient Partner Search</field>
+        <field name="res_model">patient.partner.search</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_patient_id': active_id}</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

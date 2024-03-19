@@ -12,6 +12,7 @@
     "license": "LGPL-3",
     "depends": ["mail", "base_fontawesome", "uom"],
     "data": [
+        "wizards/patient_partner_search.xml",
         "security/medical_security.xml",
         "security/ir.model.access.csv",
         "views/res_partner.xml",
@@ -23,4 +24,10 @@
     ],
     "demo": ["demo/medical_demo.xml"],
     "application": True,
+    "assets": {
+        "web.assets_backend": [
+            "medical_base/static/src/components/**/*.js",
+            "medical_base/static/src/components/**/*.xml",
+        ]
+    },
 }

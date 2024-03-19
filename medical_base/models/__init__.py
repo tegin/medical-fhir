@@ -5,3 +5,4 @@
 from . import medical_abstract
 from . import medical_patient
 from . import res_partner
+from . import medical_patient_partner
