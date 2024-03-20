@@ -52,7 +52,12 @@
                         </button>
                     </div>
                     <br />
-                    <field name="impression_specialty_ids" context="{'patient_id': id}">
+                    <field
+                        name="impression_specialty_ids"
+                        context="{'patient_id': id}"
+                        readonly="1"
+                        options="{'record_action': 'get_specialty_impression'}"
+                    >
                         <tree
                             decoration-warning="impressions_in_progress_count &gt; 0"
                             default_order="impression_last_update desc"
@@ -89,20 +94,21 @@
                 />
             </button>
 
-            <xpath expr="//sheet" position="before">
+            <xpath expr="//div[@name='button_box']" position="after">
+                <!-- The right position would be after header. As it is ignoring as, we will do this bullshit. Style is adapted to this-->
                 <div
                     class="alert alert-danger row"
                     role="alert"
-                    style="margin-bottom:0px;"
-                    attrs="{'invisible':[('condition_count', '=', 0)]}"
+                    style="margin-bottom:24px; margin-top:-24px; border-radius:0px"
+                    attrs="{'invisible':[('medical_condition_count', '=', 0)]}"
                 >
                 <field
-                        name="condition_ids"
+                        name="medical_condition_ids"
                         widget="warning_dropdown"
                         class="col-12"
                         context="{'patient_id': id}"
                     />
-                <field name="condition_count" invisible="1" />
+                <field name="medical_condition_count" invisible="1" />
             </div>
             </xpath>
 
@@ -142,7 +148,12 @@
                         </button>
                     </div>
                     <br />
-                    <field name="impression_specialty_ids" context="{'patient_id': id}">
+                    <field
+                        name="impression_specialty_ids"
+                        context="{'patient_id': id}"
+                        readonly="1"
+                        options="{'record_action': 'get_specialty_impression'}"
+                    >
                         <tree
                             decoration-warning="impressions_in_progress_count &gt; 0"
                             default_order="impression_last_update desc"
@@ -158,7 +169,6 @@
                             />
                             <field name="impressions_in_progress_count" invisible="1" />
                         </tree>
-                        <form options="{'no_open':True}" />
                     </field>
                 </page>
             </xpath>

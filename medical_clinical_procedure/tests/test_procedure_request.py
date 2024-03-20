@@ -2,7 +2,7 @@
 # Copyright 2017 ForgeFlow
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.exceptions import UserError, Warning as Warn
+from odoo.exceptions import UserError
 from odoo.tests import TransactionCase
 
 
@@ -38,7 +38,7 @@ class TestProcedureRequest(TransactionCase):
             ).create({}).make_procedure()
         for request in procedure_requests:
             self.assertEqual(request.procedure_count, 1)
-            with self.assertRaises(Warn):
+            with self.assertRaises(UserError):
                 request.unlink()
             action = request.action_view_procedure()
             self.assertEqual(

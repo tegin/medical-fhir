@@ -2,18 +2,55 @@
 <odoo>
     <template
         id="assets_backend"
-        name="web_widget_warning_dropdown"
+        name="assets_backend"
         inherit_id="web.assets_backend"
-    >
+    > <!-- backend (herencia de erp) o frontend (website)-->
+
         <xpath expr="." position="inside">
-            <link
-                rel="stylesheet"
-                type="text/scss"
-                href="/medical_clinical_impression/static/src/scss/widget_warning_dropdown.scss"
+               <script
+                type="text/javascript"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_view.js"
             />
             <script
                 type="text/javascript"
+                src="/medical_clinical_impression/static/src/components/impression_component.js"
+            />
+            <script
+                type="text/javascript"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_model.js"
+            />
+            <script
+                type="text/javascript"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_controller.js"
+            />
+            <script
+                type="text/javascript"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_renderer.js"
+            />
+            <script
+                type="text/javascript"
+                src="/medical_clinical_impression/static/src/medical_impression_view/medical_impression_controlpanel.js"
+            />
+             <script
+                type="text/javascript"
                 src="/medical_clinical_impression/static/src/js/widget_warning_dropdown.js"
+            />
+             <script
+                type="text/javascript"
+                src="/medical_clinical_impression/static/src/js/web_ir_actions_act_select_record.js"
+            />
+
+        </xpath>
+        <xpath expr="link[last()]" position="after">
+            <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/medical_clinical_impression/static/src/components/impression_component.scss"
+            />
+             <link
+                rel="stylesheet"
+                type="text/scss"
+                href="/medical_clinical_impression/static/src/js/widget_warning_dropdown.scss"
             />
         </xpath>
     </template>

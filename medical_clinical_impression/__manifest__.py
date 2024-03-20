@@ -13,8 +13,14 @@
         "medical_workflow",
         "medical_clinical_condition",
         "medical_administration_practitioner_specialty",
+        "web_ir_actions_act_multi",
+        "web_ir_actions_act_view_reload",
+        "medical_procedure_external",
+        "medical_product_request",
     ],
     "data": [
+        "views/res_users.xml",
+        "views/medical_clinical_impression_template.xml",
         "views/assets.xml",
         "security/medical_security.xml",
         "security/ir.model.access.csv",
@@ -27,7 +33,15 @@
         "views/medical_clinical_finding.xml",
         "views/medical_family_member_history.xml",
         "reports/medical_impression_report.xml",
+        # "views/impression_view.xml",
     ],
-    "qweb": ["static/src/xml/widget_warning_dropdown.xml"],
-    "demo": ["demo/medical_demo.xml"],
+    "qweb": [
+        "static/src/xml/widget_warning_dropdown.xml",
+        "static/src/xml/medical_impression_view.xml",
+    ],
+    "demo": [
+        "demo/medical_clinical_impression_template.xml",
+        "demo/medical_demo.xml",
+        "demo/medical_security.xml",
+    ],
 }

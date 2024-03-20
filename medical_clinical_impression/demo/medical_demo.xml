@@ -38,7 +38,6 @@
     </record>
     <record id="encounter_01_patient_01" model="medical.encounter">
         <field name="patient_id" ref="medical_base.patient_01" />
-        <field name="center_id" ref="medical_administration_center.partner_center_1" />
     </record>
     <record id="impression_01_patient_01" model="medical.clinical.impression">
         <field name="fhir_state">completed</field>

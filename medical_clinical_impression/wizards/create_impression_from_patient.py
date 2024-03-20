@@ -27,19 +27,39 @@ class CreateImpressionFromPatient(models.TransientModel):
 
     def _get_impression_vals(self):
         return {
-            "default_encounter_id": self.encounter_id.id,
-            "default_specialty_id": self.specialty_id.id,
+            "encounter_id": self.encounter_id.id,
+            "specialty_id": self.specialty_id.id,
         }
 
     def generate(self):
         self.ensure_one()
-        action = self.env["medical.clinical.impression"].get_formview_action()
-        action["context"] = self._get_impression_vals()
-        return action
+        impression = self.env["medical.clinical.impression"].create(
+            self._get_impression_vals()
+        )
+        if self.env.context.get("impression_view"):
+            return {
+                "type": "ir.actions.act_multi",
+                "actions": [
+                    {"type": "ir.actions.act_window_close"},
+                    {
+                        "type": "ir.actions.act_select_record",
+                        "res_id": impression.id,
+                    },
+                ],
+            }
+        return self.specialty_id.with_context(
+            patient_id=self.patient_id.id
+        ).get_specialty_impression()
 
     @api.onchange("patient_id")
     def _compute_default_encounter(self):
-        self.encounter_id = self.patient_id._get_last_encounter()
+        for record in self:
+            if self.env.context.get("default_encounter_id"):
+                record.encounter_id = self.env.context.get(
+                    "default_encounter_id"
+                )
+            else:
+                record.encounter_id = record.patient_id._get_last_encounter()
 
     @api.onchange("encounter_id")
     def _onchange_encounter_date(self):

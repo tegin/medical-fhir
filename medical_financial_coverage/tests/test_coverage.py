@@ -75,7 +75,7 @@ class TestMedicalCoverage(TransactionCase):
         coverage_template = self.coverage_template_model.with_user(
             self.medical_user
         ).create(coverage_template_vals)
-        self.assertNotEquals(coverage_template, False)
+        self.assertNotEqual(coverage_template, False)
         coverage_vals = {
             "name": "test coverage",
             "patient_id": self.patient_1.id,
@@ -86,7 +86,7 @@ class TestMedicalCoverage(TransactionCase):
             coverage_vals
         )
         self.assertEqual(coverage.subscriber_id, "abc123")
-        self.assertNotEquals(coverage, False)
+        self.assertNotEqual(coverage, False)
 
     def test_create_coverage_for_a_patient(self):
         num_coverages = self.patient_1.coverage_count

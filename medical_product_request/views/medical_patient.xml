@@ -53,4 +53,29 @@
             </xpath>
         </field>
     </record>
+    <record model="ir.ui.view" id="medical_patient_his_form">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    name="create_medical_product_request_order"
+                    class="oe_stat_button btn-success"
+                    string="Create Ext. Prescription"
+                    type="object"
+                    context="{'default_category': 'discharge', 'default_patient_id': id}"
+                    icon="fa-prescription"
+                />
+                <button
+                    name="create_medical_product_request_order"
+                    class="oe_stat_button btn-warning"
+                    string=" Create Int. Medical Order"
+                    type="object"
+                    context="{'default_category': 'inpatient',  'default_patient_id': id}"
+                    icon="fa-pills"
+                />
+            </xpath>
+        </field>
+    </record>
 </odoo>
