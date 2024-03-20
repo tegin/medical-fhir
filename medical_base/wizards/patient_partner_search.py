@@ -11,7 +11,10 @@ class PatientPartnerSearch(models.TransientModel):
     partner_id = fields.Many2one("res.partner", name="Contact")
     patient_id = fields.Many2one("medical.patient", name="Patient")
     partner_type = fields.Selection(
-        [("f", "Family"), ("r", "Responsible")], required=True
+        lambda self: self.env["medical.patient.partner"]
+        ._fields["partner_type"]
+        .selection,
+        required=True,
     )
 
     def add_contact(self):
