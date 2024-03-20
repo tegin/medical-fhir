@@ -5,7 +5,7 @@
 {
     "name": "Medical Administration Encounter",
     "summary": "Add Encounter concept",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "CreuBlanca, ForgeFlow, Odoo Community Association (OCA), Tegin",
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
