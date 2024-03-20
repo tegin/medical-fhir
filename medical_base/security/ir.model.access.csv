@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+medical_patient_display,medical_patient_display,model_medical_patient,group_medical_user,1,1,0,0
+medical_patient_manager,medical_patient_manager,model_medical_patient,group_medical_reception,1,1,1,0
+medical_patient_partner_display,medical_patient_partner_display,model_medical_patient_partner,group_medical_user,1,1,0,0
+medical_patient_partner_manager,medical_patient_partner_manager,model_medical_patient_partner,group_medical_reception,1,1,1,1
+patient_partner_search_display,patient_partner_search_display,model_patient_partner_search,group_medical_user,1,1,1,0

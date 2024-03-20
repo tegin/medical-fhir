@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2017 ForgeFlow
+    Copyright 2017-2022 CreuBlanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.medical</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div
+                    class="app_settings_block"
+                    string="Medical"
+                    data-string="Medical"
+                    data-key="medical_base"
+                    groups="medical_base.group_medical_configurator"
+                >
+                    <h2><i
+                            class="fa fa-user-md"
+                            aria-hidden="true"
+                        /> Administration</h2>
+                    <div
+                        class="row mt16 o_settings_container"
+                        id="medical_administration"
+                    />
+                    <h2><i class="fa fa-stethoscope" aria-hidden="true" /> Clinical</h2>
+                    <div class="row mt16 o_settings_container" id="medical_clinical" />
+                    <h2><i class="fa fa-sitemap" aria-hidden="true" /> Workflow</h2>
+                    <div class="row mt16 o_settings_container" id="medical_workflow" />
+                    <h2><i class="fa fa-usd" aria-hidden="true" /> Financial</h2>
+                    <div class="row mt16 o_settings_container" id="medical_financial" />
+                    <h2><i
+                            class="fa fa-heartbeat"
+                            aria-hidden="true"
+                        /> Diagnostics</h2>
+                    <div
+                        class="row mt16 o_settings_container"
+                        id="medical_diagnostics"
+                    />
+                    <h2><i class="fa fa-flask" aria-hidden="true" /> Medication</h2>
+                    <div
+                        class="row mt16 o_settings_container"
+                        id="medical_medication"
+                    />
+                    <h2><i class="fa fa-book" aria-hidden="true" /> Terminologies</h2>
+                    <div
+                        class="row mt16 o_settings_container"
+                        id="medical_terminology"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_medical_config" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'medical_base'}</field>
+    </record>
+    <menuitem
+        id="menu_medical_config"
+        name="Settings"
+        parent="medical_root_settings"
+        sequence="0"
+        action="action_medical_config"
+        groups="base.group_system"
+    />
+</odoo>

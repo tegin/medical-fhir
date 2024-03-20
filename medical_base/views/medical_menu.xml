@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+
+    <menuitem
+        id="medical_root"
+        name="Medical"
+        sequence="10"
+        groups="group_medical_user"
+        web_icon="medical_base,static/description/icon.png"
+    />
+
+    <record model="ir.ui.menu" id="medical_root_administration">
+        <field name="name">Administration</field>
+        <field name="parent_id" ref="medical_root" />
+        <field name="sequence" eval="2" />
+        <field name="groups_id" eval="[(6, 0, [ref('group_medical_reception')])]" />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_root_clinical">
+        <field name="name">Clinical</field>
+        <field name="parent_id" ref="medical_root" />
+        <field name="sequence" eval="10" />
+        <field
+            name="groups_id"
+            eval="[
+            (6, 0, [ref('group_medical_technician'),
+                    ref('group_medical_doctor'),
+                    ref('group_medical_nurse'),
+                    ref('group_medical_auxiliary'),
+                    ref('group_medical_pharmacy')
+                    ]
+            ),
+        ]"
+        />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_clinical_request">
+        <field name="name">Requests</field>
+        <field name="parent_id" ref="medical_root_clinical" />
+        <field name="sequence" eval="10" />
+    </record>
+    <record model="ir.ui.menu" id="medical_clinical_event">
+        <field name="name">Events</field>
+        <field name="parent_id" ref="medical_root_clinical" />
+        <field name="sequence" eval="10" />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_root_diagnostics">
+        <field name="name">Diagnostics</field>
+        <field name="parent_id" ref="medical_root" />
+        <field name="sequence" eval="20" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('group_medical_doctor'),
+                       ref('group_medical_technician')
+                       ]
+             ),
+        ]"
+        />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_root_medications">
+        <field name="name">Medications</field>
+        <field name="parent_id" ref="medical_root" />
+        <field name="sequence" eval="30" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('group_medical_doctor'),
+                       ref('group_medical_pharmacy')
+                      ]
+             ),
+        ]"
+        />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_root_financial">
+        <field name="name">Financial</field>
+        <field name="parent_id" ref="medical_root" />
+        <field name="groups_id" eval="[(6, 0, [ref('group_medical_financial')])]" />
+        <field name="sequence" eval="40" />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_financial_coverage">
+        <field name="name">Coverages</field>
+        <field name="parent_id" ref="medical_base.medical_root_financial" />
+        <field name="sequence" eval="10" />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_root_workflow">
+        <field name="name">Workflow</field>
+        <field name="parent_id" ref="medical_root" />
+        <field name="groups_id" eval="[(6, 0, [ref('group_medical_financial')])]" />
+        <field name="sequence" eval="50" />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_root_terminologies">
+        <field name="name">Terminologies</field>
+        <field name="parent_id" ref="medical_root" />
+        <field name="groups_id" eval="[(6, 0, [ref('group_medical_configurator')])]" />
+        <field name="sequence" eval="60" />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_root_configuration">
+        <field name="name">Configuration</field>
+        <field name="parent_id" ref="medical_root" />
+        <field name="groups_id" eval="[(6, 0, [ref('group_medical_configurator')])]" />
+        <field name="sequence" eval="90" />
+    </record>
+
+    <record model="ir.ui.menu" id="medical_root_settings">
+        <field name="name">Settings</field>
+        <field name="parent_id" ref="medical_root_configuration" />
+        <field name="groups_id" eval="[(6, 0, [ref('group_medical_admin')])]" />
+        <field name="sequence" eval="1" />
+    </record>
+</odoo>
