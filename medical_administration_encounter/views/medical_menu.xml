@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record model="ir.ui.menu" id="menu_medical_encounter_root">
+        <field name="name">Encounters</field>
+        <field name="parent_id" ref="medical_base.medical_root_administration" />
+        <field name="action" ref="medical_encounter_action" />
+        <field name="sequence" eval="40" />
+    </record>
+</odoo>

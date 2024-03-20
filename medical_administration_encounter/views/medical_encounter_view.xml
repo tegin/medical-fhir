@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="medical_encounter_view_tree" model="ir.ui.view">
+        <field name="name">medical.encounter.view.tree</field>
+        <field name="model">medical.encounter</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="internal_identifier" />
+                <field name="patient_id" />
+                <field name="location_id" />
+                <field name="priority_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="medical_encounter_view_form" model="ir.ui.view">
+        <field name="name">medical.encounter.view.form</field>
+        <field name="model">medical.encounter</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        string="Arrived"
+                        type="object"
+                        name="planned2arrived"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','planned')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="planned2cancelled"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','planned')]}"
+                    />
+                    <button
+                        string="In-Progress"
+                        type="object"
+                        name="arrived2inprogress"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','arrived')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="arrived2cancelled"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','arrived')]}"
+                    />
+                    <button
+                        string="On Leave"
+                        type="object"
+                        name="inprogress2onleave"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','in-progress')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="inprogress2cancelled"
+                        groups="medical_base.group_medical_reception"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','in-progress')]}"
+                    />
+                    <button
+                        string="Finish"
+                        type="object"
+                        name="onleave2finished"
+                        groups="medical_base.group_medical_reception"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','onleave')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="onleave2cancelled"
+                        groups="medical_base.group_medical_reception"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','onleave')]}"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <h1>
+                        <label for="internal_identifier" />
+                        <field name="internal_identifier" />
+                    </h1>
+                    <h2>
+                        <field name="name" />
+                    </h2>
+                    <group>
+                        <group name="patient">
+                            <field name="patient_id" />
+                            <field name="priority_id" />
+                        </group>
+                    </group>
+                    <group name="location_id">
+                        <field name="location_id" />
+                    </group>
+                    <notebook>
+                        <page name="first" invisible="1" />
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="view_medical_encounter_search" model="ir.ui.view">
+        <field name="name">medical.encounter.search</field>
+        <field name="model">medical.encounter</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="internal_identifier" />
+                <separator />
+                <field name="patient_id" />
+                <separator />
+                <field name="priority_id" />
+                <field name="location_id" />
+                <separator />
+                <filter
+                    name="planned"
+                    domain="[('state', '=', 'planned')]"
+                    string="Planned"
+                />
+                <filter
+                    name="arrived"
+                    domain="[('state', '=', 'arrived')]"
+                    string="Arrived"
+                />
+                <filter
+                    name="in-progress"
+                    domain="[('state', '=', 'in-progress')]"
+                    string="In progress"
+                />
+                <filter
+                    name="onleave"
+                    domain="[('state', '=', 'onleave')]"
+                    string="On leave"
+                />
+                <filter
+                    name="finished"
+                    domain="[('state', '=', 'finished')]"
+                    string="Finished"
+                />
+                <filter
+                    name="cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                    string="Cancelled"
+                />
+                <separator />
+                <filter
+                    string="Today Encounters"
+                    name="encounters_today"
+                    domain="[('create_date', '&lt;', (context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d')), ('create_date', '&gt;=', context_today().strftime('%%Y-%%m-%%d'))]"
+                />
+                <separator />
+
+            </search>
+        </field>
+    </record>
+    <record id="medical_encounter_view_pivot" model="ir.ui.view">
+        <field name="name">medical.encounter.pivot</field>
+        <field name="model">medical.encounter</field>
+        <field name="arch" type="xml">
+            <pivot string="Encounters" sample="1">
+                <field name="location_id" type="col" />
+                <field name="create_date" type="row" />
+            </pivot>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="medical_encounter_action">
+        <field name="name">Encounters</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.encounter</field>
+        <field name="view_mode">tree,pivot,form</field>
+        <field name="search_view_id" ref="view_medical_encounter_search" />
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_encounter_his_form_view">
+        <field name="name">medical.encounter.form</field>
+        <field name="model">medical.encounter</field>
+        <field eval="99" name="priority" />
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <header>
+                    <button
+                        string="Arrived"
+                        type="object"
+                        name="planned2arrived"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','planned')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="planned2cancelled"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','planned')]}"
+                    />
+                    <button
+                        string="In-Progress"
+                        type="object"
+                        name="arrived2inprogress"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','arrived')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="arrived2cancelled"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','arrived')]}"
+                    />
+                    <button
+                        string="On Leave"
+                        type="object"
+                        name="inprogress2onleave"
+                        class="oe_highlight"
+                        groups="medical_base.group_medical_reception"
+                        attrs="{'invisible': [('state','!=','in-progress')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="inprogress2cancelled"
+                        groups="medical_base.group_medical_reception"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','in-progress')]}"
+                    />
+                    <button
+                        string="Finish"
+                        type="object"
+                        name="onleave2finished"
+                        groups="medical_base.group_medical_reception"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','onleave')]}"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        name="onleave2cancelled"
+                        groups="medical_base.group_medical_reception"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','onleave')]}"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="internal_identifier" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="patient_id"
+                                context="{'form_view_ref': 'medical_base.medical_patient_his_form_view'}"
+                            />
+                            <field name="priority_id" />
+                        </group>
+                        <group>
+                            <field name="create_date" />
+                        </group>
+                    </group>
+                    <notebook />
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_encounter_his_tree_view">
+        <field name="name">medical.encounter.tree</field>
+        <field name="model">medical.encounter</field>
+        <field eval="99" name="priority" />
+        <field name="arch" type="xml">
+            <tree>
+                <field name="internal_identifier" />
+                <field name="patient_id" />
+                <field name="location_id" />
+                <field name="priority_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_encounter_medical_his" model="ir.actions.act_window">
+        <field name="name">Encounters</field>
+        <field name="res_model">medical.encounter</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('patient_id', '=', active_id)]</field>
+        <field
+            name="view_ids"
+            eval="[(5,0,0),
+                          (0,0,{'view_mode':'form', 'view_id': ref('medical_administration_encounter.medical_encounter_his_form_view')})]"
+        />
+    </record>
+    <record model="ir.actions.act_window.view" id="action_encounter_medical_his_tree">
+        <field name="sequence" eval="5" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="medical_encounter_his_tree_view" />
+        <field name="act_window_id" ref="action_encounter_medical_his" />
+    </record>
+
+
+
+</odoo>
