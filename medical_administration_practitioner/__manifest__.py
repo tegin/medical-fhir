@@ -7,7 +7,7 @@
     "name": "Medical Administration Practitioner",
     "version": "14.0.1.0.0",
     "author": "ForgeFlow, CreuBlanca, LasLabs, "
-    "Odoo Community Association (OCA)",
+    "Odoo Community Association (OCA), Tegin",
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",

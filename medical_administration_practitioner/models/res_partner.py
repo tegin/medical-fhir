@@ -35,7 +35,7 @@ class ResPartner(models.Model):
         return result
 
     def _check_medical(self, mode="write"):
-        super()._check_medical(mode=mode)
+        result = super()._check_medical(mode=mode)
         if (
             self.is_practitioner
             and mode != "read"
@@ -53,8 +53,7 @@ class ResPartner(models.Model):
                     mode=mode,
                 )
             )
+        return result
 
     def _check_medical_practitioner(self):
-        return self.env.user.has_group(
-            "medical_base.group_medical_configurator"
-        )
+        return self.env.user.has_group("medical_base.group_medical_configurator")
