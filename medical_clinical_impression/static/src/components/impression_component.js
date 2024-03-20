@@ -53,6 +53,7 @@ odoo.define(
                 this.FieldMany2One = relational_fields.FieldMany2One;
                 this.FieldText = basic_fields.FieldText;
                 this.FieldChar = basic_fields.FieldChar;
+                this.FieldBinaryImage = basic_fields.FieldBinaryImage;
             }
             async onValidate() {
                 const self = this;
@@ -98,6 +99,7 @@ odoo.define(
                 );
             }
             onEdit() {
+                console.log("Edit", this.state.data.data);
                 this.state.edit = true;
                 this.trigger("edit_record", {id: this.state.data.res_id});
             }

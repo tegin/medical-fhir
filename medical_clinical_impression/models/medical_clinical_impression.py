@@ -107,6 +107,11 @@ class MedicalClinicalImpression(models.Model):
     procedure_external_request_count = fields.Integer(
         compute="_compute_procedure_external_request",
     )
+    prueba = fields.Char()
+
+    image = fields.Binary(
+        string="image", store=True, copy=False, attachment=True
+    )
 
     @api.depends("medical_procedure_external_request_ids")
     def _compute_procedure_external_request(self):

@@ -107,6 +107,9 @@
                         <field name="description" />
                     </group>
                     <notebook>
+                        <page string="Images">
+                            <field name="image" widget="image" nolabel="1" />
+                        </page>
                         <page string="Summary">
                             <group name="summary" string="Summary">
                                 <field name="summary" nolabel="1" />
@@ -247,6 +250,7 @@
                     <field name="allergy_substance_ids" widget="many2many_tags" />
                     <field name="template_id" />
                     <field name="procedure_external_request_count" />
+                    <field name="image" widget="image" />
                 </div>
             </medical_impression>
         </field>

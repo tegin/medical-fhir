@@ -172,6 +172,35 @@
                     />
                 </div>
             </div>
+            <div class="bg-success o_impression_image" t-if=" state.data.data.image">
+
+                <FieldAdapter
+                    Component="FieldBinaryImage"
+                    widgetArgs="['image', state.data, {viewType: 'medical_impression', attrs: {'placeholder': 'Image'}}]"
+                    class="bg-warning o_impression_image_item"
+                />
+                <FieldAdapter
+                    Component="FieldBinaryImage"
+                    widgetArgs="['image', state.data, {viewType: 'medical_impression', attrs: {'placeholder': 'Image'}}]"
+                    class="bg-warning o_impression_image_item"
+                />
+                <FieldAdapter
+                    Component="FieldBinaryImage"
+                    widgetArgs="['image', state.data, {viewType: 'medical_impression', attrs: {'placeholder': 'Image'}}]"
+                    class="bg-warning o_impression_image_item"
+                />
+                <FieldAdapter
+                    Component="FieldBinaryImage"
+                    widgetArgs="['image', state.data, {viewType: 'medical_impression', attrs: {'placeholder': 'Image'}}]"
+                    class="bg-warning o_impression_image_item"
+                />
+                <FieldAdapter
+                    Component="FieldBinaryImage"
+                    widgetArgs="['image', state.data, {viewType: 'medical_impression', attrs: {'placeholder': 'Image'}}]"
+                    class="bg-warning o_impression_image_item"
+                />
+
+            </div>
                 <div class=" row pt-2 pb-2 ">
                     <div class="col-3">
                         <FieldAdapter

@@ -46,6 +46,22 @@ $primary-weaker: #9e9dcd;
             padding: 0;
         }
     }
+    .o_impression_image {
+        width: 100%;
+        height: 250px;
+        overflow-y: hidden;
+        white-space: nowrap;
+        border: 1px solid #ccc;
+
+        .o_impression_image_item {
+            display: inline-block;
+            margin-right: 5px;
+            img {
+                width: auto;
+                height: 230px;
+            }
+        }
+    }
 }
 
 .o_impression_control_panel_data {
