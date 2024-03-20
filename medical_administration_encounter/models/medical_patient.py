@@ -29,7 +29,5 @@ class MedicalPatient(models.Model):
 
     def _get_last_encounter(self):
         if not self.encounter_ids:
-            raise ValidationError(
-                _("No encounters can be found for this patient")
-            )
+            raise ValidationError(_("No encounters can be found for this patient"))
         return self.encounter_ids[0]

@@ -22,9 +22,7 @@ class TestMedicalEncounter(TransactionCase):
         self.location_1 = self._create_location()
 
     def _create_patient(self):
-        return self.patient_model.create(
-            {"name": "Test patient", "gender": "female"}
-        )
+        return self.patient_model.create({"name": "Test patient", "gender": "female"})
 
     def _create_location(self):
         return self.location_model.create(
@@ -34,7 +32,7 @@ class TestMedicalEncounter(TransactionCase):
     def _create_user(self, name, group_ids):
         return (
             self.env["res.users"]
-            .with_context({"no_reset_password": True})
+            .with_context(**{"no_reset_password": True})
             .create(
                 {
                     "name": name,
@@ -63,9 +61,9 @@ class TestMedicalEncounter(TransactionCase):
             "location_id": self.location_1.id,
             "state": "arrived",
         }
-        encounter = self.encounter_model.with_user(
-            self.medical_reception
-        ).create(encounter_vals)
+        encounter = self.encounter_model.with_user(self.medical_reception).create(
+            encounter_vals
+        )
         self.assertTrue(encounter)
 
     def test_encounter_complete_flow(self):
