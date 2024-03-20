@@ -36,9 +36,7 @@ class MedicalAddPlanDefinition(models.TransientModel):
         vals = self._get_values()
         ctx = self._get_context()
         ctx.update(self.env.context)
-        return self.plan_definition_id.with_context(
-            ctx
-        ).execute_plan_definition(vals)
+        return self.plan_definition_id.with_context(**ctx).execute_plan_definition(vals)
 
     def run(self):
         res = self._run()

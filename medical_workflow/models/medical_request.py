@@ -25,7 +25,6 @@ class MedicalRequest(models.AbstractModel):
         }
 
     name = fields.Char(
-        string="Name",
         help="Name",
         copy=False,
         readonly=True,
@@ -37,9 +36,7 @@ class MedicalRequest(models.AbstractModel):
         compute="_compute_state",
     )
     fhir_state = fields.Selection(
-        selection=lambda r: [
-            (key, value[0]) for key, value in r._get_states().items()
-        ],
+        selection=lambda r: [(key, value[0]) for key, value in r._get_states().items()],
         readonly=True,
         copy=False,
         required=True,
@@ -114,7 +111,7 @@ class MedicalRequest(models.AbstractModel):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )  # FHIR Field: authoredOn
-    observations = fields.Text(string="Observations")  # FHIR Field: note
+    observations = fields.Text()  # FHIR Field: note
     plan_definition_id = fields.Many2one(
         comodel_name="workflow.plan.definition",
         ondelete="restrict",
@@ -149,8 +146,7 @@ class MedicalRequest(models.AbstractModel):
         for name, field in self._fields.items():
             if (
                 field.comodel_name
-                and "is_medical_request"
-                in self.env[field.comodel_name]._fields
+                and "is_medical_request" in self.env[field.comodel_name]._fields
                 and field.type == "many2one"
             ):
                 context.update({"default_%s" % field.name: self[name].id})

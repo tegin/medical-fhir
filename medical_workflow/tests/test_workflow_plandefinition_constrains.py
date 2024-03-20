@@ -13,18 +13,14 @@ class TestWorkflowPlandefinition(TransactionCase):
                 "name": "Activity",
             }
         )
-        self.plan = self.env["workflow.plan.definition"].create(
-            {"name": "Plan"}
-        )
+        self.plan = self.env["workflow.plan.definition"].create({"name": "Plan"})
         self.plan.activate()
         self.activity_2 = self.env["workflow.activity.definition"].create(
             {
                 "name": "Activity 2",
             }
         )
-        self.plan_2 = self.env["workflow.plan.definition"].create(
-            {"name": "Plan 2"}
-        )
+        self.plan_2 = self.env["workflow.plan.definition"].create({"name": "Plan 2"})
         return res
 
     def test_show_plan(self):
@@ -81,9 +77,7 @@ class TestWorkflowPlandefinition(TransactionCase):
         wzd = self.env["medical.add.plan.definition"]
         patient = self.browse_ref("medical_base.patient_01")
         plan_1 = plan_obj.create({"name": "P1"})
-        wzd_1 = wzd.create(
-            {"patient_id": patient.id, "plan_definition_id": plan_1.id}
-        )
+        wzd_1 = wzd.create({"patient_id": patient.id, "plan_definition_id": plan_1.id})
         with self.assertRaises(UserError):
             wzd_1.run()
 

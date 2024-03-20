@@ -20,9 +20,7 @@ class TestWorkflowStates(TransactionCase):
         activity = self.env["workflow.activity.definition"].create(
             {
                 "name": "Activity",
-                "model_id": self.browse_ref(
-                    "medical_base.model_medical_patient"
-                ).id,
+                "model_id": self.browse_ref("medical_base.model_medical_patient").id,
             }
         )
         self.assertFalse(activity.active)

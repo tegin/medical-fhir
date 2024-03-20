@@ -18,12 +18,11 @@ class PlanDefinition(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin", "medical.abstract"]
 
     name = fields.Char(
-        string="Name",
         help="Human-friendly name for the Plan Definition",
         required=True,
     )  # FHIR field: name
     description = fields.Text(
-        string="Description", help="Summary of nature of plan"
+        help="Summary of nature of plan"
     )  # FHIR field: description
     state = fields.Selection(
         [
@@ -62,9 +61,7 @@ class PlanDefinition(models.Model):
     @api.model
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"]
-            .sudo()
-            .next_by_code("workflow.plan.definition")
+            self.env["ir.sequence"].sudo().next_by_code("workflow.plan.definition")
             or "/"
         )
 
@@ -77,9 +74,7 @@ class PlanDefinition(models.Model):
         plan_ids.append(self.id)
         for action in self.action_ids:
             if action.execute_plan_definition_id:
-                action.execute_plan_definition_id._check_plan_recursion(
-                    plan_ids
-                )
+                action.execute_plan_definition_id._check_plan_recursion(plan_ids)
 
     def execute_plan_definition(self, vals, parent=False):
         """It will return the parent or the main activity.
@@ -98,9 +93,7 @@ class PlanDefinition(models.Model):
             )
             and self.activity_definition_id
         ):
-            res = self.activity_definition_id.execute_activity(
-                vals, parent, plan=self
-            )
+            res = self.activity_definition_id.execute_activity(vals, parent, plan=self)
             result[res._name] = res.ids
         if not res:
             res = parent

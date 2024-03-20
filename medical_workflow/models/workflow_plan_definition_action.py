@@ -18,9 +18,7 @@ class PlanDefinitionAction(models.Model):
     _parent_order = "name"
     _rec_name = "complete_name"
 
-    name = fields.Char(
-        string="Action name", required=True
-    )  # FHIR field: title
+    name = fields.Char(string="Action name", required=True)  # FHIR field: title
     complete_name = fields.Char(
         "Full Action Name", compute="_compute_complete_name", store=True
     )

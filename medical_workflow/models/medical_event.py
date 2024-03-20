@@ -23,7 +23,7 @@ class MedicalEvent(models.AbstractModel):
             "unknown": ("Unknown", "done"),
         }
 
-    name = fields.Char(string="Name", help="Name")
+    name = fields.Char(help="Name")
     plan_definition_id = fields.Many2one(
         comodel_name="workflow.plan.definition",
         ondelete="restrict",
@@ -49,9 +49,7 @@ class MedicalEvent(models.AbstractModel):
         compute="_compute_state",
     )
     fhir_state = fields.Selection(
-        selection=lambda r: [
-            (key, value[0]) for key, value in r._get_states().items()
-        ],
+        selection=lambda r: [(key, value[0]) for key, value in r._get_states().items()],
         readonly=False,
         required=True,
         tracking=True,
