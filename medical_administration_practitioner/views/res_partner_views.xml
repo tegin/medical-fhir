@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2017 LasLabs Inc.
+    Copyright 2017 CreuBlanca
+    Copyright 2017 ForgeFlow
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="name">res.partner.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="medical_base.res_partner_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='child_ids']//form//field[@name='parent_id']"
+                position="after"
+            >
+                <field name="is_practitioner" invisible="1" />
+            </xpath>
+            <field name="is_medical" position="before">
+                <field name="is_practitioner" />
+            </field>
+            <xpath expr="//field[@name='is_medical']/.." position="after">
+                <group
+                    name="practitioner_config"
+                    attrs="{'invisible': [('is_practitioner','=',False)]}"
+                >
+                    <field
+                        name="practitioner_type"
+                        widget="radio"
+                        options="{'horizontal': true}"
+                    />
+                    <field
+                        name="practitioner_role_ids"
+                        widget="many2many_tags"
+                        options="{'no_create': True}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="medical_practitioner_action">
+        <field name="name">Practitioners</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('is_practitioner', '=', True)]</field>
+        <field
+            name="context"
+        >{'default_company_type':'person', 'default_is_company':False, 'default_is_practitioner': True, 'default_is_medical': True}</field>
+    </record>
+</odoo>
