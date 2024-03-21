@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="group_patient_add_plan_definition" model="res.groups">
+        <field name="name">Add Plan definition on patient</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="group_main_activity_plan_definition" model="res.groups">
+        <field name="name">Manage a possible parent activity on plan definition</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>
