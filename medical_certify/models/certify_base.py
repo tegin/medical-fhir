@@ -12,9 +12,7 @@ class DigestBase(models.AbstractModel):
     _description = "Digest Base"
     _SIGNATURE_FIELD = "digest"
 
-    digest = fields.Char(
-        "Digest", readonly=True, help="Original Document Digest", copy=False
-    )
+    digest = fields.Char(readonly=True, help="Original Document Digest", copy=False)
     digest_altered = fields.Boolean(compute="_compute_digest")
     digest_current = fields.Char("Current Hash", compute="_compute_digest")
     serializer_current = fields.Text("Current Doc", compute="_compute_digest")
