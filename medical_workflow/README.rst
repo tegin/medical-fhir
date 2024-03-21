@@ -34,13 +34,13 @@ Installation
 Usage
 =====
 
-#. Go to 'Medical / Workflow / Workflow Types'
+#. Go to 'Medical / Workflow / Plan definitions'
 #. Click 'Create' and fill in all the required information.
 #. Click 'Save'.
 #. Go to 'Medical / Workflow / Activity definitions'
 #. Click 'Create' and fill in all the required information.
 #. Click 'Save'.
-#. Go to 'Medical / Workflow / Plan definitions'
+#. Go to 'Medical / Workflow / Actions'
 #. Click 'Create'.
 #. Provide a name and create actions by providing a name and an Activity
    Definition or a Plan Definition.
