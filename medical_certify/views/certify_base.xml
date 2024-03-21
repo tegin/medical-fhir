@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="certify_base_form_view">
+        <field name="name">certify.base.form (in medical_certify)</field>
+        <field name="model">digest.base</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="signature_qr" widget="image" />
+                        <field name="signature_date" />
+                        <field name="digest_altered" />
+                    </group>
+                    <footer>
+                        <button string="Close" class="btn-secondary" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
