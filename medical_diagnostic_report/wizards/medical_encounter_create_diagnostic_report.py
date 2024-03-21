@@ -10,9 +10,7 @@ class MedicalEncounterCreateDiagnosticReport(models.TransientModel):
     _description = "Generate report from encounter using a template"
 
     encounter_id = fields.Many2one("medical.encounter", required=True)
-    template_id = fields.Many2one(
-        "medical.diagnostic.report.template", required=True
-    )
+    template_id = fields.Many2one("medical.diagnostic.report.template", required=True)
     lang = fields.Selection(
         string="Language",
         selection="_get_lang",
@@ -29,7 +27,7 @@ class MedicalEncounterCreateDiagnosticReport(models.TransientModel):
 
     def generate(self):
         self.ensure_one()
-        report = self.template_id.with_context(
-            lang=self.lang
-        )._generate_report(**self._generate_kwargs())
+        report = self.template_id.with_context(lang=self.lang)._generate_report(
+            **self._generate_kwargs()
+        )
         return report.get_formview_action()

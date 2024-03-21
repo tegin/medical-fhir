@@ -22,9 +22,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
         self.encounter_1 = self.env["medical.encounter"].create(
             {"name": "Encounter 1", "patient_id": self.patient_1.id}
         )
-        uom = self.env.ref(
-            "medical_diagnostic_report.uom_ten_thousand_micro_liter"
-        )
+        uom = self.env.ref("medical_diagnostic_report.uom_ten_thousand_micro_liter")
         self.concept_1 = self.env["medical.observation.concept"].create(
             {
                 "name": "Concept 1",
@@ -56,9 +54,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
             {"name": "Note 1", "display_type": "line_note"},
             {"name": "Line 5", "concept_id": self.concept_1.id},
         ]
-        self.template_1 = self.env[
-            "medical.diagnostic.report.template"
-        ].create(
+        self.template_1 = self.env["medical.diagnostic.report.template"].create(
             {
                 "name": "Template 1",
                 "with_observation": True,
@@ -68,9 +64,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
                 "item_ids": [(0, 0, item) for item in items],
             }
         )
-        self.template_2 = self.env[
-            "medical.diagnostic.report.template"
-        ].create(
+        self.template_2 = self.env["medical.diagnostic.report.template"].create(
             {
                 "name": "Template 2",
                 "with_observation": True,
@@ -80,9 +74,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
                 "item_ids": [(0, 0, item) for item in items],
             }
         )
-        self.template_3 = self.env[
-            "medical.diagnostic.report.template"
-        ].create(
+        self.template_3 = self.env["medical.diagnostic.report.template"].create(
             {
                 "name": "Template 3",
                 "with_conclusion": True,
@@ -100,9 +92,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
             }
         )
         action = report_generation.generate()
-        self.report = self.env[action.get("res_model")].browse(
-            action.get("res_id")
-        )
+        self.report = self.env[action.get("res_model")].browse(action.get("res_id"))
 
     def test_finalization(self):
         self.assertNotEqual(self.report.fhir_state, "final")
@@ -114,9 +104,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
         self.assertEqual(self.report.fhir_state, "final")
         self.assertTrue(self.report.issued_date)
         self.assertTrue(self.report.is_cancellable)
-        self.assertEqual(
-            self.report.issued_date, datetime(2020, 1, 1, 0, 0, 0)
-        )
+        self.assertEqual(self.report.issued_date, datetime(2020, 1, 1, 0, 0, 0))
         self.assertTrue(self.report.issued_user_id)
         self.assertEqual(self.report.issued_user_id, self.env.user)
 
@@ -135,9 +123,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
             self.report.cancel_action()
         self.assertEqual(self.report.fhir_state, "cancelled")
         self.assertTrue(self.report.cancel_date)
-        self.assertEqual(
-            self.report.cancel_date, datetime(2020, 1, 1, 0, 0, 0)
-        )
+        self.assertEqual(self.report.cancel_date, datetime(2020, 1, 1, 0, 0, 0))
         self.assertFalse(self.report.is_cancellable)
         self.assertTrue(self.report.cancel_user_id)
         self.assertEqual(self.report.cancel_user_id, self.env.user)
@@ -178,22 +164,14 @@ class TestMedicalDiagnosticReport(TransactionCase):
         self.assertEqual(self.patient_1.name, report.patient_id.name)
         self.assertEqual(self.patient_1.vat, report.patient_id.vat)
         self.assertEqual(self.template_1.name, report.name)
-        self.assertEqual(
-            self.template_1.with_conclusion, report.with_conclusion
-        )
+        self.assertEqual(self.template_1.with_conclusion, report.with_conclusion)
         self.assertEqual(self.template_1.conclusion, report.conclusion)
-        self.assertEqual(
-            self.template_1.with_composition, report.with_composition
-        )
+        self.assertEqual(self.template_1.with_composition, report.with_composition)
         self.assertEqual(self.template_1.composition, report.composition)
         self.assertEqual(self.template_1.item_blocked, report.item_blocked)
+        self.assertEqual(len(self.template_1.item_ids), len(report.observation_ids))
         self.assertEqual(
-            len(self.template_1.item_ids), len(report.observation_ids)
-        )
-        self.assertEqual(
-            len(
-                self.template_1.item_ids.filtered(lambda r: not r.display_type)
-            ),
+            len(self.template_1.item_ids.filtered(lambda r: not r.display_type)),
             len(report.observation_ids.filtered(lambda r: not r.display_type)),
         )
         self.assertEqual(
@@ -227,9 +205,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
                 )
             ),
             len(
-                report.observation_ids.filtered(
-                    lambda r: r.display_type == "line_note"
-                )
+                report.observation_ids.filtered(lambda r: r.display_type == "line_note")
             ),
         )
 

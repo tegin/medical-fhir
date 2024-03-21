@@ -15,9 +15,7 @@ class TestMedicalPatientObservationButtons(TransactionCase):
         self.encounter_1 = self.env["medical.encounter"].create(
             {"name": "Encounter 1", "patient_id": self.patient_1.id}
         )
-        uom = self.env.ref(
-            "medical_diagnostic_report.uom_ten_thousand_micro_liter"
-        )
+        uom = self.env.ref("medical_diagnostic_report.uom_ten_thousand_micro_liter")
         self.concept_1 = self.env["medical.observation.concept"].create(
             {
                 "name": "Concept 1",
@@ -58,9 +56,7 @@ class TestMedicalPatientObservationButtons(TransactionCase):
             {"name": "Line 5", "concept_id": self.concept_1.id},
             {"name": "Line 6", "concept_id": self.concept_2.id},
         ]
-        self.template_1 = self.env[
-            "medical.diagnostic.report.template"
-        ].create(
+        self.template_1 = self.env["medical.diagnostic.report.template"].create(
             {
                 "name": "Template 1",
                 "with_observation": True,
@@ -80,9 +76,7 @@ class TestMedicalPatientObservationButtons(TransactionCase):
             }
         )
         action = report_generation.generate()
-        self.report = self.env[action.get("res_model")].browse(
-            action.get("res_id")
-        )
+        self.report = self.env[action.get("res_model")].browse(action.get("res_id"))
 
     def test_report_observations_change_state(self):
         report_observation = self.report.observation_ids[8]
@@ -130,28 +124,20 @@ class TestMedicalPatientObservationButtons(TransactionCase):
             concept_evolution.bokeh_chart,
             '.*<script type="text/javascript">.*',
         )
-        concept_evolution.date_low_limit = (
-            datetime.now() + timedelta(days=2)
-        ).date()
+        concept_evolution.date_low_limit = (datetime.now() + timedelta(days=2)).date()
         self.assertRegex(concept_evolution.bokeh_chart, ".*No data found.*")
-        concept_evolution.date_low_limit = (
-            datetime.now() + timedelta(days=-2)
-        ).date()
+        concept_evolution.date_low_limit = (datetime.now() + timedelta(days=-2)).date()
         self.assertRegex(
             concept_evolution.bokeh_chart,
             '.*<script type="text/javascript">.*',
         )
         concept_evolution.date_low_limit = False
-        concept_evolution.date_high_limit = (
-            datetime.now() + timedelta(days=2)
-        ).date()
+        concept_evolution.date_high_limit = (datetime.now() + timedelta(days=2)).date()
         self.assertRegex(
             concept_evolution.bokeh_chart,
             '.*<script type="text/javascript">.*',
         )
-        concept_evolution.date_high_limit = (
-            datetime.now() + timedelta(days=-2)
-        ).date()
+        concept_evolution.date_high_limit = (datetime.now() + timedelta(days=-2)).date()
         self.assertRegex(concept_evolution.bokeh_chart, ".*No data found.*")
 
     def test_compute_bokeh_chart_only_reference_range_high(self):
@@ -173,6 +159,4 @@ class TestMedicalPatientObservationButtons(TransactionCase):
             return False
 
     def test_preview(self):
-        self.assertTrue(
-            self.preview_test_medical_diagnostic_report(self.report)
-        )
+        self.assertTrue(self.preview_test_medical_diagnostic_report(self.report))

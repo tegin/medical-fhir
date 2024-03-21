@@ -38,18 +38,14 @@ class TestMedicalPatientCreateReport(TransactionCase):
         self.report = self.env["medical.report"].create(
             {
                 "name": "Test Report",
-                "template_id": self.env.ref(
-                    "medical_fhir.medical_report_template"
-                ).id,
+                "template_id": self.env.ref("medical_fhir.medical_report_template").id,
                 "patient_id": self.patient.id,
                 "encounter_id": self.encounter.id,
             }
         )
 
     def test_check_encounter_date(self):
-        self.report.encounter_id.create_date = datetime.now() - timedelta(
-            days=8
-        )
+        self.report.encounter_id.create_date = datetime.now() - timedelta(days=8)
         self.report.check_encounter_date()
         self.assertTrue(self.report.show_encounter_warning)
 

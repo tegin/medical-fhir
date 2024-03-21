@@ -52,9 +52,7 @@ class PatientConceptEvolution(models.TransientModel):
                     df[observation.concept_id.name] = np.nan
                 if obs_date not in df.index:
                     df.loc[obs_date] = np.nan
-                df.loc[
-                    obs_date, observation.concept_id.name
-                ] = observation.get_value()
+                df.loc[obs_date, observation.concept_id.name] = observation.get_value()
             return df
         else:
             return False

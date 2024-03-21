@@ -5,9 +5,9 @@
     "name": "Medical Diagnostic Report",
     "summary": """
         Allows to create reports for patients""",
-    "version": "14.0.2.0.0",
+    "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "author": "CreuBlanca,Odoo Community Association (OCA)",
+    "author": "CreuBlanca,Odoo Community Association (OCA), Tegin",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": [
         "medical_administration_encounter",
@@ -44,5 +44,5 @@
         "reports/medical_diagnostic_report_report_preview.xml",
     ],
     "demo": ["demo/medical_diagnostic_report.xml"],
-    "external_dependencies": {"python": ["numpy", "pandas", "bokeh==2.3.1"]},
+    "external_dependencies": {"python": ["numpy", "pandas"]},
 }

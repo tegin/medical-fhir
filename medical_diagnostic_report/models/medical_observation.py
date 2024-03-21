@@ -11,12 +11,8 @@ class MedicalObservation(models.Model):
     _description = "Medical observation"
     _order = "observation_date desc, sequence, id"
 
-    diagnostic_report_id = fields.Many2one(
-        comodel_name="medical.diagnostic.report"
-    )
-    patient_id = fields.Many2one(
-        "medical.patient", readonly=True, required=True
-    )
+    diagnostic_report_id = fields.Many2one(comodel_name="medical.diagnostic.report")
+    patient_id = fields.Many2one("medical.patient", readonly=True, required=True)
     value = fields.Char(store=False)
     value_float = fields.Float()
     value_str = fields.Char()
@@ -51,9 +47,7 @@ class MedicalObservation(models.Model):
 
     def registered2final_action(self, observation_date=False):
         for obs in self:
-            vals = obs._registered2final_vals(
-                observation_date=observation_date
-            )
+            vals = obs._registered2final_vals(observation_date=observation_date)
             if obs.uom_id and not obs.uom:
                 vals.update(
                     {

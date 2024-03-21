@@ -29,9 +29,7 @@ class MedicalDiagnosticReport(models.Model):
         copy=False,
         readonly=True,
     )
-    lang = fields.Selection(
-        string="Language", selection="_get_lang", readonly=True
-    )
+    lang = fields.Selection(string="Language", selection="_get_lang", readonly=True)
     # FHIR Field: status
 
     patient_id = fields.Many2one(
@@ -40,9 +38,7 @@ class MedicalDiagnosticReport(models.Model):
         required=False,
         readonly=True,
     )
-    patient_name = fields.Char(
-        readonly=True, states={"draft": [("readonly", False)]}
-    )
+    patient_name = fields.Char(readonly=True, states={"draft": [("readonly", False)]})
     # FHIR Field: subject
 
     encounter_id = fields.Many2one("medical.encounter", readonly=True)
@@ -52,13 +48,9 @@ class MedicalDiagnosticReport(models.Model):
         string="VAT", readonly=True, states={"draft": [("readonly", False)]}
     )
 
-    patient_age = fields.Integer(
-        readonly=True, states={"draft": [("readonly", False)]}
-    )
+    patient_age = fields.Integer(readonly=True, states={"draft": [("readonly", False)]})
 
-    patient_origin = fields.Char(
-        readonly=True, states={"draft": [("readonly", False)]}
-    )
+    patient_origin = fields.Char(readonly=True, states={"draft": [("readonly", False)]})
 
     issued_date = fields.Datetime(
         help="Date of report's publication",
@@ -70,9 +62,7 @@ class MedicalDiagnosticReport(models.Model):
     )
     # FHIR Field: Issued
 
-    cancel_date = fields.Datetime(
-        string="Cancelled Date", readonly=True, copy=False
-    )
+    cancel_date = fields.Datetime(string="Cancelled Date", readonly=True, copy=False)
     cancel_user_id = fields.Many2one(
         "res.users", string="Cancelled by User", readonly=True, copy=False
     )
@@ -147,9 +137,7 @@ class MedicalDiagnosticReport(models.Model):
 
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"]
-            .sudo()
-            .next_by_code("medical.diagnostic.report")
+            self.env["ir.sequence"].sudo().next_by_code("medical.diagnostic.report")
             or "/"
         )
 

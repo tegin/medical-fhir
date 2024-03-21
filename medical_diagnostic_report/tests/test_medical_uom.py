@@ -29,42 +29,18 @@ class TestMedicalUom(TransactionCase):
         self._check("uom_milligram_liter", "uom_gram_liter", 2000, 2)
 
     def test_concentration(self):
-        self._check(
-            "uom_million_micro_liter", "uom_ten_thousand_micro_liter", 1, 100
-        )
-        self._check(
-            "uom_ten_thousand_micro_liter", "uom_million_micro_liter", 200, 2
-        )
-        self._check(
-            "uom_million_micro_liter", "uom_thousand_micro_liter", 1, 1000
-        )
-        self._check(
-            "uom_thousand_micro_liter", "uom_million_micro_liter", 2000, 2
-        )
-        self._check(
-            "uom_million_micro_liter", "uom_hundred_micro_liter", 1, 10000
-        )
-        self._check(
-            "uom_hundred_micro_liter", "uom_million_micro_liter", 20000, 2
-        )
-        self._check(
-            "uom_ten_thousand_micro_liter", "uom_thousand_micro_liter", 1, 10
-        )
-        self._check(
-            "uom_thousand_micro_liter", "uom_ten_thousand_micro_liter", 20, 2
-        )
-        self._check(
-            "uom_ten_thousand_micro_liter", "uom_hundred_micro_liter", 1, 100
-        )
-        self._check(
-            "uom_hundred_micro_liter", "uom_ten_thousand_micro_liter", 200, 2
-        )
-        self._check(
-            "uom_thousand_micro_liter", "uom_hundred_micro_liter", 1, 10
-        )
-        self._check(
-            "uom_hundred_micro_liter", "uom_thousand_micro_liter", 20, 2
-        )
+        self._check("uom_million_micro_liter", "uom_ten_thousand_micro_liter", 1, 100)
+        self._check("uom_ten_thousand_micro_liter", "uom_million_micro_liter", 200, 2)
+        self._check("uom_million_micro_liter", "uom_thousand_micro_liter", 1, 1000)
+        self._check("uom_thousand_micro_liter", "uom_million_micro_liter", 2000, 2)
+        self._check("uom_million_micro_liter", "uom_hundred_micro_liter", 1, 10000)
+        self._check("uom_hundred_micro_liter", "uom_million_micro_liter", 20000, 2)
+        self._check("uom_ten_thousand_micro_liter", "uom_thousand_micro_liter", 1, 10)
+        self._check("uom_thousand_micro_liter", "uom_ten_thousand_micro_liter", 20, 2)
+        self._check("uom_ten_thousand_micro_liter", "uom_hundred_micro_liter", 1, 100)
+        self._check("uom_hundred_micro_liter", "uom_ten_thousand_micro_liter", 200, 2)
+        self._check("uom_thousand_micro_liter", "uom_hundred_micro_liter", 1, 10)
+        self._check("uom_hundred_micro_liter", "uom_thousand_micro_liter", 20, 2)
 
     def test_concentration_water(self):
         self._check("uom_litre_litre", "uom_millilitre_litre", 1, 1000)
