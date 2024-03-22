@@ -25,7 +25,6 @@
         "wizards/patient_concept_evolution.xml",
         "wizards/medical_diagnostic_report_template_print.xml",
         "wizards/medical_diagnostic_report_expand.xml",
-        "templates/assets.xml",
         "views/medical_uom.xml",
         "data/uom.xml",
         "wizards/medical_encounter_create_diagnostic_report.xml",
@@ -45,4 +44,14 @@
     ],
     "demo": ["demo/medical_diagnostic_report.xml"],
     "external_dependencies": {"python": ["numpy", "pandas"]},
+    "assets": {
+        "web.assets_backend": [
+            "/medical_diagnostic_report/static/src/**/*.js",
+            "/medical_diagnostic_report/static/src/**/*.xml",
+            "/medical_diagnostic_report/static/src/**/*.scss",
+        ],
+        "web.report_assets_common": [
+            "/medical_diagnostic_report/static/src/**/*.scss",
+        ],
+    },
 }

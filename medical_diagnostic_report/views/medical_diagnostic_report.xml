@@ -150,10 +150,10 @@
                                 widget="section_and_note_text"
                                 attrs="{'readonly': ['|', ('blocked', '=', True), ('concept_id', '!=', False)]}"
                             />
-                            <field name="value" widget="diagnostic_report_value">
+                            <field name="value" widget="diagnostic_report_value" />
 
                             <!-- TODO: Fix this, it needs to be grouped somehow -->
-                                <field name="value_bool" />
+                                <!-- <field name="value_bool" />
                                 <field name="value_str" />
                                 <field
                                     name="value_selection"
@@ -164,7 +164,7 @@
 
                                 <field name="value_date" />
                                 <field name="value_float" />
-                            </field>
+                            </field> -->
                             <field name="value_bool" invisible="1" />
                             <field name="value_str" invisible="1" />
                             <field

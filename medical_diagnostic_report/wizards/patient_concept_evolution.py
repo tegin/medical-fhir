@@ -72,7 +72,7 @@ class PatientConceptEvolution(models.TransientModel):
             source = ColumnDataSource(df)
             p = figure(
                 sizing_mode="stretch_width",
-                plot_height=450,
+                height=450,
             )
             hover = HoverTool(
                 tooltips=[
