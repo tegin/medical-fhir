@@ -119,7 +119,7 @@ class TestMedicalPatientObservationButtons(TransactionCase):
         self.assertTrue(concept_evolution.bokeh_chart)
         self.assertRegex(concept_evolution.bokeh_chart, ".*No data found.*")
         self.report.registered2final_action()
-        concept_evolution.refresh()
+        concept_evolution.invalidate_recordset()
         self.assertRegex(
             concept_evolution.bokeh_chart,
             '.*<script type="text/javascript">.*',
@@ -145,7 +145,7 @@ class TestMedicalPatientObservationButtons(TransactionCase):
             {"concept_id": self.concept_2.id, "patient_id": self.patient_1.id}
         )
         self.report.registered2final_action()
-        concept_evolution.refresh()
+        concept_evolution.invalidate_recordset()
         self.assertRegex(
             concept_evolution.bokeh_chart,
             '.*<script type="text/javascript">.*',

@@ -296,6 +296,7 @@ class TestMedicalDiagnosticReport(TransactionCase):
 
     def test_report_form(self):
         with Form(self.template_3) as form:
+            form.with_observation = True
             with form.item_ids.new() as observation:
                 observation.concept_id = self.concept_1
                 self.assertTrue(observation.name)
