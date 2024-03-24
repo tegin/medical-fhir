@@ -2,10 +2,10 @@ from urllib.parse import urlparse
 
 from odoo_test_helper import FakeModelLoader
 
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestCertify(SavepointCase):
+class TestCertify(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -47,7 +47,7 @@ class TestCertify(SavepointCase):
         self.assertEqual(self.record.digest, digest)
         self.assertEqual(self.record.digest_current, digest)
         self.record.name = "OTHER NAME"
-        self.record.refresh()
+        self.record.invalidate_recordset()
         self.assertTrue(self.record.digest)
         self.assertTrue(self.record.digest_altered)
         self.assertNotEqual(self.record.digest_current, digest)
