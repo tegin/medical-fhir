@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+
+   <t t-name="medical_diagnostic_report.DiagnosticReportValueField" owl="1">
+
+    <Field t-props="field_props" t-if="props.record.data.value_type" />
+
+    </t>
+</templates>

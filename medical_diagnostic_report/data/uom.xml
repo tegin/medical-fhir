@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="0">
+    <record id="medical_uom_categ_rate" model="uom.category">
+        <field name="name">Rate</field>
+    </record>
+    <record id="medical_uom_categ_density" model="uom.category">
+        <field name="name">Density</field>
+    </record>
+    <record id="medical_uom_categ_concentration" model="uom.category">
+        <field name="name">Concentration</field>
+    </record>
+    <record id="medical_uom_categ_concentration_water" model="uom.category">
+        <field name="name">Concentration in Water</field>
+    </record>
+    <record id="medical_uom_categ_concentration_molar" model="uom.category">
+        <field name="name">Molar Concentration</field>
+    </record>
+    <record id="medical_uom_mol" model="uom.category">
+        <field name="name">Mol(s)</field>
+    </record>
+    <record id="medical_uom_categ_time_month" model="uom.category">
+        <field name="name">Time Month/Year</field>
+    </record>
+    <record id="medical_uom_categ_time_hour" model="uom.category">
+        <field name="name">Time Hour/Day/Week</field>
+    </record>
+    <record id="medical_uom_categ_catalytic_activity_litre" model="uom.category">
+        <field name="name">Catalytic Activity Litre</field>
+    </record>
+    <record id="uom_rate" model="uom.uom">
+        <field name="category_id" ref="medical_uom_categ_rate" />
+        <field name="name">Rate</field>
+        <field name="factor" eval="1.0" />
+        <field name="rounding" eval="0.001" />
+    </record>
+    <record model="uom.uom" id="uom_percentage">
+        <field name="category_id" ref="medical_uom_categ_rate" />
+        <field name="name">%</field>
+        <field name="factor" eval="100" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_million_micro_liter">
+        <field name="category_id" ref="medical_uom_categ_concentration" />
+        <field name="name">mill/&#x3BC;L</field>
+        <field name="factor" eval="1" />
+        <field name="uom_type">reference</field>
+    </record>
+    <record model="uom.uom" id="uom_ten_thousand_micro_liter">
+        <field name="category_id" ref="medical_uom_categ_concentration" />
+        <field name="name">10⁴/&#x3BC;L</field>
+        <field name="factor" eval="100" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_thousand_micro_liter">
+        <field name="category_id" ref="medical_uom_categ_concentration" />
+        <field name="name">10³/&#x3BC;L</field>
+        <field name="factor" eval="1000" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_hundred_micro_liter">
+        <field name="category_id" ref="medical_uom_categ_concentration" />
+        <field name="name">10²/&#x3BC;L</field>
+        <field name="factor" eval="10000" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_mol_litre">
+        <field name="category_id" ref="medical_uom_categ_concentration_molar" />
+        <field name="name">mol/L</field>
+        <field name="factor" eval="1" />
+        <field name="uom_type">reference</field>
+    </record>
+    <record model="uom.uom" id="uom_millimol_litre">
+        <field name="category_id" ref="medical_uom_categ_concentration_molar" />
+        <field name="name">mmol/L</field>
+        <field name="factor" eval="1000" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_femto_litre">
+        <field name="category_id" ref="uom.product_uom_categ_vol" />
+        <field name="name">fL</field>
+        <field name="factor" eval="1000000000000000" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_pico_gram">
+        <field name="category_id" ref="uom.product_uom_categ_kgm" />
+        <field name="name">pg</field>
+        <field name="factor" eval="1000000000000000" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_litre_litre">
+        <field name="category_id" ref="medical_uom_categ_concentration_water" />
+        <field name="name">L/L</field>
+        <field name="factor" eval="1" />
+        <field name="uom_type">reference</field>
+    </record>
+    <record model="uom.uom" id="uom_millilitre_litre">
+        <field name="category_id" ref="medical_uom_categ_concentration_water" />
+        <field name="name">mL/L</field>
+        <field name="factor" eval="1000" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_gram_liter">
+        <field name="category_id" ref="medical_uom_categ_density" />
+        <field name="name">g/L</field>
+        <field name="factor" eval="1" />
+    </record>
+    <record model="uom.uom" id="uom_gram_deciliter">
+        <field name="category_id" ref="medical_uom_categ_density" />
+        <field name="name">g/dL</field>
+        <field name="factor_inv" eval="10" />
+        <field name="uom_type">bigger</field>
+    </record>
+    <record model="uom.uom" id="uom_milligram_liter">
+        <field name="category_id" ref="medical_uom_categ_density" />
+        <field name="name">mg/L</field>
+        <field name="factor" eval="1000" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_milligram_deciliter">
+        <field name="category_id" ref="medical_uom_categ_density" />
+        <field name="name">mg/dL</field>
+        <field name="factor" eval="100" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_mol">
+        <field name="category_id" ref="medical_uom_mol" />
+        <field name="name">mol</field>
+        <field name="factor_inv" eval="1" />
+        <field name="uom_type">reference</field>
+    </record>
+    <record model="uom.uom" id="uom_femto_mol">
+        <field name="category_id" ref="medical_uom_mol" />
+        <field name="name">fmol</field>
+        <field name="factor" eval="1000000000000000" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_atto_mol">
+        <field name="category_id" ref="medical_uom_mol" />
+        <field name="name">amol</field>
+        <field name="factor" eval="1000000000000000000" />
+        <field name="uom_type">smaller</field>
+    </record>
+    <record model="uom.uom" id="uom_hour">
+        <field name="category_id" ref="medical_uom_categ_time_hour" />
+        <field name="name">Hour(s)</field>
+        <field name="factor" eval="1" />
+        <field name="uom_type">reference</field>
+    </record>
+    <record model="uom.uom" id="uom_day">
+        <field name="category_id" ref="medical_uom_categ_time_hour" />
+        <field name="name">Day(s)</field>
+        <field name="factor_inv" eval="24" />
+        <field name="uom_type">bigger</field>
+    </record>
+    <record model="uom.uom" id="uom_week">
+        <field name="category_id" ref="medical_uom_categ_time_hour" />
+        <field name="name">Week(s)</field>
+        <field name="factor_inv" eval="168" />
+        <field name="uom_type">bigger</field>
+    </record>
+    <record model="uom.uom" id="uom_month">
+        <field name="category_id" ref="medical_uom_categ_time_month" />
+        <field name="name">Month(s)</field>
+        <field name="factor_inv" eval="1" />
+        <field name="uom_type">reference</field>
+    </record>
+    <record model="uom.uom" id="uom_year">
+        <field name="category_id" ref="medical_uom_categ_time_month" />
+        <field name="name">Year(s)</field>
+        <field name="factor_inv" eval="12" />
+        <field name="uom_type">bigger</field>
+    </record>
+    <record model="uom.uom" id="uom_activity_catalytic_activity_litre">
+        <field name="category_id" ref="medical_uom_categ_catalytic_activity_litre" />
+        <field name="name">U/L</field>
+        <field name="factor_inv" eval="1" />
+        <field name="uom_type">reference</field>
+    </record>
+</odoo>

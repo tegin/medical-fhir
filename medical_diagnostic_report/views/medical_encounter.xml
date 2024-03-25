@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 CreuBlanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_encounter_form_view">
+        <field name="name">medical.encounter.form (in medical_diagnostic_report)</field>
+        <field name="model">medical.encounter</field>
+        <field
+            name="inherit_id"
+            ref="medical_administration_encounter.medical_encounter_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[last()]" position="after">
+                <button
+                    type="action"
+                    name="%(medical_diagnostic_report.medical_encounter_create_diagnostic_report_act_window)s"
+                    class="oe_stat_button btn-warning"
+                    icon="fa-file-medical-alt"
+                    string="Generate Medical Report"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_report"
+                    class="oe_stat_button"
+                    icon="fa-file-medical-alt"
+                >
+                    <field
+                        name="report_count"
+                        widget="statinfo"
+                        string="Diagnostic Reports"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_encounter_his_form_view">
+        <field name="name">medical.encounter.form</field>
+        <field name="model">medical.encounter</field>
+        <field
+            name="inherit_id"
+            ref="medical_administration_encounter.medical_encounter_his_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="diagnostic_reports" string="Reports">
+                    <field name="report_ids" widget="one2many_list" readonly="1">
+                        <tree
+                            decoration-warning="fhir_state == 'registered'"
+                            decoration-danger="fhir_state == 'cancelled'"
+                        >
+                            <field name="internal_identifier" />
+                            <field name="name" />
+                            <field name="issued_user_id" />
+                            <field name="issued_date" />
+                            <field name="state" invisible="1" />
+                            <field name="fhir_state" invisible="1" />
+                        </tree>
+                    </field>
+                    <button
+                        type="action"
+                        name="%(medical_diagnostic_report.medical_encounter_create_diagnostic_report_act_window)s"
+                        class="oe_stat_button btn-warning"
+                        icon="fa-file-medical-alt"
+                        string="Generate Medical Report"
+                        groups="medical_base.group_medical_assistance_user"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

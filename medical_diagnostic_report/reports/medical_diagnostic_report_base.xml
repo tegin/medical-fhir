@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="medical_diagnostic_report.medical_diagnostic_report_template_base">
+        <t t-call="web.html_container">
+            <t
+                t-set="docs"
+                t-value="docs.browse(docs.env.context.get('active_ids'))"
+                t-if="not docs"
+            />
+            <t t-foreach="docs" t-as="o">
+                <t
+                    t-set="lang"
+                    t-value="docs.env.context.get('force_lang') or docs.env.context.get('lang')"
+                />
+                <t t-set="doc" t-value="o.with_context(lang=lang)" t-if="lang" />
+                <t t-if="not company">
+                    <t t-set="company" t-value="res_company" />
+                </t>
+                <t t-set="partner" t-value="company.partner_id" />
+                <t
+                    t-call="medical_diagnostic_report.diagnostic_report_base_layout"
+                    t-lang="lang"
+                >
+                    <t
+                        t-call="medical_diagnostic_report.medical_diagnostic_report_base"
+                        t-lang="lang"
+                    />
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="diagnostic_report_base_layout">
+        <div class="header" t-att-style="report_header_style">
+            <div class="o_diagnostic_report_layout_header">
+                <div class="row">
+                    <div class="col-6 text-left">
+                        <img
+                            t-if="partner.image_1920"
+                            t-att-src="image_data_uri(partner.image_1920)"
+                            alt="Logo"
+                            class="text-left"
+                            style="max-width:100%"
+                        />
+                    </div>
+                    <div class="col-6 text-right o_patient_header ">
+                        <h6>
+                            <div name="patient_id" />
+                        </h6>
+                        <div name="internal_identifier" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="article o_diagnostic_report_layout"
+            t-att-data-oe-model="o and o._name"
+            t-att-data-oe-id="o and o.id"
+            t-att-data-oe-lang="o and o.env.context.get('lang')"
+        >
+            <t t-call="web.address_layout" />
+            <t t-raw="0" />
+        </div>
+        <div class="footer o_diagnostic_report_layout_footer">
+            <div class="text-center">
+                <ul class="list-inline">
+                    <li t-if="partner.name" class="list-inline-item">
+                        <span t-field="partner.name" />
+                    </li>
+                    <li t-if="partner.street" class="list-inline-item">
+                        <i
+                            class="fa fa-map-marker fa-fw"
+                            role="img"
+                            aria-label="Address"
+                            title="Address"
+                        />
+                        <span class="company_address" t-esc="partner.street" />,
+                        <span t-esc="partner.zip" />
+                        <span t-esc="partner.city" />
+
+                    </li>
+                    <li t-if="partner.phone" class="list-inline-item">
+                        <span
+                            class="company_phone"
+                            t-esc="partner"
+                            t-options='{"widget": "contact", "fields": ["phone"], "no_marker": false}'
+                        />
+                    </li>
+                    <li t-if="partner.website" class="list-inline-item">
+                        <span
+                            class="company_website"
+                            t-esc="partner"
+                            t-options='{"widget": "contact", "fields": ["website"], "no_marker": false}'
+                        />
+                    </li>
+                </ul>
+                <span t-if="report_type == 'pdf'">
+                    Page:
+                    <span class="page" />
+                    /
+                    <span class="topage" />
+                </span>
+                <div name="footer_internal_identifier" class="text-right o_code" />
+            </div>
+        </div>
+    </template>
+    <template id="medical_diagnostic_report_base">
+        <div class="page">
+            <div class="row o_patient_information">
+                <div class="col-6" name="patient_information">
+                    <div name="patient_age">
+                        <strong>Age:</strong>
+                        <span name="patient_age_value" />
+                    </div>
+                    <div name="vat">
+                        <strong>VAT:</strong>
+                        <span class="m-0" name="vat_value" />
+                    </div>
+                    <div name="occurrence_date">
+                        <strong>Date:</strong>
+                        <span name="occurrence_date_value" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div name="patient_origin">
+                        <strong>Origin:</strong>
+                        <span name="patient_origin_value" />
+                    </div>
+                </div>
+            </div>
+            <div id="informations">
+                <div class="text-center" t-if="doc.name" name="name">
+                    <h3 t-field="doc.name" />
+                </div>
+            </div>
+            <div>
+                <t t-set="observations" t-value="doc.observation_ids" />
+                <t t-if="doc.with_observation and observations">
+                    <table class="table table-condensed">
+                        <tbody>
+                            <div>
+                                <t t-foreach="observations" t-as="obs">
+                                    <tr
+                                        t-att-class="' font-weight-bold o_line_section' if obs.display_type == 'line_section' else 'font-italic o_line_note' if obs.display_type == 'line_note' else 'o_line_subsection' if obs.display_type == 'line_subsection' else ''"
+                                    >
+                                        <t t-if="not obs.display_type">
+                                            <td name="interpretation_flag">
+                                            </td>
+                                            <td>
+                                                <t t-esc="obs.name" />
+                                            </td>
+                                            <t name="observation_value" />
+                                            <td>
+                                                <small name="uom_value">
+                                                </small>
+                                            </td>
+                                            <td>
+                                                <t
+                                                    name="interpretation_range"
+                                                    t-if="obs.reference_range_limit"
+                                                >
+                                                    ( RV:
+                                                    <t
+                                                        t-esc="obs.reference_range_limit"
+                                                    />
+                                                    <small name="uom_range_value">
+                                                    </small>)
+                                                </t>
+                                            </td>
+                                        </t>
+                                        <t t-if="obs.display_type">
+                                            <td colspan="99">
+                                                <span t-field="obs.name" />
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </div>
+                        </tbody>
+                    </table>
+                </t>
+            </div>
+            <div id="informations" class="o_informations row mt32 mb32">
+                <div
+                    class="col-auto mw-100 mb-2"
+                    t-if="(doc.with_conclusion and doc.conclusion) or (doc.with_composition and doc.composition)"
+                    name="conclusion"
+                    style="width:100%"
+                >
+                    <t t-if="doc.with_composition">
+                        <p t-field="doc.composition" />
+                    </t>
+                    <t class="o_conclusion" t-if="doc.with_conclusion">
+                        <h6>CONCLUSIONS:</h6>
+                        <p t-field="doc.conclusion" />
+                    </t>
+                </div>
+            </div>
+            <div id="signature" class="o_signature row mt32 mb32">
+            </div>
+        </div>
+    </template>
+</odoo>

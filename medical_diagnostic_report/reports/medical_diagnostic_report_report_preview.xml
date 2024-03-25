@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="medical_diagnostic_report_template_preview" model="ir.actions.report">
+        <field name="name">Diagnostic Report Preview </field>
+        <field name="model">medical.diagnostic.report.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >medical_diagnostic_report.medical_diagnostic_report_template_preview_report</field>
+        <field
+            name="report_file"
+        >medical_diagnostic_report.medical_diagnostic_report_template_preview_report</field>
+        <field name="binding_model_id" ref="model_medical_diagnostic_report_template" />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format" />
+    </record>
+</odoo>

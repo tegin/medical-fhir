@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 CreuBlanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_patient_form_view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_view_observations_with_concept"
+                    class="oe_stat_button"
+                    icon="fa-file-medical-alt"
+                    string="Observations"
+                >
+                </button>
+                <button
+                    name="%(medical_diagnostic_report.patient_concept_evolution_act_window)s"
+                    type="action"
+                    icon="fa-chart-line"
+                    string="Observation evolution"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record
+        model="ir.ui.view"
+        id="medical_diagnostic_report_concepts_patient_tree_view"
+    >
+        <field
+            name="name"
+        >medical.observation.tree (in medical_diagnostic_report)</field>
+        <field name="model">medical.observation</field>
+        <field name="arch" type="xml">
+            <tree default_order='observation_date desc' create="false">
+                <field name="name" />
+                <field name="value_type" invisible="1" />
+                <field name="value_representation" />
+                <field name="uom_id" />
+                <field name="interpretation" />
+                <field name="observation_date" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_patient_his_form_view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='administration_data']" position="before">
+                <page name="diagnostic_reports" string="Reports">
+                    <field
+                        name="diagnostic_report_ids"
+                        widget="one2many_list"
+                        readonly="1"
+                        options="{'record_action': 'get_formview_action'}"
+                    >
+                        <tree
+                            decoration-warning="fhir_state == 'registered'"
+                            decoration-danger="fhir_state == 'cancelled'"
+                        >
+                            <button
+                                type="object"
+                                name="preview_medical_diagnostic_report"
+                                class="oe_stat_button"
+                                icon="fa-duotone fa-file-pdf"
+                                title="Preview"
+                            />
+                            <field name="internal_identifier" />
+                            <field name="encounter_id" />
+                            <field name="name" />
+                            <field name="issued_user_id" />
+                            <field name="issued_date" />
+                            <field name="create_date" />
+                            <field name="state" invisible="1" />
+                            <field name="fhir_state" invisible="1" />
+
+                        </tree>
+                    </field>
+                    <button
+                        type="action"
+                        name="%(medical_diagnostic_report.medical_patient_create_diagnostic_report_act_window)s"
+                        class="oe_stat_button btn-warning"
+                        icon="fa-file-medical-alt"
+                        string="Generate Medical Report"
+                        groups="medical_base.group_medical_assistance_user"
+                        attrs="{'invisible': [('encounter_count', '=', 0)]}"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="medical_diagnostic_report_concepts_patient_act_window"
+    >
+        <field name="name">Observations</field>
+        <field name="res_model">medical.observation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

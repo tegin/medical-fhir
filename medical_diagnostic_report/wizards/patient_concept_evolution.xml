@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 CreuBlanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="patient_concept_evolution_form_view">
+        <field
+            name="name"
+        >patient.concept.evolution.form (in medical_diagnostic_report)</field>
+        <field name="model">patient.concept.evolution</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field
+                        name="concept_id"
+                        options="{'no_create': 1, 'no_open': 1}"
+                        domain="[('value_type', 'in', ('float','int'))]"
+                    >
+                    </field>
+                </group>
+                <group>
+                    <field name="date_low_limit" />
+                    <field name="date_high_limit" />
+                </group>
+                <group>
+                    <div>
+                        <field name="patient_id" invisible="1" />
+                        <field name="bokeh_chart" widget='bokeh_chart' />
+                    </div>
+                </group>
+                <footer>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="patient_concept_evolution_act_window">
+        <field name="name">Observation evolution</field>
+        <field name="res_model">patient.concept.evolution</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_patient_id': active_id}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

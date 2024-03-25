@@ -1,0 +1,1583 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_diagnostic_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-03 13:56+0000\n"
+"PO-Revision-Date: 2021-06-03 16:19+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_base
+msgid "( RV:"
+msgstr "( VR:"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_single_preview
+msgid "00000000A"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_single_preview
+msgid "01/01/01 00:00:00"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_single_preview
+msgid "100"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_hundred_micro_liter
+msgid "10²/μL"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_thousand_micro_liter
+msgid "10³/μL"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_ten_thousand_micro_liter
+msgid "10⁴/μL"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_base_layout
+msgid "<i class=\"fa fa-map-marker fa-fw\" role=\"img\" aria-label=\"Address\" title=\"Address\"/>"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_layout_preview
+msgid "<span>MDR000000(0)</span>"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_layout_preview
+msgid "<span>MDR000000</span>"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_layout_preview
+msgid "<span>Template Patient Name</span>"
+msgstr "<span>Nombre paciente plantilla</span>"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_base
+msgid ""
+"<strong>Age:</strong>\n"
+"                        <span name=\"patient_age_value\"/>"
+msgstr ""
+"<strong>Edad:</strong>\n"
+"                        <span name=\"patient_age_value\"/>"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_base
+msgid "<strong>Conclusions:</strong>"
+msgstr "<strong>Conclusiones:</strong>"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_base
+msgid ""
+"<strong>Date:</strong>\n"
+"                        <span name=\"occurrence_date_value\"/>"
+msgstr ""
+"<strong>Fecha:</strong>\n"
+"                        <span name=\"occurrence_date_value\"/>"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_base
+msgid ""
+"<strong>Origin:</strong>\n"
+"                        <span name=\"patient_origin_value\"/>"
+msgstr ""
+"<strong>Origen:</strong>\n"
+"                        <span name=\"patient_origin_value\"/>"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_base
+msgid ""
+"<strong>VAT:</strong>\n"
+"                        <span class=\"m-0\" name=\"vat_value\"/>"
+msgstr ""
+"<strong>NIF:</strong>\n"
+"                        <span class=\"m-0\" name=\"vat_value\"/>"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_report_abstract
+msgid "Abstract Diagnostic Report"
+msgstr "Informe abstracto"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_report_item_abstract
+msgid "Abstract Diagnostic Report Item"
+msgstr "Observación informe abstracto"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__activity_definition_id
+msgid "Activity Definition"
+msgstr "Actividad"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Add a Boolean"
+msgstr "Agregar Booleano"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Add a Float"
+msgstr "Agregar Número"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Add a Integer"
+msgstr "Agregar Entero"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Add a String"
+msgstr "Agregar Texto"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Add a blocked line"
+msgstr "Agregar registro bloqueado"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Add a blocked note"
+msgstr "Agregar nota bloqueada"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Add a blocked section"
+msgstr "Agregar sección bloqueada"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Add a blocked subsection"
+msgstr "Agregar subsección bloqueada"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Add a line"
+msgstr "Agregar registro"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Add a note"
+msgstr "Agregar nota"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Add a section"
+msgstr "Agregar una sección"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Add a subsection"
+msgstr "Agregar subsección"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template,composition:medical_diagnostic_report.medical_diagnostic_report_template_demo_1
+msgid "All the observations are in the reference range"
+msgstr "Todas las observaciones están dentro de los valores de referencia"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Are you sure you want to cancel this report?"
+msgstr "¿Está seguro que quiere cancelar el informe?"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Are you sure you want to validate this report?"
+msgstr "¿Está seguro que quiere validar el informe?"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de archivos adjuntos"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_08
+msgid "Biochemistry"
+msgstr "Bioquímica"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__blocked
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__blocked
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__blocked
+msgid "Blocked"
+msgstr "Bloqueado"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_01
+msgid "Blood count"
+msgstr "Hemograma"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__bokeh_chart
+msgid "Bokeh Chart"
+msgstr "Gráfico Bokeh"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report.template.item,value_type:0
+#: selection:medical.observation,value_type:0
+#: selection:medical.report.item.abstract,value_type:0
+msgid "Boolean"
+msgstr "Booleano"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_expand_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_print_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_encounter_create_diagnostic_report_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.patient_concept_evolution_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Cancel report"
+msgstr "Cancelar informe"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report,state:0
+#: selection:medical.observation,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__cancel_date
+msgid "Cancelled Date"
+msgstr "Fecha de cancelación"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__cancel_user_id
+msgid "Cancelled by User"
+msgstr "Cancelado por"
+
+#. module: medical_diagnostic_report
+#: code:addons/medical_diagnostic_report/wizards/medical_diagnostic_report_expand.py:28
+#, python-format
+msgid "Cannot update the report"
+msgstr "No se puede actualizar el informe"
+
+#. module: medical_diagnostic_report
+#: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_catalytic_activity_litre
+msgid "Catalytic Activity Litre"
+msgstr "Actividad Catalítica por Litro"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_10
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_12
+msgid "Colorimetric serum"
+msgstr "Suero colorimetría"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__composition
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__composition
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__composition
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Composition"
+msgstr "Comentarios"
+
+#. module: medical_diagnostic_report
+#: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_concentration
+msgid "Concentration"
+msgstr "Concentración"
+
+#. module: medical_diagnostic_report
+#: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_concentration_water
+msgid "Concentration in Water"
+msgstr "Concentración en agua"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__concept_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__concept_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__concept_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__concept_id
+msgid "Concept"
+msgstr "Concepto"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.patient_concept_evolution_form_view
+msgid "Concept Evolution"
+msgstr "Evolución de concepto"
+
+#. module: medical_diagnostic_report
+#: sql_constraint:medical.observation.concept:0
+msgid "Concept name must be unique!"
+msgstr "¡El nombre del concepto debe ser único!"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__conclusion
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__conclusion
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__conclusion
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Conclusion"
+msgstr "Conclusión"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Conclusions"
+msgstr "Conclusiones"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_encounter_create_diagnostic_report_form_view
+msgid "Create"
+msgstr "Crear"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_encounter_create_diagnostic_report_form_view
+msgid "Create Diagnostic Report"
+msgstr "Crear informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__create_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand__create_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__create_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__create_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_print__create_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__create_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__create_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__create_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__create_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand__create_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__create_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__create_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_print__create_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__create_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__create_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__create_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_13
+msgid "Creatinine"
+msgstr "Creatinina"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__serializer_current
+msgid "Current Doc"
+msgstr "Documento actual"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__digest_current
+msgid "Current Hash"
+msgstr "Hash actual"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand__template_ids
+msgid "Current report templates"
+msgstr "Plantillas actuales en el informe"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_single_preview
+msgid "DKV"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__observation_date
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_observation_pivot_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__date_high_limit
+msgid "Date High Limit"
+msgstr "Fecha límite superior"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__date_low_limit
+msgid "Date Low Limit"
+msgstr "Fecha límite inferior"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__issued_date
+msgid "Date of report's publication"
+msgstr "Fecha de publicación del informe"
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_day
+msgid "Day(s)"
+msgstr "Día(s)"
+
+#. module: medical_diagnostic_report
+#: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_density
+msgid "Density"
+msgstr "Densidad"
+
+#. module: medical_diagnostic_report
+#: model:ir.ui.menu,name:medical_diagnostic_report.medical_root_diagnostic
+msgid "Diagnostic"
+msgstr "Diagnostico"
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_diagnostic_report_act_window
+#: model:ir.model,name:medical_diagnostic_report.model_medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand__diagnostic_report_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__diagnostic_report_id
+#: model:ir.ui.menu,name:medical_diagnostic_report.medical_diagnostic_report_menu
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_tree_view
+msgid "Diagnostic Report"
+msgstr "Informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.report,name:medical_diagnostic_report.medical_diagnostic_report
+msgid "Diagnostic Report "
+msgstr "Informe "
+
+#. module: medical_diagnostic_report
+#: model:res.groups,name:medical_diagnostic_report.group_medical_diagnostic_report_display
+msgid "Diagnostic Report Display"
+msgstr "Visualizar informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_diagnostic_report_template_item
+msgid "Diagnostic Report Item template"
+msgstr "Plantilla de observaciones del informe"
+
+#. module: medical_diagnostic_report
+#: model:res.groups,name:medical_diagnostic_report.group_medical_diagnostic_report_list
+msgid "Diagnostic Report List"
+msgstr "Listar informe"
+
+#. module: medical_diagnostic_report
+#: model:res.groups,name:medical_diagnostic_report.group_medical_diagnostic_report_manager
+msgid "Diagnostic Report Manager"
+msgstr "Gestionar informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.report,name:medical_diagnostic_report.medical_diagnostic_report_template_preview
+msgid "Diagnostic Report Preview "
+msgstr "Previsualización de informe "
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_report_template_act_window
+#: model:ir.model,name:medical_diagnostic_report.model_medical_diagnostic_report_template
+msgid "Diagnostic Report Template"
+msgstr "Plantilla de informe"
+
+#. module: medical_diagnostic_report
+#: model:res.groups,name:medical_diagnostic_report.group_medical_diagnostic_report_template_manager
+msgid "Diagnostic Report Template Manager"
+msgstr "Gestor de plantillas de informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.ui.menu,name:medical_diagnostic_report.medical_report_template_menu
+msgid "Diagnostic Report Templates"
+msgstr "Plantillas de informes"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_encounter_form_view
+msgid "Diagnostic Reports"
+msgstr "Informes"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_print__diagnostic_template_id
+msgid "Diagnostic Template"
+msgstr "Plantilla"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__digest
+msgid "Digest"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__digest_altered
+msgid "Digest Altered"
+msgstr "Digest alterado"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_print__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__display_name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__display_type
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__display_type
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__display_type
+msgid "Display Type"
+msgstr "Tipo de pantalla"
+
+#. module: medical_diagnostic_report
+#. openerp-web
+#: code:addons/medical_diagnostic_report/static/src/js/field_dynamic_options_dropdown.js:15
+#, python-format
+msgid "Dynamic Dropdown"
+msgstr "Listado dinámico"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__encounter_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__encounter_id
+msgid "Encounter"
+msgstr "Afiliación"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_14
+msgid "Enzymatic serum"
+msgstr "Suero enzimático"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Expand"
+msgstr "Añadir plantilla"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report,state:0
+#: selection:medical.observation,state:0
+msgid "Final"
+msgstr "Validado"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report.template.item,value_type:0
+#: selection:medical.observation,value_type:0
+#: selection:medical.report.item.abstract,value_type:0
+msgid "Float"
+msgstr "Número decimal"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_encounter_form_view
+msgid "Generate Medical Report"
+msgstr "Generar informe médico"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_encounter_create_diagnostic_report
+msgid "Generate report from encounter using a template"
+msgstr "Generar informe desde  afiliación usando  una plantilla"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_09
+msgid "Glucose"
+msgstr "Glucosa"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_04
+msgid "Hematocrit"
+msgstr "Hematocrito"
+
+#. module: medical_diagnostic_report
+#: selection:medical.observation,interpretation:0
+msgid "High"
+msgstr "Alto"
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_hour
+msgid "Hour(s)"
+msgstr "Hora(s)"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_print__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__id
+msgid "ID"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report.template.item,value_type:0
+#: selection:medical.observation,value_type:0
+#: selection:medical.report.item.abstract,value_type:0
+msgid "Integer"
+msgstr "Entero"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__internal_identifier
+msgid "Internal Identifier"
+msgstr "Identificador"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__internal_identifier
+msgid "Internal identifier used to identify this record"
+msgstr "Identificador del informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__interpretation
+msgid "Interpretation"
+msgstr "Interpretación"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__is_cancellable
+msgid "Is Cancellable"
+msgstr "Es cancelable"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__is_editable
+msgid "Is Editable"
+msgstr "Es editable"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Issue report"
+msgstr "Validar informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__issued_date
+msgid "Issued Date"
+msgstr "Fecha de validación"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__issued_user_id
+msgid "Issued by User"
+msgstr "Validado por"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__item_blocked
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__item_blocked
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__item_blocked
+msgid "Item Blocked"
+msgstr "Elemento bloqueado"
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_litre_litre
+msgid "L/L"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__lang
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_print__lang
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__lang
+msgid "Language"
+msgstr "Idioma"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_print____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract____last_update
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__write_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand__write_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__write_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__write_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_print__write_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__write_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__write_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__write_uid
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__write_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand__write_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__write_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__write_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_print__write_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__write_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__write_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__write_date
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_06
+msgid "Leukocytes"
+msgstr "Leucocitos"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_05
+msgid "Leukocytes and leukocytic formula"
+msgstr "Leucocitos y Fórmula Leucocitaria"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_base_layout
+msgid "Logo"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: selection:medical.observation,interpretation:0
+msgid "Low"
+msgstr "Bajo"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjuntos principales"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_uom_category__measure_type
+msgid "Measure Type"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_diagnostic_report_expand_act_window
+msgid "Medical Diagnostic Report Expand"
+msgstr "Añadir informe médico"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_encounter
+msgid "Medical Encounter"
+msgstr "Afiliación"
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_encounter_create_diagnostic_report_act_window
+msgid "Medical Encounter Create Diagnostic Report"
+msgstr "Crear informe desde afiliación"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_observation_concept
+msgid "Medical Observation Concept"
+msgstr "Concepto de observación médica"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_observation
+msgid "Medical observation"
+msgstr "Observación"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_expand_form_view
+msgid "Merge"
+msgstr "Fusionar"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_expand_form_view
+msgid "Merge template"
+msgstr "Fusionar plantilla"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: medical_diagnostic_report
+#: model:uom.category,name:medical_diagnostic_report.medical_uom_mol
+msgid "Mol(s)"
+msgstr "Mol(es)"
+
+#. module: medical_diagnostic_report
+#: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_concentration_molar
+msgid "Molar Concentration"
+msgstr "Concentración Molar"
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_month
+msgid "Month(s)"
+msgstr "Mes(es)"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__name
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_07
+msgid "Neutrophil"
+msgstr "Neutrófilo"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Siguiente plazo de actividad"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la siguiente actividad"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente tipo de actividad"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template,conclusion:medical_diagnostic_report.medical_diagnostic_report_template_demo_1
+msgid "No abnormalities present"
+msgstr "No presenta anomalías"
+
+#. module: medical_diagnostic_report
+#: code:addons/medical_diagnostic_report/wizards/patient_concept_evolution.py:65
+#, python-format
+msgid "No data found"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: selection:medical.observation,interpretation:0
+msgid "Normal"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_search_view
+msgid "Not cancelled"
+msgstr "No cancelado"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report.template.item,display_type:0
+#: selection:medical.observation,display_type:0
+#: selection:medical.report.item.abstract,display_type:0
+msgid "Note"
+msgstr "Nota"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_has_error_counter
+msgid "Number of error"
+msgstr "Número de error"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__observation_ids
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_observation_pivot
+msgid "Observation"
+msgstr "Observación"
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_observation_concept_act_window
+msgid "Observation concept"
+msgstr "Concepto de observación"
+
+#. module: medical_diagnostic_report
+#: sql_constraint:medical.diagnostic.report.template.item:0
+msgid "Observation concept must be unique."
+msgstr "El concepto debe ser único."
+
+#. module: medical_diagnostic_report
+#: model:ir.ui.menu,name:medical_diagnostic_report.medical_observation_concept_menu
+msgid "Observation concepts"
+msgstr "Conceptos de observaciones"
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.patient_concept_evolution_act_window
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_patient_form_view
+msgid "Observation evolution"
+msgstr "Evolución de observaciones"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_observation_pivot_search
+msgid "Observation search"
+msgstr "Búsqueda de observaciones"
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_diagnostic_report_concepts_patient_act_window
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_observation_pivot_action
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__item_ids
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: medical_diagnostic_report
+#: model:ir.ui.menu,name:medical_diagnostic_report.menu_medical_report_pivot_observation
+msgid "Observations report"
+msgstr "Informe de observaciones"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__occurrence_date
+msgid "Occurrence date"
+msgstr "Fecha de realización"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__occurrence_date
+msgid "Occurrence of the order."
+msgstr "Realización de la orden."
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__digest
+msgid "Original Document Digest"
+msgstr "Digest del documento original"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report,activity_state:0
+msgid "Overdue"
+msgstr "Vencimiento"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.diagnostic_report_base_layout
+msgid ""
+"Page:\n"
+"                    <span class=\"page\"/>\n"
+"                    /\n"
+"                    <span class=\"topage\"/>"
+msgstr ""
+"Página:\n"
+"                    <span class=\"page\"/>\n"
+"                    /\n"
+"                    <span class=\"topage\"/>"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__patient_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__patient_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_patient_concept_evolution__patient_id
+msgid "Patient"
+msgstr "Paciente"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__patient_age
+msgid "Patient Age"
+msgstr "Edad"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__patient_name
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__patient_id
+msgid "Patient Name"
+msgstr "Paciente"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__patient_origin
+msgid "Patient Origin"
+msgstr "Origen"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__performer_id
+msgid "Performer"
+msgstr "Realizador"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__plan_definition_id
+msgid "Plan Definition"
+msgstr "Plan"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__plan_definition_action_id
+msgid "Plan Definition Action"
+msgstr "Plan de acción"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report,activity_state:0
+msgid "Planned"
+msgstr "Planificado"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_print_form_view
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Preview"
+msgstr "Previsualizar"
+
+#. module: medical_diagnostic_report
+#: model:ir.actions.act_window,name:medical_diagnostic_report.medical_diagnostic_report_template_print_act_window
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_print_form_view
+msgid "Preview Template"
+msgstr "Previsualización de plantilla"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr "Unidad de medida del producto"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_uom_category
+msgid "Product UoM Categories"
+msgstr "Categoria de productos UdM"
+
+#. module: medical_diagnostic_report
+#: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_rate
+#: model:uom.uom,name:medical_diagnostic_report.uom_rate
+msgid "Rate"
+msgstr "Proporción"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_02
+msgid "Red Series"
+msgstr "Serie roja"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_03
+msgid "Red blood cells"
+msgstr "Hematíes"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__reference_format
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_uom_uom__reference_format
+msgid "Reference Format"
+msgstr "Formato de referencia"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__reference_range_limit
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__reference_range_limit
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__reference_range_limit
+msgid "Reference Range"
+msgstr "Rango de referencia"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__reference_range_high
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__reference_range_high
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__reference_range_high
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__reference_range_high
+msgid "Reference Range High"
+msgstr "Límite superior del rango de referencia"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__reference_range_high_view
+msgid "Reference Range High View"
+msgstr "Vista del límite superior del rango de referencia"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__reference_range_low
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__reference_range_low
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__reference_range_low
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__reference_range_low
+msgid "Reference Range Low"
+msgstr "Límite inferior del rango de referencia"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__reference_range_low_view
+msgid "Reference Range Low View"
+msgstr "Vista del límite inferior del rango de referencia"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Reference range high"
+msgstr "Límite superior del rango de referencia"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Reference range low"
+msgstr "Límite inferior del rango de referencia"
+
+#. module: medical_diagnostic_report
+#: sql_constraint:medical.diagnostic.report.template.item:0
+#: sql_constraint:medical.observation.concept:0
+msgid "Reference range low cannot be larger that reference range high"
+msgstr "El límite inferior del rango de referencia no puede ser mayor que el límite superior del rango de referencia"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report,state:0
+#: selection:medical.observation,state:0
+msgid "Registered"
+msgstr "Registrado"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter__report_ids
+msgid "Report"
+msgstr "Informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.ui.menu,name:medical_diagnostic_report.medical_report_configuration
+msgid "Report Configuration"
+msgstr "Configuración de informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter__report_count
+msgid "Report Count"
+msgstr "Conteo de informes"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__name
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__name
+msgid "Report Name"
+msgstr "Nombre del informe"
+
+#. module: medical_diagnostic_report
+#: model:ir.ui.menu,name:medical_diagnostic_report.menu_medical_report_root
+msgid "Reports"
+msgstr "Informes"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report.template.item,display_type:0
+#: selection:medical.observation,display_type:0
+#: selection:medical.report.item.abstract,display_type:0
+msgid "Section"
+msgstr "Sección"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report.template.item,value_type:0
+#: selection:medical.observation,value_type:0
+#: selection:medical.report.item.abstract,value_type:0
+msgid "Selection"
+msgstr "Selección"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__selection_options
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__selection_options
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__selection_options
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__selection_options
+msgid "Selection Options"
+msgstr "Opciones de selección"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__sequence
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__sequence
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__service_id
+msgid "Service"
+msgstr "Servicio"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Signature"
+msgstr "Firma"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__signature_date
+msgid "Signature Date"
+msgstr "Fecha de firma"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__signature_qr
+msgid "Signature detail"
+msgstr "Detalle de la firma"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__state
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__state
+msgid "State"
+msgstr "Provincia"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencida: la fecha tope ya ha pasado\n"
+"Hoy: La fecha tope es hoy\n"
+"Planificada: futuras actividades."
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report.template.item,value_type:0
+#: selection:medical.observation,value_type:0
+#: selection:medical.report.item.abstract,value_type:0
+msgid "String"
+msgstr "Texto"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report.template.item,display_type:0
+#: selection:medical.observation,display_type:0
+#: selection:medical.report.item.abstract,display_type:0
+msgid "Subsection"
+msgstr "Subsección"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report_template_item__display_type
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_observation__display_type
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_report_item_abstract__display_type
+msgid "Technical field for UX purpose."
+msgstr "Campo técnico para propósitos UX."
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__template_ids
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_expand__template_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__template_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_encounter_create_diagnostic_report__template_id
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_template_single_preview
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_diagnostic_report_expand
+msgid "This model allows to add templates to a report"
+msgstr "Este modelo permite añadir plantillas a un informe"
+
+#. module: medical_diagnostic_report
+#: code:addons/medical_diagnostic_report/wizards/medical_diagnostic_report_expand.py:34
+#, python-format
+msgid "This template has already been imported"
+msgstr "Esta plantilla ya ha sido importada"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_diagnostic_report_template_print
+msgid "This wizard allows to print from template with the selected language"
+msgstr "Esta función permite imprimir la plantilla con el idioma seleccionado"
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_patient_concept_evolution
+msgid "This wizard allows to view a patient's concept evolution"
+msgstr "Esta pestaña emergente permite ver la evolución gráfica de las observaciones del paciente"
+
+#. module: medical_diagnostic_report
+#: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_time_hour
+msgid "Time Hour/Day/Week"
+msgstr "Tiempo Hora/Día/Semana"
+
+#. module: medical_diagnostic_report
+#: model:uom.category,name:medical_diagnostic_report.medical_uom_categ_time_month
+msgid "Time Month/Year"
+msgstr "Tiempo Mes/Año"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__title
+msgid "Title"
+msgstr "Título"
+
+#. module: medical_diagnostic_report
+#: selection:medical.diagnostic.report,activity_state:0
+msgid "Today"
+msgstr "Hoy"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_uom_uom__measure_type
+msgid "Type of measurement category"
+msgstr "Tipo de categoría de medida"
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_activity_catalytic_activity_litre
+msgid "U/L"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__uom_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__uom_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__uom_id
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__uom_id
+msgid "Unit of measure"
+msgstr "Unidad de medida"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes por leer"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes sin leer"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__uom
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Uom"
+msgstr "Unidad de medida"
+
+#. module: medical_diagnostic_report
+#: model:medical.diagnostic.report.template.item,name:medical_diagnostic_report.medical_diagnostic_report_template_demo_1_item_11
+msgid "Urea"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__vat
+msgid "VAT"
+msgstr "IVA"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_diagnostic_report_form_view
+msgid "Value"
+msgstr "Valor"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_bool
+msgid "Value Bool"
+msgstr "Valor Booleano"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_float
+msgid "Value Float"
+msgstr "Valor float"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_int
+msgid "Value Int"
+msgstr "Valor Entero"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_representation
+msgid "Value Representation"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_selection
+msgid "Value Selection"
+msgstr "Valor Selección"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_str
+msgid "Value Str"
+msgstr "Valor Texto"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__value_type
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation__value_type
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_observation_concept__value_type
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_item_abstract__value_type
+msgid "Value Type"
+msgstr "Tipo de valor"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__value_type_view
+msgid "Value Type View"
+msgstr "Vista tipo de valor"
+
+#. module: medical_diagnostic_report
+#: model_terms:ir.ui.view,arch_db:medical_diagnostic_report.medical_report_template_form_view
+msgid "Value type"
+msgstr "Tipo de valor"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template_item__view_uom_id
+msgid "View Uom"
+msgstr "Vista unidad de medida"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_week
+msgid "Week(s)"
+msgstr "Semana(s)"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__item_blocked
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report_template__item_blocked
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_report_abstract__item_blocked
+msgid "When checked, no lines can be added"
+msgstr "Si este campo es seleccionado, no se podrán añadir nuevas líneas"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__with_composition
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report_template__with_composition
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_report_abstract__with_composition
+msgid "When checked,a composition will be added"
+msgstr "Si este campo es seleccionado, se añadirá un campo de comentarios"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__with_conclusion
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report_template__with_conclusion
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_report_abstract__with_conclusion
+msgid "When checked,a conclusion will be added"
+msgstr "Si este campo es seleccionado, se añadirá un campo de conclusión"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__with_observation
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report_template__with_observation
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_report_abstract__with_observation
+msgid "When checked,a observation will be added"
+msgstr "Si este campo es seleccionado, se añadirá un campo de observaciones"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,help:medical_diagnostic_report.field_medical_diagnostic_report__performer_id
+msgid "Who is to perform the procedure"
+msgstr "Realizador del procedimiento"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__with_composition
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__with_composition
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__with_composition
+msgid "With Composition"
+msgstr "Con comentarios"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__with_conclusion
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__with_conclusion
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__with_conclusion
+msgid "With Conclusion"
+msgstr "Con conclusión"
+
+#. module: medical_diagnostic_report
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report__with_observation
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_diagnostic_report_template__with_observation
+#: model:ir.model.fields,field_description:medical_diagnostic_report.field_medical_report_abstract__with_observation
+msgid "With observations"
+msgstr "Con observaciones"
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_year
+msgid "Year(s)"
+msgstr "Año(s)"
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_atto_mol
+msgid "amol"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_femto_litre
+msgid "fL"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_femto_mol
+msgid "fmol"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_gram_liter
+msgid "g/L"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_gram_deciliter
+msgid "g/dL"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_millilitre_litre
+msgid "mL/L"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:ir.model,name:medical_diagnostic_report.model_medical_patient
+msgid "medical.patient"
+msgstr "medical.pacientes"
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_milligram_liter
+msgid "mg/L"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_milligram_deciliter
+msgid "mg/dL"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_million_micro_liter
+msgid "mill/μL"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_millimol_litre
+msgid "mmol/L"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_mol
+msgid "mol"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_mol_litre
+msgid "mol/L"
+msgstr ""
+
+#. module: medical_diagnostic_report
+#: model:uom.uom,name:medical_diagnostic_report.uom_pico_gram
+msgid "pg"
+msgstr ""
