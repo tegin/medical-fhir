@@ -156,7 +156,6 @@ class MedicalDiagnosticReport(models.Model):
         self._sign_document()
 
     def _get_observation_date(self):
-        # return self.encounter_id.create_date
         return fields.Datetime.now()
 
     def _cancel_vals(self):

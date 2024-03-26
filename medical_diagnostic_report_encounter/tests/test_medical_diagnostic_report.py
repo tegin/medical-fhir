@@ -19,6 +19,9 @@ class TestMedicalDiagnosticReport(TransactionCase):
         self.patient_1 = self.env["medical.patient"].create(
             {"name": "Patient 1", "vat": "47238567H"}
         )
+        self.encounter_1 = self.env["medical.encounter"].create(
+            {"name": "Encounter 1", "patient_id": self.patient_1.id}
+        )
         uom = self.env.ref("medical_diagnostic_report.uom_ten_thousand_micro_liter")
         self.concept_1 = self.env["medical.observation.concept"].create(
             {
@@ -80,9 +83,11 @@ class TestMedicalDiagnosticReport(TransactionCase):
                 "composition": "Composition 2",
             }
         )
-        report_generation = self.env["medical.patient.create.diagnostic.report"].create(
+        report_generation = self.env[
+            "medical.encounter.create.diagnostic.report"
+        ].create(
             {
-                "patient_id": self.patient_1.id,
+                "encounter_id": self.encounter_1.id,
                 "template_id": self.template_1.id,
             }
         )
@@ -141,15 +146,20 @@ class TestMedicalDiagnosticReport(TransactionCase):
             )
 
     def test_report_generation(self):
-        report_generation = self.env["medical.patient.create.diagnostic.report"].create(
+        report_generation = self.env[
+            "medical.encounter.create.diagnostic.report"
+        ].create(
             {
-                "patient_id": self.patient_1.id,
+                "encounter_id": self.encounter_1.id,
                 "template_id": self.template_1.id,
             }
         )
+        self.assertEqual(self.encounter_1.report_count, 1)
         action = report_generation.generate()
         report = self.env[action.get("res_model")].browse(action.get("res_id"))
+        self.assertEqual(self.encounter_1.report_count, 2)
         self.assertEqual("medical.diagnostic.report", report._name)
+        self.assertEqual(self.encounter_1, report.encounter_id)
         self.assertEqual(self.patient_1, report.patient_id)
         self.assertEqual(self.patient_1.name, report.patient_id.name)
         self.assertEqual(self.patient_1.vat, report.patient_id.vat)
@@ -199,6 +209,11 @@ class TestMedicalDiagnosticReport(TransactionCase):
             ),
         )
 
+    def test_encounter_button(self):
+        action = self.encounter_1.action_view_report()
+        reports = self.env[action["res_model"]].search(action["domain"])
+        self.assertIn(self.report, reports)
+
     def test_report_expand(self):
         self.assertFalse(self.report.composition)
         self.env["medical.diagnostic.report.expand"].create(
@@ -217,9 +232,11 @@ class TestMedicalDiagnosticReport(TransactionCase):
         )
 
     def test_report_expand_without_current_report_conclusion(self):
-        report_generation = self.env["medical.patient.create.diagnostic.report"].create(
+        report_generation = self.env[
+            "medical.encounter.create.diagnostic.report"
+        ].create(
             {
-                "patient_id": self.patient_1.id,
+                "encounter_id": self.encounter_1.id,
                 "template_id": self.template_2.id,
             }
         )

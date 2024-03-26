@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 CreuBlanca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record
+        model="ir.ui.view"
+        id="medical_patient_create_diagnostic_report_encounter_form_view"
+    >
+        <field
+            name="name"
+        >medical.patient.create.diagnostic.report.encounter.form (in medical_diagnostic_report)</field>
+        <field name="model">medical.patient.create.diagnostic.report</field>
+        <field
+            name="inherit_id"
+            ref="medical_diagnostic_report.medical_patient_create_diagnostic_report_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='patient_id']" position="after">
+                <field
+                    name="encounter_warning"
+                    nolabel="1"
+                    decoration-danger="1"
+                    attrs="{'invisible':[('show_encounter_warning', '=', False)]}"
+                />
+                <field name="show_encounter_warning" invisible="1" />
+                <field
+                    name="encounter_id"
+                    widget="selection"
+                    readonly="False"
+                    domain="[('patient_id', '=', patient_id)]"
+                />
+                <field name="lang" widget="selection" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_medical_encounter_create_diagnostic_report,access_medical_encounter_create_diagnostic_report,model_medical_encounter_create_diagnostic_report,medical_base.group_medical_assistance_user,1,1,1,1
