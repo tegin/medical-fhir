@@ -69,7 +69,6 @@
                                 title="Preview"
                             />
                             <field name="internal_identifier" />
-                            <field name="encounter_id" />
                             <field name="name" />
                             <field name="issued_user_id" />
                             <field name="issued_date" />
@@ -86,7 +85,6 @@
                         icon="fa-file-medical-alt"
                         string="Generate Medical Report"
                         groups="medical_base.group_medical_assistance_user"
-                        attrs="{'invisible': [('encounter_count', '=', 0)]}"
                     />
                 </page>
             </xpath>

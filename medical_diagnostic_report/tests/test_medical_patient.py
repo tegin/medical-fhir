@@ -12,9 +12,6 @@ class TestMedicalPatientObservationButtons(TransactionCase):
         self.patient_1 = self.env["medical.patient"].create(
             {"name": "Patient 1", "vat": "47238567H"}
         )
-        self.encounter_1 = self.env["medical.encounter"].create(
-            {"name": "Encounter 1", "patient_id": self.patient_1.id}
-        )
         uom = self.env.ref("medical_diagnostic_report.uom_ten_thousand_micro_liter")
         self.concept_1 = self.env["medical.observation.concept"].create(
             {
@@ -67,11 +64,9 @@ class TestMedicalPatientObservationButtons(TransactionCase):
             }
         )
 
-        report_generation = self.env[
-            "medical.encounter.create.diagnostic.report"
-        ].create(
+        report_generation = self.env["medical.patient.create.diagnostic.report"].create(
             {
-                "encounter_id": self.encounter_1.id,
+                "patient_id": self.patient_1.id,
                 "template_id": self.template_1.id,
             }
         )

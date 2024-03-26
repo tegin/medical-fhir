@@ -61,7 +61,6 @@
             </field>
             <field name="patient_id" position="before">
                 <field name="patient_name" />
-                <field name="encounter_id" />
                 <field name="vat" />
                 <field name="patient_age" />
                 <field name="patient_origin" />

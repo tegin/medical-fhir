@@ -33,13 +33,14 @@ class MedicalDiagnosticReportTemplate(models.Model):
     conclusion = fields.Text(translate=True)
     active = fields.Boolean(default=True)
 
-    def _generate_report_vals(self, encounter=None, **kwargs):
+    def _generate_report_vals(self, patient=None, **kwargs):
+
         return {
+            "patient_id": patient.id,
             "template_ids": [(4, self.id)],
-            "encounter_id": encounter.id,
-            "patient_name": encounter.patient_id.name,
-            "vat": encounter.patient_id.vat,
-            "patient_age": self._compute_age(encounter.patient_id),
+            "patient_name": patient.name,
+            "vat": patient.vat,
+            "patient_age": self._compute_age(patient),
             "conclusion": self.conclusion,
             "composition": self.composition,
             "name": self.title or self.name,
@@ -52,9 +53,7 @@ class MedicalDiagnosticReportTemplate(models.Model):
                 (
                     0,
                     0,
-                    item._generate_report_observation_vals(
-                        encounter=encounter, **kwargs
-                    ),
+                    item._generate_report_observation_vals(patient=patient, **kwargs),
                 )
                 for item in self.item_ids
             ],
@@ -160,7 +159,7 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
             if not record.concept_id:
                 record.uom_id = record.view_uom_id
 
-    def _generate_report_observation_vals(self, encounter=None, **kwargs):
+    def _generate_report_observation_vals(self, patient=None, **kwargs):
         concept = self.concept_id or self
         return {
             "uom_id": concept.uom_id.id,
@@ -173,7 +172,7 @@ class MedicalDiagnosticReportTemplateItem(models.Model):
             "value_type": concept.value_type,
             "blocked": self.blocked or self.template_id.item_blocked,
             "sequence": self.sequence,
-            "patient_id": encounter.patient_id.id,
+            "patient_id": patient.id,
         }
 
     @api.model

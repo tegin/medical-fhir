@@ -28,7 +28,7 @@ class MedicalDiagnosticReportExpand(models.TransientModel):
             raise ValidationError(_("This template has already been imported"))
         vals = self.template_id.with_context(
             lang=self.diagnostic_report_id.lang
-        )._generate_report_vals(encounter=self.diagnostic_report_id.encounter_id)
+        )._generate_report_vals(patient=self.diagnostic_report_id.patient_id)
         new_vals = self._merge_new_vals(vals)
         if new_vals:
             self.diagnostic_report_id.write(new_vals)
