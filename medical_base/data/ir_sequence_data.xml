@@ -11,4 +11,10 @@
         <field name="prefix">PAC</field>
         <field name="padding">6</field>
     </record>
+    <record id="seq_medical_practitioner" model="ir.sequence">
+        <field name="name">Practitioner sequence</field>
+        <field name="code">medical.practitioner</field>
+        <field name="prefix">PRA</field>
+        <field name="padding">6</field>
+    </record>
 </odoo>

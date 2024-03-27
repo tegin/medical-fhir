@@ -118,4 +118,13 @@
         <field name="groups_id" eval="[(6, 0, [ref('group_medical_admin')])]" />
         <field name="sequence" eval="1" />
     </record>
+
+    <record model="ir.ui.menu" id="medical_conf_practitioner_menu">
+        <field name="name">Practitioners</field>
+        <field name="parent_id" ref="medical_root_administration" />
+        <field name="action" ref="medical_practitioner_action" />
+        <field name="sequence" eval="20" />
+    </record>
+
+
 </odoo>
