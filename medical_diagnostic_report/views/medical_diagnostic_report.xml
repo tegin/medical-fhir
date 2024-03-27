@@ -8,7 +8,7 @@
         >medical.diagnostic.report.form (in medical_diagnostic_report)</field>
         <field name="model">medical.diagnostic.report</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="medical_workflow.medical_event_form" />
+        <field name="inherit_id" ref="medical_base.medical_event_form" />
         <field name="arch" type="xml">
             <header position="inside">
                 <button
@@ -245,7 +245,7 @@
         >medical.diagnostic.report.tree (in medical_diagnostic_report)</field>
         <field name="model">medical.diagnostic.report</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="medical_workflow.medical_event_tree" />
+        <field name="inherit_id" ref="medical_base.medical_event_tree" />
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="create">false</attribute>

@@ -10,7 +10,7 @@
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
-    "depends": ["medical_administration_practitioner", "product"],
+    "depends": ["medical_base", "medical_administration_practitioner"],
     "data": [
         "data/ir_sequence.xml",
         "security/medical_security.xml",
@@ -21,8 +21,6 @@
         "views/workflow_plan_definition_action.xml",
         "views/res_config_settings_views.xml",
         "views/medical_patient.xml",
-        "views/medical_request_view.xml",
-        "views/medical_event_view.xml",
     ],
     "demo": ["demo/medical_demo.xml"],
     "application": False,

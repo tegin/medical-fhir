@@ -15,7 +15,19 @@ class Partner(models.Model):
     _inherit = "res.partner"
 
     is_medical = fields.Boolean(default=False)
+    is_practitioner = fields.Boolean(default=False)
     patient_ids = fields.One2many("medical.patient", inverse_name="partner_id")
+    practitioner_role_ids = fields.Many2many(
+        string="Practitioner Roles", comodel_name="medical.role"
+    )  # FHIR Field: PractitionerRole/role
+    practitioner_type = fields.Selection(
+        string="Entity Type",
+        selection=[
+            ("internal", "Internal Entity"),
+            ("external", "External Entity"),
+        ],
+        readonly=False,
+    )
 
     @api.model
     def _get_medical_identifiers(self):
@@ -60,6 +72,7 @@ class Partner(models.Model):
             and not self.env.user.has_group("medical_base.group_medical_user")
             and mode != "read"
         ):
+            # DUPLICIDAD DE CÓDIGO
             _logger.info(
                 "Access Denied by ACLs for operation: %s, uid: %s, model: %s",
                 "write",
@@ -72,10 +85,32 @@ class Partner(models.Model):
                     mode=mode,
                 )
             )
+        # HASTA AQUÍ
+        if (
+            self.is_practitioner
+            and mode != "read"
+            and not self._check_medical_practitioner()
+        ):
+            # DUPLICIDAD DE CÓDIGO
+            _logger.info(
+                "Access Denied by ACLs for operation: %s, uid: %s, model: %s",
+                "write",
+                self._uid,
+                self._name,
+            )
+            raise AccessError(
+                _(
+                    "You are not allowed to %(mode)s medical Contacts (res.partner) records.",
+                    mode=mode,
+                )
+            )
+        # HASTA AQUÍ
 
     @api.model
     def default_medical_fields(self):
-        return ["is_medical"]
+        result = ["is_medical"]
+        result.append("is_practitioner")
+        return result
 
     @api.model
     def default_get(self, fields_list):
@@ -85,3 +120,6 @@ class Partner(models.Model):
             if result.get(field) and self.env.context.get("default_parent_id"):
                 result[field] = False
         return result
+
+    def _check_medical_practitioner(self):
+        return self.env.user.has_group("medical_base.group_medical_configurator")

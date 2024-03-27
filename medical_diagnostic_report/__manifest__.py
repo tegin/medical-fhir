@@ -10,7 +10,7 @@
     "author": "CreuBlanca,Odoo Community Association (OCA), Tegin",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": [
-        "medical_workflow",
+        "medical_base",
         "web_editor",
         "medical_certify",
         "web_widget_bokeh_chart",

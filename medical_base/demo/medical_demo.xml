@@ -26,4 +26,9 @@
     <record id="patient_03" model="medical.patient">
         <field name="partner_id" ref="patient_03_partner" />
     </record>
+    <record id="practitioner_01_partner" model="res.partner">
+        <field name="name">Dr Who</field>
+        <field name="is_practitioner" eval="True" />
+        <field name="is_medical" eval="True" />
+    </record>
 </odoo>

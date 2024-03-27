@@ -47,4 +47,11 @@
         <field name="res_model">medical.role</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <record model="ir.ui.menu" id="medical_role_menu">
+        <field name="name">Roles</field>
+        <field name="parent_id" ref="medical_root_configuration" />
+        <field name="action" ref="medical_role_action" />
+        <field name="sequence" eval="60" />
+    </record>
 </odoo>
