@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="medical_diagnostic_report_encounter_form_view">
+        <field
+            name="name"
+        >medical.diagnostic.report.form (in medical_diagnostic_report)</field>
+        <field name="model">medical.diagnostic.report</field>
+        <field
+            name="inherit_id"
+            ref="medical_diagnostic_report.medical_diagnostic_report_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='patient_name']" position="after">
+                <field name="encounter_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

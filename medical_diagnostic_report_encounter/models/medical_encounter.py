@@ -1,11 +1,7 @@
-# Copyright 2021 CreuBlanca
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo import api, fields, models
 
 
 class MedicalEncounter(models.Model):
-
     _inherit = "medical.encounter"
 
     report_ids = fields.One2many(

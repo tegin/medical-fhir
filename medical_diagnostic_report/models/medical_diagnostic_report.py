@@ -33,15 +33,13 @@ class MedicalDiagnosticReport(models.Model):
     # FHIR Field: status
 
     patient_id = fields.Many2one(
-        related="encounter_id.patient_id",
-        store=True,
+        "medical.patient",
         required=False,
         readonly=True,
     )
     patient_name = fields.Char(readonly=True, states={"draft": [("readonly", False)]})
     # FHIR Field: subject
 
-    encounter_id = fields.Many2one("medical.encounter", readonly=True)
     # FHIR Field: encounter
 
     vat = fields.Char(
@@ -158,7 +156,7 @@ class MedicalDiagnosticReport(models.Model):
         self._sign_document()
 
     def _get_observation_date(self):
-        return self.encounter_id.create_date
+        return fields.Datetime.now()
 
     def _cancel_vals(self):
         return {
@@ -186,7 +184,6 @@ class MedicalDiagnosticReport(models.Model):
                 "name": self.name,
                 "patient_id": self.patient_id.id,
                 "patient_name": self.patient_name,
-                "encounter_id": self.encounter_id.id,
                 "vat": self.vat,
                 "patient_age": self.patient_age,
                 "patient_origin": self.patient_origin,

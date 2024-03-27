@@ -23,7 +23,7 @@ class MedicalEncounterCreateDiagnosticReport(models.TransientModel):
         return self.env["res.lang"].get_installed()
 
     def _generate_kwargs(self):
-        return {"encounter": self.encounter_id}
+        return {"encounter": self.encounter_id, "patient": self.encounter_id.patient_id}
 
     def generate(self):
         self.ensure_one()

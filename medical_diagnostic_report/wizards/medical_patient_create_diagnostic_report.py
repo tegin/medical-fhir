@@ -1,7 +1,6 @@
 # Copyright 2023 CreuBlanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, timedelta
 
 from odoo import api, fields, models
 
@@ -11,12 +10,7 @@ class MedicalPatientCreateDiagnosticReport(models.TransientModel):
     _name = "medical.patient.create.diagnostic.report"
     _description = "Create a diagnostic report from patient"
 
-    patient_id = fields.Many2one("medical.patient", readonly=True)
-    encounter_id = fields.Many2one(
-        "medical.encounter",
-        required=True,
-        compute="_compute_default_encounter",
-    )
+    patient_id = fields.Many2one("medical.patient", requiered=True, readonly=True)
     template_id = fields.Many2one(
         "medical.diagnostic.report.template",
         required=True,
@@ -36,21 +30,12 @@ class MedicalPatientCreateDiagnosticReport(models.TransientModel):
         readonly=True,
     )
 
-    @api.onchange("encounter_id")
-    def check_encounter_date(self):
-        if (datetime.now() - self.encounter_id.create_date) >= timedelta(days=7):
-            self.show_encounter_warning = True
-
-    @api.onchange("patient_id")
-    def _compute_default_encounter(self):
-        self.encounter_id = self.patient_id._get_last_encounter()
-
     @api.model
     def _get_lang(self):
         return self.env["res.lang"].get_installed()
 
     def _generate_kwargs(self):
-        return {"encounter": self.encounter_id}
+        return {"patient": self.patient_id}
 
     def generate(self):
         self.ensure_one()
