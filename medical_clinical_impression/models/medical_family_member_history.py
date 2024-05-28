@@ -54,8 +54,5 @@ class MedicalFamilyMemberHistory(models.Model):
     @api.model
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"].next_by_code(
-                "medical.family.member.history"
-            )
-            or "/"
+            self.env["ir.sequence"].next_by_code("medical.family.member.history") or "/"
         )

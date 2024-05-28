@@ -8,21 +8,13 @@ class MedicalSpecialty(models.Model):
 
     _inherit = "medical.specialty"
 
-    patient_impression_count = fields.Integer(
-        compute="_compute_impression_info"
-    )
+    patient_impression_count = fields.Integer(compute="_compute_impression_info")
 
-    encounter_impression_count = fields.Integer(
-        compute="_compute_impression_info"
-    )
+    encounter_impression_count = fields.Integer(compute="_compute_impression_info")
 
-    impression_last_update = fields.Datetime(
-        compute="_compute_impression_info"
-    )
+    impression_last_update = fields.Datetime(compute="_compute_impression_info")
 
-    impressions_in_progress_count = fields.Integer(
-        compute="_compute_impression_info"
-    )
+    impressions_in_progress_count = fields.Integer(compute="_compute_impression_info")
 
     def _compute_impression_info(self):
         for rec in self:
@@ -47,11 +39,9 @@ class MedicalSpecialty(models.Model):
                 )
                 patient_id = encounter_id.patient_id
             if patient_id:
-                patient_impression_ids = (
-                    patient_id.medical_impression_ids.filtered(
-                        lambda r: r.specialty_id.id == rec.id
-                        and r.fhir_state != "cancelled"
-                    )
+                patient_impression_ids = patient_id.medical_impression_ids.filtered(
+                    lambda r: r.specialty_id.id == rec.id
+                    and r.fhir_state != "cancelled"
                 )
                 patient_count = len(patient_impression_ids)
                 impressions_completed = patient_impression_ids.filtered(
@@ -77,8 +67,7 @@ class MedicalSpecialty(models.Model):
     # Always pass a context to this function
     def get_specialty_impression(self):
         result = self.env["ir.actions.act_window"]._for_xml_id(
-            "medical_clinical_impression."
-            "medical_clinical_impression_act_window"
+            "medical_clinical_impression." "medical_clinical_impression_act_window"
         )
         ctx_dict = self._get_default_context()
         if self.env.context.get("patient_id"):

@@ -23,9 +23,7 @@ class MedicalClinicalImpression(models.Model):
 
     fhir_state = fields.Selection(default="in_progress", readonly=True)
 
-    specialty_id = fields.Many2one(
-        "medical.specialty", required=True, readonly=True
-    )
+    specialty_id = fields.Many2one("medical.specialty", required=True, readonly=True)
     # FHIR code: type of clinical assessment performed.
     # TODO: add domain, so a partner can only select between their specialities
 
@@ -36,9 +34,7 @@ class MedicalClinicalImpression(models.Model):
     )
     # FHIR: description
 
-    encounter_id = fields.Many2one(
-        "medical.encounter", required=True, readonly=True
-    )
+    encounter_id = fields.Many2one("medical.encounter", required=True, readonly=True)
     # FHIR: encounter
 
     patient_id = fields.Many2one(
@@ -75,13 +71,9 @@ class MedicalClinicalImpression(models.Model):
         related="patient_id.medical_condition_ids",
     )
 
-    condition_count = fields.Integer(
-        related="patient_id.medical_condition_count"
-    )
+    condition_count = fields.Integer(related="patient_id.medical_condition_count")
 
-    summary = fields.Text(
-        readonly=True, states={"draft": [("readonly", False)]}
-    )
+    summary = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
     # FHIR: summary
     note = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
     # FHIR: Note
@@ -95,8 +87,7 @@ class MedicalClinicalImpression(models.Model):
     @api.model
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"].next_by_code("medical.clinical.impression")
-            or "/"
+            self.env["ir.sequence"].next_by_code("medical.clinical.impression") or "/"
         )
 
     @api.depends("encounter_id")

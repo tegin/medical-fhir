@@ -146,7 +146,6 @@
         <field name="model">medical.clinical.impression</field>
         <field name="arch" type="xml">
             <tree
-                string="Clinical Impressions"
                 editable="bottom"
                 decoration-warning="fhir_state == 'in_progress'"
                 decoration-muted="fhir_state == 'cancelled'"

@@ -20,9 +20,7 @@ class MedicalPatient(models.Model):
         "medical.family.member.history", inverse_name="patient_id"
     )
 
-    family_history_count = fields.Integer(
-        compute="_compute_family_history_count"
-    )
+    family_history_count = fields.Integer(compute="_compute_family_history_count")
 
     condition_ids = fields.One2many(
         comodel_name="medical.condition",
@@ -30,9 +28,7 @@ class MedicalPatient(models.Model):
         related="medical_impression_ids.condition_ids",
     )
 
-    condition_count = fields.Integer(
-        related="medical_impression_ids.condition_count"
-    )
+    condition_count = fields.Integer(related="medical_impression_ids.condition_count")
 
     @api.depends("family_history_ids")
     def _compute_family_history_count(self):
@@ -41,16 +37,15 @@ class MedicalPatient(models.Model):
     @api.depends("medical_impression_ids")
     def _compute_impression_specialties(self):
         for record in self:
-            record.impression_specialty_ids = (
-                record.medical_impression_ids.mapped("specialty_id")
+            record.impression_specialty_ids = record.medical_impression_ids.mapped(
+                "specialty_id"
             )
 
     def action_view_clinical_impressions(self):
         self.ensure_one()
         encounter = self._get_last_encounter()
         action = self.env["ir.actions.act_window"]._for_xml_id(
-            "medical_clinical_impression."
-            "medical_clinical_impression_act_window"
+            "medical_clinical_impression." "medical_clinical_impression_act_window"
         )
         action["domain"] = [("patient_id", "=", self.id)]
         if encounter:
@@ -63,8 +58,7 @@ class MedicalPatient(models.Model):
     def action_view_family_history(self):
         self.ensure_one()
         action = self.env["ir.actions.act_window"]._for_xml_id(
-            "medical_clinical_impression."
-            "medical_family_member_history_action"
+            "medical_clinical_impression." "medical_family_member_history_action"
         )
         action["domain"] = [
             ("patient_id", "=", self.id),

@@ -36,12 +36,8 @@ class TestMedicalEncounter(TransactionCase):
             wizard._onchange_encounter_date()
             self.assertTrue(wizard.show_encounter_warning)
         action = wizard.generate()
-        self.assertEqual(
-            "medical.clinical.impression", action.get("res_model")
-        )
-        self.assertEqual(
-            action["context"]["default_encounter_id"], self.encounter.id
-        )
+        self.assertEqual("medical.clinical.impression", action.get("res_model"))
+        self.assertEqual(action["context"]["default_encounter_id"], self.encounter.id)
         self.assertEqual(
             action["context"]["default_specialty_id"],
             self.specialty_cardiology.id,
@@ -56,12 +52,8 @@ class TestMedicalEncounter(TransactionCase):
         )
         action = self.encounter.action_view_clinical_impressions()
         self.assertEqual(action["res_model"], "medical.clinical.impression")
-        self.assertEqual(
-            action["context"]["default_encounter_id"], self.encounter.id
-        )
-        self.assertEqual(
-            action["context"]["search_default_filter_not_cancelled"], True
-        )
+        self.assertEqual(action["context"]["default_encounter_id"], self.encounter.id)
+        self.assertEqual(action["context"]["search_default_filter_not_cancelled"], True)
 
     def test_create_family_history_from_encounter(self):
         self.encounter = self.env["medical.encounter"].create(
@@ -71,9 +63,7 @@ class TestMedicalEncounter(TransactionCase):
             }
         )
         action = self.encounter.create_family_member_history()
-        self.assertEqual(
-            action["context"]["default_patient_id"], self.patient.id
-        )
+        self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
         # It opens a wizard, if not saved should not create a record,
         # for this reason count should be 0.
         self.assertEqual(self.encounter.family_history_count, 0)
@@ -94,9 +84,7 @@ class TestMedicalEncounter(TransactionCase):
             }
         )
         action = self.encounter.action_view_family_history()
-        self.assertEqual(
-            action["context"]["default_patient_id"], self.patient.id
-        )
+        self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
 
     def test_compute_impression_info_from_encounter(self):
         self.encounter_1 = self.env["medical.encounter"].create(
@@ -143,15 +131,11 @@ class TestMedicalEncounter(TransactionCase):
             }
         )
         self.specialty_cardiology.with_context(
-            {"encounter_id": self.encounter_1.id}
+            **{"encounter_id": self.encounter_1.id}
         )._compute_impression_info()
         self.assertEqual(self.specialty_cardiology.patient_impression_count, 3)
-        self.assertEqual(
-            self.specialty_cardiology.encounter_impression_count, 2
-        )
-        self.assertEqual(
-            self.specialty_cardiology.impressions_in_progress_count, 2
-        )
+        self.assertEqual(self.specialty_cardiology.encounter_impression_count, 2)
+        self.assertEqual(self.specialty_cardiology.impressions_in_progress_count, 2)
 
     def test_get_specialty_impressions_from_encounter(self):
         with freezegun.freeze_time("2022-01-01"):
@@ -170,8 +154,6 @@ class TestMedicalEncounter(TransactionCase):
             )
         self.patient.refresh()
         action = self.specialty_cardiology.with_context(
-            {"encounter_id": self.encounter_1.id}
+            **{"encounter_id": self.encounter_1.id}
         ).get_specialty_impression()
-        self.assertEqual(
-            action["context"]["default_encounter_id"], self.encounter_1.id
-        )
+        self.assertEqual(action["context"]["default_encounter_id"], self.encounter_1.id)

@@ -20,25 +20,19 @@ class TestClinicalImpression(TransactionCase):
                 "create_condition_from_clinical_impression": True,
             }
         )
-        self.finding_eye_infection = self.env[
-            "medical.clinical.finding"
-        ].create(
+        self.finding_eye_infection = self.env["medical.clinical.finding"].create(
             {
                 "name": "Eye infection",
                 "create_condition_from_clinical_impression": False,
             }
         )
-        self.allergy_substance_pollen = self.env[
-            "medical.allergy.substance"
-        ].create(
+        self.allergy_substance_pollen = self.env["medical.allergy.substance"].create(
             {
                 "name": "Pollen",
                 "description": "Pollen",
             }
         )
-        self.allergy_substance_ibuprofen = self.env[
-            "medical.allergy.substance"
-        ].create(
+        self.allergy_substance_ibuprofen = self.env["medical.allergy.substance"].create(
             {
                 "name": "Ibuprofen",
                 "description": "Ibuprofen",
@@ -62,9 +56,7 @@ class TestClinicalImpression(TransactionCase):
         )
         with freezegun.freeze_time("2022-01-01 00:00:00"):
             impression.validate_clinical_impression()
-        self.assertEqual(
-            impression.validation_date, datetime(2022, 1, 1, 0, 0, 0)
-        )
+        self.assertEqual(impression.validation_date, datetime(2022, 1, 1, 0, 0, 0))
         self.assertEqual(impression.validation_user_id.id, self.env.user.id)
         self.assertEqual(impression.fhir_state, "completed")
 
@@ -112,9 +104,7 @@ class TestClinicalImpression(TransactionCase):
                 "patient_id": self.patient.id,
                 "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_gynecology.id,
-                "allergy_substance_ids": [
-                    (4, self.allergy_substance_ibuprofen.id)
-                ],
+                "allergy_substance_ids": [(4, self.allergy_substance_ibuprofen.id)],
             }
         )
         impression.validate_clinical_impression()
@@ -130,9 +120,7 @@ class TestClinicalImpression(TransactionCase):
                 "patient_id": self.patient.id,
                 "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_gynecology.id,
-                "allergy_substance_ids": [
-                    (4, self.allergy_substance_ibuprofen.id)
-                ],
+                "allergy_substance_ids": [(4, self.allergy_substance_ibuprofen.id)],
             }
         )
         impression_2.validate_clinical_impression()
@@ -148,9 +136,7 @@ class TestClinicalImpression(TransactionCase):
                 "patient_id": self.patient.id,
                 "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_gynecology.id,
-                "allergy_substance_ids": [
-                    (4, self.allergy_substance_ibuprofen.id)
-                ],
+                "allergy_substance_ids": [(4, self.allergy_substance_ibuprofen.id)],
             }
         )
         impression.validate_clinical_impression()
@@ -172,10 +158,10 @@ class TestClinicalImpression(TransactionCase):
             {"patient_id": self.patient.id}
         )
         impression.with_context(
-            {"encounter_id": self.encounter.id}
+            **{"encounter_id": self.encounter.id}
         )._compute_current_encounter()
         self.assertTrue(impression.current_encounter)
         impression.with_context(
-            {"encounter_id": self.encounter_2.id}
+            **{"encounter_id": self.encounter_2.id}
         )._compute_current_encounter()
         self.assertFalse(impression.current_encounter)
