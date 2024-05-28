@@ -7,7 +7,7 @@
         Medical Clinical Impression based on FHIR""",
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "author": "CreuBlanca,Odoo Community Association (OCA)",
+    "author": "CreuBlanca,Tegin,Odoo Community Association (OCA)",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": [
         "medical_workflow",

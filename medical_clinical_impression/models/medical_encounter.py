@@ -22,15 +22,12 @@ class MedicalEncounter(models.Model):
         related="patient_id.family_history_ids",
     )
 
-    family_history_count = fields.Integer(
-        related="patient_id.family_history_count"
-    )
+    family_history_count = fields.Integer(related="patient_id.family_history_count")
 
     def action_view_clinical_impressions(self):
         self.ensure_one()
         action = self.env["ir.actions.act_window"]._for_xml_id(
-            "medical_clinical_impression."
-            "medical_clinical_impression_act_window"
+            "medical_clinical_impression." "medical_clinical_impression_act_window"
         )
         action["domain"] = [
             ("patient_id", "=", self.patient_id.id),
@@ -44,8 +41,7 @@ class MedicalEncounter(models.Model):
     def action_view_family_history(self):
         self.ensure_one()
         action = self.env["ir.actions.act_window"]._for_xml_id(
-            "medical_clinical_impression."
-            "medical_family_member_history_action"
+            "medical_clinical_impression." "medical_family_member_history_action"
         )
         action["domain"] = [
             ("patient_id", "=", self.patient_id.id),
