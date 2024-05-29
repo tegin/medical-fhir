@@ -1,0 +1,51 @@
+.o_medical_impression {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    height: 100%;
+    .o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
+        margin: 0 0 0;
+        width: 100%;
+        min-width: fit-content;
+        > div {
+            border-right: thick solid rgba(0, 0, 0, 0);
+        }
+        &.o_medical_impression_selected > div {
+            border-right: thick solid $o-brand-primary;
+        }
+    }
+    .o_medical_impression_selector {
+        width: 50%;
+        height: 100%;
+        padding: 0;
+        position: relative;
+        border-right: 1px solid $o-gray-300;
+    }
+    .o_medical_impression_info {
+        width: 50%;
+        height: 100%;
+    }
+    .o_form_statusbar.o_medical_impression_statusbar {
+        .btn:not(.dropdown-toggle):not(.dropdown-item) {
+            text-transform: uppercase;
+        }
+        height: 40px;
+        > .o_statusbar_buttons {
+            height: 100%;
+            > .btn {
+                margin: 1px;
+                height: 100%;
+                padding: 10px;
+                border-radius: 0;
+            }
+        }
+        .o_statusbar_info_button {
+            background-color: rgb(125, 190, 210);
+        }
+        .o_statusbar_info_button:hover {
+            background-color: rgb(164, 206, 219);
+        }
+    }
+}

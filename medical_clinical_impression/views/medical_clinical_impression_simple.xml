@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_clinical_impression_simple_form_view">
+        <field
+            name="name"
+        >medical.clinical.impression.simple.form (in medical_clinical_impression)</field>
+        <field name="model">medical.clinical.impression</field>
+        <field name="arch" type="xml">
+            <form edit="true" js_class="impression_form" style="padding-top: 0px;">
+                <field name="state" invisible="1" />
+                <field name="fhir_state" invisible="1" />
+                <field name="condition_count" invisible="1" />
+                <div
+                    class="alert alert-danger row"
+                    role="alert"
+                    attrs="{'invisible':[('condition_count', '=', 0)]}"
+                    style="margin-bottom:0px;"
+                >
+                    <field
+                        name="warning_info"
+                        widget="warning_dropdown"
+                        class="col-12"
+                        context="{'patient_id': id}"
+                    />
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div
+                        class="col-md-4"
+                        style="text-align:center; font-size:18px; padding: 10px;"
+                    >
+                        <i>
+                            <field name="internal_identifier" readonly="1" />
+                        </i>
+                    </div>
+                    <div class="row" style="text-align:center">
+                        <h1>
+                            <field
+                                name="patient_id"
+                                readonly="1"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                        </h1>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="o_form_statusbar o_medical_impression_statusbar">
+                    <div class="o_statusbar_buttons">
+                        <button
+                            name="validate_clinical_impression"
+                            string="Validate Impression"
+                            class="btn-success"
+                            confirm="Are you sure you want to validate this impression?"
+                            type="object"
+                            attrs="{'invisible':[('fhir_state', 'in', ['completed','cancelled'])]}"
+                        />
+                        <button
+                            name="cancel_clinical_impression"
+                            string="Cancel Impression"
+                            class="btn-danger"
+                            confirm="Are you sure you want to cancel this impression?"
+                            type="object"
+                            attrs="{'invisible':[('fhir_state', '=', 'cancelled')]}"
+                        />
+                        <button
+                            name="impression_family_history"
+                            class="btn btn-primary"
+                            type="object"
+                        ><i class="fas fa-users" />  Family History</button>
+                    </div>
+                </div>
+                <group string="Summary">
+                    <field name="summary" nolabel="1" colspan="2" />
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1" colspan="2" />
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1" colspan="2" />
+                </group>
+                <group string="Allergy Substances">
+                    <field
+                        name="allergy_substance_ids"
+                        nolabel="1"
+                        colspan="2"
+                        widget="many2many_tags"
+                    />
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

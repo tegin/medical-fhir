@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="medical_clinical_impression.WidgetWarningDropdown" owl="1">
+        <div class="o_conditions_view">
+            <div class="row">
+                <div class="col-1" />
+                <div class="col-10 o_warning_conditions">
+                    <div
+                        t-foreach="props.value"
+                        t-as="condition_id"
+                        t-key="condition_id"
+                    >
+                        <t t-set="condition" t-value="props.value[condition_id]" />
+                        <span
+                            t-esc="condition['name']"
+                            t-if="state.all_data or condition['create_warning']"
+                            t-att-class="condition['create_warning']? 'text-danger' : ''"
+                        />
+                        <t t-if="state.all_data or condition['create_warning']">
+                            (<span t-esc="condition['create_date']" />)
+                        </t>
+                    </div>
+                    </div>
+                <div class="col-1 o_expand_icon">
+                    <a
+                        t-attf-class="fa {{ state.all_data? 'fa-caret-down': 'fa-caret-up' }} toggle_create_warning "
+                        style="font-size:18px;"
+                        t-on-click="toggleCreateWarning"
+                    />
+                </div>
+            </div>
+        </div>
+    </t>
+    <!-- <t t-name="ExpandIcon">
+        <t t-if="all_data">
+            <a
+                class="fa fa-caret-down toggle_create_warning "
+                style="font-size:18px;"
+            />
+        </t>
+        <t t-else="">
+            <a class="fa fa-caret-up toggle_create_warning" style="font-size:18px;" />
+        </t>
+    </t> -->
+</templates>

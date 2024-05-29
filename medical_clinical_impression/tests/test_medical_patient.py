@@ -79,7 +79,7 @@ class TestMedicalPatient(TransactionCase):
                     "create_date": fields.Datetime.now(),
                 }
             )
-        self.patient.refresh()
+        self.patient.invalidate_recordset()
         with freezegun.freeze_time("2022-02-03"):
             wizard = self.env["create.impression.from.patient"].create(
                 {
@@ -106,7 +106,7 @@ class TestMedicalPatient(TransactionCase):
                 "create_date": fields.Datetime.now(),
             }
         )
-        self.patient.refresh()
+        self.patient.invalidate_recordset()
         action = self.patient.action_view_clinical_impressions()
         self.assertEqual(action["res_model"], "medical.clinical.impression")
         self.assertEqual(action["context"]["default_encounter_id"], self.encounter.id)
@@ -118,7 +118,7 @@ class TestMedicalPatient(TransactionCase):
                 "patient_id": self.patient.id,
             }
         )
-        self.patient.refresh()
+        self.patient.invalidate_recordset()
         self.assertEqual(len(self.patient.medical_impression_ids.ids), 0)
         self.assertEqual(len(self.patient.impression_specialty_ids.ids), 0)
         self.env["medical.clinical.impression"].create(
@@ -142,6 +142,7 @@ class TestMedicalPatient(TransactionCase):
                 "specialty_id": self.specialty_gynecology.id,
             }
         )
+        self.patient.invalidate_recordset()
         self.assertEqual(len(self.patient.medical_impression_ids.ids), 3)
         self.assertEqual(len(self.patient.impression_specialty_ids.ids), 2)
 
@@ -207,6 +208,7 @@ class TestMedicalPatient(TransactionCase):
                 "specialty_id": self.specialty_gynecology.id,
             }
         )
+        self.patient.invalidate_recordset()
         self.specialty_cardiology.with_context(
             **{"patient_id": self.patient.id}
         )._compute_impression_info()
@@ -228,7 +230,7 @@ class TestMedicalPatient(TransactionCase):
                     "create_date": fields.Datetime.now(),
                 }
             )
-        self.patient.refresh()
+        self.patient.invalidate_recordset()
         action = self.specialty_cardiology.with_context(
             **{"patient_id": self.patient.id}
         ).get_specialty_impression()

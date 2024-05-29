@@ -30,6 +30,24 @@ class MedicalPatient(models.Model):
 
     condition_count = fields.Integer(related="medical_impression_ids.condition_count")
 
+    warning_info = fields.Json(compute="_compute_warning_info")
+
+    def _get_warning_info(self):
+        self.ensure_one()
+        return {
+            condition.id: {
+                "name": condition.name,
+                "create_date": fields.Date.to_string(condition.create_date),
+                "create_warning": condition.create_warning,
+            }
+            for condition in self.condition_ids
+        }
+
+    @api.depends("condition_ids")
+    def _compute_warning_info(self):
+        for record in self:
+            record.warning_info = record._get_warning_info()
+
     @api.depends("family_history_ids")
     def _compute_family_history_count(self):
         self.family_history_count = len(self.family_history_ids)
@@ -84,3 +102,19 @@ class MedicalPatient(models.Model):
             "target": "new",
             "context": ctx,
         }
+
+    def create_impression(self):
+        self.ensure_one()
+        ctx = self.env.context.copy()
+        ctx.update({"impression_view": True, "default_patient_id": self.id})
+        if ctx.get("default_specialty_id"):
+            return (
+                self.env["create.impression.from.patient"]
+                .with_context(**ctx)
+                .create({})
+                .generate()
+            )
+        xmlid = "medical_clinical_impression.create_impression_from_patient_act_window"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+        action["context"] = ctx
+        return action

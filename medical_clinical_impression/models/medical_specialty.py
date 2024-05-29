@@ -60,7 +60,10 @@ class MedicalSpecialty(models.Model):
             rec.impressions_in_progress_count = impressions_in_progress
 
     def _get_default_context(self):
-        return {"default_specialty_id": self.id}
+        return {
+            "default_specialty_id": self.id,
+            "active_id": self.env.context.get("patient_id"),
+        }
 
     # The differentiation between patient_id and encounter_id
     # is just to set the default_encounter_id
