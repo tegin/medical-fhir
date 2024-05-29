@@ -97,7 +97,7 @@
                     attrs="{'invisible':[('condition_count', '=', 0)]}"
                 >
                 <field
-                        name="condition_ids"
+                        name="warning_info"
                         widget="warning_dropdown"
                         class="col-12"
                         context="{'patient_id': id}"

@@ -84,6 +84,24 @@ class MedicalClinicalImpression(models.Model):
         compute="_compute_current_encounter",
     )
 
+    warning_info = fields.Json(compute="_compute_warning_info")
+
+    def _get_warning_info(self):
+        self.ensure_one()
+        return {
+            condition.id: {
+                "name": condition.name,
+                "create_date": fields.Date.to_string(condition.create_date),
+                "create_warning": condition.create_warning,
+            }
+            for condition in self.condition_ids
+        }
+
+    @api.depends("condition_ids")
+    def _compute_warning_info(self):
+        for record in self:
+            record.warning_info = record._get_warning_info()
+
     @api.model
     def _get_internal_identifier(self, vals):
         return (
@@ -164,3 +182,28 @@ class MedicalClinicalImpression(models.Model):
         self.ensure_one()
         self._cancel_related_conditions()
         self.write(self._cancel_clinical_impression_fields())
+
+    def impression_family_history(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Family Member History",
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "medical.family.member.history",
+            "domain": [("patient_id", "=", self.patient_id.id)],
+            "views": [
+                (
+                    self.env.ref(
+                        "medical_clinical_impression.medical_family_member_history_view_tree"
+                    ).id,
+                    "tree",
+                ),
+                (
+                    self.env.ref(
+                        "medical_clinical_impression.medical_family_member_history_view_form"
+                    ).id,
+                    "form",
+                ),
+            ],
+            "target": "current",
+        }

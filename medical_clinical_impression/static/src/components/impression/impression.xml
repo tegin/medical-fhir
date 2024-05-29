@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t
+        t-name="medical_clinical_impression.ImpressionRenderer"
+        t-inherit="web.KanbanRenderer"
+        t-inherit-mode="primary"
+        owl="1"
+    >
+        <xpath expr="div[hasclass('o_kanban_renderer')]" position="attributes">
+            <attribute name="class" add="o_medical_impression_selector" separator=" " />
+        </xpath>
+        <!-- Group by selector disabled on the view, so we need to find the one without group,
+        then we pass to the component the selected record -->
+        <xpath expr="//KanbanRecord[not(@group)]" position="attributes">
+            <attribute name="selectedRecordId">props.selectedRecordId</attribute>
+        </xpath>
+    </t>
+    <t t-name="medical_clinical_impression.ImpressionView.Buttons" owl="1">
+        <button
+            t-on-click="onClickNewButton"
+            class="btn btn-primary"
+            t-if="activeActions.create"
+        >Create</button>
+    </t>
+    <t
+        t-name="medical_clinical_impression.ImpressionController"
+        t-inherit="web.KanbanView"
+        t-inherit-mode="primary"
+        owl="1"
+    >
+        <!-- we pass to the component the selected record -->
+        <xpath expr="//Layout/t[2]" position="attributes">
+            <attribute name="selectedRecordId">state.selectedRecordId</attribute>
+        </xpath>
+        <xpath expr="//Layout" position="attributes">
+            <attribute
+                name="className"
+            >model.useSampleModel ? 'o_view_sample_data o_medical_impression' : 'o_medical_impression'</attribute>
+        </xpath>
+        <xpath expr="//Layout" position="inside">
+            <div class="o_medical_impression_info">
+            <t t-if="state.selectedRecordId">
+                <View t-props="viewImpressionInfo" t-key="state.selectedRecordId" />
+                </t>
+            </div>
+        </xpath>
+    </t>
+</templates>

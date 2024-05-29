@@ -130,6 +130,7 @@ class TestMedicalEncounter(TransactionCase):
                 "specialty_id": self.specialty_gynecology.id,
             }
         )
+        self.patient.invalidate_recordset()
         self.specialty_cardiology.with_context(
             **{"encounter_id": self.encounter_1.id}
         )._compute_impression_info()
@@ -152,7 +153,7 @@ class TestMedicalEncounter(TransactionCase):
                     "create_date": fields.Datetime.now(),
                 }
             )
-        self.patient.refresh()
+        self.patient.invalidate_recordset()
         action = self.specialty_cardiology.with_context(
             **{"encounter_id": self.encounter_1.id}
         ).get_specialty_impression()

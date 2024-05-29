@@ -2,6 +2,10 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
+from datetime import date
+
+from dateutil.relativedelta import relativedelta
+
 from odoo import api, fields, models
 
 
@@ -35,13 +39,15 @@ class MedicalFamilyMemberHistory(models.Model):
         ]
     )
 
-    age = fields.Char(string="Age/Born Date")
+    born_date = fields.Date()
+    age = fields.Integer(compute="_compute_age")
     # FHIR: age. Same as born.
     # FHIR: born
     # It is a char field to be able to put an approximate date, or a date range...
 
     deceased = fields.Boolean()
-    deceased_age = fields.Char(string="Deceased Age/Date")
+    deceased_date = fields.Date()
+    deceased_age = fields.Integer(compute="_compute_deceased_age")
     # FHIR: deceased
 
     note = fields.Text()
@@ -56,3 +62,21 @@ class MedicalFamilyMemberHistory(models.Model):
         return (
             self.env["ir.sequence"].next_by_code("medical.family.member.history") or "/"
         )
+
+    @api.depends("born_date")
+    def _compute_age(self):
+        for record in self:
+            if record.born_date:
+                record.age = relativedelta(date.today(), record.born_date).years
+            else:
+                record.age = 0
+
+    @api.depends("deceased_date", "born_date")
+    def _compute_deceased_age(self):
+        for record in self:
+            if record.deceased_date and record.born_date:
+                record.deceased_age = relativedelta(
+                    record.deceased_date, record.born_date
+                ).years
+            else:
+                record.deceased_age = 0

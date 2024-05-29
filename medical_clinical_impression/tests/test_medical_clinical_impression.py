@@ -143,7 +143,7 @@ class TestClinicalImpression(TransactionCase):
         self.assertEqual(self.patient.medical_allergies_count, 1)
         impression.cancel_clinical_impression()
         # The allergies and findings created in that impression should be cancelled too.
-        self.patient.refresh()
+        self.patient.invalidate_recordset()
         self.assertEqual(self.patient.medical_allergies_count, 0)
 
     def test_compute_current_encounter(self):
