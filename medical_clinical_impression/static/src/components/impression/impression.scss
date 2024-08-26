@@ -15,6 +15,10 @@
         &.o_medical_impression_selected > div {
             border-right: thick solid $o-brand-primary;
         }
+        .row {
+            // We need to add this in order to make remove horizontal scroll
+            margin: 0;
+        }
     }
     .o_medical_impression_selector {
         width: 50%;
@@ -22,10 +26,12 @@
         padding: 0;
         position: relative;
         border-right: 1px solid $o-gray-300;
+        overflow: auto;
     }
     .o_medical_impression_info {
         width: 50%;
         height: 100%;
+        overflow: auto;
     }
     .o_form_statusbar.o_medical_impression_statusbar {
         .btn:not(.dropdown-toggle):not(.dropdown-item) {
