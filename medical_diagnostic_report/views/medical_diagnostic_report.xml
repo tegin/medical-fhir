@@ -204,6 +204,7 @@
                     <field
                             name="composition"
                             nolabel="1"
+                            colspan="2"
                             options="{'automatic_summernote_height': 1}"
                         />
                     </group>
@@ -216,6 +217,7 @@
                             name="conclusion"
                             attrs="{'invisible':[('with_conclusion', '=', False)]}"
                             nolabel="1"
+                            colspan="2"
                         />
                     </group>
                 </page>
