@@ -23,7 +23,6 @@
     <record id="res_partner_view_form" model="ir.ui.view">
         <field name="name">res.partner.view.form</field>
         <field name="model">res.partner</field>
-        <field name="groups_id" eval="[(4, ref('medical_base.group_medical_user'))]" />
         <field
             name="inherit_id"
             ref="medical_administration_location.res_partner_view_form"
@@ -36,12 +35,13 @@
                 <field name="is_center" invisible="1" />
             </xpath>
             <field name="is_medical" position="before">
-                <field name="is_center" />
+                <field name="is_center" groups="medical_base.group_medical_user" />
             </field>
             <xpath expr="//field[@name='is_medical']/.." position="after">
                 <group
                     name="location_config"
                     attrs="{'invisible': [('is_location','=',False)]}"
+                    groups="medical_base.group_medical_user"
                 >
                     <field
                         name="center_id"
@@ -55,6 +55,7 @@
                     name="%(medical_center_location_action)d"
                     class="oe_stat_button"
                     icon="fa-h-square"
+                    groups="medical_base.group_medical_user"
                     attrs="{'invisible': [('is_center', '=', False)]}"
                 >
                     <field name="location_count" widget="statinfo" string="Locations" />
