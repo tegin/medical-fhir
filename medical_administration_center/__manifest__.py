@@ -4,10 +4,10 @@
 
 {
     "name": "Medical Administration Location",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
-    "author": "CreuBlanca, Eficent",
+    "author": "CreuBlanca, Eficent, Tegin",
     "license": "AGPL-3",
     "depends": ["medical_administration_location"],
     "data": [
