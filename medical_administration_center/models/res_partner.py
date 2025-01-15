@@ -16,9 +16,7 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     is_center = fields.Boolean(default=False)
-    center_id = fields.Many2one(
-        "res.partner", domain=[("is_center", "=", True)]
-    )
+    center_id = fields.Many2one("res.partner", domain=[("is_center", "=", True)])
     location_ids = fields.One2many("res.partner", inverse_name="center_id")
     location_count = fields.Integer(compute="_compute_location_count")
 
@@ -36,9 +34,7 @@ class ResPartner(models.Model):
             return
         for record in self:
             if record.is_location and not record.center_id:
-                raise ValidationError(
-                    _("Center must be fullfilled on locations")
-                )
+                raise ValidationError(_("Center must be fullfilled on locations"))
 
     @api.model
     def default_medical_fields(self):
@@ -51,9 +47,7 @@ class ResPartner(models.Model):
         if (
             self.is_center
             and mode != "read"
-            and not self.env.user.has_group(
-                "medical_base.group_medical_configurator"
-            )
+            and not self.env.user.has_group("medical_base.group_medical_configurator")
         ):
             _logger.info(
                 "Access Denied by ACLs for operation: %s, uid: %s, model: %s",
