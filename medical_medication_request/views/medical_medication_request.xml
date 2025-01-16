@@ -9,7 +9,7 @@
         <field name="name">medical.medication.request.view.tree</field>
         <field name="model">medical.medication.request</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="medical_workflow.medical_request_tree" />
+        <field name="inherit_id" ref="medical_base.medical_request_tree" />
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="decoration-muted">state=='cancelled'</attribute>

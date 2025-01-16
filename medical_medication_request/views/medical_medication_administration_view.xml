@@ -9,7 +9,7 @@
         <field name="name">medical.medication.administration.view.tree</field>
         <field name="model">medical.medication.administration</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="medical_workflow.medical_event_tree" />
+        <field name="inherit_id" ref="medical_base.medical_event_tree" />
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes" />
         </field>
@@ -18,7 +18,7 @@
         <field name="name">medical.medication.administration.view.form</field>
         <field name="model">medical.medication.administration</field>
         <field name="mode">primary</field>
-        <field name="inherit_id" ref="medical_workflow.medical_event_form" />
+        <field name="inherit_id" ref="medical_base.medical_event_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button

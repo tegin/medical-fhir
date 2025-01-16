@@ -182,13 +182,13 @@ class MedicalMedicationAdministration(models.Model):
         return res
 
     def _prepare_procurement_values(self, group):
-        wh = self.stock_location_id.get_warehouse()
+        wh = self.stock_location_id.warehouse_id
         return {
             "group_id": group,
             "medication_administration_id": self.id,
             "warehouse_id": wh,
             "partner_dest_id": group.partner_id,
-            "route_ids": self.env["stock.location.route"],
+            "route_ids": self.env["stock.route"],
         }
 
     def action_view_stock_moves(self):
