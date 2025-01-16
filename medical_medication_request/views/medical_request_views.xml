@@ -8,7 +8,7 @@
     <record model="ir.ui.view" id="medical_request_form">
         <field name="name">medical.request.form</field>
         <field name="model">medical.request</field>
-        <field name="inherit_id" ref="medical_workflow.medical_request_form" />
+        <field name="inherit_id" ref="medical_base.medical_request_form" />
         <field name="priority" eval="16" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
