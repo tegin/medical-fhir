@@ -10,7 +10,7 @@ class MedicalPatientCreateDiagnosticReport(models.TransientModel):
     _name = "medical.patient.create.diagnostic.report"
     _description = "Create a diagnostic report from patient"
 
-    patient_id = fields.Many2one("medical.patient", requiered=True, readonly=True)
+    patient_id = fields.Many2one("medical.patient", required=True, readonly=True)
     template_id = fields.Many2one(
         "medical.diagnostic.report.template",
         required=True,
