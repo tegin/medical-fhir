@@ -131,7 +131,7 @@ class TestCondition(TransactionCase):
         )
         self.assertEqual(self.patient.medical_condition_count, 1)
         condition.toggle_active()
-        self.patient.refresh()
+        self.patient.invalidate_recordset()
         self.assertEqual(self.patient.medical_condition_count, 0)
         condition_2 = self.env["medical.condition"].create(
             {
@@ -139,6 +139,6 @@ class TestCondition(TransactionCase):
                 "clinical_finding_id": self.finding_warning.id,
             }
         )
-        self.patient.refresh()
+        self.patient.invalidate_recordset()
         self.assertEqual(self.patient.medical_condition_count, 1)
         self.assertEqual(condition.id, condition_2.id)
