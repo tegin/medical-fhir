@@ -5,9 +5,9 @@
 {
     "name": "Medical Location with stock",
     "summary": "Medical administration location with stock",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Medical",
-    "author": "CreuBlanca, ForgeFlow, Odoo Community Association (OCA)",
+    "author": "CreuBlanca, ForgeFlow, Tegin",
     "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
     "depends": ["medical_administration_location", "stock"],
