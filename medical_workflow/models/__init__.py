@@ -6,4 +6,5 @@ from . import workflow_activity_definition
 from . import workflow_plan_definition
 from . import workflow_plan_definition_action
 from . import medical_request
+from . import medical_event
 from . import res_config_settings
