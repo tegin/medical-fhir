@@ -18,9 +18,7 @@ class TestMedication(TransactionCase):
         self.atc_code = self.env["medical.atc.concept"].search(
             [("parent_id", "!=", False)], limit=1
         )
-        self.form = self.sct_obj.search(
-            [("is_medication_form", "=", True)], limit=1
-        )
+        self.form = self.sct_obj.search([("is_medication_form", "=", True)], limit=1)
         self.vals = {
             "name": "Name",
             "type": "consu",

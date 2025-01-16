@@ -37,6 +37,4 @@ class Product(models.Model):
     def _check_medication(self):
         if self.is_medication:
             if self.type not in ["product", "consu"]:
-                raise ValidationError(
-                    _("Medication must be a stockable product")
-                )
+                raise ValidationError(_("Medication must be a stockable product"))
