@@ -58,26 +58,33 @@ class MedicalCondition(models.Model):
     _sql_constraints = [
         (
             "clinical_finding_id_uniq",
-            "UNIQUE (clinical_finding_id, patient_id)",
-            _("Clinical Finding must be unique for a patient."),
-        ),
-        (
-            "allergy_id_uniq",
-            "UNIQUE (allergy_id, patient_id)",
-            _("Allergy must be unique for a patient."),
+            "UNIQUE (allergy_id, clinical_finding_id, patient_id)",
+            _("Clinical Finding and Allergy must be unique for a patient."),
         ),
     ]
 
-    @api.model
-    def create(self, vals):
-        condition = self.with_context(active_test=False).search(
-            [
-                ("patient_id", "=", vals.get("patient_id")),
-                ("clinical_finding_id", "=", vals.get("clinical_finding_id")),
-            ]
-        )
-        if condition:
-            condition.toggle_active()
-            condition.write(vals)
-            return condition
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, multi_vals):
+        records = self.browse()
+        final_vals = []
+        for vals in multi_vals:
+            condition = self.search(
+                [
+                    ("active", "in", [True, False]),
+                    ("patient_id", "=", vals.get("patient_id")),
+                    (
+                        "clinical_finding_id",
+                        "=",
+                        vals.get("clinical_finding_id", False),
+                    ),
+                    ("allergy_id", "=", vals.get("allergy_id", False)),
+                ]
+            )
+            if condition:
+                if not condition.active:
+                    condition.toggle_active()
+                condition.write(vals)
+                records |= condition
+                continue
+            final_vals.append(vals)
+        return super().create(final_vals) | records

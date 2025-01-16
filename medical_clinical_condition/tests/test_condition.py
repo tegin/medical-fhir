@@ -131,6 +131,7 @@ class TestCondition(TransactionCase):
         )
         self.assertEqual(self.patient.medical_condition_count, 1)
         condition.toggle_active()
+        condition.flush_recordset()
         self.patient.invalidate_recordset()
         self.assertEqual(self.patient.medical_condition_count, 0)
         condition_2 = self.env["medical.condition"].create(
