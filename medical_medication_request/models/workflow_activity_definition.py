@@ -13,9 +13,7 @@ class ActivityDefinition(models.Model):
     def _get_medical_models(self):
         return super()._get_medical_models() + ["medical.medication.request"]
 
-    def _get_medical_values(
-        self, vals, parent=False, plan=False, action=False
-    ):
+    def _get_medical_values(self, vals, parent=False, plan=False, action=False):
         values = super(ActivityDefinition, self)._get_medical_values(
             vals, parent, plan, action
         )

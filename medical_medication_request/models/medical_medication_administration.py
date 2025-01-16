@@ -120,9 +120,7 @@ class MedicalMedicationAdministration(models.Model):
         }
 
     def _get_procurement_group(self):
-        return self.env["procurement.group"].create(
-            self._get_procurement_group_vals()
-        )
+        return self.env["procurement.group"].create(self._get_procurement_group_vals())
 
     def _get_origin(self):
         return self.internal_identifier
