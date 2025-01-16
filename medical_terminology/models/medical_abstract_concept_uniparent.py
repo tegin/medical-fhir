@@ -24,4 +24,4 @@ class MedicalAbstractConceptUniparent(models.AbstractModel):
     )  # SNOMED_CT Field: parent
     parent_left = fields.Integer("Left Parent", index=True)
     parent_right = fields.Integer("Right Parent", index=True)
-    parent_path = fields.Char(index=True)
+    parent_path = fields.Char(index=True, unaccent=False)
