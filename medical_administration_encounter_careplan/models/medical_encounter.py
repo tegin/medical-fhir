@@ -38,7 +38,5 @@ class MedicalEncounter(models.Model):
     def _check_patient(self):
         if not self.env.context.get("no_check_patient", False):
             for rec in self:
-                if rec.careplan_ids.filtered(
-                    lambda r: r.patient_id != rec.patient_id
-                ):
+                if rec.careplan_ids.filtered(lambda r: r.patient_id != rec.patient_id):
                     raise ValidationError(_("Patient must be consistent"))

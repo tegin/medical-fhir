@@ -10,9 +10,7 @@ class TestEncounter(TransactionCase):
     def setUp(self):
         super(TestEncounter, self).setUp()
         self.patient = self.env["medical.patient"].create({"name": "Patient"})
-        self.patient_2 = self.env["medical.patient"].create(
-            {"name": "Patient 2"}
-        )
+        self.patient_2 = self.env["medical.patient"].create({"name": "Patient 2"})
         self.plan = self.env["workflow.plan.definition"].create(
             {
                 "name": "Knee MR",
