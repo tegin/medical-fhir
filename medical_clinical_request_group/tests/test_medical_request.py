@@ -9,12 +9,8 @@ from odoo.tests.common import TransactionCase
 class TestMedicalRequest(TransactionCase):
     def setUp(self):
         super(TestMedicalRequest, self).setUp()
-        self.patient = self.env["medical.patient"].create(
-            {"name": "Test Patient"}
-        )
-        self.patient2 = self.env["medical.patient"].create(
-            {"name": "Test Patient2"}
-        )
+        self.patient = self.env["medical.patient"].create({"name": "Test Patient"})
+        self.patient2 = self.env["medical.patient"].create({"name": "Test Patient2"})
 
     def test_constrains(self):
         request = self.env["medical.request.group"].create(
