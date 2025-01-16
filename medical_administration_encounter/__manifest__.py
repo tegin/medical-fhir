@@ -16,7 +16,6 @@
         "views/medical_encounter_view.xml",
         "views/medical_menu.xml",
         "views/medical_patient.xml",
-        "security/ir.model.access.csv",
         "data/medical_encounter_sequence.xml",
     ],
     "demo": [
