@@ -29,9 +29,9 @@ class MedicalRequest(models.AbstractModel):
     def _compute_medication_request_ids(self):
         inverse_field_name = self._get_parent_field_name()
         for rec in self:
-            medication_requests = self.env[
-                "medical.medication.request"
-            ].search([(inverse_field_name, "=", rec.id)])
+            medication_requests = self.env["medical.medication.request"].search(
+                [(inverse_field_name, "=", rec.id)]
+            )
             rec.medication_request_ids = [(6, 0, medication_requests.ids)]
             rec.medication_request_count = len(rec.medication_request_ids)
 

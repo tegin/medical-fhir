@@ -59,9 +59,7 @@ class MedicalMedicationRequest(models.Model):
     @api.depends("medication_administration_ids")
     def _compute_medication_administration_count(self):
         for rec in self:
-            rec.medication_administration_count = len(
-                rec.medication_administration_ids
-            )
+            rec.medication_administration_count = len(rec.medication_administration_ids)
 
     @api.onchange("product_id")
     def onchange_product_id(self):
@@ -70,9 +68,7 @@ class MedicalMedicationRequest(models.Model):
 
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"]
-            .sudo()
-            .next_by_code("medical.medication.request")
+            self.env["ir.sequence"].sudo().next_by_code("medical.medication.request")
             or "/"
         )
 
@@ -95,8 +91,7 @@ class MedicalMedicationRequest(models.Model):
     def action_view_medication_administration(self):
         self.ensure_one()
         result = self.env["ir.actions.act_window"]._for_xml_id(
-            "medical_medication_request."
-            "medical_medication_administration_action"
+            "medical_medication_request." "medical_medication_administration_action"
         )
         result["context"] = {
             "default_patient_id": self.patient_id.id,
@@ -106,9 +101,7 @@ class MedicalMedicationRequest(models.Model):
             "default_product_uom_id": self.product_uom_id.id,
             "default_qty": self.qty,
         }
-        result["domain"] = (
-            "[('medication_request_id', '=', " + str(self.id) + ")]"
-        )
+        result["domain"] = "[('medication_request_id', '=', " + str(self.id) + ")]"
         if len(self.medication_administration_ids) == 1:
             result["views"] = [(False, "form")]
             result["res_id"] = self.medication_administration_ids.id
@@ -119,8 +112,7 @@ class MedicalMedicationRequest(models.Model):
 
     def action_view_request_parameters(self):
         return {
-            "view": "medical_medication_request."
-            "medical_medication_request_action",
+            "view": "medical_medication_request." "medical_medication_request_action",
             "view_form": "medical.medication.request.view.form",
         }
 
