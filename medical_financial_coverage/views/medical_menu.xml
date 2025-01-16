@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+
+    <record model="ir.ui.menu" id="menu_medical_coverage_root">
+        <field name="name">Coverage</field>
+        <field name="parent_id" ref="medical_base.medical_root_financial" />
+        <field name="action" ref="medical_coverage_action" />
+        <field name="sequence" eval="40" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_medical_coverage_template_root">
+        <field name="name">Coverage Template</field>
+        <field name="parent_id" ref="medical_base.medical_root_financial" />
+        <field name="action" ref="medical_coverage_template_action" />
+        <field name="sequence" eval="20" />
+    </record>
+
+    <record model="ir.ui.menu" id="menu_medical_payor_root">
+        <field name="name">Payors</field>
+        <field name="parent_id" ref="medical_base.medical_root_financial" />
+        <field name="action" ref="medical_payor_action" />
+        <field name="sequence" eval="10" />
+    </record>
+</odoo>

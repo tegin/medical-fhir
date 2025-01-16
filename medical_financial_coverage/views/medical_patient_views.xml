@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2017 ForgeFlow
+    Copyright 2017 CreuBlanca
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="medical_patient_view_form" model="ir.ui.view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    type="object"
+                    name="action_view_coverage"
+                    class="oe_stat_button"
+                    icon="fa-plus-square"
+                >
+                    <field name="coverage_count" widget="statinfo" string="Coverages" />
+                    <field name='coverage_ids' invisible="1" />
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
