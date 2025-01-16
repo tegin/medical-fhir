@@ -5,8 +5,8 @@
 {
     "name": "Medical Clinical Request Group",
     "summary": "Medical request group",
-    "version": "14.0.1.0.0",
-    "author": "CreuBlanca, ForgeFlow, Odoo Community Association (OCA)",
+    "version": "16.0.1.0.0",
+    "author": "CreuBlanca, ForgeFlow, Tegin",
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
