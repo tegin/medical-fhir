@@ -16,7 +16,9 @@ class Partner(models.Model):
 
     is_medical = fields.Boolean(default=False)
     is_practitioner = fields.Boolean(default=False)
-    patient_ids = fields.One2many("medical.patient", inverse_name="partner_id")
+    patient_ids = fields.One2many(
+        "medical.patient", inverse_name="partner_id", string="Related Patients"
+    )
     practitioner_role_ids = fields.Many2many(
         string="Practitioner Roles", comodel_name="medical.role"
     )  # FHIR Field: PractitionerRole/role

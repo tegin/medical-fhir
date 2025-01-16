@@ -7,6 +7,7 @@ from odoo import fields, models
 class PatientPartnerSearch(models.TransientModel):
 
     _name = "patient.partner.search"
+    _description = "Patient search"
 
     partner_id = fields.Many2one("res.partner", name="Contact")
     patient_id = fields.Many2one("medical.patient", name="Patient")
