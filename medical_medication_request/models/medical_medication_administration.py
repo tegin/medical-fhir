@@ -75,7 +75,7 @@ class MedicalMedicationAdministration(models.Model):
     )
     tracking = fields.Selection(related="product_id.tracking")
     lot_id = fields.Many2one(
-        "stock.production.lot",
+        "stock.lot",
         ondelete="restrict",
         index=True,
         readonly=True,
