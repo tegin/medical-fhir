@@ -59,7 +59,7 @@ class PlanDefinitionAction(models.Model):
         ondelete="restrict",
         index=True,
     )  # FHIR field: definition (Activity Definition)
-    parent_path = fields.Char(index=True)
+    parent_path = fields.Char(index=True, unaccent=False)
 
     @api.depends("name", "parent_id")
     def _compute_complete_name(self):
