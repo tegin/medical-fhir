@@ -65,6 +65,7 @@
                                 icon="fa-stethoscope"
                                 type="object"
                                 class="oe_link"
+                                title="Get Impression"
                             />
                             <field name="impressions_in_progress_count" invisible="1" />
                         </tree>
@@ -94,7 +95,7 @@
                     class="alert alert-danger row"
                     role="alert"
                     style="margin-bottom:0px;"
-                    attrs="{'invisible':[('condition_count', '=', 0)]}"
+                    attrs="{'invisible':[('medical_condition_count', '=', 0)]}"
                 >
                 <field
                         name="warning_info"
@@ -102,7 +103,7 @@
                         class="col-12"
                         context="{'patient_id': id}"
                     />
-                <field name="condition_count" invisible="1" />
+                <field name="medical_condition_count" invisible="1" />
             </div>
             </xpath>
 
@@ -155,6 +156,7 @@
                                 icon="fa-stethoscope"
                                 type="object"
                                 class="oe_link"
+                                title="Get Impression"
                             />
                             <field name="impressions_in_progress_count" invisible="1" />
                         </tree>

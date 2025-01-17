@@ -71,7 +71,9 @@ class MedicalClinicalImpression(models.Model):
         related="patient_id.medical_condition_ids",
     )
 
-    condition_count = fields.Integer(related="patient_id.medical_condition_count")
+    medical_condition_count = fields.Integer(
+        related="patient_id.medical_condition_count"
+    )
 
     summary = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
     # FHIR: summary
