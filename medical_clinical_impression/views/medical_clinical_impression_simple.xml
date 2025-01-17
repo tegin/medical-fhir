@@ -11,11 +11,11 @@
             <form edit="true" js_class="impression_form" style="padding-top: 0px;">
                 <field name="state" invisible="1" />
                 <field name="fhir_state" invisible="1" />
-                <field name="condition_count" invisible="1" />
+                <field name="medical_condition_count" invisible="1" />
                 <div
                     class="alert alert-danger row"
                     role="alert"
-                    attrs="{'invisible':[('condition_count', '=', 0)]}"
+                    attrs="{'invisible':[('medical_condition_count', '=', 0)]}"
                     style="margin-bottom:0px;"
                 >
                     <field

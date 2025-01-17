@@ -28,8 +28,6 @@ class MedicalPatient(models.Model):
         related="medical_impression_ids.condition_ids",
     )
 
-    condition_count = fields.Integer(related="medical_impression_ids.condition_count")
-
     warning_info = fields.Json(compute="_compute_warning_info")
 
     def _get_warning_info(self):
