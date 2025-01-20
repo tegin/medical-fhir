@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_administration_location
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-20 14:32+0000\n"
+"PO-Revision-Date: 2025-01-20 15:33+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: medical_administration_location
+#: model:ir.model,name:medical_administration_location.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: medical_administration_location
+#: model:ir.model.fields,field_description:medical_administration_location.field_medical_patient__is_location
+#: model:ir.model.fields,field_description:medical_administration_location.field_medical_patient_partner__is_location
+#: model:ir.model.fields,field_description:medical_administration_location.field_res_partner__is_location
+#: model:ir.model.fields,field_description:medical_administration_location.field_res_users__is_location
+msgid "Is Location"
+msgstr "Es Ubicación"
+
+#. module: medical_administration_location
+#: model:ir.ui.menu,name:medical_administration_location.medical_location_menu
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#. module: medical_administration_location
+#: model:ir.actions.act_window,name:medical_administration_location.medical_location_action
+msgid "Medical Locations"
+msgstr "Ubicaciones sanitaras"
+
+#. module: medical_administration_location
+#: model:ir.model,name:medical_administration_location.model_medical_patient
+msgid "Medical Patient"
+msgstr "Paciente"
+
+#. module: medical_administration_location
+#: model:ir.model.fields,field_description:medical_administration_location.field_medical_patient__medical_location_primary_id
+msgid "Primary Medical Center"
+msgstr "Centro Médico Principal"
+
+#. module: medical_administration_location
+#: model:ir.model.fields,field_description:medical_administration_location.field_medical_patient__medical_location_secondary_ids
+msgid "Secondary Medical Centers"
+msgstr "Centros Médicos Secundarios"
+
+#. module: medical_administration_location
+#. odoo-python
+#: code:addons/medical_administration_location/models/res_partner.py:0
+#, python-format
+msgid "You are not allowed to %(mode)s medical Contacts (res.partner) records."
+msgstr ""
