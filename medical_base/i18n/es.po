@@ -1,121 +1,383 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* medical_base
+# 	* medical_base
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 08:29+0000\n"
-"PO-Revision-Date: 2018-11-14 08:29+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2025-01-20 14:16+0000\n"
+"PO-Revision-Date: 2025-01-20 15:30+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "(edit)"
+msgstr "(editar)"
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__type
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__type
+msgid ""
+"- Contact: Use this to organize the contact details of employees of a given company (e."
+"g. CEO, CFO, ...).\n"
+"- Invoice Address : Preferred address for all invoices. Selected by default when you "
+"invoice an order that belongs to this company.\n"
+"- Delivery Address : Preferred address for all deliveries. Selected by default when you "
+"deliver an order that belongs to this company.\n"
+"- Private: Private addresses are only visible by authorized users and contain sensitive "
+"data (employee home addresses, ...).\n"
+"- Other: Other address for the company (e.g. subsidiary, ...)"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "<i class=\"fa fa-book\" aria-hidden=\"true\"/> Terminologies"
-msgstr "<i class=\"fa fa-book\" aria-hidden=\"true\"/> Terminologies"
+msgstr "<i class=\"fa fa-book\" aria-hidden=\"true\"/> Terminologías"
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "<i class=\"fa fa-flask\" aria-hidden=\"true\"/> Medication"
-msgstr "<i class=\"fa fa-flask\" aria-hidden=\"true\"/> Medication"
+msgstr "<i class=\"fa fa-flask\" aria-hidden=\"true\"/> Medicación"
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "<i class=\"fa fa-heartbeat\" aria-hidden=\"true\"/> Diagnostics"
-msgstr "<i class=\"fa fa-heartbeat\" aria-hidden=\"true\"/> Diagnostics"
+msgstr "<i class=\"fa fa-heartbeat\" aria-hidden=\"true\"/> Diagnísticos"
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "<i class=\"fa fa-sitemap\" aria-hidden=\"true\"/> Workflow"
-msgstr "<i class=\"fa fa-sitemap\" aria-hidden=\"true\"/> Workflow"
+msgstr "<i class=\"fa fa-sitemap\" aria-hidden=\"true\"/> Proceso"
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "<i class=\"fa fa-stethoscope\" aria-hidden=\"true\"/> Clinical"
-msgstr "<i class=\"fa fa-stethoscope\" aria-hidden=\"true\"/> Clinical"
+msgstr "<i class=\"fa fa-stethoscope\" aria-hidden=\"true\"/> Clínico"
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "<i class=\"fa fa-usd\" aria-hidden=\"true\"/> Financial"
-msgstr "<i class=\"fa fa-usd\" aria-hidden=\"true\"/> Financial"
+msgstr "<i class=\"fa fa-usd\" aria-hidden=\"true\"/> Financiero"
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "<i class=\"fa fa-user-md\" aria-hidden=\"true\"/> Administration"
-msgstr "<i class=\"fa fa-user-md\" aria-hidden=\"true\"/> Administration"
+msgstr "<i class=\"fa fa-user-md\" aria-hidden=\"true\"/> Administración"
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
-msgid "Activates Administration capabilities"
-msgstr "Activa las capacidades de administración"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "<span>Other address for the company (e.g. subsidiary, ...)</span>"
+msgstr "<span>Otra dirección de la compañía</span>"
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
-msgid "Activates Clinical capabilities"
-msgstr "Activa las capacidades clínicas"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid ""
+"<span>Preferred address for all deliveries. Selected by default when you deliver an "
+"order that belongs to this company.</span>"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
-msgid "Activates Diagnostics capabilities"
-msgstr "Activa las capacidades de diagnóstico"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid ""
+"<span>Preferred address for all invoices. Selected by default when you invoice an order "
+"that belongs to this company.</span>"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
-msgid "Activates Financial capabilities"
-msgstr "Activa las capacidades financieras"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid ""
+"<span>Private addresses are only visible by authorized users and contain sensitive data "
+"(employee home addresses, ...).</span>"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
-msgid "Activates Medication capabilities"
-msgstr "Activa las capacidades de medicación"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid ""
+"<span>Use this to organize the contact details of employees of a given company (e.g. "
+"CEO, CFO, ...).</span>"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
-msgid "Activates Terminologies capabilities"
-msgstr "Activa las capacidades de terminología"
+#: model_terms:ir.ui.view,arch_db:medical_base.patient_partner_search_form_view
+msgid "ADD"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
-msgid "Activates Workflow capabilities"
-msgstr "Activa las capacidades de flujo de trabajo"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_event_form
+msgid "Abort"
+msgstr "Abortar"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_administration
-#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_administration
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_needaction
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_needaction
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_needaction
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_needaction
+msgid "Action Needed"
+msgstr "Acción necesaria"
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_event_form
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_request_form
+msgid "Activate"
+msgstr "Activar"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__active
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__active
+#: model:ir.model.fields,field_description:medical_base.field_medical_role__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__active_lang_count
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__active_lang_count
+msgid "Active Lang Count"
+msgstr "Número de idiomas activos"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__activity_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__activity_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__activity_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__activity_exception_decoration
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__activity_exception_decoration
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__activity_exception_decoration
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__activity_state
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__activity_state
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__activity_state
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__activity_type_icon
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__activity_type_icon
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__activity_type_icon
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: medical_base
+#. odoo-javascript
+#: code:addons/medical_base/static/src/components/one2many_patient/one2many_patient.esm.js:0
+#, python-format
+msgid "Add Existing Partner"
+msgstr "Añadir contacto"
+
+#. module: medical_base
+#. odoo-javascript
+#: code:addons/medical_base/static/src/components/one2many_patient/one2many_patient.xml:0
+#, python-format
+msgid "Add Existing record"
+msgstr "Añadir registro existente"
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Address"
+msgstr "Dirección"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__type
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__type
+msgid "Address Type"
+msgstr "Tipo de Dirección"
+
+#. module: medical_base
 #: model:ir.ui.menu,name:medical_base.medical_root_administration
-#: model:ir.ui.menu,name:medical_base.medical_root_diagnostics
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "Administration"
 msgstr "Administración"
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_administration_menu
-msgid "Administration menu"
-msgstr "Menú de administración"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_his_form
+msgid "Administration Info"
+msgstr "Información administrativa"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_careplan_internal_identifier
-msgid "Careplan"
-msgstr "Proceso"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Administration data"
+msgstr "Datos adminsitrativos"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_clinical
-#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_clinical
+#: model:ir.model.fields,help:medical_base.field_medical_patient__lang
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__lang
+msgid ""
+"All the emails and documents sent to this contact will be translated in this language."
+msgstr "Todos los emails y documentos enviados al contacto se traduciran a este idioma."
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_attachment_count
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_attachment_count
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_attachment_count
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "Número de adjuntos"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__avatar_1920
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__avatar_1920
+msgid "Avatar"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__avatar_1024
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__avatar_1024
+msgid "Avatar 1024"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__avatar_128
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__avatar_128
+msgid "Avatar 128"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__avatar_256
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__avatar_256
+msgid "Avatar 256"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__avatar_512
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__avatar_512
+msgid "Avatar 512"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__bank_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__bank_ids
+msgid "Banks"
+msgstr "Bancos"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__barcode
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__barcode
+msgid "Barcode"
+msgstr "Código de barras"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__birth_date
+msgid "Birth date"
+msgstr "Fecha de nacimiento"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__is_blacklisted
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__is_blacklisted
+msgid "Blacklist"
+msgstr "Lista negra"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_bounce
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_bounce
+msgid "Bounce"
+msgstr "Rebotado"
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_request_form
+#: model_terms:ir.ui.view,arch_db:medical_base.patient_partner_search_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__channel_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__channel_ids
+msgid "Channels"
+msgstr "Canales"
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__is_company
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__is_company
+msgid "Check if the contact is a company, otherwise it is a person"
+msgstr "Marca si la empresa es una compañía, sinó es una persona"
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__employee
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__employee
+msgid "Check this box if this contact is an Employee."
+msgstr "Marca esta casilla si el contacto es un empleado."
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__city
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__city
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "City"
+msgstr "Ciudad"
+
+#. module: medical_base
 #: model:ir.ui.menu,name:medical_base.medical_root_clinical
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "Clinical"
 msgstr "Clínico"
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_clinical_menu
-msgid "Clinical menu"
-msgstr "Menú clínico"
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__color
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__color
+msgid "Color Index"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__commercial_partner_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__commercial_partner_id
+msgid "Commercial Entity"
+msgstr "Entidad comercial"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__company_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__company_id
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Company"
+msgstr "Compañía"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__company_registry
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__company_registry
+msgid "Company ID"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__company_name
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__company_name
+msgid "Company Name"
+msgstr "Nombre de la compañía"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__commercial_company_name
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__commercial_company_name
+msgid "Company Name Entity"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__company_type
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__company_type
+msgid "Company Type"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_event_form
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_request_form
+msgid "Complete"
+msgstr "Completar"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__contact_address
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__contact_address
+msgid "Complete Address"
+msgstr "Dirección completa"
 
 #. module: medical_base
 #: model:ir.ui.menu,name:medical_base.medical_root_configuration
@@ -123,130 +385,555 @@ msgid "Configuration"
 msgstr "Configuración"
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_configuration_menu
-msgid "Configuration menu"
-msgstr "Menú de configuración"
+#: model:res.groups,name:medical_base.group_medical_configurator
+msgid "Configurator"
+msgstr "Administrador de sistema"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_diagnostics
-#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_diagnostics
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model:ir.model,name:medical_base.model_res_partner
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__child_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__child_ids
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Contact / Address"
+msgstr "Contacto / Dirección"
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Contact Name"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Contact image"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Contacts & Addresses"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__message_bounce
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__message_bounce
+msgid "Counter of the number of bounced emails for this contact"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__country_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__country_id
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Country"
+msgstr "País"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__country_code
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__country_code
+msgid "Country Code"
+msgstr "Código de País"
+
+#. module: medical_base
+#: model:ir.ui.menu,name:medical_base.medical_financial_coverage
+msgid "Coverages"
+msgstr "Coberturas"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__create_uid
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__create_uid
+#: model:ir.model.fields,field_description:medical_base.field_medical_role__create_uid
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__create_date
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__create_date
+#: model:ir.model.fields,field_description:medical_base.field_medical_role__create_date
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__date
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__deceased_date
+msgid "Deceased date"
+msgstr "Fecha de defunción"
+
+#. module: medical_base
+#: model:ir.model,name:medical_base.model_medical_abstract
+msgid "Default FHIR entity"
+msgstr "medical.abstract"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_role__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: medical_base
+#: model:ir.ui.menu,name:medical_base.medical_root_diagnostics
 msgid "Diagnostics"
 msgstr "Diagnósticos"
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_diagnostics_menu
-msgid "Diagnostics menu"
-msgstr "Menú de diagnóstico"
-
-#. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_abstract_display_name
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__display_name
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__display_name
+#: model:ir.model.fields,field_description:medical_base.field_medical_role__display_name
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre a mostrar"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_document_reference_internal_identifier
-msgid "Document reference"
-msgstr "Document reference"
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient__marital_status__d
+msgid "Divorced"
+msgstr "Divorciado"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_encounter_internal_identifier
-msgid "Encounter"
-msgstr "Afiliación"
+#: model:res.groups,name:medical_base.group_medical_doctor
+msgid "Doctor"
+msgstr "Doctor"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_financial
-#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_financial
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_clinical_impression__state__done
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_diagnostic_report__state__done
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_event__state__done
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_request__state__done
+msgid "Done"
+msgstr "Realizado"
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_clinical_impression__state__draft
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_diagnostic_report__state__draft
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_event__state__draft
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_request__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__partner_share
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__partner_share
+msgid ""
+"Either customer (not a user), either shared user. Indicated the current partner is a "
+"customer without access or with a limited access created for sharing data."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__email
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__email
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__employee
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__practitioner_type
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__practitioner_type
+#: model:ir.model.fields,field_description:medical_base.field_res_partner__practitioner_type
+#: model:ir.model.fields,field_description:medical_base.field_res_users__practitioner_type
+msgid "Entity Type"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.ui.menu,name:medical_base.medical_clinical_event
+msgid "Events"
+msgstr "Eventos"
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__res_partner__practitioner_type__external
+msgid "External Entity"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient_partner__partner_type__f
+msgid "Family"
+msgstr "Familia"
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient__gender__female
+msgid "Female"
+msgstr "Femenino"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__fhir_state
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__fhir_state
+msgid "Fhir State"
+msgstr "Estado FHIR"
+
+#. module: medical_base
+#. odoo-python
+#: code:addons/medical_base/models/medical_request.py:0
+#, python-format
+msgid "Field name is not defined"
+msgstr "El nombre del campo no está definido"
+
+#. module: medical_base
 #: model:ir.ui.menu,name:medical_base.medical_root_financial
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model:res.groups,name:medical_base.group_medical_financial
 msgid "Financial"
 msgstr "Financiero"
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_financial_menu
-msgid "Financial menu"
-msgstr "Menú financiero"
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_follower_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_follower_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_follower_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
 
 #. module: medical_base
-#: code:addons/medical_base/models/medical_abstract.py:31
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_partner_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_partner_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_partner_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__activity_type_icon
+#: model:ir.model.fields,help:medical_base.field_medical_patient__activity_type_icon
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__activity_type_icon
+#: model:ir.model.fields,help:medical_base.field_medical_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__email_formatted
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__email_formatted
+msgid "Format email address \"Name <email@domain>\""
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__email_formatted
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__email_formatted
+msgid "Formatted Email"
+msgstr ""
+
+#. module: medical_base
+#. odoo-python
+#: code:addons/medical_base/models/medical_abstract.py:0
+#: code:addons/medical_base/models/medical_request.py:0
 #, python-format
 msgid "Function is not defined"
 msgstr "La función no está definida"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_abstract_id
-msgid "ID"
-msgstr "ID"
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__gender
+msgid "Gender"
+msgstr "Género"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_abstract_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_medical_coverage_agreement_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_medical_coverage_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_medical_coverage_template_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_medical_document_type_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_medical_event_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_medical_flag_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_medical_patient_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_medical_request_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_sale_preinvoice_group_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_workflow_activity_definition_internal_identifier
-#: model:ir.model.fields,field_description:medical_base.field_workflow_activity_type_internal_identifier_10091
-#: model:ir.model.fields,field_description:medical_base.field_workflow_plan_definition_internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__partner_latitude
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__partner_latitude
+msgid "Geo Latitude"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__partner_longitude
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__partner_longitude
+msgid "Geo Longitude"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.actions.act_window,name:medical_base.medical_patient_his_window_action
+#: model:ir.ui.menu,name:medical_base.medical_patient_his
+msgid "HIS"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__has_message
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__has_message
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__has_message
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_request__priority__high
+msgid "High"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__id
+#: model:ir.model.fields,field_description:medical_base.field_medical_role__id
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search__id
+msgid "ID"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__im_status
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__im_status
+msgid "IM Status"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__activity_exception_icon
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__activity_exception_icon
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__activity_exception_icon
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__activity_exception_icon
+#: model:ir.model.fields,help:medical_base.field_medical_patient__activity_exception_icon
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__activity_exception_icon
+#: model:ir.model.fields,help:medical_base.field_medical_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__message_needaction
+#: model:ir.model.fields,help:medical_base.field_medical_patient__message_needaction
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__message_needaction
+#: model:ir.model.fields,help:medical_base.field_medical_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__message_has_error
+#: model:ir.model.fields,help:medical_base.field_medical_patient__message_has_error
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__message_has_error
+#: model:ir.model.fields,help:medical_base.field_medical_request__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__is_blacklisted
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__is_blacklisted
+msgid ""
+"If the email address is on the blacklist, the contact won't receive mass mailing "
+"anymore, from any list"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__image_1920
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__image_1920
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_kanban
+msgid "Image"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__image_1024
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__image_1024
+msgid "Image 1024"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__image_128
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__image_128
+msgid "Image 128"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__image_256
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__image_256
+msgid "Image 256"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__image_512
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__image_512
+msgid "Image 512"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__industry_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__industry_id
+msgid "Industry"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_event_form
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_request_form
+msgid "Inheritance"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__intent
+msgid "Intent"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__res_partner__practitioner_type__internal
+msgid "Internal Entity"
+msgstr "Entidad interna"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_abstract__internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__internal_identifier
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__internal_identifier
 msgid "Internal Identifier"
 msgstr "Identificador interno"
 
 #. module: medical_base
-#: model:ir.model.fields,help:medical_base.field_medical_abstract_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_careplan_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_coverage_agreement_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_coverage_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_coverage_template_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_document_reference_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_document_type_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_encounter_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_event_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_flag_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_medication_administration_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_medication_request_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_patient_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_procedure_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_procedure_request_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_request_group_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_medical_request_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_sale_preinvoice_group_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_workflow_activity_definition_internal_identifier
-#: model:ir.model.fields,help:medical_base.field_workflow_activity_type_internal_identifier_10091
-#: model:ir.model.fields,help:medical_base.field_workflow_plan_definition_internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_abstract__internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_event__internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_patient__internal_identifier
+#: model:ir.model.fields,help:medical_base.field_medical_request__internal_identifier
 msgid "Internal identifier used to identify this record"
-msgstr "Identificador interno utilizado para identificar este registro"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_abstract___last_update
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Internal notes..."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__is_deceased
+msgid "Is Deceased"
+msgstr "Fallecido"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_is_follower
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_is_follower
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_is_follower
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__is_medical
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__is_medical
+#: model:ir.model.fields,field_description:medical_base.field_res_partner__is_medical
+#: model:ir.model.fields,field_description:medical_base.field_res_users__is_medical
+msgid "Is Medical"
+msgstr "Se registro sanitario"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__is_practitioner
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__is_practitioner
+#: model:ir.model.fields,field_description:medical_base.field_res_partner__is_practitioner
+#: model:ir.model.fields,field_description:medical_base.field_res_users__is_practitioner
+msgid "Is Practitioner"
+msgstr "Es Profesional Sanitario"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__is_public
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__is_public
+msgid "Is Public"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__is_company
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__is_company
+msgid "Is a Company"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__function
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__function
+msgid "Job Position"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__lang
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__lang
+msgid "Language"
+msgstr "Idioma"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient____last_update
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner____last_update
+#: model:ir.model.fields,field_description:medical_base.field_medical_role____last_update
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__write_uid
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__write_uid
+#: model:ir.model.fields,field_description:medical_base.field_medical_role__write_uid
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__write_date
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__write_date
+#: model:ir.model.fields,field_description:medical_base.field_medical_role__write_date
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_request__priority__low
+msgid "Low"
+msgstr "Bajo"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_main_attachment_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_main_attachment_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_main_attachment_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient__gender__male
+msgid "Male"
+msgstr "Masculino"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__marital_status
+msgid "Marital Status"
+msgstr "Estado civil"
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient__marital_status__m
+msgid "Married"
+msgstr "Casado"
+
+#. module: medical_base
 #: model:ir.module.category,name:medical_base.ir_module_category_medical
 #: model:ir.ui.menu,name:medical_base.medical_root
+#: model_terms:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:medical_base.res_partner_view_form
 msgid "Medical"
 msgstr "Sanidad"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_medication
-#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_medication
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
-msgid "Medication"
-msgstr "Medicación"
+#: model:res.groups,name:medical_base.group_medical_assistance_user
+msgid "Medical Assitance User"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_medication_administration_internal_identifier
-msgid "Medication administration"
-msgstr "Medication administration"
+#: model:ir.model,name:medical_base.model_medical_patient
+msgid "Medical Patient"
+msgstr "medical.pacientes"
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_medication_request_internal_identifier
-msgid "Medication request"
-msgstr "Peticion de medicación"
+#: model:ir.model,name:medical_base.model_medical_patient_partner
+msgid "Medical Patient Partner"
+msgstr ""
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_user
+msgid "Medical User"
+msgstr "Usuario"
+
+#. module: medical_base
+#: model:ir.model,name:medical_base.model_medical_event
+msgid "Medical event"
+msgstr "Evento"
+
+#. module: medical_base
+#: model:ir.model,name:medical_base.model_medical_request
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__is_medical_request
+msgid "Medical request"
+msgstr "Peticion"
 
 #. module: medical_base
 #: model:ir.ui.menu,name:medical_base.medical_root_medications
@@ -254,83 +941,746 @@ msgid "Medications"
 msgstr "Medicamentos"
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_medications_menu
-msgid "Medications menu"
-msgstr "Menú de medicamentos"
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_has_error
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_has_error
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_has_error
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_has_error
+msgid "Message Delivery error"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_procedure_internal_identifier
-msgid "Procedure"
-msgstr "Procedimiento"
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_ids
+msgid "Messages"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_procedure_request_internal_identifier
-msgid "Procedure request"
-msgstr "Petición Procedimiento"
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__mobile
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__mobile
+msgid "Mobile"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_medical_request_group_internal_identifier
-msgid "Request group"
-msgstr "Request group"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Mobile:"
+msgstr ""
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_root_menu
-msgid "Root menu"
-msgstr "Menú raíz"
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__my_activity_date_deadline
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__my_activity_date_deadline
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__my_activity_date_deadline
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__name
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__name
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__name
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__name
+#: model:ir.model.fields,field_description:medical_base.field_medical_role__name
+#: model:ir.model.fields,help:medical_base.field_medical_event__name
+#: model:ir.model.fields,help:medical_base.field_medical_request__name
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Name"
+msgstr "Nombre"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__activity_date_deadline
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__activity_date_deadline
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__activity_date_deadline
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__activity_summary
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__activity_summary
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__activity_summary
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__activity_type_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__activity_type_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__activity_type_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: medical_base
+#. odoo-python
+#: code:addons/medical_base/models/medical_request.py:0
+#, python-format
+msgid "No model provided."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_request__priority__normal
+msgid "Normal"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__email_normalized
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__email_normalized
+msgid "Normalized Email"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__comment
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__comment
+msgid "Notes"
+msgstr "Notas"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_needaction_counter
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_needaction_counter
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_needaction_counter
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__message_has_error_counter
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__message_has_error_counter
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__message_has_error_counter
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__message_needaction_counter
+#: model:ir.model.fields,help:medical_base.field_medical_patient__message_needaction_counter
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__message_needaction_counter
+#: model:ir.model.fields,help:medical_base.field_medical_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__message_has_error_counter
+#: model:ir.model.fields,help:medical_base.field_medical_patient__message_has_error_counter
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__message_has_error_counter
+#: model:ir.model.fields,help:medical_base.field_medical_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_nurse
+msgid "Nurse"
+msgstr "Enfermería"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_auxiliary
+msgid "Nurse Auxiliar"
+msgstr "Auxiliar de Enfermería"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_nurse_manager
+msgid "Nurse Supervisor"
+msgstr "Supervisor de Enfermería"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__observations
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__occurrence_date
+msgid "Occurrence date"
+msgstr "Fecha de ocurrencia"
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__occurrence_date
+msgid "Occurrence of the order."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_request__intent__option
+msgid "Option"
+msgstr "Opción"
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_request__intent__order
+msgid "Order"
+msgstr "Solicitud"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__order_date
+msgid "Order date"
+msgstr "Fecha de solicitud"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__order_by_id
+msgid "Ordered by"
+msgstr "Solicitado por"
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient__gender__other
+msgid "Other"
+msgstr "Otro"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__parent_name
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__parent_name
+msgid "Parent name"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__partner_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__partner_id
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search__partner_id
+msgid "Partner"
+msgstr "Contacto"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__partner_type
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search__partner_type
+msgid "Partner Type"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__same_company_registry_partner_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__same_company_registry_partner_id
+msgid "Partner with same Company Registry"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__same_vat_partner_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__same_vat_partner_id
+msgid "Partner with same Tax ID"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__patient_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__patient_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__patient_id
+#: model:ir.model.fields,field_description:medical_base.field_patient_partner_search__patient_id
+msgid "Patient"
+msgstr "Paciente"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__patient_age
+msgid "Patient Age"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__patient_id
+#: model:ir.model.fields,help:medical_base.field_medical_request__patient_id
+msgid "Patient Name"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.actions.act_window,name:medical_base.patient_partner_search_act_window
+#: model_terms:ir.ui.view,arch_db:medical_base.patient_partner_search_form_view
+msgid "Patient Partner Search"
+msgstr ""
+
+#. module: medical_base
+#. odoo-python
+#: code:addons/medical_base/models/medical_request.py:0
+#, python-format
+msgid "Patient must be consistent"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model,name:medical_base.model_patient_partner_search
+msgid "Patient search"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.actions.act_window,name:medical_base.medical_patient_window_action
+#: model:ir.ui.menu,name:medical_base.medical_patient
+msgid "Patients"
+msgstr "Pacientes"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__performer_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__performer_id
+msgid "Performer"
+msgstr "Realizador"
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_request__order_by_id
+msgid "Person who has initiated the order."
+msgstr ""
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_pharmacy
+msgid "Pharmacy"
+msgstr "Farmacia"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__phone
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__phone
+msgid "Phone"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Phone:"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_request__intent__plan
+msgid "Plan"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model,name:medical_base.model_medical_role
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__practitioner_role_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__practitioner_role_ids
+#: model:ir.model.fields,field_description:medical_base.field_res_partner__practitioner_role_ids
+#: model:ir.model.fields,field_description:medical_base.field_res_users__practitioner_role_ids
+msgid "Practitioner Roles"
+msgstr "Roles de profesionales"
+
+#. module: medical_base
+#: model:ir.actions.act_window,name:medical_base.medical_practitioner_action
+#: model:ir.ui.menu,name:medical_base.medical_conf_practitioner_menu
+msgid "Practitioners"
+msgstr "Profesionales"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__property_product_pricelist
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__property_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__priority
+msgid "Priority"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_request__intent__proposal
+msgid "Proposal"
+msgstr "Propuesta"
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_event_form
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_request_form
+msgid "Reactivate"
+msgstr "Reactivar"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_reception
+msgid "Reception"
+msgstr "Recepción"
+
+#. module: medical_base
+#. odoo-python
+#: code:addons/medical_base/models/medical_request.py:0
+#, python-format
+msgid "Recursion loop found"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__ref
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__ref
+msgid "Reference"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__parent_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__parent_id
+msgid "Related Company"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__partner_ids
+msgid "Related Partners"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__patient_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__patient_ids
+#: model:ir.model.fields,field_description:medical_base.field_res_partner__patient_ids
+#: model:ir.model.fields,field_description:medical_base.field_res_users__patient_ids
+msgid "Related Patients"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.ui.menu,name:medical_base.medical_clinical_request
+msgid "Requests"
+msgstr "Solicitudes"
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient_partner__partner_type__r
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__activity_user_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__activity_user_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__activity_user_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.actions.act_window,name:medical_base.medical_role_action
+#: model:ir.ui.menu,name:medical_base.medical_role_menu
+msgid "Roles"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__user_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__user_id
+msgid "Salesperson"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__self
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__self
+msgid "Self"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient__marital_status__l
+msgid "Separated"
+msgstr "Separado"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__service_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__service_id
+msgid "Service"
+msgstr "Servicio"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_doctor_manager
+msgid "Service Area Manager"
+msgstr "Gestor de Área de Servicio"
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_request_form
+msgid "Set error"
+msgstr "Marcar como Error"
 
 #. module: medical_base
 #: model:ir.actions.act_window,name:medical_base.action_medical_config
+#: model:ir.ui.menu,name:medical_base.medical_root_settings
 #: model:ir.ui.menu,name:medical_base.menu_medical_config
 msgid "Settings"
 msgstr "Ajustes"
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_configurator
-msgid "System Administrator"
-msgstr "Administrador de sistema"
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__partner_share
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__partner_share
+msgid "Share Partner"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_terminology
-#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_terminology
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__signup_expiration
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__signup_expiration
+msgid "Signup Expiration"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__signup_token
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__signup_token
+msgid "Signup Token"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__signup_type
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__signup_type
+msgid "Signup Token Type"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__signup_valid
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__signup_valid
+msgid "Signup Token is Valid"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__signup_url
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__signup_url
+msgid "Signup URL"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient__marital_status__s
+msgid "Single"
+msgstr "Soltero"
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_request__order_date
+msgid "Start of the order."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_event__state
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__state_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__state_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_request__state
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "State"
+msgstr "Estado"
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__activity_state
+#: model:ir.model.fields,help:medical_base.field_medical_patient__activity_state
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__activity_state
+#: model:ir.model.fields,help:medical_base.field_medical_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__street
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__street
+msgid "Street"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Street 2..."
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Street..."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__street2
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__street2
+msgid "Street2"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_event_form
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_request_form
+msgid "Suspend"
+msgstr ""
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_admin
+msgid "System Administrator"
+msgstr "Administrador del sistema"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__category_id
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__category_id
+msgid "Tags"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Tags..."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__vat
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__vat
+msgid "Tax ID"
+msgstr ""
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_technician
+msgid "Technician"
+msgstr "Técnico"
+
+#. module: medical_base
+#: model:res.groups,name:medical_base.group_medical_technician_manager
+msgid "Technician Manager"
+msgstr "Gestor de técnicos"
+
+#. module: medical_base
 #: model:ir.ui.menu,name:medical_base.medical_root_terminologies
 msgid "Terminologies"
 msgstr "Terminologías"
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_terminologies_menu
-msgid "Terminologies menu"
-msgstr "Terminologia menu"
+#: model:ir.model.fields,help:medical_base.field_medical_patient__country_code
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__country_code
+msgid ""
+"The ISO country code in two chars. \n"
+"You can use this field for quick search."
+msgstr ""
 
 #. module: medical_base
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
-msgid "Terminology"
-msgstr "Terminología"
+#: model:ir.model.fields,help:medical_base.field_medical_patient__vat
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__vat
+msgid ""
+"The Tax Identification Number. Values here will be validated based on the country "
+"format. You can use '/' to indicate that the partner is not subject to tax."
+msgstr ""
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_user
-msgid "User"
-msgstr "Usuario"
+#: model:ir.model.fields,help:medical_base.field_medical_patient__user_id
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__user_id
+msgid "The internal user in charge of this contact."
+msgstr ""
 
 #. module: medical_base
-#: model:ir.model.fields,field_description:medical_base.field_connector_config_settings_module_medical_workflow
-#: model:ir.model.fields,field_description:medical_base.field_res_config_settings_module_medical_workflow
+#: model:ir.model.fields,help:medical_base.field_medical_patient__company_registry
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__company_registry
+msgid ""
+"The registry number of the company. Use it if it is different from the Tax ID. It must "
+"be unique across all partners of a same country"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__email_normalized
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__email_normalized
+msgid ""
+"This field is used to search on email address as the primary email field can contain "
+"more than strictly an email address."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.constraint,message:medical_base.constraint_medical_patient_partner_partner_uniq
+msgid "This partner is already added!"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__property_product_pricelist
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__property_product_pricelist
+msgid ""
+"This pricelist will be used, instead of the default one, for sales to the current "
+"partner"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__tz
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__tz
+msgid "Timezone"
+msgstr "Zona horaria"
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__tz_offset
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__tz_offset
+msgid "Timezone offset"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__title
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__title
+msgid "Title"
+msgstr "Título"
+
+#. module: medical_base
+#. odoo-python
+#: code:addons/medical_base/models/medical_request.py:0
+#, python-format
+msgid "Too many recursion"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__translated_display_name
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__translated_display_name
+msgid "Translated Display Name"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__activity_exception_decoration
+#: model:ir.model.fields,help:medical_base.field_medical_patient__activity_exception_decoration
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__activity_exception_decoration
+#: model:ir.model.fields,help:medical_base.field_medical_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "Unlink Partner"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__barcode
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__barcode
+msgid "Use a barcode to identify this contact."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__user_ids
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__user_ids
+msgid "Users"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__website
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__website
+msgid "Website Link"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_patient__tz
+#: model:ir.model.fields,help:medical_base.field_medical_patient_partner__tz
+msgid ""
+"When printing documents and exporting/importing data, time values are computed "
+"according to this timezone.\n"
+"If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
+"Anywhere else, time values are computed according to the time offset of your web client."
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields,help:medical_base.field_medical_event__performer_id
+#: model:ir.model.fields,help:medical_base.field_medical_request__performer_id
+msgid "Who is to perform the procedure"
+msgstr ""
+
+#. module: medical_base
+#: model:ir.model.fields.selection,name:medical_base.selection__medical_patient__marital_status__w
+msgid "Widowed"
+msgstr ""
+
+#. module: medical_base
 #: model:ir.ui.menu,name:medical_base.medical_root_workflow
-#: model:ir.ui.view,arch_db:medical_base.res_config_settings_view_form
 msgid "Workflow"
-msgstr "Workflow"
+msgstr ""
 
 #. module: medical_base
-#: model:res.groups,name:medical_base.group_medical_workflow_menu
-msgid "Workflow menu"
-msgstr "Workflow menu"
+#. odoo-python
+#: code:addons/medical_base/models/res_partner.py:0
+#, python-format
+msgid "You are not allowed to %(mode)s medical Contacts (res.partner) records."
+msgstr ""
 
 #. module: medical_base
-#: model:ir.model,name:medical_base.model_medical_abstract
-msgid "medical.abstract"
-msgstr "medical.abstract"
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "ZIP"
+msgstr ""
 
 #. module: medical_base
-#: model:ir.model,name:medical_base.model_res_config_settings
-msgid "res.config.settings"
-msgstr "res.config.settings"
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient__zip
+#: model:ir.model.fields,field_description:medical_base.field_medical_patient_partner__zip
+msgid "Zip"
+msgstr ""
 
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_kanban
+msgid "company_image"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_kanban
+msgid "default_image"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "e.g. BE0477472701"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "e.g. Mr."
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "e.g. Sales Director"
+msgstr ""
+
+#. module: medical_base
+#: model_terms:ir.ui.view,arch_db:medical_base.medical_patient_form
+msgid "e.g. www.odoo.com"
+msgstr ""
