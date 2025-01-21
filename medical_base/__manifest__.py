@@ -17,6 +17,7 @@
         "security/ir.model.access.csv",
         "views/res_partner.xml",
         "data/ir_sequence_data.xml",
+        "data/medical_role.xml",
         "views/medical_menu.xml",
         "views/medical_patient.xml",
         "views/res_config_settings_views.xml",
