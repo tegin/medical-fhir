@@ -19,7 +19,7 @@
         <field name="model">medical.patient</field>
         <field name="priority">99</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="false">
                 <field name="internal_identifier" />
                 <field name="vat" />
                 <field name="name" />
