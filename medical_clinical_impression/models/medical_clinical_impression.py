@@ -34,11 +34,11 @@ class MedicalClinicalImpression(models.Model):
     )
     # FHIR: description
 
-    encounter_id = fields.Many2one("medical.encounter", required=True, readonly=True)
-    # FHIR: encounter
-
     patient_id = fields.Many2one(
-        related="encounter_id.patient_id", readonly=True, states={}
+        "medical.patient",
+        required=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     # FHIR: patient
 
@@ -80,12 +80,6 @@ class MedicalClinicalImpression(models.Model):
     note = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
     # FHIR: Note
 
-    current_encounter = fields.Boolean(
-        help="This field is only used to stand out the impressions "
-        "of the current encounter in the tree view",
-        compute="_compute_current_encounter",
-    )
-
     warning_info = fields.Json(compute="_compute_warning_info")
 
     def _get_warning_info(self):
@@ -109,16 +103,6 @@ class MedicalClinicalImpression(models.Model):
         return (
             self.env["ir.sequence"].next_by_code("medical.clinical.impression") or "/"
         )
-
-    @api.depends("encounter_id")
-    def _compute_current_encounter(self):
-        for rec in self:
-            current_encounter = False
-            if self.env.context.get("encounter_id"):
-                default_encounter = self.env.context.get("encounter_id")
-                if default_encounter == rec.encounter_id.id:
-                    current_encounter = True
-            rec.current_encounter = current_encounter
 
     def _create_conditions_from_findings(self):
         finding_ids = self.finding_ids.filtered(

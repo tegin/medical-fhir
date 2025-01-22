@@ -40,10 +40,6 @@
                     </h4>
                     <div class="row">
                         <div class="col-6">
-                            <strong>Encounter:</strong>
-                            <span t-field="o.encounter_id" />
-                        </div>
-                        <div class="col-6">
                             <strong>Date:</strong>
                             <span t-field="o.validation_date" />
                         </div>

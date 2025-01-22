@@ -11,9 +11,6 @@ class TestClinicalImpression(TransactionCase):
     def setUp(self):
         super(TestClinicalImpression, self).setUp()
         self.patient = self.env["medical.patient"].create({"name": "Patient"})
-        self.encounter = self.env["medical.encounter"].create(
-            {"patient_id": self.patient.id}
-        )
         self.finding_pregnant = self.env["medical.clinical.finding"].create(
             {
                 "name": "Pregnant",
@@ -50,7 +47,6 @@ class TestClinicalImpression(TransactionCase):
         impression = self.env["medical.clinical.impression"].create(
             {
                 "patient_id": self.patient.id,
-                "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_cardiology.id,
             }
         )
@@ -65,7 +61,6 @@ class TestClinicalImpression(TransactionCase):
         impression = self.env["medical.clinical.impression"].create(
             {
                 "patient_id": self.patient.id,
-                "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_gynecology.id,
                 "finding_ids": [
                     (4, self.finding_pregnant.id),
@@ -85,7 +80,6 @@ class TestClinicalImpression(TransactionCase):
         impression_2 = self.env["medical.clinical.impression"].create(
             {
                 "patient_id": self.patient.id,
-                "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_gynecology.id,
                 "finding_ids": [(4, self.finding_pregnant.id)],
             }
@@ -102,7 +96,6 @@ class TestClinicalImpression(TransactionCase):
         impression = self.env["medical.clinical.impression"].create(
             {
                 "patient_id": self.patient.id,
-                "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_gynecology.id,
                 "allergy_substance_ids": [(4, self.allergy_substance_ibuprofen.id)],
             }
@@ -118,7 +111,6 @@ class TestClinicalImpression(TransactionCase):
         impression_2 = self.env["medical.clinical.impression"].create(
             {
                 "patient_id": self.patient.id,
-                "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_gynecology.id,
                 "allergy_substance_ids": [(4, self.allergy_substance_ibuprofen.id)],
             }
@@ -134,7 +126,6 @@ class TestClinicalImpression(TransactionCase):
         impression = self.env["medical.clinical.impression"].create(
             {
                 "patient_id": self.patient.id,
-                "encounter_id": self.encounter.id,
                 "specialty_id": self.specialty_gynecology.id,
                 "allergy_substance_ids": [(4, self.allergy_substance_ibuprofen.id)],
             }
@@ -145,23 +136,3 @@ class TestClinicalImpression(TransactionCase):
         # The allergies and findings created in that impression should be cancelled too.
         self.patient.invalidate_recordset()
         self.assertEqual(self.patient.medical_allergies_count, 0)
-
-    def test_compute_current_encounter(self):
-        impression = self.env["medical.clinical.impression"].create(
-            {
-                "patient_id": self.patient.id,
-                "encounter_id": self.encounter.id,
-                "specialty_id": self.specialty_gynecology.id,
-            }
-        )
-        self.encounter_2 = self.env["medical.encounter"].create(
-            {"patient_id": self.patient.id}
-        )
-        impression.with_context(
-            **{"encounter_id": self.encounter.id}
-        )._compute_current_encounter()
-        self.assertTrue(impression.current_encounter)
-        impression.with_context(
-            **{"encounter_id": self.encounter_2.id}
-        )._compute_current_encounter()
-        self.assertFalse(impression.current_encounter)
