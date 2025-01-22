@@ -9,9 +9,6 @@ class TestCondition(TransactionCase):
     def setUp(self):
         super(TestCondition, self).setUp()
         self.patient = self.env["medical.patient"].create({"name": "Patient"})
-        self.encounter = self.env["medical.encounter"].create(
-            {"patient_id": self.patient.id}
-        )
         self.finding_no_warning = self.env["medical.clinical.finding"].create(
             {"name": "Finding no warning"}
         )
@@ -29,16 +26,8 @@ class TestCondition(TransactionCase):
         action = self.patient.create_medical_clinical_condition()
         self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
 
-    def test_create_condition_from_encounter(self):
-        action = self.encounter.create_medical_clinical_condition()
-        self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
-
     def test_view_conditions_from_patient(self):
         res = self.patient.action_view_medical_conditions()
-        self.assertEqual(res["context"]["default_patient_id"], self.patient.id)
-
-    def test_view_conditions_from_encounter(self):
-        res = self.encounter.action_view_medical_conditions()
         self.assertEqual(res["context"]["default_patient_id"], self.patient.id)
 
     def test_create_condition_without_warning(self):
@@ -67,11 +56,6 @@ class TestCondition(TransactionCase):
 
     def test_create_allergy_from_patient(self):
         action = self.patient.create_allergy()
-        self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
-        self.assertTrue(action["context"]["default_is_allergy"])
-
-    def test_create_allergy_from_encounter(self):
-        action = self.encounter.create_allergy()
         self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
         self.assertTrue(action["context"]["default_is_allergy"])
 
@@ -108,17 +92,8 @@ class TestCondition(TransactionCase):
         self.assertEqual(res["context"]["default_patient_id"], self.patient.id)
         self.assertTrue(res["context"]["default_is_allergy"])
 
-    def test_view_allergies_from_encounter(self):
-        res = self.encounter.action_view_medical_allergies()
-        self.assertEqual(res["context"]["default_patient_id"], self.patient.id)
-        self.assertTrue(res["context"]["default_is_allergy"])
-
     def test_view_warnings_from_patient(self):
         res = self.patient.action_view_medical_warnings()
-        self.assertEqual(res["context"]["default_patient_id"], self.patient.id)
-
-    def test_view_warnings_from_encounter(self):
-        res = self.encounter.action_view_medical_warnings()
         self.assertEqual(res["context"]["default_patient_id"], self.patient.id)
 
     def test_create_again_an_archived_condition(self):
