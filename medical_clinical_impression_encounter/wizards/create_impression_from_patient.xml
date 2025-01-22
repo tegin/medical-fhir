@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 CreuBlanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="create_impression_from_patient_form_view">
+        <field name="name">create.impression.from.patient.form</field>
+        <field name="model">create.impression.from.patient</field>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_impression.create_impression_from_patient_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="patient_id" position="after">
+                <field
+                    name="encounter_warning"
+                    nolabel="1"
+                    decoration-danger="1"
+                    attrs="{'invisible':[('show_encounter_warning', '=', False)]}"
+                />
+                <field name="show_encounter_warning" invisible="1" />
+                <field
+                    name="encounter_id"
+                    widget="selection"
+                    readonly="False"
+                    domain="[('patient_id', '=', patient_id)]"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

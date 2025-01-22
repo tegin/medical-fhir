@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2025 Dixmit
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+    <record id="encounter_01_patient_01" model="medical.encounter">
+        <field name="patient_id" ref="medical_base.patient_01" />
+    </record>
+    <record
+        id="medical_clinical_impression.impression_01_patient_01"
+        model="medical.clinical.impression"
+    >
+    <field
+            name="encounter_id"
+            ref="medical_clinical_impression.encounter_01_patient_01"
+        />
+    </record>
+</odoo>
