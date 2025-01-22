@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<odoo>
+    <template
+        id="report_medical_clinical_impression"
+        inherit_id="medical_clinical_impression.report_medical_clinical_impression"
+    >
+        <xpath expr="//span[@t-field='o.validation_date']" position="before">
+            <div class="col-6">
+                <strong>Encounter:</strong>
+                <span t-field="o.encounter_id" />
+            </div>
+        </xpath>
+    </template>
+</odoo>
