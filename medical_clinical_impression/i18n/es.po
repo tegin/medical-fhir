@@ -1,0 +1,895 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical_clinical_impression
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-24 12:54+0000\n"
+"PO-Revision-Date: 2025-01-24 12:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__medical_condition_count
+msgid "# of Conditions"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
+msgid "<i class=\"fas fa-users\"/>  Family History"
+msgstr "<i class=\"fas fa-users\"/> Historia Familiar"
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "<strong>Allergies:</strong>"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "<strong>Date:</strong>"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "<strong>Description:</strong>"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "<strong>Encounter:</strong>"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "<strong>Findings:</strong>"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "<strong>Specialty:</strong>"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "<strong>Summary:</strong>"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "<strong>Validated by:</strong>"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_needaction
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model,name:medical_clinical_impression.model_ir_actions_impression_select_record
+msgid "Action to page to the previous record from a form view button"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__active
+msgid "Active"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_ids
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_definition_id
+msgid "Activity Definition"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_exception_decoration
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_state
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_type_icon
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__age
+msgid "Age"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
+msgid "Allergies"
+msgstr "Alergias"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__allergy_substance_ids
+msgid "Allergy Substance"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
+msgid "Allergy Substances"
+msgstr "Alergias"
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_family_member_history_view_form
+msgid "Archived"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_tree_view
+msgid "Are you sure you want to cancel this impression?"
+msgstr "¿Estas seguro que quieres cancelar el curso clínico?"
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_tree_view
+msgid "Are you sure you want to validate this impression?"
+msgstr "¿Estas seguro que quieres validar el curso clínico?"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_attachment_count
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__born_date
+msgid "Born Date"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.create_impression_from_encounter_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.create_impression_from_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_tree_view
+msgid "Cancel"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
+msgid "Cancel Impression"
+msgstr "Cancelar"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__cancellation_date
+msgid "Cancellation Date"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_search_view
+msgid "Cancelled"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__cancellation_user_id
+msgid "Cancelled by"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
+msgid "Clinical Impression"
+msgstr "Curso Clínico"
+
+#. module: medical_clinical_impression
+#: model:ir.actions.report,name:medical_clinical_impression.action_clinical_impression_report
+msgid "Clinical impressions report"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model,name:medical_clinical_impression.model_medical_clinical_finding
+msgid "Condition/Problem/Diagnosis codes"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model,name:medical_clinical_impression.model_medical_condition
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__condition_ids
+msgid "Conditions"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_patient__condition_ids
+msgid "Conditions Warning"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__description
+msgid "Context of the impression: Why/how the assessment was performed"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_his_form
+msgid "Count"
+msgstr "#"
+
+#. module: medical_clinical_impression
+#. odoo-javascript
+#: code:addons/medical_clinical_impression/static/src/components/impression/impression.xml:0
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.create_impression_from_encounter_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.create_impression_from_patient_form_view
+#, python-format
+msgid "Create"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.create_impression_from_encounter_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.create_impression_from_patient_form_view
+msgid "Create Clinical Impression"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_finding__create_condition_from_clinical_impression
+msgid "Create Condition From Clinical Impression"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_his_form
+msgid "Create Family History"
+msgstr "Crear Historial Familiar"
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_his_form
+msgid "Create Impression"
+msgstr "Crear curso clínico"
+
+#. module: medical_clinical_impression
+#: model:ir.model,name:medical_clinical_impression.model_create_impression_from_encounter
+msgid "Create Impression From Encounter"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model,name:medical_clinical_impression.model_create_impression_from_patient
+msgid "Create Impression From Patient"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.actions.act_window,name:medical_clinical_impression.create_impression_from_encounter_act_window
+msgid "Create clinical impression from encounter"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.actions.act_window,name:medical_clinical_impression.create_impression_from_patient_act_window
+msgid "Create clinical impression from patient"
+msgstr ""
+
+#. module: medical_clinical_impression
+#. odoo-python
+#: code:addons/medical_clinical_impression/models/medical_encounter.py:0
+#: code:addons/medical_clinical_impression/models/medical_patient.py:0
+#, python-format
+msgid "Create family member history"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__create_uid
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__create_uid
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__create_uid
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__create_date
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__create_date
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__create_date
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__current_encounter
+msgid "Current Encounter"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__deceased
+msgid "Deceased"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__deceased_age
+msgid "Deceased Age"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__deceased_date
+msgid "Deceased Date"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__description
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
+msgid "Description"
+msgstr "Descripción"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__display_name
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__display_name
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__display_name
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__encounter_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__encounter_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__encounter_id
+msgid "Encounter"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+msgid "Encounter Count"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_specialty__encounter_impression_count
+msgid "Encounter Impression Count"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__encounter_warning
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__encounter_warning
+msgid "Encounter Warning"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_encounter__family_history_ids
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_patient__family_history_ids
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_his_form
+msgid "Family History"
+msgstr "Historial Familiar"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_encounter__family_history_count
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_patient__family_history_count
+msgid "Family History Count"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_family_member_history_view_form
+msgid "Family Member History"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__family_member_name
+msgid "Family Member Name"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields.selection,name:medical_clinical_impression.selection__medical_family_member_history__sex__female
+msgid "Female"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__fhir_state
+msgid "Fhir State"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__finding_ids
+msgid "Finding"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
+msgid "Findings"
+msgstr "Hallazgos"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_follower_ids
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_partner_ids
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__activity_type_icon
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_his_form
+msgid "Get Impression"
+msgstr "Obtener Curso Clínco"
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+msgid "Get Specialty Impression"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__has_message
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__id
+msgid "ID"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_exception_icon
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__activity_exception_icon
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__message_needaction
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__message_has_error
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_finding__create_condition_from_clinical_impression
+msgid ""
+"If marked, when this clinical finding is added to a clinical impression,it "
+"will create automatically a condition for the corresponding patient"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_his_form
+msgid "Impression"
+msgstr "Curso Clínico"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_specialty__impression_last_update
+msgid "Impression Last Update"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_encounter__impression_specialty_ids
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_patient__impression_specialty_ids
+msgid "Impression Specialty"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_form_view
+msgid "Impressions"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_specialty__impressions_in_progress_count
+msgid "Impressions In Progress Count"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_his_form
+msgid "Impressions by specialty"
+msgstr "Curso clínico por especialidad"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__internal_identifier
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__internal_identifier
+msgid "Internal Identifier"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__internal_identifier
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__internal_identifier
+msgid "Internal identifier used to identify this record"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_is_follower
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter____last_update
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient____last_update
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression____last_update
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_his_form
+msgid "Last Update"
+msgstr "Última actualización"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__write_uid
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__write_uid
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__write_uid
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__write_date
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__write_date
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__write_date
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "Logo"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_main_attachment_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields.selection,name:medical_clinical_impression.selection__medical_family_member_history__sex__male
+msgid "Male"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.actions.act_window,name:medical_clinical_impression.medical_clinical_impression_act_window
+#: model:ir.model,name:medical_clinical_impression.model_medical_clinical_impression
+msgid "Medical Clinical Impression"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model,name:medical_clinical_impression.model_medical_encounter
+msgid "Medical Encounter"
+msgstr "Afiliación"
+
+#. module: medical_clinical_impression
+#: model:ir.actions.act_window,name:medical_clinical_impression.medical_family_member_history_action
+#: model:ir.model,name:medical_clinical_impression.model_medical_family_member_history
+msgid "Medical Family Member History"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_encounter__medical_impression_ids
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_patient__medical_impression_ids
+msgid "Medical Impression"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model,name:medical_clinical_impression.model_medical_patient
+msgid "Medical Patient"
+msgstr "medical.pacientes"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_has_error
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_ids
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__my_activity_date_deadline
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__name
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__name
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__name
+msgid "Name"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_date_deadline
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_summary
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_type_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_search_view
+msgid "Not cancelled"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__note
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__note
+msgid "Note"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_family_member_history_view_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_needaction_counter
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__message_has_error_counter
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__message_needaction_counter
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__message_has_error_counter
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__occurrence_date
+msgid "Occurrence date"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__occurrence_date
+msgid "Occurrence of the order."
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_condition__origin_clinical_impression_id
+msgid "Origin Clinical Impression"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields.selection,name:medical_clinical_impression.selection__medical_family_member_history__sex__other
+msgid "Other"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.report_medical_clinical_impression
+msgid "Page: <span class=\"page\"/> / <span class=\"topage\"/>"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__patient_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__patient_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__patient_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__patient_id
+msgid "Patient"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+msgid "Patient Count"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_specialty__patient_impression_count
+msgid "Patient Impression Count"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__patient_id
+msgid "Patient Name"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_create_impression_from_encounter__patient_id
+msgid "Patient name"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__performer_id
+msgid "Performer"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__plan_definition_id
+msgid "Plan Definition"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__plan_definition_action_id
+msgid "Plan Definition Action"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
+msgid "Private Notes"
+msgstr "Notas privadas"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__relationship
+msgid "Relationship"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__activity_user_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__service_id
+msgid "Service"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__sex
+msgid "Sex"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__show_encounter_warning
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__show_encounter_warning
+msgid "Show Encounter Warning"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model,name:medical_clinical_impression.model_medical_specialty
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_encounter__specialty_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_create_impression_from_patient__specialty_id
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__specialty_id
+msgid "Specialty"
+msgstr "Especialidad"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__state
+msgid "State"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__activity_state
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__summary
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
+msgid "Summary"
+msgstr "Resúmen"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__current_encounter
+msgid ""
+"This field is only used to stand out the impressions of the current "
+"encounter in the tree view"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__activity_exception_decoration
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__unable_to_obtain
+msgid "Unable To Obtain"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields.selection,name:medical_clinical_impression.selection__medical_family_member_history__sex__unknown
+msgid "Unknown"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_tree_view
+msgid "Validate"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
+msgid "Validate Impression"
+msgstr "Validar"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__validation_user_id
+msgid "Validated by"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__validation_date
+msgid "Validation Date"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_encounter_view_form
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_form_view
+#: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_patient_his_form
+msgid "View all impressions"
+msgstr "Ver curso clínico"
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__warning_info
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_patient__warning_info
+msgid "Warning Info"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_clinical_impression__website_message_ids
+#: model:ir.model.fields,field_description:medical_clinical_impression.field_medical_family_member_history__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__website_message_ids
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_family_member_history__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: medical_clinical_impression
+#: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__performer_id
+msgid "Who is to perform the procedure"
+msgstr ""
