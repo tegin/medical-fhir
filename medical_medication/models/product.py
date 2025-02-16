@@ -35,6 +35,6 @@ class Product(models.Model):
 
     @api.constrains("type", "is_medication")
     def _check_medication(self):
-        if self.is_medication:
-            if self.type not in ["product", "consu"]:
+        for record in self:
+            if record.is_medication and record.type not in ["product", "consu"]:
                 raise ValidationError(_("Medication must be a stockable product"))
