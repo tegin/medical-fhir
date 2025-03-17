@@ -54,9 +54,7 @@ class MedicalDiagnosticReport(models.Model):
                 bokeh_models.annotations, bokeh_models.annotations.__all__
             ),
             # "bokeh_widgets": wrap_module(bokeh_widgets, self._get_bokeh_widgets_list()),
-            "bokeh_models": wrap_module(
-                bokeh_models, self._get_bokeh_models_list()
-            ),
+            "bokeh_models": wrap_module(bokeh_models, self._get_bokeh_models_list()),
             "bokeh_themes": wrap_module(bokeh_themes, bokeh_themes.__all__),
             "self": self,
         }
