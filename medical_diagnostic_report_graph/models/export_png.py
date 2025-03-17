@@ -57,7 +57,7 @@ def get_screenshot_as_png(
     resources=INLINE,
     width=None,
     height=None,
-    theme=None
+    theme=None,
 ):
     """Get a screenshot of a ``LayoutDOM`` object.
     Args:
