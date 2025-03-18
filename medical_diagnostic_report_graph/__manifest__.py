@@ -5,9 +5,9 @@
     "name": "Medical Diagnostic Report Graph",
     "summary": """
         This addons enables to add a graph to the medical diagnostic report""",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "author": "CreuBlanca,Odoo Community Association (OCA)",
+    "author": "CreuBlanca,Dixmit,Tegin",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": ["medical_diagnostic_report"],
     "data": [

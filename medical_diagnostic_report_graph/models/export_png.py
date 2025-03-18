@@ -3,7 +3,6 @@ import warnings
 
 from bokeh.embed import file_html
 from bokeh.embed.util import FromCurdoc
-from bokeh.io import webdriver
 from bokeh.io.export import (
     _maximize_viewport as _maximize_viewport,
     _tmp_html,
@@ -11,6 +10,9 @@ from bokeh.io.export import (
 )
 from bokeh.resources import INLINE
 from PIL import Image
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 
 def get_layout_html(obj, resources=INLINE, theme=FromCurdoc, **kwargs):
@@ -81,12 +83,17 @@ def get_screenshot_as_png(
         )
         with open(tmp.path, mode="w", encoding="utf-8") as file:
             file.write(html)
+        if driver:
+            web_driver = driver
+        else:
+            options = Options()
+            options.add_argument("--headless")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
 
-        web_driver = (
-            driver
-            if driver is not None
-            else webdriver.create_chromium_webdriver(["--no-sandbox"])
-        )
+            service = Service()  # Ensure correct path
+
+            web_driver = webdriver.Chrome(service=service, options=options)
         web_driver.maximize_window()
         web_driver.get(f"file://{tmp.path}")
         wait_until_render_complete(web_driver, timeout)

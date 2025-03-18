@@ -11,8 +11,8 @@ class MedicalDiagnosticReportTemplate(models.Model):
     graph_python_code = fields.Text()
     html_code = fields.Text(translate=True)
 
-    def _generate_report_vals(self, encounter=None, **kwargs):
-        res = super()._generate_report_vals(encounter, **kwargs)
+    def _generate_report_vals(self, **kwargs):
+        res = super()._generate_report_vals(**kwargs)
         res["compute_graph"] = self.compute_graph
         res["compute_html"] = self.compute_html
         res["hide_observations"] = self.hide_observations

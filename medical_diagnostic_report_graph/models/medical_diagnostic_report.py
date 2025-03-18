@@ -3,6 +3,7 @@
 
 import base64
 import io
+import json
 
 import numpy as np
 import pandas as pd
@@ -93,8 +94,9 @@ class MedicalDiagnosticReport(models.Model):
                 script, div = bokeh_embed.components(
                     data["result_data"],
                     theme=data.get("result_theme", FromCurdoc),
+                    wrap_script=False,
                 )
-                bokeh = "{}{}".format(div, script)
+                bokeh = json.dumps({"div": div, "script": script})
             elif "result_data" in data:
                 img = get_screenshot_as_png(
                     data["result_data"],
@@ -117,12 +119,12 @@ class MedicalDiagnosticReport(models.Model):
 
     def registered2final_action(self):
         self._get_image_from_code()
-        super().registered2final_action()
+        return super().registered2final_action()
 
     def show_graphs(self):
         self.ensure_one()
         ctx = self.env.context.copy()
-        self.flush()
+        self.flush_recordset()
         self._compute_report_chart()
         return {
             "type": "ir.actions.act_window",

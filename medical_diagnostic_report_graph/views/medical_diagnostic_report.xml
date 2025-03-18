@@ -38,11 +38,15 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <field
-                        name="bokeh_chart"
-                        widget='bokeh_chart'
-                        attrs="{'invisible': [('bokeh_image', '!=', False)]}"
-                    />
+                    <group>
+                        <field
+                            name="bokeh_chart"
+                            widget='bokeh_chart'
+                            attrs="{'invisible': [('bokeh_image', '!=', False)]}"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                    </group>
                     <field
                         name="bokeh_image"
                         widget='image'
