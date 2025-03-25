@@ -102,12 +102,21 @@
                     </h2>
                     <group>
                         <group name="patient">
-                            <field name="patient_id" />
-                            <field name="priority_id" />
+                            <field
+                                name="patient_id"
+                                attrs="{'readonly': [('internal_identifier', '!=', '/')]}"
+                            />
+                        <field
+                                name="priority_id"
+                                attrs="{'readonly': [('internal_identifier', '!=', '/')]}"
+                            />
                         </group>
                     </group>
                     <group name="location_id">
-                        <field name="location_id" />
+                        <field
+                            name="location_id"
+                            attrs="{'readonly': [('internal_identifier', '!=', '/')]}"
+                        />
                     </group>
                     <notebook>
                         <page name="first" invisible="1" />
