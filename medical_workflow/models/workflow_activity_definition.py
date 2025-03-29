@@ -93,12 +93,12 @@ class ActivityDefinition(models.Model):
         return values
 
     def generate_record(self, values):
-        return self.env[self.model_id.model].create(values)
+        return self.env[self.sudo().model_id.model].create(values)
 
     def execute_activity(self, vals, parent=False, plan=False, action=False):
         self.ensure_one()
         values = self._get_activity_values(vals, parent, plan, action)
-        res = self.env[self.model_id.model]
+        res = self.env[self.sudo().model_id.model]
         for _i in range(0, self.quantity):
             res |= self.generate_record(values)
         return res
