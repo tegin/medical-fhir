@@ -106,6 +106,7 @@ Authors
 ~~~~~~~
 
 * Creu Blanca
+* Tegin
 
 Contributors
 ~~~~~~~~~~~~
