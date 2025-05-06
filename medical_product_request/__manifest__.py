@@ -9,7 +9,7 @@
     "version": "13.0.1.0.0",
     "license": "AGPL-3",
     "author": "Creu Blanca,Odoo Community Association (OCA)",
-    "website": "www.creublanca.es",
+    "website": "https://github.com/tegin/medical-fhir",
     "depends": [
         "medical_administration_encounter",
         "mail",

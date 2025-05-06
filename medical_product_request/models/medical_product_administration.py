@@ -18,9 +18,7 @@ class MedicalProductAdministration(models.Model):
 
     internal_identifier = fields.Char(string="Product Administration")
 
-    product_request_id = fields.Many2one(
-        comodel_name="medical.product.request"
-    )
+    product_request_id = fields.Many2one(comodel_name="medical.product.request")
 
     state = fields.Selection(
         selection=[
@@ -32,18 +30,14 @@ class MedicalProductAdministration(models.Model):
     )
     # Fhir Concept: status
 
-    product_type = fields.Selection(
-        related="medical_product_template_id.product_type"
-    )
+    product_type = fields.Selection(related="medical_product_template_id.product_type")
 
     medical_product_template_id = fields.Many2one(
         comodel_name="medical.product.template"
     )
     # Fhir Concept: medication
 
-    product_type = fields.Selection(
-        related="medical_product_template_id.product_type"
-    )
+    product_type = fields.Selection(related="medical_product_template_id.product_type")
     # Used for visualization purposes
 
     patient_id = fields.Many2one(related="product_request_id.patient_id")
@@ -69,9 +63,7 @@ class MedicalProductAdministration(models.Model):
     )
 
     administration_date = fields.Datetime(copy=False)
-    administration_user_id = fields.Many2one(
-        comodel_name="res.users", copy=False
-    )
+    administration_user_id = fields.Many2one(comodel_name="res.users", copy=False)
     # Fhir Concept: performer
 
     cancel_date = fields.Datetime(copy=False)
@@ -89,9 +81,7 @@ class MedicalProductAdministration(models.Model):
                 )
             else:
                 categ = self.env.ref("uom.product_uom_categ_unit")
-                uoms = self.env["uom.uom"].search(
-                    [("category_id", "=", categ.id)]
-                )
+                uoms = self.env["uom.uom"].search([("category_id", "=", categ.id)])
                 rec.quantity_uom_domain = json.dumps([("id", "in", uoms.ids)])
 
     @api.depends("medical_product_template_id")
@@ -107,9 +97,7 @@ class MedicalProductAdministration(models.Model):
 
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"].next_by_code(
-                "medical.product.administration"
-            )
+            self.env["ir.sequence"].next_by_code("medical.product.administration")
             or "/"
         )
 
@@ -117,9 +105,7 @@ class MedicalProductAdministration(models.Model):
     def _check_quantity_administered(self):
         for rec in self:
             if rec.quantity_administered < 1:
-                raise ValidationError(
-                    _("Quantity administrated must be positive")
-                )
+                raise ValidationError(_("Quantity administrated must be positive"))
 
     def _complete_administration_vals(self):
         return {

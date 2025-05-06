@@ -3,6 +3,7 @@
 from datetime import datetime
 
 import freezegun
+
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -37,9 +38,7 @@ class TestMedicalProductAdministration(TransactionCase):
                 "ingredients": "Ibuprofen",
                 "dosage": "600 mg",
                 "form_id": self.tablet_form.id,
-                "administration_route_ids": [
-                    (4, self.oral_administration_route.id)
-                ],
+                "administration_route_ids": [(4, self.oral_administration_route.id)],
             }
         )
         self.patient = self.env["medical.patient"].create({"name": "Patient"})
@@ -55,9 +54,7 @@ class TestMedicalProductAdministration(TransactionCase):
                 "encounter_id": self.encounter.id,
             }
         )
-        self.internal_product_request = self.env[
-            "medical.product.request"
-        ].create(
+        self.internal_product_request = self.env["medical.product.request"].create(
             {
                 "request_order_id": self.internal_product_request_order.id,
                 "medical_product_template_id": self.ibuprofen_template.id,
@@ -70,9 +67,7 @@ class TestMedicalProductAdministration(TransactionCase):
             }
         )
 
-        self.administration = self.env[
-            "medical.product.administration"
-        ].create(
+        self.administration = self.env["medical.product.administration"].create(
             {
                 "product_request_id": self.internal_product_request.id,
                 "quantity_administered": 1,
@@ -97,12 +92,8 @@ class TestMedicalProductAdministration(TransactionCase):
         with freezegun.freeze_time("2022-01-01"):
             self.administration.cancel_action()
         self.assertEqual(self.administration.state, "cancelled")
-        self.assertEqual(
-            self.administration.cancel_date, datetime(2022, 1, 1, 0, 0, 0)
-        )
-        self.assertEqual(
-            self.administration.cancel_user_id.id, self.env.user.id
-        )
+        self.assertEqual(self.administration.cancel_date, datetime(2022, 1, 1, 0, 0, 0))
+        self.assertEqual(self.administration.cancel_user_id.id, self.env.user.id)
 
     def test_check_quantity_administered(self):
         with self.assertRaises(ValidationError):
@@ -130,6 +121,4 @@ class TestMedicalProductAdministration(TransactionCase):
             "%s" % self.oral_administration_route.id,
         )
         self.administration.medical_product_template_id = False
-        self.assertRegex(
-            self.administration.administration_route_domain, "%s" % 0
-        )
+        self.assertRegex(self.administration.administration_route_domain, "%s" % 0)

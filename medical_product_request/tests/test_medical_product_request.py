@@ -3,6 +3,7 @@
 from datetime import datetime
 
 import freezegun
+
 from odoo.exceptions import ValidationError
 from odoo.tests.common import Form, TransactionCase
 
@@ -42,9 +43,7 @@ class TestMedicalProductRequest(TransactionCase):
                 "ingredients": "Ibuprofen",
                 "dosage": "600 mg",
                 "form_id": self.tablet_form.id,
-                "administration_route_ids": [
-                    (4, self.oral_administration_route.id)
-                ],
+                "administration_route_ids": [(4, self.oral_administration_route.id)],
             }
         )
         self.ibuprofen_30_tablets = self.env["medical.product.product"].create(
@@ -68,9 +67,7 @@ class TestMedicalProductRequest(TransactionCase):
                 "product_type": "device",
             }
         )
-        self.medical_product_crutch = self.env[
-            "medical.product.product"
-        ].create(
+        self.medical_product_crutch = self.env["medical.product.product"].create(
             {
                 "product_tmpl_id": self.crutch_template.id,
                 "amount": 1,
@@ -111,9 +108,7 @@ class TestMedicalProductRequest(TransactionCase):
                 "ingredients": "Ketorolac tromethamol",
                 "dosage": "5 mg/ml",
                 "form_id": self.solution_form.id,
-                "administration_route_ids": [
-                    (4, self.ocular_administration_route.id)
-                ],
+                "administration_route_ids": [(4, self.ocular_administration_route.id)],
             }
         )
         self.acular_5_ml = self.env["medical.product.product"].create(
@@ -179,12 +174,8 @@ class TestMedicalProductRequest(TransactionCase):
                 "duration_uom_id": self.env.ref("uom.product_uom_day").id,
             }
         )
-        self.assertEqual(
-            request_order.patient_id.id, product_request.patient_id.id
-        )
-        self.assertEqual(
-            request_order.encounter_id.id, product_request.encounter_id.id
-        )
+        self.assertEqual(request_order.patient_id.id, product_request.patient_id.id)
+        self.assertEqual(request_order.encounter_id.id, product_request.encounter_id.id)
         self.assertEqual(request_order.category, product_request.category)
 
         # Compute the fields if the request does not come from a request_order
@@ -253,9 +244,7 @@ class TestMedicalProductRequest(TransactionCase):
         with freezegun.freeze_time("2022-01-01"):
             self.internal_request.validate_action()
         self.assertEqual(self.internal_request.state, "active")
-        self.assertEqual(
-            self.internal_request.requester_id.id, self.env.user.id
-        )
+        self.assertEqual(self.internal_request.requester_id.id, self.env.user.id)
         self.assertEqual(
             self.internal_request.validation_date,
             datetime(2022, 1, 1, 0, 0, 0),
@@ -271,9 +260,7 @@ class TestMedicalProductRequest(TransactionCase):
                 "dose_uom_id": self.env.ref("uom.product_uom_unit").id,
             }
         )
-        self.assertEqual(
-            request.medical_product_id.id, self.medical_product_crutch.id
-        )
+        self.assertEqual(request.medical_product_id.id, self.medical_product_crutch.id)
         self.assertEqual(request.quantity_to_dispense, 1)
 
     def test_create_external_request_of_medication_tablet(self):
@@ -336,18 +323,14 @@ class TestMedicalProductRequest(TransactionCase):
         with freezegun.freeze_time("2022-01-01"):
             self.external_request.validate_action()
         self.assertEqual(self.external_request.state, "completed")
-        self.assertEqual(
-            self.external_request.requester_id.id, self.env.user.id
-        )
+        self.assertEqual(self.external_request.requester_id.id, self.env.user.id)
         self.assertEqual(
             self.external_request.validation_date,
             datetime(2022, 1, 1, 0, 0, 0),
         )
 
     def test_create_medical_product_administration(self):
-        self.assertEqual(
-            self.internal_request.product_administrations_count, 0
-        )
+        self.assertEqual(self.internal_request.product_administrations_count, 0)
         self.internal_request.validate_action()
         action = self.internal_request.create_medical_product_administration()
         self.assertEqual(
@@ -359,18 +342,14 @@ class TestMedicalProductRequest(TransactionCase):
             action["context"]["default_quantity_administered_uom_id"],
             self.tablet_uom.id,
         )
-        self.assertEqual(
-            action["context"]["default_patient_id"], self.patient.id
-        )
+        self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
 
     def test_cancel_external_request(self):
         self.assertEqual(self.external_request.state, "draft")
         with freezegun.freeze_time("2022-01-01"):
             self.external_request.cancel_action()
         self.assertEqual(self.external_request.state, "cancelled")
-        self.assertEqual(
-            self.external_request.cancel_user_id.id, self.env.user.id
-        )
+        self.assertEqual(self.external_request.cancel_user_id.id, self.env.user.id)
         self.assertEqual(
             self.external_request.cancel_date, datetime(2022, 1, 1, 0, 0, 0)
         )
@@ -380,9 +359,7 @@ class TestMedicalProductRequest(TransactionCase):
         with freezegun.freeze_time("2022-01-01"):
             self.internal_request.cancel_action()
         self.assertEqual(self.internal_request.state, "cancelled")
-        self.assertEqual(
-            self.internal_request.cancel_user_id.id, self.env.user.id
-        )
+        self.assertEqual(self.internal_request.cancel_user_id.id, self.env.user.id)
         self.assertEqual(
             self.internal_request.cancel_date, datetime(2022, 1, 1, 0, 0, 0)
         )
@@ -399,15 +376,11 @@ class TestMedicalProductRequest(TransactionCase):
             }
         )
         administration.complete_administration_action()
-        self.assertEqual(
-            self.internal_request.product_administrations_count, 1
-        )
+        self.assertEqual(self.internal_request.product_administrations_count, 1)
         with self.assertRaises(ValidationError):
             self.internal_request.cancel_action()
         administration.cancel_action()
-        self.assertEqual(
-            self.internal_request.product_administrations_count, 0
-        )
+        self.assertEqual(self.internal_request.product_administrations_count, 0)
         self.internal_request.cancel_action()
         self.assertEqual(self.internal_request.state, "cancelled")
 
@@ -423,9 +396,7 @@ class TestMedicalProductRequest(TransactionCase):
         administration.complete_administration_action()
         self.internal_request.refresh()
         self.internal_request.flush()
-        action = (
-            self.internal_request.action_view_medical_product_administration()
-        )
+        action = self.internal_request.action_view_medical_product_administration()
         self.assertEqual(action["res_id"], administration.id)
 
     def test_product_request_constrains(self):

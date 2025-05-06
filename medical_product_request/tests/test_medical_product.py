@@ -67,16 +67,12 @@ class TestMedicalProduct(TransactionCase):
             medical_product.product_tmpl_id.ingredients,
             medical_product.ingredients,
         )
-        self.assertEqual(
-            medical_product.product_tmpl_id.name, medical_product.name
-        )
+        self.assertEqual(medical_product.product_tmpl_id.name, medical_product.name)
         self.assertEqual(
             medical_product.product_tmpl_id.product_type,
             medical_product.product_type,
         )
-        self.assertEqual(
-            medical_product.product_tmpl_id.dosage, medical_product.dosage
-        )
+        self.assertEqual(medical_product.product_tmpl_id.dosage, medical_product.dosage)
         self.assertEqual(
             medical_product.product_tmpl_id.form_id.id,
             medical_product.form_id.id,
@@ -88,9 +84,7 @@ class TestMedicalProduct(TransactionCase):
         If a product is created with a selected template,
         a product template should not be automatically created.
         """
-        self.assertTrue(
-            self.medical_product_ibuprofen_30_tablets.product_tmpl_id
-        )
+        self.assertTrue(self.medical_product_ibuprofen_30_tablets.product_tmpl_id)
         self.assertEqual(
             self.medical_product_ibuprofen_30_tablets.product_tmpl_id.ingredients,
             self.medical_product_ibuprofen_template.ingredients,
@@ -111,17 +105,13 @@ class TestMedicalProduct(TransactionCase):
             self.medical_product_ibuprofen_30_tablets.product_tmpl_id.form_id.id,
             self.medical_product_ibuprofen_template.form_id.id,
         )
-        self.assertEqual(
-            self.medical_product_ibuprofen_template.product_count, 1
-        )
+        self.assertEqual(self.medical_product_ibuprofen_template.product_count, 1)
 
     def test_action_view_medical_product_ids(self):
         action = (
             self.medical_product_ibuprofen_template.action_view_medical_product_ids()
         )
-        self.assertEqual(
-            action["res_id"], self.medical_product_ibuprofen_30_tablets.id
-        )
+        self.assertEqual(action["res_id"], self.medical_product_ibuprofen_30_tablets.id)
         self.assertEqual(action["res_model"], "medical.product.product")
 
     def test_compute_medical_product_name(self):

@@ -29,9 +29,7 @@ class MedicalProductRequest(models.Model):
     )
     # Fhir Concept: Status
 
-    request_order_id = fields.Many2one(
-        comodel_name="medical.product.request.order"
-    )
+    request_order_id = fields.Many2one(comodel_name="medical.product.request.order")
 
     product_type = fields.Selection(
         selection=[("medication", "Medication"), ("device", "Device")],
@@ -66,9 +64,7 @@ class MedicalProductRequest(models.Model):
         comodel_name="medical.product.product",
         compute="_compute_medical_product_id",
     )
-    quantity_to_dispense = fields.Integer(
-        compute="_compute_medical_product_id"
-    )
+    quantity_to_dispense = fields.Integer(compute="_compute_medical_product_id")
 
     patient_id = fields.Many2one(
         comodel_name="medical.patient",
@@ -142,9 +138,7 @@ class MedicalProductRequest(models.Model):
 
     observations = fields.Text()
 
-    @api.depends(
-        "request_order_id", "patient_id", "medical_product_template_id"
-    )
+    @api.depends("request_order_id", "patient_id", "medical_product_template_id")
     def _compute_patient_id_from_request_order_id(self):
         for rec in self:
             if rec.request_order_id:
@@ -165,16 +159,12 @@ class MedicalProductRequest(models.Model):
             if rec.request_order_id:
                 rec.encounter_id = rec.request_order_id.encounter_id.id
             elif rec.patient_id:
-                rec.encounter_id = (
-                    rec.patient_id._get_last_encounter_or_false()
-                )
+                rec.encounter_id = rec.patient_id._get_last_encounter_or_false()
             else:
                 rec.encounter_id = False
 
     # Without the medical_product_template_id dependency it was not computed
-    @api.depends(
-        "request_order_id", "patient_id", "medical_product_template_id"
-    )
+    @api.depends("request_order_id", "patient_id", "medical_product_template_id")
     def _compute_category_from_request_order_id(self):
         for rec in self:
             if rec.request_order_id:
@@ -185,10 +175,7 @@ class MedicalProductRequest(models.Model):
                 rec.category = False
 
     def _get_internal_identifier(self, vals):
-        return (
-            self.env["ir.sequence"].next_by_code("medical.product.request")
-            or "/"
-        )
+        return self.env["ir.sequence"].next_by_code("medical.product.request") or "/"
 
     @api.onchange("medical_product_template_id")
     def _get_default_dose_uom_id(self):
@@ -217,9 +204,7 @@ class MedicalProductRequest(models.Model):
                 )
             else:
                 categ = self.env.ref("uom.product_uom_categ_unit")
-                uoms = self.env["uom.uom"].search(
-                    [("category_id", "=", categ.id)]
-                )
+                uoms = self.env["uom.uom"].search([("category_id", "=", categ.id)])
                 rec.dose_uom_domain = json.dumps([("id", "in", uoms.ids)])
 
     @api.depends("medical_product_template_id")
@@ -255,17 +240,13 @@ class MedicalProductRequest(models.Model):
 
     def _get_medical_product_administration_values(self):
         route = (
-            self.administration_route_id.id
-            if self.administration_route_id
-            else False
+            self.administration_route_id.id if self.administration_route_id else False
         )
         return {
             "product_request_id": self.id,
             "medical_product_template_id": self.medical_product_template_id.id,
             "patient_id": self.patient_id.id,
-            "encounter_id": self.encounter_id.id
-            if self.encounter_id
-            else False,
+            "encounter_id": self.encounter_id.id if self.encounter_id else False,
             "quantity_administered": self.dose_quantity or 1,
             "quantity_administered_uom_id": self.dose_uom_id.id,
             "administration_route_id": route,
@@ -373,17 +354,13 @@ class MedicalProductRequest(models.Model):
         return 50
 
     def _get_amount_in_dose_uom_id(self, product):
-        return product.amount_uom_id._compute_quantity(
-            product.amount, self.dose_uom_id
-        )
+        return product.amount_uom_id._compute_quantity(product.amount, self.dose_uom_id)
 
     def _get_total_dose(self):
         duration_in_rate_uom_id = self.duration_uom_id._compute_quantity(
             self.duration, self.rate_uom_id
         )
-        return (
-            self.dose_quantity * self.rate_quantity * duration_in_rate_uom_id
-        )
+        return self.dose_quantity * self.rate_quantity * duration_in_rate_uom_id
 
     def _select_product_and_quantity(self, template):
         qty_to_dispense = 1
@@ -411,17 +388,11 @@ class MedicalProductRequest(models.Model):
             template = rec.medical_product_template_id
             product_id = False
             qty = 0
-            if (
-                rec.category == "discharge"
-                and template
-                and template.product_ids
-            ):
+            if rec.category == "discharge" and template and template.product_ids:
                 if template.product_type == "medication":
                     # Search the most appropriate medical_product_id
                     # and quantity to dispense
-                    product_id, qty = rec._select_product_and_quantity(
-                        template
-                    )
+                    product_id, qty = rec._select_product_and_quantity(template)
                 else:
                     product_id = template.product_ids[0].id
                     qty = rec.dose_quantity
