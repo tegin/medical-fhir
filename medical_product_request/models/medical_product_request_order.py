@@ -54,9 +54,7 @@ class MedicalProductRequestOrder(models.Model):
     # It is done with a default and not a "compute" because
     # we only want that it is computed when the record is created.
 
-    requester_id = fields.Many2one(
-        comodel_name="res.users", readonly=True, copy=False
-    )
+    requester_id = fields.Many2one(comodel_name="res.users", readonly=True, copy=False)
     validation_date = fields.Datetime(readonly=True, copy=False)
     # Fhir Concept: authoredOn
 
@@ -101,17 +99,13 @@ class MedicalProductRequestOrder(models.Model):
     @api.depends("patient_id")
     def _compute_last_encounter(self):
         if self.patient_id and (
-            not self.encounter_id
-            or self.encounter_id.patient_id != self.patient_id
+            not self.encounter_id or self.encounter_id.patient_id != self.patient_id
         ):
             self.encounter_id = self.patient_id._get_last_encounter_or_false()
 
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"].next_by_code(
-                "medical.product.request.order"
-            )
-            or "/"
+            self.env["ir.sequence"].next_by_code("medical.product.request.order") or "/"
         )
 
     @api.depends("state")
@@ -136,9 +130,7 @@ class MedicalProductRequestOrder(models.Model):
     def validate_action(self):
         self.ensure_one()
         if not self.product_request_ids:
-            raise ValidationError(
-                _("It must contain at least one prescription")
-            )
+            raise ValidationError(_("It must contain at least one prescription"))
         if self.category == "inpatient":
             self.draft2active_action()
         elif self.category == "discharge":

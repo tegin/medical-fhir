@@ -3,6 +3,7 @@
 from datetime import datetime
 
 import freezegun
+
 from odoo.exceptions import ValidationError
 from odoo.tests.common import Form, TransactionCase
 
@@ -57,9 +58,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
                 "encounter_id": self.encounter.id,
             }
         )
-        self.external_product_request = self.env[
-            "medical.product.request"
-        ].create(
+        self.external_product_request = self.env["medical.product.request"].create(
             {
                 "request_order_id": self.external_product_request_order.id,
                 "medical_product_template_id": self.ibuprofen_template.id,
@@ -80,9 +79,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
                 "encounter_id": self.encounter.id,
             }
         )
-        self.internal_product_request = self.env[
-            "medical.product.request"
-        ].create(
+        self.internal_product_request = self.env["medical.product.request"].create(
             {
                 "request_order_id": self.internal_product_request_order.id,
                 "medical_product_template_id": self.ibuprofen_template.id,
@@ -96,9 +93,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
         )
 
     def test_validate_action_without_product_request_ids(self):
-        product_request_order = self.env[
-            "medical.product.request.order"
-        ].create(
+        product_request_order = self.env["medical.product.request.order"].create(
             {
                 "category": "discharge",
                 "patient_id": self.patient.id,
@@ -111,9 +106,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
         self.assertEqual(self.external_product_request_order.state, "draft")
         with freezegun.freeze_time("2022-01-01"):
             self.external_product_request_order.validate_action()
-        self.assertEqual(
-            self.external_product_request_order.state, "completed"
-        )
+        self.assertEqual(self.external_product_request_order.state, "completed")
         self.assertFalse(self.external_product_request_order.can_administrate)
         self.assertEqual(
             self.external_product_request_order.validation_date,
@@ -126,9 +119,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
         for request in self.external_product_request_order.product_request_ids:
             self.assertEqual(request.state, "completed")
             self.assertFalse(request.can_administrate)
-            self.assertEqual(
-                request.validation_date, datetime(2022, 1, 1, 0, 0, 0)
-            )
+            self.assertEqual(request.validation_date, datetime(2022, 1, 1, 0, 0, 0))
             self.assertEqual(request.requester_id.id, self.env.user.id)
 
     def test_validate_action_inpatient_order(self):
@@ -149,9 +140,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
         for request in self.internal_product_request_order.product_request_ids:
             self.assertEqual(request.state, "active")
             self.assertTrue(request.can_administrate)
-            self.assertEqual(
-                request.validation_date, datetime(2022, 1, 1, 0, 0, 0)
-            )
+            self.assertEqual(request.validation_date, datetime(2022, 1, 1, 0, 0, 0))
             self.assertEqual(request.requester_id.id, self.env.user.id)
 
     def test_cancel_action(self):
@@ -159,9 +148,7 @@ class TestMedicalProductRequestOrder(TransactionCase):
         self.assertFalse(self.internal_product_request_order.can_administrate)
         with freezegun.freeze_time("2022-01-01"):
             self.internal_product_request_order.cancel_action()
-        self.assertEqual(
-            self.internal_product_request_order.state, "cancelled"
-        )
+        self.assertEqual(self.internal_product_request_order.state, "cancelled")
         self.assertFalse(self.internal_product_request_order.can_administrate)
         self.assertEqual(
             self.internal_product_request_order.cancel_date,
@@ -174,43 +161,31 @@ class TestMedicalProductRequestOrder(TransactionCase):
         for request in self.internal_product_request_order.product_request_ids:
             self.assertEqual(request.state, "cancelled")
             self.assertFalse(request.can_administrate)
-            self.assertEqual(
-                request.cancel_date, datetime(2022, 1, 1, 0, 0, 0)
-            )
+            self.assertEqual(request.cancel_date, datetime(2022, 1, 1, 0, 0, 0))
             self.assertEqual(request.cancel_user_id.id, self.env.user.id)
 
     def test_compute_medical_product_template_ids(self):
         self.assertEqual(
-            len(
-                self.internal_product_request_order.medical_product_template_ids
-            ),
+            len(self.internal_product_request_order.medical_product_template_ids),
             1,
         )
         self.assertEqual(
-            self.internal_product_request_order.medical_product_template_ids[
-                0
-            ].id,
+            self.internal_product_request_order.medical_product_template_ids[0].id,
             self.ibuprofen_template.id,
         )
 
     def test_get_last_encounter_or_false(self):
         patient = self.env["medical.patient"].create({"name": "Patient"})
-        product_request_order_1 = self.env[
-            "medical.product.request.order"
-        ].create(
+        product_request_order_1 = self.env["medical.product.request.order"].create(
             {
                 "category": "discharge",
                 "patient_id": patient.id,
             }
         )
         self.assertFalse(product_request_order_1.encounter_id)
-        encounter = self.env["medical.encounter"].create(
-            {"patient_id": patient.id}
-        )
+        encounter = self.env["medical.encounter"].create({"patient_id": patient.id})
         patient.refresh()
-        product_request_order_2 = self.env[
-            "medical.product.request.order"
-        ].create(
+        product_request_order_2 = self.env["medical.product.request.order"].create(
             {
                 "category": "discharge",
                 "patient_id": patient.id,
