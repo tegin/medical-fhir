@@ -54,6 +54,8 @@ Authors
 ~~~~~~~
 
 * Creu Blanca
+* Dixmit
+* Tegin
 
 Contributors
 ~~~~~~~~~~~~
