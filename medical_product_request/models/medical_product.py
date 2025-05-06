@@ -14,9 +14,7 @@ class MedicalProductTemplate(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _rec_name = "name_template"
 
-    name_template = fields.Char(
-        compute="_compute_medical_product_name", store=True
-    )
+    name_template = fields.Char(compute="_compute_medical_product_name", store=True)
 
     name = fields.Char(required=True)
 
@@ -82,9 +80,7 @@ class MedicalProductProduct(models.Model):
     _inherits = {"medical.product.template": "product_tmpl_id"}
     _rec_name = "name_product"
 
-    name_product = fields.Char(
-        compute="_compute_medical_product_name", store=True
-    )
+    name_product = fields.Char(compute="_compute_medical_product_name", store=True)
 
     product_tmpl_id = fields.Many2one(
         "medical.product.template",
@@ -133,9 +129,7 @@ class MedicalProductProduct(models.Model):
                 )
             else:
                 categ = self.env.ref("uom.product_uom_categ_unit")
-                uoms = self.env["uom.uom"].search(
-                    [("category_id", "=", categ.id)]
-                )
+                uoms = self.env["uom.uom"].search([("category_id", "=", categ.id)])
                 rec.amount_uom_domain = json.dumps([("id", "in", uoms.ids)])
 
     # If this is not done, when the product is duplicated, the product template too.
