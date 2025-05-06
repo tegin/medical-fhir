@@ -53,17 +53,17 @@ class MedicalImagingSeries(models.Model):
         )
     ]
 
-    def _save_qido_data(self, study, dic):
+    def _save_qido_data(self, study, values):
         return {
-            "instance_uid": dic["instance_uid"],
+            "instance_uid": values["instance_uid"],
             "imaging_study_id": study.id,
-            "series_number": dic["series_number"],
+            "series_number": values["series_number"],
             "modality_id": self.env["medical.imaging.acquisition.modality"]
-            .search([("code", "=", dic["modality"])], limit=1)
+            .search([("code", "=", values["modality"])], limit=1)
             .id,
-            "series_date": dic["series_date"],
-            "instances_count": dic["instances_count"],
-            "description": dic["description"],
+            "series_date": values["series_date"],
+            "instances_count": values["instances_count"],
+            "description": values.get("description"),
         }
 
     def _save_qido_data_from_study(self, study, dic):

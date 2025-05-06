@@ -17,7 +17,6 @@
                         <field name="endpoint_ids" />
                     </group>
                 </sheet>
-                <div class="oe_chatter" />
             </form>
         </field>
     </record>

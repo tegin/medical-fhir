@@ -5,13 +5,12 @@
     "name": "Medical Imaging Study",
     "summary": """
         Medical Imaging Study""",
-    "version": "13.0.1.0.0",
+    "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "author": "Creu Blanca,Odoo Community Association (OCA)",
+    "author": "Creu Blanca,Dixmit,Tegin",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": [
         "medical_administration_encounter",
-        "medical_clinical",
         "server_environment",
     ],
     "data": [

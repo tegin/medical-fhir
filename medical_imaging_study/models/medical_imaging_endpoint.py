@@ -1,6 +1,7 @@
 # Copyright 2021 Creu Blanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import re
 from datetime import datetime
 
 import pytz
@@ -76,6 +77,11 @@ class MedicalImagingEndpoint(models.Model):
             study.update(result)
         return study.get_formview_action()
 
+    def _get_date(self, date_str):
+        if re.match(r"\d{14}\.\d+", date_str):
+            return datetime.strptime(date_str, "%Y%m%d%H%M%S.%f")
+        return datetime.strptime(date_str, "%Y%m%d%H%M%S")
+
     def _process_study_qido_data(self, study_data, series_data):
         tz = self.tz or self.env.user.tz
         if "00080201" in study_data:
@@ -83,10 +89,9 @@ class MedicalImagingEndpoint(models.Model):
         context_tz = pytz.timezone(tz)
         study_date = (
             context_tz.localize(
-                datetime.strptime(
+                self._get_date(
                     study_data["00080020"]["Value"][0]
                     + study_data["00080030"]["Value"][0],
-                    "%Y%m%d%H:%M:%S",
                 )
             )
             .astimezone(pytz.UTC)
@@ -106,23 +111,23 @@ class MedicalImagingEndpoint(models.Model):
             context_tz = pytz.timezone(self.tz or self.env.user.tz)
             series_date = (
                 context_tz.localize(
-                    datetime.strptime(
+                    self._get_date(
                         series["00080021"]["Value"][0] + series["00080031"]["Value"][0],
-                        "%Y%m%d%H:%M:%S",
                     )
                 )
                 .astimezone(pytz.UTC)
                 .replace(tzinfo=None)
             )
-            dic = {
+            values = {
                 "instance_uid": series["0020000E"]["Value"][0],
                 "series_number": series["00200011"]["Value"][0],
                 "modality": series["00080060"]["Value"][0],
-                "description": series["0008103E"]["Value"][0],
                 "instances_count": series["00201209"]["Value"][0],
                 "series_date": series_date,
             }
-            series_processed.append(dic)
+            if series.get("0008103E"):
+                values["description"] = series["0008103E"]["Value"][0]
+            series_processed.append(values)
         return series_processed
 
     @property
