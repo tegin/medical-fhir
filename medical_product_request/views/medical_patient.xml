@@ -5,11 +5,7 @@
     <record model="ir.ui.view" id="medical_patient_form_view">
         <field name="name">medical.patient.form (in medical_product_request)</field>
         <field name="model">medical.patient</field>
-        <field name="inherit_id" ref="medical_administration.medical_patient_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('medical_product_request.group_medical_product_request_display'))]"
-        />
+        <field name="inherit_id" ref="medical_base.medical_patient_form" />
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button
@@ -19,7 +15,6 @@
                     type="object"
                     context="{'default_category': 'discharge', 'default_patient_id': id}"
                     icon="fa-prescription"
-                    groups="medical_product_request.group_medical_product_request_display"
                 />
                 <button
                     name="create_medical_product_request_order"
@@ -28,7 +23,6 @@
                     type="object"
                     context="{'default_category': 'inpatient',  'default_patient_id': id}"
                     icon="fa-pills"
-                    groups="medical_product_request.group_medical_product_request_display"
                 />
             </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
@@ -37,7 +31,6 @@
                     name="action_view_external_medical_product_request_order_ids"
                     class="oe_stat_button"
                     icon="fa-prescription"
-                    groups="medical_product_request.group_medical_product_request_display"
                 >
                     <field
                         name="external_product_request_order_count"
@@ -50,7 +43,6 @@
                     name="action_view_internal_medical_product_request_order_ids"
                     class="oe_stat_button"
                     icon="fa-pills"
-                    groups="medical_product_request.group_medical_product_request_display"
                 >
                     <field
                         name="internal_product_request_order_count"

@@ -191,12 +191,12 @@ class TestMedicalProductRequest(TransactionCase):
             }
         )
         product_request_2.with_context(
-            {"default_patient_id": self.patient.id}
+            **{"default_patient_id": self.patient.id}
         )._compute_patient_id_from_request_order_id()
         self.assertEqual(product_request_2.patient_id.id, self.patient.id)
         self.assertEqual(product_request_2.encounter_id.id, self.encounter.id)
         product_request_2.with_context(
-            {"default_category": "discharge"}
+            **{"default_category": "discharge"}
         )._compute_category_from_request_order_id()
         self.assertEqual(product_request_2.category, "discharge")
 

@@ -29,7 +29,7 @@ class TestMedicalPatient(TransactionCase):
 
     def test_create_medical_product_request(self):
         action = self.patient.with_context(
-            {"default_category": "discharge"}
+            **{"default_category": "discharge"}
         ).create_medical_product_request_order()
         self.assertEqual(action["res_model"], "medical.product.request.order")
         self.assertEqual(action["context"]["default_encounter_id"], self.encounter.id)
