@@ -6,6 +6,7 @@ import logging
 from datetime import date, datetime
 
 import freezegun
+
 from odoo.tests import TransactionCase
 
 _logger = logging.getLogger(__name__)
@@ -55,9 +56,7 @@ class TestMedicalProcedureExternal(TransactionCase):
             }
         )
         action = report_generation.generate()
-        self.report = self.env[action.get("res_model")].browse(
-            action.get("res_id")
-        )
+        self.report = self.env[action.get("res_model")].browse(action.get("res_id"))
 
     def test_finalization(self):
         self.assertNotEqual(self.report.state, "final")
@@ -71,9 +70,7 @@ class TestMedicalProcedureExternal(TransactionCase):
         self.assertTrue(self.report.issued_date)
         self.assertFalse(self.report.is_editable)
         self.assertTrue(self.report.is_cancellable)
-        self.assertEqual(
-            self.report.issued_date, datetime(2020, 1, 1, 0, 0, 0)
-        )
+        self.assertEqual(self.report.issued_date, datetime(2020, 1, 1, 0, 0, 0))
         self.assertTrue(self.report.issued_user_id)
         self.assertEqual(self.report.issued_user_id, self.env.user)
 
@@ -93,9 +90,7 @@ class TestMedicalProcedureExternal(TransactionCase):
             self.report.cancel_action()
         self.assertEqual(self.report.state, "cancelled")
         self.assertTrue(self.report.cancel_date)
-        self.assertEqual(
-            self.report.cancel_date, datetime(2020, 1, 1, 0, 0, 0)
-        )
+        self.assertEqual(self.report.cancel_date, datetime(2020, 1, 1, 0, 0, 0))
         self.assertFalse(self.report.is_editable)
         self.assertFalse(self.report.is_cancellable)
         self.assertTrue(self.report.cancel_user_id)
@@ -106,16 +101,16 @@ class TestMedicalProcedureExternal(TransactionCase):
         with freezegun.freeze_time("2020-01-01"):
             self.assertEqual(
                 18,
-                self.env[
-                    "medical.procedure.external.request.template"
-                ]._compute_age(self.patient_1),
+                self.env["medical.procedure.external.request.template"]._compute_age(
+                    self.patient_1
+                ),
             )
         with freezegun.freeze_time("2019-12-31"):
             self.assertEqual(
                 17,
-                self.env[
-                    "medical.procedure.external.request.template"
-                ]._compute_age(self.patient_1),
+                self.env["medical.procedure.external.request.template"]._compute_age(
+                    self.patient_1
+                ),
             )
 
     def test_report_generation(self):
