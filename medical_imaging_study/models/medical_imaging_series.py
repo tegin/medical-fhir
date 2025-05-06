@@ -68,9 +68,7 @@ class MedicalImagingSeries(models.Model):
 
     def _save_qido_data_from_study(self, study, dic):
         result = self._save_qido_data(study, dic)
-        series = self.search(
-            [("instance_uid", "=", dic["instance_uid"])], limit=1
-        )
+        series = self.search([("instance_uid", "=", dic["instance_uid"])], limit=1)
         if series:
             return (1, series.id, result)
         return (0, 0, result)

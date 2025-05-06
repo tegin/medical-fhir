@@ -1,6 +1,7 @@
 # generated from manifests external_dependencies
 bokeh
 chromedriver-binary
+dicomweb_client
 numpy
 pandas
 selenium

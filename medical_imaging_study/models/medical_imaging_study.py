@@ -9,9 +9,7 @@ class MedicalImagingStudy(models.Model):
     _name = "medical.imaging.study"
     _description = "Medical Imaging Study"
 
-    name = fields.Char(
-        compute="_compute_study_name", store=True
-    )  # Not in FHIR
+    name = fields.Char(compute="_compute_study_name", store=True)  # Not in FHIR
 
     instance_uid = fields.Char(index=True, readonly=True)
 
@@ -30,9 +28,7 @@ class MedicalImagingStudy(models.Model):
     patient_id = fields.Many2one(comodel_name="medical.patient", readonly=True)
     # FHIR: subject
 
-    encounter_id = fields.Many2one(
-        comodel_name="medical.encounter", readonly=True
-    )
+    encounter_id = fields.Many2one(comodel_name="medical.encounter", readonly=True)
     # FHIR: encounter
 
     study_date = fields.Datetime(string="Date", readonly=True)
@@ -118,6 +114,4 @@ class MedicalImagingStudy(models.Model):
 
     def update_study_data(self):
         self.ensure_one()
-        self.storage_ids.mapped("endpoint_ids")._import_imaging_study(
-            self.instance_uid
-        )
+        self.storage_ids.mapped("endpoint_ids")._import_imaging_study(self.instance_uid)
