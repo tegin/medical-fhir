@@ -23,9 +23,7 @@ class MedicalProcedureExternalRequest(models.Model):
         default="draft",
         copy=False,
     )
-    lang = fields.Selection(
-        string="Language", selection="_get_lang", readonly=True
-    )
+    lang = fields.Selection(string="Language", selection="_get_lang", readonly=True)
     patient_id = fields.Many2one(
         related="encounter_id.patient_id",
         store=True,
@@ -49,9 +47,7 @@ class MedicalProcedureExternalRequest(models.Model):
     )
     composition = fields.Html(readonly=True)
     is_cancellable = fields.Boolean(compute="_compute_is_cancellable")
-    cancel_date = fields.Datetime(
-        string="Cancelled Date", readonly=True, copy=False
-    )
+    cancel_date = fields.Datetime(string="Cancelled Date", readonly=True, copy=False)
     cancel_user_id = fields.Many2one(
         "res.users", string="Cancelled by User", readonly=True, copy=False
     )
@@ -66,9 +62,7 @@ class MedicalProcedureExternalRequest(models.Model):
 
     def _get_internal_identifier(self, vals):
         return (
-            self.env["ir.sequence"].next_by_code(
-                "medical.procedure.external.request"
-            )
+            self.env["ir.sequence"].next_by_code("medical.procedure.external.request")
             or "/"
         )
 

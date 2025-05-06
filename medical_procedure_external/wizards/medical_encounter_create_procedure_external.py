@@ -29,7 +29,7 @@ class MedicalEncounterCreateExternalRequest(models.TransientModel):
 
     def generate(self):
         self.ensure_one()
-        report = self.template_id.with_context(
-            lang=self.lang
-        )._generate_request(**self._generate_kwargs())
+        report = self.template_id.with_context(lang=self.lang)._generate_request(
+            **self._generate_kwargs()
+        )
         return report.get_formview_action()
