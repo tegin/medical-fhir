@@ -6,9 +6,11 @@ from datetime import datetime
 import pytz
 from dicomweb_client.api import DICOMwebClient
 from dicomweb_client.session_utils import create_session_from_auth
-from odoo import api, fields, models
-from odoo.addons.base.models.res_partner import _tz_get
 from requests.auth import HTTPBasicAuth
+
+from odoo import api, fields, models
+
+from odoo.addons.base.models.res_partner import _tz_get
 
 
 class MedicalImagingEndpoint(models.Model):
@@ -26,9 +28,7 @@ class MedicalImagingEndpoint(models.Model):
     url = fields.Char()
     user = fields.Char()
     password = fields.Char()
-    storage_id = fields.Many2one(
-        comodel_name="medical.imaging.storage", required=True
-    )
+    storage_id = fields.Many2one(comodel_name="medical.imaging.storage", required=True)
     tz = fields.Selection(
         _tz_get,
         string="Timezone",
@@ -107,8 +107,7 @@ class MedicalImagingEndpoint(models.Model):
             series_date = (
                 context_tz.localize(
                     datetime.strptime(
-                        series["00080021"]["Value"][0]
-                        + series["00080031"]["Value"][0],
+                        series["00080021"]["Value"][0] + series["00080031"]["Value"][0],
                         "%Y%m%d%H:%M:%S",
                     )
                 )
