@@ -123,7 +123,7 @@
                                         name="rate_uom_id"
                                         string="Uom"
                                         attrs="{'invisible': [('product_type', '!=', 'medication')], 'required': [('product_type', '==', 'medication')]}"
-                                        domain="[('measure_type', '=', 'working_time')]"
+                                        domain="[('category_id', '=', %(uom.uom_categ_wtime)s)]"
                                         options="{'no_create': True, 'no_open': True}"
                                     />
                                     <field name="category" invisible="1" />
@@ -137,7 +137,7 @@
                                         name="duration_uom_id"
                                         string="Uom"
                                         attrs="{'invisible': [('product_type', '!=', 'medication')], 'required': [('product_type', '==', 'medication')]}"
-                                        domain="[('measure_type', '=', 'working_time')]"
+                                        domain="[('category_id', '=', %(uom.uom_categ_wtime)s)]"
                                         options="{'no_create': True, 'no_open': True}"
                                     />
                                     <field

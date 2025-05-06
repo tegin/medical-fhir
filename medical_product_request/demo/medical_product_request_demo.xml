@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="encounter_01_patient_01" model="medical.encounter">
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
     </record>
     <record id="tablet_uom_uom" model="uom.uom">
         <field name="category_id" ref="uom.product_uom_categ_unit" />
@@ -93,7 +93,7 @@
     >
         <field name="state">draft</field>
         <field name="category">discharge</field>
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
         <field name="encounter_id" ref="encounter_01_patient_01" />
     </record>
     <record
@@ -200,7 +200,7 @@
     >
         <field name="state">active</field>
         <field name="category">inpatient</field>
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
         <field name="encounter_id" ref="encounter_01_patient_01" />
     </record>
     <record
@@ -241,7 +241,7 @@
     >
         <field name="state">draft</field>
         <field name="category">inpatient</field>
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
         <field name="encounter_id" ref="encounter_01_patient_01" />
     </record>
     <record
