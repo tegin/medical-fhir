@@ -59,16 +59,14 @@ class TestMedicalProcedureExternal(TransactionCase):
         self.report = self.env[action.get("res_model")].browse(action.get("res_id"))
 
     def test_finalization(self):
-        self.assertNotEqual(self.report.state, "final")
+        self.assertNotEqual(self.report.fhir_state, "final")
         self.assertFalse(self.report.issued_date)
         self.assertFalse(self.report.issued_user_id)
-        self.assertTrue(self.report.is_editable)
         self.assertTrue(self.report.is_cancellable)
         with freezegun.freeze_time("2020-01-01"):
             self.report.draft2final_action()
-        self.assertEqual(self.report.state, "final")
+        self.assertEqual(self.report.fhir_state, "final")
         self.assertTrue(self.report.issued_date)
-        self.assertFalse(self.report.is_editable)
         self.assertTrue(self.report.is_cancellable)
         self.assertEqual(self.report.issued_date, datetime(2020, 1, 1, 0, 0, 0))
         self.assertTrue(self.report.issued_user_id)
@@ -81,17 +79,15 @@ class TestMedicalProcedureExternal(TransactionCase):
         )
 
     def test_cancellation(self):
-        self.assertNotEqual(self.report.state, "cancelled")
+        self.assertNotEqual(self.report.fhir_state, "cancelled")
         self.assertFalse(self.report.cancel_date)
         self.assertFalse(self.report.cancel_user_id)
-        self.assertTrue(self.report.is_editable)
         self.assertTrue(self.report.is_cancellable)
         with freezegun.freeze_time("2020-01-01"):
             self.report.cancel_action()
-        self.assertEqual(self.report.state, "cancelled")
+        self.assertEqual(self.report.fhir_state, "cancelled")
         self.assertTrue(self.report.cancel_date)
         self.assertEqual(self.report.cancel_date, datetime(2020, 1, 1, 0, 0, 0))
-        self.assertFalse(self.report.is_editable)
         self.assertFalse(self.report.is_cancellable)
         self.assertTrue(self.report.cancel_user_id)
         self.assertEqual(self.report.cancel_user_id, self.env.user)

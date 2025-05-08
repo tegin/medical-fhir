@@ -19,7 +19,7 @@
                     class="oe_stat_button btn-info"
                     icon="fa-file-prescription"
                     string="Generate External Request"
-                    groups="medical_procedure_external.group_medical_procedure_external_request_manager"
+                    groups="medical_base.group_medical_doctor"
                 />
             </xpath>
             <xpath expr="//div[@name='button_box']" position="inside">
@@ -28,7 +28,7 @@
                     name="action_view_external_request"
                     class="oe_stat_button"
                     icon="fa-file-prescription"
-                    groups="medical_procedure_external.group_medical_procedure_external_request_list"
+                    groups="medical_base.group_medical_doctor"
                     attrs="{'invisible':[('external_request_count', '=', 0)]}"
                 >
                     <field

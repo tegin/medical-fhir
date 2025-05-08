@@ -12,16 +12,15 @@ class MedicalProcedureExternalRequest(models.Model):
 
     @api.model
     def _get_states(self):
-        return [
-            ("draft", "Draft"),
-            ("final", "Final"),
-            ("cancelled", "Cancelled"),
-        ]
+        return {
+            "draft": ("Draft", "draft"),
+            "final": ("Final", "done"),
+            "cancelled": ("Cancelled", "done"),
+        }
 
     name = fields.Char(string="Procedure Name")
-    state = fields.Selection(
+    fhir_state = fields.Selection(
         default="draft",
-        copy=False,
     )
     lang = fields.Selection(string="Language", selection="_get_lang", readonly=True)
     patient_id = fields.Many2one(
@@ -68,7 +67,7 @@ class MedicalProcedureExternalRequest(models.Model):
 
     def draft2final_change_state(self):
         return {
-            "state": "final",
+            "fhir_state": "final",
             "issued_date": fields.Datetime.now(),
             "issued_user_id": self.env.user.id,
         }
@@ -81,7 +80,7 @@ class MedicalProcedureExternalRequest(models.Model):
 
     def _cancel_vals(self):
         return {
-            "state": "cancelled",
+            "fhir_state": "cancelled",
             "cancel_date": fields.Datetime.now(),
             "cancel_user_id": self.env.user.id,
         }
@@ -89,18 +88,10 @@ class MedicalProcedureExternalRequest(models.Model):
     def cancel_action(self):
         self.write(self._cancel_vals())
 
-    @api.depends("state")
-    def _compute_is_editable(self):
-        for rec in self:
-            rec.is_editable = rec._is_editable()
-
-    def _is_editable(self):
-        return self.state in ("draft",)
-
-    @api.depends("state")
+    @api.depends("fhir_state")
     def _compute_is_cancellable(self):
         for rec in self:
             rec.is_cancellable = rec._is_cancellable()
 
     def _is_cancellable(self):
-        return self.state in ("draft", "final")
+        return self.fhir_state in ("draft", "final")
