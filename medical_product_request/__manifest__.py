@@ -26,6 +26,7 @@
         "views/medical_product_request.xml",
         "views/medication_form.xml",
         "views/medical_administration_route.xml",
+        "views/report_medical_product_request.xml",
     ],
     "demo": ["demo/medical_product_request_demo.xml"],
 }

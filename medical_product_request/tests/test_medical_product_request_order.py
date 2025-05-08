@@ -184,14 +184,14 @@ class TestMedicalProductRequestOrder(TransactionCase):
         )
         self.assertFalse(product_request_order_1.encounter_id)
         encounter = self.env["medical.encounter"].create({"patient_id": patient.id})
-        patient.refresh()
+        patient.invalidate_recordset()
         product_request_order_2 = self.env["medical.product.request.order"].create(
             {
                 "category": "discharge",
                 "patient_id": patient.id,
             }
         )
-        product_request_order_2.refresh()
+        product_request_order_2.invalidate_recordset()
         self.assertEqual(product_request_order_2.encounter_id.id, encounter.id)
 
     def test_onchange_encounter_date(self):
