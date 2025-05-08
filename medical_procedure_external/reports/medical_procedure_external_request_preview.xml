@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record
-        id="medical_procedure_external_request_template_preview"
+        id="medical_procedure_external_request_template_report_preview"
         model="ir.actions.report"
     >
         <field name="name">External Request Preview</field>

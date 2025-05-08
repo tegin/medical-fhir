@@ -4,7 +4,7 @@
 <odoo noupdate="1">
     <record model="medical.encounter" id="medical_encounter_demo_1">
         <field name="name">Encounter 1</field>
-        <field name="patient_id" ref="medical_administration.patient_01" />
+        <field name="patient_id" ref="medical_base.patient_01" />
     </record>
     <record
         model="medical.procedure.external.request.template"
@@ -25,7 +25,7 @@
         <field name="encounter_id" ref="medical_encounter_demo_1" />
         <field
             name="template_ids"
-            eval="[(6, 0, [ref('medical_procedure_external_template_demo_1')])]"
+            eval="[(4, ref('medical_procedure_external.medical_procedure_external_template_demo_1'))]"
         />
     </record>
 </odoo>
