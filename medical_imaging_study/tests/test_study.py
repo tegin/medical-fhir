@@ -35,7 +35,7 @@ class TestStudy(TransactionCase):
         mock_client_instance.search_for_studies.return_value = [
             {
                 "00080020": {"Value": ["20230101"]},
-                "00080030": {"Value": ["00:00:00"]},
+                "00080030": {"Value": ["000000"]},
                 "00081030": {"Value": ["Test Study"]},
                 "0020000D": {"Value": ["1.2.3"]},
                 "00080050": {"Value": ["Test Accession Number"]},
@@ -44,7 +44,7 @@ class TestStudy(TransactionCase):
         mock_client_instance.search_for_series.return_value = [
             {
                 "00080021": {"Value": ["20230101"]},
-                "00080031": {"Value": ["00:00:00"]},
+                "00080031": {"Value": ["000000"]},
                 "0020000E": {"Value": ["4.5.6"]},
                 "00200011": {"Value": ["1"]},
                 "00080060": {"Value": ["MR"]},
