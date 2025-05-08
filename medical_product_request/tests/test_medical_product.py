@@ -61,7 +61,7 @@ class TestMedicalProduct(TransactionCase):
                 "amount_uom_id": self.tablet_uom.id,
             }
         )
-        medical_product.refresh()
+        medical_product.invalidate_recordset()
         self.assertTrue(medical_product.product_tmpl_id)
         self.assertEqual(
             medical_product.product_tmpl_id.ingredients,

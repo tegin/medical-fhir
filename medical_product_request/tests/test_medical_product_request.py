@@ -394,8 +394,8 @@ class TestMedicalProductRequest(TransactionCase):
             }
         )
         administration.complete_administration_action()
-        self.internal_request.refresh()
-        self.internal_request.flush()
+        self.internal_request.invalidate_recordset()
+        self.internal_request.flush_recordset()
         action = self.internal_request.action_view_medical_product_administration()
         self.assertEqual(action["res_id"], administration.id)
 
