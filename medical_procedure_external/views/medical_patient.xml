@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 CreuBlanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_patient_his_form_view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='administration_data']" position="after">
+                <page name="procedure_external" string="External Procedures">
+                    <field
+                        name="external_request_ids_filtered"
+                        widget="medical_one2many"
+                        readonly="1"
+                        options="{'record_action': 'get_formview_action'}"
+                    >
+                        <tree
+                            default_order="fhir_state asc, create_date desc"
+                            decoration-warning="fhir_state == 'draft'"
+                        >
+                            <field name="internal_identifier" />
+                            <field name="name" />
+                            <field name="encounter_id" />
+                            <field name="issued_user_id" />
+                            <field name="issued_date" />
+                            <field name="create_date" />
+                            <field name="state" invisible="1" />
+                            <field name="fhir_state" invisible="1" />
+                        </tree>
+                    </field>
+
+
+                    <button
+                        type="action"
+                        name="%(medical_procedure_external.medical_patient_create_procedure_external_act_window)s"
+                        class="oe_stat_button btn-info"
+                        icon="fa-file-prescription"
+                        string="Generate External Request"
+                        groups="medical_base.group_medical_doctor"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
