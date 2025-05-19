@@ -46,7 +46,7 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page name="diagnostic_reports" string="Reports">
-                    <field name="report_ids" widget="one2many_list" readonly="1">
+                    <field name="report_ids" widget="medical_one2many" readonly="1">
                         <tree
                             decoration-warning="fhir_state == 'registered'"
                             decoration-danger="fhir_state == 'cancelled'"
