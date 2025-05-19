@@ -53,4 +53,97 @@
             </xpath>
         </field>
     </record>
+    <record model="ir.ui.view" id="medical_patient_his_form_view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='administration_data']" position="after">
+                <page name="product_request" string="Product Request">
+                    <group invisible="0">
+                        <separator
+                            string="Invisible Separator"
+                            colspan="2"
+                            invisible="1"
+                        />
+                    </group>
+                    <group>
+                        <separator string="Internal Medical Orders" colspan="2" />
+                        <field
+                            name="internal_product_request_order_ids"
+                            widget="medical_one2many"
+                            readonly="1"
+                            options="{'record_action': 'get_formview_action'}"
+                            colspan="2"
+                            nolabel="1"
+                        >
+                            <tree
+                                decoration-muted="state == 'cancelled'"
+                                decoration-success="state == 'completed'"
+                                decoration-warning="state == 'draft'"
+                            >
+                                <field name="internal_identifier" />
+                                <field name="patient_id" invisible="1" />
+                                <field name="encounter_id" />
+                                <field
+                                    name="medical_product_template_ids"
+                                    widget="many2many_tags"
+                                />
+                                <field name="requester_id" />
+                                <field name="validation_date" />
+                                <field name="state" />
+                            </tree>
+                        </field>
+                        <button
+                            name="create_medical_product_request_order"
+                            class="oe_stat_button btn-warning"
+                            string="Create Int. Medical Order"
+                            type="object"
+                            context="{'default_category': 'inpatient', 'default_patient_id': id}"
+                            icon="fa-pills"
+                            colspan="2"
+                        />
+                    </group>
+                    <group>
+                        <separator string="External Prescriptions" colspan="2" />
+
+                        <field
+                            name="external_product_request_order_ids"
+                            widget="medical_one2many"
+                            readonly="1"
+                            options="{'record_action': 'get_formview_action'}"
+                            colspan="2"
+                            nolabel="1"
+                        >
+                            <tree
+                                decoration-muted="state == 'cancelled'"
+                                decoration-success="state == 'completed'"
+                                decoration-warning="state == 'draft'"
+                            >
+                                <field name="internal_identifier" />
+                                <field name="patient_id" invisible="1" />
+                                <field name="encounter_id" />
+                                <field
+                                    name="medical_product_template_ids"
+                                    widget="many2many_tags"
+                                />
+                                <field name="requester_id" />
+                                <field name="validation_date" />
+                                <field name="state" />
+                            </tree>
+                        </field>
+                        <button
+                            name="create_medical_product_request_order"
+                            class="oe_stat_button btn-success"
+                            string="Create Ext. Prescription"
+                            type="object"
+                            context="{'default_category': 'discharge', 'default_patient_id': id}"
+                            icon="fa-prescription"
+                            colspan="2"
+                        />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
 </odoo>
