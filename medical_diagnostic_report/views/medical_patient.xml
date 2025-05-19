@@ -53,7 +53,7 @@
                 <page name="diagnostic_reports" string="Reports">
                     <field
                         name="diagnostic_report_ids"
-                        widget="one2many_list"
+                        widget="medical_one2many"
                         readonly="1"
                         options="{'record_action': 'get_formview_action'}"
                     >
