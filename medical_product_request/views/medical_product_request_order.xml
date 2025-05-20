@@ -51,15 +51,16 @@
                         <field name="internal_identifier" readonly="1" />
                     </h2>
                     <group name="patient">
+                        <field
+                            name="encounter_warning"
+                            nolabel="1"
+                            decoration-danger="1"
+                            colspan="2"
+                            attrs="{'invisible':[('show_encounter_warning', '=', False)]}"
+                        />
+                        <field name="show_encounter_warning" invisible="1" />
                         <group>
                             <field name="patient_id" readonly="1" force_save="1" />
-                            <field
-                                name="encounter_warning"
-                                nolabel="1"
-                                decoration-danger="1"
-                                attrs="{'invisible':[('show_encounter_warning', '=', False)]}"
-                            />
-                            <field name="show_encounter_warning" invisible="1" />
                             <field
                                 name="encounter_id"
                                 widget="selection"
