@@ -10,7 +10,10 @@
                         t-as="condition_id"
                         t-key="condition_id"
                     >
-                        <t t-set="condition" t-value="props.value[condition_id]" />
+                        <t
+                            t-set="condition"
+                            t-value="props.value[condition_id] or {}"
+                        />
                         <span
                             t-esc="condition['name']"
                             t-if="state.all_data or condition['create_warning']"
