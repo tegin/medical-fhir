@@ -14,6 +14,7 @@
                 <field
                     name="encounter_warning"
                     nolabel="1"
+                    colspan="2"
                     decoration-danger="1"
                     attrs="{'invisible':[('show_encounter_warning', '=', False)]}"
                 />
