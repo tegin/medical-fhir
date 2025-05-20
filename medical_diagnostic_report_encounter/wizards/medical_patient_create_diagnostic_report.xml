@@ -18,19 +18,22 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='patient_id']" position="after">
                 <field
-                    name="encounter_warning"
-                    nolabel="1"
-                    decoration-danger="1"
-                    attrs="{'invisible':[('show_encounter_warning', '=', False)]}"
-                />
-                <field name="show_encounter_warning" invisible="1" />
-                <field
                     name="encounter_id"
                     widget="selection"
                     readonly="False"
                     domain="[('patient_id', '=', patient_id)]"
                 />
                 <field name="lang" widget="selection" />
+            </xpath>
+            <xpath expr="//field[@name='template_id']" position="after">
+                <field
+                    name="encounter_warning"
+                    colspan="2"
+                    nolabel="1"
+                    decoration-danger="1"
+                    attrs="{'invisible':[('show_encounter_warning', '=', False)]}"
+                />
+                <field name="show_encounter_warning" invisible="1" />
             </xpath>
         </field>
     </record>
