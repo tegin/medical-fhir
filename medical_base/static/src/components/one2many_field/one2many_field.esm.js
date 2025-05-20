@@ -30,9 +30,11 @@ MedicalX2ManyField.props = {
     ...X2ManyField.props,
     record_action: {type: String, optional: true},
 };
+const X2ManyFieldExtractProps = X2ManyField.extractProps;
+
 MedicalX2ManyField.extractProps = ({field, attrs}) => {
     return {
-        ...X2ManyField.extractProps({field, attrs}),
+        ...X2ManyFieldExtractProps({field, attrs}),
         record_action: attrs.options.record_action,
     };
 };
