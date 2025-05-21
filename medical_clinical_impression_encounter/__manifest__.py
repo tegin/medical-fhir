@@ -18,6 +18,7 @@
         "wizards/create_impression_from_encounter.xml",
         "wizards/create_impression_from_patient.xml",
         "views/medical_encounter.xml",
+        "views/medical_clinical_impression.xml",
     ],
     "demo": ["demo/medical_demo.xml"],
 }
