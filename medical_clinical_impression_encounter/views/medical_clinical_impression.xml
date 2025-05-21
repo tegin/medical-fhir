@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Clinical Impressions -->
+    <record id="medical_clinical_impression_form_view" model="ir.ui.view">
+        <field name="name">medical.clinical.impression.form.encounter</field>
+        <field name="model">medical.clinical.impression</field>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_impression.medical_clinical_impression_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group/field[@name='specialty_id']" position="after">
+                <field
+                    name="encounter_id"
+                    options="{'no_create': True, 'no_open': True}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
