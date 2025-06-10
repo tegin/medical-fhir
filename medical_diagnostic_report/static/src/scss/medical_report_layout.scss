@@ -77,7 +77,10 @@
     }
 }
 .o_patient_information {
-    padding-bottom: 16px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #dcd5d5;
+    border-bottom: 1px solid #dcd5d5;
 }
 .o_diagnostic_report_layout {
     .oe_red {
@@ -116,12 +119,13 @@
                 }
                 &.o_line_subsection td {
                     background-color: #fff;
-                    padding-top: 20px;
+                    padding-top: 15px;
                     border-bottom: 1px solid gray("700");
                 }
                 &.o_line_section td {
                     background-color: #fff;
-                    text-align: right;
+                    padding-top: 20px;
+                    text-align: left;
                     border-bottom: 2px solid gray("700");
                 }
             }
