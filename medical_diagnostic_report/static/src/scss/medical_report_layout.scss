@@ -116,12 +116,13 @@
                 }
                 &.o_line_subsection td {
                     background-color: #fff;
-                    padding-top: 20px;
+                    padding-top: 15px;
                     border-bottom: 1px solid gray("700");
                 }
                 &.o_line_section td {
                     background-color: #fff;
-                    text-align: right;
+                    text-align: left;
+                    padding-top: 20px;
                     border-bottom: 2px solid gray("700");
                 }
             }
