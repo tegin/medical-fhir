@@ -31,9 +31,9 @@
     </template>
     <template id="diagnostic_report_base_layout">
         <div class="header" t-att-style="report_header_style">
-            <div class="o_diagnostic_report_layout_header">
+            <div class="o_diagnostic_report_layout_header  mb-5">
                 <div class="row">
-                    <div class="col-6 text-left">
+                    <div class="col-4 text-left">
                         <img
                             t-if="partner.image_1920"
                             t-att-src="image_data_uri(partner.image_1920)"
@@ -41,13 +41,40 @@
                             class="text-left"
                             style="max-width:100%"
                         />
+                        <div name="patient_id" class="d-none" />
+                        <div name="internal_identifier" class="d-none" />
                     </div>
-                    <div class="col-6 text-right o_patient_header ">
-                        <h6>
-                            <div name="patient_id" />
-                        </h6>
-                        <div name="internal_identifier" />
+                    <div class="col-2" />
+
+                    <div class="col-6 text-end lh-sm" name="company_address">
+                        <ul class="list-unstyled text-muted small">
+                            <li t-if="partner.name">
+                                <span
+                                    class="fw-bold fs-4 text-900"
+                                    t-field="partner.name"
+                                />
+                            </li>
+
+                            <li t-if="partner.street" class="text-end">
+
+                                <span t-esc="partner.street" />
+
+                            </li>
+                            <li t-if="partner.street" class="text-end">
+                                <span t-esc="partner.city" />, <span
+                                    t-esc="partner.zip"
+                                />
+
+                            </li>
+                            <li t-if="partner.phone">
+                                <span class="" t-esc="partner.phone" />
+                            </li>
+                            <!-- <li t-if="partner.website">
+                                <span class="text-primary" t-esc="partner.website" />
+                            </li> -->
+                        </ul>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -79,11 +106,7 @@
 
                     </li>
                     <li t-if="partner.phone" class="list-inline-item">
-                        <span
-                            class="company_phone"
-                            t-esc="partner"
-                            t-options='{"widget": "contact", "fields": ["phone"], "no_marker": false}'
-                        />
+                        <span class="company_phone" t-esc="partner" />
                     </li>
                     <li t-if="partner.website" class="list-inline-item">
                         <span
@@ -93,11 +116,9 @@
                         />
                     </li>
                 </ul>
-                <span t-if="report_type == 'pdf'">
-                    Page:
-                    <span class="page" />
-                    /
-                    <span class="topage" />
+                <span t-if="report_type == 'pdf'"> Page: <span class="page" /> / <span
+                        class="topage"
+                    />
                 </span>
                 <div name="footer_internal_identifier" class="text-right o_code" />
             </div>
@@ -106,7 +127,15 @@
     <template id="medical_diagnostic_report_base">
         <div class="page">
             <div class="row o_patient_information">
-                <div class="col-6" name="patient_information">
+                <div class="col-12" name="patient_information">
+                    <div name="internal_identifier">
+                        <strong>Internal Identifier:</strong>
+                        <span t-field="doc.internal_identifier" />
+                    </div>
+                    <div name="patient_id">
+                        <strong>Patient:</strong>
+                        <span t-field="doc.patient_id" />
+                    </div>
                     <div name="patient_age">
                         <strong>Age:</strong>
                         <span name="patient_age_value" />
@@ -115,17 +144,16 @@
                         <strong>VAT:</strong>
                         <span class="m-0" name="vat_value" />
                     </div>
+                    <div name="patient_origin">
+                        <strong>Origin:</strong>
+                        <span name="patient_origin_value" />
+                    </div>
                     <div name="occurrence_date">
                         <strong>Date:</strong>
                         <span name="occurrence_date_value" />
                     </div>
                 </div>
-                <div class="col-6">
-                    <div name="patient_origin">
-                        <strong>Origin:</strong>
-                        <span name="patient_origin_value" />
-                    </div>
-                </div>
+
             </div>
             <div id="informations">
                 <div class="text-center" t-if="doc.name" name="name">
@@ -157,13 +185,12 @@
                                                 <t
                                                     name="interpretation_range"
                                                     t-if="obs.reference_range_limit"
-                                                >
-                                                    ( RV:
-                                                    <t
+                                                > ( RV: <t
                                                         t-esc="obs.reference_range_limit"
                                                     />
                                                     <small name="uom_range_value">
-                                                    </small>)
+                                                    </small>
+                                                    )
                                                 </t>
                                             </td>
                                         </t>
