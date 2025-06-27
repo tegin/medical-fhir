@@ -1,5 +1,5 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.29
+_commit: v1.32
 _src_path: https://github.com/OCA/oca-addons-repo-template.git
 ci: GitHub
 convert_readme_fragments_to_markdown: false
@@ -21,6 +21,6 @@ repo_description: ''
 repo_name: Medical Vertial repository
 repo_slug: medical-fhir
 repo_website: https://github.com/tegin/medical-fhir
-use_pyproject_toml: false
+use_pyproject_toml: true
 use_ruff: false
 

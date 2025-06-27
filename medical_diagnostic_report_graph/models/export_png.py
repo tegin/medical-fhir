@@ -95,7 +95,7 @@ def get_screenshot_as_png(
 
             web_driver = webdriver.Chrome(service=service, options=options)
         web_driver.maximize_window()
-        web_driver.get(f"file://{tmp.path}")
+        web_driver.get(f"file://{tmp.path}")  # noqa: E231
         wait_until_render_complete(web_driver, timeout)
         [width, height, dpr] = _maximize_viewport(web_driver)
         png = web_driver.get_screenshot_as_png()
