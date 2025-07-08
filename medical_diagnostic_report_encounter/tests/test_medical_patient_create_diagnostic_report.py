@@ -76,3 +76,17 @@ class TestMedicalPatientCreateReport(TransactionCase):
         self.patient.encounter_ids = []
         with self.assertRaises(ValidationError):
             self.patient._get_last_encounter()
+
+    def test_report_generation(self):
+        report_generation = self.env["medical.patient.create.diagnostic.report"].create(
+            {
+                "patient_id": self.patient.id,
+                "template_id": self.env.ref("medical_fhir.medical_report_template").id,
+                "encounter_id": self.encounter.id,
+            }
+        )
+        action = report_generation.generate()
+        report = self.env[action.get("res_model")].browse(action.get("res_id"))
+        self.assertEqual("medical.diagnostic.report", report._name)
+        self.assertEqual(self.patient, report.patient_id)
+        self.assertEqual(self.encounter, report.encounter_id)
