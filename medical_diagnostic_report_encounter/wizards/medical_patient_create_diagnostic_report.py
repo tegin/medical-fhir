@@ -21,6 +21,11 @@ class MedicalPatientCreateDiagnosticReport(models.TransientModel):
         if (datetime.now() - self.encounter_id.create_date) >= timedelta(days=7):
             self.show_encounter_warning = True
 
+    def _generate_kwargs(self):
+        kwargs = super()._generate_kwargs()
+        kwargs["encounter"] = self.encounter_id
+        return kwargs
+
     @api.onchange("patient_id")
     def _compute_default_encounter(self):
         self.encounter_id = self.patient_id._get_last_encounter()
