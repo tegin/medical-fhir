@@ -6,12 +6,27 @@
         <field name="name">medical.patient.form</field>
         <field name="model">medical.patient</field>
         <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <field name="priority" eval="30" />
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='administration_data']" position="after">
-                <page name="procedure_external" string="External Procedures">
+            <xpath expr="//page[@name='administration_data']" position="before">
+                <page
+                    name="procedure_external"
+                    string="External Procedures"
+                    class="o_notebook_yellow"
+                    icon="fa-prescription"
+                >
+                    <button
+                        type="action"
+                        name="%(medical_procedure_external.medical_patient_create_procedure_external_act_window)s"
+                        class="oe_stat_button btn-info mb-2"
+                        icon="fa-file-prescription"
+                        string="Create"
+                        groups="medical_base.group_medical_doctor"
+                    />
                     <field
                         name="external_request_ids_filtered"
                         widget="medical_one2many"
+                        mode="tree,kanban"
                         readonly="1"
                         options="{'record_action': 'get_formview_action'}"
                     >
@@ -19,6 +34,7 @@
                             default_order="fhir_state asc, create_date desc"
                             decoration-warning="fhir_state == 'draft'"
                         >
+                            <field name="id" widget="open_document_viewer" />
                             <field name="internal_identifier" />
                             <field name="name" />
                             <field name="encounter_id" />
@@ -28,17 +44,39 @@
                             <field name="state" invisible="1" />
                             <field name="fhir_state" invisible="1" />
                         </tree>
+                        <kanban>
+                            <templates>
+                                <field name="fhir_state" invisible="1" />
+                                <t t-name="kanban-box">
+                                    <div
+                                        t-attf-class="oe_kanban_card oe_kanban_global_click #{record.fhir_state.raw_value== 'draft' ? 'oe_kanban_color_3' : ''}"
+                                    >
+                                        <div class="o_kanban_record_body">
+                                            <div class="o_kanban_primary_left">
+                                                <field
+                                                    name="internal_identifier"
+                                                    class="o_kanban_record_title"
+                                                />
+                                                <div>
+                                                    <field name="name" />
+                                                </div>
+                                                <div
+                                                    t-if="record.issued_date.raw_value"
+                                                >
+                                                    <field name="issued_date" />(<field
+                                                        name="issued_user_id"
+                                                    />)
+                                                </div>
+                                                <div>
+                                                    <field name="create_date" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
                     </field>
-
-
-                    <button
-                        type="action"
-                        name="%(medical_procedure_external.medical_patient_create_procedure_external_act_window)s"
-                        class="oe_stat_button btn-info"
-                        icon="fa-file-prescription"
-                        string="Generate External Request"
-                        groups="medical_base.group_medical_doctor"
-                    />
                 </page>
             </xpath>
         </field>
