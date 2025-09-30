@@ -202,3 +202,19 @@ class MedicalDiagnosticReport(models.Model):
         return self.env.ref(
             "medical_diagnostic_report.medical_diagnostic_report"
         ).report_action(self)
+
+    def open_document(self):
+        self.ensure_one()
+        url = (
+            "/report/pdf/medical_diagnostic_report."
+            + f"medical_diagnostic_report_template/{self.id}"
+        )
+        return {
+            "isPdf": True,
+            "isImage": False,
+            "isText": False,
+            "isVideo": False,
+            "url": f"/web/static/lib/pdfjs/web/viewer.html?file={url}#pagemode=none",
+            "isViewable": True,
+            "defaultSource": url,
+        }

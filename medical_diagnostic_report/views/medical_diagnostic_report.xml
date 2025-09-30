@@ -69,9 +69,12 @@
             <field name="fhir_state" position="attributes">
                 <attribute name="statusbar_visible">registered,final</attribute>
             </field>
-            <xpath expr="//group[@name='sale_01']" position="attributes">
+            <field name="service_id" position="attributes">
                 <attribute name="invisible">1</attribute>
-            </xpath>
+            </field>
+            <field name="performer_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
             <field name="occurrence_date" position="after">
                 <field name="issued_date" />
                 <field
@@ -251,6 +254,12 @@
         <field name="arch" type="xml">
             <xpath expr="//tree" position="attributes">
                 <attribute name="create">false</attribute>
+                <attribute
+                    name="decoration-warning"
+                >fhir_state == 'registered'</attribute>
+                <attribute
+                    name="decoration-danger"
+                >fhir_state == 'cancelled'</attribute>
             </xpath>
             <tree>
                 <field name="issued_date" />
@@ -261,6 +270,15 @@
         <field name="name">Diagnostic Report</field>
         <field name="res_model">medical.diagnostic.report</field>
         <field name="view_mode">tree,form</field>
+    </record>
+    <record
+        model="ir.actions.act_window"
+        id="medical_diagnostic_report_patient_act_window"
+    >
+        <field name="name">Diagnostic Report</field>
+        <field name="res_model">medical.diagnostic.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('patient_id', '=', active_id)]</field>
     </record>
     <record model="ir.ui.menu" id="medical_diagnostic_report_menu">
         <field name="name">Diagnostic Report</field>
