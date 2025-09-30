@@ -52,7 +52,7 @@
                     <div class="o_statusbar_buttons">
                         <button
                             name="validate_clinical_impression"
-                            string="Validate Impression"
+                            string="Validate"
                             class="btn-success"
                             confirm="Are you sure you want to validate this impression?"
                             type="object"
@@ -60,7 +60,7 @@
                         />
                         <button
                             name="cancel_clinical_impression"
-                            string="Cancel Impression"
+                            string="Cancel"
                             class="btn-danger"
                             confirm="Are you sure you want to cancel this impression?"
                             type="object"
@@ -70,17 +70,17 @@
                             name="impression_family_history"
                             class="btn btn-primary"
                             type="object"
-                        ><i class="fas fa-users" />  Family History</button>
+                        ><i class="fas fa-users" />  Family</button>
                     </div>
                 </div>
-                <group string="Summary">
-                    <field name="summary" nolabel="1" colspan="2" />
-                </group>
                 <group string="Description">
                     <field name="description" nolabel="1" colspan="2" />
                 </group>
                 <group string="Notes">
                     <field name="note" nolabel="1" colspan="2" />
+                </group>
+                <group string="Summary">
+                    <field name="summary" nolabel="1" colspan="2" />
                 </group>
                 <group string="Allergy Substances">
                     <field

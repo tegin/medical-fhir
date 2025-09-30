@@ -62,7 +62,7 @@ class MedicalSpecialty(models.Model):
     # Always pass a context to this function
     def get_specialty_impression(self):
         result = self.env["ir.actions.act_window"]._for_xml_id(
-            "medical_clinical_impression." "medical_clinical_impression_act_window"
+            "medical_clinical_impression.medical_clinical_impression_act_window"
         )
         ctx_dict = self._get_default_context()
         patient_id = self._get_impression_info_patient()
@@ -79,5 +79,8 @@ class MedicalSpecialty(models.Model):
         )
         ctx_dict["search_default_filter_not_cancelled"] = True
         result["domain"] = domain
+        result["res_id"] = (
+            self.env["medical.clinical.impression"].search(domain, limit=1).id
+        )
         result["context"] = ctx_dict
         return result

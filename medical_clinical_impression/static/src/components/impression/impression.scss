@@ -21,7 +21,12 @@
         }
     }
     .o_medical_impression_selector {
-        width: 50%;
+        @media (max-width: 768px) {
+            width: 30%;
+        }
+        @media (min-width: 769px) {
+            width: 50%;
+        }
         height: 100%;
         padding: 0;
         position: relative;
@@ -29,9 +34,24 @@
         overflow: auto;
     }
     .o_medical_impression_info {
-        width: 50%;
+        @media (max-width: 768px) {
+            width: 70%;
+        }
+        @media (min-width: 769px) {
+            width: 50%;
+        }
         height: 100%;
         overflow: auto;
+    }
+    .o_hidden_mobile {
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+    .o_only_mobile {
+        @media (min-width: 769px) {
+            display: none;
+        }
     }
     .o_form_statusbar.o_medical_impression_statusbar {
         .btn:not(.dropdown-toggle):not(.dropdown-item) {
