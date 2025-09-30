@@ -10,7 +10,7 @@ class MedicalPatient(models.Model):
 
     external_product_request_order_ids = fields.One2many(
         comodel_name="medical.product.request.order",
-        domain=[("category", "=", "discharge")],
+        domain=[("category", "=", "discharge"), ("state", "!=", "cancelled")],
         inverse_name="patient_id",
     )
 
@@ -20,7 +20,7 @@ class MedicalPatient(models.Model):
 
     internal_product_request_order_ids = fields.One2many(
         comodel_name="medical.product.request.order",
-        domain=[("category", "=", "inpatient")],
+        domain=[("category", "=", "inpatient"), ("state", "!=", "cancelled")],
         inverse_name="patient_id",
     )
 
