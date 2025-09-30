@@ -456,7 +456,7 @@
         <field name="model">medical.patient</field>
         <field name="priority">99</field>
         <field name="arch" type="xml">
-            <form create="0" edit="0"><header />
+            <form create="0" edit="0" js_class="his_form"><header />
                 <sheet>
                     <div class="oe_button_box" name="button_box" />
                     <div class="oe_title">
@@ -475,7 +475,11 @@
                         </group>
                     </group>
                     <notebook>
-                        <page name="administration_data" string="Administration Info">
+                        <page
+                            name="administration_data"
+                            string="Administration Info"
+                            icon="fa-info-circle"
+                        >
                             <group>
                                 <group id="medical_administration_contact">
                                     <field name="email" />

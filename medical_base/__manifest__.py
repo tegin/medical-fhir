@@ -31,6 +31,10 @@
         "web.assets_backend": [
             "medical_base/static/src/components/**/*.js",
             "medical_base/static/src/components/**/*.xml",
+            "medical_base/static/src/components/**/*.scss",
+            "medical_base/static/src/views/**/*.js",
+            "medical_base/static/src/views/**/*.xml",
+            "medical_base/static/src/views/**/*.scss",
         ]
     },
 }
