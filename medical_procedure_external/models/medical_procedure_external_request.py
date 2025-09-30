@@ -18,7 +18,11 @@ class MedicalProcedureExternalRequest(models.Model):
             "cancelled": ("Cancelled", "done"),
         }
 
-    name = fields.Char(string="Procedure Name")
+    name = fields.Char(
+        string="Procedure Name",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     fhir_state = fields.Selection(
         default="draft",
     )
@@ -95,3 +99,19 @@ class MedicalProcedureExternalRequest(models.Model):
 
     def _is_cancellable(self):
         return self.fhir_state in ("draft", "final")
+
+    def open_document(self):
+        self.ensure_one()
+        url = (
+            "/report/pdf/medical_procedure_external."
+            + f"medical_procedure_external_request_template/{self.id}"
+        )
+        return {
+            "isPdf": True,
+            "isImage": False,
+            "isText": False,
+            "isVideo": False,
+            "url": f"/web/static/lib/pdfjs/web/viewer.html?file={url}#pagemode=none",
+            "isViewable": True,
+            "defaultSource": url,
+        }

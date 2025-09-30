@@ -81,9 +81,12 @@
             <field name="state" position="attributes">
                 <attribute name="statusbar_visible">draft,final</attribute>
             </field>
-            <xpath expr="//group[@name='sale_01']" position="attributes">
+            <field name="service_id" position="attributes">
                 <attribute name="invisible">1</attribute>
-            </xpath>
+            </field>
+            <field name="performer_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
             <field name="occurrence_date" position="after">
                 <field name="issued_date" />
                 <field name="issued_user_id" states="final,cancelled" />
