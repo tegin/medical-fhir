@@ -75,18 +75,20 @@
                         <field name="internal_identifier" readonly="1" />
                     </h2>
                     <group name="details" cols="4">
-                        <group>
+                        <group name="col_01">
                             <field name="name" />
                             <field name="patient_id" />
                         </group>
-                    </group>
-                    <group name="sale">
-                        <group name="sale_01">
+                        <group name="details_02">
                             <field name="service_id" />
                             <field name="performer_id" />
+                            <field name="occurrence_date" />
+                        </group>
+                    </group>
+                    <group name="sale" invisible="1">
+                        <group name="sale_01">
                         </group>
                         <group name="sale_02">
-                            <field name="occurrence_date" />
                         </group>
                     </group>
                     <notebook>

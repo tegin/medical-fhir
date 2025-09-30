@@ -1,0 +1,120 @@
+.o_form_view {
+    .o_his_form_sheet.o_form_sheet_bg {
+        .o_notebook {
+            border-top: 1px solid #d5d5d5;
+            > .tab-content
+                > .tab-pane
+                > :first-child:not(.o_group)
+                .o_field_x2many.o_field_x2many_list {
+                margin-top: 0px;
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+            .o_notebook_content {
+                width: 100%;
+            }
+            .o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
+                width: 100%;
+            }
+            .o_notebook_headers {
+                padding-top: 16px;
+                padding-right: 1rem;
+                .nav-tabs .nav-item {
+                    padding-bottom: 0.4rem;
+                }
+                .nav-tabs .nav-link {
+                    padding: 0.5rem !important;
+                    text-align: center;
+                    //border: 3px solid var(--gray);
+                    border-style: solid;
+                    border-color: var(--gray);
+                    border-width: 0.2rem;
+                    border-radius: 0.25rem !important;
+                    font-weight: bold;
+                    .o_hidden_mobile {
+                        @media (max-width: 768px) {
+                            display: none;
+                        }
+                    }
+                    color: var(--gray);
+                    &.active {
+                        background-color: var(--gray);
+                        color: var(--white);
+                    }
+                    &.o_notebook_black {
+                        border-color: var(--black);
+                        color: var(--black);
+                        &.active {
+                            background-color: var(--black);
+                            color: var(--white);
+                        }
+                    }
+                    &.o_notebook_green {
+                        border-color: var(--green);
+                        color: var(--green);
+                        &.active {
+                            background-color: var(--green);
+                            color: var(--white);
+                        }
+                    }
+                    &.o_notebook_teal {
+                        border-color: var(--teal);
+                        color: var(--teal);
+                        &.active {
+                            background-color: var(--teal);
+                            color: var(--white);
+                        }
+                    }
+                    &.o_notebook_blue {
+                        border-color: var(--blue);
+                        color: var(--blue);
+                        &.active {
+                            background-color: var(--blue);
+                            color: var(--white);
+                        }
+                    }
+                    &.o_notebook_cyan {
+                        border-color: var(--cyan);
+                        color: var(--cyan);
+                        &.active {
+                            background-color: var(--cyan);
+                            color: var(--white);
+                        }
+                    }
+                    &.o_notebook_purple {
+                        border-color: var(--purple);
+                        color: var(--purple);
+                        &.active {
+                            background-color: var(--purple);
+                            color: var(--white);
+                        }
+                    }
+                    &.o_notebook_orange {
+                        border-color: var(--orange);
+                        color: var(--orange);
+                        &.active {
+                            background-color: var(--orange);
+                            color: var(--white);
+                        }
+                    }
+                    &.o_notebook_indigo {
+                        border-color: var(--indigo);
+                        color: var(--indigo);
+                        &.active {
+                            background-color: var(--indigo);
+                            color: var(--white);
+                        }
+                    }
+                    &.o_notebook_yellow {
+                        border-color: var(--yellow);
+                        color: var(--yellow);
+                        &.active {
+                            background-color: var(--yellow);
+                            color: var(--white);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

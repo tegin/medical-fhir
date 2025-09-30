@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+
+   <t t-name="medical_base.OpenDocumentViewerField" t-inherit-mode="primary" owl="1">
+        <button
+            t-on-click.prevent.stop="openDocument"
+            type="button"
+            string="View Document"
+            class="btn btn-sm btn-secondary"
+        >
+            <i class="fa fa-eye" aria-hidden="true" />
+        </button>
+    </t>
+</templates>

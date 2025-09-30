@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+
+   <t
+        t-name="medical_base.HisFormNotebook"
+        t-inherit="web.Notebook"
+        t-inherit-mode="primary"
+        owl="1"
+    >
+        <xpath expr="//a[hasclass('nav-link')]" position="attributes">
+            <attribute name="t-esc" />
+        </xpath>
+        <xpath expr="//a[hasclass('nav-link')]" position="inside">
+            <i
+                t-attf-class="fa {{ props.iconmap[navItem[1].name] }} mx-1"
+                t-if="navItem[1].name and navItem[1].name in props.iconmap"
+            />
+            <span
+                t-attf-class="{{navItem[1].name and navItem[1].name in props.iconmap ? 'o_hidden_mobile' : ''}}"
+                t-esc="navItem[1].title"
+            />
+        </xpath>
+    </t>
+</templates>
