@@ -83,7 +83,7 @@ class MedicalProductRequestOrder(models.Model):
         compute="_compute_medical_product_template_ids",
         string="Product Template",
     )
-    # This field is used as a fast visualization of products at the order's tree view.
+    # field is used as a fast visualization of products at the order's tree view.
 
     @api.depends("product_request_ids")
     def _compute_medical_product_template_ids(self):
@@ -172,3 +172,21 @@ class MedicalProductRequestOrder(models.Model):
         self.ensure_one()
         self.write(self._cancel_vals())
         self.product_request_ids.cancel_action()
+
+    def _get_open_document_report(self):
+        return "medical_product_request.report_medical_product_request_document"
+
+    def open_document(self):
+        self.ensure_one()
+        report = self._get_open_document_report()
+        url = f"/report/pdf/{report}/{self.id}"
+
+        return {
+            "isPdf": True,
+            "isImage": False,
+            "isText": False,
+            "isVideo": False,
+            "url": f"/web/static/lib/pdfjs/web/viewer.html?file={url}#pagemode=none",
+            "isViewable": True,
+            "defaultSource": url,
+        }

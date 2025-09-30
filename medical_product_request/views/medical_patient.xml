@@ -56,19 +56,17 @@
     <record model="ir.ui.view" id="medical_patient_his_form_view">
         <field name="name">medical.patient.form</field>
         <field name="model">medical.patient</field>
+        <field name="priority" eval="40" />
         <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='administration_data']" position="after">
-                <page name="product_request" string="Product Request">
-                    <group invisible="0">
-                        <separator
-                            string="Invisible Separator"
-                            colspan="2"
-                            invisible="1"
-                        />
-                    </group>
-                    <group>
-                        <separator string="Internal Medical Orders" colspan="2" />
+            <xpath expr="//page[@name='administration_data']" position="before">
+                <page
+                    name="external_prescription"
+                    string="Prescription"
+                    class="o_notebook_orange"
+                    icon="fa-pills"
+                >
+                        <!--
                         <field
                             name="internal_product_request_order_ids"
                             widget="medical_one2many"
@@ -103,45 +101,77 @@
                             icon="fa-pills"
                             colspan="2"
                         />
-                    </group>
-                    <group>
-                        <separator string="External Prescriptions" colspan="2" />
+                        -->
 
-                        <field
-                            name="external_product_request_order_ids"
-                            widget="medical_one2many"
-                            readonly="1"
-                            options="{'record_action': 'get_formview_action'}"
-                            colspan="2"
-                            nolabel="1"
+                    <button
+                        name="create_medical_product_request_order"
+                        class="oe_stat_button btn-success mb-2"
+                        string="Create"
+                        type="object"
+                        context="{'default_category': 'discharge', 'default_patient_id': id}"
+                        icon="fa-prescription"
+                        colspan="2"
+                    />
+
+                    <field
+                        name="external_product_request_order_ids"
+                        widget="medical_one2many"
+                        readonly="1"
+                        options="{'record_action': 'get_formview_action'}"
+                        mode="tree,kanban"
+                        colspan="2"
+                        nolabel="1"
+                    >
+                        <tree
+                            decoration-muted="state == 'cancelled'"
+                            decoration-success="state == 'completed'"
+                            decoration-warning="state == 'draft'"
                         >
-                            <tree
-                                decoration-muted="state == 'cancelled'"
-                                decoration-success="state == 'completed'"
-                                decoration-warning="state == 'draft'"
-                            >
-                                <field name="internal_identifier" />
-                                <field name="patient_id" invisible="1" />
-                                <field name="encounter_id" />
-                                <field
-                                    name="medical_product_template_ids"
-                                    widget="many2many_tags"
-                                />
-                                <field name="requester_id" />
-                                <field name="validation_date" />
-                                <field name="state" />
-                            </tree>
-                        </field>
-                        <button
-                            name="create_medical_product_request_order"
-                            class="oe_stat_button btn-success"
-                            string="Create Ext. Prescription"
-                            type="object"
-                            context="{'default_category': 'discharge', 'default_patient_id': id}"
-                            icon="fa-prescription"
-                            colspan="2"
-                        />
-                    </group>
+                            <field name="id" widget="open_document_viewer" />
+                            <field name="internal_identifier" />
+                            <field name="patient_id" invisible="1" />
+                            <field name="encounter_id" />
+                            <field
+                                name="medical_product_template_ids"
+                                widget="many2many_tags"
+                            />
+                            <field name="requester_id" />
+                            <field name="validation_date" />
+                            <field name="state" />
+                        </tree>
+                        <kanban>
+                            <templates>
+                                <field name="state" invisible="1" />
+                                <t t-name="kanban-box">
+                                    <div
+                                        t-attf-class="oe_kanban_card oe_kanban_global_click #{record.state.raw_value== 'draft' ? 'oe_kanban_color_3' : ''}"
+                                    >
+                                        <div class="o_kanban_record_body">
+                                            <div class="o_kanban_primary_left">
+                                                <field
+                                                    name="internal_identifier"
+                                                    class="o_kanban_record_title"
+                                                />
+                                                <div
+                                                    t-if="record.validation_date.raw_value"
+                                                >
+                                                    <field
+                                                        name="validation_date"
+                                                    />(<field name="requester_id" />)
+                                                </div>
+                                                <div>
+                                                    <field
+                                                        name="medical_product_template_ids"
+                                                        widget="many2many_tags"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
                 </page>
             </xpath>
         </field>
