@@ -15,6 +15,48 @@
             </tree>
         </field>
     </record>
+    <record id="medical_condition_view_kanban" model="ir.ui.view">
+        <field name="name">medical.condition.view.kanban</field>
+        <field name="model">medical.condition</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="internal_identifier" />
+                <field name="name" />
+                <field name="patient_id" />
+                <field name="is_allergy" />
+                <field name="active" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_record">
+                            <div class="o_kanban_record_body">
+                                <div class="o_kanban_primary_left">
+                                    <strong>
+                                        <field name="internal_identifier" />
+                                    </strong>
+                                    <br />
+                                    <field name="name" />
+                                    <br />
+                                    <field name="patient_id" />
+                                </div>
+                                <div class="o_kanban_primary_right">
+                                    <t t-if="record.is_allergy.raw_value">
+                                        <span class="badge bg-danger">Allergy</span>
+                                    </t>
+                                    <t t-if="!record.is_allergy.raw_value">
+                                        <span class="badge bg-info">Condition</span>
+                                    </t>
+                                    <br />
+                                    <t t-if="!record.active.raw_value">
+                                        <span class="badge bg-secondary">Inactive</span>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
     <record id="medical_condition_view_form" model="ir.ui.view">
         <field name="name">medical.condition.view.form</field>
         <field name="model">medical.condition</field>
@@ -78,21 +120,21 @@
         <field name="name">Clinical Conditions</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.condition</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="context">{}</field>
     </record>
     <record model="ir.actions.act_window" id="medical_allergy_action">
         <field name="name">Allergies</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.condition</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="context">{}</field>
     </record>
     <record model="ir.actions.act_window" id="medical_warning_action">
         <field name="name">Warnings</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">medical.condition</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="context">{}</field>
     </record>
 </odoo>
