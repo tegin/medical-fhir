@@ -9,7 +9,7 @@
         <field name="name">medical.family.member.history.view.tree</field>
         <field name="model">medical.family.member.history</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree editable="bottom">
                 <field name="internal_identifier" />
                 <field name="relationship" />
                 <field name="family_member_name" />

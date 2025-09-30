@@ -27,7 +27,7 @@ class MedicalClinicalImpression(models.Model):
     # FHIR code: type of clinical assessment performed.
     # TODO: add domain, so a partner can only select between their specialities
 
-    description = fields.Text(
+    description = fields.Html(
         help="Context of the impression: Why/how the assessment was performed",
         readonly=True,
         states={"draft": [("readonly", False)]},
@@ -77,7 +77,7 @@ class MedicalClinicalImpression(models.Model):
 
     summary = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
     # FHIR: summary
-    note = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
+    note = fields.Html(readonly=True, states={"draft": [("readonly", False)]})
     # FHIR: Note
 
     warning_info = fields.Json(compute="_compute_warning_info")
