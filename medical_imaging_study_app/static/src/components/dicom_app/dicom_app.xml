@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+   <t t-name="medical_imaging_study_app.DicomApp" owl="1">
+        <div>
+            <t t-foreach="props.value" t-as="app" t-key="app.id">
+                <button
+                    class="btn p-0"
+                    t-att-title="app.name"
+                    t-on-click="() => this.onClick(app.id)"
+                >
+                    <img
+                        t-attf-src="/web/image/medical.imaging.app/#{app.id}/image_128"
+                        class="fa-lg me-1"
+                    />
+                </button>
+            </t>
+        </div>
+    </t>
+</templates>

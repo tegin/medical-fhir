@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 CreuBlanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_patient_his_form_view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field
+            name="inherit_id"
+            ref="medical_imaging_study.medical_patient_his_form_view"
+        />
+        <field name="priority" eval="60" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='dicom']//field[@name='study_ids']//tree//field[@name='instance_uid']"
+                position="before"
+            >
+                <field name="app_info" widget="dicom_app" string=" " />
+            </xpath>
+            <xpath
+                expr="//page[@name='dicom']//field[@name='study_ids']//kanban//div[@name='front']"
+                position="inside"
+            >
+                <field name="app_info" widget="dicom_app" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

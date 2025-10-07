@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="medical_imaging_app_form_view">
+        <field name="model">medical.imaging.app</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <field
+                        name="image_1920"
+                        widget='image'
+                        class="oe_avatar"
+                        options='{"preview_image": "image_128"}'
+                    />
+                    <group>
+                        <field name="name" />
+                        <field name="app_type" />
+                        <field name="domain" />
+                        <field
+                            name="url"
+                            attrs="{'invisible': [('app_type', '!=', 'url')]}"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_imaging_app_search_view">
+        <field name="model">medical.imaging.app</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="app_type" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_imaging_app_tree_view">
+        <field name="model">medical.imaging.app</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="app_type" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="medical_imaging_app_act_window">
+        <field name="name">Medical Imaging App</field> <!-- TODO -->
+        <field name="res_model">medical.imaging.app</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="medical_imaging_app_menu">
+        <field name="name">Medical Imaging App</field>
+        <field
+            name="parent_id"
+            ref="medical_base.medical_root_configuration"
+        /> <!-- TODO -->
+        <field name="action" ref="medical_imaging_app_act_window" />
+        <field name="sequence" eval="90" />
+    </record>
+
+</odoo>
