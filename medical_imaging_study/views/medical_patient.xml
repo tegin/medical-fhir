@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 CreuBlanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="medical_patient_his_form_view">
+        <field name="name">medical.patient.form</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <field name="priority" eval="60" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='administration_data']" position="before">
+                <page
+                    name="dicom"
+                    string="Dicom"
+                    class="o_notebook_black"
+                    icon="fa-radiation-alt"
+                >
+                    <field
+                        name="study_ids"
+                        widget="medical_one2many"
+                        mode="tree,kanban"
+                        options="{'record_action': 'get_formview_action'}"
+                    >
+                        <tree>
+                            <field name="instance_uid" />
+                            <field name="description" />
+                            <field name="modality_ids" widget="many2many_tags" />
+                            <field name="study_date" />
+                            <field name="series_count" />
+                            <field name="instances_count" />
+                        </tree>
+                        <kanban class="o_kanban_mobile">
+                            <field name="name" />
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div
+                                        class="oe_kanban_card oe_kanban_global_click ps-0 pe-0"
+                                    >
+                                        <div class="row g-0">
+                                            <div class="col-2" name="front">
+
+                                            </div>
+                                            <div class="col-10" name="body">
+                                                <div>
+                                                    <field name="instance_uid" />
+                                                    <field name="description" />
+                                                    <field
+                                                        name="modality_ids"
+                                                        widget="many2many_tags"
+                                                    />
+                                                    <field name="study_date" />
+                                                    <field name="series_count" />
+                                                    <field name="instances_count" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

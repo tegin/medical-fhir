@@ -84,7 +84,7 @@ class MedicalImagingEndpoint(models.Model):
 
     def _process_study_qido_data(self, study_data, series_data):
         tz = self.tz or self.env.user.tz
-        if "00080201" in study_data:
+        if "00080201" in study_data and study_data["00080201"].get("Value"):
             tz = study_data["00080201"]["Value"][0]
         context_tz = pytz.timezone(tz)
         study_date = (
@@ -101,7 +101,8 @@ class MedicalImagingEndpoint(models.Model):
             "instance_uid": study_data["0020000D"]["Value"][0],
             "study_date": study_date,
             "accession_number": study_data["00080050"]["Value"][0],
-            "description": study_data["00081030"]["Value"][0],
+            "description": study_data["00081030"].get("Value")
+            and study_data["00081030"]["Value"][0],
             "series_ids": self._process_series_qido_data(series_data),
         }
 
@@ -125,7 +126,7 @@ class MedicalImagingEndpoint(models.Model):
                 "instances_count": series["00201209"]["Value"][0],
                 "series_date": series_date,
             }
-            if series.get("0008103E"):
+            if series.get("0008103E") and series["0008103E"].get("Value"):
                 values["description"] = series["0008103E"]["Value"][0]
             series_processed.append(values)
         return series_processed
