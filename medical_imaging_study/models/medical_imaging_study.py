@@ -8,6 +8,7 @@ class MedicalImagingStudy(models.Model):
     # FHIR Entity: ImagingStudy (https://www.hl7.org/fhir/imagingstudy.html)
     _name = "medical.imaging.study"
     _description = "Medical Imaging Study"
+    _order = "study_date desc"
 
     name = fields.Char(compute="_compute_study_name", store=True)  # Not in FHIR
 

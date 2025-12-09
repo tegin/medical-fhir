@@ -78,9 +78,14 @@ class MedicalImagingEndpoint(models.Model):
         return study.get_formview_action()
 
     def _get_date(self, date_str):
-        if re.match(r"\d{14}\.\d+", date_str):
-            return datetime.strptime(date_str, "%Y%m%d%H%M%S.%f")
-        return datetime.strptime(date_str, "%Y%m%d%H%M%S")
+        try:
+            if re.match(r"\d{14}\.\d+", date_str):
+                return datetime.strptime(date_str, "%Y%m%d%H%M%S.%f")
+            if re.match(r"\d{10}:\d{2}:\d{2}", date_str):
+                return datetime.strptime(date_str, "%Y%m%d%H:%M:%S")
+            return datetime.strptime(date_str, "%Y%m%d%H%M%S")
+        except ValueError:
+            return False
 
     def _process_study_qido_data(self, study_data, series_data):
         tz = self.tz or self.env.user.tz
@@ -110,15 +115,19 @@ class MedicalImagingEndpoint(models.Model):
         series_processed = []
         for series in series_data:
             context_tz = pytz.timezone(self.tz or self.env.user.tz)
-            series_date = (
-                context_tz.localize(
-                    self._get_date(
-                        series["00080021"]["Value"][0] + series["00080031"]["Value"][0],
+            if "00080021" in series and series["00080021"].get("Value"):
+                series_date = (
+                    context_tz.localize(
+                        self._get_date(
+                            series["00080021"]["Value"][0]
+                            + series["00080031"].get("Value", ["000000"])[0],
+                        )
                     )
+                    .astimezone(pytz.UTC)
+                    .replace(tzinfo=None)
                 )
-                .astimezone(pytz.UTC)
-                .replace(tzinfo=None)
-            )
+            else:
+                series_date = False
             values = {
                 "instance_uid": series["0020000E"]["Value"][0],
                 "series_number": series["00200011"]["Value"][0],
