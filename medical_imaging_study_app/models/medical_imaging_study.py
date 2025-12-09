@@ -32,15 +32,10 @@ class MedicalImagingStudy(models.Model):
         app = self.env["medical.imaging.app"].browse(app_id).exists()
         if not app:
             return {}
-        if app.app_type == "url":
-            url = app.url
-            if url and self.instance_uid:
-                url = url.replace("{study_uid}", self.instance_uid)
-                return {
-                    "type": "ir.actions.act_url",
-                    "url": url,
-                    "target": "new",
-                }
+        if hasattr(app, f"_do_app_action_{app.app_type}"):
+            result = getattr(app, f"_do_app_action_{app.app_type}")(self)
+            if result:
+                return result
         return {
             "type": "ir.actions.act_window",
             "res_model": self._name,

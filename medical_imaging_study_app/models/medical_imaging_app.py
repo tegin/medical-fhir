@@ -17,3 +17,15 @@ class MedicalImagingApp(models.Model):
     app_type = fields.Selection(
         [("url", "URL")],
     )
+
+    def _do_app_action_url(self, study):
+        self.ensure_one()
+        url = self.url
+        if url and study.instance_uid:
+            url = url.replace("{study_uid}", study.instance_uid)
+            return {
+                "type": "ir.actions.act_url",
+                "url": url,
+                "target": "new",
+            }
+        return {}
