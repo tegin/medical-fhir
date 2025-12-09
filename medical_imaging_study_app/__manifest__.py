@@ -13,7 +13,6 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        # 'views/medical_imaging_study.xml',
         "views/medical_imaging_app.xml",
         "views/medical_patient.xml",
     ],

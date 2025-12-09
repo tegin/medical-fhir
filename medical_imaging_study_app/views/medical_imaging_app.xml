@@ -18,7 +18,16 @@
                     <group>
                         <field name="name" />
                         <field name="app_type" />
-                        <field name="domain" />
+                        <field
+                            name="domain"
+                            widget="domain"
+                            options="{'model': 'medical.imaging.study'}"
+                        />
+                        <field
+                            name="ignore_domain"
+                            widget="domain"
+                            options="{'model': 'medical.imaging.study'}"
+                        />
                         <field
                             name="url"
                             attrs="{'invisible': [('app_type', '!=', 'url')]}"

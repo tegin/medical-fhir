@@ -12,6 +12,7 @@ class MedicalImagingApp(models.Model):
 
     name = fields.Char(required=True)
     domain = fields.Char()
+    ignore_domain = fields.Char()
     url = fields.Char()
     sequence = fields.Integer(default=10)
     app_type = fields.Selection(

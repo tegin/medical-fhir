@@ -13,11 +13,15 @@ class MedicalImagingStudy(models.Model):
 
     @api.depends("storage_ids")
     def _compute_app_info(self):
+        apps = self.env["medical.imaging.app"].search([])
         for study in self:
-            apps = self.env["medical.imaging.app"].search([])
             app_info = []
             for app in apps:
-                if app.domain and not app.filtered_domain(safe_eval(app.domain)):
+                if app.domain and not study.filtered_domain(safe_eval(app.domain)):
+                    continue
+                if app.ignore_domain and study.filtered_domain(
+                    safe_eval(app.ignore_domain)
+                ):
                     continue
                 app_info.append(
                     {
