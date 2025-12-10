@@ -32,7 +32,6 @@ class MedicalProductRequest(models.Model):
     request_order_id = fields.Many2one(comodel_name="medical.product.request.order")
 
     product_type = fields.Selection(
-        selection=[("medication", "Medication"), ("device", "Device")],
         related="medical_product_template_id.product_type",
     )
 
