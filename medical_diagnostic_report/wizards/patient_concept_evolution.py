@@ -107,9 +107,7 @@ class PatientConceptEvolution(models.TransientModel):
             p.title.text_font_style = "italic"
             p.title.align = "center"
             p.title.text_font_size = "18px"
-            p.xaxis[0].formatter = DatetimeTickFormatter(
-                days=["%d/%m/%y"], hours=["%H:%M"]
-            )
+            p.xaxis[0].formatter = DatetimeTickFormatter(days="%d/%m/%y", hours="%H:%M")
             p.xgrid[0].grid_line_color = None
             p.ygrid[0].grid_line_alpha = 0.5
             p.xaxis.axis_label = "Date"
