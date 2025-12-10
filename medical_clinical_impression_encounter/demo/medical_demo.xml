@@ -13,7 +13,7 @@
     >
     <field
             name="encounter_id"
-            ref="medical_clinical_impression.encounter_01_patient_01"
+            ref="medical_clinical_impression_encounter.encounter_01_patient_01"
         />
     </record>
 </odoo>
