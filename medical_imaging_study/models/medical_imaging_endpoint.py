@@ -5,8 +5,13 @@ import re
 from datetime import datetime
 
 import pytz
-from dicomweb_client.api import DICOMwebClient
-from dicomweb_client.session_utils import create_session_from_auth
+
+from odoo.tools import mute_logger
+
+with mute_logger("pydicom", "py.warnings"):
+    from dicomweb_client.api import DICOMwebClient
+    from dicomweb_client.session_utils import create_session_from_auth
+
 from requests.auth import HTTPBasicAuth
 
 from odoo import api, fields, models
