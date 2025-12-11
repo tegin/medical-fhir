@@ -13,6 +13,7 @@
         "medical_workflow",
         "medical_certify",
         "medical_administration_encounter",
+        "user_digital_signature",
     ],
     "data": [
         "data/report_paper_format.xml",
@@ -25,7 +26,6 @@
         "views/medical_procedure_external_request_template.xml",
         "views/medical_encounter.xml",
         "views/medical_patient.xml",
-        "views/res_users.xml",
         "reports/medical_procedure_external_request_base.xml",
         "reports/medical_procedure_external_request_template.xml",
         "reports/medical_procedure_external_request_report.xml",
