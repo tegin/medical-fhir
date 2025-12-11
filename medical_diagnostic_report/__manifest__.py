@@ -15,6 +15,7 @@
         "medical_certify",
         "web_widget_bokeh_chart",
         "account",
+        "user_digital_signature",
     ],
     "data": [
         "security/security.xml",
@@ -31,7 +32,6 @@
         "views/medical_diagnostic_report_template.xml",
         "views/medical_observation_concept.xml",
         "views/medical_patient.xml",
-        "views/res_users.xml",
         "views/medical_observation_report.xml",
         "reports/medical_diagnostic_report_base.xml",
         "reports/medical_diagnostic_report_template.xml",
