@@ -1,0 +1,1 @@
+Defines Digital Signature field for users to be used by other.
