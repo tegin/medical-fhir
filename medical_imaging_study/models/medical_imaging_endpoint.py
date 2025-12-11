@@ -47,16 +47,18 @@ class MedicalImagingEndpoint(models.Model):
     def _add_series_fields_to_extract(self):
         return "00080021,00080031"
 
+    def _get_dicom_session(self):
+        session = None
+        if self.user:
+            auth = HTTPBasicAuth(self.user, self.password)
+            session = create_session_from_auth(auth)
+        return DICOMwebClient(url=self.url, session=session)
+
     def _import_imaging_study(self, study_uid):
         for endpoint in self:
             if endpoint.connection_type != "dicom-qido-rs":
                 continue
-            session = None
-            if endpoint.user:
-                auth = HTTPBasicAuth(endpoint.user, endpoint.password)
-                session = create_session_from_auth(auth)
-            client = DICOMwebClient(url=endpoint.url, session=session)
-
+            client = endpoint._get_dicom_session()
             data_study = client.search_for_studies(
                 search_filters={"StudyInstanceUID": study_uid},
                 fields=[self._add_study_fields_to_extract()],
