@@ -96,9 +96,17 @@ class MedicalImagingEndpoint(models.Model):
 
     def _process_study_qido_data(self, study_data, series_data):
         tz = self.tz or self.env.user.tz
+        context_tz = pytz.timezone(tz)
         if "00080201" in study_data and study_data["00080201"].get("Value"):
             tz = study_data["00080201"]["Value"][0]
-        context_tz = pytz.timezone(tz)
+            m = re.match(r"^([+-])(\d{2}):?(\d{2})$", tz)
+            if m:
+                sign, hours, minutes = m.groups()
+                context_tz = pytz.FixedOffset(
+                    (sign == "-" and -1 or 1) * (int(hours) * 60 + int(minutes))
+                )
+            else:
+                context_tz = pytz.timezone(tz)
         study_date = (
             context_tz.localize(
                 self._get_date(
