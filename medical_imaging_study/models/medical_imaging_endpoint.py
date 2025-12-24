@@ -86,6 +86,8 @@ class MedicalImagingEndpoint(models.Model):
 
     def _get_date(self, date_str):
         try:
+            if re.match(r"\d{8}$", date_str):
+                return datetime.strptime(date_str, "%Y%m%d")
             if re.match(r"\d{14}\.\d+", date_str):
                 return datetime.strptime(date_str, "%Y%m%d%H%M%S.%f")
             if re.match(r"\d{10}:\d{2}:\d{2}", date_str):
@@ -111,7 +113,7 @@ class MedicalImagingEndpoint(models.Model):
             context_tz.localize(
                 self._get_date(
                     study_data["00080020"]["Value"][0]
-                    + study_data["00080030"]["Value"][0],
+                    + (study_data["00080030"].get("Value", [False])[0] or "000000"),
                 )
             )
             .astimezone(pytz.UTC)
@@ -135,7 +137,7 @@ class MedicalImagingEndpoint(models.Model):
                     context_tz.localize(
                         self._get_date(
                             series["00080021"]["Value"][0]
-                            + series["00080031"].get("Value", ["000000"])[0],
+                            + (series["00080031"].get("Value", [False])[0] or "000000"),
                         )
                     )
                     .astimezone(pytz.UTC)
