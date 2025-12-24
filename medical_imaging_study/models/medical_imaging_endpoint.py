@@ -130,7 +130,7 @@ class MedicalImagingEndpoint(models.Model):
         series_processed = []
         for series in series_data:
             context_tz = pytz.timezone(self.tz or self.env.user.tz)
-            if "00080021" in series and series["00080021"].get("Value"):
+            if "00080021" in series and series["00080021"].get("Value", [False])[0]:
                 series_date = (
                     context_tz.localize(
                         self._get_date(
