@@ -109,15 +109,14 @@ class MedicalImagingEndpoint(models.Model):
                 )
             else:
                 context_tz = pytz.timezone(tz)
+        dt = self._get_date(
+            study_data["00080020"]["Value"][0]
+            + (study_data["00080030"].get("Value", [False])[0] or "000000"),
+        )
         study_date = (
-            context_tz.localize(
-                self._get_date(
-                    study_data["00080020"]["Value"][0]
-                    + (study_data["00080030"].get("Value", [False])[0] or "000000"),
-                )
-            )
-            .astimezone(pytz.UTC)
-            .replace(tzinfo=None)
+            context_tz.localize(dt).astimezone(pytz.UTC).replace(tzinfo=None)
+            if dt
+            else False
         )
         return {
             "instance_uid": study_data["0020000D"]["Value"][0],
