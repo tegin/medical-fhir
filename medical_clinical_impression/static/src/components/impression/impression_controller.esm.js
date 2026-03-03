@@ -3,6 +3,7 @@ const {useState, useSubEnv} = owl;
 import {useBus, useService} from "@web/core/utils/hooks";
 import {KanbanController} from "@web/views/kanban/kanban_controller";
 import {View} from "@web/views/view";
+import {useSetupView} from "@web/views/view_hook";
 
 export class ImpressionController extends KanbanController {
     async setup() {
@@ -20,6 +21,13 @@ export class ImpressionController extends KanbanController {
         this.router = useService("router");
         this.activeActions = this.props.archInfo.activeActions;
         this.model.addEventListener("update", () => this.selectRecord(), {once: true});
+        useSetupView({
+            getGlobalState: () => {
+                return {
+                    resId: this.state.selectedRecordId,
+                };
+            },
+        });
         useBus(this.env.bus, "impression:selectRecord", (ev) => {
             this.selectRecord(ev.detail);
         });
@@ -64,7 +72,14 @@ export class ImpressionController extends KanbanController {
     }
     async selectRecord(record) {
         var resId = undefined;
-        if (record === undefined && this.props.resId) {
+        if (
+            record === undefined &&
+            this.props &&
+            this.props.globalState &&
+            this.props.globalState.resId
+        ) {
+            resId = this.props.globalState.resId;
+        } else if (record === undefined && this.props && this.props.resId) {
             resId = this.props.resId;
         } else if (record === undefined) {
             resId = undefined;
@@ -93,6 +108,11 @@ export class ImpressionController extends KanbanController {
     }
     updateURL(resId) {
         this.router.pushState({id: resId});
+    }
+    exportedState() {
+        return {
+            resId: this.state.selectedRecordId,
+        };
     }
 }
 ImpressionController.components = {

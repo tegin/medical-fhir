@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="medical_observation_template_form_view">
+        <field name="model">medical.observation.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="concept_ids" widget="many2many_tags" />
+                    </group>
+                    <notebook>
+                        <page string="Groups" name="groups_page">
+                            <field name="group_ids" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_observation_template_search_view">
+        <field name="model">medical.observation.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="medical_observation_template_tree_view">
+        <field name="model">medical.observation.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="medical_observation_template_act_window">
+        <field name="name">Concept Templates</field>
+        <field name="res_model">medical.observation.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="medical_observation_template_menu">
+        <field name="name">Concept Templates</field>
+        <field
+            name="parent_id"
+            ref="medical_diagnostic_report.medical_report_configuration"
+        />
+        <field name="action" ref="medical_observation_template_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+
+</odoo>
