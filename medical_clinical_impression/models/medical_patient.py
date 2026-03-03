@@ -106,6 +106,15 @@ class MedicalPatient(models.Model):
                 .create({})
                 .generate()
             )
+        return self._create_impression_wizard()
+
+    def _create_impression_wizard(self):
+        """
+        We create this hook to be able to override it.
+        In some cases we want the user to be forced to use only their specialty
+        """
+        ctx = self.env.context.copy()
+        ctx.update({"impression_view": True, "default_patient_id": self.id})
         xmlid = "medical_clinical_impression.create_impression_from_patient_act_window"
         action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         action["context"] = ctx
