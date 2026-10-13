@@ -10,7 +10,13 @@
     "category": "Medical",
     "website": "https://github.com/tegin/medical-fhir",
     "license": "LGPL-3",
-    "depends": ["mail", "base_fontawesome", "uom", "product"],
+    "depends": [
+        "mail",
+        "base_fontawesome",
+        "uom",
+        "product",
+        "web_widget_sub_view",
+    ],
     "data": [
         "wizards/patient_partner_search.xml",
         "security/medical_security.xml",
