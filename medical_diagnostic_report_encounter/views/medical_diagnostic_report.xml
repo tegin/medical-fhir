@@ -15,4 +15,38 @@
             </xpath>
         </field>
     </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_tree_his_view">
+        <field name="model">medical.diagnostic.report</field>
+        <field
+            name="inherit_id"
+            ref="medical_diagnostic_report.medical_diagnostic_report_tree_his_view"
+        />
+        <field name="arch" type="xml">
+            <field name="internal_identifier" position="after">
+                <field name="encounter_id" />
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_search_view">
+        <field name="model">medical.diagnostic.report</field>
+        <field
+            name="inherit_id"
+            ref="medical_diagnostic_report.medical_diagnostic_report_search_view"
+        />
+        <field name="arch" type="xml">
+            <field name="internal_identifier" position="after">
+                <field name="encounter_id" />
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_encounter_his_tree_view">
+        <field name="model">medical.diagnostic.report</field>
+        <field name="inherit_id" ref="medical_diagnostic_report_tree_his_view" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="encounter_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
 </odoo>

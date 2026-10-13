@@ -16,7 +16,7 @@
         "wizards/medical_patient_create_diagnostic_report.xml",
         "views/medical_encounter.xml",
         "views/medical_diagnostic_report.xml",
-        "views/medical_patient.xml",
+        # "views/medical_patient.xml",
     ],
     "demo": [],
 }
