@@ -10,7 +10,6 @@ class MedicalPatient(models.Model):
     diagnostic_report_ids = fields.One2many(
         "medical.diagnostic.report",
         inverse_name="patient_id",
-        domain=[("fhir_state", "!=", "cancelled")],
     )
 
     def action_view_observations_with_concept(self):
