@@ -5,13 +5,14 @@
     "name": "Medical Imaging Study",
     "summary": """
         Medical Imaging Study""",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "license": "AGPL-3",
     "author": "Creu Blanca,Dixmit,Tegin",
     "website": "https://github.com/tegin/medical-fhir",
     "depends": [
         "medical_administration_encounter",
         "server_environment",
+        "web_widget_sub_view",
     ],
     "data": [
         "data/medical.imaging.acquisition.modality.csv",
