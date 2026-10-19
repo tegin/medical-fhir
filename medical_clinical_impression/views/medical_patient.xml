@@ -180,50 +180,14 @@
                         >
                         </button>
                     </div>
-                    <field
-                        name="impression_specialty_ids"
-                        widget="medical_one2many"
-                        mode="tree,kanban"
-                        context="{'patient_id': id}"
-                        options="{'record_action': 'get_specialty_impression'}"
-                    >
-                        <tree
-                            decoration-warning="impressions_in_progress_count &gt; 0"
-                            default_order="impression_last_update desc"
-                        >
-                            <field name="name" string="Impressions by specialty" />
-                            <field name="impression_last_update" string="Last Update" />
-                            <field name="patient_impression_count" string="Count" />
-                            <field name="impressions_in_progress_count" invisible="1" />
-                        </tree>
-                        <kanban class="o_kanban_mobile">
-                            <templates>
-                                <t t-name="kanban-box">
-                                    <div
-                                        class="oe_kanban_card oe_kanban_global_click ps-0 pe-0"
-                                    >
-                                        <div class="g-0 px-3">
-                                            <div>
-                                                <field name="name" />
-                                            </div>
-                                            <div>
-                                                <field
-                                                    name="impression_last_update"
-                                                    string="Last Update"
-                                                />
-                                            </div>
-                                            <div>
-                                                <field
-                                                    name="patient_impression_count"
-                                                    string="Count"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </t>
-                            </templates>
-                        </kanban>
-                    </field>
+                    <widget
+                        name="sub_view_widget"
+                        model="medical.specialty"
+                        domain="[('clinical_impression_ids.patient_id', '=', id)]"
+                        context="{'patient_id': id, 'tree_view_ref': 'medical_clinical_impression.medical_specialty_patient_tree_view', 'kanban_view_ref': 'medical_clinical_impression.medical_specialty_patient_kanban_view'}"
+                        open-action="get_specialty_impression"
+                        favorite="0"
+                    />
                 </page>
             </xpath>
         </field>
