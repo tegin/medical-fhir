@@ -222,6 +222,73 @@
             </search>
         </field>
     </record>
+    <!-- Views of the Prescription page of the patient (sub_view_widget), without
+         the buttons to create and export. Used through tree_view_ref and
+         kanban_view_ref. -->
+    <record model="ir.ui.view" id="medical_product_request_order_patient_tree_view">
+        <field
+            name="name"
+        >medical.product.request.order.tree.patient (in medical_product_request)</field>
+        <field name="model">medical.product.request.order</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <tree
+                create="0"
+                export_xlsx="0"
+                decoration-muted="state == 'cancelled'"
+                decoration-success="state == 'completed'"
+                decoration-warning="state == 'draft'"
+            >
+                <field name="id" widget="open_document_viewer" />
+                <field name="internal_identifier" />
+                <field name="patient_id" invisible="1" />
+                <field name="encounter_id" />
+                <field name="medical_product_template_ids" widget="many2many_tags" />
+                <field name="requester_id" />
+                <field name="validation_date" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_product_request_order_patient_kanban_view">
+        <field
+            name="name"
+        >medical.product.request.order.kanban.patient (in medical_product_request)</field>
+        <field name="model">medical.product.request.order</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <kanban create="0">
+                <templates>
+                    <field name="state" invisible="1" />
+                    <t t-name="kanban-box">
+                        <div
+                            t-attf-class="oe_kanban_card oe_kanban_global_click #{record.state.raw_value== 'draft' ? 'oe_kanban_color_3' : ''}"
+                        >
+                            <div class="o_kanban_record_body">
+                                <div class="o_kanban_primary_left">
+                                    <field
+                                        name="internal_identifier"
+                                        class="o_kanban_record_title"
+                                    />
+                                    <div t-if="record.validation_date.raw_value">
+                                        <field name="validation_date" />(<field
+                                            name="requester_id"
+                                        />)
+                                    </div>
+                                    <div>
+                                        <field
+                                            name="medical_product_template_ids"
+                                            widget="many2many_tags"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
     <record model="ir.ui.view" id="medical_product_request_order_tree_view">
         <field
             name="name"
