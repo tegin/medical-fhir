@@ -166,12 +166,6 @@
                 >
                     <div class="mb-2">
                         <button
-                            type="action"
-                            name="%(medical_clinical_impression.create_impression_from_patient_act_window)s"
-                            class="oe_stat_button btn-primary"
-                            string="Create"
-                        />
-                        <button
                             type="object"
                             name="action_view_clinical_impressions"
                             class="oe_stat_button btn-secondary"
@@ -186,6 +180,8 @@
                         domain="[('clinical_impression_ids.patient_id', '=', id)]"
                         context="{'patient_id': id, 'tree_view_ref': 'medical_clinical_impression.medical_specialty_patient_tree_view', 'kanban_view_ref': 'medical_clinical_impression.medical_specialty_patient_kanban_view'}"
                         open-action="get_specialty_impression"
+                        create-action="%(medical_clinical_impression.create_impression_from_patient_act_window)s"
+                        create-action-type="action"
                         favorite="0"
                     />
                 </page>
