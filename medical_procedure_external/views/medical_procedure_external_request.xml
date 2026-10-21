@@ -135,7 +135,6 @@
         <field name="priority" eval="99" />
         <field name="arch" type="xml">
             <tree
-                create="0"
                 export_xlsx="0"
                 default_order="fhir_state asc, create_date desc"
                 decoration-warning="fhir_state == 'draft'"

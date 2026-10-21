@@ -15,21 +15,24 @@
                     class="o_notebook_yellow"
                     icon="fa-prescription"
                 >
-                    <button
+                    <!--<button
                         type="action"
                         name="%(medical_procedure_external.medical_patient_create_procedure_external_act_window)s"
                         class="oe_stat_button btn-info mb-2"
                         icon="fa-file-prescription"
                         string="Create"
                         groups="medical_base.group_medical_doctor"
-                    />
+                    />-->
                     <widget
                         name="sub_view_widget"
                         model="medical.procedure.external.request"
                         domain="[('patient_id', '=', id), ('fhir_state', '!=', 'cancelled')]"
                         context="{'default_patient_id': id, 'tree_view_ref': 'medical_procedure_external.medical_procedure_external_request_patient_tree_view', 'kanban_view_ref': 'medical_procedure_external.medical_procedure_external_request_patient_kanban_view'}"
+                        create-action="%(medical_procedure_external.medical_patient_create_procedure_external_act_window)s"
+                        create-action-type="action"
                         favorite="0"
                     />
+
                 </page>
             </xpath>
         </field>
