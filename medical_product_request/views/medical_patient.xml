@@ -103,16 +103,6 @@
                         />
                         -->
 
-                    <button
-                        name="create_medical_product_request_order"
-                        class="oe_stat_button btn-success mb-2"
-                        string="Create"
-                        type="object"
-                        context="{'default_category': 'discharge', 'default_patient_id': id}"
-                        icon="fa-prescription"
-                        colspan="2"
-                    />
-
                     <widget
                         name="sub_view_widget"
                         model="medical.product.request.order"

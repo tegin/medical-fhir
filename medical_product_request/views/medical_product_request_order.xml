@@ -233,7 +233,6 @@
         <field name="priority" eval="99" />
         <field name="arch" type="xml">
             <tree
-                create="0"
                 export_xlsx="0"
                 decoration-muted="state == 'cancelled'"
                 decoration-success="state == 'completed'"
