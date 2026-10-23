@@ -13,6 +13,7 @@
         "medical_workflow",
         "medical_clinical_condition",
         "medical_administration_practitioner_specialty",
+        "web_widget_sub_view",
     ],
     "data": [
         "security/medical_security.xml",
@@ -20,6 +21,7 @@
         "data/ir_sequence_data.xml",
         "wizards/create_impression_from_patient.xml",
         "views/medical_clinical_impression.xml",
+        "views/medical_specialty.xml",
         "views/medical_patient.xml",
         "views/medical_clinical_finding.xml",
         "views/medical_family_member_history.xml",
