@@ -14,6 +14,7 @@ class MedicalPatientCreateDiagnosticReport(models.TransientModel):
         "medical.encounter",
         required=True,
         compute="_compute_default_encounter",
+        store=True,
     )
 
     @api.onchange("encounter_id")
