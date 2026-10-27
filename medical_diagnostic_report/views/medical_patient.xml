@@ -86,6 +86,7 @@
             <tree
                 decoration-warning="fhir_state == 'registered'"
                 decoration-danger="fhir_state == 'cancelled'"
+                export_xlsx="0"
             >
                 <field name="id" widget="open_document_viewer" string=" " />
                 <button
