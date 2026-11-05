@@ -14,6 +14,7 @@
         "medical_certify",
         "medical_administration_encounter",
         "user_digital_signature",
+        "web_widget_sub_view",
     ],
     "data": [
         "data/report_paper_format.xml",

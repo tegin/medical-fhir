@@ -121,6 +121,78 @@
             </search>
         </field>
     </record>
+    <!-- Views of the External Procedures page of the patient (sub_view_widget),
+         without the buttons to create and export. Used through tree_view_ref and
+         kanban_view_ref. -->
+    <record
+        model="ir.ui.view"
+        id="medical_procedure_external_request_patient_tree_view"
+    >
+        <field
+            name="name"
+        >medical.procedure.external.request.tree.patient (in medical_procedure_external)</field>
+        <field name="model">medical.procedure.external.request</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <tree
+                export_xlsx="0"
+                default_order="fhir_state asc, create_date desc"
+                decoration-warning="fhir_state == 'draft'"
+            >
+                <field name="id" widget="open_document_viewer" />
+                <field name="internal_identifier" />
+                <field name="name" />
+                <field name="encounter_id" />
+                <field name="issued_user_id" />
+                <field name="issued_date" />
+                <field name="create_date" />
+                <field name="state" invisible="1" />
+                <field name="fhir_state" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record
+        model="ir.ui.view"
+        id="medical_procedure_external_request_patient_kanban_view"
+    >
+        <field
+            name="name"
+        >medical.procedure.external.request.kanban.patient (in medical_procedure_external)</field>
+        <field name="model">medical.procedure.external.request</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <kanban create="0">
+                <templates>
+                    <field name="fhir_state" invisible="1" />
+                    <t t-name="kanban-box">
+                        <div
+                            t-attf-class="oe_kanban_card oe_kanban_global_click #{record.fhir_state.raw_value== 'draft' ? 'oe_kanban_color_3' : ''}"
+                        >
+                            <div class="o_kanban_record_body">
+                                <div class="o_kanban_primary_left">
+                                    <field
+                                        name="internal_identifier"
+                                        class="o_kanban_record_title"
+                                    />
+                                    <div>
+                                        <field name="name" />
+                                    </div>
+                                    <div t-if="record.issued_date.raw_value">
+                                        <field name="issued_date" />(<field
+                                            name="issued_user_id"
+                                        />)
+                                    </div>
+                                    <div>
+                                        <field name="create_date" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
     <record model="ir.ui.view" id="medical_procedure_external_request_tree_view">
         <field
             name="name"
