@@ -68,6 +68,62 @@
             </search>
         </field>
     </record>
+    <!-- Views of the Dicom page of the patient (sub_view_widget), without the
+         buttons to create and export. Used through tree_view_ref and
+         kanban_view_ref. -->
+    <record model="ir.ui.view" id="medical_imaging_study_patient_tree_view">
+        <field
+            name="name"
+        >medical.imaging.study.tree.patient (in medical_imaging_study)</field>
+        <field name="model">medical.imaging.study</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <tree create="0" export_xlsx="0">
+                <field name="instance_uid" />
+                <field name="description" />
+                <field name="modality_ids" widget="many2many_tags" />
+                <field name="study_date" />
+                <field name="series_count" />
+                <field name="instances_count" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_imaging_study_patient_kanban_view">
+        <field
+            name="name"
+        >medical.imaging.study.kanban.patient (in medical_imaging_study)</field>
+        <field name="model">medical.imaging.study</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" create="0">
+                <field name="name" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click ps-0 pe-0">
+                            <div class="row g-0">
+                                <div class="col-2" name="front">
+
+                                </div>
+                                <div class="col-10" name="body">
+                                    <div>
+                                        <field name="instance_uid" />
+                                        <field name="description" />
+                                        <field
+                                            name="modality_ids"
+                                            widget="many2many_tags"
+                                        />
+                                        <field name="study_date" />
+                                        <field name="series_count" />
+                                        <field name="instances_count" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
     <record model="ir.ui.view" id="medical_imaging_study_tree_view">
         <field name="name">medical.imaging.study.tree (in medical_imaging_study)</field>
         <field name="model">medical.imaging.study</field>
