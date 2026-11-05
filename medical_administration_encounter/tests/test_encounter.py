@@ -38,7 +38,7 @@ class TestMedicalEncounter(TransactionCase):
                     "name": name,
                     "password": "demo",
                     "login": name,
-                    "email": "@".join([name, "@test.com"]),
+                    "email": "@".join([name, "test.com"]),
                     "groups_id": [(6, 0, [group_ids])],
                 }
             )
