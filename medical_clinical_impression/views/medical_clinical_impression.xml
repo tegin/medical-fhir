@@ -215,16 +215,17 @@
         <field name="model">medical.clinical.impression</field>
         <field name="arch" type="xml">
             <kanban js_class="impression">
+                <field name="fhir_state" />
                 <templates>
                     <t t-name="kanban-box">
                         <div
-                            t-attf-class="oe_kanban_card oe_kanban_global_click"
+                            t-attf-class="oe_kanban_card oe_kanban_global_click oe_kanban_impression_#{record.fhir_state.raw_value}"
                             style="width:100%"
                         >
                             <div class="row o_hidden_mobile">
                                 <div class="col-md-2 my-auto">
                                     <i>
-                                        <field name="validation_date" />
+                                        <field name="__last_update" />
                                     </i>
                                 </div>
                                 <div class="col-md">

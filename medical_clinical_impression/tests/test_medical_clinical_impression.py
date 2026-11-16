@@ -4,6 +4,7 @@ from datetime import datetime
 
 import freezegun
 
+from odoo.exceptions import AccessError
 from odoo.tests.common import TransactionCase
 
 
@@ -136,3 +137,53 @@ class TestClinicalImpression(TransactionCase):
         # The allergies and findings created in that impression should be cancelled too.
         self.patient.invalidate_recordset()
         self.assertEqual(self.patient.medical_allergies_count, 0)
+
+    def _create_cancelled_impression(self):
+        impression = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "specialty_id": self.specialty_cardiology.id,
+            }
+        )
+        impression.validate_clinical_impression()
+        impression.cancel_clinical_impression()
+        return impression
+
+    def _grant_revalidate_group(self):
+        group = self.env.ref(
+            "medical_clinical_impression.group_clinical_impression_revalidate"
+        )
+        self.env.user.write({"groups_id": [(4, group.id)]})
+
+    def test_write_guarded_field_cancelled_without_revalidate_group(self):
+        impression = self._create_cancelled_impression()
+        self.assertFalse(impression.can_revalidate)
+        with self.assertRaises(AccessError):
+            impression.write({"summary": "New summary"})
+
+    def test_write_guarded_field_cancelled_with_revalidate_group(self):
+        impression = self._create_cancelled_impression()
+        self._grant_revalidate_group()
+        impression.invalidate_recordset()
+        self.assertTrue(impression.can_revalidate)
+        impression.write({"summary": "New summary"})
+        self.assertEqual(impression.summary, "New summary")
+
+    def test_write_non_guarded_field_cancelled_without_revalidate_group(self):
+        # finding_ids is not part of _revalidate_guarded_fields, so it can
+        # still be written even on a cancelled impression.
+        impression = self._create_cancelled_impression()
+        impression.write({"finding_ids": [(4, self.finding_pregnant.id)]})
+        self.assertIn(self.finding_pregnant, impression.finding_ids)
+
+    def test_revalidate_cancelled_without_revalidate_group(self):
+        impression = self._create_cancelled_impression()
+        with self.assertRaises(AccessError):
+            impression.validate_clinical_impression()
+
+    def test_revalidate_cancelled_with_revalidate_group(self):
+        impression = self._create_cancelled_impression()
+        self._grant_revalidate_group()
+        impression.invalidate_recordset()
+        impression.validate_clinical_impression()
+        self.assertEqual(impression.fhir_state, "completed")
