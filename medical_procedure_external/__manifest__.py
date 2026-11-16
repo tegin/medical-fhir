@@ -37,6 +37,10 @@
         "web.report_assets_common": [
             "medical_procedure_external/static/src/scss/medical_procedure_external_layout.scss",
         ],
+        "web.assets_backend": [
+            "medical_procedure_external/static/src/scss/"
+            "medical_procedure_external_backend.scss",
+        ],
     },
     "demo": ["demo/medical_procedure_external.xml"],
 }

@@ -99,6 +99,7 @@
                         name="composition"
                         options="{'automatic_summernote_height': 1}"
                         attrs="{'readonly':[('state', '!=', 'draft')]}"
+                        class="o_procedure_external_request_template_composition"
                     />
                 </page>
             </xpath>

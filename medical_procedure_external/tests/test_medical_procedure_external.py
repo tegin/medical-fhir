@@ -134,3 +134,26 @@ class TestMedicalProcedureExternal(TransactionCase):
         action = self.encounter_1.action_view_external_request()
         reports = self.env[action["res_model"]].search(action["domain"])
         self.assertIn(self.report, reports)
+
+    def test_create_external_request_default_encounter_no_patient(self):
+        # .new() is used instead of .create() because encounter_id is
+        # required, and without a default_patient_id in context no
+        # encounter can be defaulted.
+        wizard = self.env["medical.patient.create.external.request"].new(
+            {"template_id": self.template_1.id}
+        )
+        self.assertFalse(wizard.encounter_id)
+
+    def test_create_external_request_default_encounter(self):
+        cancelled_encounter = self.env["medical.encounter"].create(
+            {"patient_id": self.patient_1.id, "state": "cancelled"}
+        )
+        wizard = (
+            self.env["medical.patient.create.external.request"]
+            .with_context(default_patient_id=self.patient_1.id)
+            .new({"template_id": self.template_1.id})
+        )
+        # The non finished/cancelled encounter is selected, the cancelled
+        # one is excluded.
+        self.assertEqual(wizard.encounter_id, self.encounter_1)
+        self.assertNotEqual(wizard.encounter_id, cancelled_encounter)
