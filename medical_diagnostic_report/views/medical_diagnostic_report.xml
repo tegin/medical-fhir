@@ -20,6 +20,13 @@
                     attrs="{'invisible':[('fhir_state', '!=', 'registered')]}"
                 />
                 <button
+                    name="validate_on_behalf_action"
+                    string="Validar informe en nombre de ..."
+                    type="object"
+                    confirm="Are you sure you want to validate this report on behalf of its performer?"
+                    attrs="{'invisible': ['|', ('fhir_state', '!=', 'registered'), ('duplicated_from_id', '=', False)]}"
+                />
+                <button
                     name="cancel_action"
                     string="Cancel report"
                     confirm="Are you sure you want to cancel this report?"
@@ -60,11 +67,8 @@
                 <attribute name="invisible">1</attribute>
             </field>
             <field name="patient_id" position="before">
-                <field name="patient_name" />
-                <field name="vat" />
-                <field name="patient_age" />
-                <field name="patient_origin" />
                 <field name="is_cancellable" invisible="1" />
+                <field name="duplicated_from_id" invisible="1" />
             </field>
             <field name="fhir_state" position="attributes">
                 <attribute name="statusbar_visible">registered,final</attribute>
@@ -222,6 +226,14 @@
                             nolabel="1"
                             colspan="2"
                         />
+                    </group>
+                </page>
+                <page name="patient_info" string="Patient Info">
+                    <group>
+                        <field name="patient_name" />
+                        <field name="vat" />
+                        <field name="patient_age" />
+                        <field name="patient_origin" />
                     </group>
                 </page>
             </xpath>
