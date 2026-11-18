@@ -7,7 +7,7 @@ from datetime import date, datetime
 
 import freezegun
 
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import TransactionCase
 from odoo.tests.common import Form
 
@@ -122,6 +122,49 @@ class TestMedicalDiagnosticReport(TransactionCase):
         self.assertFalse(self.report.is_cancellable)
         self.assertTrue(self.report.cancel_user_id)
         self.assertEqual(self.report.cancel_user_id, self.env.user)
+
+    def test_copy_sets_duplicated_from_id(self):
+        self.assertFalse(self.report.duplicated_from_id)
+        report_copy = self.report.copy()
+        self.assertEqual(report_copy.duplicated_from_id, self.report)
+        self.assertFalse(self.report.duplicated_from_id)
+
+    def test_validate_on_behalf_without_performer(self):
+        self.assertFalse(self.report.performer_id)
+        with self.assertRaises(UserError):
+            self.report.validate_on_behalf_action()
+
+    def test_validate_on_behalf_performer_without_user(self):
+        performer = self.env["res.partner"].create(
+            {"name": "Performer without user", "is_practitioner": True}
+        )
+        self.report.performer_id = performer
+        with self.assertRaises(UserError):
+            self.report.validate_on_behalf_action()
+
+    def test_validate_on_behalf_action(self):
+        performer_user = self.env["res.users"].create(
+            {
+                "name": "Performer user",
+                "login": "test_performer_user",
+                "groups_id": [
+                    (4, self.env.ref("medical_base.group_medical_doctor").id)
+                ],
+            }
+        )
+        self.report.performer_id = performer_user.partner_id
+        with freezegun.freeze_time("2020-01-01"):
+            self.report.validate_on_behalf_action()
+        self.assertEqual(self.report.fhir_state, "final")
+        self.assertEqual(self.report.issued_date, datetime(2020, 1, 1, 0, 0, 0))
+        self.assertEqual(self.report.issued_user_id, performer_user)
+        self.assertNotEqual(self.report.issued_user_id, self.env.user)
+        self.assertTrue(
+            any(
+                "on behalf of" in (message.body or "")
+                for message in self.report.message_ids
+            )
+        )
 
     def test_age(self):
         self.patient_1.write({"birth_date": date(2002, 1, 1)})
