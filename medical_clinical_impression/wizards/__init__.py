@@ -1,1 +1,2 @@
 from . import create_impression_from_patient
+from . import medical_patient_create_diagnostic_report

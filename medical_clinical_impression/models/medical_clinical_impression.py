@@ -203,6 +203,17 @@ class MedicalClinicalImpression(models.Model):
         self._cancel_related_conditions()
         self.write(self._cancel_clinical_impression_fields())
 
+    def action_create_clinical_impression_report(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "medical_diagnostic_report.medical_patient_create_diagnostic_report_act_window"
+        )
+        action["context"] = {
+            "default_patient_id": self.patient_id.id,
+            "clinical_impression_id": self.id,
+        }
+        return action
+
     def impression_family_history(self):
         return {
             "type": "ir.actions.act_window",

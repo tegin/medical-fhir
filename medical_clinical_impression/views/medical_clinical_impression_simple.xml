@@ -72,6 +72,12 @@
                             class="btn btn-primary"
                             type="object"
                         ><i class="fas fa-users" />  Family</button>
+                        <button
+                            name="action_create_clinical_impression_report"
+                            string="Generate Diagnostic Report"
+                            class="btn btn-primary"
+                            type="object"
+                        />
                     </div>
                 </div>
                 <group string="Description">
