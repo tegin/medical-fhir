@@ -1,6 +1,7 @@
 # Copyright 2022 Creu Blanca
 
 from datetime import datetime
+from unittest import mock
 
 import freezegun
 
@@ -193,6 +194,21 @@ class TestMedicalProductRequestOrder(TransactionCase):
         )
         product_request_order_2.invalidate_recordset()
         self.assertEqual(product_request_order_2.encounter_id.id, encounter.id)
+
+    def test_preview_prescription_report(self):
+        # The report xmlid (cb_medical_product_request.spanish_prescription_report)
+        # is defined in a module that depends on this one, not the other way
+        # around, so env.ref is mocked to keep this test independent from it.
+        report = mock.MagicMock()
+        with mock.patch.object(type(self.env), "ref", return_value=report) as ref:
+            result = self.external_product_request_order.preview_prescription_report()
+        ref.assert_called_once_with(
+            "cb_medical_product_request.spanish_prescription_report"
+        )
+        report.report_action.assert_called_once_with(
+            self.external_product_request_order
+        )
+        self.assertEqual(result, report.report_action.return_value)
 
     def test_onchange_encounter_date(self):
         with freezegun.freeze_time("2022-01-01"):

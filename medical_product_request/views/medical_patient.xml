@@ -103,75 +103,13 @@
                         />
                         -->
 
-                    <button
-                        name="create_medical_product_request_order"
-                        class="oe_stat_button btn-success mb-2"
-                        string="Create"
-                        type="object"
-                        context="{'default_category': 'discharge', 'default_patient_id': id}"
-                        icon="fa-prescription"
-                        colspan="2"
+                    <widget
+                        name="sub_view_widget"
+                        model="medical.product.request.order"
+                        domain="[('patient_id', '=', id), ('category', '=', 'discharge'), ('state', '!=', 'cancelled')]"
+                        context="{'default_patient_id': id, 'default_category': 'discharge', 'tree_view_ref': 'medical_product_request.medical_product_request_order_patient_tree_view', 'kanban_view_ref': 'medical_product_request.medical_product_request_order_patient_kanban_view'}"
+                        favorite="0"
                     />
-
-                    <field
-                        name="external_product_request_order_ids"
-                        widget="medical_one2many"
-                        readonly="1"
-                        options="{'record_action': 'get_formview_action'}"
-                        mode="tree,kanban"
-                        colspan="2"
-                        nolabel="1"
-                    >
-                        <tree
-                            decoration-muted="state == 'cancelled'"
-                            decoration-success="state == 'completed'"
-                            decoration-warning="state == 'draft'"
-                        >
-                            <field name="id" widget="open_document_viewer" />
-                            <field name="internal_identifier" />
-                            <field name="patient_id" invisible="1" />
-                            <field name="encounter_id" />
-                            <field
-                                name="medical_product_template_ids"
-                                widget="many2many_tags"
-                            />
-                            <field name="requester_id" />
-                            <field name="validation_date" />
-                            <field name="state" />
-                        </tree>
-                        <kanban>
-                            <templates>
-                                <field name="state" invisible="1" />
-                                <t t-name="kanban-box">
-                                    <div
-                                        t-attf-class="oe_kanban_card oe_kanban_global_click #{record.state.raw_value== 'draft' ? 'oe_kanban_color_3' : ''}"
-                                    >
-                                        <div class="o_kanban_record_body">
-                                            <div class="o_kanban_primary_left">
-                                                <field
-                                                    name="internal_identifier"
-                                                    class="o_kanban_record_title"
-                                                />
-                                                <div
-                                                    t-if="record.validation_date.raw_value"
-                                                >
-                                                    <field
-                                                        name="validation_date"
-                                                    />(<field name="requester_id" />)
-                                                </div>
-                                                <div>
-                                                    <field
-                                                        name="medical_product_template_ids"
-                                                        widget="many2many_tags"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </t>
-                            </templates>
-                        </kanban>
-                    </field>
                 </page>
             </xpath>
         </field>

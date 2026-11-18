@@ -13,6 +13,7 @@
     "depends": [
         "medical_administration_encounter",
         "mail",
+        "web_widget_sub_view",
     ],
     "data": [
         "security/ir.model.access.csv",
