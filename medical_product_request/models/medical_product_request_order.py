@@ -189,3 +189,8 @@ class MedicalProductRequestOrder(models.Model):
             "isViewable": True,
             "defaultSource": url,
         }
+
+    def preview_prescription_report(self):
+        return self.env.ref(
+            "cb_medical_product_request.spanish_prescription_report"
+        ).report_action(self)

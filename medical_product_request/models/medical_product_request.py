@@ -54,7 +54,7 @@ class MedicalProductRequest(models.Model):
     # Fhir Concept: authoredOn
 
     medical_product_template_id = fields.Many2one(
-        comodel_name="medical.product.template", required=True
+        comodel_name="medical.product.template",  # required=True
     )
     # Fhir Concept: medication
 

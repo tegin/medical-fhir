@@ -101,7 +101,9 @@
                                     <field
                                         name="medical_product_template_id"
                                         options="{'no_create': True, 'no_open': True}"
+                                        attrs="{'required':[('name', '=', False)]}"
                                     />
+                                    <field name="name" string="Nombre" required="0" />
                                     <field
                                         name="dose_quantity"
                                         string="Dose"
@@ -238,6 +240,13 @@
                 decoration-success="state == 'completed'"
                 decoration-warning="state == 'draft'"
             >
+                <button
+                    type="object"
+                    name="preview_prescription_report"
+                    class="btn btn-sm btn-secondary"
+                    icon="fa-duotone fa-file-pdf"
+                    title="Preview"
+                />
                 <field name="id" widget="open_document_viewer" />
                 <field name="internal_identifier" />
                 <field name="patient_id" invisible="1" />
