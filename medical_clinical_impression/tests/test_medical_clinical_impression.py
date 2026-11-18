@@ -4,6 +4,7 @@ from datetime import datetime
 
 import freezegun
 
+from odoo.exceptions import AccessError
 from odoo.tests.common import TransactionCase
 
 
@@ -122,6 +123,52 @@ class TestClinicalImpression(TransactionCase):
             self.allergy_substance_ibuprofen.id,
         )
 
+    def test_create_clinical_impression_report_action(self):
+        impression = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "specialty_id": self.specialty_cardiology.id,
+                "summary": "Summary 1",
+            }
+        )
+        action = impression.action_create_clinical_impression_report()
+        self.assertEqual(
+            action["res_model"], "medical.patient.create.diagnostic.report"
+        )
+        self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
+        self.assertEqual(action["context"]["clinical_impression_id"], impression.id)
+
+    def test_create_clinical_impression_report_appends_summary(self):
+        impression = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "specialty_id": self.specialty_cardiology.id,
+                "summary": "Summary 1",
+            }
+        )
+        impression.validate_clinical_impression()
+        template = self.env["medical.diagnostic.report.template"].create(
+            {"name": "Template 1", "composition": "Template composition"}
+        )
+        action = impression.action_create_clinical_impression_report()
+        wizard = (
+            self.env["medical.patient.create.diagnostic.report"]
+            .with_context(**action["context"])
+            .create({"template_id": template.id})
+        )
+        report_action = wizard.generate()
+        report = self.env[report_action["res_model"]].browse(report_action["res_id"])
+        self.assertIn(template.composition, report.composition)
+        self.assertIn(impression.summary, report.composition)
+        # The appended text must identify who wrote the summary and when.
+        # create_date is set by the DB at transaction start, so it cannot be
+        # frozen with freezegun; the real value is asserted instead.
+        self.assertIn(impression.validation_user_id.name, report.composition)
+        self.assertIn(str(impression.create_date.date()), report.composition)
+        # with_composition must be forced, or the composition field (and so
+        # the appended summary) stays hidden on the report form.
+        self.assertTrue(report.with_composition)
+
     def test_cancel_impression(self):
         impression = self.env["medical.clinical.impression"].create(
             {
@@ -136,3 +183,53 @@ class TestClinicalImpression(TransactionCase):
         # The allergies and findings created in that impression should be cancelled too.
         self.patient.invalidate_recordset()
         self.assertEqual(self.patient.medical_allergies_count, 0)
+
+    def _create_cancelled_impression(self):
+        impression = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "specialty_id": self.specialty_cardiology.id,
+            }
+        )
+        impression.validate_clinical_impression()
+        impression.cancel_clinical_impression()
+        return impression
+
+    def _grant_revalidate_group(self):
+        group = self.env.ref(
+            "medical_clinical_impression.group_clinical_impression_revalidate"
+        )
+        self.env.user.write({"groups_id": [(4, group.id)]})
+
+    def test_write_guarded_field_cancelled_without_revalidate_group(self):
+        impression = self._create_cancelled_impression()
+        self.assertFalse(impression.can_revalidate)
+        with self.assertRaises(AccessError):
+            impression.write({"summary": "New summary"})
+
+    def test_write_guarded_field_cancelled_with_revalidate_group(self):
+        impression = self._create_cancelled_impression()
+        self._grant_revalidate_group()
+        impression.invalidate_recordset()
+        self.assertTrue(impression.can_revalidate)
+        impression.write({"summary": "New summary"})
+        self.assertEqual(impression.summary, "New summary")
+
+    def test_write_non_guarded_field_cancelled_without_revalidate_group(self):
+        # finding_ids is not part of _revalidate_guarded_fields, so it can
+        # still be written even on a cancelled impression.
+        impression = self._create_cancelled_impression()
+        impression.write({"finding_ids": [(4, self.finding_pregnant.id)]})
+        self.assertIn(self.finding_pregnant, impression.finding_ids)
+
+    def test_revalidate_cancelled_without_revalidate_group(self):
+        impression = self._create_cancelled_impression()
+        with self.assertRaises(AccessError):
+            impression.validate_clinical_impression()
+
+    def test_revalidate_cancelled_with_revalidate_group(self):
+        impression = self._create_cancelled_impression()
+        self._grant_revalidate_group()
+        impression.invalidate_recordset()
+        impression.validate_clinical_impression()
+        self.assertEqual(impression.fhir_state, "completed")

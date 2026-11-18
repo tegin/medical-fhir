@@ -13,6 +13,7 @@
         "medical_workflow",
         "medical_clinical_condition",
         "medical_administration_practitioner_specialty",
+        "medical_diagnostic_report",
         "web_widget_sub_view",
     ],
     "data": [

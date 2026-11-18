@@ -5,4 +5,13 @@
 -->
 <odoo>
 
+    <record id="group_clinical_impression_revalidate" model="res.groups">
+        <field name="name">Revalidate Clinical Impression</field>
+        <field name="category_id" ref="medical_base.ir_module_category_medical" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('medical_base.group_medical_assistance_user'))]"
+        />
+    </record>
+
 </odoo>
