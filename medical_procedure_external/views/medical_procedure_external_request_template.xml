@@ -27,7 +27,10 @@
                     </group>
                     <notebook>
                         <page name="composition" string="Composition">
-                            <field name="composition" />
+                            <field
+                                name="composition"
+                                class="o_procedure_external_request_template_composition"
+                            />
                         </page>
                     </notebook>
                 </sheet>
