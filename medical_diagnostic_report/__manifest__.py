@@ -14,6 +14,7 @@
         "web_editor",
         "medical_certify",
         "web_widget_bokeh_chart",
+        "web_widget_sub_view",
         "account",
         "user_digital_signature",
     ],

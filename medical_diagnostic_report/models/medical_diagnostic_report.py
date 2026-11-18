@@ -1,7 +1,8 @@
 # Copyright 2021 CreuBlanca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class MedicalDiagnosticReport(models.Model):
@@ -104,6 +105,12 @@ class MedicalDiagnosticReport(models.Model):
         relation="medical_diagnostic_report_templates_rel",
     )
     is_cancellable = fields.Boolean(compute="_compute_is_cancellable")
+    duplicated_from_id = fields.Many2one(
+        "medical.diagnostic.report",
+        string="Duplicated From",
+        readonly=True,
+        copy=False,
+    )
 
     @api.depends("database_composition")
     def _compute_composition(self):
@@ -139,11 +146,34 @@ class MedicalDiagnosticReport(models.Model):
             or "/"
         )
 
+    def copy(self, default=None):
+        default = dict(default or {})
+        default.setdefault("duplicated_from_id", self.id)
+        return super().copy(default=default)
+
+    def _get_validate_on_behalf_user_id(self):
+        return self.env.context.get("validate_on_behalf_user_id")
+
+    def validate_on_behalf_action(self):
+        self.ensure_one()
+        if not self.performer_id:
+            raise UserError(_("There is no performer set on this report."))
+        user = self.env["res.users"].search(
+            [("partner_id", "=", self.performer_id.id)], limit=1
+        )
+        if not user:
+            raise UserError(
+                _("There is no user linked to the performer %s.")
+                % self.performer_id.display_name
+            )
+        self.with_context(validate_on_behalf_user_id=user.id).registered2final_action()
+
     def registered2final_change_state(self):
         return {
             "fhir_state": "final",
             "issued_date": fields.Datetime.now(),
-            "issued_user_id": self.env.user.id,
+            "issued_user_id": self._get_validate_on_behalf_user_id()
+            or self.env.user.id,
         }
 
     def registered2final_action(self):
@@ -154,6 +184,15 @@ class MedicalDiagnosticReport(models.Model):
         )
         # The document is signed when issued.
         self._sign_document()
+        signer_user_id = self._get_validate_on_behalf_user_id()
+        if signer_user_id and signer_user_id != self.env.user.id:
+            self.message_post(
+                body=_(
+                    "Report validated by %(actor)s on behalf of %(signer)s.",
+                    actor=self.env.user.display_name,
+                    signer=self.env["res.users"].browse(signer_user_id).display_name,
+                )
+            )
 
     def _get_observation_date(self):
         return fields.Datetime.now()
