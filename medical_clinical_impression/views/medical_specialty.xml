@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Views of the Impression page of the patient (sub_view_widget), without
+         the buttons to create and export. Used through tree_view_ref and
+         kanban_view_ref. The impression fields are computed with the patient_id
+         of the context. -->
+    <record model="ir.ui.view" id="medical_specialty_patient_tree_view">
+        <field
+            name="name"
+        >medical.specialty.tree.patient (in medical_clinical_impression)</field>
+        <field name="model">medical.specialty</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <tree
+                export_xlsx="0"
+                decoration-warning="impressions_in_progress_count &gt; 0"
+            >
+                <field name="name" string="Impressions by specialty" />
+                <field name="impression_last_update" string="Last Update" />
+                <field name="patient_impression_count" string="Count" />
+                <field name="impressions_in_progress_count" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_specialty_patient_kanban_view">
+        <field
+            name="name"
+        >medical.specialty.kanban.patient (in medical_clinical_impression)</field>
+        <field name="model">medical.specialty</field>
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" create="0">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click ps-0 pe-0">
+                            <div class="g-0 px-3">
+                                <div>
+                                    <field name="name" />
+                                </div>
+                                <div>
+                                    <field
+                                        name="impression_last_update"
+                                        string="Last Update"
+                                    />
+                                </div>
+                                <div>
+                                    <field
+                                        name="patient_impression_count"
+                                        string="Count"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

@@ -8,6 +8,10 @@ class MedicalSpecialty(models.Model):
 
     _inherit = "medical.specialty"
 
+    clinical_impression_ids = fields.One2many(
+        "medical.clinical.impression", inverse_name="specialty_id"
+    )
+
     patient_impression_count = fields.Integer(compute="_compute_impression_info")
 
     impression_last_update = fields.Datetime(compute="_compute_impression_info")

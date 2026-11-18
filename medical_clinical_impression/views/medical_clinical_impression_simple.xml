@@ -11,6 +11,7 @@
             <form edit="true" js_class="impression_form" style="padding-top: 0px;">
                 <field name="state" invisible="1" />
                 <field name="fhir_state" invisible="1" />
+                <field name="can_revalidate" invisible="1" />
                 <field name="medical_condition_count" invisible="1" />
                 <div
                     class="alert alert-danger row"
@@ -56,7 +57,7 @@
                             class="btn-success"
                             confirm="Are you sure you want to validate this impression?"
                             type="object"
-                            attrs="{'invisible':[('fhir_state', 'in', ['completed','cancelled'])]}"
+                            attrs="{'invisible': ['|', ('fhir_state', '=', 'completed'), '&amp;', ('fhir_state', '=', 'cancelled'), ('can_revalidate', '=', False)]}"
                         />
                         <button
                             name="cancel_clinical_impression"
@@ -74,13 +75,28 @@
                     </div>
                 </div>
                 <group string="Description">
-                    <field name="description" nolabel="1" colspan="2" />
+                    <field
+                        name="description"
+                        nolabel="1"
+                        colspan="2"
+                        attrs="{'readonly': ['|', ('fhir_state', '=', 'completed'), '&amp;', ('fhir_state', '=', 'cancelled'), ('can_revalidate', '=', False)]}"
+                    />
                 </group>
                 <group string="Notes">
-                    <field name="note" nolabel="1" colspan="2" />
+                    <field
+                        name="note"
+                        nolabel="1"
+                        colspan="2"
+                        attrs="{'readonly': ['|', ('fhir_state', '=', 'completed'), '&amp;', ('fhir_state', '=', 'cancelled'), ('can_revalidate', '=', False)]}"
+                    />
                 </group>
                 <group string="Summary">
-                    <field name="summary" nolabel="1" colspan="2" />
+                    <field
+                        name="summary"
+                        nolabel="1"
+                        colspan="2"
+                        attrs="{'readonly': ['|', ('fhir_state', '=', 'completed'), '&amp;', ('fhir_state', '=', 'cancelled'), ('can_revalidate', '=', False)]}"
+                    />
                 </group>
                 <group string="Allergy Substances">
                     <field
@@ -88,6 +104,7 @@
                         nolabel="1"
                         colspan="2"
                         widget="many2many_tags"
+                        attrs="{'readonly': ['|', ('fhir_state', '=', 'completed'), '&amp;', ('fhir_state', '=', 'cancelled'), ('can_revalidate', '=', False)]}"
                     />
                 </group>
             </form>
