@@ -136,15 +136,24 @@
             </div>
             <div id="informations" class="row mt32 mb32">
                 <div
-                    class="col-auto mw-100 mb-2"
+                    class="col-auto mw-100 mb-2 o_procedure_external_request_template_composition"
                     t-if="doc.composition"
                     name="conclusion"
                     style="width:100%"
                 >
-                    <p t-field="doc.composition" />
+                    <div t-field="doc.composition" />
                 </div>
             </div>
             <div id="signature" class="o_signature row mt32 mb32">
+                <div class="col-auto" name="issued_user_id">
+                    <p class="m-0" t-if="doc.issued_user_id.digital_signature">
+                        <img
+                            class="image"
+                            t-att-src="image_data_uri(doc.issued_user_id.digital_signature)"
+                            style="border:auto; max-width:50%;"
+                        />
+                    </p>
+                </div>
             </div>
         </div>
     </template>

@@ -14,6 +14,7 @@
         "medical_certify",
         "medical_administration_encounter",
         "user_digital_signature",
+        "web_widget_sub_view",
     ],
     "data": [
         "data/report_paper_format.xml",
@@ -35,6 +36,10 @@
     "assets": {
         "web.report_assets_common": [
             "medical_procedure_external/static/src/scss/medical_procedure_external_layout.scss",
+        ],
+        "web.assets_backend": [
+            "medical_procedure_external/static/src/scss/"
+            "medical_procedure_external_backend.scss",
         ],
     },
     "demo": ["demo/medical_procedure_external.xml"],

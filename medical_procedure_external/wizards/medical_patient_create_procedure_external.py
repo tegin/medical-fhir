@@ -9,7 +9,11 @@ class MedicalPatientCreateExternalRequest(models.TransientModel):
     _name = "medical.patient.create.external.request"
     _description = "Generate report from Patient using a template"
 
-    encounter_id = fields.Many2one("medical.encounter", required=True)
+    encounter_id = fields.Many2one(
+        "medical.encounter",
+        required=True,
+        default=lambda self: self._default_encounter_id(),
+    )
     template_id = fields.Many2one(
         "medical.procedure.external.request.template", required=True
     )
@@ -29,6 +33,20 @@ class MedicalPatientCreateExternalRequest(models.TransientModel):
     @api.model
     def _get_lang(self):
         return self.env["res.lang"].get_installed()
+
+    @api.model
+    def _default_encounter_id(self):
+        patient_id = self.env.context.get("default_patient_id")
+        if not patient_id:
+            return False
+        return self.env["medical.encounter"].search(
+            [
+                ("patient_id", "=", patient_id),
+                ("state", "not in", ["finished", "cancelled"]),
+            ],
+            order="create_date desc",
+            limit=1,
+        )
 
     def _generate_kwargs(self):
         return {"encounter": self.encounter_id}

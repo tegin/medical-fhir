@@ -63,6 +63,51 @@
 .o_code {
     font-size: 10px;
 }
+.o_procedure_external_request_template_composition {
+    // wkhtmltopdf does not reliably position absolutely-positioned
+    // pseudo-elements inside <li>, so the checkbox drawn by the editor's
+    // default checklist css ends up stacked separately from the text
+    // lines. Render the checkbox inline instead, which wkhtmltopdf
+    // handles consistently.
+    .o_checklist {
+        padding-left: 0;
+        > li {
+            display: flex;
+            align-items: flex-start;
+            margin-left: 0;
+            margin-right: 0;
+
+            &:not(.oe-nested)::before {
+                position: static;
+                left: auto;
+                top: auto;
+                display: inline-block;
+                flex: 0 0 auto;
+                margin-top: 4px;
+                margin-right: 8px;
+            }
+
+            &.o_checked {
+                text-decoration: none;
+
+                &::before {
+                    content: "✓";
+                    line-height: 13px;
+                    text-align: center;
+                }
+
+                // web/.../reports/report.scss duplicates this checklist
+                // styling with a separate, absolutely-positioned ::after
+                // checkmark that the override above does not touch.
+                // Disable it so it doesn't leave a stray mark next to the
+                // checkbox.
+                &::after {
+                    content: none;
+                }
+            }
+        }
+    }
+}
 .o_procedure_external_request_layout_footer {
     margin-top: 200px;
     font-size: 12px;
