@@ -476,7 +476,11 @@
                     </group>
                     <notebook>
                         <page name="report" string="Reports" icon="fa-file">
-
+                            <widget
+                                name="sub_view_widget"
+                                model="medical.report"
+                                domain="[('patient_id', '=', id)]"
+                            />
                         </page>
                         <page
                             name="administration_data"

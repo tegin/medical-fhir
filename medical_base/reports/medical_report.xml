@@ -6,9 +6,9 @@
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 <odoo>
-    <record id="medical_role_view_tree" model="ir.ui.view">
-        <field name="name">medical.role.view.tree</field>
-        <field name="model">medical.role</field>
+    <record id="medical_report_view_tree" model="ir.ui.view">
+        <field name="name">medical.report.view.tree</field>
+        <field name="model">medical.report</field>
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree decoration-warning="is_draft" decoration-danger="is_cancelled">
