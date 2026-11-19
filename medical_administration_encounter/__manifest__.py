@@ -17,6 +17,7 @@
         "views/medical_menu.xml",
         "views/medical_patient.xml",
         "data/medical_encounter_sequence.xml",
+        "reports/medical_report.xml",
     ],
     "demo": [
         "demo/data.xml",
