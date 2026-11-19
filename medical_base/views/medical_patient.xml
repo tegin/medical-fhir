@@ -475,6 +475,9 @@
                         </group>
                     </group>
                     <notebook>
+                        <page name="report" string="Reports" icon="fa-file">
+
+                        </page>
                         <page
                             name="administration_data"
                             string="Administration Info"
