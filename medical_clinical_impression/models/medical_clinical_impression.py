@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import AccessError
+from odoo.exceptions import AccessError, UserError
 
 
 class MedicalClinicalImpression(models.Model):
@@ -205,12 +205,25 @@ class MedicalClinicalImpression(models.Model):
 
     def action_create_clinical_impression_report(self):
         self.ensure_one()
+        return self.action_create_clinical_impressions_report()
+
+    def action_create_clinical_impressions_report(self):
+        if not self:
+            raise UserError(_("Select at least one clinical impression."))
+        patients = self.mapped("patient_id")
+        if len(patients) > 1:
+            raise UserError(
+                _(
+                    "All the selected clinical impressions must belong to the"
+                    " same patient."
+                )
+            )
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "medical_diagnostic_report.medical_patient_create_diagnostic_report_act_window"
         )
         action["context"] = {
-            "default_patient_id": self.patient_id.id,
-            "clinical_impression_id": self.id,
+            "default_patient_id": patients.id,
+            "clinical_impression_ids": self.ids,
         }
         return action
 

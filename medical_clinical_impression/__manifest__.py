@@ -21,6 +21,7 @@
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
         "wizards/create_impression_from_patient.xml",
+        "wizards/medical_patient_create_diagnostic_report.xml",
         "views/medical_clinical_impression.xml",
         "views/medical_specialty.xml",
         "views/medical_patient.xml",

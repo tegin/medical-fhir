@@ -4,7 +4,7 @@ from datetime import datetime
 
 import freezegun
 
-from odoo.exceptions import AccessError
+from odoo.exceptions import AccessError, UserError
 from odoo.tests.common import TransactionCase
 
 
@@ -136,13 +136,44 @@ class TestClinicalImpression(TransactionCase):
             action["res_model"], "medical.patient.create.diagnostic.report"
         )
         self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
-        self.assertEqual(action["context"]["clinical_impression_id"], impression.id)
+        self.assertEqual(action["context"]["clinical_impression_ids"], [impression.id])
+
+    def test_create_clinical_impressions_report_action_requires_selection(self):
+        with self.assertRaises(UserError):
+            self.env[
+                "medical.clinical.impression"
+            ].action_create_clinical_impressions_report()
+
+    def test_create_clinical_impressions_report_action_same_patient_required(self):
+        other_patient = self.env["medical.patient"].create({"name": "Other Patient"})
+        impression_1 = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "specialty_id": self.specialty_cardiology.id,
+            }
+        )
+        impression_2 = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": other_patient.id,
+                "specialty_id": self.specialty_cardiology.id,
+            }
+        )
+        with self.assertRaises(UserError):
+            (impression_1 | impression_2).action_create_clinical_impressions_report()
+
+    def test_generate_without_template_outside_clinical_impression_is_blocked(self):
+        wizard = self.env["medical.patient.create.diagnostic.report"].create(
+            {"patient_id": self.patient.id}
+        )
+        with self.assertRaises(UserError):
+            wizard.generate()
 
     def test_create_clinical_impression_report_appends_summary(self):
         impression = self.env["medical.clinical.impression"].create(
             {
                 "patient_id": self.patient.id,
                 "specialty_id": self.specialty_cardiology.id,
+                "description": "Description 1",
                 "summary": "Summary 1",
             }
         )
@@ -159,15 +190,77 @@ class TestClinicalImpression(TransactionCase):
         report_action = wizard.generate()
         report = self.env[report_action["res_model"]].browse(report_action["res_id"])
         self.assertIn(template.composition, report.composition)
+        self.assertIn(impression.description, report.composition)
         self.assertIn(impression.summary, report.composition)
-        # The appended text must identify who wrote the summary and when.
-        # create_date is set by the DB at transaction start, so it cannot be
-        # frozen with freezegun; the real value is asserted instead.
-        self.assertIn(impression.validation_user_id.name, report.composition)
-        self.assertIn(str(impression.create_date.date()), report.composition)
+        # Each appended block must be preceded by its field's label in bold.
+        fields_info = impression.fields_get(["description", "summary"])
+        self.assertIn(
+            "<b>%s</b>" % fields_info["description"]["string"], report.composition
+        )
+        self.assertIn(
+            "<b>%s</b>" % fields_info["summary"]["string"], report.composition
+        )
         # with_composition must be forced, or the composition field (and so
-        # the appended summary) stays hidden on the report form.
+        # the appended content) stays hidden on the report form.
         self.assertTrue(report.with_composition)
+
+    def test_create_clinical_impression_report_without_template(self):
+        # template_id is not required when opened from a clinical impression:
+        # the report is created blank and filled only with its content.
+        impression = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "specialty_id": self.specialty_cardiology.id,
+                "summary": "Summary 1",
+            }
+        )
+        action = impression.action_create_clinical_impression_report()
+        plain_wizard = self.env["medical.patient.create.diagnostic.report"].create(
+            {"patient_id": self.patient.id}
+        )
+        self.assertFalse(plain_wizard.is_from_clinical_impression)
+        wizard = (
+            self.env["medical.patient.create.diagnostic.report"]
+            .with_context(**action["context"])
+            .create({})
+        )
+        self.assertTrue(wizard.is_from_clinical_impression)
+        report_action = wizard.generate()
+        report = self.env[report_action["res_model"]].browse(report_action["res_id"])
+        self.assertIn(impression.summary, report.composition)
+
+    def test_create_clinical_impressions_report_multiple_selection(self):
+        impression_1 = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "specialty_id": self.specialty_cardiology.id,
+                "summary": "Summary 1",
+            }
+        )
+        impression_2 = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "specialty_id": self.specialty_cardiology.id,
+                "summary": "Summary 2",
+            }
+        )
+        impressions = impression_1 | impression_2
+        action = impressions.action_create_clinical_impressions_report()
+        self.assertEqual(action["context"]["default_patient_id"], self.patient.id)
+        self.assertEqual(
+            set(action["context"]["clinical_impression_ids"]), set(impressions.ids)
+        )
+        wizard = (
+            self.env["medical.patient.create.diagnostic.report"]
+            .with_context(**action["context"])
+            .create({})
+        )
+        report_action = wizard.generate()
+        report = self.env[report_action["res_model"]].browse(report_action["res_id"])
+        self.assertIn(impression_1.summary, report.composition)
+        self.assertIn(impression_2.summary, report.composition)
+        self.assertIn(impression_1.internal_identifier, report.composition)
+        self.assertIn(impression_2.internal_identifier, report.composition)
 
     def test_cancel_impression(self):
         impression = self.env["medical.clinical.impression"].create(

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Creu Blanca
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record
+        model="ir.ui.view"
+        id="medical_patient_create_diagnostic_report_clinical_impression_form_view"
+    >
+        <field
+            name="name"
+        >medical.patient.create.diagnostic.report.form (in medical_clinical_impression)</field>
+        <field name="model">medical.patient.create.diagnostic.report</field>
+        <field
+            name="inherit_id"
+            ref="medical_diagnostic_report.medical_patient_create_diagnostic_report_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='template_id']" position="attributes">
+                <attribute name="attrs">
+                    {'required': [('is_from_clinical_impression', '=', False)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='template_id']" position="after">
+                <field name="is_from_clinical_impression" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
