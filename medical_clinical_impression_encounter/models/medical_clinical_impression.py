@@ -30,3 +30,29 @@ class MedicalClinicalImpression(models.Model):
                 if default_encounter == rec.encounter_id.id:
                     current_encounter = True
             rec.current_encounter = current_encounter
+
+    def impression_view_prescriptions(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Prescriptions",
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "medical.product.request.order",
+            "domain": [("encounter_id", "=", self.encounter_id.id)],
+            "views": [
+                (
+                    self.env.ref(
+                        "medical_product_request.medical_product_request_order_tree_view"
+                    ).id,
+                    "tree",
+                ),
+                (
+                    self.env.ref(
+                        "medical_product_request.medical_product_request_order_form_view"
+                    ).id,
+                    "form",
+                ),
+            ],
+            "target": "current",
+        }

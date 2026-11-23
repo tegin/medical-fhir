@@ -20,4 +20,32 @@
         </field>
     </record>
 
+    <record id="medical_clinical_impression_kanban_view" model="ir.ui.view">
+        <field name="name">medical.clinical.impression.kanban.encounter</field>
+        <field name="model">medical.clinical.impression</field>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_impression.medical_clinical_impression_kanban_view"
+        />
+        <field name="arch" type="xml">
+            <field name="fhir_state" position="after">
+                <field name="encounter_id" invisible="1" />
+            </field>
+            <xpath expr="//div[hasclass('oe_kanban_global_click')]" position="inside">
+                <div class="row mt-1">
+                    <div class="col-12 text-end">
+                        <button
+                            type="object"
+                            name="impression_view_prescriptions"
+                            class="btn btn-sm btn-secondary"
+                            icon="fa-prescription"
+                            string="Prescriptions"
+                            attrs="{'invisible': [('encounter_id', '=', False)]}"
+                        />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>
