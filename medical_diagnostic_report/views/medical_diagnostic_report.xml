@@ -66,6 +66,9 @@
                 <attribute name="attrs">{}</attribute>
                 <attribute name="invisible">1</attribute>
             </field>
+            <field name="name" position="after">
+              <field name="medical_department_id" />
+            </field>
             <field name="patient_id" position="before">
                 <field name="is_cancellable" invisible="1" />
                 <field name="duplicated_from_id" invisible="1" />

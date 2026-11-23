@@ -242,6 +242,10 @@ class MedicalDiagnosticReport(models.Model):
             "medical_diagnostic_report.medical_diagnostic_report"
         ).report_action(self)
 
+    def download_report(self):
+        self.ensure_one()
+        return self.preview_medical_diagnostic_report()
+
     def open_document(self):
         self.ensure_one()
         url = (

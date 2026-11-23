@@ -23,4 +23,5 @@ class MedicalReport(models.Model):
             "date": "issued_date",
             "description": "name",
             "user_id": "issued_user_id",
+            "has_download_report": "true",
         }

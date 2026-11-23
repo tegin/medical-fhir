@@ -77,6 +77,32 @@
             </xpath>
         </field>
     </record>
+    <record model="ir.ui.view" id="medical_patient_his_form_create_report_view">
+        <field
+            name="name"
+        >medical.patient.form (create diagnostic report button, in medical_diagnostic_report)</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <!-- Applied after other modules' additions to the generic "report"
+             page (e.g. medical_laboratory's Teletest button, priority 42),
+             so this button lands right below them, just above the widget. -->
+        <field name="priority" eval="50" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='report']//widget[@name='sub_view_widget']"
+                position="before"
+            >
+                <button
+                    name="%(medical_diagnostic_report.medical_patient_create_diagnostic_report_act_window)s"
+                    type="action"
+                    string="Create Diagnostic Report"
+                    icon="fa-file-medical-alt"
+                    class="btn-secondary mb-2"
+                    colspan="2"
+                />
+            </xpath>
+        </field>
+    </record>
     <record model="ir.ui.view" id="medical_diagnostic_report_patient_tree_view">
         <field
             name="name"
