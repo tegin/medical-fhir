@@ -37,4 +37,30 @@
             </xpath>
         </field>
     </record>
+    <record
+        model="ir.ui.view"
+        id="medical_patient_his_form_create_procedure_external_view"
+    >
+        <field
+            name="name"
+        >medical.patient.form (create external procedure button, in medical_procedure_external)</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <field name="priority" eval="51" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='report']//widget[@name='sub_view_widget']"
+                position="before"
+            >
+                <button
+                    name="%(medical_procedure_external.medical_patient_create_procedure_external_act_window)s"
+                    type="action"
+                    string="Create External Procedure"
+                    icon="fa-file-prescription"
+                    class="btn-secondary mb-2"
+                    colspan="2"
+                />
+            </xpath>
+        </field>
+    </record>
 </odoo>
