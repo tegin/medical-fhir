@@ -20,31 +20,26 @@
         </field>
     </record>
 
-    <record id="medical_clinical_impression_kanban_view" model="ir.ui.view">
-        <field name="name">medical.clinical.impression.kanban.encounter</field>
+    <record id="medical_clinical_impression_simple_form_view" model="ir.ui.view">
+        <field name="name">medical.clinical.impression.simple.form.encounter</field>
         <field name="model">medical.clinical.impression</field>
         <field
             name="inherit_id"
-            ref="medical_clinical_impression.medical_clinical_impression_kanban_view"
+            ref="medical_clinical_impression.medical_clinical_impression_simple_form_view"
         />
         <field name="arch" type="xml">
-            <field name="fhir_state" position="after">
+            <field name="can_revalidate" position="after">
                 <field name="encounter_id" invisible="1" />
             </field>
-            <xpath expr="//div[hasclass('o_only_mobile')]" position="after">
-                <div class="row mt-1">
-                    <div class="col-12 text-end">
-                        <button
-                            type="object"
-                            name="impression_view_prescriptions"
-                            class="btn btn-sm btn-secondary"
-                            icon="fa-prescription"
-                            string="Prescriptions"
-                            attrs="{'invisible': [('encounter_id', '=', False)]}"
-                        />
-                    </div>
-                </div>
-            </xpath>
+            <button name="action_create_clinical_impression_report" position="after">
+                <button
+                    name="impression_view_prescriptions"
+                    string="Prescriptions"
+                    class="btn btn-primary"
+                    type="object"
+                    attrs="{'invisible': [('encounter_id', '=', False)]}"
+                />
+            </button>
         </field>
     </record>
 
