@@ -165,3 +165,25 @@ class TestClinicalImpression(TransactionCase):
             **{"encounter_id": self.encounter_2.id}
         )._compute_current_encounter()
         self.assertFalse(impression.current_encounter)
+
+    def test_impression_view_prescriptions(self):
+        impression = self.env["medical.clinical.impression"].create(
+            {
+                "patient_id": self.patient.id,
+                "encounter_id": self.encounter.id,
+                "specialty_id": self.specialty_cardiology.id,
+            }
+        )
+        prescription = self.env["medical.product.request.order"].create(
+            {"patient_id": self.patient.id, "encounter_id": self.encounter.id}
+        )
+        other_encounter = self.env["medical.encounter"].create(
+            {"patient_id": self.patient.id}
+        )
+        self.env["medical.product.request.order"].create(
+            {"patient_id": self.patient.id, "encounter_id": other_encounter.id}
+        )
+        action = impression.impression_view_prescriptions()
+        self.assertEqual(action["res_model"], "medical.product.request.order")
+        records = self.env[action["res_model"]].search(action["domain"])
+        self.assertEqual(records, prescription)

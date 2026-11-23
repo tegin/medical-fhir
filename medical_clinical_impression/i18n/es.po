@@ -818,7 +818,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_form_view
 #: model_terms:ir.ui.view,arch_db:medical_clinical_impression.medical_clinical_impression_simple_form_view
 msgid "Summary"
-msgstr "Resúmen"
+msgstr "Resumen"
 
 #. module: medical_clinical_impression
 #: model:ir.model.fields,help:medical_clinical_impression.field_medical_clinical_impression__current_encounter

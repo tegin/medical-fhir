@@ -15,6 +15,12 @@
         &.o_medical_impression_selected > div {
             border-right: thick solid $o-brand-primary;
         }
+        .oe_kanban_impression_completed {
+            background-color: rgba($green, 0.15);
+        }
+        .oe_kanban_impression_cancelled {
+            background-color: rgba($red, 0.15);
+        }
         .row {
             // We need to add this in order to make remove horizontal scroll
             margin: 0;

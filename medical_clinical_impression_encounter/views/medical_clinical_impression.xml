@@ -20,4 +20,27 @@
         </field>
     </record>
 
+    <record id="medical_clinical_impression_simple_form_view" model="ir.ui.view">
+        <field name="name">medical.clinical.impression.simple.form.encounter</field>
+        <field name="model">medical.clinical.impression</field>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_impression.medical_clinical_impression_simple_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="can_revalidate" position="after">
+                <field name="encounter_id" invisible="1" />
+            </field>
+            <button name="action_create_clinical_impression_report" position="after">
+                <button
+                    name="impression_view_prescriptions"
+                    string="Prescriptions"
+                    class="btn btn-primary"
+                    type="object"
+                    attrs="{'invisible': [('encounter_id', '=', False)]}"
+                />
+            </button>
+        </field>
+    </record>
+
 </odoo>

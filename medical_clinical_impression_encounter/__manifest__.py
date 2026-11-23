@@ -11,6 +11,7 @@
     "depends": [
         "medical_clinical_impression",
         "medical_clinical_condition_encounter",
+        "medical_product_request",
     ],
     "data": [
         "security/ir.model.access.csv",

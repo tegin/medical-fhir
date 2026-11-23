@@ -215,16 +215,17 @@
         <field name="model">medical.clinical.impression</field>
         <field name="arch" type="xml">
             <kanban js_class="impression">
+                <field name="fhir_state" />
                 <templates>
                     <t t-name="kanban-box">
                         <div
-                            t-attf-class="oe_kanban_card oe_kanban_global_click"
+                            t-attf-class="oe_kanban_card oe_kanban_global_click oe_kanban_impression_#{record.fhir_state.raw_value}"
                             style="width:100%"
                         >
                             <div class="row o_hidden_mobile">
                                 <div class="col-md-2 my-auto">
                                     <i>
-                                        <field name="validation_date" />
+                                        <field name="__last_update" />
                                     </i>
                                 </div>
                                 <div class="col-md">
@@ -267,5 +268,15 @@
         <field
             name="context"
         >{'view_ref': 'medical_clinical_impression.medical_clinical_impression_simple_form_view'}</field>
+    </record>
+    <record model="ir.actions.server" id="action_create_clinical_impressions_report">
+        <field name="name">Create Diagnostic Report</field>
+        <field name="model_id" ref="model_medical_clinical_impression" />
+        <field name="binding_model_id" ref="model_medical_clinical_impression" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field
+            name="code"
+        >action = records.action_create_clinical_impressions_report()</field>
     </record>
 </odoo>
