@@ -114,4 +114,34 @@
             </xpath>
         </field>
     </record>
+    <record
+        model="ir.ui.view"
+        id="medical_patient_his_form_create_product_request_order_view"
+    >
+        <field
+            name="name"
+        >medical.patient.form (create product request order button, in medical_product_request)</field>
+        <field name="model">medical.patient</field>
+        <field name="inherit_id" ref="medical_base.medical_patient_his_form" />
+        <!-- Applied after medical_procedure_external's "Create External
+             Procedure" button (priority 51) on the generic "report" page, so
+             this button lands right below it, just above the widget. -->
+        <field name="priority" eval="52" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='report']//widget[@name='sub_view_widget']"
+                position="before"
+            >
+                <button
+                    name="create_medical_product_request_order"
+                    type="object"
+                    string="Create Ext. Prescription"
+                    icon="fa-pills"
+                    class="btn-secondary mb-2"
+                    colspan="2"
+                    context="{'default_category': 'discharge', 'default_patient_id': id}"
+                />
+            </xpath>
+        </field>
+    </record>
 </odoo>

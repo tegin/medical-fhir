@@ -194,3 +194,7 @@ class MedicalProductRequestOrder(models.Model):
         return self.env.ref(
             "cb_medical_product_request.spanish_prescription_report"
         ).report_action(self)
+
+    def download_report(self):
+        self.ensure_one()
+        return self.preview_prescription_report()
