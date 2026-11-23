@@ -31,7 +31,7 @@
             <field name="fhir_state" position="after">
                 <field name="encounter_id" invisible="1" />
             </field>
-            <xpath expr="//div[hasclass('oe_kanban_global_click')]" position="inside">
+            <xpath expr="//div[hasclass('o_only_mobile')]" position="after">
                 <div class="row mt-1">
                     <div class="col-12 text-end">
                         <button
