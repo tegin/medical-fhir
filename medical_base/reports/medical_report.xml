@@ -12,6 +12,16 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree decoration-warning="is_draft" decoration-danger="is_cancelled">
+                <button
+                    type="object"
+                    name="action_download_report"
+                    class="btn btn-sm btn-secondary"
+                    icon="fa-duotone fa-file-pdf"
+                    title="Download"
+                    attrs="{'invisible': [('has_download_report', '=', False)]}"
+                />
+                <field name="id" widget="open_document_viewer" string=" " />
+                <field name="has_download_report" invisible="1" />
                 <field name="internal_identifier" />
                 <field name="description" />
                 <field name="user_id" />

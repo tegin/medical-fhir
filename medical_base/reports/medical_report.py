@@ -14,7 +14,10 @@ class MedicalReport(models.Model):
     _log_access = True
 
     internal_identifier = fields.Char()
-    patient_id = fields.Many2one("res.partner")
+    # All the contributing models (medical.diagnostic.report,
+    # medical.procedure.external.request, medical.laboratory.report, ...)
+    # store a medical.patient id in their own patient_id column.
+    patient_id = fields.Many2one("medical.patient")
     date = fields.Datetime()
     is_draft = fields.Boolean()
     is_cancelled = fields.Boolean()
@@ -22,6 +25,10 @@ class MedicalReport(models.Model):
     user_id = fields.Many2one("res.users")
     model = fields.Selection(selection=[])
     description = fields.Text()
+    # Set to a SQL "true" literal in a contributing model's
+    # _basic_query_*_fields() to show the download button for that model;
+    # defaults to NULL/False otherwise.
+    has_download_report = fields.Boolean()
 
     def _queries(self):
         return []
@@ -46,6 +53,19 @@ class MedicalReport(models.Model):
             """
 
         return basic_query
+
+    def get_formview_action(self, access_uid=None):
+        self.ensure_one()
+        record = self.env[self.model].browse(self.res_id)
+        return record.get_formview_action(access_uid=access_uid)
+
+    def open_document(self):
+        self.ensure_one()
+        return self.env[self.model].browse(self.res_id).open_document()
+
+    def action_download_report(self):
+        self.ensure_one()
+        return self.env[self.model].browse(self.res_id).download_report()
 
     def init(self):
         queries = self._queries()
