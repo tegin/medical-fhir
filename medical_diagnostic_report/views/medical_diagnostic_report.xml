@@ -235,12 +235,25 @@
         <field name="arch" type="xml">
             <search>
                 <field name="internal_identifier" />
+                <field name="issued_user_id" />
                 <separator />
                 <filter
-                    name="filter_not_cancelled"
-                    string="Not cancelled"
-                    domain="[('state', '!=', 'cancelled')]"
+                    name="registered"
+                    string="Registered"
+                    domain="[('fhir_state', '=', 'registered')]"
                 />
+                <filter
+                    name="final"
+                    string="Final"
+                    domain="[('fhir_state', '=', 'final')]"
+                />
+                <filter
+                    name="cancelled"
+                    string="Cancelled"
+                    domain="[('fhir_state', '=', 'cancelled')]"
+                />
+                <separator />
+                <filter name="issued_date" string="Issued Date" date="issued_date" />
             </search>
         </field>
     </record>
@@ -263,6 +276,34 @@
             </xpath>
             <tree>
                 <field name="issued_date" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="medical_diagnostic_report_tree_his_view">
+        <field name="model">medical.diagnostic.report</field>
+        <field name="priority">999</field>
+
+        <field name="arch" type="xml">
+            <tree
+                export_xlsx="0"
+                decoration-warning="fhir_state == 'registered'"
+                decoration-danger="fhir_state == 'cancelled'"
+            >
+                <field name="id" widget="open_document_viewer" string=" " />
+                <button
+                    type="object"
+                    name="preview_medical_diagnostic_report"
+                    class="btn btn-sm btn-secondary"
+                    icon="fa-duotone fa-file-pdf"
+                    title="Preview"
+                />
+                <field name="internal_identifier" />
+                <field name="name" />
+                <field name="issued_user_id" />
+                <field name="issued_date" />
+                <field name="create_date" />
+                <field name="state" invisible="1" />
+                <field name="fhir_state" invisible="1" />
             </tree>
         </field>
     </record>
