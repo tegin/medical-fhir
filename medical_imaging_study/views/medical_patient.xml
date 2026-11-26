@@ -15,50 +15,13 @@
                     class="o_notebook_black"
                     icon="fa-radiation-alt"
                 >
-                    <field
-                        name="study_ids"
-                        widget="medical_one2many"
-                        mode="tree,kanban"
-                        options="{'record_action': 'get_formview_action'}"
-                    >
-                        <tree>
-                            <field name="instance_uid" />
-                            <field name="description" />
-                            <field name="modality_ids" widget="many2many_tags" />
-                            <field name="study_date" />
-                            <field name="series_count" />
-                            <field name="instances_count" />
-                        </tree>
-                        <kanban class="o_kanban_mobile">
-                            <field name="name" />
-                            <templates>
-                                <t t-name="kanban-box">
-                                    <div
-                                        class="oe_kanban_card oe_kanban_global_click ps-0 pe-0"
-                                    >
-                                        <div class="row g-0">
-                                            <div class="col-2" name="front">
-
-                                            </div>
-                                            <div class="col-10" name="body">
-                                                <div>
-                                                    <field name="instance_uid" />
-                                                    <field name="description" />
-                                                    <field
-                                                        name="modality_ids"
-                                                        widget="many2many_tags"
-                                                    />
-                                                    <field name="study_date" />
-                                                    <field name="series_count" />
-                                                    <field name="instances_count" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </t>
-                            </templates>
-                        </kanban>
-                    </field>
+                    <widget
+                        name="sub_view_widget"
+                        model="medical.imaging.study"
+                        domain="[('patient_id', '=', id)]"
+                        context="{'default_patient_id': id, 'tree_view_ref': 'medical_imaging_study.medical_imaging_study_patient_tree_view', 'kanban_view_ref': 'medical_imaging_study.medical_imaging_study_patient_kanban_view'}"
+                        favorite="0"
+                    />
                 </page>
             </xpath>
         </field>
