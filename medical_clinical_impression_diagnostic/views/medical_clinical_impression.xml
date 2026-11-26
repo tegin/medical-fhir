@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="medical_clinical_impression_simple_form_view">
+        <field name="model">medical.clinical.impression</field>
+        <field
+            name="inherit_id"
+            ref="medical_clinical_impression.medical_clinical_impression_simple_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='summary']/.." position="after">
+                <group string="Impressions" name="impressions_group">
+                    <field
+                        name="observation_ids"
+                        nolabel="1"
+                        colspan="2"
+                        context="{'default_patient_id': patient_id}"
+                    >
+                        <tree editable="bottom">
+                            <control>
+                                <create string="Add a line" />
+                                <button
+                                    name="add_template"
+                                    class="btn-link"
+                                    type="object"
+                                    string="Add template"
+                                    context="{'default_clinical_impression_id': parent.id}"
+                                />
+                            </control>
+                            <field name="patient_id" force_save="1" invisible="1" />
+                            <field name="concept_id" required="True" />
+                            <field name="name" invisible="1" force_save="1" />
+                            <field name="value" widget="diagnostic_report_value" />
+                            <field name="value_bool" invisible="1" />
+                            <field name="value_str" invisible="1" />
+                            <field
+                                name="value_selection"
+                                widget="dynamic_selection_diagnostic_report"
+                                context="{'options': selection_options}"
+                                invisible="1"
+                            />
+                            <field name="value_int" invisible="1" />
+                            <field name="value_float" invisible="1" />
+
+                            <field name="value_date" invisible="1" />
+                            <!-- TODO: Unitl here....-->
+                            <field
+                                name="uom_id"
+                                attrs="{'readonly': ['|', '|',('blocked', '=', True), ('concept_id', '!=', False), '|', '|','|', ('value_type', '=', 'selection'), ('value_type', '=', 'str'),('value_type', '=', 'date'), ('value_type', '=', 'bool')]}"
+                            />
+                            <field name="reference_format" invisible="1" />
+                            <field name="reference_range_high" invisible="1" />
+                            <field name="reference_range_low" invisible="1" />
+                            <field name="value_type" invisible="1" />
+                            <field name="selection_options" invisible="1" />
+                            <field name="reference_range_limit" />
+                            <field name="interpretation" />
+                            <field name="blocked" invisible="1" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

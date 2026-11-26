@@ -23,7 +23,6 @@ export class ImpressionFormController extends FormController {
             // Refreshing
             await this.env.parentController.model.root.load();
             await this.env.parentController.render(true);
-            this.env.parentController.selectRecord();
         }
     }
 }
