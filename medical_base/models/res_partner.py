@@ -124,4 +124,6 @@ class Partner(models.Model):
         return result
 
     def _check_medical_practitioner(self):
-        return self.env.user.has_group("medical_base.group_medical_configurator")
+        return self.env.user.has_group(
+            "medical_base.group_medical_configurator"
+        ) or self.env.user.has_group("medical_base.group_medical_financial")
